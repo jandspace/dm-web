@@ -1,0 +1,3837 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Button — Primary · MD · Label Only</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="../../tokens/dm_tokens.css" />
+    <link rel="stylesheet" href="../../tokens/dm_typography_web_tokens.css" />
+
+    <style>
+      /* ── Reset & base ── */
+      *,
+      *::before,
+      *::after {
+        box-sizing: border-box;
+        margin: 0;
+        padding: 0;
+      }
+
+      body {
+        font-family: var(--typography-font-family-sans);
+        background: var(--color-background-neutral-lightest);
+        padding: 48px 40px;
+        color: var(--color-text-neutral-darker);
+      }
+
+      /* ── Demo layout ── */
+      .demo-grid {
+        display: grid;
+        grid-template-columns: 140px repeat(4, 1fr);
+      }
+
+      .col-header {
+        font-size: 11px;
+        font-weight: 600;
+        letter-spacing: 0.06em;
+        text-transform: uppercase;
+        color: #666;
+        padding: 0 20px 14px;
+      }
+
+      .col-header:first-child {
+        padding-left: 0;
+      }
+
+      .row-label {
+        font-size: 11px;
+        font-weight: 600;
+        letter-spacing: 0.04em;
+        text-transform: uppercase;
+        color: #505050;
+        display: flex;
+        align-items: center;
+        padding: 24px 0 24px 16px;
+        border-top: 1px solid var(--color-border-neutral-light);
+      }
+
+      .cell {
+        display: flex;
+        align-items: center;
+        padding: 24px 20px;
+        border-top: 1px solid var(--color-border-neutral-light);
+      }
+
+      /* dark surface rows */
+      .row--dark .row-label {
+        border-color: #2a2a2a;
+      }
+      .row--dark .cell {
+        background: var(--color-background-neutral-darker);
+        border-color: #2a2a2a;
+      }
+
+      /* ── Button base ── */
+      .btn {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        height: 40px;
+        padding: 0 14px;
+        border: none;
+        border-radius: 999px;
+        cursor: pointer;
+        font-family: var(--typography-font-family-sans);
+        font-size: var(--typography-font-size-label-md);
+        font-weight: var(--typography-font-weight-semibold);
+        line-height: var(--typography-line-height-narrow);
+        letter-spacing: 0;
+        white-space: nowrap;
+        -webkit-font-smoothing: antialiased;
+        transition:
+          background-color 80ms ease,
+          box-shadow 80ms ease;
+      }
+
+      /* ── Primary Brand ── */
+      .btn-brand {
+        background-color: var(--color-background-interaction-primary-default);
+        color: var(--color-text-neutral-white);
+      }
+      .btn-brand:hover {
+        background-color: var(--color-background-interaction-primary-hover);
+      }
+      .btn-brand:active {
+        background-color: var(--color-background-interaction-primary-pressed);
+        box-shadow: inset 0 1px 1px 0 rgba(0, 0, 0, 0.4);
+      }
+
+      /* ── Primary Neutral ── */
+      .btn-neutral {
+        background-color: var(--color-background-neutral-darker);
+        color: var(--color-text-neutral-lightest);
+      }
+      .btn-neutral:hover {
+        background-color: var(--color-background-neutral-dark);
+      }
+      .btn-neutral:active {
+        background-color: var(--color-background-neutral-grey-dark);
+        box-shadow: inset 0 1px 1px 0 rgba(0, 0, 0, 0.4);
+      }
+
+      /* ── Primary Neutral Inverse ── */
+      .btn-neutral-inverse {
+        background-color: var(--color-background-neutral-light);
+        color: var(--color-text-neutral-darker);
+      }
+      .btn-neutral-inverse:hover {
+        background-color: var(--color-background-neutral-white);
+      }
+      .btn-neutral-inverse:active {
+        background-color: var(--color-background-neutral-lighter);
+        box-shadow: inset 0 1px 1px 0 rgba(0, 0, 0, 0.4);
+      }
+
+      /* ── Static state overrides for demo display ── */
+      .is-hover {
+        pointer-events: none;
+      }
+      .is-pressed {
+        pointer-events: none;
+      }
+
+      .btn-brand.is-hover {
+        background-color: var(--color-background-interaction-primary-hover);
+      }
+      .btn-brand.is-pressed {
+        background-color: var(--color-background-interaction-primary-pressed);
+        box-shadow: inset 0 1px 1px 0 rgba(0, 0, 0, 0.4);
+      }
+
+      .btn-neutral.is-hover {
+        background-color: var(--color-background-neutral-dark);
+      }
+      .btn-neutral.is-pressed {
+        background-color: var(--color-background-neutral-grey-dark);
+        box-shadow: inset 0 1px 1px 0 rgba(0, 0, 0, 0.4);
+      }
+
+      .btn-neutral-inverse.is-hover {
+        background-color: var(--color-background-neutral-white);
+      }
+      .btn-neutral-inverse.is-pressed {
+        background-color: var(--color-background-neutral-lighter);
+        box-shadow: inset 0 1px 1px 0 rgba(0, 0, 0, 0.4);
+      }
+
+      /* ── Loading state ── */
+      @keyframes btn-spin {
+        to {
+          transform: rotate(360deg);
+        }
+      }
+
+      .btn--loading {
+        pointer-events: none;
+        cursor: not-allowed;
+        position: relative;
+      }
+
+      .btn-brand.btn--loading {
+        background-color: var(--color-background-interaction-primary-pressed);
+        color: var(--color-icon-neutral-white);
+      }
+
+      .btn-neutral.btn--loading {
+        background-color: var(--color-background-neutral-grey-dark);
+        color: var(--color-icon-neutral-lightest);
+      }
+
+      .btn-neutral-inverse.btn--loading {
+        background-color: var(--color-background-neutral-lighter);
+        color: var(--color-icon-neutral-darker);
+      }
+
+      .btn--loading .btn__label,
+      .btn--loading .btn__content {
+        visibility: hidden;
+      }
+
+      .btn svg.btn-spinner {
+        display: none;
+      }
+
+      .btn--loading svg.btn-spinner {
+        display: block;
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        margin-top: -12px;
+        margin-left: -12px;
+        opacity: 0.4;
+        animation: btn-spin 1.2s linear infinite;
+      }
+      .btn--icon-only {
+        width: 40px;
+        padding: 0;
+      }
+
+      .btn__content {
+        display: inline-flex;
+        align-items: center;
+        gap: 6px;
+      }
+
+      .btn__content svg {
+        width: 1em;
+        height: 1em;
+        flex-shrink: 0;
+      }
+
+      .section-title {
+        font-size: 14px;
+        font-weight: 600;
+        letter-spacing: 0.08em;
+        color: #444;
+        margin-top: 56px;
+        margin-bottom: 40px;
+      }
+
+      /* ── Row backgrounds ── */
+      .row-label.row--dark {
+        color: #ccc;
+        border-color: #2a2a2a;
+        background: var(--color-background-neutral-dark);
+      }
+      .cell.row--dark {
+        background: var(--color-background-neutral-dark);
+        border-color: #2a2a2a;
+      }
+
+      .row-label.row--visible,
+      .cell:has(.btn-secondary-visible),
+      .cell:has(.btn-tertiary-visible) {
+        background: var(--color-background-neutral-light);
+      }
+
+      .row-label.row--light-surface,
+      .cell:has(.btn-secondary-light),
+      .cell:has(.btn-tertiary-light),
+      .cell:has(.btn-quaternary-light) {
+        background: var(--color-background-neutral-grey-light);
+      }
+
+      /* ── Category divider ── */
+      .category-divider {
+        margin-top: 80px;
+        margin-bottom: 48px;
+        border: none;
+        border-top: 1px solid var(--color-border-neutral-light);
+      }
+
+      .category-title {
+        font-size: 10px;
+        font-weight: 700;
+        letter-spacing: 0.12em;
+        text-transform: uppercase;
+        color: #ccc;
+        margin-bottom: 48px;
+      }
+
+      /* ══ Secondary variants ══════════════════════════════════ */
+
+      .btn-secondary-brand,
+      .btn-secondary-visible,
+      .btn-secondary-neutral,
+      .btn-secondary-light,
+      .btn-secondary-dark {
+        border-width: 1px;
+        border-style: solid;
+      }
+
+      /* ── Secondary Brand ── */
+      .btn-secondary-brand {
+        background-color: var(--color-effect-translucent-dark-clear);
+        border-color: var(--color-border-neutral-grey-light);
+        color: var(--color-text-interaction-primary-default);
+      }
+      .btn-secondary-brand:hover {
+        background-color: var(--color-effect-translucent-dark-pale);
+      }
+      .btn-secondary-brand:active {
+        background-color: var(--color-effect-translucent-dark-pale);
+        box-shadow: inset 0 1px 1px 0 rgba(0, 0, 0, 0.4);
+      }
+      .btn-secondary-brand.is-hover {
+        background-color: var(--color-effect-translucent-dark-pale);
+      }
+      .btn-secondary-brand.is-pressed {
+        background-color: var(--color-effect-translucent-dark-pale);
+        box-shadow: inset 0 1px 1px 0 rgba(0, 0, 0, 0.4);
+      }
+      .btn-secondary-brand.btn--loading {
+        background-color: var(--color-effect-translucent-dark-pale);
+      }
+
+      /* ── Secondary Visible ── */
+      .btn-secondary-visible {
+        background-color: var(--color-effect-translucent-dark-clear);
+        border-color: var(--color-border-translucent-dark-subtle);
+        color: var(--color-text-interaction-primary-default);
+      }
+      .btn-secondary-visible:hover {
+        background-color: var(--color-effect-translucent-dark-pale);
+      }
+      .btn-secondary-visible:active {
+        background-color: var(--color-effect-translucent-dark-pale);
+        box-shadow: inset 0 1px 1px 0 rgba(0, 0, 0, 0.4);
+      }
+      .btn-secondary-visible.is-hover {
+        background-color: var(--color-effect-translucent-dark-pale);
+      }
+      .btn-secondary-visible.is-pressed {
+        background-color: var(--color-effect-translucent-dark-pale);
+        box-shadow: inset 0 1px 1px 0 rgba(0, 0, 0, 0.4);
+      }
+      .btn-secondary-visible.btn--loading {
+        background-color: var(--color-effect-translucent-dark-pale);
+      }
+
+      /* ── Secondary Neutral ── */
+      .btn-secondary-neutral {
+        background-color: var(--color-effect-translucent-dark-clear);
+        border-color: var(--color-border-neutral-grey-light);
+        color: var(--color-text-neutral-darker);
+      }
+      .btn-secondary-neutral:hover {
+        background-color: var(--color-effect-translucent-dark-pale);
+      }
+      .btn-secondary-neutral:active {
+        background-color: var(--color-effect-translucent-dark-pale);
+        box-shadow: inset 0 1px 1px 0 rgba(0, 0, 0, 0.4);
+      }
+      .btn-secondary-neutral.is-hover {
+        background-color: var(--color-effect-translucent-dark-pale);
+      }
+      .btn-secondary-neutral.is-pressed {
+        background-color: var(--color-effect-translucent-dark-pale);
+        box-shadow: inset 0 1px 1px 0 rgba(0, 0, 0, 0.4);
+      }
+      .btn-secondary-neutral.btn--loading {
+        background-color: var(--color-effect-translucent-dark-pale);
+      }
+
+      /* ── Secondary Light Surface ── */
+      .btn-secondary-light {
+        background-color: var(--color-effect-translucent-dark-clear);
+        border-color: var(--color-border-translucent-dark-subtle);
+        color: var(--color-text-neutral-darker);
+      }
+      .btn-secondary-light:hover {
+        background-color: var(--color-effect-translucent-dark-pale);
+      }
+      .btn-secondary-light:active {
+        background-color: var(--color-effect-translucent-dark-pale);
+        box-shadow: inset 0 1px 1px 0 rgba(0, 0, 0, 0.4);
+      }
+      .btn-secondary-light.is-hover {
+        background-color: var(--color-effect-translucent-dark-pale);
+      }
+      .btn-secondary-light.is-pressed {
+        background-color: var(--color-effect-translucent-dark-pale);
+        box-shadow: inset 0 1px 1px 0 rgba(0, 0, 0, 0.4);
+      }
+      .btn-secondary-light.btn--loading {
+        background-color: var(--color-effect-translucent-dark-pale);
+      }
+
+      /* ── Secondary Dark Surface ── */
+      .btn-secondary-dark {
+        background-color: var(--color-effect-translucent-light-clear);
+        border-color: var(--color-border-translucent-light-moderate);
+        color: var(--color-text-neutral-lightest);
+      }
+      .btn-secondary-dark:hover {
+        background-color: var(--color-effect-translucent-light-pale);
+      }
+      .btn-secondary-dark:active {
+        background-color: var(--color-effect-translucent-light-pale);
+        box-shadow: inset 0 1px 1px 0 rgba(0, 0, 0, 0.4);
+      }
+      .btn-secondary-dark.is-hover {
+        background-color: var(--color-effect-translucent-light-pale);
+      }
+      .btn-secondary-dark.is-pressed {
+        background-color: var(--color-effect-translucent-light-pale);
+        box-shadow: inset 0 1px 1px 0 rgba(0, 0, 0, 0.4);
+      }
+      .btn-secondary-dark.btn--loading {
+        background-color: var(--color-effect-translucent-light-pale);
+      }
+
+      /* ══ Tertiary variants ══════════════════════════════════ */
+
+      /* ── Tertiary Brand ── */
+      .btn-tertiary-brand {
+        background-color: var(--color-background-neutral-lighter);
+        color: var(--color-text-interaction-primary-default);
+      }
+      .btn-tertiary-brand:hover {
+        background-color: var(--color-background-neutral-light);
+      }
+      .btn-tertiary-brand:active {
+        background-color: var(--color-background-neutral-light);
+        box-shadow: inset 0 1px 1px 0 rgba(0, 0, 0, 0.4);
+      }
+      .btn-tertiary-brand.is-hover {
+        background-color: var(--color-background-neutral-light);
+      }
+      .btn-tertiary-brand.is-pressed {
+        background-color: var(--color-background-neutral-light);
+        box-shadow: inset 0 1px 1px 0 rgba(0, 0, 0, 0.4);
+      }
+      .btn-tertiary-brand.btn--loading {
+        background-color: var(--color-background-neutral-light);
+      }
+
+      /* ── Tertiary Visible ── */
+      .btn-tertiary-visible {
+        background-color: var(--color-effect-translucent-dark-pale);
+        color: var(--color-text-interaction-primary-default);
+      }
+      .btn-tertiary-visible:hover {
+        background-color: var(--color-effect-translucent-dark-subtle);
+      }
+      .btn-tertiary-visible:active {
+        background-color: var(--color-effect-translucent-dark-pale);
+        box-shadow: inset 0 1px 1px 0 rgba(0, 0, 0, 0.4);
+      }
+      .btn-tertiary-visible.is-hover {
+        background-color: var(--color-effect-translucent-dark-subtle);
+      }
+      .btn-tertiary-visible.is-pressed {
+        background-color: var(--color-effect-translucent-dark-pale);
+        box-shadow: inset 0 1px 1px 0 rgba(0, 0, 0, 0.4);
+      }
+      .btn-tertiary-visible.btn--loading {
+        background-color: var(--color-effect-translucent-dark-pale);
+      }
+
+      /* ── Tertiary Neutral ── */
+      .btn-tertiary-neutral {
+        background-color: var(--color-background-neutral-lighter);
+        color: var(--color-text-neutral-darker);
+      }
+      .btn-tertiary-neutral:hover {
+        background-color: var(--color-background-neutral-light);
+      }
+      .btn-tertiary-neutral:active {
+        background-color: var(--color-background-neutral-light);
+        box-shadow: inset 0 1px 1px 0 rgba(0, 0, 0, 0.4);
+      }
+      .btn-tertiary-neutral.is-hover {
+        background-color: var(--color-background-neutral-light);
+      }
+      .btn-tertiary-neutral.is-pressed {
+        background-color: var(--color-background-neutral-light);
+        box-shadow: inset 0 1px 1px 0 rgba(0, 0, 0, 0.4);
+      }
+      .btn-tertiary-neutral.btn--loading {
+        background-color: var(--color-background-neutral-light);
+      }
+
+      /* ── Tertiary Light Surface ── */
+      .btn-tertiary-light {
+        background-color: var(--color-effect-translucent-dark-moderate);
+        color: var(--color-text-neutral-lightest);
+      }
+      .btn-tertiary-light:hover {
+        background-color: var(--color-effect-translucent-dark-deep);
+      }
+      .btn-tertiary-light:active {
+        background-color: var(--color-effect-translucent-dark-deep);
+        box-shadow: inset 0 1px 1px 0 rgba(0, 0, 0, 0.4);
+      }
+      .btn-tertiary-light.is-hover {
+        background-color: var(--color-effect-translucent-dark-deep);
+      }
+      .btn-tertiary-light.is-pressed {
+        background-color: var(--color-effect-translucent-dark-deep);
+        box-shadow: inset 0 1px 1px 0 rgba(0, 0, 0, 0.4);
+      }
+      .btn-tertiary-light.btn--loading {
+        background-color: var(--color-effect-translucent-dark-deep);
+      }
+
+      /* ── Tertiary Dark Surface ── */
+      .btn-tertiary-dark {
+        background-color: var(--color-effect-translucent-light-deep);
+        color: var(--color-text-neutral-darker);
+      }
+      .btn-tertiary-dark:hover {
+        background-color: var(--color-effect-translucent-light-thick);
+      }
+      .btn-tertiary-dark:active {
+        background-color: var(--color-effect-translucent-light-thick);
+        box-shadow: inset 0 1px 1px 0 rgba(0, 0, 0, 0.4);
+      }
+      .btn-tertiary-dark.is-hover {
+        background-color: var(--color-effect-translucent-light-thick);
+      }
+      .btn-tertiary-dark.is-pressed {
+        background-color: var(--color-effect-translucent-light-thick);
+        box-shadow: inset 0 1px 1px 0 rgba(0, 0, 0, 0.4);
+      }
+      .btn-tertiary-dark.btn--loading {
+        background-color: var(--color-effect-translucent-light-thick);
+      }
+
+      /* ══ Quaternary variants ══════════════════════════════════ */
+
+      /* ── Quaternary Brand ── */
+      .btn-quaternary-brand {
+        background-color: var(--color-effect-translucent-dark-clear);
+        color: var(--color-text-interaction-primary-default);
+      }
+      .btn-quaternary-brand:hover {
+        background-color: var(--color-background-neutral-light);
+      }
+      .btn-quaternary-brand:active {
+        background-color: var(--color-background-neutral-light);
+        box-shadow: inset 0 1px 1px 0 rgba(0, 0, 0, 0.4);
+      }
+      .btn-quaternary-brand.is-hover {
+        background-color: var(--color-background-neutral-light);
+      }
+      .btn-quaternary-brand.is-pressed {
+        background-color: var(--color-background-neutral-light);
+        box-shadow: inset 0 1px 1px 0 rgba(0, 0, 0, 0.4);
+      }
+      .btn-quaternary-brand.btn--loading {
+        background-color: var(--color-background-neutral-light);
+      }
+
+      /* ── Quaternary Neutral ── */
+      .btn-quaternary-neutral {
+        background-color: var(--color-effect-translucent-dark-clear);
+        color: var(--color-text-neutral-darker);
+      }
+      .btn-quaternary-neutral:hover {
+        background-color: var(--color-background-neutral-light);
+      }
+      .btn-quaternary-neutral:active {
+        background-color: var(--color-background-neutral-light);
+        box-shadow: inset 0 1px 1px 0 rgba(0, 0, 0, 0.4);
+      }
+      .btn-quaternary-neutral.is-hover {
+        background-color: var(--color-background-neutral-light);
+      }
+      .btn-quaternary-neutral.is-pressed {
+        background-color: var(--color-background-neutral-light);
+        box-shadow: inset 0 1px 1px 0 rgba(0, 0, 0, 0.4);
+      }
+      .btn-quaternary-neutral.btn--loading {
+        background-color: var(--color-background-neutral-light);
+      }
+
+      /* ── Quaternary Light Surface ── */
+      .btn-quaternary-light {
+        background-color: var(--color-effect-translucent-dark-clear);
+        color: var(--color-text-neutral-darker);
+      }
+      .btn-quaternary-light:hover {
+        background-color: var(--color-effect-translucent-dark-subtle);
+      }
+      .btn-quaternary-light:active {
+        background-color: var(--color-effect-translucent-dark-subtle);
+        box-shadow: inset 0 1px 1px 0 rgba(0, 0, 0, 0.4);
+      }
+      .btn-quaternary-light.is-hover {
+        background-color: var(--color-effect-translucent-dark-subtle);
+      }
+      .btn-quaternary-light.is-pressed {
+        background-color: var(--color-effect-translucent-dark-subtle);
+        box-shadow: inset 0 1px 1px 0 rgba(0, 0, 0, 0.4);
+      }
+      .btn-quaternary-light.btn--loading {
+        background-color: var(--color-effect-translucent-dark-subtle);
+      }
+
+      /* ── Quaternary Dark Surface ── */
+      .btn-quaternary-dark {
+        background-color: var(--color-effect-translucent-light-clear);
+        color: var(--color-text-neutral-lightest);
+      }
+      .btn-quaternary-dark:hover {
+        background-color: var(--color-effect-translucent-light-subtle);
+      }
+      .btn-quaternary-dark:active {
+        background-color: var(--color-effect-translucent-light-subtle);
+        box-shadow: inset 0 1px 1px 0 rgba(0, 0, 0, 0.4);
+      }
+      .btn-quaternary-dark.is-hover {
+        background-color: var(--color-effect-translucent-light-subtle);
+      }
+      .btn-quaternary-dark.is-pressed {
+        background-color: var(--color-effect-translucent-light-subtle);
+        box-shadow: inset 0 1px 1px 0 rgba(0, 0, 0, 0.4);
+      }
+      .btn-quaternary-dark.btn--loading {
+        background-color: var(--color-effect-translucent-light-subtle);
+      }
+
+      /* ══ Contextual — Negative ══════════════════════════════ */
+
+      /* ── Negative Solid ── */
+      .btn-negative-solid {
+        background-color: var(--color-background-interaction-negative-default);
+        color: var(--color-text-neutral-white);
+      }
+      .btn-negative-solid:hover {
+        background-color: var(--color-background-interaction-negative-hover);
+      }
+      .btn-negative-solid:active {
+        background-color: var(--color-background-interaction-negative-pressed);
+        box-shadow: inset 0 1px 1px 0 rgba(0, 0, 0, 0.4);
+      }
+      .btn-negative-solid.is-hover {
+        background-color: var(--color-background-interaction-negative-hover);
+      }
+      .btn-negative-solid.is-pressed {
+        background-color: var(--color-background-interaction-negative-pressed);
+        box-shadow: inset 0 1px 1px 0 rgba(0, 0, 0, 0.4);
+      }
+      .btn-negative-solid.btn--loading {
+        background-color: var(--color-background-interaction-negative-pressed);
+      }
+
+      /* ── Negative Outline ── */
+      .btn-negative-outline {
+        background-color: var(--color-effect-translucent-dark-clear);
+        border: 1px solid var(--color-border-neutral-grey-light);
+        color: var(--color-text-interaction-negative-default);
+      }
+      .btn-negative-outline:hover {
+        background-color: var(--color-effect-translucent-dark-pale);
+        border-color: var(--color-border-translucent-dark-subtle);
+      }
+      .btn-negative-outline:active {
+        background-color: var(--color-effect-translucent-dark-pale);
+        border-color: var(--color-border-translucent-dark-subtle);
+        box-shadow: inset 0 1px 1px 0 rgba(0, 0, 0, 0.4);
+      }
+      .btn-negative-outline.is-hover {
+        background-color: var(--color-effect-translucent-dark-pale);
+        border-color: var(--color-border-translucent-dark-subtle);
+      }
+      .btn-negative-outline.is-pressed {
+        background-color: var(--color-effect-translucent-dark-pale);
+        border-color: var(--color-border-translucent-dark-subtle);
+        box-shadow: inset 0 1px 1px 0 rgba(0, 0, 0, 0.4);
+      }
+      .btn-negative-outline.btn--loading {
+        background-color: var(--color-effect-translucent-dark-pale);
+        border-color: var(--color-border-translucent-dark-subtle);
+      }
+
+      /* ══ Contextual — Positive ══════════════════════════════ */
+
+      /* ── Positive Solid ── */
+      .btn-positive-solid {
+        background-color: var(--color-background-interaction-positive-default);
+        color: var(--color-text-neutral-white);
+      }
+      .btn-positive-solid:hover {
+        background-color: var(--color-background-interaction-positive-hover);
+      }
+      .btn-positive-solid:active {
+        background-color: var(--color-background-interaction-positive-pressed);
+        box-shadow: inset 0 1px 1px 0 rgba(0, 0, 0, 0.4);
+      }
+      .btn-positive-solid.is-hover {
+        background-color: var(--color-background-interaction-positive-hover);
+      }
+      .btn-positive-solid.is-pressed {
+        background-color: var(--color-background-interaction-positive-pressed);
+        box-shadow: inset 0 1px 1px 0 rgba(0, 0, 0, 0.4);
+      }
+      .btn-positive-solid.btn--loading {
+        background-color: var(--color-background-interaction-positive-pressed);
+      }
+
+      /* ── Positive Outline ── */
+      .btn-positive-outline {
+        background-color: var(--color-effect-translucent-dark-clear);
+        border: 1px solid var(--color-border-neutral-grey-light);
+        color: var(--color-text-interaction-positive-default);
+      }
+      .btn-positive-outline:hover {
+        background-color: var(--color-effect-translucent-dark-pale);
+        border-color: var(--color-border-translucent-dark-subtle);
+      }
+      .btn-positive-outline:active {
+        background-color: var(--color-effect-translucent-dark-pale);
+        border-color: var(--color-border-translucent-dark-subtle);
+        box-shadow: inset 0 1px 1px 0 rgba(0, 0, 0, 0.4);
+      }
+      .btn-positive-outline.is-hover {
+        background-color: var(--color-effect-translucent-dark-pale);
+        border-color: var(--color-border-translucent-dark-subtle);
+      }
+      .btn-positive-outline.is-pressed {
+        background-color: var(--color-effect-translucent-dark-pale);
+        border-color: var(--color-border-translucent-dark-subtle);
+        box-shadow: inset 0 1px 1px 0 rgba(0, 0, 0, 0.4);
+      }
+      .btn-positive-outline.btn--loading {
+        background-color: var(--color-effect-translucent-dark-pale);
+        border-color: var(--color-border-translucent-dark-subtle);
+      }
+
+      /* ══ Size modifiers ═══════════════════════════════════════ */
+
+      .btn--xs {
+        height: 28px;
+        padding: 0 10px;
+        font-size: var(--typography-font-size-label-xxsm, 12px);
+      }
+      .btn--xs .btn__content {
+        gap: 4px;
+      }
+      .btn--xs.btn--icon-only {
+        width: 28px;
+      }
+      .btn--xs svg.btn-spinner {
+        width: 16px;
+        height: 16px;
+        margin-top: -8px;
+        margin-left: -8px;
+      }
+
+      .btn--sm {
+        height: 34px;
+        padding: 0 12px;
+        font-size: var(--typography-font-size-label-sm);
+      }
+      .btn--sm .btn__content {
+        gap: 5px;
+      }
+      .btn--sm.btn--icon-only {
+        width: 34px;
+      }
+      .btn--sm svg.btn-spinner {
+        width: 20px;
+        height: 20px;
+        margin-top: -10px;
+        margin-left: -10px;
+      }
+
+      .btn--lg {
+        height: 46px;
+        padding: 0 16px;
+        font-size: var(--typography-font-size-label-lg);
+      }
+      .btn--lg .btn__content {
+        gap: 8px;
+      }
+      .btn--lg.btn--icon-only {
+        width: 46px;
+      }
+      .btn--lg svg.btn-spinner {
+        width: 28px;
+        height: 28px;
+        margin-top: -14px;
+        margin-left: -14px;
+      }
+
+      .btn--xl {
+        height: 52px;
+        padding: 0 18px;
+        font-size: var(--typography-font-size-label-xl);
+      }
+      .btn--xl .btn__content {
+        gap: 10px;
+      }
+      .btn--xl.btn--icon-only {
+        width: 52px;
+      }
+      .btn--xl svg.btn-spinner {
+        width: 32px;
+        height: 32px;
+        margin-top: -16px;
+        margin-left: -16px;
+      }
+
+      /* 6-column grid for size overview */
+      .demo-grid--6col {
+        display: grid;
+        grid-template-columns: 140px repeat(5, 1fr);
+      }
+    </style>
+  </head>
+  <body>
+    <svg style="display: none" aria-hidden="true">
+      <symbol id="ico-square-dashed" viewBox="0 0 32 32">
+        <path d="M12.733 32H6.893C3.093 32 0 28.907 0 25.107v-5.84h3.387v5.84c0 1.933 1.573 3.507 3.506 3.507h5.84V32zm19.267-19.267h-3.387V6.893c0-1.933-1.573-3.506-3.506-3.506h-5.84V0h5.84C28.907 0 32 3.093 32 6.893v5.84zM3.387 12.733H0V6.893C0 3.093 3.093 0 6.893 0h5.84v3.387h-5.84c-1.933 0-3.506 1.573-3.506 3.506v5.84zm21.72 19.267h-5.84v-3.387h5.84c1.933 0 3.507-1.573 3.507-3.506v-5.84H32v5.84C32 28.907 28.907 32 25.107 32z" fill="currentColor" />
+      </symbol>
+      <symbol id="ico-add" viewBox="0 0 32 32">
+        <path d="M31.1111 13.7778H18.2222V0.888916H13.7778V13.7778H0.888916V18.2222H13.7778V31.1111H18.2222V18.2222H31.1111V13.7778Z" fill="currentColor" />
+      </symbol>
+      <symbol id="ico-spinner" viewBox="0 0 32 32">
+        <path d="M16 32C7.17714 32 0 24.8229 0 16C0 7.17714 7.17714 0 16 0C24.8229 0 32 7.17714 32 16H28.1905C28.1905 9.28 22.72 3.80952 16 3.80952C9.28 3.80952 3.80952 9.28 3.80952 16C3.80952 22.72 9.28 28.1905 16 28.1905V32Z" fill="currentColor" />
+      </symbol>
+      <symbol id="ico-heart" viewBox="0 0 32 32">
+        <path d="M15.3999 30.67L15.9899 31L16.57 30.67C16.86 30.5 17.2099 30.31 17.58 30.08C21.32 27.85 28.7 22.75 31.17 16C32.0099 13.72 32.2799 11.24 31.66 8.63C30.61 4.2 27.0399 1.06 22.9699 1H22.84C20.2 1 17.8199 2.27 15.9799 4.61C14.1599 2.27 11.7699 1 9.11995 1C5.00995 1.06 1.39995 4.21 0.33995 8.67C-2.29005 19.76 11.1999 28.32 15.3999 30.67Z" fill="currentColor" />
+      </symbol>
+    </svg>
+
+    <h1>Button Primary</h1>
+
+    <h2 class="section-title">Button — Primary · MD · Label Only</h2>
+
+    <div class="demo-grid">
+      <div class="col-header"></div>
+      <div class="col-header">Default</div>
+      <div class="col-header">Hover</div>
+      <div class="col-header">Loading</div>
+      <div class="col-header">Pressed</div>
+
+      <!-- Primary Brand -->
+      <div class="row-label">Brand</div>
+      <div class="cell">
+        <button class="btn btn-brand">
+          <span class="btn__label">Button</span>
+          <svg class="btn-spinner" width="24" height="24" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+            <path d="M16 32C7.17714 32 0 24.8229 0 16C0 7.17714 7.17714 0 16 0C24.8229 0 32 7.17714 32 16H28.1905C28.1905 9.28 22.72 3.80952 16 3.80952C9.28 3.80952 3.80952 9.28 3.80952 16C3.80952 22.72 9.28 28.1905 16 28.1905V32Z" fill="currentColor" />
+          </svg>
+        </button>
+      </div>
+      <div class="cell">
+        <button class="btn btn-brand is-hover">Button</button>
+      </div>
+      <div class="cell">
+        <button class="btn btn-brand btn--loading" aria-label="Loading">
+          <span class="btn__label">Button</span>
+          <svg class="btn-spinner" width="24" height="24" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+            <path d="M16 32C7.17714 32 0 24.8229 0 16C0 7.17714 7.17714 0 16 0C24.8229 0 32 7.17714 32 16H28.1905C28.1905 9.28 22.72 3.80952 16 3.80952C9.28 3.80952 3.80952 9.28 3.80952 16C3.80952 22.72 9.28 28.1905 16 28.1905V32Z" fill="currentColor" />
+          </svg>
+        </button>
+      </div>
+      <div class="cell">
+        <button class="btn btn-brand is-pressed">Button</button>
+      </div>
+
+      <!-- Primary Neutral -->
+      <div class="row-label">Neutral</div>
+      <div class="cell">
+        <button class="btn btn-neutral">
+          <span class="btn__label">Button</span>
+          <svg class="btn-spinner" width="24" height="24" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+            <path d="M16 32C7.17714 32 0 24.8229 0 16C0 7.17714 7.17714 0 16 0C24.8229 0 32 7.17714 32 16H28.1905C28.1905 9.28 22.72 3.80952 16 3.80952C9.28 3.80952 3.80952 9.28 3.80952 16C3.80952 22.72 9.28 28.1905 16 28.1905V32Z" fill="currentColor" />
+          </svg>
+        </button>
+      </div>
+      <div class="cell">
+        <button class="btn btn-neutral is-hover">Button</button>
+      </div>
+      <div class="cell">
+        <button class="btn btn-neutral btn--loading" aria-label="Loading">
+          <span class="btn__label">Button</span>
+          <svg class="btn-spinner" width="24" height="24" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+            <path d="M16 32C7.17714 32 0 24.8229 0 16C0 7.17714 7.17714 0 16 0C24.8229 0 32 7.17714 32 16H28.1905C28.1905 9.28 22.72 3.80952 16 3.80952C9.28 3.80952 3.80952 9.28 3.80952 16C3.80952 22.72 9.28 28.1905 16 28.1905V32Z" fill="currentColor" />
+          </svg>
+        </button>
+      </div>
+      <div class="cell">
+        <button class="btn btn-neutral is-pressed">Button</button>
+      </div>
+
+      <!-- Primary Neutral Inverse (on dark surface) -->
+      <div class="row-label row--dark">Neutral Inverse</div>
+      <div class="cell row--dark">
+        <button class="btn btn-neutral-inverse">
+          <span class="btn__label">Button</span>
+          <svg class="btn-spinner" width="24" height="24" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+            <path d="M16 32C7.17714 32 0 24.8229 0 16C0 7.17714 7.17714 0 16 0C24.8229 0 32 7.17714 32 16H28.1905C28.1905 9.28 22.72 3.80952 16 3.80952C9.28 3.80952 3.80952 9.28 3.80952 16C3.80952 22.72 9.28 28.1905 16 28.1905V32Z" fill="currentColor" />
+          </svg>
+        </button>
+      </div>
+      <div class="cell row--dark">
+        <button class="btn btn-neutral-inverse is-hover">Button</button>
+      </div>
+      <div class="cell row--dark">
+        <button class="btn btn-neutral-inverse btn--loading" aria-label="Loading">
+          <span class="btn__label">Button</span>
+          <svg class="btn-spinner" width="24" height="24" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+            <path d="M16 32C7.17714 32 0 24.8229 0 16C0 7.17714 7.17714 0 16 0C24.8229 0 32 7.17714 32 16H28.1905C28.1905 9.28 22.72 3.80952 16 3.80952C9.28 3.80952 3.80952 9.28 3.80952 16C3.80952 22.72 9.28 28.1905 16 28.1905V32Z" fill="currentColor" />
+          </svg>
+        </button>
+      </div>
+      <div class="cell row--dark">
+        <button class="btn btn-neutral-inverse is-pressed">Button</button>
+      </div>
+    </div>
+
+    <h2 class="section-title">Button — Primary · MD · Icon + Label</h2>
+
+    <div class="demo-grid">
+      <div class="col-header"></div>
+      <div class="col-header">Default</div>
+      <div class="col-header">Hover</div>
+      <div class="col-header">Loading</div>
+      <div class="col-header">Pressed</div>
+
+      <!-- Icon + Label · Brand -->
+      <div class="row-label">Brand</div>
+      <div class="cell">
+        <button class="btn btn-brand">
+          <span class="btn__content">
+            <svg width="20" height="20" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+              <g clip-path="url(#a)"><path d="M12.733 32H6.893C3.093 32 0 28.907 0 25.107v-5.84h3.387v5.84c0 1.933 1.573 3.507 3.506 3.507h5.84V32zm19.267-19.267h-3.387V6.893c0-1.933-1.573-3.506-3.506-3.506h-5.84V0h5.84C28.907 0 32 3.093 32 6.893v5.84zM3.387 12.733H0V6.893C0 3.093 3.093 0 6.893 0h5.84v3.387h-5.84c-1.933 0-3.506 1.573-3.506 3.506v5.84zm21.72 19.267h-5.84v-3.387h5.84c1.933 0 3.507-1.573 3.507-3.506v-5.84H32v5.84C32 28.907 28.907 32 25.107 32z" fill="currentColor" /></g>
+              <defs>
+                <clipPath id="a"><rect width="32" height="32" fill="white" /></clipPath>
+              </defs>
+            </svg>
+            <span class="btn__label">Button</span>
+          </span>
+          <svg class="btn-spinner" width="24" height="24" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+            <path d="M16 32C7.17714 32 0 24.8229 0 16C0 7.17714 7.17714 0 16 0C24.8229 0 32 7.17714 32 16H28.1905C28.1905 9.28 22.72 3.80952 16 3.80952C9.28 3.80952 3.80952 9.28 3.80952 16C3.80952 22.72 9.28 28.1905 16 28.1905V32Z" fill="currentColor" />
+          </svg>
+        </button>
+      </div>
+      <div class="cell">
+        <button class="btn btn-brand is-hover">
+          <span class="btn__content"
+            ><svg width="20" height="20" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+              <g clip-path="url(#b)"><path d="M12.733 32H6.893C3.093 32 0 28.907 0 25.107v-5.84h3.387v5.84c0 1.933 1.573 3.507 3.506 3.507h5.84V32zm19.267-19.267h-3.387V6.893c0-1.933-1.573-3.506-3.506-3.506h-5.84V0h5.84C28.907 0 32 3.093 32 6.893v5.84zM3.387 12.733H0V6.893C0 3.093 3.093 0 6.893 0h5.84v3.387h-5.84c-1.933 0-3.506 1.573-3.506 3.506v5.84zm21.72 19.267h-5.84v-3.387h5.84c1.933 0 3.507-1.573 3.507-3.506v-5.84H32v5.84C32 28.907 28.907 32 25.107 32z" fill="currentColor" /></g>
+              <defs>
+                <clipPath id="b"><rect width="32" height="32" fill="white" /></clipPath>
+              </defs></svg
+            ><span class="btn__label">Button</span></span
+          >
+        </button>
+      </div>
+      <div class="cell">
+        <button class="btn btn-brand btn--loading" aria-label="Loading">
+          <span class="btn__content"
+            ><svg width="20" height="20" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+              <g clip-path="url(#c)"><path d="M12.733 32H6.893C3.093 32 0 28.907 0 25.107v-5.84h3.387v5.84c0 1.933 1.573 3.507 3.506 3.507h5.84V32zm19.267-19.267h-3.387V6.893c0-1.933-1.573-3.506-3.506-3.506h-5.84V0h5.84C28.907 0 32 3.093 32 6.893v5.84zM3.387 12.733H0V6.893C0 3.093 3.093 0 6.893 0h5.84v3.387h-5.84c-1.933 0-3.506 1.573-3.506 3.506v5.84zm21.72 19.267h-5.84v-3.387h5.84c1.933 0 3.507-1.573 3.507-3.506v-5.84H32v5.84C32 28.907 28.907 32 25.107 32z" fill="currentColor" /></g>
+              <defs>
+                <clipPath id="c"><rect width="32" height="32" fill="white" /></clipPath>
+              </defs></svg
+            ><span class="btn__label">Button</span></span
+          >
+          <svg class="btn-spinner" width="24" height="24" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+            <path d="M16 32C7.17714 32 0 24.8229 0 16C0 7.17714 7.17714 0 16 0C24.8229 0 32 7.17714 32 16H28.1905C28.1905 9.28 22.72 3.80952 16 3.80952C9.28 3.80952 3.80952 9.28 3.80952 16C3.80952 22.72 9.28 28.1905 16 28.1905V32Z" fill="currentColor" />
+          </svg>
+        </button>
+      </div>
+      <div class="cell">
+        <button class="btn btn-brand is-pressed">
+          <span class="btn__content"
+            ><svg width="20" height="20" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+              <g clip-path="url(#d)"><path d="M12.733 32H6.893C3.093 32 0 28.907 0 25.107v-5.84h3.387v5.84c0 1.933 1.573 3.507 3.506 3.507h5.84V32zm19.267-19.267h-3.387V6.893c0-1.933-1.573-3.506-3.506-3.506h-5.84V0h5.84C28.907 0 32 3.093 32 6.893v5.84zM3.387 12.733H0V6.893C0 3.093 3.093 0 6.893 0h5.84v3.387h-5.84c-1.933 0-3.506 1.573-3.506 3.506v5.84zm21.72 19.267h-5.84v-3.387h5.84c1.933 0 3.507-1.573 3.507-3.506v-5.84H32v5.84C32 28.907 28.907 32 25.107 32z" fill="currentColor" /></g>
+              <defs>
+                <clipPath id="d"><rect width="32" height="32" fill="white" /></clipPath>
+              </defs></svg
+            ><span class="btn__label">Button</span></span
+          >
+        </button>
+      </div>
+
+      <!-- Icon + Label · Neutral -->
+      <div class="row-label">Neutral</div>
+      <div class="cell">
+        <button class="btn btn-neutral">
+          <span class="btn__content"
+            ><svg width="20" height="20" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+              <g clip-path="url(#e)"><path d="M12.733 32H6.893C3.093 32 0 28.907 0 25.107v-5.84h3.387v5.84c0 1.933 1.573 3.507 3.506 3.507h5.84V32zm19.267-19.267h-3.387V6.893c0-1.933-1.573-3.506-3.506-3.506h-5.84V0h5.84C28.907 0 32 3.093 32 6.893v5.84zM3.387 12.733H0V6.893C0 3.093 3.093 0 6.893 0h5.84v3.387h-5.84c-1.933 0-3.506 1.573-3.506 3.506v5.84zm21.72 19.267h-5.84v-3.387h5.84c1.933 0 3.507-1.573 3.507-3.506v-5.84H32v5.84C32 28.907 28.907 32 25.107 32z" fill="currentColor" /></g>
+              <defs>
+                <clipPath id="e"><rect width="32" height="32" fill="white" /></clipPath>
+              </defs></svg
+            ><span class="btn__label">Button</span></span
+          >
+          <svg class="btn-spinner" width="24" height="24" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+            <path d="M16 32C7.17714 32 0 24.8229 0 16C0 7.17714 7.17714 0 16 0C24.8229 0 32 7.17714 32 16H28.1905C28.1905 9.28 22.72 3.80952 16 3.80952C9.28 3.80952 3.80952 9.28 3.80952 16C3.80952 22.72 9.28 28.1905 16 28.1905V32Z" fill="currentColor" />
+          </svg>
+        </button>
+      </div>
+      <div class="cell">
+        <button class="btn btn-neutral is-hover">
+          <span class="btn__content"
+            ><svg width="20" height="20" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+              <g clip-path="url(#f)"><path d="M12.733 32H6.893C3.093 32 0 28.907 0 25.107v-5.84h3.387v5.84c0 1.933 1.573 3.507 3.506 3.507h5.84V32zm19.267-19.267h-3.387V6.893c0-1.933-1.573-3.506-3.506-3.506h-5.84V0h5.84C28.907 0 32 3.093 32 6.893v5.84zM3.387 12.733H0V6.893C0 3.093 3.093 0 6.893 0h5.84v3.387h-5.84c-1.933 0-3.506 1.573-3.506 3.506v5.84zm21.72 19.267h-5.84v-3.387h5.84c1.933 0 3.507-1.573 3.507-3.506v-5.84H32v5.84C32 28.907 28.907 32 25.107 32z" fill="currentColor" /></g>
+              <defs>
+                <clipPath id="f"><rect width="32" height="32" fill="white" /></clipPath>
+              </defs></svg
+            ><span class="btn__label">Button</span></span
+          >
+        </button>
+      </div>
+      <div class="cell">
+        <button class="btn btn-neutral btn--loading" aria-label="Loading">
+          <span class="btn__content"
+            ><svg width="20" height="20" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+              <g clip-path="url(#g)"><path d="M12.733 32H6.893C3.093 32 0 28.907 0 25.107v-5.84h3.387v5.84c0 1.933 1.573 3.507 3.506 3.507h5.84V32zm19.267-19.267h-3.387V6.893c0-1.933-1.573-3.506-3.506-3.506h-5.84V0h5.84C28.907 0 32 3.093 32 6.893v5.84zM3.387 12.733H0V6.893C0 3.093 3.093 0 6.893 0h5.84v3.387h-5.84c-1.933 0-3.506 1.573-3.506 3.506v5.84zm21.72 19.267h-5.84v-3.387h5.84c1.933 0 3.507-1.573 3.507-3.506v-5.84H32v5.84C32 28.907 28.907 32 25.107 32z" fill="currentColor" /></g>
+              <defs>
+                <clipPath id="g"><rect width="32" height="32" fill="white" /></clipPath>
+              </defs></svg
+            ><span class="btn__label">Button</span></span
+          >
+          <svg class="btn-spinner" width="24" height="24" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+            <path d="M16 32C7.17714 32 0 24.8229 0 16C0 7.17714 7.17714 0 16 0C24.8229 0 32 7.17714 32 16H28.1905C28.1905 9.28 22.72 3.80952 16 3.80952C9.28 3.80952 3.80952 9.28 3.80952 16C3.80952 22.72 9.28 28.1905 16 28.1905V32Z" fill="currentColor" />
+          </svg>
+        </button>
+      </div>
+      <div class="cell">
+        <button class="btn btn-neutral is-pressed">
+          <span class="btn__content"
+            ><svg width="20" height="20" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+              <g clip-path="url(#h)"><path d="M12.733 32H6.893C3.093 32 0 28.907 0 25.107v-5.84h3.387v5.84c0 1.933 1.573 3.507 3.506 3.507h5.84V32zm19.267-19.267h-3.387V6.893c0-1.933-1.573-3.506-3.506-3.506h-5.84V0h5.84C28.907 0 32 3.093 32 6.893v5.84zM3.387 12.733H0V6.893C0 3.093 3.093 0 6.893 0h5.84v3.387h-5.84c-1.933 0-3.506 1.573-3.506 3.506v5.84zm21.72 19.267h-5.84v-3.387h5.84c1.933 0 3.507-1.573 3.507-3.506v-5.84H32v5.84C32 28.907 28.907 32 25.107 32z" fill="currentColor" /></g>
+              <defs>
+                <clipPath id="h"><rect width="32" height="32" fill="white" /></clipPath>
+              </defs></svg
+            ><span class="btn__label">Button</span></span
+          >
+        </button>
+      </div>
+
+      <!-- Icon + Label · Neutral Inverse -->
+      <div class="row-label row--dark">Neutral Inverse</div>
+      <div class="cell row--dark">
+        <button class="btn btn-neutral-inverse">
+          <span class="btn__content"
+            ><svg width="20" height="20" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+              <g clip-path="url(#i)"><path d="M12.733 32H6.893C3.093 32 0 28.907 0 25.107v-5.84h3.387v5.84c0 1.933 1.573 3.507 3.506 3.507h5.84V32zm19.267-19.267h-3.387V6.893c0-1.933-1.573-3.506-3.506-3.506h-5.84V0h5.84C28.907 0 32 3.093 32 6.893v5.84zM3.387 12.733H0V6.893C0 3.093 3.093 0 6.893 0h5.84v3.387h-5.84c-1.933 0-3.506 1.573-3.506 3.506v5.84zm21.72 19.267h-5.84v-3.387h5.84c1.933 0 3.507-1.573 3.507-3.506v-5.84H32v5.84C32 28.907 28.907 32 25.107 32z" fill="currentColor" /></g>
+              <defs>
+                <clipPath id="i"><rect width="32" height="32" fill="white" /></clipPath>
+              </defs></svg
+            ><span class="btn__label">Button</span></span
+          >
+          <svg class="btn-spinner" width="24" height="24" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+            <path d="M16 32C7.17714 32 0 24.8229 0 16C0 7.17714 7.17714 0 16 0C24.8229 0 32 7.17714 32 16H28.1905C28.1905 9.28 22.72 3.80952 16 3.80952C9.28 3.80952 3.80952 9.28 3.80952 16C3.80952 22.72 9.28 28.1905 16 28.1905V32Z" fill="currentColor" />
+          </svg>
+        </button>
+      </div>
+      <div class="cell row--dark">
+        <button class="btn btn-neutral-inverse is-hover">
+          <span class="btn__content"
+            ><svg width="20" height="20" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+              <g clip-path="url(#j)"><path d="M12.733 32H6.893C3.093 32 0 28.907 0 25.107v-5.84h3.387v5.84c0 1.933 1.573 3.507 3.506 3.507h5.84V32zm19.267-19.267h-3.387V6.893c0-1.933-1.573-3.506-3.506-3.506h-5.84V0h5.84C28.907 0 32 3.093 32 6.893v5.84zM3.387 12.733H0V6.893C0 3.093 3.093 0 6.893 0h5.84v3.387h-5.84c-1.933 0-3.506 1.573-3.506 3.506v5.84zm21.72 19.267h-5.84v-3.387h5.84c1.933 0 3.507-1.573 3.507-3.506v-5.84H32v5.84C32 28.907 28.907 32 25.107 32z" fill="currentColor" /></g>
+              <defs>
+                <clipPath id="j"><rect width="32" height="32" fill="white" /></clipPath>
+              </defs></svg
+            ><span class="btn__label">Button</span></span
+          >
+        </button>
+      </div>
+      <div class="cell row--dark">
+        <button class="btn btn-neutral-inverse btn--loading" aria-label="Loading">
+          <span class="btn__content"
+            ><svg width="20" height="20" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+              <g clip-path="url(#k)"><path d="M12.733 32H6.893C3.093 32 0 28.907 0 25.107v-5.84h3.387v5.84c0 1.933 1.573 3.507 3.506 3.507h5.84V32zm19.267-19.267h-3.387V6.893c0-1.933-1.573-3.506-3.506-3.506h-5.84V0h5.84C28.907 0 32 3.093 32 6.893v5.84zM3.387 12.733H0V6.893C0 3.093 3.093 0 6.893 0h5.84v3.387h-5.84c-1.933 0-3.506 1.573-3.506 3.506v5.84zm21.72 19.267h-5.84v-3.387h5.84c1.933 0 3.507-1.573 3.507-3.506v-5.84H32v5.84C32 28.907 28.907 32 25.107 32z" fill="currentColor" /></g>
+              <defs>
+                <clipPath id="k"><rect width="32" height="32" fill="white" /></clipPath>
+              </defs></svg
+            ><span class="btn__label">Button</span></span
+          >
+          <svg class="btn-spinner" width="24" height="24" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+            <path d="M16 32C7.17714 32 0 24.8229 0 16C0 7.17714 7.17714 0 16 0C24.8229 0 32 7.17714 32 16H28.1905C28.1905 9.28 22.72 3.80952 16 3.80952C9.28 3.80952 3.80952 9.28 3.80952 16C3.80952 22.72 9.28 28.1905 16 28.1905V32Z" fill="currentColor" />
+          </svg>
+        </button>
+      </div>
+      <div class="cell row--dark">
+        <button class="btn btn-neutral-inverse is-pressed">
+          <span class="btn__content"
+            ><svg width="20" height="20" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+              <g clip-path="url(#l)"><path d="M12.733 32H6.893C3.093 32 0 28.907 0 25.107v-5.84h3.387v5.84c0 1.933 1.573 3.507 3.506 3.507h5.84V32zm19.267-19.267h-3.387V6.893c0-1.933-1.573-3.506-3.506-3.506h-5.84V0h5.84C28.907 0 32 3.093 32 6.893v5.84zM3.387 12.733H0V6.893C0 3.093 3.093 0 6.893 0h5.84v3.387h-5.84c-1.933 0-3.506 1.573-3.506 3.506v5.84zm21.72 19.267h-5.84v-3.387h5.84c1.933 0 3.507-1.573 3.507-3.506v-5.84H32v5.84C32 28.907 28.907 32 25.107 32z" fill="currentColor" /></g>
+              <defs>
+                <clipPath id="l"><rect width="32" height="32" fill="white" /></clipPath>
+              </defs></svg
+            ><span class="btn__label">Button</span></span
+          >
+        </button>
+      </div>
+    </div>
+
+    <h2 class="section-title">Button — Primary · MD · Label + Addon</h2>
+
+    <div class="demo-grid">
+      <div class="col-header"></div>
+      <div class="col-header">Default</div>
+      <div class="col-header">Hover</div>
+      <div class="col-header">Loading</div>
+      <div class="col-header">Pressed</div>
+
+      <!-- Label + Addon · Brand -->
+      <div class="row-label">Brand</div>
+      <div class="cell">
+        <button class="btn btn-brand">
+          <span class="btn__content"
+            ><span class="btn__label">Button</span><svg width="20" height="20" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><path d="M31.1111 13.7778H18.2222V0.888916H13.7778V13.7778H0.888916V18.2222H13.7778V31.1111H18.2222V18.2222H31.1111V13.7778Z" fill="currentColor" /></svg
+          ></span>
+          <svg class="btn-spinner" width="24" height="24" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+            <path d="M16 32C7.17714 32 0 24.8229 0 16C0 7.17714 7.17714 0 16 0C24.8229 0 32 7.17714 32 16H28.1905C28.1905 9.28 22.72 3.80952 16 3.80952C9.28 3.80952 3.80952 9.28 3.80952 16C3.80952 22.72 9.28 28.1905 16 28.1905V32Z" fill="currentColor" />
+          </svg>
+        </button>
+      </div>
+      <div class="cell">
+        <button class="btn btn-brand is-hover">
+          <span class="btn__content"
+            ><span class="btn__label">Button</span><svg width="20" height="20" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><path d="M31.1111 13.7778H18.2222V0.888916H13.7778V13.7778H0.888916V18.2222H13.7778V31.1111H18.2222V18.2222H31.1111V13.7778Z" fill="currentColor" /></svg
+          ></span>
+        </button>
+      </div>
+      <div class="cell">
+        <button class="btn btn-brand btn--loading" aria-label="Loading">
+          <span class="btn__content"
+            ><span class="btn__label">Button</span><svg width="20" height="20" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><path d="M31.1111 13.7778H18.2222V0.888916H13.7778V13.7778H0.888916V18.2222H13.7778V31.1111H18.2222V18.2222H31.1111V13.7778Z" fill="currentColor" /></svg
+          ></span>
+          <svg class="btn-spinner" width="24" height="24" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+            <path d="M16 32C7.17714 32 0 24.8229 0 16C0 7.17714 7.17714 0 16 0C24.8229 0 32 7.17714 32 16H28.1905C28.1905 9.28 22.72 3.80952 16 3.80952C9.28 3.80952 3.80952 9.28 3.80952 16C3.80952 22.72 9.28 28.1905 16 28.1905V32Z" fill="currentColor" />
+          </svg>
+        </button>
+      </div>
+      <div class="cell">
+        <button class="btn btn-brand is-pressed">
+          <span class="btn__content"
+            ><span class="btn__label">Button</span><svg width="20" height="20" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><path d="M31.1111 13.7778H18.2222V0.888916H13.7778V13.7778H0.888916V18.2222H13.7778V31.1111H18.2222V18.2222H31.1111V13.7778Z" fill="currentColor" /></svg
+          ></span>
+        </button>
+      </div>
+
+      <!-- Label + Addon · Neutral -->
+      <div class="row-label">Neutral</div>
+      <div class="cell">
+        <button class="btn btn-neutral">
+          <span class="btn__content"
+            ><span class="btn__label">Button</span><svg width="20" height="20" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><path d="M31.1111 13.7778H18.2222V0.888916H13.7778V13.7778H0.888916V18.2222H13.7778V31.1111H18.2222V18.2222H31.1111V13.7778Z" fill="currentColor" /></svg
+          ></span>
+          <svg class="btn-spinner" width="24" height="24" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+            <path d="M16 32C7.17714 32 0 24.8229 0 16C0 7.17714 7.17714 0 16 0C24.8229 0 32 7.17714 32 16H28.1905C28.1905 9.28 22.72 3.80952 16 3.80952C9.28 3.80952 3.80952 9.28 3.80952 16C3.80952 22.72 9.28 28.1905 16 28.1905V32Z" fill="currentColor" />
+          </svg>
+        </button>
+      </div>
+      <div class="cell">
+        <button class="btn btn-neutral is-hover">
+          <span class="btn__content"
+            ><span class="btn__label">Button</span><svg width="20" height="20" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><path d="M31.1111 13.7778H18.2222V0.888916H13.7778V13.7778H0.888916V18.2222H13.7778V31.1111H18.2222V18.2222H31.1111V13.7778Z" fill="currentColor" /></svg
+          ></span>
+        </button>
+      </div>
+      <div class="cell">
+        <button class="btn btn-neutral btn--loading" aria-label="Loading">
+          <span class="btn__content"
+            ><span class="btn__label">Button</span><svg width="20" height="20" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><path d="M31.1111 13.7778H18.2222V0.888916H13.7778V13.7778H0.888916V18.2222H13.7778V31.1111H18.2222V18.2222H31.1111V13.7778Z" fill="currentColor" /></svg
+          ></span>
+          <svg class="btn-spinner" width="24" height="24" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+            <path d="M16 32C7.17714 32 0 24.8229 0 16C0 7.17714 7.17714 0 16 0C24.8229 0 32 7.17714 32 16H28.1905C28.1905 9.28 22.72 3.80952 16 3.80952C9.28 3.80952 3.80952 9.28 3.80952 16C3.80952 22.72 9.28 28.1905 16 28.1905V32Z" fill="currentColor" />
+          </svg>
+        </button>
+      </div>
+      <div class="cell">
+        <button class="btn btn-neutral is-pressed">
+          <span class="btn__content"
+            ><span class="btn__label">Button</span><svg width="20" height="20" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><path d="M31.1111 13.7778H18.2222V0.888916H13.7778V13.7778H0.888916V18.2222H13.7778V31.1111H18.2222V18.2222H31.1111V13.7778Z" fill="currentColor" /></svg
+          ></span>
+        </button>
+      </div>
+
+      <!-- Label + Addon · Neutral Inverse -->
+      <div class="row-label row--dark">Neutral Inverse</div>
+      <div class="cell row--dark">
+        <button class="btn btn-neutral-inverse">
+          <span class="btn__content"
+            ><span class="btn__label">Button</span><svg width="20" height="20" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><path d="M31.1111 13.7778H18.2222V0.888916H13.7778V13.7778H0.888916V18.2222H13.7778V31.1111H18.2222V18.2222H31.1111V13.7778Z" fill="currentColor" /></svg
+          ></span>
+          <svg class="btn-spinner" width="24" height="24" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+            <path d="M16 32C7.17714 32 0 24.8229 0 16C0 7.17714 7.17714 0 16 0C24.8229 0 32 7.17714 32 16H28.1905C28.1905 9.28 22.72 3.80952 16 3.80952C9.28 3.80952 3.80952 9.28 3.80952 16C3.80952 22.72 9.28 28.1905 16 28.1905V32Z" fill="currentColor" />
+          </svg>
+        </button>
+      </div>
+      <div class="cell row--dark">
+        <button class="btn btn-neutral-inverse is-hover">
+          <span class="btn__content"
+            ><span class="btn__label">Button</span><svg width="20" height="20" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><path d="M31.1111 13.7778H18.2222V0.888916H13.7778V13.7778H0.888916V18.2222H13.7778V31.1111H18.2222V18.2222H31.1111V13.7778Z" fill="currentColor" /></svg
+          ></span>
+        </button>
+      </div>
+      <div class="cell row--dark">
+        <button class="btn btn-neutral-inverse btn--loading" aria-label="Loading">
+          <span class="btn__content"
+            ><span class="btn__label">Button</span><svg width="20" height="20" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><path d="M31.1111 13.7778H18.2222V0.888916H13.7778V13.7778H0.888916V18.2222H13.7778V31.1111H18.2222V18.2222H31.1111V13.7778Z" fill="currentColor" /></svg
+          ></span>
+          <svg class="btn-spinner" width="24" height="24" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+            <path d="M16 32C7.17714 32 0 24.8229 0 16C0 7.17714 7.17714 0 16 0C24.8229 0 32 7.17714 32 16H28.1905C28.1905 9.28 22.72 3.80952 16 3.80952C9.28 3.80952 3.80952 9.28 3.80952 16C3.80952 22.72 9.28 28.1905 16 28.1905V32Z" fill="currentColor" />
+          </svg>
+        </button>
+      </div>
+      <div class="cell row--dark">
+        <button class="btn btn-neutral-inverse is-pressed">
+          <span class="btn__content"
+            ><span class="btn__label">Button</span><svg width="20" height="20" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><path d="M31.1111 13.7778H18.2222V0.888916H13.7778V13.7778H0.888916V18.2222H13.7778V31.1111H18.2222V18.2222H31.1111V13.7778Z" fill="currentColor" /></svg
+          ></span>
+        </button>
+      </div>
+    </div>
+
+    <h2 class="section-title">Button — Primary · MD · Icon Only</h2>
+
+    <div class="demo-grid">
+      <div class="col-header"></div>
+      <div class="col-header">Default</div>
+      <div class="col-header">Hover</div>
+      <div class="col-header">Loading</div>
+      <div class="col-header">Pressed</div>
+
+      <!-- Icon Only · Brand -->
+      <div class="row-label">Brand</div>
+      <div class="cell">
+        <button class="btn btn-brand btn--icon-only" aria-label="Action">
+          <span class="btn__content"
+            ><svg width="1em" height="1em" aria-hidden="true"><use href="#ico-heart" /></svg
+          ></span>
+          <svg class="btn-spinner" width="24" height="24" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+            <path d="M16 32C7.17714 32 0 24.8229 0 16C0 7.17714 7.17714 0 16 0C24.8229 0 32 7.17714 32 16H28.1905C28.1905 9.28 22.72 3.80952 16 3.80952C9.28 3.80952 3.80952 9.28 3.80952 16C3.80952 22.72 9.28 28.1905 16 28.1905V32Z" fill="currentColor" />
+          </svg>
+        </button>
+      </div>
+      <div class="cell">
+        <button class="btn btn-brand btn--icon-only is-hover" aria-label="Action">
+          <span class="btn__content"
+            ><svg width="1em" height="1em" aria-hidden="true"><use href="#ico-heart" /></svg
+          ></span>
+        </button>
+      </div>
+      <div class="cell">
+        <button class="btn btn-brand btn--icon-only btn--loading" aria-label="Loading">
+          <span class="btn__content"
+            ><svg width="1em" height="1em" aria-hidden="true"><use href="#ico-heart" /></svg
+          ></span>
+          <svg class="btn-spinner" width="24" height="24" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+            <path d="M16 32C7.17714 32 0 24.8229 0 16C0 7.17714 7.17714 0 16 0C24.8229 0 32 7.17714 32 16H28.1905C28.1905 9.28 22.72 3.80952 16 3.80952C9.28 3.80952 3.80952 9.28 3.80952 16C3.80952 22.72 9.28 28.1905 16 28.1905V32Z" fill="currentColor" />
+          </svg>
+        </button>
+      </div>
+      <div class="cell">
+        <button class="btn btn-brand btn--icon-only is-pressed" aria-label="Action">
+          <span class="btn__content"
+            ><svg width="1em" height="1em" aria-hidden="true"><use href="#ico-heart" /></svg
+          ></span>
+        </button>
+      </div>
+
+      <!-- Icon Only · Neutral -->
+      <div class="row-label">Neutral</div>
+      <div class="cell">
+        <button class="btn btn-neutral btn--icon-only" aria-label="Action">
+          <span class="btn__content"
+            ><svg width="1em" height="1em" aria-hidden="true"><use href="#ico-heart" /></svg
+          ></span>
+          <svg class="btn-spinner" width="24" height="24" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+            <path d="M16 32C7.17714 32 0 24.8229 0 16C0 7.17714 7.17714 0 16 0C24.8229 0 32 7.17714 32 16H28.1905C28.1905 9.28 22.72 3.80952 16 3.80952C9.28 3.80952 3.80952 9.28 3.80952 16C3.80952 22.72 9.28 28.1905 16 28.1905V32Z" fill="currentColor" />
+          </svg>
+        </button>
+      </div>
+      <div class="cell">
+        <button class="btn btn-neutral btn--icon-only is-hover" aria-label="Action">
+          <span class="btn__content"
+            ><svg width="1em" height="1em" aria-hidden="true"><use href="#ico-heart" /></svg
+          ></span>
+        </button>
+      </div>
+      <div class="cell">
+        <button class="btn btn-neutral btn--icon-only btn--loading" aria-label="Loading">
+          <span class="btn__content"
+            ><svg width="1em" height="1em" aria-hidden="true"><use href="#ico-heart" /></svg
+          ></span>
+          <svg class="btn-spinner" width="24" height="24" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+            <path d="M16 32C7.17714 32 0 24.8229 0 16C0 7.17714 7.17714 0 16 0C24.8229 0 32 7.17714 32 16H28.1905C28.1905 9.28 22.72 3.80952 16 3.80952C9.28 3.80952 3.80952 9.28 3.80952 16C3.80952 22.72 9.28 28.1905 16 28.1905V32Z" fill="currentColor" />
+          </svg>
+        </button>
+      </div>
+      <div class="cell">
+        <button class="btn btn-neutral btn--icon-only is-pressed" aria-label="Action">
+          <span class="btn__content"
+            ><svg width="1em" height="1em" aria-hidden="true"><use href="#ico-heart" /></svg
+          ></span>
+        </button>
+      </div>
+
+      <!-- Icon Only · Neutral Inverse -->
+      <div class="row-label row--dark">Neutral Inverse</div>
+      <div class="cell row--dark">
+        <button class="btn btn-neutral-inverse btn--icon-only" aria-label="Action">
+          <span class="btn__content"
+            ><svg width="1em" height="1em" aria-hidden="true"><use href="#ico-heart" /></svg
+          ></span>
+          <svg class="btn-spinner" width="24" height="24" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+            <path d="M16 32C7.17714 32 0 24.8229 0 16C0 7.17714 7.17714 0 16 0C24.8229 0 32 7.17714 32 16H28.1905C28.1905 9.28 22.72 3.80952 16 3.80952C9.28 3.80952 3.80952 9.28 3.80952 16C3.80952 22.72 9.28 28.1905 16 28.1905V32Z" fill="currentColor" />
+          </svg>
+        </button>
+      </div>
+      <div class="cell row--dark">
+        <button class="btn btn-neutral-inverse btn--icon-only is-hover" aria-label="Action">
+          <span class="btn__content"
+            ><svg width="1em" height="1em" aria-hidden="true"><use href="#ico-heart" /></svg
+          ></span>
+        </button>
+      </div>
+      <div class="cell row--dark">
+        <button class="btn btn-neutral-inverse btn--icon-only btn--loading" aria-label="Loading">
+          <span class="btn__content"
+            ><svg width="1em" height="1em" aria-hidden="true"><use href="#ico-heart" /></svg
+          ></span>
+          <svg class="btn-spinner" width="24" height="24" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+            <path d="M16 32C7.17714 32 0 24.8229 0 16C0 7.17714 7.17714 0 16 0C24.8229 0 32 7.17714 32 16H28.1905C28.1905 9.28 22.72 3.80952 16 3.80952C9.28 3.80952 3.80952 9.28 3.80952 16C3.80952 22.72 9.28 28.1905 16 28.1905V32Z" fill="currentColor" />
+          </svg>
+        </button>
+      </div>
+      <div class="cell row--dark">
+        <button class="btn btn-neutral-inverse btn--icon-only is-pressed" aria-label="Action">
+          <span class="btn__content"
+            ><svg width="1em" height="1em" aria-hidden="true"><use href="#ico-heart" /></svg
+          ></span>
+        </button>
+      </div>
+    </div>
+
+    <!-- ═══════════════════════════════════════════════════════ SECONDARY -->
+    <hr class="category-divider" />
+    <h1>Secondary</h1>
+
+    <h2 class="section-title">Button — Secondary · MD · Label Only</h2>
+
+    <div class="demo-grid">
+      <div class="col-header"></div>
+      <div class="col-header">Default</div>
+      <div class="col-header">Hover</div>
+      <div class="col-header">Loading</div>
+      <div class="col-header">Pressed</div>
+
+      <div class="row-label">Brand</div>
+      <div class="cell">
+        <button class="btn btn-secondary-brand">
+          <span class="btn__label">Button</span>
+          <svg class="btn-spinner" width="24" height="24" aria-hidden="true"><use href="#ico-spinner" /></svg>
+        </button>
+      </div>
+      <div class="cell"><button class="btn btn-secondary-brand is-hover">Button</button></div>
+      <div class="cell">
+        <button class="btn btn-secondary-brand btn--loading" aria-label="Loading">
+          <span class="btn__label">Button</span>
+          <svg class="btn-spinner" width="24" height="24" aria-hidden="true"><use href="#ico-spinner" /></svg>
+        </button>
+      </div>
+      <div class="cell"><button class="btn btn-secondary-brand is-pressed">Button</button></div>
+
+      <div class="row-label row--visible">Visible</div>
+      <div class="cell">
+        <button class="btn btn-secondary-visible">
+          <span class="btn__label">Button</span>
+          <svg class="btn-spinner" width="24" height="24" aria-hidden="true"><use href="#ico-spinner" /></svg>
+        </button>
+      </div>
+      <div class="cell"><button class="btn btn-secondary-visible is-hover">Button</button></div>
+      <div class="cell">
+        <button class="btn btn-secondary-visible btn--loading" aria-label="Loading">
+          <span class="btn__label">Button</span>
+          <svg class="btn-spinner" width="24" height="24" aria-hidden="true"><use href="#ico-spinner" /></svg>
+        </button>
+      </div>
+      <div class="cell"><button class="btn btn-secondary-visible is-pressed">Button</button></div>
+
+      <div class="row-label">Neutral</div>
+      <div class="cell">
+        <button class="btn btn-secondary-neutral">
+          <span class="btn__label">Button</span>
+          <svg class="btn-spinner" width="24" height="24" aria-hidden="true"><use href="#ico-spinner" /></svg>
+        </button>
+      </div>
+      <div class="cell"><button class="btn btn-secondary-neutral is-hover">Button</button></div>
+      <div class="cell">
+        <button class="btn btn-secondary-neutral btn--loading" aria-label="Loading">
+          <span class="btn__label">Button</span>
+          <svg class="btn-spinner" width="24" height="24" aria-hidden="true"><use href="#ico-spinner" /></svg>
+        </button>
+      </div>
+      <div class="cell"><button class="btn btn-secondary-neutral is-pressed">Button</button></div>
+
+      <div class="row-label row--light-surface">Light Surface</div>
+      <div class="cell">
+        <button class="btn btn-secondary-light">
+          <span class="btn__label">Button</span>
+          <svg class="btn-spinner" width="24" height="24" aria-hidden="true"><use href="#ico-spinner" /></svg>
+        </button>
+      </div>
+      <div class="cell"><button class="btn btn-secondary-light is-hover">Button</button></div>
+      <div class="cell">
+        <button class="btn btn-secondary-light btn--loading" aria-label="Loading">
+          <span class="btn__label">Button</span>
+          <svg class="btn-spinner" width="24" height="24" aria-hidden="true"><use href="#ico-spinner" /></svg>
+        </button>
+      </div>
+      <div class="cell"><button class="btn btn-secondary-light is-pressed">Button</button></div>
+
+      <div class="row-label row--dark">Dark Surface</div>
+      <div class="cell row--dark">
+        <button class="btn btn-secondary-dark">
+          <span class="btn__label">Button</span>
+          <svg class="btn-spinner" width="24" height="24" aria-hidden="true"><use href="#ico-spinner" /></svg>
+        </button>
+      </div>
+      <div class="cell row--dark"><button class="btn btn-secondary-dark is-hover">Button</button></div>
+      <div class="cell row--dark">
+        <button class="btn btn-secondary-dark btn--loading" aria-label="Loading">
+          <span class="btn__label">Button</span>
+          <svg class="btn-spinner" width="24" height="24" aria-hidden="true"><use href="#ico-spinner" /></svg>
+        </button>
+      </div>
+      <div class="cell row--dark"><button class="btn btn-secondary-dark is-pressed">Button</button></div>
+    </div>
+
+    <h2 class="section-title">Button — Secondary · MD · Icon + Label</h2>
+
+    <div class="demo-grid">
+      <div class="col-header"></div>
+      <div class="col-header">Default</div>
+      <div class="col-header">Hover</div>
+      <div class="col-header">Loading</div>
+      <div class="col-header">Pressed</div>
+
+      <div class="row-label">Brand</div>
+      <div class="cell">
+        <button class="btn btn-secondary-brand">
+          <span class="btn__content"
+            ><svg width="1em" height="1em" aria-hidden="true"><use href="#ico-square-dashed" /></svg><span class="btn__label">Button</span></span
+          >
+          <svg class="btn-spinner" width="24" height="24" aria-hidden="true"><use href="#ico-spinner" /></svg>
+        </button>
+      </div>
+      <div class="cell">
+        <button class="btn btn-secondary-brand is-hover">
+          <span class="btn__content"
+            ><svg width="1em" height="1em" aria-hidden="true"><use href="#ico-square-dashed" /></svg><span>Button</span></span
+          >
+        </button>
+      </div>
+      <div class="cell">
+        <button class="btn btn-secondary-brand btn--loading" aria-label="Loading">
+          <span class="btn__content"
+            ><svg width="1em" height="1em" aria-hidden="true"><use href="#ico-square-dashed" /></svg><span class="btn__label">Button</span></span
+          >
+          <svg class="btn-spinner" width="24" height="24" aria-hidden="true"><use href="#ico-spinner" /></svg>
+        </button>
+      </div>
+      <div class="cell">
+        <button class="btn btn-secondary-brand is-pressed">
+          <span class="btn__content"
+            ><svg width="1em" height="1em" aria-hidden="true"><use href="#ico-square-dashed" /></svg><span>Button</span></span
+          >
+        </button>
+      </div>
+
+      <div class="row-label row--visible">Visible</div>
+      <div class="cell">
+        <button class="btn btn-secondary-visible">
+          <span class="btn__content"
+            ><svg width="1em" height="1em" aria-hidden="true"><use href="#ico-square-dashed" /></svg><span class="btn__label">Button</span></span
+          >
+          <svg class="btn-spinner" width="24" height="24" aria-hidden="true"><use href="#ico-spinner" /></svg>
+        </button>
+      </div>
+      <div class="cell">
+        <button class="btn btn-secondary-visible is-hover">
+          <span class="btn__content"
+            ><svg width="1em" height="1em" aria-hidden="true"><use href="#ico-square-dashed" /></svg><span>Button</span></span
+          >
+        </button>
+      </div>
+      <div class="cell">
+        <button class="btn btn-secondary-visible btn--loading" aria-label="Loading">
+          <span class="btn__content"
+            ><svg width="1em" height="1em" aria-hidden="true"><use href="#ico-square-dashed" /></svg><span class="btn__label">Button</span></span
+          >
+          <svg class="btn-spinner" width="24" height="24" aria-hidden="true"><use href="#ico-spinner" /></svg>
+        </button>
+      </div>
+      <div class="cell">
+        <button class="btn btn-secondary-visible is-pressed">
+          <span class="btn__content"
+            ><svg width="1em" height="1em" aria-hidden="true"><use href="#ico-square-dashed" /></svg><span>Button</span></span
+          >
+        </button>
+      </div>
+
+      <div class="row-label">Neutral</div>
+      <div class="cell">
+        <button class="btn btn-secondary-neutral">
+          <span class="btn__content"
+            ><svg width="1em" height="1em" aria-hidden="true"><use href="#ico-square-dashed" /></svg><span class="btn__label">Button</span></span
+          >
+          <svg class="btn-spinner" width="24" height="24" aria-hidden="true"><use href="#ico-spinner" /></svg>
+        </button>
+      </div>
+      <div class="cell">
+        <button class="btn btn-secondary-neutral is-hover">
+          <span class="btn__content"
+            ><svg width="1em" height="1em" aria-hidden="true"><use href="#ico-square-dashed" /></svg><span>Button</span></span
+          >
+        </button>
+      </div>
+      <div class="cell">
+        <button class="btn btn-secondary-neutral btn--loading" aria-label="Loading">
+          <span class="btn__content"
+            ><svg width="1em" height="1em" aria-hidden="true"><use href="#ico-square-dashed" /></svg><span class="btn__label">Button</span></span
+          >
+          <svg class="btn-spinner" width="24" height="24" aria-hidden="true"><use href="#ico-spinner" /></svg>
+        </button>
+      </div>
+      <div class="cell">
+        <button class="btn btn-secondary-neutral is-pressed">
+          <span class="btn__content"
+            ><svg width="1em" height="1em" aria-hidden="true"><use href="#ico-square-dashed" /></svg><span>Button</span></span
+          >
+        </button>
+      </div>
+
+      <div class="row-label row--light-surface">Light Surface</div>
+      <div class="cell">
+        <button class="btn btn-secondary-light">
+          <span class="btn__content"
+            ><svg width="1em" height="1em" aria-hidden="true"><use href="#ico-square-dashed" /></svg><span class="btn__label">Button</span></span
+          >
+          <svg class="btn-spinner" width="24" height="24" aria-hidden="true"><use href="#ico-spinner" /></svg>
+        </button>
+      </div>
+      <div class="cell">
+        <button class="btn btn-secondary-light is-hover">
+          <span class="btn__content"
+            ><svg width="1em" height="1em" aria-hidden="true"><use href="#ico-square-dashed" /></svg><span>Button</span></span
+          >
+        </button>
+      </div>
+      <div class="cell">
+        <button class="btn btn-secondary-light btn--loading" aria-label="Loading">
+          <span class="btn__content"
+            ><svg width="1em" height="1em" aria-hidden="true"><use href="#ico-square-dashed" /></svg><span class="btn__label">Button</span></span
+          >
+          <svg class="btn-spinner" width="24" height="24" aria-hidden="true"><use href="#ico-spinner" /></svg>
+        </button>
+      </div>
+      <div class="cell">
+        <button class="btn btn-secondary-light is-pressed">
+          <span class="btn__content"
+            ><svg width="1em" height="1em" aria-hidden="true"><use href="#ico-square-dashed" /></svg><span>Button</span></span
+          >
+        </button>
+      </div>
+
+      <div class="row-label row--dark">Dark Surface</div>
+      <div class="cell row--dark">
+        <button class="btn btn-secondary-dark">
+          <span class="btn__content"
+            ><svg width="1em" height="1em" aria-hidden="true"><use href="#ico-square-dashed" /></svg><span class="btn__label">Button</span></span
+          >
+          <svg class="btn-spinner" width="24" height="24" aria-hidden="true"><use href="#ico-spinner" /></svg>
+        </button>
+      </div>
+      <div class="cell row--dark">
+        <button class="btn btn-secondary-dark is-hover">
+          <span class="btn__content"
+            ><svg width="1em" height="1em" aria-hidden="true"><use href="#ico-square-dashed" /></svg><span>Button</span></span
+          >
+        </button>
+      </div>
+      <div class="cell row--dark">
+        <button class="btn btn-secondary-dark btn--loading" aria-label="Loading">
+          <span class="btn__content"
+            ><svg width="1em" height="1em" aria-hidden="true"><use href="#ico-square-dashed" /></svg><span class="btn__label">Button</span></span
+          >
+          <svg class="btn-spinner" width="24" height="24" aria-hidden="true"><use href="#ico-spinner" /></svg>
+        </button>
+      </div>
+      <div class="cell row--dark">
+        <button class="btn btn-secondary-dark is-pressed">
+          <span class="btn__content"
+            ><svg width="1em" height="1em" aria-hidden="true"><use href="#ico-square-dashed" /></svg><span>Button</span></span
+          >
+        </button>
+      </div>
+    </div>
+
+    <h2 class="section-title">Button — Secondary · MD · Label + Addon</h2>
+
+    <div class="demo-grid">
+      <div class="col-header"></div>
+      <div class="col-header">Default</div>
+      <div class="col-header">Hover</div>
+      <div class="col-header">Loading</div>
+      <div class="col-header">Pressed</div>
+
+      <div class="row-label">Brand</div>
+      <div class="cell">
+        <button class="btn btn-secondary-brand">
+          <span class="btn__content"
+            ><span class="btn__label">Button</span><svg width="1em" height="1em" aria-hidden="true"><use href="#ico-add" /></svg
+          ></span>
+          <svg class="btn-spinner" width="24" height="24" aria-hidden="true"><use href="#ico-spinner" /></svg>
+        </button>
+      </div>
+      <div class="cell">
+        <button class="btn btn-secondary-brand is-hover">
+          <span class="btn__content"
+            ><span>Button</span><svg width="1em" height="1em" aria-hidden="true"><use href="#ico-add" /></svg
+          ></span>
+        </button>
+      </div>
+      <div class="cell">
+        <button class="btn btn-secondary-brand btn--loading" aria-label="Loading">
+          <span class="btn__content"
+            ><span class="btn__label">Button</span><svg width="1em" height="1em" aria-hidden="true"><use href="#ico-add" /></svg
+          ></span>
+          <svg class="btn-spinner" width="24" height="24" aria-hidden="true"><use href="#ico-spinner" /></svg>
+        </button>
+      </div>
+      <div class="cell">
+        <button class="btn btn-secondary-brand is-pressed">
+          <span class="btn__content"
+            ><span>Button</span><svg width="1em" height="1em" aria-hidden="true"><use href="#ico-add" /></svg
+          ></span>
+        </button>
+      </div>
+
+      <div class="row-label row--visible">Visible</div>
+      <div class="cell">
+        <button class="btn btn-secondary-visible">
+          <span class="btn__content"
+            ><span class="btn__label">Button</span><svg width="1em" height="1em" aria-hidden="true"><use href="#ico-add" /></svg
+          ></span>
+          <svg class="btn-spinner" width="24" height="24" aria-hidden="true"><use href="#ico-spinner" /></svg>
+        </button>
+      </div>
+      <div class="cell">
+        <button class="btn btn-secondary-visible is-hover">
+          <span class="btn__content"
+            ><span>Button</span><svg width="1em" height="1em" aria-hidden="true"><use href="#ico-add" /></svg
+          ></span>
+        </button>
+      </div>
+      <div class="cell">
+        <button class="btn btn-secondary-visible btn--loading" aria-label="Loading">
+          <span class="btn__content"
+            ><span class="btn__label">Button</span><svg width="1em" height="1em" aria-hidden="true"><use href="#ico-add" /></svg
+          ></span>
+          <svg class="btn-spinner" width="24" height="24" aria-hidden="true"><use href="#ico-spinner" /></svg>
+        </button>
+      </div>
+      <div class="cell">
+        <button class="btn btn-secondary-visible is-pressed">
+          <span class="btn__content"
+            ><span>Button</span><svg width="1em" height="1em" aria-hidden="true"><use href="#ico-add" /></svg
+          ></span>
+        </button>
+      </div>
+
+      <div class="row-label">Neutral</div>
+      <div class="cell">
+        <button class="btn btn-secondary-neutral">
+          <span class="btn__content"
+            ><span class="btn__label">Button</span><svg width="1em" height="1em" aria-hidden="true"><use href="#ico-add" /></svg
+          ></span>
+          <svg class="btn-spinner" width="24" height="24" aria-hidden="true"><use href="#ico-spinner" /></svg>
+        </button>
+      </div>
+      <div class="cell">
+        <button class="btn btn-secondary-neutral is-hover">
+          <span class="btn__content"
+            ><span>Button</span><svg width="1em" height="1em" aria-hidden="true"><use href="#ico-add" /></svg
+          ></span>
+        </button>
+      </div>
+      <div class="cell">
+        <button class="btn btn-secondary-neutral btn--loading" aria-label="Loading">
+          <span class="btn__content"
+            ><span class="btn__label">Button</span><svg width="1em" height="1em" aria-hidden="true"><use href="#ico-add" /></svg
+          ></span>
+          <svg class="btn-spinner" width="24" height="24" aria-hidden="true"><use href="#ico-spinner" /></svg>
+        </button>
+      </div>
+      <div class="cell">
+        <button class="btn btn-secondary-neutral is-pressed">
+          <span class="btn__content"
+            ><span>Button</span><svg width="1em" height="1em" aria-hidden="true"><use href="#ico-add" /></svg
+          ></span>
+        </button>
+      </div>
+
+      <div class="row-label row--light-surface">Light Surface</div>
+      <div class="cell">
+        <button class="btn btn-secondary-light">
+          <span class="btn__content"
+            ><span class="btn__label">Button</span><svg width="1em" height="1em" aria-hidden="true"><use href="#ico-add" /></svg
+          ></span>
+          <svg class="btn-spinner" width="24" height="24" aria-hidden="true"><use href="#ico-spinner" /></svg>
+        </button>
+      </div>
+      <div class="cell">
+        <button class="btn btn-secondary-light is-hover">
+          <span class="btn__content"
+            ><span>Button</span><svg width="1em" height="1em" aria-hidden="true"><use href="#ico-add" /></svg
+          ></span>
+        </button>
+      </div>
+      <div class="cell">
+        <button class="btn btn-secondary-light btn--loading" aria-label="Loading">
+          <span class="btn__content"
+            ><span class="btn__label">Button</span><svg width="1em" height="1em" aria-hidden="true"><use href="#ico-add" /></svg
+          ></span>
+          <svg class="btn-spinner" width="24" height="24" aria-hidden="true"><use href="#ico-spinner" /></svg>
+        </button>
+      </div>
+      <div class="cell">
+        <button class="btn btn-secondary-light is-pressed">
+          <span class="btn__content"
+            ><span>Button</span><svg width="1em" height="1em" aria-hidden="true"><use href="#ico-add" /></svg
+          ></span>
+        </button>
+      </div>
+
+      <div class="row-label row--dark">Dark Surface</div>
+      <div class="cell row--dark">
+        <button class="btn btn-secondary-dark">
+          <span class="btn__content"
+            ><span class="btn__label">Button</span><svg width="1em" height="1em" aria-hidden="true"><use href="#ico-add" /></svg
+          ></span>
+          <svg class="btn-spinner" width="24" height="24" aria-hidden="true"><use href="#ico-spinner" /></svg>
+        </button>
+      </div>
+      <div class="cell row--dark">
+        <button class="btn btn-secondary-dark is-hover">
+          <span class="btn__content"
+            ><span>Button</span><svg width="1em" height="1em" aria-hidden="true"><use href="#ico-add" /></svg
+          ></span>
+        </button>
+      </div>
+      <div class="cell row--dark">
+        <button class="btn btn-secondary-dark btn--loading" aria-label="Loading">
+          <span class="btn__content"
+            ><span class="btn__label">Button</span><svg width="1em" height="1em" aria-hidden="true"><use href="#ico-add" /></svg
+          ></span>
+          <svg class="btn-spinner" width="24" height="24" aria-hidden="true"><use href="#ico-spinner" /></svg>
+        </button>
+      </div>
+      <div class="cell row--dark">
+        <button class="btn btn-secondary-dark is-pressed">
+          <span class="btn__content"
+            ><span>Button</span><svg width="1em" height="1em" aria-hidden="true"><use href="#ico-add" /></svg
+          ></span>
+        </button>
+      </div>
+    </div>
+
+    <h2 class="section-title">Button — Secondary · MD · Icon Only</h2>
+
+    <div class="demo-grid">
+      <div class="col-header"></div>
+      <div class="col-header">Default</div>
+      <div class="col-header">Hover</div>
+      <div class="col-header">Loading</div>
+      <div class="col-header">Pressed</div>
+
+      <div class="row-label">Brand</div>
+      <div class="cell">
+        <button class="btn btn-secondary-brand btn--icon-only" aria-label="Action">
+          <span class="btn__content"
+            ><svg width="1em" height="1em" aria-hidden="true"><use href="#ico-heart" /></svg
+          ></span>
+          <svg class="btn-spinner" width="24" height="24" aria-hidden="true"><use href="#ico-spinner" /></svg>
+        </button>
+      </div>
+      <div class="cell">
+        <button class="btn btn-secondary-brand btn--icon-only is-hover" aria-label="Action">
+          <span class="btn__content"
+            ><svg width="1em" height="1em" aria-hidden="true"><use href="#ico-heart" /></svg
+          ></span>
+        </button>
+      </div>
+      <div class="cell">
+        <button class="btn btn-secondary-brand btn--icon-only btn--loading" aria-label="Loading">
+          <span class="btn__content"
+            ><svg width="1em" height="1em" aria-hidden="true"><use href="#ico-heart" /></svg
+          ></span>
+          <svg class="btn-spinner" width="24" height="24" aria-hidden="true"><use href="#ico-spinner" /></svg>
+        </button>
+      </div>
+      <div class="cell">
+        <button class="btn btn-secondary-brand btn--icon-only is-pressed" aria-label="Action">
+          <span class="btn__content"
+            ><svg width="1em" height="1em" aria-hidden="true"><use href="#ico-heart" /></svg
+          ></span>
+        </button>
+      </div>
+
+      <div class="row-label row--visible">Visible</div>
+      <div class="cell">
+        <button class="btn btn-secondary-visible btn--icon-only" aria-label="Action">
+          <span class="btn__content"
+            ><svg width="1em" height="1em" aria-hidden="true"><use href="#ico-heart" /></svg
+          ></span>
+          <svg class="btn-spinner" width="24" height="24" aria-hidden="true"><use href="#ico-spinner" /></svg>
+        </button>
+      </div>
+      <div class="cell">
+        <button class="btn btn-secondary-visible btn--icon-only is-hover" aria-label="Action">
+          <span class="btn__content"
+            ><svg width="1em" height="1em" aria-hidden="true"><use href="#ico-heart" /></svg
+          ></span>
+        </button>
+      </div>
+      <div class="cell">
+        <button class="btn btn-secondary-visible btn--icon-only btn--loading" aria-label="Loading">
+          <span class="btn__content"
+            ><svg width="1em" height="1em" aria-hidden="true"><use href="#ico-heart" /></svg
+          ></span>
+          <svg class="btn-spinner" width="24" height="24" aria-hidden="true"><use href="#ico-spinner" /></svg>
+        </button>
+      </div>
+      <div class="cell">
+        <button class="btn btn-secondary-visible btn--icon-only is-pressed" aria-label="Action">
+          <span class="btn__content"
+            ><svg width="1em" height="1em" aria-hidden="true"><use href="#ico-heart" /></svg
+          ></span>
+        </button>
+      </div>
+
+      <div class="row-label">Neutral</div>
+      <div class="cell">
+        <button class="btn btn-secondary-neutral btn--icon-only" aria-label="Action">
+          <span class="btn__content"
+            ><svg width="1em" height="1em" aria-hidden="true"><use href="#ico-heart" /></svg
+          ></span>
+          <svg class="btn-spinner" width="24" height="24" aria-hidden="true"><use href="#ico-spinner" /></svg>
+        </button>
+      </div>
+      <div class="cell">
+        <button class="btn btn-secondary-neutral btn--icon-only is-hover" aria-label="Action">
+          <span class="btn__content"
+            ><svg width="1em" height="1em" aria-hidden="true"><use href="#ico-heart" /></svg
+          ></span>
+        </button>
+      </div>
+      <div class="cell">
+        <button class="btn btn-secondary-neutral btn--icon-only btn--loading" aria-label="Loading">
+          <span class="btn__content"
+            ><svg width="1em" height="1em" aria-hidden="true"><use href="#ico-heart" /></svg
+          ></span>
+          <svg class="btn-spinner" width="24" height="24" aria-hidden="true"><use href="#ico-spinner" /></svg>
+        </button>
+      </div>
+      <div class="cell">
+        <button class="btn btn-secondary-neutral btn--icon-only is-pressed" aria-label="Action">
+          <span class="btn__content"
+            ><svg width="1em" height="1em" aria-hidden="true"><use href="#ico-heart" /></svg
+          ></span>
+        </button>
+      </div>
+
+      <div class="row-label row--light-surface">Light Surface</div>
+      <div class="cell">
+        <button class="btn btn-secondary-light btn--icon-only" aria-label="Action">
+          <span class="btn__content"
+            ><svg width="1em" height="1em" aria-hidden="true"><use href="#ico-heart" /></svg
+          ></span>
+          <svg class="btn-spinner" width="24" height="24" aria-hidden="true"><use href="#ico-spinner" /></svg>
+        </button>
+      </div>
+      <div class="cell">
+        <button class="btn btn-secondary-light btn--icon-only is-hover" aria-label="Action">
+          <span class="btn__content"
+            ><svg width="1em" height="1em" aria-hidden="true"><use href="#ico-heart" /></svg
+          ></span>
+        </button>
+      </div>
+      <div class="cell">
+        <button class="btn btn-secondary-light btn--icon-only btn--loading" aria-label="Loading">
+          <span class="btn__content"
+            ><svg width="1em" height="1em" aria-hidden="true"><use href="#ico-heart" /></svg
+          ></span>
+          <svg class="btn-spinner" width="24" height="24" aria-hidden="true"><use href="#ico-spinner" /></svg>
+        </button>
+      </div>
+      <div class="cell">
+        <button class="btn btn-secondary-light btn--icon-only is-pressed" aria-label="Action">
+          <span class="btn__content"
+            ><svg width="1em" height="1em" aria-hidden="true"><use href="#ico-heart" /></svg
+          ></span>
+        </button>
+      </div>
+
+      <div class="row-label row--dark">Dark Surface</div>
+      <div class="cell row--dark">
+        <button class="btn btn-secondary-dark btn--icon-only" aria-label="Action">
+          <span class="btn__content"
+            ><svg width="1em" height="1em" aria-hidden="true"><use href="#ico-heart" /></svg
+          ></span>
+          <svg class="btn-spinner" width="24" height="24" aria-hidden="true"><use href="#ico-spinner" /></svg>
+        </button>
+      </div>
+      <div class="cell row--dark">
+        <button class="btn btn-secondary-dark btn--icon-only is-hover" aria-label="Action">
+          <span class="btn__content"
+            ><svg width="1em" height="1em" aria-hidden="true"><use href="#ico-heart" /></svg
+          ></span>
+        </button>
+      </div>
+      <div class="cell row--dark">
+        <button class="btn btn-secondary-dark btn--icon-only btn--loading" aria-label="Loading">
+          <span class="btn__content"
+            ><svg width="1em" height="1em" aria-hidden="true"><use href="#ico-heart" /></svg
+          ></span>
+          <svg class="btn-spinner" width="24" height="24" aria-hidden="true"><use href="#ico-spinner" /></svg>
+        </button>
+      </div>
+      <div class="cell row--dark">
+        <button class="btn btn-secondary-dark btn--icon-only is-pressed" aria-label="Action">
+          <span class="btn__content"
+            ><svg width="1em" height="1em" aria-hidden="true"><use href="#ico-heart" /></svg
+          ></span>
+        </button>
+      </div>
+    </div>
+
+    <!-- ═══════════════════════════════════════════════════════ TERTIARY -->
+    <hr class="category-divider" />
+    <h1>Tertiary</h1>
+
+    <h2 class="section-title">Button — Tertiary · MD · Label Only</h2>
+
+    <div class="demo-grid">
+      <div class="col-header"></div>
+      <div class="col-header">Default</div>
+      <div class="col-header">Hover</div>
+      <div class="col-header">Loading</div>
+      <div class="col-header">Pressed</div>
+
+      <div class="row-label">Brand</div>
+      <div class="cell">
+        <button class="btn btn-tertiary-brand">
+          <span class="btn__label">Button</span>
+          <svg class="btn-spinner" width="24" height="24" aria-hidden="true"><use href="#ico-spinner" /></svg>
+        </button>
+      </div>
+      <div class="cell"><button class="btn btn-tertiary-brand is-hover">Button</button></div>
+      <div class="cell">
+        <button class="btn btn-tertiary-brand btn--loading" aria-label="Loading">
+          <span class="btn__label">Button</span>
+          <svg class="btn-spinner" width="24" height="24" aria-hidden="true"><use href="#ico-spinner" /></svg>
+        </button>
+      </div>
+      <div class="cell"><button class="btn btn-tertiary-brand is-pressed">Button</button></div>
+
+      <div class="row-label row--visible">Visible</div>
+      <div class="cell">
+        <button class="btn btn-tertiary-visible">
+          <span class="btn__label">Button</span>
+          <svg class="btn-spinner" width="24" height="24" aria-hidden="true"><use href="#ico-spinner" /></svg>
+        </button>
+      </div>
+      <div class="cell"><button class="btn btn-tertiary-visible is-hover">Button</button></div>
+      <div class="cell">
+        <button class="btn btn-tertiary-visible btn--loading" aria-label="Loading">
+          <span class="btn__label">Button</span>
+          <svg class="btn-spinner" width="24" height="24" aria-hidden="true"><use href="#ico-spinner" /></svg>
+        </button>
+      </div>
+      <div class="cell"><button class="btn btn-tertiary-visible is-pressed">Button</button></div>
+
+      <div class="row-label">Neutral</div>
+      <div class="cell">
+        <button class="btn btn-tertiary-neutral">
+          <span class="btn__label">Button</span>
+          <svg class="btn-spinner" width="24" height="24" aria-hidden="true"><use href="#ico-spinner" /></svg>
+        </button>
+      </div>
+      <div class="cell"><button class="btn btn-tertiary-neutral is-hover">Button</button></div>
+      <div class="cell">
+        <button class="btn btn-tertiary-neutral btn--loading" aria-label="Loading">
+          <span class="btn__label">Button</span>
+          <svg class="btn-spinner" width="24" height="24" aria-hidden="true"><use href="#ico-spinner" /></svg>
+        </button>
+      </div>
+      <div class="cell"><button class="btn btn-tertiary-neutral is-pressed">Button</button></div>
+
+      <div class="row-label row--light-surface">Light Surface</div>
+      <div class="cell">
+        <button class="btn btn-tertiary-light">
+          <span class="btn__label">Button</span>
+          <svg class="btn-spinner" width="24" height="24" aria-hidden="true"><use href="#ico-spinner" /></svg>
+        </button>
+      </div>
+      <div class="cell"><button class="btn btn-tertiary-light is-hover">Button</button></div>
+      <div class="cell">
+        <button class="btn btn-tertiary-light btn--loading" aria-label="Loading">
+          <span class="btn__label">Button</span>
+          <svg class="btn-spinner" width="24" height="24" aria-hidden="true"><use href="#ico-spinner" /></svg>
+        </button>
+      </div>
+      <div class="cell"><button class="btn btn-tertiary-light is-pressed">Button</button></div>
+
+      <div class="row-label row--dark">Dark Surface</div>
+      <div class="cell row--dark">
+        <button class="btn btn-tertiary-dark">
+          <span class="btn__label">Button</span>
+          <svg class="btn-spinner" width="24" height="24" aria-hidden="true"><use href="#ico-spinner" /></svg>
+        </button>
+      </div>
+      <div class="cell row--dark"><button class="btn btn-tertiary-dark is-hover">Button</button></div>
+      <div class="cell row--dark">
+        <button class="btn btn-tertiary-dark btn--loading" aria-label="Loading">
+          <span class="btn__label">Button</span>
+          <svg class="btn-spinner" width="24" height="24" aria-hidden="true"><use href="#ico-spinner" /></svg>
+        </button>
+      </div>
+      <div class="cell row--dark"><button class="btn btn-tertiary-dark is-pressed">Button</button></div>
+    </div>
+
+    <h2 class="section-title">Button — Tertiary · MD · Icon + Label</h2>
+
+    <div class="demo-grid">
+      <div class="col-header"></div>
+      <div class="col-header">Default</div>
+      <div class="col-header">Hover</div>
+      <div class="col-header">Loading</div>
+      <div class="col-header">Pressed</div>
+
+      <div class="row-label">Brand</div>
+      <div class="cell">
+        <button class="btn btn-tertiary-brand">
+          <span class="btn__content"
+            ><svg width="1em" height="1em" aria-hidden="true"><use href="#ico-square-dashed" /></svg><span class="btn__label">Button</span></span
+          >
+          <svg class="btn-spinner" width="24" height="24" aria-hidden="true"><use href="#ico-spinner" /></svg>
+        </button>
+      </div>
+      <div class="cell">
+        <button class="btn btn-tertiary-brand is-hover">
+          <span class="btn__content"
+            ><svg width="1em" height="1em" aria-hidden="true"><use href="#ico-square-dashed" /></svg><span>Button</span></span
+          >
+        </button>
+      </div>
+      <div class="cell">
+        <button class="btn btn-tertiary-brand btn--loading" aria-label="Loading">
+          <span class="btn__content">
+            <svg width="1em" height="1em" aria-hidden="true"><use href="#ico-square-dashed" /></svg>
+            <span class="btn__label">Button</span>
+          </span>
+          <svg class="btn-spinner" width="24" height="24" aria-hidden="true"><use href="#ico-spinner" /></svg>
+        </button>
+      </div>
+      <div class="cell">
+        <button class="btn btn-tertiary-brand is-pressed">
+          <span class="btn__content"
+            ><svg width="1em" height="1em" aria-hidden="true"><use href="#ico-square-dashed" /></svg><span>Button</span></span
+          >
+        </button>
+      </div>
+
+      <div class="row-label row--visible">Visible</div>
+      <div class="cell">
+        <button class="btn btn-tertiary-visible">
+          <span class="btn__content">
+            <svg width="1em" height="1em" aria-hidden="true"><use href="#ico-square-dashed" /></svg>
+            <span class="btn__label">Button</span>
+          </span>
+          <svg class="btn-spinner" width="24" height="24" aria-hidden="true"><use href="#ico-spinner" /></svg>
+        </button>
+      </div>
+      <div class="cell">
+        <button class="btn btn-tertiary-visible is-hover">
+          <span class="btn__content"
+            ><svg width="1em" height="1em" aria-hidden="true"><use href="#ico-square-dashed" /></svg><span>Button</span></span
+          >
+        </button>
+      </div>
+      <div class="cell">
+        <button class="btn btn-tertiary-visible btn--loading" aria-label="Loading">
+          <span class="btn__content">
+            <svg width="1em" height="1em" aria-hidden="true"><use href="#ico-square-dashed" /></svg>
+            <span class="btn__label">Button</span>
+          </span>
+          <svg class="btn-spinner" width="24" height="24" aria-hidden="true"><use href="#ico-spinner" /></svg>
+        </button>
+      </div>
+      <div class="cell">
+        <button class="btn btn-tertiary-visible is-pressed">
+          <span class="btn__content"
+            ><svg width="1em" height="1em" aria-hidden="true"><use href="#ico-square-dashed" /></svg><span>Button</span></span
+          >
+        </button>
+      </div>
+
+      <div class="row-label">Neutral</div>
+      <div class="cell">
+        <button class="btn btn-tertiary-neutral">
+          <span class="btn__content">
+            <svg width="1em" height="1em" aria-hidden="true"><use href="#ico-square-dashed" /></svg>
+            <span class="btn__label">Button</span>
+          </span>
+          <svg class="btn-spinner" width="24" height="24" aria-hidden="true"><use href="#ico-spinner" /></svg>
+        </button>
+      </div>
+      <div class="cell">
+        <button class="btn btn-tertiary-neutral is-hover">
+          <span class="btn__content"
+            ><svg width="1em" height="1em" aria-hidden="true"><use href="#ico-square-dashed" /></svg><span>Button</span></span
+          >
+        </button>
+      </div>
+      <div class="cell">
+        <button class="btn btn-tertiary-neutral btn--loading" aria-label="Loading">
+          <span class="btn__content">
+            <svg width="1em" height="1em" aria-hidden="true"><use href="#ico-square-dashed" /></svg>
+            <span class="btn__label">Button</span>
+          </span>
+          <svg class="btn-spinner" width="24" height="24" aria-hidden="true"><use href="#ico-spinner" /></svg>
+        </button>
+      </div>
+      <div class="cell">
+        <button class="btn btn-tertiary-neutral is-pressed">
+          <span class="btn__content"
+            ><svg width="1em" height="1em" aria-hidden="true"><use href="#ico-square-dashed" /></svg><span>Button</span></span
+          >
+        </button>
+      </div>
+
+      <div class="row-label row--light-surface">Light Surface</div>
+      <div class="cell">
+        <button class="btn btn-tertiary-light">
+          <span class="btn__content">
+            <svg width="1em" height="1em" aria-hidden="true"><use href="#ico-square-dashed" /></svg>
+            <span class="btn__label">Button</span>
+          </span>
+          <svg class="btn-spinner" width="24" height="24" aria-hidden="true"><use href="#ico-spinner" /></svg>
+        </button>
+      </div>
+      <div class="cell">
+        <button class="btn btn-tertiary-light is-hover">
+          <span class="btn__content"
+            ><svg width="1em" height="1em" aria-hidden="true"><use href="#ico-square-dashed" /></svg><span>Button</span></span
+          >
+        </button>
+      </div>
+      <div class="cell">
+        <button class="btn btn-tertiary-light btn--loading" aria-label="Loading">
+          <span class="btn__content">
+            <svg width="1em" height="1em" aria-hidden="true"><use href="#ico-square-dashed" /></svg>
+            <span class="btn__label">Button</span>
+          </span>
+          <svg class="btn-spinner" width="24" height="24" aria-hidden="true"><use href="#ico-spinner" /></svg>
+        </button>
+      </div>
+      <div class="cell">
+        <button class="btn btn-tertiary-light is-pressed">
+          <span class="btn__content"
+            ><svg width="1em" height="1em" aria-hidden="true"><use href="#ico-square-dashed" /></svg><span>Button</span></span
+          >
+        </button>
+      </div>
+
+      <div class="row-label row--dark">Dark Surface</div>
+      <div class="cell row--dark">
+        <button class="btn btn-tertiary-dark">
+          <span class="btn__content">
+            <svg width="1em" height="1em" aria-hidden="true"><use href="#ico-square-dashed" /></svg>
+            <span class="btn__label">Button</span>
+          </span>
+          <svg class="btn-spinner" width="24" height="24" aria-hidden="true"><use href="#ico-spinner" /></svg>
+        </button>
+      </div>
+      <div class="cell row--dark">
+        <button class="btn btn-tertiary-dark is-hover">
+          <span class="btn__content"
+            ><svg width="1em" height="1em" aria-hidden="true"><use href="#ico-square-dashed" /></svg><span>Button</span></span
+          >
+        </button>
+      </div>
+      <div class="cell row--dark">
+        <button class="btn btn-tertiary-dark btn--loading" aria-label="Loading">
+          <span class="btn__content">
+            <svg width="1em" height="1em" aria-hidden="true"><use href="#ico-square-dashed" /></svg>
+            <span class="btn__label">Button</span>
+          </span>
+          <svg class="btn-spinner" width="24" height="24" aria-hidden="true"><use href="#ico-spinner" /></svg>
+        </button>
+      </div>
+      <div class="cell row--dark">
+        <button class="btn btn-tertiary-dark is-pressed">
+          <span class="btn__content"
+            ><svg width="1em" height="1em" aria-hidden="true"><use href="#ico-square-dashed" /></svg><span>Button</span></span
+          >
+        </button>
+      </div>
+    </div>
+
+    <h2 class="section-title">Button — Tertiary · MD · Label + Addon</h2>
+
+    <div class="demo-grid">
+      <div class="col-header"></div>
+      <div class="col-header">Default</div>
+      <div class="col-header">Hover</div>
+      <div class="col-header">Loading</div>
+      <div class="col-header">Pressed</div>
+
+      <div class="row-label">Brand</div>
+      <div class="cell">
+        <button class="btn btn-tertiary-brand">
+          <span class="btn__content">
+            <span class="btn__label">Button</span>
+            <svg width="1em" height="1em" aria-hidden="true"><use href="#ico-add" /></svg>
+          </span>
+          <svg class="btn-spinner" width="24" height="24" aria-hidden="true"><use href="#ico-spinner" /></svg>
+        </button>
+      </div>
+      <div class="cell">
+        <button class="btn btn-tertiary-brand is-hover">
+          <span class="btn__content"
+            ><span>Button</span><svg width="1em" height="1em" aria-hidden="true"><use href="#ico-add" /></svg
+          ></span>
+        </button>
+      </div>
+      <div class="cell">
+        <button class="btn btn-tertiary-brand btn--loading" aria-label="Loading">
+          <span class="btn__content">
+            <span class="btn__label">Button</span>
+            <svg width="1em" height="1em" aria-hidden="true"><use href="#ico-add" /></svg>
+          </span>
+          <svg class="btn-spinner" width="24" height="24" aria-hidden="true"><use href="#ico-spinner" /></svg>
+        </button>
+      </div>
+      <div class="cell">
+        <button class="btn btn-tertiary-brand is-pressed">
+          <span class="btn__content"
+            ><span>Button</span><svg width="1em" height="1em" aria-hidden="true"><use href="#ico-add" /></svg
+          ></span>
+        </button>
+      </div>
+
+      <div class="row-label row--visible">Visible</div>
+      <div class="cell">
+        <button class="btn btn-tertiary-visible">
+          <span class="btn__content">
+            <span class="btn__label">Button</span>
+            <svg width="1em" height="1em" aria-hidden="true"><use href="#ico-add" /></svg>
+          </span>
+          <svg class="btn-spinner" width="24" height="24" aria-hidden="true"><use href="#ico-spinner" /></svg>
+        </button>
+      </div>
+      <div class="cell">
+        <button class="btn btn-tertiary-visible is-hover">
+          <span class="btn__content"
+            ><span>Button</span><svg width="1em" height="1em" aria-hidden="true"><use href="#ico-add" /></svg
+          ></span>
+        </button>
+      </div>
+      <div class="cell">
+        <button class="btn btn-tertiary-visible btn--loading" aria-label="Loading">
+          <span class="btn__content">
+            <span class="btn__label">Button</span>
+            <svg width="1em" height="1em" aria-hidden="true"><use href="#ico-add" /></svg>
+          </span>
+          <svg class="btn-spinner" width="24" height="24" aria-hidden="true"><use href="#ico-spinner" /></svg>
+        </button>
+      </div>
+      <div class="cell">
+        <button class="btn btn-tertiary-visible is-pressed">
+          <span class="btn__content"
+            ><span>Button</span><svg width="1em" height="1em" aria-hidden="true"><use href="#ico-add" /></svg
+          ></span>
+        </button>
+      </div>
+
+      <div class="row-label">Neutral</div>
+      <div class="cell">
+        <button class="btn btn-tertiary-neutral">
+          <span class="btn__content">
+            <span class="btn__label">Button</span>
+            <svg width="1em" height="1em" aria-hidden="true"><use href="#ico-add" /></svg>
+          </span>
+          <svg class="btn-spinner" width="24" height="24" aria-hidden="true"><use href="#ico-spinner" /></svg>
+        </button>
+      </div>
+      <div class="cell">
+        <button class="btn btn-tertiary-neutral is-hover">
+          <span class="btn__content"
+            ><span>Button</span><svg width="1em" height="1em" aria-hidden="true"><use href="#ico-add" /></svg
+          ></span>
+        </button>
+      </div>
+      <div class="cell">
+        <button class="btn btn-tertiary-neutral btn--loading" aria-label="Loading">
+          <span class="btn__content">
+            <span class="btn__label">Button</span>
+            <svg width="1em" height="1em" aria-hidden="true"><use href="#ico-add" /></svg>
+          </span>
+          <svg class="btn-spinner" width="24" height="24" aria-hidden="true"><use href="#ico-spinner" /></svg>
+        </button>
+      </div>
+      <div class="cell">
+        <button class="btn btn-tertiary-neutral is-pressed">
+          <span class="btn__content"
+            ><span>Button</span><svg width="1em" height="1em" aria-hidden="true"><use href="#ico-add" /></svg
+          ></span>
+        </button>
+      </div>
+
+      <div class="row-label row--light-surface">Light Surface</div>
+      <div class="cell">
+        <button class="btn btn-tertiary-light">
+          <span class="btn__content">
+            <span class="btn__label">Button</span>
+            <svg width="1em" height="1em" aria-hidden="true"><use href="#ico-add" /></svg>
+          </span>
+          <svg class="btn-spinner" width="24" height="24" aria-hidden="true"><use href="#ico-spinner" /></svg>
+        </button>
+      </div>
+      <div class="cell">
+        <button class="btn btn-tertiary-light is-hover">
+          <span class="btn__content"
+            ><span>Button</span><svg width="1em" height="1em" aria-hidden="true"><use href="#ico-add" /></svg
+          ></span>
+        </button>
+      </div>
+      <div class="cell">
+        <button class="btn btn-tertiary-light btn--loading" aria-label="Loading">
+          <span class="btn__content">
+            <span class="btn__label">Button</span>
+            <svg width="1em" height="1em" aria-hidden="true"><use href="#ico-add" /></svg>
+          </span>
+          <svg class="btn-spinner" width="24" height="24" aria-hidden="true"><use href="#ico-spinner" /></svg>
+        </button>
+      </div>
+      <div class="cell">
+        <button class="btn btn-tertiary-light is-pressed">
+          <span class="btn__content"
+            ><span>Button</span><svg width="1em" height="1em" aria-hidden="true"><use href="#ico-add" /></svg
+          ></span>
+        </button>
+      </div>
+
+      <div class="row-label row--dark">Dark Surface</div>
+      <div class="cell row--dark">
+        <button class="btn btn-tertiary-dark">
+          <span class="btn__content">
+            <span class="btn__label">Button</span>
+            <svg width="1em" height="1em" aria-hidden="true"><use href="#ico-add" /></svg>
+          </span>
+          <svg class="btn-spinner" width="24" height="24" aria-hidden="true"><use href="#ico-spinner" /></svg>
+        </button>
+      </div>
+      <div class="cell row--dark">
+        <button class="btn btn-tertiary-dark is-hover">
+          <span class="btn__content"
+            ><span>Button</span><svg width="1em" height="1em" aria-hidden="true"><use href="#ico-add" /></svg
+          ></span>
+        </button>
+      </div>
+      <div class="cell row--dark">
+        <button class="btn btn-tertiary-dark btn--loading" aria-label="Loading">
+          <span class="btn__content">
+            <span class="btn__label">Button</span>
+            <svg width="1em" height="1em" aria-hidden="true"><use href="#ico-add" /></svg>
+          </span>
+          <svg class="btn-spinner" width="24" height="24" aria-hidden="true"><use href="#ico-spinner" /></svg>
+        </button>
+      </div>
+      <div class="cell row--dark">
+        <button class="btn btn-tertiary-dark is-pressed">
+          <span class="btn__content"
+            ><span>Button</span><svg width="1em" height="1em" aria-hidden="true"><use href="#ico-add" /></svg
+          ></span>
+        </button>
+      </div>
+    </div>
+
+    <h2 class="section-title">Button — Tertiary · MD · Icon Only</h2>
+
+    <div class="demo-grid">
+      <div class="col-header"></div>
+      <div class="col-header">Default</div>
+      <div class="col-header">Hover</div>
+      <div class="col-header">Loading</div>
+      <div class="col-header">Pressed</div>
+
+      <div class="row-label">Brand</div>
+      <div class="cell">
+        <button class="btn btn-tertiary-brand btn--icon-only" aria-label="Action">
+          <span class="btn__content"
+            ><svg width="1em" height="1em" aria-hidden="true"><use href="#ico-heart" /></svg
+          ></span>
+          <svg class="btn-spinner" width="24" height="24" aria-hidden="true"><use href="#ico-spinner" /></svg>
+        </button>
+      </div>
+      <div class="cell">
+        <button class="btn btn-tertiary-brand btn--icon-only is-hover" aria-label="Action">
+          <span class="btn__content"
+            ><svg width="1em" height="1em" aria-hidden="true"><use href="#ico-heart" /></svg
+          ></span>
+        </button>
+      </div>
+      <div class="cell">
+        <button class="btn btn-tertiary-brand btn--icon-only btn--loading" aria-label="Loading">
+          <span class="btn__content"
+            ><svg width="1em" height="1em" aria-hidden="true"><use href="#ico-heart" /></svg
+          ></span>
+          <svg class="btn-spinner" width="24" height="24" aria-hidden="true"><use href="#ico-spinner" /></svg>
+        </button>
+      </div>
+      <div class="cell">
+        <button class="btn btn-tertiary-brand btn--icon-only is-pressed" aria-label="Action">
+          <span class="btn__content"
+            ><svg width="1em" height="1em" aria-hidden="true"><use href="#ico-heart" /></svg
+          ></span>
+        </button>
+      </div>
+
+      <div class="row-label row--visible">Visible</div>
+      <div class="cell">
+        <button class="btn btn-tertiary-visible btn--icon-only" aria-label="Action">
+          <span class="btn__content"
+            ><svg width="1em" height="1em" aria-hidden="true"><use href="#ico-heart" /></svg
+          ></span>
+          <svg class="btn-spinner" width="24" height="24" aria-hidden="true"><use href="#ico-spinner" /></svg>
+        </button>
+      </div>
+      <div class="cell">
+        <button class="btn btn-tertiary-visible btn--icon-only is-hover" aria-label="Action">
+          <span class="btn__content"
+            ><svg width="1em" height="1em" aria-hidden="true"><use href="#ico-heart" /></svg
+          ></span>
+        </button>
+      </div>
+      <div class="cell">
+        <button class="btn btn-tertiary-visible btn--icon-only btn--loading" aria-label="Loading">
+          <span class="btn__content"
+            ><svg width="1em" height="1em" aria-hidden="true"><use href="#ico-heart" /></svg
+          ></span>
+          <svg class="btn-spinner" width="24" height="24" aria-hidden="true"><use href="#ico-spinner" /></svg>
+        </button>
+      </div>
+      <div class="cell">
+        <button class="btn btn-tertiary-visible btn--icon-only is-pressed" aria-label="Action">
+          <span class="btn__content"
+            ><svg width="1em" height="1em" aria-hidden="true"><use href="#ico-heart" /></svg
+          ></span>
+        </button>
+      </div>
+
+      <div class="row-label">Neutral</div>
+      <div class="cell">
+        <button class="btn btn-tertiary-neutral btn--icon-only" aria-label="Action">
+          <span class="btn__content"
+            ><svg width="1em" height="1em" aria-hidden="true"><use href="#ico-heart" /></svg
+          ></span>
+          <svg class="btn-spinner" width="24" height="24" aria-hidden="true"><use href="#ico-spinner" /></svg>
+        </button>
+      </div>
+      <div class="cell">
+        <button class="btn btn-tertiary-neutral btn--icon-only is-hover" aria-label="Action">
+          <span class="btn__content"
+            ><svg width="1em" height="1em" aria-hidden="true"><use href="#ico-heart" /></svg
+          ></span>
+        </button>
+      </div>
+      <div class="cell">
+        <button class="btn btn-tertiary-neutral btn--icon-only btn--loading" aria-label="Loading">
+          <span class="btn__content"
+            ><svg width="1em" height="1em" aria-hidden="true"><use href="#ico-heart" /></svg
+          ></span>
+          <svg class="btn-spinner" width="24" height="24" aria-hidden="true"><use href="#ico-spinner" /></svg>
+        </button>
+      </div>
+      <div class="cell">
+        <button class="btn btn-tertiary-neutral btn--icon-only is-pressed" aria-label="Action">
+          <span class="btn__content"
+            ><svg width="1em" height="1em" aria-hidden="true"><use href="#ico-heart" /></svg
+          ></span>
+        </button>
+      </div>
+
+      <div class="row-label row--light-surface">Light Surface</div>
+      <div class="cell">
+        <button class="btn btn-tertiary-light btn--icon-only" aria-label="Action">
+          <span class="btn__content"
+            ><svg width="1em" height="1em" aria-hidden="true"><use href="#ico-heart" /></svg
+          ></span>
+          <svg class="btn-spinner" width="24" height="24" aria-hidden="true"><use href="#ico-spinner" /></svg>
+        </button>
+      </div>
+      <div class="cell">
+        <button class="btn btn-tertiary-light btn--icon-only is-hover" aria-label="Action">
+          <span class="btn__content"
+            ><svg width="1em" height="1em" aria-hidden="true"><use href="#ico-heart" /></svg
+          ></span>
+        </button>
+      </div>
+      <div class="cell">
+        <button class="btn btn-tertiary-light btn--icon-only btn--loading" aria-label="Loading">
+          <span class="btn__content"
+            ><svg width="1em" height="1em" aria-hidden="true"><use href="#ico-heart" /></svg
+          ></span>
+          <svg class="btn-spinner" width="24" height="24" aria-hidden="true"><use href="#ico-spinner" /></svg>
+        </button>
+      </div>
+      <div class="cell">
+        <button class="btn btn-tertiary-light btn--icon-only is-pressed" aria-label="Action">
+          <span class="btn__content"
+            ><svg width="1em" height="1em" aria-hidden="true"><use href="#ico-heart" /></svg
+          ></span>
+        </button>
+      </div>
+
+      <div class="row-label row--dark">Dark Surface</div>
+      <div class="cell row--dark">
+        <button class="btn btn-tertiary-dark btn--icon-only" aria-label="Action">
+          <span class="btn__content"
+            ><svg width="1em" height="1em" aria-hidden="true"><use href="#ico-heart" /></svg
+          ></span>
+          <svg class="btn-spinner" width="24" height="24" aria-hidden="true"><use href="#ico-spinner" /></svg>
+        </button>
+      </div>
+      <div class="cell row--dark">
+        <button class="btn btn-tertiary-dark btn--icon-only is-hover" aria-label="Action">
+          <span class="btn__content"
+            ><svg width="1em" height="1em" aria-hidden="true"><use href="#ico-heart" /></svg
+          ></span>
+        </button>
+      </div>
+      <div class="cell row--dark">
+        <button class="btn btn-tertiary-dark btn--icon-only btn--loading" aria-label="Loading">
+          <span class="btn__content"
+            ><svg width="1em" height="1em" aria-hidden="true"><use href="#ico-heart" /></svg
+          ></span>
+          <svg class="btn-spinner" width="24" height="24" aria-hidden="true"><use href="#ico-spinner" /></svg>
+        </button>
+      </div>
+      <div class="cell row--dark">
+        <button class="btn btn-tertiary-dark btn--icon-only is-pressed" aria-label="Action">
+          <span class="btn__content"
+            ><svg width="1em" height="1em" aria-hidden="true"><use href="#ico-heart" /></svg
+          ></span>
+        </button>
+      </div>
+    </div>
+
+    <!-- ═══════════════════════════════════════════════════════ QUATERNARY -->
+    <hr class="category-divider" />
+    <h1>Quaternary</h1>
+
+    <h2 class="section-title">Button — Quaternary · MD · Label Only</h2>
+
+    <div class="demo-grid">
+      <div class="col-header"></div>
+      <div class="col-header">Default</div>
+      <div class="col-header">Hover</div>
+      <div class="col-header">Loading</div>
+      <div class="col-header">Pressed</div>
+
+      <div class="row-label">Brand</div>
+      <div class="cell">
+        <button class="btn btn-quaternary-brand">
+          <span class="btn__label">Button</span>
+          <svg class="btn-spinner" width="24" height="24" aria-hidden="true"><use href="#ico-spinner" /></svg>
+        </button>
+      </div>
+      <div class="cell"><button class="btn btn-quaternary-brand is-hover">Button</button></div>
+      <div class="cell">
+        <button class="btn btn-quaternary-brand btn--loading" aria-label="Loading">
+          <span class="btn__label">Button</span>
+          <svg class="btn-spinner" width="24" height="24" aria-hidden="true"><use href="#ico-spinner" /></svg>
+        </button>
+      </div>
+      <div class="cell"><button class="btn btn-quaternary-brand is-pressed">Button</button></div>
+
+      <div class="row-label">Neutral</div>
+      <div class="cell">
+        <button class="btn btn-quaternary-neutral">
+          <span class="btn__label">Button</span>
+          <svg class="btn-spinner" width="24" height="24" aria-hidden="true"><use href="#ico-spinner" /></svg>
+        </button>
+      </div>
+      <div class="cell"><button class="btn btn-quaternary-neutral is-hover">Button</button></div>
+      <div class="cell">
+        <button class="btn btn-quaternary-neutral btn--loading" aria-label="Loading">
+          <span class="btn__label">Button</span>
+          <svg class="btn-spinner" width="24" height="24" aria-hidden="true"><use href="#ico-spinner" /></svg>
+        </button>
+      </div>
+      <div class="cell"><button class="btn btn-quaternary-neutral is-pressed">Button</button></div>
+
+      <div class="row-label row--light-surface">Light Surface</div>
+      <div class="cell">
+        <button class="btn btn-quaternary-light">
+          <span class="btn__label">Button</span>
+          <svg class="btn-spinner" width="24" height="24" aria-hidden="true"><use href="#ico-spinner" /></svg>
+        </button>
+      </div>
+      <div class="cell"><button class="btn btn-quaternary-light is-hover">Button</button></div>
+      <div class="cell">
+        <button class="btn btn-quaternary-light btn--loading" aria-label="Loading">
+          <span class="btn__label">Button</span>
+          <svg class="btn-spinner" width="24" height="24" aria-hidden="true"><use href="#ico-spinner" /></svg>
+        </button>
+      </div>
+      <div class="cell"><button class="btn btn-quaternary-light is-pressed">Button</button></div>
+
+      <div class="row-label row--dark">Dark Surface</div>
+      <div class="cell row--dark">
+        <button class="btn btn-quaternary-dark">
+          <span class="btn__label">Button</span>
+          <svg class="btn-spinner" width="24" height="24" aria-hidden="true"><use href="#ico-spinner" /></svg>
+        </button>
+      </div>
+      <div class="cell row--dark"><button class="btn btn-quaternary-dark is-hover">Button</button></div>
+      <div class="cell row--dark">
+        <button class="btn btn-quaternary-dark btn--loading" aria-label="Loading">
+          <span class="btn__label">Button</span>
+          <svg class="btn-spinner" width="24" height="24" aria-hidden="true"><use href="#ico-spinner" /></svg>
+        </button>
+      </div>
+      <div class="cell row--dark"><button class="btn btn-quaternary-dark is-pressed">Button</button></div>
+    </div>
+
+    <h2 class="section-title">Button — Quaternary · MD · Icon + Label</h2>
+
+    <div class="demo-grid">
+      <div class="col-header"></div>
+      <div class="col-header">Default</div>
+      <div class="col-header">Hover</div>
+      <div class="col-header">Loading</div>
+      <div class="col-header">Pressed</div>
+
+      <div class="row-label">Brand</div>
+      <div class="cell">
+        <button class="btn btn-quaternary-brand">
+          <span class="btn__content">
+            <svg width="1em" height="1em" aria-hidden="true"><use href="#ico-square-dashed" /></svg>
+            <span class="btn__label">Button</span>
+          </span>
+          <svg class="btn-spinner" width="24" height="24" aria-hidden="true"><use href="#ico-spinner" /></svg>
+        </button>
+      </div>
+      <div class="cell">
+        <button class="btn btn-quaternary-brand is-hover">
+          <span class="btn__content"
+            ><svg width="1em" height="1em" aria-hidden="true"><use href="#ico-square-dashed" /></svg><span>Button</span></span
+          >
+        </button>
+      </div>
+      <div class="cell">
+        <button class="btn btn-quaternary-brand btn--loading" aria-label="Loading">
+          <span class="btn__content">
+            <svg width="1em" height="1em" aria-hidden="true"><use href="#ico-square-dashed" /></svg>
+            <span class="btn__label">Button</span>
+          </span>
+          <svg class="btn-spinner" width="24" height="24" aria-hidden="true"><use href="#ico-spinner" /></svg>
+        </button>
+      </div>
+      <div class="cell">
+        <button class="btn btn-quaternary-brand is-pressed">
+          <span class="btn__content"
+            ><svg width="1em" height="1em" aria-hidden="true"><use href="#ico-square-dashed" /></svg><span>Button</span></span
+          >
+        </button>
+      </div>
+
+      <div class="row-label">Neutral</div>
+      <div class="cell">
+        <button class="btn btn-quaternary-neutral">
+          <span class="btn__content">
+            <svg width="1em" height="1em" aria-hidden="true"><use href="#ico-square-dashed" /></svg>
+            <span class="btn__label">Button</span>
+          </span>
+          <svg class="btn-spinner" width="24" height="24" aria-hidden="true"><use href="#ico-spinner" /></svg>
+        </button>
+      </div>
+      <div class="cell">
+        <button class="btn btn-quaternary-neutral is-hover">
+          <span class="btn__content"
+            ><svg width="1em" height="1em" aria-hidden="true"><use href="#ico-square-dashed" /></svg><span>Button</span></span
+          >
+        </button>
+      </div>
+      <div class="cell">
+        <button class="btn btn-quaternary-neutral btn--loading" aria-label="Loading">
+          <span class="btn__content">
+            <svg width="1em" height="1em" aria-hidden="true"><use href="#ico-square-dashed" /></svg>
+            <span class="btn__label">Button</span>
+          </span>
+          <svg class="btn-spinner" width="24" height="24" aria-hidden="true"><use href="#ico-spinner" /></svg>
+        </button>
+      </div>
+      <div class="cell">
+        <button class="btn btn-quaternary-neutral is-pressed">
+          <span class="btn__content"
+            ><svg width="1em" height="1em" aria-hidden="true"><use href="#ico-square-dashed" /></svg><span>Button</span></span
+          >
+        </button>
+      </div>
+
+      <div class="row-label row--light-surface">Light Surface</div>
+      <div class="cell">
+        <button class="btn btn-quaternary-light">
+          <span class="btn__content">
+            <svg width="1em" height="1em" aria-hidden="true"><use href="#ico-square-dashed" /></svg>
+            <span class="btn__label">Button</span>
+          </span>
+          <svg class="btn-spinner" width="24" height="24" aria-hidden="true"><use href="#ico-spinner" /></svg>
+        </button>
+      </div>
+      <div class="cell">
+        <button class="btn btn-quaternary-light is-hover">
+          <span class="btn__content"
+            ><svg width="1em" height="1em" aria-hidden="true"><use href="#ico-square-dashed" /></svg><span>Button</span></span
+          >
+        </button>
+      </div>
+      <div class="cell">
+        <button class="btn btn-quaternary-light btn--loading" aria-label="Loading">
+          <span class="btn__content">
+            <svg width="1em" height="1em" aria-hidden="true"><use href="#ico-square-dashed" /></svg>
+            <span class="btn__label">Button</span>
+          </span>
+          <svg class="btn-spinner" width="24" height="24" aria-hidden="true"><use href="#ico-spinner" /></svg>
+        </button>
+      </div>
+      <div class="cell">
+        <button class="btn btn-quaternary-light is-pressed">
+          <span class="btn__content"
+            ><svg width="1em" height="1em" aria-hidden="true"><use href="#ico-square-dashed" /></svg><span>Button</span></span
+          >
+        </button>
+      </div>
+
+      <div class="row-label row--dark">Dark Surface</div>
+      <div class="cell row--dark">
+        <button class="btn btn-quaternary-dark">
+          <span class="btn__content">
+            <svg width="1em" height="1em" aria-hidden="true"><use href="#ico-square-dashed" /></svg>
+            <span class="btn__label">Button</span>
+          </span>
+          <svg class="btn-spinner" width="24" height="24" aria-hidden="true"><use href="#ico-spinner" /></svg>
+        </button>
+      </div>
+      <div class="cell row--dark">
+        <button class="btn btn-quaternary-dark is-hover">
+          <span class="btn__content"
+            ><svg width="1em" height="1em" aria-hidden="true"><use href="#ico-square-dashed" /></svg><span>Button</span></span
+          >
+        </button>
+      </div>
+      <div class="cell row--dark">
+        <button class="btn btn-quaternary-dark btn--loading" aria-label="Loading">
+          <span class="btn__content">
+            <svg width="1em" height="1em" aria-hidden="true"><use href="#ico-square-dashed" /></svg>
+            <span class="btn__label">Button</span>
+          </span>
+          <svg class="btn-spinner" width="24" height="24" aria-hidden="true"><use href="#ico-spinner" /></svg>
+        </button>
+      </div>
+      <div class="cell row--dark">
+        <button class="btn btn-quaternary-dark is-pressed">
+          <span class="btn__content"
+            ><svg width="1em" height="1em" aria-hidden="true"><use href="#ico-square-dashed" /></svg><span>Button</span></span
+          >
+        </button>
+      </div>
+    </div>
+
+    <h2 class="section-title">Button — Quaternary · MD · Label + Addon</h2>
+
+    <div class="demo-grid">
+      <div class="col-header"></div>
+      <div class="col-header">Default</div>
+      <div class="col-header">Hover</div>
+      <div class="col-header">Loading</div>
+      <div class="col-header">Pressed</div>
+
+      <div class="row-label">Brand</div>
+      <div class="cell">
+        <button class="btn btn-quaternary-brand">
+          <span class="btn__content">
+            <span class="btn__label">Button</span>
+            <svg width="1em" height="1em" aria-hidden="true"><use href="#ico-add" /></svg>
+          </span>
+          <svg class="btn-spinner" width="24" height="24" aria-hidden="true"><use href="#ico-spinner" /></svg>
+        </button>
+      </div>
+      <div class="cell">
+        <button class="btn btn-quaternary-brand is-hover">
+          <span class="btn__content"
+            ><span>Button</span><svg width="1em" height="1em" aria-hidden="true"><use href="#ico-add" /></svg
+          ></span>
+        </button>
+      </div>
+      <div class="cell">
+        <button class="btn btn-quaternary-brand btn--loading" aria-label="Loading">
+          <span class="btn__content">
+            <span class="btn__label">Button</span>
+            <svg width="1em" height="1em" aria-hidden="true"><use href="#ico-add" /></svg>
+          </span>
+          <svg class="btn-spinner" width="24" height="24" aria-hidden="true"><use href="#ico-spinner" /></svg>
+        </button>
+      </div>
+      <div class="cell">
+        <button class="btn btn-quaternary-brand is-pressed">
+          <span class="btn__content"
+            ><span>Button</span><svg width="1em" height="1em" aria-hidden="true"><use href="#ico-add" /></svg
+          ></span>
+        </button>
+      </div>
+
+      <div class="row-label">Neutral</div>
+      <div class="cell">
+        <button class="btn btn-quaternary-neutral">
+          <span class="btn__content">
+            <span class="btn__label">Button</span>
+            <svg width="1em" height="1em" aria-hidden="true"><use href="#ico-add" /></svg>
+          </span>
+          <svg class="btn-spinner" width="24" height="24" aria-hidden="true"><use href="#ico-spinner" /></svg>
+        </button>
+      </div>
+      <div class="cell">
+        <button class="btn btn-quaternary-neutral is-hover">
+          <span class="btn__content"
+            ><span>Button</span><svg width="1em" height="1em" aria-hidden="true"><use href="#ico-add" /></svg
+          ></span>
+        </button>
+      </div>
+      <div class="cell">
+        <button class="btn btn-quaternary-neutral btn--loading" aria-label="Loading">
+          <span class="btn__content">
+            <span class="btn__label">Button</span>
+            <svg width="1em" height="1em" aria-hidden="true"><use href="#ico-add" /></svg>
+          </span>
+          <svg class="btn-spinner" width="24" height="24" aria-hidden="true"><use href="#ico-spinner" /></svg>
+        </button>
+      </div>
+      <div class="cell">
+        <button class="btn btn-quaternary-neutral is-pressed">
+          <span class="btn__content"
+            ><span>Button</span><svg width="1em" height="1em" aria-hidden="true"><use href="#ico-add" /></svg
+          ></span>
+        </button>
+      </div>
+
+      <div class="row-label row--light-surface">Light Surface</div>
+      <div class="cell">
+        <button class="btn btn-quaternary-light">
+          <span class="btn__content">
+            <span class="btn__label">Button</span>
+            <svg width="1em" height="1em" aria-hidden="true"><use href="#ico-add" /></svg>
+          </span>
+          <svg class="btn-spinner" width="24" height="24" aria-hidden="true"><use href="#ico-spinner" /></svg>
+        </button>
+      </div>
+      <div class="cell">
+        <button class="btn btn-quaternary-light is-hover">
+          <span class="btn__content"
+            ><span>Button</span><svg width="1em" height="1em" aria-hidden="true"><use href="#ico-add" /></svg
+          ></span>
+        </button>
+      </div>
+      <div class="cell">
+        <button class="btn btn-quaternary-light btn--loading" aria-label="Loading">
+          <span class="btn__content">
+            <span class="btn__label">Button</span>
+            <svg width="1em" height="1em" aria-hidden="true"><use href="#ico-add" /></svg>
+          </span>
+          <svg class="btn-spinner" width="24" height="24" aria-hidden="true"><use href="#ico-spinner" /></svg>
+        </button>
+      </div>
+      <div class="cell">
+        <button class="btn btn-quaternary-light is-pressed">
+          <span class="btn__content"
+            ><span>Button</span><svg width="1em" height="1em" aria-hidden="true"><use href="#ico-add" /></svg
+          ></span>
+        </button>
+      </div>
+
+      <div class="row-label row--dark">Dark Surface</div>
+      <div class="cell row--dark">
+        <button class="btn btn-quaternary-dark">
+          <span class="btn__content">
+            <span class="btn__label">Button</span>
+            <svg width="1em" height="1em" aria-hidden="true"><use href="#ico-add" /></svg>
+          </span>
+          <svg class="btn-spinner" width="24" height="24" aria-hidden="true"><use href="#ico-spinner" /></svg>
+        </button>
+      </div>
+      <div class="cell row--dark">
+        <button class="btn btn-quaternary-dark is-hover">
+          <span class="btn__content"
+            ><span>Button</span><svg width="1em" height="1em" aria-hidden="true"><use href="#ico-add" /></svg
+          ></span>
+        </button>
+      </div>
+      <div class="cell row--dark">
+        <button class="btn btn-quaternary-dark btn--loading" aria-label="Loading">
+          <span class="btn__content">
+            <span class="btn__label">Button</span>
+            <svg width="1em" height="1em" aria-hidden="true"><use href="#ico-add" /></svg>
+          </span>
+          <svg class="btn-spinner" width="24" height="24" aria-hidden="true"><use href="#ico-spinner" /></svg>
+        </button>
+      </div>
+      <div class="cell row--dark">
+        <button class="btn btn-quaternary-dark is-pressed">
+          <span class="btn__content"
+            ><span>Button</span><svg width="1em" height="1em" aria-hidden="true"><use href="#ico-add" /></svg
+          ></span>
+        </button>
+      </div>
+    </div>
+
+    <h2 class="section-title">Button — Quaternary · MD · Icon Only</h2>
+
+    <div class="demo-grid">
+      <div class="col-header"></div>
+      <div class="col-header">Default</div>
+      <div class="col-header">Hover</div>
+      <div class="col-header">Loading</div>
+      <div class="col-header">Pressed</div>
+
+      <div class="row-label">Brand</div>
+      <div class="cell">
+        <button class="btn btn-quaternary-brand btn--icon-only" aria-label="Action">
+          <span class="btn__content"
+            ><svg width="1em" height="1em" aria-hidden="true"><use href="#ico-heart" /></svg
+          ></span>
+          <svg class="btn-spinner" width="24" height="24" aria-hidden="true"><use href="#ico-spinner" /></svg>
+        </button>
+      </div>
+      <div class="cell">
+        <button class="btn btn-quaternary-brand btn--icon-only is-hover" aria-label="Action">
+          <span class="btn__content"
+            ><svg width="1em" height="1em" aria-hidden="true"><use href="#ico-heart" /></svg
+          ></span>
+        </button>
+      </div>
+      <div class="cell">
+        <button class="btn btn-quaternary-brand btn--icon-only btn--loading" aria-label="Loading">
+          <span class="btn__content"
+            ><svg width="1em" height="1em" aria-hidden="true"><use href="#ico-heart" /></svg
+          ></span>
+          <svg class="btn-spinner" width="24" height="24" aria-hidden="true"><use href="#ico-spinner" /></svg>
+        </button>
+      </div>
+      <div class="cell">
+        <button class="btn btn-quaternary-brand btn--icon-only is-pressed" aria-label="Action">
+          <span class="btn__content"
+            ><svg width="1em" height="1em" aria-hidden="true"><use href="#ico-heart" /></svg
+          ></span>
+        </button>
+      </div>
+
+      <div class="row-label">Neutral</div>
+      <div class="cell">
+        <button class="btn btn-quaternary-neutral btn--icon-only" aria-label="Action">
+          <span class="btn__content"
+            ><svg width="1em" height="1em" aria-hidden="true"><use href="#ico-heart" /></svg
+          ></span>
+          <svg class="btn-spinner" width="24" height="24" aria-hidden="true"><use href="#ico-spinner" /></svg>
+        </button>
+      </div>
+      <div class="cell">
+        <button class="btn btn-quaternary-neutral btn--icon-only is-hover" aria-label="Action">
+          <span class="btn__content"
+            ><svg width="1em" height="1em" aria-hidden="true"><use href="#ico-heart" /></svg
+          ></span>
+        </button>
+      </div>
+      <div class="cell">
+        <button class="btn btn-quaternary-neutral btn--icon-only btn--loading" aria-label="Loading">
+          <span class="btn__content"
+            ><svg width="1em" height="1em" aria-hidden="true"><use href="#ico-heart" /></svg
+          ></span>
+          <svg class="btn-spinner" width="24" height="24" aria-hidden="true"><use href="#ico-spinner" /></svg>
+        </button>
+      </div>
+      <div class="cell">
+        <button class="btn btn-quaternary-neutral btn--icon-only is-pressed" aria-label="Action">
+          <span class="btn__content"
+            ><svg width="1em" height="1em" aria-hidden="true"><use href="#ico-heart" /></svg
+          ></span>
+        </button>
+      </div>
+
+      <div class="row-label row--light-surface">Light Surface</div>
+      <div class="cell">
+        <button class="btn btn-quaternary-light btn--icon-only" aria-label="Action">
+          <span class="btn__content"
+            ><svg width="1em" height="1em" aria-hidden="true"><use href="#ico-heart" /></svg
+          ></span>
+          <svg class="btn-spinner" width="24" height="24" aria-hidden="true"><use href="#ico-spinner" /></svg>
+        </button>
+      </div>
+      <div class="cell">
+        <button class="btn btn-quaternary-light btn--icon-only is-hover" aria-label="Action">
+          <span class="btn__content"
+            ><svg width="1em" height="1em" aria-hidden="true"><use href="#ico-heart" /></svg
+          ></span>
+        </button>
+      </div>
+      <div class="cell">
+        <button class="btn btn-quaternary-light btn--icon-only btn--loading" aria-label="Loading">
+          <span class="btn__content"
+            ><svg width="1em" height="1em" aria-hidden="true"><use href="#ico-heart" /></svg
+          ></span>
+          <svg class="btn-spinner" width="24" height="24" aria-hidden="true"><use href="#ico-spinner" /></svg>
+        </button>
+      </div>
+      <div class="cell">
+        <button class="btn btn-quaternary-light btn--icon-only is-pressed" aria-label="Action">
+          <span class="btn__content"
+            ><svg width="1em" height="1em" aria-hidden="true"><use href="#ico-heart" /></svg
+          ></span>
+        </button>
+      </div>
+
+      <div class="row-label row--dark">Dark Surface</div>
+      <div class="cell row--dark">
+        <button class="btn btn-quaternary-dark btn--icon-only" aria-label="Action">
+          <span class="btn__content"
+            ><svg width="1em" height="1em" aria-hidden="true"><use href="#ico-heart" /></svg
+          ></span>
+          <svg class="btn-spinner" width="24" height="24" aria-hidden="true"><use href="#ico-spinner" /></svg>
+        </button>
+      </div>
+      <div class="cell row--dark">
+        <button class="btn btn-quaternary-dark btn--icon-only is-hover" aria-label="Action">
+          <span class="btn__content"
+            ><svg width="1em" height="1em" aria-hidden="true"><use href="#ico-heart" /></svg
+          ></span>
+        </button>
+      </div>
+      <div class="cell row--dark">
+        <button class="btn btn-quaternary-dark btn--icon-only btn--loading" aria-label="Loading">
+          <span class="btn__content"
+            ><svg width="1em" height="1em" aria-hidden="true"><use href="#ico-heart" /></svg
+          ></span>
+          <svg class="btn-spinner" width="24" height="24" aria-hidden="true"><use href="#ico-spinner" /></svg>
+        </button>
+      </div>
+      <div class="cell row--dark">
+        <button class="btn btn-quaternary-dark btn--icon-only is-pressed" aria-label="Action">
+          <span class="btn__content"
+            ><svg width="1em" height="1em" aria-hidden="true"><use href="#ico-heart" /></svg
+          ></span>
+        </button>
+      </div>
+    </div>
+
+    <!-- ═══════════════ CONTEXTUAL — NEGATIVE -->
+    <hr class="category-divider" />
+    <h1>Contextual Button (Negative)</h1>
+
+    <h2 class="section-title">Button — Negative · MD · Label Only</h2>
+    <div class="demo-grid">
+      <div class="col-header"></div>
+      <div class="col-header">Default</div>
+      <div class="col-header">Hover</div>
+      <div class="col-header">Loading</div>
+      <div class="col-header">Pressed</div>
+
+      <div class="row-label">Solid</div>
+      <div class="cell">
+        <button class="btn btn-negative-solid">
+          <span class="btn__label">Button</span>
+          <svg class="btn-spinner" width="24" height="24" aria-hidden="true"><use href="#ico-spinner" /></svg>
+        </button>
+      </div>
+      <div class="cell"><button class="btn btn-negative-solid is-hover">Button</button></div>
+      <div class="cell">
+        <button class="btn btn-negative-solid btn--loading" aria-label="Loading">
+          <span class="btn__label">Button</span>
+          <svg class="btn-spinner" width="24" height="24" aria-hidden="true"><use href="#ico-spinner" /></svg>
+        </button>
+      </div>
+      <div class="cell"><button class="btn btn-negative-solid is-pressed">Button</button></div>
+
+      <div class="row-label">Outline</div>
+      <div class="cell">
+        <button class="btn btn-negative-outline">
+          <span class="btn__label">Button</span>
+          <svg class="btn-spinner" width="24" height="24" aria-hidden="true"><use href="#ico-spinner" /></svg>
+        </button>
+      </div>
+      <div class="cell"><button class="btn btn-negative-outline is-hover">Button</button></div>
+      <div class="cell">
+        <button class="btn btn-negative-outline btn--loading" aria-label="Loading">
+          <span class="btn__label">Button</span>
+          <svg class="btn-spinner" width="24" height="24" aria-hidden="true"><use href="#ico-spinner" /></svg>
+        </button>
+      </div>
+      <div class="cell"><button class="btn btn-negative-outline is-pressed">Button</button></div>
+    </div>
+
+    <h2 class="section-title">Button — Negative · MD · Icon + Label</h2>
+    <div class="demo-grid">
+      <div class="col-header"></div>
+      <div class="col-header">Default</div>
+      <div class="col-header">Hover</div>
+      <div class="col-header">Loading</div>
+      <div class="col-header">Pressed</div>
+
+      <div class="row-label">Solid</div>
+      <div class="cell">
+        <button class="btn btn-negative-solid">
+          <span class="btn__content">
+            <svg width="1em" height="1em" aria-hidden="true"><use href="#ico-square-dashed" /></svg>
+            <span class="btn__label">Button</span>
+          </span>
+          <svg class="btn-spinner" width="24" height="24" aria-hidden="true"><use href="#ico-spinner" /></svg>
+        </button>
+      </div>
+      <div class="cell">
+        <button class="btn btn-negative-solid is-hover">
+          <span class="btn__content"
+            ><svg width="1em" height="1em" aria-hidden="true"><use href="#ico-square-dashed" /></svg><span>Button</span></span
+          >
+        </button>
+      </div>
+      <div class="cell">
+        <button class="btn btn-negative-solid btn--loading" aria-label="Loading">
+          <span class="btn__content">
+            <svg width="1em" height="1em" aria-hidden="true"><use href="#ico-square-dashed" /></svg>
+            <span class="btn__label">Button</span>
+          </span>
+          <svg class="btn-spinner" width="24" height="24" aria-hidden="true"><use href="#ico-spinner" /></svg>
+        </button>
+      </div>
+      <div class="cell">
+        <button class="btn btn-negative-solid is-pressed">
+          <span class="btn__content"
+            ><svg width="1em" height="1em" aria-hidden="true"><use href="#ico-square-dashed" /></svg><span>Button</span></span
+          >
+        </button>
+      </div>
+
+      <div class="row-label">Outline</div>
+      <div class="cell">
+        <button class="btn btn-negative-outline">
+          <span class="btn__content">
+            <svg width="1em" height="1em" aria-hidden="true"><use href="#ico-square-dashed" /></svg>
+            <span class="btn__label">Button</span>
+          </span>
+          <svg class="btn-spinner" width="24" height="24" aria-hidden="true"><use href="#ico-spinner" /></svg>
+        </button>
+      </div>
+      <div class="cell">
+        <button class="btn btn-negative-outline is-hover">
+          <span class="btn__content"
+            ><svg width="1em" height="1em" aria-hidden="true"><use href="#ico-square-dashed" /></svg><span>Button</span></span
+          >
+        </button>
+      </div>
+      <div class="cell">
+        <button class="btn btn-negative-outline btn--loading" aria-label="Loading">
+          <span class="btn__content">
+            <svg width="1em" height="1em" aria-hidden="true"><use href="#ico-square-dashed" /></svg>
+            <span class="btn__label">Button</span>
+          </span>
+          <svg class="btn-spinner" width="24" height="24" aria-hidden="true"><use href="#ico-spinner" /></svg>
+        </button>
+      </div>
+      <div class="cell">
+        <button class="btn btn-negative-outline is-pressed">
+          <span class="btn__content"
+            ><svg width="1em" height="1em" aria-hidden="true"><use href="#ico-square-dashed" /></svg><span>Button</span></span
+          >
+        </button>
+      </div>
+    </div>
+
+    <h2 class="section-title">Button — Negative · MD · Label + Addon</h2>
+    <div class="demo-grid">
+      <div class="col-header"></div>
+      <div class="col-header">Default</div>
+      <div class="col-header">Hover</div>
+      <div class="col-header">Loading</div>
+      <div class="col-header">Pressed</div>
+
+      <div class="row-label">Solid</div>
+      <div class="cell">
+        <button class="btn btn-negative-solid">
+          <span class="btn__content">
+            <span class="btn__label">Button</span>
+            <svg width="1em" height="1em" aria-hidden="true"><use href="#ico-add" /></svg>
+          </span>
+          <svg class="btn-spinner" width="24" height="24" aria-hidden="true"><use href="#ico-spinner" /></svg>
+        </button>
+      </div>
+      <div class="cell">
+        <button class="btn btn-negative-solid is-hover">
+          <span class="btn__content"
+            ><span>Button</span><svg width="1em" height="1em" aria-hidden="true"><use href="#ico-add" /></svg
+          ></span>
+        </button>
+      </div>
+      <div class="cell">
+        <button class="btn btn-negative-solid btn--loading" aria-label="Loading">
+          <span class="btn__content">
+            <span class="btn__label">Button</span>
+            <svg width="1em" height="1em" aria-hidden="true"><use href="#ico-add" /></svg>
+          </span>
+          <svg class="btn-spinner" width="24" height="24" aria-hidden="true"><use href="#ico-spinner" /></svg>
+        </button>
+      </div>
+      <div class="cell">
+        <button class="btn btn-negative-solid is-pressed">
+          <span class="btn__content"
+            ><span>Button</span><svg width="1em" height="1em" aria-hidden="true"><use href="#ico-add" /></svg
+          ></span>
+        </button>
+      </div>
+
+      <div class="row-label">Outline</div>
+      <div class="cell">
+        <button class="btn btn-negative-outline">
+          <span class="btn__content">
+            <span class="btn__label">Button</span>
+            <svg width="1em" height="1em" aria-hidden="true"><use href="#ico-add" /></svg>
+          </span>
+          <svg class="btn-spinner" width="24" height="24" aria-hidden="true"><use href="#ico-spinner" /></svg>
+        </button>
+      </div>
+      <div class="cell">
+        <button class="btn btn-negative-outline is-hover">
+          <span class="btn__content"
+            ><span>Button</span><svg width="1em" height="1em" aria-hidden="true"><use href="#ico-add" /></svg
+          ></span>
+        </button>
+      </div>
+      <div class="cell">
+        <button class="btn btn-negative-outline btn--loading" aria-label="Loading">
+          <span class="btn__content">
+            <span class="btn__label">Button</span>
+            <svg width="1em" height="1em" aria-hidden="true"><use href="#ico-add" /></svg>
+          </span>
+          <svg class="btn-spinner" width="24" height="24" aria-hidden="true"><use href="#ico-spinner" /></svg>
+        </button>
+      </div>
+      <div class="cell">
+        <button class="btn btn-negative-outline is-pressed">
+          <span class="btn__content"
+            ><span>Button</span><svg width="1em" height="1em" aria-hidden="true"><use href="#ico-add" /></svg
+          ></span>
+        </button>
+      </div>
+    </div>
+
+    <h2 class="section-title">Button — Negative · MD · Icon Only</h2>
+    <div class="demo-grid">
+      <div class="col-header"></div>
+      <div class="col-header">Default</div>
+      <div class="col-header">Hover</div>
+      <div class="col-header">Loading</div>
+      <div class="col-header">Pressed</div>
+
+      <div class="row-label">Solid</div>
+      <div class="cell">
+        <button class="btn btn-negative-solid btn--icon-only" aria-label="Action">
+          <span class="btn__content"
+            ><svg width="1em" height="1em" aria-hidden="true"><use href="#ico-heart" /></svg
+          ></span>
+          <svg class="btn-spinner" width="24" height="24" aria-hidden="true"><use href="#ico-spinner" /></svg>
+        </button>
+      </div>
+      <div class="cell">
+        <button class="btn btn-negative-solid btn--icon-only is-hover" aria-label="Action">
+          <span class="btn__content"
+            ><svg width="1em" height="1em" aria-hidden="true"><use href="#ico-heart" /></svg
+          ></span>
+        </button>
+      </div>
+      <div class="cell">
+        <button class="btn btn-negative-solid btn--icon-only btn--loading" aria-label="Loading">
+          <span class="btn__content"
+            ><svg width="1em" height="1em" aria-hidden="true"><use href="#ico-heart" /></svg
+          ></span>
+          <svg class="btn-spinner" width="24" height="24" aria-hidden="true"><use href="#ico-spinner" /></svg>
+        </button>
+      </div>
+      <div class="cell">
+        <button class="btn btn-negative-solid btn--icon-only is-pressed" aria-label="Action">
+          <span class="btn__content"
+            ><svg width="1em" height="1em" aria-hidden="true"><use href="#ico-heart" /></svg
+          ></span>
+        </button>
+      </div>
+
+      <div class="row-label">Outline</div>
+      <div class="cell">
+        <button class="btn btn-negative-outline btn--icon-only" aria-label="Action">
+          <span class="btn__content"
+            ><svg width="1em" height="1em" aria-hidden="true"><use href="#ico-heart" /></svg
+          ></span>
+          <svg class="btn-spinner" width="24" height="24" aria-hidden="true"><use href="#ico-spinner" /></svg>
+        </button>
+      </div>
+      <div class="cell">
+        <button class="btn btn-negative-outline btn--icon-only is-hover" aria-label="Action">
+          <span class="btn__content"
+            ><svg width="1em" height="1em" aria-hidden="true"><use href="#ico-heart" /></svg
+          ></span>
+        </button>
+      </div>
+      <div class="cell">
+        <button class="btn btn-negative-outline btn--icon-only btn--loading" aria-label="Loading">
+          <span class="btn__content"
+            ><svg width="1em" height="1em" aria-hidden="true"><use href="#ico-heart" /></svg
+          ></span>
+          <svg class="btn-spinner" width="24" height="24" aria-hidden="true"><use href="#ico-spinner" /></svg>
+        </button>
+      </div>
+      <div class="cell">
+        <button class="btn btn-negative-outline btn--icon-only is-pressed" aria-label="Action">
+          <span class="btn__content"
+            ><svg width="1em" height="1em" aria-hidden="true"><use href="#ico-heart" /></svg
+          ></span>
+        </button>
+      </div>
+    </div>
+
+    <!-- ═══════════════ CONTEXTUAL — POSITIVE -->
+    <hr class="category-divider" />
+    <h1>Contextual Button (Positive)</h1>
+
+    <h2 class="section-title">Button — Positive · MD · Label Only</h2>
+    <div class="demo-grid">
+      <div class="col-header"></div>
+      <div class="col-header">Default</div>
+      <div class="col-header">Hover</div>
+      <div class="col-header">Loading</div>
+      <div class="col-header">Pressed</div>
+
+      <div class="row-label">Solid</div>
+      <div class="cell">
+        <button class="btn btn-positive-solid">
+          <span class="btn__label">Button</span>
+          <svg class="btn-spinner" width="24" height="24" aria-hidden="true"><use href="#ico-spinner" /></svg>
+        </button>
+      </div>
+      <div class="cell"><button class="btn btn-positive-solid is-hover">Button</button></div>
+      <div class="cell">
+        <button class="btn btn-positive-solid btn--loading" aria-label="Loading">
+          <span class="btn__label">Button</span>
+          <svg class="btn-spinner" width="24" height="24" aria-hidden="true"><use href="#ico-spinner" /></svg>
+        </button>
+      </div>
+      <div class="cell"><button class="btn btn-positive-solid is-pressed">Button</button></div>
+
+      <div class="row-label">Outline</div>
+      <div class="cell">
+        <button class="btn btn-positive-outline">
+          <span class="btn__label">Button</span>
+          <svg class="btn-spinner" width="24" height="24" aria-hidden="true"><use href="#ico-spinner" /></svg>
+        </button>
+      </div>
+      <div class="cell"><button class="btn btn-positive-outline is-hover">Button</button></div>
+      <div class="cell">
+        <button class="btn btn-positive-outline btn--loading" aria-label="Loading">
+          <span class="btn__label">Button</span>
+          <svg class="btn-spinner" width="24" height="24" aria-hidden="true"><use href="#ico-spinner" /></svg>
+        </button>
+      </div>
+      <div class="cell"><button class="btn btn-positive-outline is-pressed">Button</button></div>
+    </div>
+
+    <h2 class="section-title">Button — Positive · MD · Icon + Label</h2>
+    <div class="demo-grid">
+      <div class="col-header"></div>
+      <div class="col-header">Default</div>
+      <div class="col-header">Hover</div>
+      <div class="col-header">Loading</div>
+      <div class="col-header">Pressed</div>
+
+      <div class="row-label">Solid</div>
+      <div class="cell">
+        <button class="btn btn-positive-solid">
+          <span class="btn__content">
+            <svg width="1em" height="1em" aria-hidden="true"><use href="#ico-square-dashed" /></svg>
+            <span class="btn__label">Button</span>
+          </span>
+          <svg class="btn-spinner" width="24" height="24" aria-hidden="true"><use href="#ico-spinner" /></svg>
+        </button>
+      </div>
+      <div class="cell">
+        <button class="btn btn-positive-solid is-hover">
+          <span class="btn__content"
+            ><svg width="1em" height="1em" aria-hidden="true"><use href="#ico-square-dashed" /></svg><span>Button</span></span
+          >
+        </button>
+      </div>
+      <div class="cell">
+        <button class="btn btn-positive-solid btn--loading" aria-label="Loading">
+          <span class="btn__content">
+            <svg width="1em" height="1em" aria-hidden="true"><use href="#ico-square-dashed" /></svg>
+            <span class="btn__label">Button</span>
+          </span>
+          <svg class="btn-spinner" width="24" height="24" aria-hidden="true"><use href="#ico-spinner" /></svg>
+        </button>
+      </div>
+      <div class="cell">
+        <button class="btn btn-positive-solid is-pressed">
+          <span class="btn__content"
+            ><svg width="1em" height="1em" aria-hidden="true"><use href="#ico-square-dashed" /></svg><span>Button</span></span
+          >
+        </button>
+      </div>
+
+      <div class="row-label">Outline</div>
+      <div class="cell">
+        <button class="btn btn-positive-outline">
+          <span class="btn__content">
+            <svg width="1em" height="1em" aria-hidden="true"><use href="#ico-square-dashed" /></svg>
+            <span class="btn__label">Button</span>
+          </span>
+          <svg class="btn-spinner" width="24" height="24" aria-hidden="true"><use href="#ico-spinner" /></svg>
+        </button>
+      </div>
+      <div class="cell">
+        <button class="btn btn-positive-outline is-hover">
+          <span class="btn__content"
+            ><svg width="1em" height="1em" aria-hidden="true"><use href="#ico-square-dashed" /></svg><span>Button</span></span
+          >
+        </button>
+      </div>
+      <div class="cell">
+        <button class="btn btn-positive-outline btn--loading" aria-label="Loading">
+          <span class="btn__content">
+            <svg width="1em" height="1em" aria-hidden="true"><use href="#ico-square-dashed" /></svg>
+            <span class="btn__label">Button</span>
+          </span>
+          <svg class="btn-spinner" width="24" height="24" aria-hidden="true"><use href="#ico-spinner" /></svg>
+        </button>
+      </div>
+      <div class="cell">
+        <button class="btn btn-positive-outline is-pressed">
+          <span class="btn__content"
+            ><svg width="1em" height="1em" aria-hidden="true"><use href="#ico-square-dashed" /></svg><span>Button</span></span
+          >
+        </button>
+      </div>
+    </div>
+
+    <h2 class="section-title">Button — Positive · MD · Label + Addon</h2>
+    <div class="demo-grid">
+      <div class="col-header"></div>
+      <div class="col-header">Default</div>
+      <div class="col-header">Hover</div>
+      <div class="col-header">Loading</div>
+      <div class="col-header">Pressed</div>
+
+      <div class="row-label">Solid</div>
+      <div class="cell">
+        <button class="btn btn-positive-solid">
+          <span class="btn__content">
+            <span class="btn__label">Button</span>
+            <svg width="1em" height="1em" aria-hidden="true"><use href="#ico-add" /></svg>
+          </span>
+          <svg class="btn-spinner" width="24" height="24" aria-hidden="true"><use href="#ico-spinner" /></svg>
+        </button>
+      </div>
+      <div class="cell">
+        <button class="btn btn-positive-solid is-hover">
+          <span class="btn__content"
+            ><span>Button</span><svg width="1em" height="1em" aria-hidden="true"><use href="#ico-add" /></svg
+          ></span>
+        </button>
+      </div>
+      <div class="cell">
+        <button class="btn btn-positive-solid btn--loading" aria-label="Loading">
+          <span class="btn__content">
+            <span class="btn__label">Button</span>
+            <svg width="1em" height="1em" aria-hidden="true"><use href="#ico-add" /></svg>
+          </span>
+          <svg class="btn-spinner" width="24" height="24" aria-hidden="true"><use href="#ico-spinner" /></svg>
+        </button>
+      </div>
+      <div class="cell">
+        <button class="btn btn-positive-solid is-pressed">
+          <span class="btn__content"
+            ><span>Button</span><svg width="1em" height="1em" aria-hidden="true"><use href="#ico-add" /></svg
+          ></span>
+        </button>
+      </div>
+
+      <div class="row-label">Outline</div>
+      <div class="cell">
+        <button class="btn btn-positive-outline">
+          <span class="btn__content">
+            <span class="btn__label">Button</span>
+            <svg width="1em" height="1em" aria-hidden="true"><use href="#ico-add" /></svg>
+          </span>
+          <svg class="btn-spinner" width="24" height="24" aria-hidden="true"><use href="#ico-spinner" /></svg>
+        </button>
+      </div>
+      <div class="cell">
+        <button class="btn btn-positive-outline is-hover">
+          <span class="btn__content"
+            ><span>Button</span><svg width="1em" height="1em" aria-hidden="true"><use href="#ico-add" /></svg
+          ></span>
+        </button>
+      </div>
+      <div class="cell">
+        <button class="btn btn-positive-outline btn--loading" aria-label="Loading">
+          <span class="btn__content">
+            <span class="btn__label">Button</span>
+            <svg width="1em" height="1em" aria-hidden="true"><use href="#ico-add" /></svg>
+          </span>
+          <svg class="btn-spinner" width="24" height="24" aria-hidden="true"><use href="#ico-spinner" /></svg>
+        </button>
+      </div>
+      <div class="cell">
+        <button class="btn btn-positive-outline is-pressed">
+          <span class="btn__content"
+            ><span>Button</span><svg width="1em" height="1em" aria-hidden="true"><use href="#ico-add" /></svg
+          ></span>
+        </button>
+      </div>
+    </div>
+
+    <h2 class="section-title">Button — Positive · MD · Icon Only</h2>
+    <div class="demo-grid">
+      <div class="col-header"></div>
+      <div class="col-header">Default</div>
+      <div class="col-header">Hover</div>
+      <div class="col-header">Loading</div>
+      <div class="col-header">Pressed</div>
+
+      <div class="row-label">Solid</div>
+      <div class="cell">
+        <button class="btn btn-positive-solid btn--icon-only" aria-label="Action">
+          <span class="btn__content"
+            ><svg width="1em" height="1em" aria-hidden="true"><use href="#ico-heart" /></svg
+          ></span>
+          <svg class="btn-spinner" width="24" height="24" aria-hidden="true"><use href="#ico-spinner" /></svg>
+        </button>
+      </div>
+      <div class="cell">
+        <button class="btn btn-positive-solid btn--icon-only is-hover" aria-label="Action">
+          <span class="btn__content"
+            ><svg width="1em" height="1em" aria-hidden="true"><use href="#ico-heart" /></svg
+          ></span>
+        </button>
+      </div>
+      <div class="cell">
+        <button class="btn btn-positive-solid btn--icon-only btn--loading" aria-label="Loading">
+          <span class="btn__content"
+            ><svg width="1em" height="1em" aria-hidden="true"><use href="#ico-heart" /></svg
+          ></span>
+          <svg class="btn-spinner" width="24" height="24" aria-hidden="true"><use href="#ico-spinner" /></svg>
+        </button>
+      </div>
+      <div class="cell">
+        <button class="btn btn-positive-solid btn--icon-only is-pressed" aria-label="Action">
+          <span class="btn__content"
+            ><svg width="1em" height="1em" aria-hidden="true"><use href="#ico-heart" /></svg
+          ></span>
+        </button>
+      </div>
+
+      <div class="row-label">Outline</div>
+      <div class="cell">
+        <button class="btn btn-positive-outline btn--icon-only" aria-label="Action">
+          <span class="btn__content"
+            ><svg width="1em" height="1em" aria-hidden="true"><use href="#ico-heart" /></svg
+          ></span>
+          <svg class="btn-spinner" width="24" height="24" aria-hidden="true"><use href="#ico-spinner" /></svg>
+        </button>
+      </div>
+      <div class="cell">
+        <button class="btn btn-positive-outline btn--icon-only is-hover" aria-label="Action">
+          <span class="btn__content"
+            ><svg width="1em" height="1em" aria-hidden="true"><use href="#ico-heart" /></svg
+          ></span>
+        </button>
+      </div>
+      <div class="cell">
+        <button class="btn btn-positive-outline btn--icon-only btn--loading" aria-label="Loading">
+          <span class="btn__content"
+            ><svg width="1em" height="1em" aria-hidden="true"><use href="#ico-heart" /></svg
+          ></span>
+          <svg class="btn-spinner" width="24" height="24" aria-hidden="true"><use href="#ico-spinner" /></svg>
+        </button>
+      </div>
+      <div class="cell">
+        <button class="btn btn-positive-outline btn--icon-only is-pressed" aria-label="Action">
+          <span class="btn__content"
+            ><svg width="1em" height="1em" aria-hidden="true"><use href="#ico-heart" /></svg
+          ></span>
+        </button>
+      </div>
+    </div>
+
+    <!-- ═══════════════════════════════════════════ BUTTON SIZE -->
+    <hr class="category-divider" />
+    <h1>Button Size</h1>
+
+    <h2 class="section-title">Button Size — Primary Brand</h2>
+    <div class="demo-grid demo-grid--6col">
+      <div class="col-header"></div>
+      <div class="col-header">XS · 28px</div>
+      <div class="col-header">SM · 34px</div>
+      <div class="col-header">MD · 40px</div>
+      <div class="col-header">LG · 46px</div>
+      <div class="col-header">XL · 52px</div>
+
+      <!-- Label Only -->
+      <div class="row-label">Label Only</div>
+      <div class="cell">
+        <button class="btn btn-brand btn--xs">
+          <span class="btn__label">Button</span>
+          <svg class="btn-spinner" width="24" height="24" aria-hidden="true"><use href="#ico-spinner" /></svg>
+        </button>
+      </div>
+      <div class="cell">
+        <button class="btn btn-brand btn--sm">
+          <span class="btn__label">Button</span>
+          <svg class="btn-spinner" width="24" height="24" aria-hidden="true"><use href="#ico-spinner" /></svg>
+        </button>
+      </div>
+      <div class="cell">
+        <button class="btn btn-brand">
+          <span class="btn__label">Button</span>
+          <svg class="btn-spinner" width="24" height="24" aria-hidden="true"><use href="#ico-spinner" /></svg>
+        </button>
+      </div>
+      <div class="cell">
+        <button class="btn btn-brand btn--lg">
+          <span class="btn__label">Button</span>
+          <svg class="btn-spinner" width="24" height="24" aria-hidden="true"><use href="#ico-spinner" /></svg>
+        </button>
+      </div>
+      <div class="cell">
+        <button class="btn btn-brand btn--xl">
+          <span class="btn__label">Button</span>
+          <svg class="btn-spinner" width="24" height="24" aria-hidden="true"><use href="#ico-spinner" /></svg>
+        </button>
+      </div>
+
+      <!-- Icon + Label -->
+      <div class="row-label">Icon + Label</div>
+      <div class="cell">
+        <button class="btn btn-brand btn--xs">
+          <span class="btn__content">
+            <svg width="1em" height="1em" aria-hidden="true"><use href="#ico-square-dashed" /></svg>
+            <span class="btn__label">Button</span>
+          </span>
+          <svg class="btn-spinner" width="24" height="24" aria-hidden="true"><use href="#ico-spinner" /></svg>
+        </button>
+      </div>
+      <div class="cell">
+        <button class="btn btn-brand btn--sm">
+          <span class="btn__content">
+            <svg width="1em" height="1em" aria-hidden="true"><use href="#ico-square-dashed" /></svg>
+            <span class="btn__label">Button</span>
+          </span>
+          <svg class="btn-spinner" width="24" height="24" aria-hidden="true"><use href="#ico-spinner" /></svg>
+        </button>
+      </div>
+      <div class="cell">
+        <button class="btn btn-brand">
+          <span class="btn__content">
+            <svg width="1em" height="1em" aria-hidden="true"><use href="#ico-square-dashed" /></svg>
+            <span class="btn__label">Button</span>
+          </span>
+          <svg class="btn-spinner" width="24" height="24" aria-hidden="true"><use href="#ico-spinner" /></svg>
+        </button>
+      </div>
+      <div class="cell">
+        <button class="btn btn-brand btn--lg">
+          <span class="btn__content">
+            <svg width="1em" height="1em" aria-hidden="true"><use href="#ico-square-dashed" /></svg>
+            <span class="btn__label">Button</span>
+          </span>
+          <svg class="btn-spinner" width="24" height="24" aria-hidden="true"><use href="#ico-spinner" /></svg>
+        </button>
+      </div>
+      <div class="cell">
+        <button class="btn btn-brand btn--xl">
+          <span class="btn__content">
+            <svg width="1em" height="1em" aria-hidden="true"><use href="#ico-square-dashed" /></svg>
+            <span class="btn__label">Button</span>
+          </span>
+          <svg class="btn-spinner" width="24" height="24" aria-hidden="true"><use href="#ico-spinner" /></svg>
+        </button>
+      </div>
+
+      <!-- Label + Addon -->
+      <div class="row-label">Label + Addon</div>
+      <div class="cell">
+        <button class="btn btn-brand btn--xs">
+          <span class="btn__content">
+            <span class="btn__label">Button</span>
+            <svg width="1em" height="1em" aria-hidden="true"><use href="#ico-add" /></svg>
+          </span>
+          <svg class="btn-spinner" width="24" height="24" aria-hidden="true"><use href="#ico-spinner" /></svg>
+        </button>
+      </div>
+      <div class="cell">
+        <button class="btn btn-brand btn--sm">
+          <span class="btn__content">
+            <span class="btn__label">Button</span>
+            <svg width="1em" height="1em" aria-hidden="true"><use href="#ico-add" /></svg>
+          </span>
+          <svg class="btn-spinner" width="24" height="24" aria-hidden="true"><use href="#ico-spinner" /></svg>
+        </button>
+      </div>
+      <div class="cell">
+        <button class="btn btn-brand">
+          <span class="btn__content">
+            <span class="btn__label">Button</span>
+            <svg width="1em" height="1em" aria-hidden="true"><use href="#ico-add" /></svg>
+          </span>
+          <svg class="btn-spinner" width="24" height="24" aria-hidden="true"><use href="#ico-spinner" /></svg>
+        </button>
+      </div>
+      <div class="cell">
+        <button class="btn btn-brand btn--lg">
+          <span class="btn__content">
+            <span class="btn__label">Button</span>
+            <svg width="1em" height="1em" aria-hidden="true"><use href="#ico-add" /></svg>
+          </span>
+          <svg class="btn-spinner" width="24" height="24" aria-hidden="true"><use href="#ico-spinner" /></svg>
+        </button>
+      </div>
+      <div class="cell">
+        <button class="btn btn-brand btn--xl">
+          <span class="btn__content">
+            <span class="btn__label">Button</span>
+            <svg width="1em" height="1em" aria-hidden="true"><use href="#ico-add" /></svg>
+          </span>
+          <svg class="btn-spinner" width="24" height="24" aria-hidden="true"><use href="#ico-spinner" /></svg>
+        </button>
+      </div>
+
+      <!-- Icon Only -->
+      <div class="row-label">Icon Only</div>
+      <div class="cell">
+        <button class="btn btn-brand btn--xs btn--icon-only" aria-label="Action">
+          <span class="btn__content"
+            ><svg width="1em" height="1em" aria-hidden="true"><use href="#ico-heart" /></svg
+          ></span>
+          <svg class="btn-spinner" width="24" height="24" aria-hidden="true"><use href="#ico-spinner" /></svg>
+        </button>
+      </div>
+      <div class="cell">
+        <button class="btn btn-brand btn--sm btn--icon-only" aria-label="Action">
+          <span class="btn__content"
+            ><svg width="1em" height="1em" aria-hidden="true"><use href="#ico-heart" /></svg
+          ></span>
+          <svg class="btn-spinner" width="24" height="24" aria-hidden="true"><use href="#ico-spinner" /></svg>
+        </button>
+      </div>
+      <div class="cell">
+        <button class="btn btn-brand btn--icon-only" aria-label="Action">
+          <span class="btn__content"
+            ><svg width="1em" height="1em" aria-hidden="true"><use href="#ico-heart" /></svg
+          ></span>
+          <svg class="btn-spinner" width="24" height="24" aria-hidden="true"><use href="#ico-spinner" /></svg>
+        </button>
+      </div>
+      <div class="cell">
+        <button class="btn btn-brand btn--lg btn--icon-only" aria-label="Action">
+          <span class="btn__content"
+            ><svg width="1em" height="1em" aria-hidden="true"><use href="#ico-heart" /></svg
+          ></span>
+          <svg class="btn-spinner" width="24" height="24" aria-hidden="true"><use href="#ico-spinner" /></svg>
+        </button>
+      </div>
+      <div class="cell">
+        <button class="btn btn-brand btn--xl btn--icon-only" aria-label="Action">
+          <span class="btn__content"
+            ><svg width="1em" height="1em" aria-hidden="true"><use href="#ico-heart" /></svg
+          ></span>
+          <svg class="btn-spinner" width="24" height="24" aria-hidden="true"><use href="#ico-spinner" /></svg>
+        </button>
+      </div>
+    </div>
+    <script>
+      document.querySelectorAll(".btn:not(.is-hover):not(.is-pressed):not(.btn--loading)").forEach(btn => {
+        btn.addEventListener("click", () => {
+          if (btn.dataset.animating) return;
+          btn.dataset.animating = "1";
+
+          // Phase 1: Loading
+          btn.classList.add("btn--loading");
+          btn.setAttribute("aria-label", "Loading");
+
+          setTimeout(() => {
+            // Phase 2: Pressed
+            btn.classList.remove("btn--loading");
+            btn.removeAttribute("aria-label");
+            btn.classList.add("is-pressed");
+
+            setTimeout(() => {
+              // Phase 3: Dissolve back to Default
+              btn.style.transition = "background-color 1s ease, box-shadow 1s ease";
+              btn.classList.remove("is-pressed");
+
+              setTimeout(() => {
+                btn.style.transition = "";
+                delete btn.dataset.animating;
+              }, 1000);
+            }, 3000);
+          }, 3000);
+        });
+      });
+    </script>
+  </body>
+</html>

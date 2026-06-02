@@ -1,0 +1,1879 @@
+/* ============================================
+   Foundation - Primitive Color Scales
+   ============================================ */
+:root {
+
+  /* Blue Scale */
+  --primitive-colors-blue-50: #e6edf7;
+  --primitive-colors-blue-100: #ccdbf0;
+  --primitive-colors-blue-200: #99b8e1;
+  --primitive-colors-blue-300: #6694d1;
+  --primitive-colors-blue-400: #3371c2;
+  --primitive-colors-blue-500: #004db3;
+  --primitive-colors-blue-600: #003e8f;
+  --primitive-colors-blue-700: #002e6b;
+  --primitive-colors-blue-800: #001f48;
+  --primitive-colors-blue-900: #000f24;
+
+  /* Cyan Scale */
+  --primitive-colors-cyan-50: #e5f6fa;
+  --primitive-colors-cyan-100: #cceef6;
+  --primitive-colors-cyan-200: #99dded;
+  --primitive-colors-cyan-300: #66cce4;
+  --primitive-colors-cyan-400: #33bbdb;
+  --primitive-colors-cyan-500: #00aad2;
+  --primitive-colors-cyan-600: #0088a8;
+  --primitive-colors-cyan-700: #00667e;
+  --primitive-colors-cyan-800: #004454;
+  --primitive-colors-cyan-900: #00222a;
+
+  /* Red Scale */
+  --primitive-colors-red-50: #fce9ed;
+  --primitive-colors-red-100: #f9d2da;
+  --primitive-colors-red-200: #f3a4b4;
+  --primitive-colors-red-300: #ec778f;
+  --primitive-colors-red-400: #e64969;
+  --primitive-colors-red-500: #e01c44;
+  --primitive-colors-red-600: #b31636;
+  --primitive-colors-red-700: #861129;
+  --primitive-colors-red-800: #5a0b1b;
+  --primitive-colors-red-900: #2d060e;
+
+  /* Violet Scale */
+  --primitive-colors-violet-50: #eee7f1;
+  --primitive-colors-violet-100: #ddd0e3;
+  --primitive-colors-violet-200: #baa1c7;
+  --primitive-colors-violet-300: #9872ab;
+  --primitive-colors-violet-400: #75438f;
+  --primitive-colors-violet-500: #531473;
+  --primitive-colors-violet-600: #42105c;
+  --primitive-colors-violet-700: #320c45;
+  --primitive-colors-violet-800: #21082e;
+  --primitive-colors-violet-900: #110417;
+
+  /* Green Scale */
+  --primitive-colors-green-50: #e7f7e7;
+  --primitive-colors-green-100: #ceeece;
+  --primitive-colors-green-200: #9ede9e;
+  --primitive-colors-green-300: #6dcd6d;
+  --primitive-colors-green-400: #3dbd3d;
+  --primitive-colors-green-500: #0cac0c;
+  --primitive-colors-green-600: #0a8a0a;
+  --primitive-colors-green-700: #076707;
+  --primitive-colors-green-800: #054505;
+  --primitive-colors-green-900: #022202;
+
+  /* Azure Scale */
+  --primitive-colors-azure-50: #edf0fc;
+  --primitive-colors-azure-100: #dae2fa;
+  --primitive-colors-azure-200: #b6c4f5;
+  --primitive-colors-azure-300: #91a7ef;
+  --primitive-colors-azure-400: #6d89ea;
+  --primitive-colors-azure-500: #486ce5;
+  --primitive-colors-azure-600: #3a56b7;
+  --primitive-colors-azure-700: #2b4189;
+  --primitive-colors-azure-800: #1d2b5c;
+  --primitive-colors-azure-900: #0e162e;
+
+  /* Purple Scale */
+  --primitive-colors-purple-50: #ece7ec;
+  --primitive-colors-purple-100: #dad0da;
+  --primitive-colors-purple-200: #b5a1b4;
+  --primitive-colors-purple-300: #8f718f;
+  --primitive-colors-purple-400: #6a4269;
+  --primitive-colors-purple-500: #451344;
+  --primitive-colors-purple-600: #370f36;
+  --primitive-colors-purple-700: #290b29;
+  --primitive-colors-purple-800: #1c081b;
+  --primitive-colors-purple-900: #0e040e;
+
+  /* Turquoise Scale */
+  --primitive-colors-turquoise-50: #ebfafa;
+  --primitive-colors-turquoise-100: #d6f5f5;
+  --primitive-colors-turquoise-200: #adebeb;
+  --primitive-colors-turquoise-300: #85e0e0;
+  --primitive-colors-turquoise-400: #5cd6d6;
+  --primitive-colors-turquoise-500: #33cccc;
+  --primitive-colors-turquoise-600: #29a3a3;
+  --primitive-colors-turquoise-700: #1f7a7a;
+  --primitive-colors-turquoise-800: #145252;
+  --primitive-colors-turquoise-900: #0a2929;
+
+  /* Orange Scale */
+  --primitive-colors-orange-50: #fff0e5;
+  --primitive-colors-orange-100: #ffe0cc;
+  --primitive-colors-orange-200: #ffc299;
+  --primitive-colors-orange-300: #ffa366;
+  --primitive-colors-orange-400: #ff8533;
+  --primitive-colors-orange-500: #ff6600;
+  --primitive-colors-orange-600: #cc5200;
+  --primitive-colors-orange-700: #993d00;
+  --primitive-colors-orange-800: #662900;
+  --primitive-colors-orange-900: #331400;
+
+  /* Magenta Scale */
+  --primitive-colors-magenta-50: #f6e8f0;
+  --primitive-colors-magenta-100: #eed0e2;
+  --primitive-colors-magenta-200: #dca1c5;
+  --primitive-colors-magenta-300: #cb73a7;
+  --primitive-colors-magenta-400: #b9448a;
+  --primitive-colors-magenta-500: #a8156d;
+  --primitive-colors-magenta-600: #861157;
+  --primitive-colors-magenta-700: #650d41;
+  --primitive-colors-magenta-800: #43082c;
+  --primitive-colors-magenta-900: #220416;
+
+  /* Navy Scale */
+  --primitive-colors-navy-50: #e6e9ec;
+  --primitive-colors-navy-100: #ced3d9;
+  --primitive-colors-navy-200: #9ca7b3;
+  --primitive-colors-navy-300: #6b7b8c;
+  --primitive-colors-navy-400: #394f66;
+  --primitive-colors-navy-500: #082340;
+  --primitive-colors-navy-600: #061c33;
+  --primitive-colors-navy-700: #051526;
+  --primitive-colors-navy-800: #030e1a;
+  --primitive-colors-navy-900: #02070d;
+
+  /* Indigo Scale */
+  --primitive-colors-indigo-50: #e7e7ef;
+  --primitive-colors-indigo-100: #cfcedf;
+  --primitive-colors-indigo-200: #9f9dbf;
+  --primitive-colors-indigo-300: #6f6c9f;
+  --primitive-colors-indigo-400: #3f3b7f;
+  --primitive-colors-indigo-500: #0f0a5f;
+  --primitive-colors-indigo-600: #0c084c;
+  --primitive-colors-indigo-700: #090639;
+  --primitive-colors-indigo-800: #060426;
+  --primitive-colors-indigo-900: #030213;
+
+  /* Yellow Scale */
+  --primitive-colors-yellow-50: #fffde6;
+  --primitive-colors-yellow-100: #fffbcc;
+  --primitive-colors-yellow-200: #fff799;
+  --primitive-colors-yellow-300: #fef266;
+  --primitive-colors-yellow-400: #feee33;
+  --primitive-colors-yellow-500: #feea00;
+  --primitive-colors-yellow-600: #cbbb00;
+  --primitive-colors-yellow-700: #988c00;
+  --primitive-colors-yellow-800: #665e00;
+  --primitive-colors-yellow-900: #332f00;
+
+  /* Fuchsia Scale */
+  --primitive-colors-fuchsia-50: #f7edf9;
+  --primitive-colors-fuchsia-100: #eedaf4;
+  --primitive-colors-fuchsia-200: #deb5e8;
+  --primitive-colors-fuchsia-300: #cd90dd;
+  --primitive-colors-fuchsia-400: #bd6bd1;
+  --primitive-colors-fuchsia-500: #ac46c6;
+  --primitive-colors-fuchsia-600: #8a389e;
+  --primitive-colors-fuchsia-700: #672a77;
+  --primitive-colors-fuchsia-800: #451c4f;
+  --primitive-colors-fuchsia-900: #220e28;
+
+  /* Greys Scale */
+  --primitive-colors-greys-0: #ffffff;
+  --primitive-colors-greys-100: #fcfcfc;
+  --primitive-colors-greys-200: #f5f5f5;
+  --primitive-colors-greys-300: #e3e3e3;
+  --primitive-colors-greys-350: #e0e0e0;
+  --primitive-colors-greys-400: #cccccc;
+  --primitive-colors-greys-500: #999999;
+  --primitive-colors-greys-600: #666666;
+  --primitive-colors-greys-700: #4c4c4c;
+  --primitive-colors-greys-750: #404040;
+  --primitive-colors-greys-800: #333333;
+  --primitive-colors-greys-850: #242424;
+  --primitive-colors-greys-900: #191919;
+  --primitive-colors-greys-950: #121212;
+  --primitive-colors-greys-1000: #000000;
+
+  /* Pink Scale */
+  --primitive-colors-pink-50: #f9eff6;
+  --primitive-colors-pink-100: #f3e0ed;
+  --primitive-colors-pink-200: #e8c0db;
+  --primitive-colors-pink-300: #dca1c9;
+  --primitive-colors-pink-400: #d181b7;
+  --primitive-colors-pink-500: #c562a5;
+  --primitive-colors-pink-600: #9e4e84;
+  --primitive-colors-pink-700: #763b63;
+  --primitive-colors-pink-800: #4f2742;
+  --primitive-colors-pink-900: #271421;
+
+  /* Petrol Scale */
+  --primitive-colors-petrol-50: #e6ebed;
+  --primitive-colors-petrol-100: #ccd7db;
+  --primitive-colors-petrol-200: #99b0b7;
+  --primitive-colors-petrol-300: #678893;
+  --primitive-colors-petrol-400: #34616f;
+  --primitive-colors-petrol-500: #01394b;
+  --primitive-colors-petrol-600: #012e3c;
+  --primitive-colors-petrol-700: #01222d;
+  --primitive-colors-petrol-800: #00171e;
+  --primitive-colors-petrol-900: #000b0f;
+
+  /* Ultramarine Scale */
+  --primitive-colors-ultramarine-50: #eeedfc;
+  --primitive-colors-ultramarine-100: #dedcfa;
+  --primitive-colors-ultramarine-200: #bdb9f5;
+  --primitive-colors-ultramarine-300: #9b95f0;
+  --primitive-colors-ultramarine-400: #7a72eb;
+  --primitive-colors-ultramarine-500: #594fe6;
+  --primitive-colors-ultramarine-600: #473fb8;
+  --primitive-colors-ultramarine-700: #352f8a;
+  --primitive-colors-ultramarine-800: #24205c;
+  --primitive-colors-ultramarine-900: #12102e;
+
+  /* Translucent Scale */
+  --primitive-colors-translucent-black-opacity-0: #00000000;
+  --primitive-colors-translucent-white-opacity-0: #ffffff00;
+  --primitive-colors-translucent-black-opacity-10: #0000001a;
+  --primitive-colors-translucent-white-opacity-10: #ffffff1a;
+  --primitive-colors-translucent-black-opacity-20: #00000033;
+  --primitive-colors-translucent-white-opacity-20: #ffffff33;
+  --primitive-colors-translucent-black-opacity-30: #0000004d;
+  --primitive-colors-translucent-white-opacity-30: #ffffff4d;
+  --primitive-colors-translucent-black-opacity-40: #00000066;
+  --primitive-colors-translucent-white-opacity-40: #ffffff66;
+  --primitive-colors-translucent-black-opacity-50: #00000080;
+  --primitive-colors-translucent-white-opacity-50: #ffffff80;
+  --primitive-colors-translucent-black-opacity-60: #00000099;
+  --primitive-colors-translucent-white-opacity-60: #ffffff99;
+  --primitive-colors-translucent-black-opacity-70: #000000b3;
+  --primitive-colors-translucent-white-opacity-70: #ffffffb3;
+  --primitive-colors-translucent-black-opacity-80: #000000cc;
+  --primitive-colors-translucent-white-opacity-80: #ffffffcc;
+  --primitive-colors-translucent-black-opacity-90: #000000e6;
+  --primitive-colors-translucent-white-opacity-90: #ffffffe6;
+  --primitive-colors-translucent-black-opacity-100: #000000;
+  --primitive-colors-translucent-white-opacity-100: #ffffff;
+}
+
+
+/* ============================================
+   Games Foundation - Primitive Color Scales
+   ============================================ */
+:root {
+
+  /* Word Orange Scale */
+  --primitive-colors-word-orange-50: #fef7ec;
+  --primitive-colors-word-orange-100: #fdeed8;
+  --primitive-colors-word-orange-200: #fadeb1;
+  --primitive-colors-word-orange-300: #f8cd8b;
+  --primitive-colors-word-orange-400: #f5bd64;
+  --primitive-colors-word-orange-500: #f3ac3d;
+  --primitive-colors-word-orange-600: #c28a31;
+  --primitive-colors-word-orange-700: #926725;
+  --primitive-colors-word-orange-800: #614518;
+  --primitive-colors-word-orange-900: #31220c;
+
+  /* Sudoku Blue Scale */
+  --primitive-colors-sudoku-blue-50: #ebf7f9;
+  --primitive-colors-sudoku-blue-100: #d7f0f3;
+  --primitive-colors-sudoku-blue-200: #afe1e7;
+  --primitive-colors-sudoku-blue-300: #87d1dc;
+  --primitive-colors-sudoku-blue-400: #5fc2d0;
+  --primitive-colors-sudoku-blue-500: #37b3c4;
+  --primitive-colors-sudoku-blue-600: #2c8f9d;
+  --primitive-colors-sudoku-blue-700: #216b76;
+  --primitive-colors-sudoku-blue-800: #16484e;
+  --primitive-colors-sudoku-blue-900: #0b2427;
+
+  /* Number Pink Scale */
+  --primitive-colors-number-pink-50: #fbeaf2;
+  --primitive-colors-number-pink-100: #f6d6e5;
+  --primitive-colors-number-pink-200: #edaccb;
+  --primitive-colors-number-pink-300: #e583b1;
+  --primitive-colors-number-pink-400: #dc5997;
+  --primitive-colors-number-pink-500: #d3307d;
+  --primitive-colors-number-pink-600: #a92664;
+  --primitive-colors-number-pink-700: #7f1d4b;
+  --primitive-colors-number-pink-800: #541332;
+  --primitive-colors-number-pink-900: #2a0a19;
+
+  /* Brain Purple Scale */
+  --primitive-colors-brain-purple-50: #eef0ff;
+  --primitive-colors-brain-purple-100: #dde0ff;
+  --primitive-colors-brain-purple-200: #bbc1ff;
+  --primitive-colors-brain-purple-300: #9aa3ff;
+  --primitive-colors-brain-purple-400: #7884ff;
+  --primitive-colors-brain-purple-500: #5665ff;
+  --primitive-colors-brain-purple-600: #4551cc;
+  --primitive-colors-brain-purple-700: #343d99;
+  --primitive-colors-brain-purple-800: #222866;
+  --primitive-colors-brain-purple-900: #111433;
+
+  /* Quiz Green Scale */
+  --primitive-colors-quiz-green-50: #e5faf5;
+  --primitive-colors-quiz-green-100: #ccf5eb;
+  --primitive-colors-quiz-green-200: #99ebd8;
+  --primitive-colors-quiz-green-300: #66e0c4;
+  --primitive-colors-quiz-green-400: #33d6b1;
+  --primitive-colors-quiz-green-500: #00cc9d;
+  --primitive-colors-quiz-green-600: #00a37e;
+  --primitive-colors-quiz-green-700: #007a5e;
+  --primitive-colors-quiz-green-800: #00523f;
+  --primitive-colors-quiz-green-900: #00291f;
+}
+
+
+/* ============================================
+   DM Token - Light Theme (Default)
+   ============================================ */
+:root,
+[data-theme="light"] {
+  /* Background - Neutral */
+  --color-background-neutral-white: var(--primitive-colors-greys-0);
+  --color-background-neutral-lightest: var(--primitive-colors-greys-100);
+  --color-background-neutral-lighter: var(--primitive-colors-greys-200);
+  --color-background-neutral-light: var(--primitive-colors-greys-300);
+  --color-background-neutral-grey-light: var(--primitive-colors-greys-400);
+  --color-background-neutral-grey-dark: var(--primitive-colors-greys-600);
+  --color-background-neutral-dark: var(--primitive-colors-greys-800);
+  --color-background-neutral-darker: var(--primitive-colors-greys-900);
+  --color-background-neutral-black: var(--primitive-colors-greys-1000);
+
+  /* Background - Home Blue */
+  --color-background-home-blue-base: var(--primitive-colors-blue-500);
+  --color-background-home-blue-base-darker: var(--primitive-colors-blue-500);
+  --color-background-home-blue-subtle: var(--primitive-colors-blue-300);
+  --color-background-home-blue-subtlest: var(--primitive-colors-blue-50);
+  --color-background-home-blue-deep: var(--primitive-colors-blue-700);
+
+  /* Background - News Cyan */
+  --color-background-news-cyan-base: var(--primitive-colors-cyan-500);
+  --color-background-news-cyan-base-darker: var(--primitive-colors-cyan-500);
+  --color-background-news-cyan-subtle: var(--primitive-colors-cyan-300);
+  --color-background-news-cyan-subtlest: var(--primitive-colors-cyan-50);
+  --color-background-news-cyan-deep: var(--primitive-colors-cyan-700);
+
+  /* Background - Showbiz Red */
+  --color-background-showbiz-red-base: var(--primitive-colors-red-500);
+  --color-background-showbiz-red-base-darker: var(--primitive-colors-red-500);
+  --color-background-showbiz-red-subtle: var(--primitive-colors-red-300);
+  --color-background-showbiz-red-subtlest: var(--primitive-colors-red-50);
+  --color-background-showbiz-red-deep: var(--primitive-colors-red-700);
+
+  /* Background - Sport Green */
+  --color-background-sport-green-base: var(--primitive-colors-green-500);
+  --color-background-sport-green-base-darker: var(--primitive-colors-green-500);
+  --color-background-sport-green-subtle: var(--primitive-colors-green-300);
+  --color-background-sport-green-subtlest: var(--primitive-colors-green-50);
+  --color-background-sport-green-deep: var(--primitive-colors-green-700);
+
+  /* Background - Royals Violet */
+  --color-background-royals-violet-base: var(--primitive-colors-violet-500);
+  --color-background-royals-violet-base-darker: var(--primitive-colors-violet-500);
+  --color-background-royals-violet-subtle: var(--primitive-colors-violet-300);
+  --color-background-royals-violet-subtlest: var(--primitive-colors-violet-50);
+  --color-background-royals-violet-deep: var(--primitive-colors-violet-700);
+
+  /* Background - Money Purple */
+  --color-background-money-purple-base: var(--primitive-colors-purple-500);
+  --color-background-money-purple-base-darker: var(--primitive-colors-purple-500);
+  --color-background-money-purple-subtle: var(--primitive-colors-purple-300);
+  --color-background-money-purple-subtlest: var(--primitive-colors-purple-50);
+  --color-background-money-purple-deep: var(--primitive-colors-purple-700);
+
+  /* Background - Lifestyle Azure */
+  --color-background-lifestyle-azure-base: var(--primitive-colors-azure-500);
+  --color-background-lifestyle-azure-base-darker: var(--primitive-colors-azure-500);
+  --color-background-lifestyle-azure-subtle: var(--primitive-colors-azure-300);
+  --color-background-lifestyle-azure-subtlest: var(--primitive-colors-azure-50);
+  --color-background-lifestyle-azure-deep: var(--primitive-colors-azure-700);
+
+  /* Background - Health Turquoise */
+  --color-background-health-turquoise-base: var(--primitive-colors-turquoise-500);
+  --color-background-health-turquoise-base-darker: var(--primitive-colors-turquoise-500);
+  --color-background-health-turquoise-subtle: var(--primitive-colors-turquoise-300);
+  --color-background-health-turquoise-subtlest: var(--primitive-colors-turquoise-50);
+  --color-background-health-turquoise-deep: var(--primitive-colors-turquoise-700);
+
+  /* Background - Science Orange */
+  --color-background-science-orange-base: var(--primitive-colors-orange-500);
+  --color-background-science-orange-base-darker: var(--primitive-colors-orange-500);
+  --color-background-science-orange-subtle: var(--primitive-colors-orange-300);
+  --color-background-science-orange-subtlest: var(--primitive-colors-orange-50);
+  --color-background-science-orange-deep: var(--primitive-colors-orange-700);
+
+  /* Background - TV Magenta */
+  --color-background-tv-magenta-base: var(--primitive-colors-magenta-500);
+  --color-background-tv-magenta-base-darker: var(--primitive-colors-magenta-500);
+  --color-background-tv-magenta-subtle: var(--primitive-colors-magenta-300);
+  --color-background-tv-magenta-subtlest: var(--primitive-colors-magenta-50);
+  --color-background-tv-magenta-deep: var(--primitive-colors-magenta-700);
+
+  /* Background - Travel Navy */
+  --color-background-travel-navy-base: var(--primitive-colors-navy-500);
+  --color-background-travel-navy-base-darker: var(--primitive-colors-navy-500);
+  --color-background-travel-navy-subtle: var(--primitive-colors-navy-300);
+  --color-background-travel-navy-subtlest: var(--primitive-colors-navy-50);
+  --color-background-travel-navy-deep: var(--primitive-colors-navy-700);
+
+  /* Background - Shopping Indigo */
+  --color-background-shopping-indigo-base: var(--primitive-colors-indigo-500);
+  --color-background-shopping-indigo-base-darker: var(--primitive-colors-indigo-500);
+  --color-background-shopping-indigo-subtle: var(--primitive-colors-indigo-300);
+  --color-background-shopping-indigo-subtlest: var(--primitive-colors-indigo-50);
+  --color-background-shopping-indigo-deep: var(--primitive-colors-indigo-700);
+
+  /* Background - Crime Petrol */
+  --color-background-crime-petrol-base: var(--primitive-colors-petrol-500);
+  --color-background-crime-petrol-base-darker: var(--primitive-colors-petrol-500);
+  --color-background-crime-petrol-subtle: var(--primitive-colors-petrol-300);
+  --color-background-crime-petrol-subtlest: var(--primitive-colors-petrol-50);
+  --color-background-crime-petrol-deep: var(--primitive-colors-petrol-700);
+
+  /* Background - Property Fuchsia */
+  --color-background-property-fuchsia-base: var(--primitive-colors-fuchsia-500);
+
+  /* Background - Podcasts Yellow */
+  --color-background-podcasts-yellow-base: var(--primitive-colors-yellow-500);
+
+  /* Background - Games Ultramarine */
+  --color-background-games-ultramarine-base: var(--primitive-colors-ultramarine-500);
+
+  /* Background - Editorial Highlight */
+  --color-background-editorial-highlight-base: var(--primitive-colors-red-500);
+
+  /* Background - Editorial Feature */
+  --color-background-editorial-feature-base: var(--primitive-colors-blue-700);
+
+  /* Background - Editorial Analysis */
+  --color-background-editorial-analysis-base: var(--primitive-colors-greys-900);
+
+  /* Background - Games Ultramarine */
+  --color-background-games-ultramarine-base-darker: var(--primitive-colors-ultramarine-500);
+  --color-background-games-ultramarine-subtle: var(--primitive-colors-ultramarine-300);
+  --color-background-games-ultramarine-subtlest: var(--primitive-colors-ultramarine-50);
+  --color-background-games-ultramarine-deep: var(--primitive-colors-ultramarine-700);
+
+  /* Background - Podcasts Yellow */
+  --color-background-podcasts-yellow-base-darker: var(--primitive-colors-yellow-500);
+  --color-background-podcasts-yellow-subtle: var(--primitive-colors-yellow-300);
+  --color-background-podcasts-yellow-subtlest: var(--primitive-colors-yellow-50);
+  --color-background-podcasts-yellow-deep: var(--primitive-colors-yellow-700);
+
+  /* Background - Property Fuchsia */
+  --color-background-property-fuchsia-base-darker: var(--primitive-colors-fuchsia-500);
+  --color-background-property-fuchsia-subtle: var(--primitive-colors-fuchsia-300);
+  --color-background-property-fuchsia-subtlest: var(--primitive-colors-fuchsia-50);
+  --color-background-property-fuchsia-deep: var(--primitive-colors-fuchsia-700);
+
+  /* Background - Interaction Primary */
+  --color-background-interaction-primary-default: var(--primitive-colors-blue-500);
+  --color-background-interaction-primary-hover: var(--primitive-colors-blue-700);
+  --color-background-interaction-primary-pressed: var(--primitive-colors-blue-300);
+
+  /* Background - Interaction Negative */
+  --color-background-interaction-negative-default: var(--primitive-colors-red-500);
+  --color-background-interaction-negative-hover: var(--primitive-colors-red-700);
+  --color-background-interaction-negative-pressed: var(--primitive-colors-red-300);
+
+  /* Background - Interaction Positive */
+  --color-background-interaction-positive-default: var(--primitive-colors-green-500);
+  --color-background-interaction-positive-hover: var(--primitive-colors-green-700);
+  --color-background-interaction-positive-pressed: var(--primitive-colors-green-300);
+
+  /* Background - Semantic Info */
+  --color-background-semantic-info-base: var(--primitive-colors-blue-500);
+  --color-background-semantic-info-subtlest: var(--primitive-colors-blue-50);
+  --color-background-semantic-info-subtle: var(--primitive-colors-blue-300);
+  --color-background-semantic-info-deep: var(--primitive-colors-blue-700);
+
+  /* Background - Semantic Success */
+  --color-background-semantic-success-base: var(--primitive-colors-green-500);
+  --color-background-semantic-success-subtlest: var(--primitive-colors-green-50);
+  --color-background-semantic-success-subtle: var(--primitive-colors-green-300);
+  --color-background-semantic-success-deep: var(--primitive-colors-green-700);
+
+  /* Background - Semantic Error */
+  --color-background-semantic-error-base: var(--primitive-colors-red-500);
+  --color-background-semantic-error-subtlest: var(--primitive-colors-red-50);
+  --color-background-semantic-error-subtle: var(--primitive-colors-red-300);
+  --color-background-semantic-error-deep: var(--primitive-colors-red-700);
+
+  /* Background - Semantic Warning */
+  --color-background-semantic-warning-base: var(--primitive-colors-orange-500);
+  --color-background-semantic-warning-subtlest: var(--primitive-colors-orange-50);
+  --color-background-semantic-warning-subtle: var(--primitive-colors-orange-300);
+  --color-background-semantic-warning-deep: var(--primitive-colors-orange-700);
+
+  /* Background - Shade */
+  --color-background-shade-pale: var(--primitive-colors-translucent-black-opacity-10);
+  --color-background-shade-subtle: var(--primitive-colors-translucent-black-opacity-20);
+  --color-background-shade-moderate: var(--primitive-colors-translucent-black-opacity-40);
+  --color-background-shade-deep: var(--primitive-colors-translucent-black-opacity-60);
+  --color-background-shade-thick: var(--primitive-colors-translucent-black-opacity-80);
+
+  /* Text - Neutral */
+  --color-text-neutral-white: var(--primitive-colors-greys-0);
+  --color-text-neutral-lightest: var(--primitive-colors-greys-100);
+  --color-text-neutral-grey-light: var(--primitive-colors-greys-400);
+  --color-text-neutral-grey-dark: var(--primitive-colors-greys-600);
+  --color-text-neutral-dark: var(--primitive-colors-greys-800);
+  --color-text-neutral-darker: var(--primitive-colors-greys-900);
+  --color-text-neutral-black: var(--primitive-colors-greys-1000);
+
+  /* Text - Home Blue */
+  --color-text-home-blue-base: var(--primitive-colors-blue-500);
+  --color-text-home-blue-subtle: var(--primitive-colors-blue-300);
+  --color-text-home-blue-deep: var(--primitive-colors-blue-700);
+
+  /* Text - News Cyan */
+  --color-text-news-cyan-base: var(--primitive-colors-cyan-500);
+  --color-text-news-cyan-subtle: var(--primitive-colors-cyan-300);
+  --color-text-news-cyan-deep: var(--primitive-colors-cyan-700);
+
+  /* Text - Showbiz Red */
+  --color-text-showbiz-red-base: var(--primitive-colors-red-500);
+  --color-text-showbiz-red-subtle: var(--primitive-colors-red-300);
+  --color-text-showbiz-red-deep: var(--primitive-colors-red-700);
+
+  /* Text - Sport Green */
+  --color-text-sport-green-base: var(--primitive-colors-green-500);
+  --color-text-sport-green-subtle: var(--primitive-colors-green-300);
+  --color-text-sport-green-deep: var(--primitive-colors-green-700);
+
+  /* Text - Royals Violet */
+  --color-text-royals-violet-base: var(--primitive-colors-violet-500);
+  --color-text-royals-violet-subtle: var(--primitive-colors-violet-300);
+  --color-text-royals-violet-deep: var(--primitive-colors-violet-700);
+
+  /* Text - Money Purple */
+  --color-text-money-purple-base: var(--primitive-colors-purple-500);
+  --color-text-money-purple-subtle: var(--primitive-colors-purple-300);
+  --color-text-money-purple-deep: var(--primitive-colors-purple-700);
+
+  /* Text - Lifestyle Azure */
+  --color-text-lifestyle-azure-base: var(--primitive-colors-azure-500);
+  --color-text-lifestyle-azure-subtle: var(--primitive-colors-azure-300);
+  --color-text-lifestyle-azure-deep: var(--primitive-colors-azure-700);
+
+  /* Text - Health Turquoise */
+  --color-text-health-turquoise-base: var(--primitive-colors-turquoise-500);
+  --color-text-health-turquoise-subtle: var(--primitive-colors-turquoise-300);
+  --color-text-health-turquoise-deep: var(--primitive-colors-turquoise-700);
+
+  /* Text - Science Orange */
+  --color-text-science-orange-base: var(--primitive-colors-orange-500);
+  --color-text-science-orange-subtle: var(--primitive-colors-orange-300);
+  --color-text-science-orange-deep: var(--primitive-colors-orange-700);
+
+  /* Text - TV Magenta */
+  --color-text-tv-magenta-base: var(--primitive-colors-magenta-500);
+  --color-text-tv-magenta-subtle: var(--primitive-colors-magenta-300);
+  --color-text-tv-magenta-deep: var(--primitive-colors-magenta-700);
+
+  /* Text - Travel Navy */
+  --color-text-travel-navy-base: var(--primitive-colors-navy-500);
+  --color-text-travel-navy-subtle: var(--primitive-colors-navy-300);
+  --color-text-travel-navy-deep: var(--primitive-colors-navy-700);
+
+  /* Text - Shopping Indigo */
+  --color-text-shopping-indigo-base: var(--primitive-colors-indigo-500);
+
+  /* Text - Crime Petrol */
+  --color-text-crime-petrol-base: var(--primitive-colors-petrol-500);
+
+  /* Text - Property Fuchsia */
+  --color-text-property-fuchsia-base: var(--primitive-colors-fuchsia-500);
+  --color-text-property-fuchsia-subtle: var(--primitive-colors-fuchsia-300);
+  --color-text-property-fuchsia-deep: var(--primitive-colors-fuchsia-700);
+
+  /* Text - Crime Petrol */
+  --color-text-crime-petrol-subtle: var(--primitive-colors-petrol-300);
+  --color-text-crime-petrol-deep: var(--primitive-colors-petrol-700);
+
+  /* Text - Shopping Indigo */
+  --color-text-shopping-indigo-subtle: var(--primitive-colors-indigo-300);
+  --color-text-shopping-indigo-deep: var(--primitive-colors-indigo-700);
+
+  /* Text - Podcasts Yellow */
+  --color-text-podcasts-yellow-base: var(--primitive-colors-yellow-500);
+  --color-text-podcasts-yellow-subtle: var(--primitive-colors-yellow-300);
+  --color-text-podcasts-yellow-deep: var(--primitive-colors-yellow-700);
+
+  /* Text - Games Ultramarine */
+  --color-text-games-ultramarine-base: var(--primitive-colors-ultramarine-500);
+  --color-text-games-ultramarine-subtle: var(--primitive-colors-ultramarine-300);
+  --color-text-games-ultramarine-deep: var(--primitive-colors-ultramarine-700);
+
+  /* Text - Editorial Highlight */
+  --color-text-editorial-highlight-base: var(--primitive-colors-red-500);
+
+  /* Text - Editorial Feature */
+  --color-text-editorial-feature-base: var(--primitive-colors-blue-700);
+
+  /* Text - Editorial Analysis */
+  --color-text-editorial-analysis-base: var(--primitive-colors-greys-900);
+
+  /* Text - Interaction Primary */
+  --color-text-interaction-primary-default: var(--primitive-colors-blue-500);
+
+  /* Text - Interaction Negative */
+  --color-text-interaction-negative-default: var(--primitive-colors-red-500);
+
+  /* Text - Interaction Positive */
+  --color-text-interaction-positive-default: var(--primitive-colors-green-500);
+  --color-text-interaction-positive-hover: var(--primitive-colors-green-700);
+  --color-text-interaction-positive-pressed: var(--primitive-colors-green-300);
+
+  /* Text - Interaction Negative */
+  --color-text-interaction-negative-hover: var(--primitive-colors-red-700);
+  --color-text-interaction-negative-pressed: var(--primitive-colors-red-300);
+
+  /* Text - Interaction Primary */
+  --color-text-interaction-primary-hover: var(--primitive-colors-blue-700);
+  --color-text-interaction-primary-pressed: var(--primitive-colors-blue-300);
+
+  /* Text - Semantic Info */
+  --color-text-semantic-info-base: var(--primitive-colors-blue-500);
+  --color-text-semantic-info-deep: var(--primitive-colors-blue-700);
+
+  /* Text - Semantic Success */
+  --color-text-semantic-success-base: var(--primitive-colors-green-500);
+  --color-text-semantic-success-deep: var(--primitive-colors-green-700);
+
+  /* Text - Semantic Error */
+  --color-text-semantic-error-base: var(--primitive-colors-red-500);
+  --color-text-semantic-error-deep: var(--primitive-colors-red-700);
+
+  /* Text - Semantic Warning */
+  --color-text-semantic-warning-base: var(--primitive-colors-orange-500);
+
+  /* Icon - Neutral */
+  --color-icon-neutral-white: var(--primitive-colors-greys-0);
+
+  /* Text - Semantic Warning */
+  --color-text-semantic-warning-deep: var(--primitive-colors-orange-700);
+
+  /* Icon - Neutral */
+  --color-icon-neutral-lightest: var(--primitive-colors-greys-100);
+  --color-icon-neutral-grey-light: var(--primitive-colors-greys-400);
+  --color-icon-neutral-grey-dark: var(--primitive-colors-greys-600);
+  --color-icon-neutral-dark: var(--primitive-colors-greys-800);
+  --color-icon-neutral-darker: var(--primitive-colors-greys-900);
+  --color-icon-neutral-black: var(--primitive-colors-greys-1000);
+
+  /* Icon - Home Blue */
+  --color-icon-home-blue-base: var(--primitive-colors-blue-500);
+  --color-icon-home-blue-subtle: var(--primitive-colors-blue-300);
+  --color-icon-home-blue-deep: var(--primitive-colors-blue-700);
+
+  /* Icon - News Cyan */
+  --color-icon-news-cyan-base: var(--primitive-colors-cyan-500);
+  --color-icon-news-cyan-subtle: var(--primitive-colors-cyan-300);
+  --color-icon-news-cyan-deep: var(--primitive-colors-cyan-700);
+
+  /* Icon - Showbiz Red */
+  --color-icon-showbiz-red-base: var(--primitive-colors-red-500);
+  --color-icon-showbiz-red-subtle: var(--primitive-colors-red-300);
+  --color-icon-showbiz-red-deep: var(--primitive-colors-red-700);
+
+  /* Icon - Sport Green */
+  --color-icon-sport-green-base: var(--primitive-colors-green-500);
+  --color-icon-sport-green-subtle: var(--primitive-colors-green-300);
+  --color-icon-sport-green-deep: var(--primitive-colors-green-700);
+
+  /* Icon - Royals Violet */
+  --color-icon-royals-violet-base: var(--primitive-colors-violet-500);
+  --color-icon-royals-violet-subtle: var(--primitive-colors-violet-300);
+  --color-icon-royals-violet-deep: var(--primitive-colors-violet-700);
+
+  /* Icon - Money Purple */
+  --color-icon-money-purple-base: var(--primitive-colors-purple-500);
+  --color-icon-money-purple-subtle: var(--primitive-colors-purple-300);
+  --color-icon-money-purple-deep: var(--primitive-colors-purple-700);
+
+  /* Icon - Lifestyle Azure */
+  --color-icon-lifestyle-azure-base: var(--primitive-colors-azure-500);
+  --color-icon-lifestyle-azure-subtle: var(--primitive-colors-azure-300);
+  --color-icon-lifestyle-azure-deep: var(--primitive-colors-azure-700);
+
+  /* Icon - Health Turquoise */
+  --color-icon-health-turquoise-base: var(--primitive-colors-turquoise-500);
+  --color-icon-health-turquoise-subtle: var(--primitive-colors-turquoise-300);
+  --color-icon-health-turquoise-deep: var(--primitive-colors-turquoise-700);
+
+  /* Icon - Science Orange */
+  --color-icon-science-orange-base: var(--primitive-colors-orange-500);
+  --color-icon-science-orange-subtle: var(--primitive-colors-orange-300);
+  --color-icon-science-orange-deep: var(--primitive-colors-orange-700);
+
+  /* Icon - TV Magenta */
+  --color-icon-tv-magenta-base: var(--primitive-colors-magenta-500);
+  --color-icon-tv-magenta-subtle: var(--primitive-colors-magenta-300);
+  --color-icon-tv-magenta-deep: var(--primitive-colors-magenta-700);
+
+  /* Icon - Travel Navy */
+  --color-icon-travel-navy-base: var(--primitive-colors-navy-500);
+  --color-icon-travel-navy-subtle: var(--primitive-colors-navy-300);
+  --color-icon-travel-navy-deep: var(--primitive-colors-navy-700);
+
+  /* Icon - Shopping Indigo */
+  --color-icon-shopping-indigo-base: var(--primitive-colors-indigo-500);
+
+  /* Icon - Crime Petrol */
+  --color-icon-crime-petrol-base: var(--primitive-colors-petrol-500);
+
+  /* Icon - Property Fuchsia */
+  --color-icon-property-fuchsia-base: var(--primitive-colors-fuchsia-500);
+  --color-icon-property-fuchsia-subtle: var(--primitive-colors-fuchsia-300);
+  --color-icon-property-fuchsia-deep: var(--primitive-colors-fuchsia-700);
+
+  /* Icon - Crime Petrol */
+  --color-icon-crime-petrol-subtle: var(--primitive-colors-petrol-300);
+  --color-icon-crime-petrol-deep: var(--primitive-colors-petrol-700);
+
+  /* Icon - Shopping Indigo */
+  --color-icon-shopping-indigo-subtle: var(--primitive-colors-indigo-300);
+  --color-icon-shopping-indigo-deep: var(--primitive-colors-indigo-700);
+
+  /* Icon - Podcasts Yellow */
+  --color-icon-podcasts-yellow-base: var(--primitive-colors-yellow-500);
+  --color-icon-podcasts-yellow-subtle: var(--primitive-colors-yellow-300);
+  --color-icon-podcasts-yellow-deep: var(--primitive-colors-yellow-700);
+
+  /* Icon - Games Ultramarine */
+  --color-icon-games-ultramarine-base: var(--primitive-colors-ultramarine-500);
+
+  /* Icon - Editorial Highlight */
+  --color-icon-editorial-highlight-base: var(--primitive-colors-red-500);
+
+  /* Icon - Editorial Feature */
+  --color-icon-editorial-feature-base: var(--primitive-colors-blue-700);
+
+  /* Icon - Editorial Analysis */
+  --color-icon-editorial-analysis-base: var(--primitive-colors-greys-900);
+
+  /* Icon - Games Ultramarine */
+  --color-icon-games-ultramarine-subtle: var(--primitive-colors-ultramarine-300);
+  --color-icon-games-ultramarine-deep: var(--primitive-colors-ultramarine-700);
+
+  /* Icon - Interaction Primary */
+  --color-icon-interaction-primary-default: var(--primitive-colors-blue-500);
+  --color-icon-interaction-primary-hover: var(--primitive-colors-blue-700);
+  --color-icon-interaction-primary-pressed: var(--primitive-colors-blue-300);
+
+  /* Icon - Interaction Negative */
+  --color-icon-interaction-negative-default: var(--primitive-colors-red-500);
+  --color-icon-interaction-negative-hover: var(--primitive-colors-red-700);
+  --color-icon-interaction-negative-pressed: var(--primitive-colors-red-300);
+
+  /* Icon - Interaction Positive */
+  --color-icon-interaction-positive-default: var(--primitive-colors-green-500);
+  --color-icon-interaction-positive-hover: var(--primitive-colors-green-700);
+  --color-icon-interaction-positive-pressed: var(--primitive-colors-green-300);
+
+  /* Icon - Semantic Info */
+  --color-icon-semantic-info-base: var(--primitive-colors-blue-500);
+  --color-icon-semantic-info-deep: var(--primitive-colors-blue-700);
+
+  /* Icon - Semantic Success */
+  --color-icon-semantic-success-base: var(--primitive-colors-green-500);
+  --color-icon-semantic-success-deep: var(--primitive-colors-green-700);
+
+  /* Icon - Semantic Error */
+  --color-icon-semantic-error-base: var(--primitive-colors-red-500);
+  --color-icon-semantic-error-deep: var(--primitive-colors-red-700);
+
+  /* Icon - Semantic Warning */
+  --color-icon-semantic-warning-base: var(--primitive-colors-orange-500);
+  --color-icon-semantic-warning-deep: var(--primitive-colors-orange-700);
+
+  /* Border - Neutral */
+  --color-border-neutral-white: var(--primitive-colors-greys-0);
+  --color-border-neutral-lightest: var(--primitive-colors-greys-100);
+  --color-border-neutral-lighter: var(--primitive-colors-greys-200);
+  --color-border-neutral-light: var(--primitive-colors-greys-300);
+  --color-border-neutral-grey-light: var(--primitive-colors-greys-400);
+  --color-border-neutral-grey-dark: var(--primitive-colors-greys-600);
+  --color-border-neutral-dark: var(--primitive-colors-greys-800);
+  --color-border-neutral-darker: var(--primitive-colors-greys-900);
+  --color-border-neutral-black: var(--primitive-colors-greys-1000);
+
+  /* Border - Home Blue */
+  --color-border-home-blue-base: var(--primitive-colors-blue-500);
+  --color-border-home-blue-subtle: var(--primitive-colors-blue-300);
+
+  /* Border - News Cyan */
+  --color-border-news-cyan-base: var(--primitive-colors-cyan-500);
+  --color-border-news-cyan-subtle: var(--primitive-colors-cyan-300);
+
+  /* Border - Showbiz Red */
+  --color-border-showbiz-red-base: var(--primitive-colors-red-500);
+  --color-border-showbiz-red-subtle: var(--primitive-colors-red-300);
+
+  /* Border - Sport Green */
+  --color-border-sport-green-base: var(--primitive-colors-green-500);
+  --color-border-sport-green-subtle: var(--primitive-colors-green-300);
+
+  /* Border - Royals Violet */
+  --color-border-royals-violet-base: var(--primitive-colors-violet-500);
+  --color-border-royals-violet-subtle: var(--primitive-colors-violet-300);
+
+  /* Border - Money Purple */
+  --color-border-money-purple-base: var(--primitive-colors-purple-500);
+  --color-border-money-purple-subtle: var(--primitive-colors-purple-300);
+
+  /* Border - Lifestyle Azure */
+  --color-border-lifestyle-azure-base: var(--primitive-colors-azure-500);
+  --color-border-lifestyle-azure-subtle: var(--primitive-colors-azure-300);
+
+  /* Border - Health Turquoise */
+  --color-border-health-turquoise-base: var(--primitive-colors-turquoise-500);
+  --color-border-health-turquoise-subtle: var(--primitive-colors-turquoise-300);
+
+  /* Border - Science Orange */
+  --color-border-science-orange-base: var(--primitive-colors-orange-500);
+  --color-border-science-orange-subtle: var(--primitive-colors-orange-300);
+
+  /* Border - TV Magenta */
+  --color-border-tv-magenta-base: var(--primitive-colors-magenta-500);
+  --color-border-tv-magenta-subtle: var(--primitive-colors-magenta-300);
+
+  /* Border - Travel Navy */
+  --color-border-travel-navy-base: var(--primitive-colors-navy-500);
+  --color-border-travel-navy-subtle: var(--primitive-colors-navy-300);
+
+  /* Border - Shopping Indigo */
+  --color-border-shopping-indigo-base: var(--primitive-colors-indigo-500);
+  --color-border-shopping-indigo-subtle: var(--primitive-colors-indigo-300);
+
+  /* Border - Crime Petrol */
+  --color-border-crime-petrol-base: var(--primitive-colors-petrol-500);
+  --color-border-crime-petrol-subtle: var(--primitive-colors-petrol-300);
+
+  /* Border - Property Fuchsia */
+  --color-border-property-fuchsia-base: var(--primitive-colors-fuchsia-500);
+  --color-border-property-fuchsia-subtle: var(--primitive-colors-fuchsia-300);
+
+  /* Border - Podcasts Yellow */
+  --color-border-podcasts-yellow-base: var(--primitive-colors-yellow-500);
+
+  /* Border - Games Ultramarine */
+  --color-border-games-ultramarine-base: var(--primitive-colors-ultramarine-500);
+  --color-border-games-ultramarine-subtle: var(--primitive-colors-ultramarine-300);
+
+  /* Border - Podcasts Yellow */
+  --color-border-podcasts-yellow-subtle: var(--primitive-colors-yellow-300);
+
+  /* Border - Translucent Dark */
+  --color-border-translucent-dark-clear: var(--primitive-colors-translucent-black-opacity-0);
+  --color-border-translucent-dark-pale: var(--primitive-colors-translucent-black-opacity-10);
+  --color-border-translucent-dark-subtle: var(--primitive-colors-translucent-black-opacity-20);
+  --color-border-translucent-dark-moderate: var(--primitive-colors-translucent-black-opacity-40);
+
+  /* Border - Translucent Light */
+  --color-border-translucent-light-clear: var(--primitive-colors-translucent-white-opacity-0);
+  --color-border-translucent-light-pale: var(--primitive-colors-translucent-white-opacity-10);
+  --color-border-translucent-light-subtle: var(--primitive-colors-translucent-white-opacity-20);
+  --color-border-translucent-light-moderate: var(--primitive-colors-translucent-white-opacity-40);
+
+  /* Border - Semantic Info */
+  --color-border-semantic-info-base: var(--primitive-colors-blue-500);
+  --color-border-semantic-info-subtle: var(--primitive-colors-blue-300);
+  --color-border-semantic-info-deep: var(--primitive-colors-blue-700);
+
+  /* Border - Semantic Success */
+  --color-border-semantic-success-base: var(--primitive-colors-green-500);
+  --color-border-semantic-success-subtle: var(--primitive-colors-green-300);
+  --color-border-semantic-success-deep: var(--primitive-colors-green-700);
+
+  /* Border - Semantic Error */
+  --color-border-semantic-error-base: var(--primitive-colors-red-500);
+  --color-border-semantic-error-subtle: var(--primitive-colors-red-300);
+  --color-border-semantic-error-deep: var(--primitive-colors-red-700);
+
+  /* Border - Semantic Warning */
+  --color-border-semantic-warning-base: var(--primitive-colors-orange-500);
+  --color-border-semantic-warning-subtle: var(--primitive-colors-orange-300);
+  --color-border-semantic-warning-deep: var(--primitive-colors-orange-700);
+
+  /* Effect - Translucent Dark */
+  --color-effect-translucent-dark-clear: var(--primitive-colors-translucent-black-opacity-0);
+
+  /* Miscellaneous */
+  --color-miscellaneous-mailplus-mplus-blue: var(--primitive-colors-blue-500);
+  --color-miscellaneous-mailplus-mplus-solid-blue: #1b47a0;
+  --color-miscellaneous-mailplus-mplus-dark-blue: #1e3264;
+
+  /* Effect - Translucent Dark */
+  --color-effect-translucent-dark-pale: var(--primitive-colors-translucent-black-opacity-10);
+  --color-effect-translucent-dark-subtle: var(--primitive-colors-translucent-black-opacity-20);
+  --color-effect-translucent-dark-moderate: var(--primitive-colors-translucent-black-opacity-40);
+  --color-effect-translucent-dark-deep: var(--primitive-colors-translucent-black-opacity-60);
+  --color-effect-translucent-dark-thick: var(--primitive-colors-translucent-black-opacity-80);
+  --color-effect-translucent-dark-solid: var(--primitive-colors-translucent-black-opacity-100);
+
+  /* Effect - Translucent Light */
+  --color-effect-translucent-light-clear: var(--primitive-colors-translucent-white-opacity-0);
+  --color-effect-translucent-light-pale: var(--primitive-colors-translucent-white-opacity-10);
+  --color-effect-translucent-light-subtle: var(--primitive-colors-translucent-white-opacity-20);
+  --color-effect-translucent-light-moderate: var(--primitive-colors-translucent-white-opacity-40);
+  --color-effect-translucent-light-deep: var(--primitive-colors-translucent-white-opacity-60);
+  --color-effect-translucent-light-thick: var(--primitive-colors-translucent-white-opacity-80);
+  --color-effect-translucent-light-solid: var(--primitive-colors-translucent-white-opacity-100);
+}
+
+
+/* ============================================
+   DM Token - Dark Theme
+   ============================================ */
+[data-theme="dark"] {
+  /* Background - Neutral (Dark) */
+  --color-background-neutral-white: var(--primitive-colors-greys-1000);
+  --color-background-neutral-lightest: var(--primitive-colors-greys-950);
+  --color-background-neutral-lighter: var(--primitive-colors-greys-850);
+  --color-background-neutral-light: var(--primitive-colors-greys-800);
+  --color-background-neutral-grey-light: var(--primitive-colors-greys-750);
+  --color-background-neutral-grey-dark: var(--primitive-colors-greys-500);
+  --color-background-neutral-dark: var(--primitive-colors-greys-400);
+  --color-background-neutral-darker: var(--primitive-colors-greys-350);
+  --color-background-neutral-black: var(--primitive-colors-greys-200);
+
+  /* Background - Home Blue (Dark) */
+  --color-background-home-blue-base: var(--primitive-colors-blue-300);
+  --color-background-home-blue-base-darker: var(--primitive-colors-blue-800);
+  --color-background-home-blue-subtle: var(--primitive-colors-blue-600);
+  --color-background-home-blue-subtlest: #202935;
+  --color-background-home-blue-deep: var(--primitive-colors-blue-200);
+
+  /* Background - News Cyan (Dark) */
+  --color-background-news-cyan-base: var(--primitive-colors-cyan-300);
+  --color-background-news-cyan-base-darker: var(--primitive-colors-cyan-800);
+  --color-background-news-cyan-subtle: var(--primitive-colors-cyan-600);
+  --color-background-news-cyan-subtlest: #203439;
+  --color-background-news-cyan-deep: var(--primitive-colors-cyan-200);
+
+  /* Background - Showbiz Red (Dark) */
+  --color-background-showbiz-red-base: var(--primitive-colors-red-300);
+  --color-background-showbiz-red-base-darker: var(--primitive-colors-red-800);
+  --color-background-showbiz-red-subtle: var(--primitive-colors-red-600);
+  --color-background-showbiz-red-subtlest: #3b2328;
+  --color-background-showbiz-red-deep: var(--primitive-colors-red-200);
+
+  /* Background - Sport Green (Dark) */
+  --color-background-sport-green-base: var(--primitive-colors-green-300);
+  --color-background-sport-green-base-darker: var(--primitive-colors-green-800);
+  --color-background-sport-green-subtle: var(--primitive-colors-green-600);
+  --color-background-sport-green-subtlest: #213421;
+  --color-background-sport-green-deep: var(--primitive-colors-green-200);
+
+  /* Background - Royals Violet (Dark) */
+  --color-background-royals-violet-base: var(--primitive-colors-violet-300);
+  --color-background-royals-violet-base-darker: var(--primitive-colors-violet-800);
+  --color-background-royals-violet-subtle: var(--primitive-colors-violet-600);
+  --color-background-royals-violet-subtlest: #2a222d;
+  --color-background-royals-violet-deep: var(--primitive-colors-violet-200);
+
+  /* Background - Money Purple (Dark) */
+  --color-background-money-purple-base: var(--primitive-colors-purple-300);
+  --color-background-money-purple-base-darker: var(--primitive-colors-purple-800);
+  --color-background-money-purple-subtle: var(--primitive-colors-purple-600);
+  --color-background-money-purple-subtlest: #282228;
+  --color-background-money-purple-deep: var(--primitive-colors-purple-200);
+
+  /* Background - Lifestyle Azure (Dark) */
+  --color-background-lifestyle-azure-base: var(--primitive-colors-azure-300);
+  --color-background-lifestyle-azure-base-darker: var(--primitive-colors-azure-800);
+  --color-background-lifestyle-azure-subtle: var(--primitive-colors-azure-600);
+  --color-background-lifestyle-azure-subtlest: #282d3b;
+  --color-background-lifestyle-azure-deep: var(--primitive-colors-azure-200);
+
+  /* Background - Health Turquoise (Dark) */
+  --color-background-health-turquoise-base: var(--primitive-colors-turquoise-300);
+  --color-background-health-turquoise-base-darker: var(--primitive-colors-turquoise-800);
+  --color-background-health-turquoise-subtle: var(--primitive-colors-turquoise-600);
+  --color-background-health-turquoise-subtlest: #263838;
+  --color-background-health-turquoise-deep: var(--primitive-colors-turquoise-200);
+
+  /* Background - Science Orange (Dark) */
+  --color-background-science-orange-base: var(--primitive-colors-orange-300);
+  --color-background-science-orange-base-darker: var(--primitive-colors-orange-800);
+  --color-background-science-orange-subtle: var(--primitive-colors-orange-600);
+  --color-background-science-orange-subtlest: #3e2c20;
+  --color-background-science-orange-deep: var(--primitive-colors-orange-200);
+
+  /* Background - TV Magenta (Dark) */
+  --color-background-tv-magenta-base: var(--primitive-colors-magenta-300);
+  --color-background-tv-magenta-base-darker: var(--primitive-colors-magenta-800);
+  --color-background-tv-magenta-subtle: var(--primitive-colors-magenta-600);
+  --color-background-tv-magenta-subtlest: #34222d;
+  --color-background-tv-magenta-deep: var(--primitive-colors-magenta-200);
+
+  /* Background - Travel Navy (Dark) */
+  --color-background-travel-navy-base: var(--primitive-colors-navy-300);
+  --color-background-travel-navy-base-darker: var(--primitive-colors-navy-800);
+  --color-background-travel-navy-subtle: var(--primitive-colors-navy-600);
+  --color-background-travel-navy-subtlest: #212427;
+  --color-background-travel-navy-deep: var(--primitive-colors-navy-200);
+
+  /* Background - Shopping Indigo (Dark) */
+  --color-background-shopping-indigo-base: var(--primitive-colors-indigo-300);
+  --color-background-shopping-indigo-base-darker: var(--primitive-colors-indigo-800);
+  --color-background-shopping-indigo-subtle: var(--primitive-colors-indigo-600);
+  --color-background-shopping-indigo-subtlest: #21212b;
+  --color-background-shopping-indigo-deep: var(--primitive-colors-indigo-200);
+
+  /* Background - Crime Petrol (Dark) */
+  --color-background-crime-petrol-base: var(--primitive-colors-petrol-300);
+  --color-background-crime-petrol-base-darker: var(--primitive-colors-petrol-800);
+  --color-background-crime-petrol-subtle: var(--primitive-colors-petrol-600);
+  --color-background-crime-petrol-subtlest: #202729;
+  --color-background-crime-petrol-deep: var(--primitive-colors-petrol-200);
+
+  /* Background - Property Fuchsia (Dark) */
+  --color-background-property-fuchsia-base: var(--primitive-colors-fuchsia-300);
+
+  /* Background - Podcasts Yellow (Dark) */
+  --color-background-podcasts-yellow-base: var(--primitive-colors-yellow-300);
+
+  /* Background - Games Ultramarine (Dark) */
+  --color-background-games-ultramarine-base: var(--primitive-colors-ultramarine-300);
+
+  /* Background - Editorial Highlight (Dark) */
+  --color-background-editorial-highlight-base: var(--primitive-colors-red-300);
+
+  /* Background - Editorial Feature (Dark) */
+  --color-background-editorial-feature-base: var(--primitive-colors-blue-200);
+
+  /* Background - Editorial Analysis (Dark) */
+  --color-background-editorial-analysis-base: var(--primitive-colors-greys-350);
+
+  /* Background - Games Ultramarine (Dark) */
+  --color-background-games-ultramarine-base-darker: var(--primitive-colors-ultramarine-800);
+  --color-background-games-ultramarine-subtle: var(--primitive-colors-ultramarine-600);
+  --color-background-games-ultramarine-subtlest: #2a293b;
+  --color-background-games-ultramarine-deep: var(--primitive-colors-ultramarine-200);
+
+  /* Background - Podcasts Yellow (Dark) */
+  --color-background-podcasts-yellow-base-darker: var(--primitive-colors-yellow-800);
+  --color-background-podcasts-yellow-subtle: var(--primitive-colors-yellow-600);
+  --color-background-podcasts-yellow-subtlest: #3e3c20;
+  --color-background-podcasts-yellow-deep: var(--primitive-colors-yellow-200);
+
+  /* Background - Property Fuchsia (Dark) */
+  --color-background-property-fuchsia-base-darker: var(--primitive-colors-fuchsia-800);
+  --color-background-property-fuchsia-subtle: var(--primitive-colors-fuchsia-600);
+  --color-background-property-fuchsia-subtlest: #342837;
+  --color-background-property-fuchsia-deep: var(--primitive-colors-fuchsia-200);
+
+  /* Background - Interaction Primary (Dark) */
+  --color-background-interaction-primary-default: var(--primitive-colors-blue-300);
+  --color-background-interaction-primary-hover: var(--primitive-colors-blue-200);
+  --color-background-interaction-primary-pressed: var(--primitive-colors-blue-600);
+
+  /* Background - Interaction Negative (Dark) */
+  --color-background-interaction-negative-default: var(--primitive-colors-red-300);
+  --color-background-interaction-negative-hover: var(--primitive-colors-red-200);
+  --color-background-interaction-negative-pressed: var(--primitive-colors-red-600);
+
+  /* Background - Interaction Positive (Dark) */
+  --color-background-interaction-positive-default: var(--primitive-colors-green-300);
+  --color-background-interaction-positive-hover: var(--primitive-colors-green-200);
+  --color-background-interaction-positive-pressed: var(--primitive-colors-green-600);
+
+  /* Background - Semantic Info (Dark) */
+  --color-background-semantic-info-base: var(--primitive-colors-blue-300);
+  --color-background-semantic-info-subtlest: #202935;
+  --color-background-semantic-info-subtle: var(--primitive-colors-blue-600);
+  --color-background-semantic-info-deep: var(--primitive-colors-blue-200);
+
+  /* Background - Semantic Success (Dark) */
+  --color-background-semantic-success-base: var(--primitive-colors-green-300);
+  --color-background-semantic-success-subtlest: #213421;
+  --color-background-semantic-success-subtle: var(--primitive-colors-green-600);
+  --color-background-semantic-success-deep: var(--primitive-colors-green-200);
+
+  /* Background - Semantic Error (Dark) */
+  --color-background-semantic-error-base: var(--primitive-colors-red-300);
+  --color-background-semantic-error-subtlest: #3b2328;
+  --color-background-semantic-error-subtle: var(--primitive-colors-red-600);
+  --color-background-semantic-error-deep: var(--primitive-colors-red-200);
+
+  /* Background - Semantic Warning (Dark) */
+  --color-background-semantic-warning-base: var(--primitive-colors-orange-300);
+  --color-background-semantic-warning-subtlest: #3e2c20;
+  --color-background-semantic-warning-subtle: var(--primitive-colors-orange-600);
+  --color-background-semantic-warning-deep: var(--primitive-colors-orange-200);
+
+  /* Background - Shade (Dark) */
+  --color-background-shade-pale: var(--primitive-colors-translucent-black-opacity-20);
+  --color-background-shade-subtle: var(--primitive-colors-translucent-black-opacity-40);
+  --color-background-shade-moderate: var(--primitive-colors-translucent-black-opacity-60);
+  --color-background-shade-deep: var(--primitive-colors-translucent-black-opacity-80);
+  --color-background-shade-thick: var(--primitive-colors-translucent-black-opacity-90);
+
+  /* Text - Neutral (Dark) */
+  --color-text-neutral-white: var(--primitive-colors-greys-1000);
+  --color-text-neutral-lightest: var(--primitive-colors-greys-950);
+  --color-text-neutral-grey-light: var(--primitive-colors-greys-750);
+  --color-text-neutral-grey-dark: var(--primitive-colors-greys-500);
+  --color-text-neutral-dark: var(--primitive-colors-greys-400);
+  --color-text-neutral-darker: var(--primitive-colors-greys-350);
+  --color-text-neutral-black: var(--primitive-colors-greys-200);
+
+  /* Text - Home Blue (Dark) */
+  --color-text-home-blue-base: var(--primitive-colors-blue-300);
+  --color-text-home-blue-subtle: var(--primitive-colors-blue-600);
+  --color-text-home-blue-deep: var(--primitive-colors-blue-200);
+
+  /* Text - News Cyan (Dark) */
+  --color-text-news-cyan-base: var(--primitive-colors-cyan-300);
+  --color-text-news-cyan-subtle: var(--primitive-colors-cyan-600);
+  --color-text-news-cyan-deep: var(--primitive-colors-cyan-200);
+
+  /* Text - Showbiz Red (Dark) */
+  --color-text-showbiz-red-base: var(--primitive-colors-red-300);
+  --color-text-showbiz-red-subtle: var(--primitive-colors-red-600);
+  --color-text-showbiz-red-deep: var(--primitive-colors-red-200);
+
+  /* Text - Sport Green (Dark) */
+  --color-text-sport-green-base: var(--primitive-colors-green-300);
+  --color-text-sport-green-subtle: var(--primitive-colors-green-600);
+  --color-text-sport-green-deep: var(--primitive-colors-green-200);
+
+  /* Text - Royals Violet (Dark) */
+  --color-text-royals-violet-base: var(--primitive-colors-violet-300);
+  --color-text-royals-violet-subtle: var(--primitive-colors-violet-600);
+  --color-text-royals-violet-deep: var(--primitive-colors-violet-200);
+
+  /* Text - Money Purple (Dark) */
+  --color-text-money-purple-base: var(--primitive-colors-purple-300);
+  --color-text-money-purple-subtle: var(--primitive-colors-purple-600);
+  --color-text-money-purple-deep: var(--primitive-colors-purple-200);
+
+  /* Text - Lifestyle Azure (Dark) */
+  --color-text-lifestyle-azure-base: var(--primitive-colors-azure-300);
+  --color-text-lifestyle-azure-subtle: var(--primitive-colors-azure-600);
+  --color-text-lifestyle-azure-deep: var(--primitive-colors-azure-200);
+
+  /* Text - Health Turquoise (Dark) */
+  --color-text-health-turquoise-base: var(--primitive-colors-turquoise-300);
+  --color-text-health-turquoise-subtle: var(--primitive-colors-turquoise-600);
+  --color-text-health-turquoise-deep: var(--primitive-colors-turquoise-200);
+
+  /* Text - Science Orange (Dark) */
+  --color-text-science-orange-base: var(--primitive-colors-orange-300);
+  --color-text-science-orange-subtle: var(--primitive-colors-orange-600);
+  --color-text-science-orange-deep: var(--primitive-colors-orange-200);
+
+  /* Text - TV Magenta (Dark) */
+  --color-text-tv-magenta-base: var(--primitive-colors-magenta-300);
+  --color-text-tv-magenta-subtle: var(--primitive-colors-magenta-600);
+  --color-text-tv-magenta-deep: var(--primitive-colors-magenta-200);
+
+  /* Text - Travel Navy (Dark) */
+  --color-text-travel-navy-base: var(--primitive-colors-navy-300);
+  --color-text-travel-navy-subtle: var(--primitive-colors-navy-600);
+  --color-text-travel-navy-deep: var(--primitive-colors-navy-200);
+
+  /* Text - Shopping Indigo (Dark) */
+  --color-text-shopping-indigo-base: var(--primitive-colors-indigo-300);
+
+  /* Text - Crime Petrol (Dark) */
+  --color-text-crime-petrol-base: var(--primitive-colors-petrol-300);
+
+  /* Text - Property Fuchsia (Dark) */
+  --color-text-property-fuchsia-base: var(--primitive-colors-fuchsia-300);
+  --color-text-property-fuchsia-subtle: var(--primitive-colors-fuchsia-600);
+  --color-text-property-fuchsia-deep: var(--primitive-colors-fuchsia-200);
+
+  /* Text - Crime Petrol (Dark) */
+  --color-text-crime-petrol-subtle: var(--primitive-colors-petrol-600);
+  --color-text-crime-petrol-deep: var(--primitive-colors-petrol-200);
+
+  /* Text - Shopping Indigo (Dark) */
+  --color-text-shopping-indigo-subtle: var(--primitive-colors-indigo-600);
+  --color-text-shopping-indigo-deep: var(--primitive-colors-indigo-200);
+
+  /* Text - Podcasts Yellow (Dark) */
+  --color-text-podcasts-yellow-base: var(--primitive-colors-yellow-300);
+  --color-text-podcasts-yellow-subtle: var(--primitive-colors-yellow-600);
+  --color-text-podcasts-yellow-deep: var(--primitive-colors-yellow-200);
+
+  /* Text - Games Ultramarine (Dark) */
+  --color-text-games-ultramarine-base: var(--primitive-colors-ultramarine-300);
+  --color-text-games-ultramarine-subtle: var(--primitive-colors-ultramarine-600);
+  --color-text-games-ultramarine-deep: var(--primitive-colors-ultramarine-200);
+
+  /* Text - Editorial Highlight (Dark) */
+  --color-text-editorial-highlight-base: var(--primitive-colors-red-300);
+
+  /* Text - Editorial Feature (Dark) */
+  --color-text-editorial-feature-base: var(--primitive-colors-blue-200);
+
+  /* Text - Editorial Analysis (Dark) */
+  --color-text-editorial-analysis-base: var(--primitive-colors-greys-350);
+
+  /* Text - Interaction Primary (Dark) */
+  --color-text-interaction-primary-default: var(--primitive-colors-blue-300);
+
+  /* Text - Interaction Negative (Dark) */
+  --color-text-interaction-negative-default: var(--primitive-colors-red-300);
+
+  /* Text - Interaction Positive (Dark) */
+  --color-text-interaction-positive-default: var(--primitive-colors-green-300);
+  --color-text-interaction-positive-hover: var(--primitive-colors-green-200);
+  --color-text-interaction-positive-pressed: var(--primitive-colors-green-600);
+
+  /* Text - Interaction Negative (Dark) */
+  --color-text-interaction-negative-hover: var(--primitive-colors-red-200);
+  --color-text-interaction-negative-pressed: var(--primitive-colors-red-600);
+
+  /* Text - Interaction Primary (Dark) */
+  --color-text-interaction-primary-hover: var(--primitive-colors-blue-200);
+  --color-text-interaction-primary-pressed: var(--primitive-colors-blue-600);
+
+  /* Text - Semantic Info (Dark) */
+  --color-text-semantic-info-base: var(--primitive-colors-blue-300);
+  --color-text-semantic-info-deep: var(--primitive-colors-blue-200);
+
+  /* Text - Semantic Success (Dark) */
+  --color-text-semantic-success-base: var(--primitive-colors-green-300);
+  --color-text-semantic-success-deep: var(--primitive-colors-green-200);
+
+  /* Text - Semantic Error (Dark) */
+  --color-text-semantic-error-base: var(--primitive-colors-red-300);
+  --color-text-semantic-error-deep: var(--primitive-colors-red-200);
+
+  /* Text - Semantic Warning (Dark) */
+  --color-text-semantic-warning-base: var(--primitive-colors-orange-300);
+
+  /* Icon - Neutral (Dark) */
+  --color-icon-neutral-white: var(--primitive-colors-greys-1000);
+
+  /* Text - Semantic Warning (Dark) */
+  --color-text-semantic-warning-deep: var(--primitive-colors-orange-200);
+
+  /* Icon - Neutral (Dark) */
+  --color-icon-neutral-lightest: var(--primitive-colors-greys-950);
+  --color-icon-neutral-grey-light: var(--primitive-colors-greys-750);
+  --color-icon-neutral-grey-dark: var(--primitive-colors-greys-500);
+  --color-icon-neutral-dark: var(--primitive-colors-greys-400);
+  --color-icon-neutral-darker: var(--primitive-colors-greys-350);
+  --color-icon-neutral-black: var(--primitive-colors-greys-200);
+
+  /* Icon - Home Blue (Dark) */
+  --color-icon-home-blue-base: var(--primitive-colors-blue-300);
+  --color-icon-home-blue-subtle: var(--primitive-colors-blue-600);
+  --color-icon-home-blue-deep: var(--primitive-colors-blue-200);
+
+  /* Icon - News Cyan (Dark) */
+  --color-icon-news-cyan-base: var(--primitive-colors-cyan-300);
+  --color-icon-news-cyan-subtle: var(--primitive-colors-cyan-600);
+  --color-icon-news-cyan-deep: var(--primitive-colors-cyan-200);
+
+  /* Icon - Showbiz Red (Dark) */
+  --color-icon-showbiz-red-base: var(--primitive-colors-red-300);
+  --color-icon-showbiz-red-subtle: var(--primitive-colors-red-600);
+  --color-icon-showbiz-red-deep: var(--primitive-colors-red-200);
+
+  /* Icon - Sport Green (Dark) */
+  --color-icon-sport-green-base: var(--primitive-colors-green-300);
+  --color-icon-sport-green-subtle: var(--primitive-colors-green-600);
+  --color-icon-sport-green-deep: var(--primitive-colors-green-200);
+
+  /* Icon - Royals Violet (Dark) */
+  --color-icon-royals-violet-base: var(--primitive-colors-violet-300);
+  --color-icon-royals-violet-subtle: var(--primitive-colors-violet-600);
+  --color-icon-royals-violet-deep: var(--primitive-colors-violet-200);
+
+  /* Icon - Money Purple (Dark) */
+  --color-icon-money-purple-base: var(--primitive-colors-purple-300);
+  --color-icon-money-purple-subtle: var(--primitive-colors-purple-600);
+  --color-icon-money-purple-deep: var(--primitive-colors-purple-200);
+
+  /* Icon - Lifestyle Azure (Dark) */
+  --color-icon-lifestyle-azure-base: var(--primitive-colors-azure-300);
+  --color-icon-lifestyle-azure-subtle: var(--primitive-colors-azure-600);
+  --color-icon-lifestyle-azure-deep: var(--primitive-colors-azure-200);
+
+  /* Icon - Health Turquoise (Dark) */
+  --color-icon-health-turquoise-base: var(--primitive-colors-turquoise-300);
+  --color-icon-health-turquoise-subtle: var(--primitive-colors-turquoise-600);
+  --color-icon-health-turquoise-deep: var(--primitive-colors-turquoise-200);
+
+  /* Icon - Science Orange (Dark) */
+  --color-icon-science-orange-base: var(--primitive-colors-orange-300);
+  --color-icon-science-orange-subtle: var(--primitive-colors-orange-600);
+  --color-icon-science-orange-deep: var(--primitive-colors-orange-200);
+
+  /* Icon - TV Magenta (Dark) */
+  --color-icon-tv-magenta-base: var(--primitive-colors-magenta-300);
+  --color-icon-tv-magenta-subtle: var(--primitive-colors-magenta-600);
+  --color-icon-tv-magenta-deep: var(--primitive-colors-magenta-200);
+
+  /* Icon - Travel Navy (Dark) */
+  --color-icon-travel-navy-base: var(--primitive-colors-navy-300);
+  --color-icon-travel-navy-subtle: var(--primitive-colors-navy-600);
+  --color-icon-travel-navy-deep: var(--primitive-colors-navy-200);
+
+  /* Icon - Shopping Indigo (Dark) */
+  --color-icon-shopping-indigo-base: var(--primitive-colors-indigo-300);
+
+  /* Icon - Crime Petrol (Dark) */
+  --color-icon-crime-petrol-base: var(--primitive-colors-petrol-300);
+
+  /* Icon - Property Fuchsia (Dark) */
+  --color-icon-property-fuchsia-base: var(--primitive-colors-fuchsia-300);
+  --color-icon-property-fuchsia-subtle: var(--primitive-colors-fuchsia-600);
+  --color-icon-property-fuchsia-deep: var(--primitive-colors-fuchsia-200);
+
+  /* Icon - Crime Petrol (Dark) */
+  --color-icon-crime-petrol-subtle: var(--primitive-colors-petrol-600);
+  --color-icon-crime-petrol-deep: var(--primitive-colors-petrol-200);
+
+  /* Icon - Shopping Indigo (Dark) */
+  --color-icon-shopping-indigo-subtle: var(--primitive-colors-indigo-600);
+  --color-icon-shopping-indigo-deep: var(--primitive-colors-indigo-200);
+
+  /* Icon - Podcasts Yellow (Dark) */
+  --color-icon-podcasts-yellow-base: var(--primitive-colors-yellow-300);
+  --color-icon-podcasts-yellow-subtle: var(--primitive-colors-yellow-600);
+  --color-icon-podcasts-yellow-deep: var(--primitive-colors-yellow-200);
+
+  /* Icon - Games Ultramarine (Dark) */
+  --color-icon-games-ultramarine-base: var(--primitive-colors-ultramarine-300);
+
+  /* Icon - Editorial Highlight (Dark) */
+  --color-icon-editorial-highlight-base: var(--primitive-colors-red-300);
+
+  /* Icon - Editorial Feature (Dark) */
+  --color-icon-editorial-feature-base: var(--primitive-colors-blue-200);
+
+  /* Icon - Editorial Analysis (Dark) */
+  --color-icon-editorial-analysis-base: var(--primitive-colors-greys-350);
+
+  /* Icon - Games Ultramarine (Dark) */
+  --color-icon-games-ultramarine-subtle: var(--primitive-colors-ultramarine-600);
+  --color-icon-games-ultramarine-deep: var(--primitive-colors-ultramarine-200);
+
+  /* Icon - Interaction Primary (Dark) */
+  --color-icon-interaction-primary-default: var(--primitive-colors-blue-300);
+  --color-icon-interaction-primary-hover: var(--primitive-colors-blue-200);
+  --color-icon-interaction-primary-pressed: var(--primitive-colors-blue-600);
+
+  /* Icon - Interaction Negative (Dark) */
+  --color-icon-interaction-negative-default: var(--primitive-colors-red-300);
+  --color-icon-interaction-negative-hover: var(--primitive-colors-red-200);
+  --color-icon-interaction-negative-pressed: var(--primitive-colors-red-600);
+
+  /* Icon - Interaction Positive (Dark) */
+  --color-icon-interaction-positive-default: var(--primitive-colors-green-300);
+  --color-icon-interaction-positive-hover: var(--primitive-colors-green-200);
+  --color-icon-interaction-positive-pressed: var(--primitive-colors-green-600);
+
+  /* Icon - Semantic Info (Dark) */
+  --color-icon-semantic-info-base: var(--primitive-colors-blue-300);
+  --color-icon-semantic-info-deep: var(--primitive-colors-blue-200);
+
+  /* Icon - Semantic Success (Dark) */
+  --color-icon-semantic-success-base: var(--primitive-colors-green-300);
+  --color-icon-semantic-success-deep: var(--primitive-colors-green-200);
+
+  /* Icon - Semantic Error (Dark) */
+  --color-icon-semantic-error-base: var(--primitive-colors-red-300);
+  --color-icon-semantic-error-deep: var(--primitive-colors-red-200);
+
+  /* Icon - Semantic Warning (Dark) */
+  --color-icon-semantic-warning-base: var(--primitive-colors-orange-300);
+  --color-icon-semantic-warning-deep: var(--primitive-colors-orange-200);
+
+  /* Border - Neutral (Dark) */
+  --color-border-neutral-white: var(--primitive-colors-greys-1000);
+  --color-border-neutral-lightest: var(--primitive-colors-greys-950);
+  --color-border-neutral-lighter: var(--primitive-colors-greys-850);
+  --color-border-neutral-light: var(--primitive-colors-greys-800);
+  --color-border-neutral-grey-light: var(--primitive-colors-greys-750);
+  --color-border-neutral-grey-dark: var(--primitive-colors-greys-500);
+  --color-border-neutral-dark: var(--primitive-colors-greys-400);
+  --color-border-neutral-darker: var(--primitive-colors-greys-350);
+  --color-border-neutral-black: var(--primitive-colors-greys-200);
+
+  /* Border - Home Blue (Dark) */
+  --color-border-home-blue-base: var(--primitive-colors-blue-300);
+  --color-border-home-blue-subtle: var(--primitive-colors-blue-600);
+
+  /* Border - News Cyan (Dark) */
+  --color-border-news-cyan-base: var(--primitive-colors-cyan-300);
+  --color-border-news-cyan-subtle: var(--primitive-colors-cyan-600);
+
+  /* Border - Showbiz Red (Dark) */
+  --color-border-showbiz-red-base: var(--primitive-colors-red-300);
+  --color-border-showbiz-red-subtle: var(--primitive-colors-red-600);
+
+  /* Border - Sport Green (Dark) */
+  --color-border-sport-green-base: var(--primitive-colors-green-300);
+  --color-border-sport-green-subtle: var(--primitive-colors-green-600);
+
+  /* Border - Royals Violet (Dark) */
+  --color-border-royals-violet-base: var(--primitive-colors-violet-300);
+  --color-border-royals-violet-subtle: var(--primitive-colors-violet-600);
+
+  /* Border - Money Purple (Dark) */
+  --color-border-money-purple-base: var(--primitive-colors-purple-300);
+  --color-border-money-purple-subtle: var(--primitive-colors-purple-600);
+
+  /* Border - Lifestyle Azure (Dark) */
+  --color-border-lifestyle-azure-base: var(--primitive-colors-azure-300);
+  --color-border-lifestyle-azure-subtle: var(--primitive-colors-azure-600);
+
+  /* Border - Health Turquoise (Dark) */
+  --color-border-health-turquoise-base: var(--primitive-colors-turquoise-300);
+  --color-border-health-turquoise-subtle: var(--primitive-colors-turquoise-600);
+
+  /* Border - Science Orange (Dark) */
+  --color-border-science-orange-base: var(--primitive-colors-orange-300);
+  --color-border-science-orange-subtle: var(--primitive-colors-orange-600);
+
+  /* Border - TV Magenta (Dark) */
+  --color-border-tv-magenta-base: var(--primitive-colors-magenta-300);
+  --color-border-tv-magenta-subtle: var(--primitive-colors-magenta-600);
+
+  /* Border - Travel Navy (Dark) */
+  --color-border-travel-navy-base: var(--primitive-colors-navy-300);
+  --color-border-travel-navy-subtle: var(--primitive-colors-navy-600);
+
+  /* Border - Shopping Indigo (Dark) */
+  --color-border-shopping-indigo-base: var(--primitive-colors-indigo-300);
+  --color-border-shopping-indigo-subtle: var(--primitive-colors-indigo-600);
+
+  /* Border - Crime Petrol (Dark) */
+  --color-border-crime-petrol-base: var(--primitive-colors-petrol-300);
+  --color-border-crime-petrol-subtle: var(--primitive-colors-petrol-600);
+
+  /* Border - Property Fuchsia (Dark) */
+  --color-border-property-fuchsia-base: var(--primitive-colors-fuchsia-300);
+  --color-border-property-fuchsia-subtle: var(--primitive-colors-fuchsia-600);
+
+  /* Border - Podcasts Yellow (Dark) */
+  --color-border-podcasts-yellow-base: var(--primitive-colors-yellow-300);
+
+  /* Border - Games Ultramarine (Dark) */
+  --color-border-games-ultramarine-base: var(--primitive-colors-ultramarine-300);
+  --color-border-games-ultramarine-subtle: var(--primitive-colors-ultramarine-600);
+
+  /* Border - Podcasts Yellow (Dark) */
+  --color-border-podcasts-yellow-subtle: var(--primitive-colors-yellow-600);
+
+  /* Border - Translucent Dark (Dark) */
+  --color-border-translucent-dark-clear: var(--primitive-colors-translucent-white-opacity-0);
+  --color-border-translucent-dark-pale: var(--primitive-colors-translucent-white-opacity-10);
+  --color-border-translucent-dark-subtle: var(--primitive-colors-translucent-white-opacity-20);
+  --color-border-translucent-dark-moderate: var(--primitive-colors-translucent-white-opacity-40);
+
+  /* Border - Translucent Light (Dark) */
+  --color-border-translucent-light-clear: var(--primitive-colors-translucent-black-opacity-0);
+  --color-border-translucent-light-pale: var(--primitive-colors-translucent-black-opacity-10);
+  --color-border-translucent-light-subtle: var(--primitive-colors-translucent-black-opacity-20);
+  --color-border-translucent-light-moderate: var(--primitive-colors-translucent-black-opacity-40);
+
+  /* Border - Semantic Info (Dark) */
+  --color-border-semantic-info-base: var(--primitive-colors-blue-300);
+  --color-border-semantic-info-subtle: var(--primitive-colors-blue-600);
+  --color-border-semantic-info-deep: var(--primitive-colors-blue-200);
+
+  /* Border - Semantic Success (Dark) */
+  --color-border-semantic-success-base: var(--primitive-colors-green-300);
+  --color-border-semantic-success-subtle: var(--primitive-colors-green-600);
+  --color-border-semantic-success-deep: var(--primitive-colors-green-200);
+
+  /* Border - Semantic Error (Dark) */
+  --color-border-semantic-error-base: var(--primitive-colors-red-300);
+  --color-border-semantic-error-subtle: var(--primitive-colors-red-600);
+  --color-border-semantic-error-deep: var(--primitive-colors-red-200);
+
+  /* Border - Semantic Warning (Dark) */
+  --color-border-semantic-warning-base: var(--primitive-colors-orange-300);
+  --color-border-semantic-warning-subtle: var(--primitive-colors-orange-600);
+  --color-border-semantic-warning-deep: var(--primitive-colors-orange-200);
+
+  /* Effect - Translucent Dark (Dark) */
+  --color-effect-translucent-dark-clear: var(--primitive-colors-translucent-white-opacity-0);
+
+  /* Miscellaneous */
+  --color-miscellaneous-mailplus-mplus-blue: var(--primitive-colors-blue-300);
+  --color-miscellaneous-mailplus-mplus-solid-blue: #1b47a0;
+  --color-miscellaneous-mailplus-mplus-dark-blue: #1e3264;
+
+  /* Effect - Translucent Dark (Dark) */
+  --color-effect-translucent-dark-pale: var(--primitive-colors-translucent-white-opacity-10);
+  --color-effect-translucent-dark-subtle: var(--primitive-colors-translucent-white-opacity-20);
+  --color-effect-translucent-dark-moderate: var(--primitive-colors-translucent-white-opacity-40);
+  --color-effect-translucent-dark-deep: var(--primitive-colors-translucent-white-opacity-60);
+  --color-effect-translucent-dark-thick: var(--primitive-colors-translucent-white-opacity-80);
+  --color-effect-translucent-dark-solid: var(--primitive-colors-translucent-white-opacity-100);
+
+  /* Effect - Translucent Light (Dark) */
+  --color-effect-translucent-light-clear: var(--primitive-colors-translucent-black-opacity-0);
+  --color-effect-translucent-light-pale: var(--primitive-colors-translucent-black-opacity-10);
+  --color-effect-translucent-light-subtle: var(--primitive-colors-translucent-black-opacity-20);
+  --color-effect-translucent-light-moderate: var(--primitive-colors-translucent-black-opacity-40);
+  --color-effect-translucent-light-deep: var(--primitive-colors-translucent-black-opacity-60);
+  --color-effect-translucent-light-thick: var(--primitive-colors-translucent-black-opacity-80);
+  --color-effect-translucent-light-solid: var(--primitive-colors-translucent-black-opacity-100);
+}
+
+
+/* ============================================
+   DM Games Token - Light Theme (Default)
+   ============================================ */
+:root,
+[data-theme="light"] {
+  /* Background - Word Orange */
+  --color-background-word-orange-base: var(--primitive-colors-word-orange-500);
+  --color-background-word-orange-base-darker: var(--primitive-colors-word-orange-500);
+  --color-background-word-orange-subtle: var(--primitive-colors-word-orange-300);
+  --color-background-word-orange-subtlest: var(--primitive-colors-word-orange-50);
+  --color-background-word-orange-deep: var(--primitive-colors-word-orange-700);
+
+  /* Background - Sudoku Blue */
+  --color-background-sudoku-blue-base: var(--primitive-colors-sudoku-blue-500);
+  --color-background-sudoku-blue-base-darker: var(--primitive-colors-sudoku-blue-500);
+  --color-background-sudoku-blue-subtle: var(--primitive-colors-sudoku-blue-300);
+  --color-background-sudoku-blue-subtlest: var(--primitive-colors-sudoku-blue-50);
+  --color-background-sudoku-blue-deep: var(--primitive-colors-sudoku-blue-700);
+
+  /* Background - Number Pink */
+  --color-background-number-pink-base: var(--primitive-colors-number-pink-500);
+  --color-background-number-pink-base-darker: var(--primitive-colors-number-pink-500);
+  --color-background-number-pink-subtle: var(--primitive-colors-number-pink-300);
+  --color-background-number-pink-subtlest: var(--primitive-colors-number-pink-50);
+  --color-background-number-pink-deep: var(--primitive-colors-number-pink-700);
+
+  /* Background - Brain Purple */
+  --color-background-brain-purple-base: var(--primitive-colors-brain-purple-500);
+  --color-background-brain-purple-base-darker: var(--primitive-colors-brain-purple-500);
+  --color-background-brain-purple-subtle: var(--primitive-colors-brain-purple-300);
+  --color-background-brain-purple-subtlest: var(--primitive-colors-brain-purple-50);
+  --color-background-brain-purple-deep: var(--primitive-colors-brain-purple-700);
+
+  /* Background - Quiz Green */
+  --color-background-quiz-green-base: var(--primitive-colors-quiz-green-500);
+  --color-background-quiz-green-base-darker: var(--primitive-colors-quiz-green-500);
+  --color-background-quiz-green-subtle: var(--primitive-colors-quiz-green-300);
+  --color-background-quiz-green-subtlest: var(--primitive-colors-quiz-green-50);
+  --color-background-quiz-green-deep: var(--primitive-colors-quiz-green-700);
+
+  /* Text - Word Orange */
+  --color-text-word-orange-base: var(--primitive-colors-word-orange-500);
+  --color-text-word-orange-subtle: var(--primitive-colors-word-orange-300);
+  --color-text-word-orange-deep: var(--primitive-colors-word-orange-700);
+
+  /* Text - Sudoku Blue */
+  --color-text-sudoku-blue-base: var(--primitive-colors-sudoku-blue-500);
+  --color-text-sudoku-blue-subtle: var(--primitive-colors-sudoku-blue-300);
+  --color-text-sudoku-blue-deep: var(--primitive-colors-sudoku-blue-700);
+
+  /* Text - Number Pink */
+  --color-text-number-pink-base: var(--primitive-colors-number-pink-500);
+  --color-text-number-pink-subtle: var(--primitive-colors-number-pink-300);
+  --color-text-number-pink-deep: var(--primitive-colors-number-pink-700);
+
+  /* Text - Brain Purple */
+  --color-text-brain-purple-base: var(--primitive-colors-brain-purple-500);
+  --color-text-brain-purple-subtle: var(--primitive-colors-brain-purple-300);
+  --color-text-brain-purple-deep: var(--primitive-colors-brain-purple-700);
+
+  /* Text - Quiz Green */
+  --color-text-quiz-green-base: var(--primitive-colors-quiz-green-500);
+  --color-text-quiz-green-subtle: var(--primitive-colors-quiz-green-300);
+  --color-text-quiz-green-deep: var(--primitive-colors-quiz-green-700);
+
+  /* Icon - Word Orange */
+  --color-icon-word-orange-base: var(--primitive-colors-word-orange-500);
+  --color-icon-word-orange-subtle: var(--primitive-colors-word-orange-300);
+  --color-icon-word-orange-deep: var(--primitive-colors-word-orange-700);
+
+  /* Icon - Sudoku Blue */
+  --color-icon-sudoku-blue-base: var(--primitive-colors-sudoku-blue-500);
+  --color-icon-sudoku-blue-subtle: var(--primitive-colors-sudoku-blue-300);
+  --color-icon-sudoku-blue-deep: var(--primitive-colors-sudoku-blue-700);
+
+  /* Icon - Number Pink */
+  --color-icon-number-pink-base: var(--primitive-colors-number-pink-500);
+  --color-icon-number-pink-subtle: var(--primitive-colors-number-pink-300);
+  --color-icon-number-pink-deep: var(--primitive-colors-number-pink-700);
+
+  /* Icon - Brain Purple */
+  --color-icon-brain-purple-base: var(--primitive-colors-brain-purple-500);
+  --color-icon-brain-purple-subtle: var(--primitive-colors-brain-purple-300);
+  --color-icon-brain-purple-deep: var(--primitive-colors-brain-purple-700);
+
+  /* Icon - Quiz Green */
+  --color-icon-quiz-green-base: var(--primitive-colors-quiz-green-500);
+  --color-icon-quiz-green-subtle: var(--primitive-colors-quiz-green-300);
+  --color-icon-quiz-green-deep: var(--primitive-colors-quiz-green-700);
+
+  /* Border - Word Orange */
+  --color-border-word-orange-base: var(--primitive-colors-word-orange-500);
+  --color-border-word-orange-subtle: var(--primitive-colors-word-orange-300);
+
+  /* Border - Sudoku Blue */
+  --color-border-sudoku-blue-base: var(--primitive-colors-sudoku-blue-500);
+  --color-border-sudoku-blue-subtle: var(--primitive-colors-sudoku-blue-300);
+
+  /* Border - Number Pink */
+  --color-border-number-pink-base: var(--primitive-colors-number-pink-500);
+  --color-border-number-pink-subtle: var(--primitive-colors-number-pink-300);
+
+  /* Border - Brain Purple */
+  --color-border-brain-purple-base: var(--primitive-colors-brain-purple-500);
+  --color-border-brain-purple-subtle: var(--primitive-colors-brain-purple-300);
+
+  /* Border - Quiz Green */
+  --color-border-quiz-green-base: var(--primitive-colors-quiz-green-500);
+  --color-border-quiz-green-subtle: var(--primitive-colors-quiz-green-300);
+}
+
+
+/* ============================================
+   DM Games Token - Dark Theme
+   ============================================ */
+[data-theme="dark"] {
+  /* Background - Word Orange (Dark) */
+  --color-background-word-orange-base: var(--primitive-colors-word-orange-300);
+  --color-background-word-orange-base-darker: var(--primitive-colors-word-orange-800);
+  --color-background-word-orange-subtle: var(--primitive-colors-word-orange-600);
+  --color-background-word-orange-subtlest: #332b1d;
+  --color-background-word-orange-deep: var(--primitive-colors-word-orange-200);
+
+  /* Background - Sudoku Blue (Dark) */
+  --color-background-sudoku-blue-base: var(--primitive-colors-sudoku-blue-300);
+  --color-background-sudoku-blue-base-darker: var(--primitive-colors-sudoku-blue-800);
+  --color-background-sudoku-blue-subtle: var(--primitive-colors-sudoku-blue-600);
+  --color-background-sudoku-blue-subtlest: #1d2b2e;
+  --color-background-sudoku-blue-deep: var(--primitive-colors-sudoku-blue-200);
+
+  /* Background - Number Pink (Dark) */
+  --color-background-number-pink-base: var(--primitive-colors-number-pink-300);
+  --color-background-number-pink-base-darker: var(--primitive-colors-number-pink-800);
+  --color-background-number-pink-subtle: var(--primitive-colors-number-pink-600);
+  --color-background-number-pink-subtlest: #2f1c25;
+  --color-background-number-pink-deep: var(--primitive-colors-number-pink-200);
+
+  /* Background - Brain Purple (Dark) */
+  --color-background-brain-purple-base: var(--primitive-colors-brain-purple-300);
+  --color-background-brain-purple-base-darker: var(--primitive-colors-brain-purple-800);
+  --color-background-brain-purple-subtle: var(--primitive-colors-brain-purple-600);
+  --color-background-brain-purple-subtlest: #202235;
+  --color-background-brain-purple-deep: var(--primitive-colors-brain-purple-200);
+
+  /* Background - Quiz Green (Dark) */
+  --color-background-quiz-green-base: var(--primitive-colors-quiz-green-300);
+  --color-background-quiz-green-base-darker: var(--primitive-colors-quiz-green-800);
+  --color-background-quiz-green-subtle: var(--primitive-colors-quiz-green-600);
+  --color-background-quiz-green-subtlest: #162e29;
+  --color-background-quiz-green-deep: var(--primitive-colors-quiz-green-200);
+
+  /* Text - Word Orange (Dark) */
+  --color-text-word-orange-base: var(--primitive-colors-word-orange-300);
+  --color-text-word-orange-subtle: var(--primitive-colors-word-orange-600);
+  --color-text-word-orange-deep: var(--primitive-colors-word-orange-200);
+
+  /* Text - Sudoku Blue (Dark) */
+  --color-text-sudoku-blue-base: var(--primitive-colors-sudoku-blue-300);
+  --color-text-sudoku-blue-subtle: var(--primitive-colors-sudoku-blue-600);
+  --color-text-sudoku-blue-deep: var(--primitive-colors-sudoku-blue-200);
+
+  /* Text - Number Pink (Dark) */
+  --color-text-number-pink-base: var(--primitive-colors-number-pink-300);
+  --color-text-number-pink-subtle: var(--primitive-colors-number-pink-600);
+  --color-text-number-pink-deep: var(--primitive-colors-number-pink-200);
+
+  /* Text - Brain Purple (Dark) */
+  --color-text-brain-purple-base: var(--primitive-colors-brain-purple-300);
+  --color-text-brain-purple-subtle: var(--primitive-colors-brain-purple-600);
+  --color-text-brain-purple-deep: var(--primitive-colors-brain-purple-200);
+
+  /* Text - Quiz Green (Dark) */
+  --color-text-quiz-green-base: var(--primitive-colors-quiz-green-300);
+  --color-text-quiz-green-subtle: var(--primitive-colors-quiz-green-600);
+  --color-text-quiz-green-deep: var(--primitive-colors-quiz-green-200);
+
+  /* Icon - Word Orange (Dark) */
+  --color-icon-word-orange-base: var(--primitive-colors-word-orange-300);
+  --color-icon-word-orange-subtle: var(--primitive-colors-word-orange-600);
+  --color-icon-word-orange-deep: var(--primitive-colors-word-orange-200);
+
+  /* Icon - Sudoku Blue (Dark) */
+  --color-icon-sudoku-blue-base: var(--primitive-colors-sudoku-blue-300);
+  --color-icon-sudoku-blue-subtle: var(--primitive-colors-sudoku-blue-600);
+  --color-icon-sudoku-blue-deep: var(--primitive-colors-sudoku-blue-200);
+
+  /* Icon - Number Pink (Dark) */
+  --color-icon-number-pink-base: var(--primitive-colors-number-pink-300);
+  --color-icon-number-pink-subtle: var(--primitive-colors-number-pink-600);
+  --color-icon-number-pink-deep: var(--primitive-colors-number-pink-200);
+
+  /* Icon - Brain Purple (Dark) */
+  --color-icon-brain-purple-base: var(--primitive-colors-brain-purple-300);
+  --color-icon-brain-purple-subtle: var(--primitive-colors-brain-purple-600);
+  --color-icon-brain-purple-deep: var(--primitive-colors-brain-purple-200);
+
+  /* Icon - Quiz Green (Dark) */
+  --color-icon-quiz-green-base: var(--primitive-colors-quiz-green-300);
+  --color-icon-quiz-green-subtle: var(--primitive-colors-quiz-green-600);
+  --color-icon-quiz-green-deep: var(--primitive-colors-quiz-green-200);
+
+  /* Border - Word Orange (Dark) */
+  --color-border-word-orange-base: var(--primitive-colors-word-orange-300);
+  --color-border-word-orange-subtle: var(--primitive-colors-word-orange-600);
+
+  /* Border - Sudoku Blue (Dark) */
+  --color-border-sudoku-blue-base: var(--primitive-colors-sudoku-blue-300);
+  --color-border-sudoku-blue-subtle: var(--primitive-colors-sudoku-blue-600);
+
+  /* Border - Number Pink (Dark) */
+  --color-border-number-pink-base: var(--primitive-colors-number-pink-300);
+  --color-border-number-pink-subtle: var(--primitive-colors-number-pink-600);
+
+  /* Border - Brain Purple (Dark) */
+  --color-border-brain-purple-base: var(--primitive-colors-brain-purple-300);
+  --color-border-brain-purple-subtle: var(--primitive-colors-brain-purple-600);
+
+  /* Border - Quiz Green (Dark) */
+  --color-border-quiz-green-base: var(--primitive-colors-quiz-green-300);
+  --color-border-quiz-green-subtle: var(--primitive-colors-quiz-green-600);
+}
+
+
+/* ============================================
+   Usage Examples
+   ============================================ */
+
+/*
+  Light Mode (Default):
+  - No need to set data-theme attribute
+  - OR set <html data-theme="light">
+
+  Dark Mode:
+  - Set <html data-theme="dark">
+
+  Example HTML:
+  <html data-theme="light"> <!-- or "dark" -->
+    <body>
+      <div style="background-color: var(--color-background-home-blue-base);">
+        <p style="color: var(--color-text-neutral-white);">Home Blue Background</p>
+      </div>
+    </body>
+  </html>
+
+  JavaScript Theme Toggle:
+  document.documentElement.setAttribute('data-theme', 'dark');
+  document.documentElement.setAttribute('data-theme', 'light');
+*/
+
+/* ============================================
+   Foundation - Primitive Numbers
+   ============================================ */
+:root {
+
+  --primitive-numbers-0: 0px;
+  --primitive-numbers-25: 1px;
+  --primitive-numbers-50: 2px;
+  --primitive-numbers-100: 4px;
+  --primitive-numbers-150: 6px;
+  --primitive-numbers-200: 8px;
+  --primitive-numbers-250: 10px;
+  --primitive-numbers-300: 12px;
+  --primitive-numbers-350: 14px;
+  --primitive-numbers-400: 16px;
+  --primitive-numbers-450: 18px;
+  --primitive-numbers-500: 20px;
+  --primitive-numbers-600: 24px;
+  --primitive-numbers-700: 28px;
+  --primitive-numbers-800: 32px;
+  --primitive-numbers-900: 36px;
+  --primitive-numbers-1000: 40px;
+  --primitive-numbers-1100: 44px;
+  --primitive-numbers-1200: 48px;
+  --primitive-numbers-1300: 52px;
+  --primitive-numbers-1400: 56px;
+  --primitive-numbers-1500: 60px;
+  --primitive-numbers-1600: 64px;
+  --primitive-numbers-full: 9999px;
+
+}
+
+
+/* ============================================
+   Semantic Number Tokens — Spacing
+   ============================================ */
+:root {
+
+  --number-spacing-0: var(--primitive-numbers-0);
+  --number-spacing-1: var(--primitive-numbers-25);
+  --number-spacing-2: var(--primitive-numbers-50);
+  --number-spacing-4: var(--primitive-numbers-100);
+  --number-spacing-6: var(--primitive-numbers-150);
+  --number-spacing-8: var(--primitive-numbers-200);
+  --number-spacing-10: var(--primitive-numbers-250);
+  --number-spacing-12: var(--primitive-numbers-300);
+  --number-spacing-16: var(--primitive-numbers-400);
+  --number-spacing-20: var(--primitive-numbers-500);
+  --number-spacing-24: var(--primitive-numbers-600);
+  --number-spacing-28: var(--primitive-numbers-700);
+  --number-spacing-32: var(--primitive-numbers-800);
+  --number-spacing-48: var(--primitive-numbers-1200);
+  --number-spacing-64: var(--primitive-numbers-1600);
+
+}
+
+
+/* ============================================
+   Semantic Number Tokens — Border Radius
+   ============================================ */
+:root {
+
+  --number-border-radius-0: var(--primitive-numbers-0);
+  --number-border-radius-2: var(--primitive-numbers-50);
+  --number-border-radius-4: var(--primitive-numbers-100);
+  --number-border-radius-6: var(--primitive-numbers-150);
+  --number-border-radius-8: var(--primitive-numbers-200);
+  --number-border-radius-10: var(--primitive-numbers-250);
+  --number-border-radius-12: var(--primitive-numbers-300);
+  --number-border-radius-16: var(--primitive-numbers-400);
+  --number-border-radius-20: var(--primitive-numbers-500);
+  --number-border-radius-24: var(--primitive-numbers-600);
+  --number-border-radius-28: var(--primitive-numbers-700);
+  --number-border-radius-32: var(--primitive-numbers-800);
+  --number-border-radius-48: var(--primitive-numbers-1200);
+  --number-border-radius-64: var(--primitive-numbers-1600);
+  --number-border-radius-full: var(--primitive-numbers-full);
+
+}
+
+
+/* ============================================
+   Foundation - Primitive Typography
+   ============================================ */
+:root {
+
+  --primitive-typography-font-sans: 'Inter', sans-serif;
+  --primitive-typography-font-serif: 'Lora', serif;
+
+}
+
+
+/* ============================================
+   Semantic Typography Tokens
+   ============================================ */
+:root {
+
+  /* Font Family */
+  --typography-font-family-sans: var(--primitive-typography-font-sans);
+  --typography-font-family-serif: var(--primitive-typography-font-serif);
+
+  /* Font Weight */
+  --typography-font-weight-regular: 400;
+  --typography-font-weight-semibold: 600;
+  --typography-font-weight-bold: 700;
+  --typography-font-weight-regular-italic: 400;
+  --typography-font-weight-semibold-italic: 600;
+  --typography-font-weight-bold-italic: 700;
+
+}

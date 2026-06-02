@@ -1,0 +1,2698 @@
+{
+  "version": "1.0.4",
+  "metadata": {},
+  "collections": [
+    {
+      "name": "iOS/iPadOS Typography",
+      "modes": [
+        {
+          "name": "Large (Default)",
+          "variables": [
+            {
+              "name": "typography-ios/font-family/sans",
+              "type": "string",
+              "isAlias": true,
+              "value": {
+                "name": "typography/font-family/sans"
+              }
+            },
+            {
+              "name": "typography-ios/font-family/serif",
+              "type": "string",
+              "isAlias": true,
+              "value": {
+                "name": "typography/font-family/serif"
+              }
+            },
+            {
+              "name": "typography-ios/font-weight/regular",
+              "type": "string",
+              "isAlias": true,
+              "value": {
+                "name": "typography/font-weight/regular"
+              }
+            },
+            {
+              "name": "typography-ios/font-weight/semibold",
+              "type": "string",
+              "isAlias": true,
+              "value": {
+                "name": "typography/font-weight/semibold"
+              }
+            },
+            {
+              "name": "typography-ios/font-weight/bold",
+              "type": "string",
+              "isAlias": true,
+              "value": {
+                "name": "typography/font-weight/bold"
+              }
+            },
+            {
+              "name": "typography-ios/font-weight/regular-italic",
+              "type": "string",
+              "isAlias": true,
+              "value": {
+                "name": "typography/font-weight/regular-italic"
+              }
+            },
+            {
+              "name": "typography-ios/font-weight/semibold-italic",
+              "type": "string",
+              "isAlias": true,
+              "value": {
+                "name": "typography/font-weight/semibold-italic"
+              }
+            },
+            {
+              "name": "typography-ios/font-weight/bold-italic",
+              "type": "string",
+              "isAlias": true,
+              "value": {
+                "name": "typography/font-weight/bold-italic"
+              }
+            },
+            {
+              "name": "typography-ios/size/Large Title",
+              "type": "number",
+              "isAlias": false,
+              "value": 34
+            },
+            {
+              "name": "typography-ios/leading/Large Title",
+              "type": "number",
+              "isAlias": false,
+              "value": 41
+            },
+            {
+              "name": "typography-ios/leading/Title 1",
+              "type": "number",
+              "isAlias": false,
+              "value": 34
+            },
+            {
+              "name": "typography-ios/leading/Title 2",
+              "type": "number",
+              "isAlias": false,
+              "value": 28
+            },
+            {
+              "name": "typography-ios/leading/Title 3",
+              "type": "number",
+              "isAlias": false,
+              "value": 25
+            },
+            {
+              "name": "typography-ios/leading/Headline",
+              "type": "number",
+              "isAlias": false,
+              "value": 22
+            },
+            {
+              "name": "typography-ios/leading/Body",
+              "type": "number",
+              "isAlias": false,
+              "value": 22
+            },
+            {
+              "name": "typography-ios/leading/Callout",
+              "type": "number",
+              "isAlias": false,
+              "value": 21
+            },
+            {
+              "name": "typography-ios/leading/Subhead",
+              "type": "number",
+              "isAlias": false,
+              "value": 20
+            },
+            {
+              "name": "typography-ios/leading/Footnote",
+              "type": "number",
+              "isAlias": false,
+              "value": 18
+            },
+            {
+              "name": "typography-ios/leading/Caption 1",
+              "type": "number",
+              "isAlias": false,
+              "value": 16
+            },
+            {
+              "name": "typography-ios/leading/Caption 2",
+              "type": "number",
+              "isAlias": false,
+              "value": 13
+            },
+            {
+              "name": "typography-ios/size/Title 1",
+              "type": "number",
+              "isAlias": false,
+              "value": 28
+            },
+            {
+              "name": "typography-ios/size/Title 2",
+              "type": "number",
+              "isAlias": false,
+              "value": 22
+            },
+            {
+              "name": "typography-ios/size/Title 3",
+              "type": "number",
+              "isAlias": false,
+              "value": 20
+            },
+            {
+              "name": "typography-ios/size/Headline",
+              "type": "number",
+              "isAlias": false,
+              "value": 17
+            },
+            {
+              "name": "typography-ios/size/Body",
+              "type": "number",
+              "isAlias": false,
+              "value": 17
+            },
+            {
+              "name": "typography-ios/size/Callout",
+              "type": "number",
+              "isAlias": false,
+              "value": 16
+            },
+            {
+              "name": "typography-ios/size/Subhead",
+              "type": "number",
+              "isAlias": false,
+              "value": 15
+            },
+            {
+              "name": "typography-ios/size/Footnote",
+              "type": "number",
+              "isAlias": false,
+              "value": 13
+            },
+            {
+              "name": "typography-ios/size/Caption 1",
+              "type": "number",
+              "isAlias": false,
+              "value": 12
+            },
+            {
+              "name": "typography-ios/size/Caption 2",
+              "type": "number",
+              "isAlias": false,
+              "value": 11
+            },
+            {
+              "name": "typography-ios/letter-spacing/narrow",
+              "type": "number",
+              "isAlias": false,
+              "value": -0.5
+            },
+            {
+              "name": "typography-ios/letter-spacing/compact",
+              "type": "number",
+              "isAlias": false,
+              "value": -0.20000000298023224
+            },
+            {
+              "name": "typography-ios/letter-spacing/normal",
+              "type": "number",
+              "isAlias": false,
+              "value": 0
+            },
+            {
+              "name": "typography-ios/letter-spacing/wide",
+              "type": "number",
+              "isAlias": false,
+              "value": 0.25
+            }
+          ]
+        },
+        {
+          "name": "Small",
+          "variables": [
+            {
+              "name": "typography-ios/font-family/sans",
+              "type": "string",
+              "isAlias": true,
+              "value": {
+                "name": "typography/font-family/sans"
+              }
+            },
+            {
+              "name": "typography-ios/font-family/serif",
+              "type": "string",
+              "isAlias": true,
+              "value": {
+                "name": "typography/font-family/serif"
+              }
+            },
+            {
+              "name": "typography-ios/font-weight/regular",
+              "type": "string",
+              "isAlias": true,
+              "value": {
+                "name": "typography/font-weight/regular"
+              }
+            },
+            {
+              "name": "typography-ios/font-weight/semibold",
+              "type": "string",
+              "isAlias": true,
+              "value": {
+                "name": "typography/font-weight/semibold"
+              }
+            },
+            {
+              "name": "typography-ios/font-weight/bold",
+              "type": "string",
+              "isAlias": true,
+              "value": {
+                "name": "typography/font-weight/bold"
+              }
+            },
+            {
+              "name": "typography-ios/font-weight/regular-italic",
+              "type": "string",
+              "isAlias": true,
+              "value": {
+                "name": "typography/font-weight/regular-italic"
+              }
+            },
+            {
+              "name": "typography-ios/font-weight/semibold-italic",
+              "type": "string",
+              "isAlias": true,
+              "value": {
+                "name": "typography/font-weight/semibold-italic"
+              }
+            },
+            {
+              "name": "typography-ios/font-weight/bold-italic",
+              "type": "string",
+              "isAlias": true,
+              "value": {
+                "name": "typography/font-weight/bold-italic"
+              }
+            },
+            {
+              "name": "typography-ios/size/Large Title",
+              "type": "number",
+              "isAlias": false,
+              "value": 32
+            },
+            {
+              "name": "typography-ios/leading/Large Title",
+              "type": "number",
+              "isAlias": false,
+              "value": 39
+            },
+            {
+              "name": "typography-ios/leading/Title 1",
+              "type": "number",
+              "isAlias": false,
+              "value": 32
+            },
+            {
+              "name": "typography-ios/leading/Title 2",
+              "type": "number",
+              "isAlias": false,
+              "value": 25
+            },
+            {
+              "name": "typography-ios/leading/Title 3",
+              "type": "number",
+              "isAlias": false,
+              "value": 23
+            },
+            {
+              "name": "typography-ios/leading/Headline",
+              "type": "number",
+              "isAlias": false,
+              "value": 20
+            },
+            {
+              "name": "typography-ios/leading/Body",
+              "type": "number",
+              "isAlias": false,
+              "value": 20
+            },
+            {
+              "name": "typography-ios/leading/Callout",
+              "type": "number",
+              "isAlias": false,
+              "value": 19
+            },
+            {
+              "name": "typography-ios/leading/Subhead",
+              "type": "number",
+              "isAlias": false,
+              "value": 18
+            },
+            {
+              "name": "typography-ios/leading/Footnote",
+              "type": "number",
+              "isAlias": false,
+              "value": 16
+            },
+            {
+              "name": "typography-ios/leading/Caption 1",
+              "type": "number",
+              "isAlias": false,
+              "value": 13
+            },
+            {
+              "name": "typography-ios/leading/Caption 2",
+              "type": "number",
+              "isAlias": false,
+              "value": 13
+            },
+            {
+              "name": "typography-ios/size/Title 1",
+              "type": "number",
+              "isAlias": false,
+              "value": 26
+            },
+            {
+              "name": "typography-ios/size/Title 2",
+              "type": "number",
+              "isAlias": false,
+              "value": 20
+            },
+            {
+              "name": "typography-ios/size/Title 3",
+              "type": "number",
+              "isAlias": false,
+              "value": 18
+            },
+            {
+              "name": "typography-ios/size/Headline",
+              "type": "number",
+              "isAlias": false,
+              "value": 15
+            },
+            {
+              "name": "typography-ios/size/Body",
+              "type": "number",
+              "isAlias": false,
+              "value": 15
+            },
+            {
+              "name": "typography-ios/size/Callout",
+              "type": "number",
+              "isAlias": false,
+              "value": 14
+            },
+            {
+              "name": "typography-ios/size/Subhead",
+              "type": "number",
+              "isAlias": false,
+              "value": 13
+            },
+            {
+              "name": "typography-ios/size/Footnote",
+              "type": "number",
+              "isAlias": false,
+              "value": 12
+            },
+            {
+              "name": "typography-ios/size/Caption 1",
+              "type": "number",
+              "isAlias": false,
+              "value": 11
+            },
+            {
+              "name": "typography-ios/size/Caption 2",
+              "type": "number",
+              "isAlias": false,
+              "value": 11
+            },
+            {
+              "name": "typography-ios/letter-spacing/narrow",
+              "type": "number",
+              "isAlias": false,
+              "value": -0.5
+            },
+            {
+              "name": "typography-ios/letter-spacing/compact",
+              "type": "number",
+              "isAlias": false,
+              "value": -0.20000000298023224
+            },
+            {
+              "name": "typography-ios/letter-spacing/normal",
+              "type": "number",
+              "isAlias": false,
+              "value": 0
+            },
+            {
+              "name": "typography-ios/letter-spacing/wide",
+              "type": "number",
+              "isAlias": false,
+              "value": 0.25
+            }
+          ]
+        },
+        {
+          "name": "xxxLarge",
+          "variables": [
+            {
+              "name": "typography-ios/font-family/sans",
+              "type": "string",
+              "isAlias": true,
+              "value": {
+                "name": "typography/font-family/sans"
+              }
+            },
+            {
+              "name": "typography-ios/font-family/serif",
+              "type": "string",
+              "isAlias": true,
+              "value": {
+                "name": "typography/font-family/serif"
+              }
+            },
+            {
+              "name": "typography-ios/font-weight/regular",
+              "type": "string",
+              "isAlias": true,
+              "value": {
+                "name": "typography/font-weight/regular"
+              }
+            },
+            {
+              "name": "typography-ios/font-weight/semibold",
+              "type": "string",
+              "isAlias": true,
+              "value": {
+                "name": "typography/font-weight/semibold"
+              }
+            },
+            {
+              "name": "typography-ios/font-weight/bold",
+              "type": "string",
+              "isAlias": true,
+              "value": {
+                "name": "typography/font-weight/bold"
+              }
+            },
+            {
+              "name": "typography-ios/font-weight/regular-italic",
+              "type": "string",
+              "isAlias": true,
+              "value": {
+                "name": "typography/font-weight/regular-italic"
+              }
+            },
+            {
+              "name": "typography-ios/font-weight/semibold-italic",
+              "type": "string",
+              "isAlias": true,
+              "value": {
+                "name": "typography/font-weight/semibold-italic"
+              }
+            },
+            {
+              "name": "typography-ios/font-weight/bold-italic",
+              "type": "string",
+              "isAlias": true,
+              "value": {
+                "name": "typography/font-weight/bold-italic"
+              }
+            },
+            {
+              "name": "typography-ios/size/Large Title",
+              "type": "number",
+              "isAlias": false,
+              "value": 40
+            },
+            {
+              "name": "typography-ios/leading/Large Title",
+              "type": "number",
+              "isAlias": false,
+              "value": 48
+            },
+            {
+              "name": "typography-ios/leading/Title 1",
+              "type": "number",
+              "isAlias": false,
+              "value": 41
+            },
+            {
+              "name": "typography-ios/leading/Title 2",
+              "type": "number",
+              "isAlias": false,
+              "value": 34
+            },
+            {
+              "name": "typography-ios/leading/Title 3",
+              "type": "number",
+              "isAlias": false,
+              "value": 32
+            },
+            {
+              "name": "typography-ios/leading/Headline",
+              "type": "number",
+              "isAlias": false,
+              "value": 29
+            },
+            {
+              "name": "typography-ios/leading/Body",
+              "type": "number",
+              "isAlias": false,
+              "value": 29
+            },
+            {
+              "name": "typography-ios/leading/Callout",
+              "type": "number",
+              "isAlias": false,
+              "value": 28
+            },
+            {
+              "name": "typography-ios/leading/Subhead",
+              "type": "number",
+              "isAlias": false,
+              "value": 28
+            },
+            {
+              "name": "typography-ios/leading/Footnote",
+              "type": "number",
+              "isAlias": false,
+              "value": 24
+            },
+            {
+              "name": "typography-ios/leading/Caption 1",
+              "type": "number",
+              "isAlias": false,
+              "value": 23
+            },
+            {
+              "name": "typography-ios/leading/Caption 2",
+              "type": "number",
+              "isAlias": false,
+              "value": 22
+            },
+            {
+              "name": "typography-ios/size/Title 1",
+              "type": "number",
+              "isAlias": false,
+              "value": 34
+            },
+            {
+              "name": "typography-ios/size/Title 2",
+              "type": "number",
+              "isAlias": false,
+              "value": 28
+            },
+            {
+              "name": "typography-ios/size/Title 3",
+              "type": "number",
+              "isAlias": false,
+              "value": 26
+            },
+            {
+              "name": "typography-ios/size/Headline",
+              "type": "number",
+              "isAlias": false,
+              "value": 23
+            },
+            {
+              "name": "typography-ios/size/Body",
+              "type": "number",
+              "isAlias": false,
+              "value": 23
+            },
+            {
+              "name": "typography-ios/size/Callout",
+              "type": "number",
+              "isAlias": false,
+              "value": 22
+            },
+            {
+              "name": "typography-ios/size/Subhead",
+              "type": "number",
+              "isAlias": false,
+              "value": 21
+            },
+            {
+              "name": "typography-ios/size/Footnote",
+              "type": "number",
+              "isAlias": false,
+              "value": 19
+            },
+            {
+              "name": "typography-ios/size/Caption 1",
+              "type": "number",
+              "isAlias": false,
+              "value": 18
+            },
+            {
+              "name": "typography-ios/size/Caption 2",
+              "type": "number",
+              "isAlias": false,
+              "value": 17
+            },
+            {
+              "name": "typography-ios/letter-spacing/narrow",
+              "type": "number",
+              "isAlias": false,
+              "value": -0.5
+            },
+            {
+              "name": "typography-ios/letter-spacing/compact",
+              "type": "number",
+              "isAlias": false,
+              "value": -0.20000000298023224
+            },
+            {
+              "name": "typography-ios/letter-spacing/normal",
+              "type": "number",
+              "isAlias": false,
+              "value": 0
+            },
+            {
+              "name": "typography-ios/letter-spacing/wide",
+              "type": "number",
+              "isAlias": false,
+              "value": 0.25
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "Android Typography",
+      "modes": [
+        {
+          "name": "Default (1.0x)",
+          "variables": [
+            {
+              "name": "typography-android/font-family/sans",
+              "type": "string",
+              "isAlias": true,
+              "value": {
+                "name": "typography/font-family/sans"
+              }
+            },
+            {
+              "name": "typography-android/font-family/serif",
+              "type": "string",
+              "isAlias": true,
+              "value": {
+                "name": "typography/font-family/serif"
+              }
+            },
+            {
+              "name": "typography-android/font-weight/regular",
+              "type": "string",
+              "isAlias": true,
+              "value": {
+                "name": "typography/font-weight/regular"
+              }
+            },
+            {
+              "name": "typography-android/font-weight/semibold",
+              "type": "string",
+              "isAlias": true,
+              "value": {
+                "name": "typography/font-weight/semibold"
+              }
+            },
+            {
+              "name": "typography-android/font-weight/bold",
+              "type": "string",
+              "isAlias": true,
+              "value": {
+                "name": "typography/font-weight/bold"
+              }
+            },
+            {
+              "name": "typography-android/font-weight/regular-italic",
+              "type": "string",
+              "isAlias": true,
+              "value": {
+                "name": "typography/font-weight/regular-italic"
+              }
+            },
+            {
+              "name": "typography-android/font-weight/semibold-italic",
+              "type": "string",
+              "isAlias": true,
+              "value": {
+                "name": "typography/font-weight/semibold-italic"
+              }
+            },
+            {
+              "name": "typography-android/font-weight/bold-italic",
+              "type": "string",
+              "isAlias": true,
+              "value": {
+                "name": "typography/font-weight/bold-italic"
+              }
+            },
+            {
+              "name": "typography-android/size/Display Small",
+              "type": "number",
+              "isAlias": false,
+              "value": 34
+            },
+            {
+              "name": "typography-android/size/Headline Medium",
+              "type": "number",
+              "isAlias": false,
+              "value": 28
+            },
+            {
+              "name": "typography-android/size/Headline Small",
+              "type": "number",
+              "isAlias": false,
+              "value": 22
+            },
+            {
+              "name": "typography-android/size/Title Large",
+              "type": "number",
+              "isAlias": false,
+              "value": 20
+            },
+            {
+              "name": "typography-android/size/Title Medium",
+              "type": "number",
+              "isAlias": false,
+              "value": 17
+            },
+            {
+              "name": "typography-android/size/Body Large",
+              "type": "number",
+              "isAlias": false,
+              "value": 17
+            },
+            {
+              "name": "typography-android/size/Body Medium",
+              "type": "number",
+              "isAlias": false,
+              "value": 16
+            },
+            {
+              "name": "typography-android/size/Title Small",
+              "type": "number",
+              "isAlias": false,
+              "value": 15
+            },
+            {
+              "name": "typography-android/size/Label Large",
+              "type": "number",
+              "isAlias": false,
+              "value": 13
+            },
+            {
+              "name": "typography-android/size/Label Medium",
+              "type": "number",
+              "isAlias": false,
+              "value": 12
+            },
+            {
+              "name": "typography-android/size/Label Small",
+              "type": "number",
+              "isAlias": false,
+              "value": 11
+            },
+            {
+              "name": "typography-android/line-height/Display Small",
+              "type": "number",
+              "isAlias": false,
+              "value": 41
+            },
+            {
+              "name": "typography-android/line-height/Headline Medium",
+              "type": "number",
+              "isAlias": false,
+              "value": 34
+            },
+            {
+              "name": "typography-android/line-height/Headline Small",
+              "type": "number",
+              "isAlias": false,
+              "value": 28
+            },
+            {
+              "name": "typography-android/line-height/Title Large",
+              "type": "number",
+              "isAlias": false,
+              "value": 25
+            },
+            {
+              "name": "typography-android/line-height/Title Medium",
+              "type": "number",
+              "isAlias": false,
+              "value": 22
+            },
+            {
+              "name": "typography-android/line-height/Body Large",
+              "type": "number",
+              "isAlias": false,
+              "value": 22
+            },
+            {
+              "name": "typography-android/line-height/Body Medium",
+              "type": "number",
+              "isAlias": false,
+              "value": 21
+            },
+            {
+              "name": "typography-android/line-height/Title Small",
+              "type": "number",
+              "isAlias": false,
+              "value": 20
+            },
+            {
+              "name": "typography-android/line-height/Label Large",
+              "type": "number",
+              "isAlias": false,
+              "value": 18
+            },
+            {
+              "name": "typography-android/line-height/Label Medium",
+              "type": "number",
+              "isAlias": false,
+              "value": 16
+            },
+            {
+              "name": "typography-android/line-height/Label Small",
+              "type": "number",
+              "isAlias": false,
+              "value": 13
+            },
+            {
+              "name": "typography-android/letter-spacing/narrow",
+              "type": "number",
+              "isAlias": false,
+              "value": -0.5
+            },
+            {
+              "name": "typography-android/letter-spacing/compact",
+              "type": "number",
+              "isAlias": false,
+              "value": -0.20000000298023224
+            },
+            {
+              "name": "typography-android/letter-spacing/normal",
+              "type": "number",
+              "isAlias": false,
+              "value": 0
+            },
+            {
+              "name": "typography-android/letter-spacing/wide",
+              "type": "number",
+              "isAlias": false,
+              "value": 0.25
+            }
+          ]
+        },
+        {
+          "name": "Small (0.9x)",
+          "variables": [
+            {
+              "name": "typography-android/font-family/sans",
+              "type": "string",
+              "isAlias": true,
+              "value": {
+                "name": "typography/font-family/sans"
+              }
+            },
+            {
+              "name": "typography-android/font-family/serif",
+              "type": "string",
+              "isAlias": true,
+              "value": {
+                "name": "typography/font-family/serif"
+              }
+            },
+            {
+              "name": "typography-android/font-weight/regular",
+              "type": "string",
+              "isAlias": true,
+              "value": {
+                "name": "typography/font-weight/regular"
+              }
+            },
+            {
+              "name": "typography-android/font-weight/semibold",
+              "type": "string",
+              "isAlias": true,
+              "value": {
+                "name": "typography/font-weight/semibold"
+              }
+            },
+            {
+              "name": "typography-android/font-weight/bold",
+              "type": "string",
+              "isAlias": true,
+              "value": {
+                "name": "typography/font-weight/bold"
+              }
+            },
+            {
+              "name": "typography-android/font-weight/regular-italic",
+              "type": "string",
+              "isAlias": true,
+              "value": {
+                "name": "typography/font-weight/regular-italic"
+              }
+            },
+            {
+              "name": "typography-android/font-weight/semibold-italic",
+              "type": "string",
+              "isAlias": true,
+              "value": {
+                "name": "typography/font-weight/semibold-italic"
+              }
+            },
+            {
+              "name": "typography-android/font-weight/bold-italic",
+              "type": "string",
+              "isAlias": true,
+              "value": {
+                "name": "typography/font-weight/bold-italic"
+              }
+            },
+            {
+              "name": "typography-android/size/Display Small",
+              "type": "number",
+              "isAlias": false,
+              "value": 31
+            },
+            {
+              "name": "typography-android/size/Headline Medium",
+              "type": "number",
+              "isAlias": false,
+              "value": 25
+            },
+            {
+              "name": "typography-android/size/Headline Small",
+              "type": "number",
+              "isAlias": false,
+              "value": 20
+            },
+            {
+              "name": "typography-android/size/Title Large",
+              "type": "number",
+              "isAlias": false,
+              "value": 18
+            },
+            {
+              "name": "typography-android/size/Title Medium",
+              "type": "number",
+              "isAlias": false,
+              "value": 15
+            },
+            {
+              "name": "typography-android/size/Body Large",
+              "type": "number",
+              "isAlias": false,
+              "value": 15
+            },
+            {
+              "name": "typography-android/size/Body Medium",
+              "type": "number",
+              "isAlias": false,
+              "value": 14
+            },
+            {
+              "name": "typography-android/size/Title Small",
+              "type": "number",
+              "isAlias": false,
+              "value": 14
+            },
+            {
+              "name": "typography-android/size/Label Large",
+              "type": "number",
+              "isAlias": false,
+              "value": 12
+            },
+            {
+              "name": "typography-android/size/Label Medium",
+              "type": "number",
+              "isAlias": false,
+              "value": 11
+            },
+            {
+              "name": "typography-android/size/Label Small",
+              "type": "number",
+              "isAlias": false,
+              "value": 11
+            },
+            {
+              "name": "typography-android/line-height/Display Small",
+              "type": "number",
+              "isAlias": false,
+              "value": 37
+            },
+            {
+              "name": "typography-android/line-height/Headline Medium",
+              "type": "number",
+              "isAlias": false,
+              "value": 31
+            },
+            {
+              "name": "typography-android/line-height/Headline Small",
+              "type": "number",
+              "isAlias": false,
+              "value": 25
+            },
+            {
+              "name": "typography-android/line-height/Title Large",
+              "type": "number",
+              "isAlias": false,
+              "value": 23
+            },
+            {
+              "name": "typography-android/line-height/Title Medium",
+              "type": "number",
+              "isAlias": false,
+              "value": 20
+            },
+            {
+              "name": "typography-android/line-height/Body Large",
+              "type": "number",
+              "isAlias": false,
+              "value": 20
+            },
+            {
+              "name": "typography-android/line-height/Body Medium",
+              "type": "number",
+              "isAlias": false,
+              "value": 19
+            },
+            {
+              "name": "typography-android/line-height/Title Small",
+              "type": "number",
+              "isAlias": false,
+              "value": 18
+            },
+            {
+              "name": "typography-android/line-height/Label Large",
+              "type": "number",
+              "isAlias": false,
+              "value": 16
+            },
+            {
+              "name": "typography-android/line-height/Label Medium",
+              "type": "number",
+              "isAlias": false,
+              "value": 14
+            },
+            {
+              "name": "typography-android/line-height/Label Small",
+              "type": "number",
+              "isAlias": false,
+              "value": 12
+            },
+            {
+              "name": "typography-android/letter-spacing/narrow",
+              "type": "number",
+              "isAlias": false,
+              "value": -0.5
+            },
+            {
+              "name": "typography-android/letter-spacing/compact",
+              "type": "number",
+              "isAlias": false,
+              "value": -0.20000000298023224
+            },
+            {
+              "name": "typography-android/letter-spacing/normal",
+              "type": "number",
+              "isAlias": false,
+              "value": 0
+            },
+            {
+              "name": "typography-android/letter-spacing/wide",
+              "type": "number",
+              "isAlias": false,
+              "value": 0.25
+            }
+          ]
+        },
+        {
+          "name": "xxxLarge (1.35x)",
+          "variables": [
+            {
+              "name": "typography-android/font-family/sans",
+              "type": "string",
+              "isAlias": true,
+              "value": {
+                "name": "typography/font-family/sans"
+              }
+            },
+            {
+              "name": "typography-android/font-family/serif",
+              "type": "string",
+              "isAlias": true,
+              "value": {
+                "name": "typography/font-family/serif"
+              }
+            },
+            {
+              "name": "typography-android/font-weight/regular",
+              "type": "string",
+              "isAlias": true,
+              "value": {
+                "name": "typography/font-weight/regular"
+              }
+            },
+            {
+              "name": "typography-android/font-weight/semibold",
+              "type": "string",
+              "isAlias": true,
+              "value": {
+                "name": "typography/font-weight/semibold"
+              }
+            },
+            {
+              "name": "typography-android/font-weight/bold",
+              "type": "string",
+              "isAlias": true,
+              "value": {
+                "name": "typography/font-weight/bold"
+              }
+            },
+            {
+              "name": "typography-android/font-weight/regular-italic",
+              "type": "string",
+              "isAlias": true,
+              "value": {
+                "name": "typography/font-weight/regular-italic"
+              }
+            },
+            {
+              "name": "typography-android/font-weight/semibold-italic",
+              "type": "string",
+              "isAlias": true,
+              "value": {
+                "name": "typography/font-weight/semibold-italic"
+              }
+            },
+            {
+              "name": "typography-android/font-weight/bold-italic",
+              "type": "string",
+              "isAlias": true,
+              "value": {
+                "name": "typography/font-weight/bold-italic"
+              }
+            },
+            {
+              "name": "typography-android/size/Display Small",
+              "type": "number",
+              "isAlias": false,
+              "value": 46
+            },
+            {
+              "name": "typography-android/size/Headline Medium",
+              "type": "number",
+              "isAlias": false,
+              "value": 38
+            },
+            {
+              "name": "typography-android/size/Headline Small",
+              "type": "number",
+              "isAlias": false,
+              "value": 30
+            },
+            {
+              "name": "typography-android/size/Title Large",
+              "type": "number",
+              "isAlias": false,
+              "value": 27
+            },
+            {
+              "name": "typography-android/size/Title Medium",
+              "type": "number",
+              "isAlias": false,
+              "value": 23
+            },
+            {
+              "name": "typography-android/size/Body Large",
+              "type": "number",
+              "isAlias": false,
+              "value": 23
+            },
+            {
+              "name": "typography-android/size/Body Medium",
+              "type": "number",
+              "isAlias": false,
+              "value": 22
+            },
+            {
+              "name": "typography-android/size/Title Small",
+              "type": "number",
+              "isAlias": false,
+              "value": 20
+            },
+            {
+              "name": "typography-android/size/Label Large",
+              "type": "number",
+              "isAlias": false,
+              "value": 18
+            },
+            {
+              "name": "typography-android/size/Label Medium",
+              "type": "number",
+              "isAlias": false,
+              "value": 16
+            },
+            {
+              "name": "typography-android/size/Label Small",
+              "type": "number",
+              "isAlias": false,
+              "value": 15
+            },
+            {
+              "name": "typography-android/line-height/Display Small",
+              "type": "number",
+              "isAlias": false,
+              "value": 55
+            },
+            {
+              "name": "typography-android/line-height/Headline Medium",
+              "type": "number",
+              "isAlias": false,
+              "value": 46
+            },
+            {
+              "name": "typography-android/line-height/Headline Small",
+              "type": "number",
+              "isAlias": false,
+              "value": 38
+            },
+            {
+              "name": "typography-android/line-height/Title Large",
+              "type": "number",
+              "isAlias": false,
+              "value": 34
+            },
+            {
+              "name": "typography-android/line-height/Title Medium",
+              "type": "number",
+              "isAlias": false,
+              "value": 30
+            },
+            {
+              "name": "typography-android/line-height/Body Large",
+              "type": "number",
+              "isAlias": false,
+              "value": 30
+            },
+            {
+              "name": "typography-android/line-height/Body Medium",
+              "type": "number",
+              "isAlias": false,
+              "value": 28
+            },
+            {
+              "name": "typography-android/line-height/Title Small",
+              "type": "number",
+              "isAlias": false,
+              "value": 27
+            },
+            {
+              "name": "typography-android/line-height/Label Large",
+              "type": "number",
+              "isAlias": false,
+              "value": 24
+            },
+            {
+              "name": "typography-android/line-height/Label Medium",
+              "type": "number",
+              "isAlias": false,
+              "value": 22
+            },
+            {
+              "name": "typography-android/line-height/Label Small",
+              "type": "number",
+              "isAlias": false,
+              "value": 18
+            },
+            {
+              "name": "typography-android/letter-spacing/narrow",
+              "type": "number",
+              "isAlias": false,
+              "value": -0.5
+            },
+            {
+              "name": "typography-android/letter-spacing/compact",
+              "type": "number",
+              "isAlias": false,
+              "value": -0.20000000298023224
+            },
+            {
+              "name": "typography-android/letter-spacing/normal",
+              "type": "number",
+              "isAlias": false,
+              "value": 0
+            },
+            {
+              "name": "typography-android/letter-spacing/wide",
+              "type": "number",
+              "isAlias": false,
+              "value": 0.25
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "Typography",
+      "modes": [
+        {
+          "name": "Style",
+          "variables": [
+            {
+              "name": "+ Inter +/Large Title (34-41)/Regular",
+              "type": "typography",
+              "isAlias": false,
+              "value": {
+                "fontSize": 34,
+                "fontFamily": "Inter",
+                "fontWeight": "Regular",
+                "lineHeight": 41,
+                "lineHeightUnit": "PIXELS",
+                "letterSpacing": 0,
+                "letterSpacingUnit": "PIXELS",
+                "textCase": "ORIGINAL",
+                "textDecoration": "NONE"
+              }
+            },
+            {
+              "name": "+ Inter +/Large Title (34-41)/Semibold",
+              "type": "typography",
+              "isAlias": false,
+              "value": {
+                "fontSize": 34,
+                "fontFamily": "Inter",
+                "fontWeight": "Semi Bold",
+                "lineHeight": 41,
+                "lineHeightUnit": "PIXELS",
+                "letterSpacing": 0,
+                "letterSpacingUnit": "PIXELS",
+                "textCase": "ORIGINAL",
+                "textDecoration": "NONE"
+              }
+            },
+            {
+              "name": "+ Inter +/Large Title (34-41)/Bold",
+              "type": "typography",
+              "isAlias": false,
+              "value": {
+                "fontSize": 34,
+                "fontFamily": "Inter",
+                "fontWeight": "Bold",
+                "lineHeight": 41,
+                "lineHeightUnit": "PIXELS",
+                "letterSpacing": 0,
+                "letterSpacingUnit": "PIXELS",
+                "textCase": "ORIGINAL",
+                "textDecoration": "NONE"
+              }
+            },
+            {
+              "name": "+ Inter +/Title 1 (28-34)/Regular",
+              "type": "typography",
+              "isAlias": false,
+              "value": {
+                "fontSize": 28,
+                "fontFamily": "Inter",
+                "fontWeight": "Regular",
+                "lineHeight": 34,
+                "lineHeightUnit": "PIXELS",
+                "letterSpacing": 0,
+                "letterSpacingUnit": "PIXELS",
+                "textCase": "ORIGINAL",
+                "textDecoration": "NONE"
+              }
+            },
+            {
+              "name": "+ Inter +/Title 1 (28-34)/Semibold",
+              "type": "typography",
+              "isAlias": false,
+              "value": {
+                "fontSize": 28,
+                "fontFamily": "Inter",
+                "fontWeight": "Semi Bold",
+                "lineHeight": 34,
+                "lineHeightUnit": "PIXELS",
+                "letterSpacing": 0,
+                "letterSpacingUnit": "PIXELS",
+                "textCase": "ORIGINAL",
+                "textDecoration": "NONE"
+              }
+            },
+            {
+              "name": "+ Inter +/Title 1 (28-34)/Bold",
+              "type": "typography",
+              "isAlias": false,
+              "value": {
+                "fontSize": 28,
+                "fontFamily": "Inter",
+                "fontWeight": "Bold",
+                "lineHeight": 34,
+                "lineHeightUnit": "PIXELS",
+                "letterSpacing": 0,
+                "letterSpacingUnit": "PIXELS",
+                "textCase": "ORIGINAL",
+                "textDecoration": "NONE"
+              }
+            },
+            {
+              "name": "+ Inter +/Title 2 (22-28)/Regular",
+              "type": "typography",
+              "isAlias": false,
+              "value": {
+                "fontSize": 22,
+                "fontFamily": "Inter",
+                "fontWeight": "Regular",
+                "lineHeight": 28,
+                "lineHeightUnit": "PIXELS",
+                "letterSpacing": 0,
+                "letterSpacingUnit": "PIXELS",
+                "textCase": "ORIGINAL",
+                "textDecoration": "NONE"
+              }
+            },
+            {
+              "name": "+ Inter +/Title 2 (22-28)/Semibold",
+              "type": "typography",
+              "isAlias": false,
+              "value": {
+                "fontSize": 22,
+                "fontFamily": "Inter",
+                "fontWeight": "Semi Bold",
+                "lineHeight": 28,
+                "lineHeightUnit": "PIXELS",
+                "letterSpacing": 0,
+                "letterSpacingUnit": "PIXELS",
+                "textCase": "ORIGINAL",
+                "textDecoration": "NONE"
+              }
+            },
+            {
+              "name": "+ Inter +/Title 2 (22-28)/Bold",
+              "type": "typography",
+              "isAlias": false,
+              "value": {
+                "fontSize": 22,
+                "fontFamily": "Inter",
+                "fontWeight": "Bold",
+                "lineHeight": 28,
+                "lineHeightUnit": "PIXELS",
+                "letterSpacing": 0,
+                "letterSpacingUnit": "PIXELS",
+                "textCase": "ORIGINAL",
+                "textDecoration": "NONE"
+              }
+            },
+            {
+              "name": "+ Inter +/Title 3 (20-25)/Regular",
+              "type": "typography",
+              "isAlias": false,
+              "value": {
+                "fontSize": 20,
+                "fontFamily": "Inter",
+                "fontWeight": "Regular",
+                "lineHeight": 25,
+                "lineHeightUnit": "PIXELS",
+                "letterSpacing": 0,
+                "letterSpacingUnit": "PIXELS",
+                "textCase": "ORIGINAL",
+                "textDecoration": "NONE"
+              }
+            },
+            {
+              "name": "+ Inter +/Title 3 (20-25)/Semibold",
+              "type": "typography",
+              "isAlias": false,
+              "value": {
+                "fontSize": 20,
+                "fontFamily": "Inter",
+                "fontWeight": "Semi Bold",
+                "lineHeight": 25,
+                "lineHeightUnit": "PIXELS",
+                "letterSpacing": 0,
+                "letterSpacingUnit": "PIXELS",
+                "textCase": "ORIGINAL",
+                "textDecoration": "NONE"
+              }
+            },
+            {
+              "name": "+ Inter +/Title 3 (20-25)/Bold",
+              "type": "typography",
+              "isAlias": false,
+              "value": {
+                "fontSize": 20,
+                "fontFamily": "Inter",
+                "fontWeight": "Bold",
+                "lineHeight": 25,
+                "lineHeightUnit": "PIXELS",
+                "letterSpacing": 0,
+                "letterSpacingUnit": "PIXELS",
+                "textCase": "ORIGINAL",
+                "textDecoration": "NONE"
+              }
+            },
+            {
+              "name": "+ Inter +/Headline (17-22)/Regular",
+              "type": "typography",
+              "isAlias": false,
+              "value": {
+                "fontSize": 17,
+                "fontFamily": "Inter",
+                "fontWeight": "Regular",
+                "lineHeight": 22,
+                "lineHeightUnit": "PIXELS",
+                "letterSpacing": 0,
+                "letterSpacingUnit": "PIXELS",
+                "textCase": "ORIGINAL",
+                "textDecoration": "NONE"
+              }
+            },
+            {
+              "name": "+ Inter +/Headline (17-22)/Semibold",
+              "type": "typography",
+              "isAlias": false,
+              "value": {
+                "fontSize": 17,
+                "fontFamily": "Inter",
+                "fontWeight": "Semi Bold",
+                "lineHeight": 22,
+                "lineHeightUnit": "PIXELS",
+                "letterSpacing": 0,
+                "letterSpacingUnit": "PIXELS",
+                "textCase": "ORIGINAL",
+                "textDecoration": "NONE"
+              }
+            },
+            {
+              "name": "+ Inter +/Headline (17-22)/Bold",
+              "type": "typography",
+              "isAlias": false,
+              "value": {
+                "fontSize": 17,
+                "fontFamily": "Inter",
+                "fontWeight": "Bold",
+                "lineHeight": 22,
+                "lineHeightUnit": "PIXELS",
+                "letterSpacing": 0,
+                "letterSpacingUnit": "PIXELS",
+                "textCase": "ORIGINAL",
+                "textDecoration": "NONE"
+              }
+            },
+            {
+              "name": "+ Inter +/Body (17-22)/Regular",
+              "type": "typography",
+              "isAlias": false,
+              "value": {
+                "fontSize": 17,
+                "fontFamily": "Inter",
+                "fontWeight": "Regular",
+                "lineHeight": 22,
+                "lineHeightUnit": "PIXELS",
+                "letterSpacing": 0,
+                "letterSpacingUnit": "PIXELS",
+                "textCase": "ORIGINAL",
+                "textDecoration": "NONE"
+              }
+            },
+            {
+              "name": "+ Inter +/Body (17-22)/Semibold",
+              "type": "typography",
+              "isAlias": false,
+              "value": {
+                "fontSize": 17,
+                "fontFamily": "Inter",
+                "fontWeight": "Semi Bold",
+                "lineHeight": 22,
+                "lineHeightUnit": "PIXELS",
+                "letterSpacing": 0,
+                "letterSpacingUnit": "PIXELS",
+                "textCase": "ORIGINAL",
+                "textDecoration": "NONE"
+              }
+            },
+            {
+              "name": "+ Inter +/Body (17-22)/Bold",
+              "type": "typography",
+              "isAlias": false,
+              "value": {
+                "fontSize": 17,
+                "fontFamily": "Inter",
+                "fontWeight": "Bold",
+                "lineHeight": 22,
+                "lineHeightUnit": "PIXELS",
+                "letterSpacing": 0,
+                "letterSpacingUnit": "PIXELS",
+                "textCase": "ORIGINAL",
+                "textDecoration": "NONE"
+              }
+            },
+            {
+              "name": "+ Inter +/Body (17-22)/Hyperlink",
+              "type": "typography",
+              "isAlias": false,
+              "value": {
+                "fontSize": 17,
+                "fontFamily": "Inter",
+                "fontWeight": "Semi Bold",
+                "lineHeight": 22,
+                "lineHeightUnit": "PIXELS",
+                "letterSpacing": 0,
+                "letterSpacingUnit": "PIXELS",
+                "textCase": "ORIGINAL",
+                "textDecoration": "UNDERLINE"
+              }
+            },
+            {
+              "name": "+ Inter +/Callout (16-21)/Regular",
+              "type": "typography",
+              "isAlias": false,
+              "value": {
+                "fontSize": 16,
+                "fontFamily": "Inter",
+                "fontWeight": "Regular",
+                "lineHeight": 21,
+                "lineHeightUnit": "PIXELS",
+                "letterSpacing": 0,
+                "letterSpacingUnit": "PIXELS",
+                "textCase": "ORIGINAL",
+                "textDecoration": "NONE"
+              }
+            },
+            {
+              "name": "+ Inter +/Callout (16-21)/Semibold",
+              "type": "typography",
+              "isAlias": false,
+              "value": {
+                "fontSize": 16,
+                "fontFamily": "Inter",
+                "fontWeight": "Semi Bold",
+                "lineHeight": 21,
+                "lineHeightUnit": "PIXELS",
+                "letterSpacing": 0,
+                "letterSpacingUnit": "PIXELS",
+                "textCase": "ORIGINAL",
+                "textDecoration": "NONE"
+              }
+            },
+            {
+              "name": "+ Inter +/Callout (16-21)/Bold",
+              "type": "typography",
+              "isAlias": false,
+              "value": {
+                "fontSize": 16,
+                "fontFamily": "Inter",
+                "fontWeight": "Bold",
+                "lineHeight": 21,
+                "lineHeightUnit": "PIXELS",
+                "letterSpacing": 0,
+                "letterSpacingUnit": "PIXELS",
+                "textCase": "ORIGINAL",
+                "textDecoration": "NONE"
+              }
+            },
+            {
+              "name": "+ Inter +/Subhead (15-20)/Regular",
+              "type": "typography",
+              "isAlias": false,
+              "value": {
+                "fontSize": 15,
+                "fontFamily": "Inter",
+                "fontWeight": "Regular",
+                "lineHeight": 20,
+                "lineHeightUnit": "PIXELS",
+                "letterSpacing": 0,
+                "letterSpacingUnit": "PIXELS",
+                "textCase": "ORIGINAL",
+                "textDecoration": "NONE"
+              }
+            },
+            {
+              "name": "+ Inter +/Subhead (15-20)/Semibold",
+              "type": "typography",
+              "isAlias": false,
+              "value": {
+                "fontSize": 15,
+                "fontFamily": "Inter",
+                "fontWeight": "Semi Bold",
+                "lineHeight": 20,
+                "lineHeightUnit": "PIXELS",
+                "letterSpacing": 0,
+                "letterSpacingUnit": "PIXELS",
+                "textCase": "ORIGINAL",
+                "textDecoration": "NONE"
+              }
+            },
+            {
+              "name": "+ Inter +/Subhead (15-20)/Bold",
+              "type": "typography",
+              "isAlias": false,
+              "value": {
+                "fontSize": 15,
+                "fontFamily": "Inter",
+                "fontWeight": "Bold",
+                "lineHeight": 20,
+                "lineHeightUnit": "PIXELS",
+                "letterSpacing": 0,
+                "letterSpacingUnit": "PIXELS",
+                "textCase": "ORIGINAL",
+                "textDecoration": "NONE"
+              }
+            },
+            {
+              "name": "+ Inter +/Footnote (13-18)/Regular",
+              "type": "typography",
+              "isAlias": false,
+              "value": {
+                "fontSize": 13,
+                "fontFamily": "Inter",
+                "fontWeight": "Regular",
+                "lineHeight": 18,
+                "lineHeightUnit": "PIXELS",
+                "letterSpacing": 0,
+                "letterSpacingUnit": "PIXELS",
+                "textCase": "ORIGINAL",
+                "textDecoration": "NONE"
+              }
+            },
+            {
+              "name": "+ Inter +/Footnote (13-18)/Semibold",
+              "type": "typography",
+              "isAlias": false,
+              "value": {
+                "fontSize": 13,
+                "fontFamily": "Inter",
+                "fontWeight": "Semi Bold",
+                "lineHeight": 18,
+                "lineHeightUnit": "PIXELS",
+                "letterSpacing": 0,
+                "letterSpacingUnit": "PIXELS",
+                "textCase": "ORIGINAL",
+                "textDecoration": "NONE"
+              }
+            },
+            {
+              "name": "+ Inter +/Footnote (13-18)/Bold",
+              "type": "typography",
+              "isAlias": false,
+              "value": {
+                "fontSize": 13,
+                "fontFamily": "Inter",
+                "fontWeight": "Bold",
+                "lineHeight": 18,
+                "lineHeightUnit": "PIXELS",
+                "letterSpacing": 0,
+                "letterSpacingUnit": "PIXELS",
+                "textCase": "ORIGINAL",
+                "textDecoration": "NONE"
+              }
+            },
+            {
+              "name": "+ Inter +/Caption 1 (12-16)/Regular",
+              "type": "typography",
+              "isAlias": false,
+              "value": {
+                "fontSize": 12,
+                "fontFamily": "Inter",
+                "fontWeight": "Regular",
+                "lineHeight": 16,
+                "lineHeightUnit": "PIXELS",
+                "letterSpacing": 0,
+                "letterSpacingUnit": "PIXELS",
+                "textCase": "ORIGINAL",
+                "textDecoration": "NONE"
+              }
+            },
+            {
+              "name": "+ Inter +/Caption 1 (12-16)/Semibold",
+              "type": "typography",
+              "isAlias": false,
+              "value": {
+                "fontSize": 12,
+                "fontFamily": "Inter",
+                "fontWeight": "Semi Bold",
+                "lineHeight": 16,
+                "lineHeightUnit": "PIXELS",
+                "letterSpacing": 0,
+                "letterSpacingUnit": "PIXELS",
+                "textCase": "ORIGINAL",
+                "textDecoration": "NONE"
+              }
+            },
+            {
+              "name": "+ Inter +/Caption 1 (12-16)/Bold",
+              "type": "typography",
+              "isAlias": false,
+              "value": {
+                "fontSize": 12,
+                "fontFamily": "Inter",
+                "fontWeight": "Bold",
+                "lineHeight": 16,
+                "lineHeightUnit": "PIXELS",
+                "letterSpacing": 0,
+                "letterSpacingUnit": "PIXELS",
+                "textCase": "ORIGINAL",
+                "textDecoration": "NONE"
+              }
+            },
+            {
+              "name": "+ Inter +/Caption 2 (11-13)/Regular",
+              "type": "typography",
+              "isAlias": false,
+              "value": {
+                "fontSize": 11,
+                "fontFamily": "Inter",
+                "fontWeight": "Regular",
+                "lineHeight": 13,
+                "lineHeightUnit": "PIXELS",
+                "letterSpacing": 0,
+                "letterSpacingUnit": "PIXELS",
+                "textCase": "ORIGINAL",
+                "textDecoration": "NONE"
+              }
+            },
+            {
+              "name": "+ Inter +/Caption 2 (11-13)/Semibold",
+              "type": "typography",
+              "isAlias": false,
+              "value": {
+                "fontSize": 11,
+                "fontFamily": "Inter",
+                "fontWeight": "Semi Bold",
+                "lineHeight": 13,
+                "lineHeightUnit": "PIXELS",
+                "letterSpacing": 0,
+                "letterSpacingUnit": "PIXELS",
+                "textCase": "ORIGINAL",
+                "textDecoration": "NONE"
+              }
+            },
+            {
+              "name": "+ Inter +/Caption 2 (11-13)/Bold",
+              "type": "typography",
+              "isAlias": false,
+              "value": {
+                "fontSize": 11,
+                "fontFamily": "Inter",
+                "fontWeight": "Bold",
+                "lineHeight": 13,
+                "lineHeightUnit": "PIXELS",
+                "letterSpacing": 0,
+                "letterSpacingUnit": "PIXELS",
+                "textCase": "ORIGINAL",
+                "textDecoration": "NONE"
+              }
+            },
+            {
+              "name": "+ Lora +/Large Title (34-41)/Regular",
+              "type": "typography",
+              "isAlias": false,
+              "value": {
+                "fontSize": 34,
+                "fontFamily": "Lora",
+                "fontWeight": "Regular",
+                "lineHeight": 41,
+                "lineHeightUnit": "PIXELS",
+                "letterSpacing": 0,
+                "letterSpacingUnit": "PERCENT",
+                "textCase": "ORIGINAL",
+                "textDecoration": "NONE"
+              }
+            },
+            {
+              "name": "+ Lora +/Large Title (34-41)/Semibold",
+              "type": "typography",
+              "isAlias": false,
+              "value": {
+                "fontSize": 34,
+                "fontFamily": "Lora",
+                "fontWeight": "SemiBold",
+                "lineHeight": 41,
+                "lineHeightUnit": "PIXELS",
+                "letterSpacing": 0,
+                "letterSpacingUnit": "PERCENT",
+                "textCase": "ORIGINAL",
+                "textDecoration": "NONE"
+              }
+            },
+            {
+              "name": "+ Lora +/Large Title (34-41)/Bold",
+              "type": "typography",
+              "isAlias": false,
+              "value": {
+                "fontSize": 34,
+                "fontFamily": "Lora",
+                "fontWeight": "Bold",
+                "lineHeight": 41,
+                "lineHeightUnit": "PIXELS",
+                "letterSpacing": 0,
+                "letterSpacingUnit": "PERCENT",
+                "textCase": "ORIGINAL",
+                "textDecoration": "NONE"
+              }
+            },
+            {
+              "name": "+ Lora +/Title 1 (28-34)/Regular",
+              "type": "typography",
+              "isAlias": false,
+              "value": {
+                "fontSize": 28,
+                "fontFamily": "Lora",
+                "fontWeight": "Regular",
+                "lineHeight": 34,
+                "lineHeightUnit": "PIXELS",
+                "letterSpacing": 0,
+                "letterSpacingUnit": "PERCENT",
+                "textCase": "ORIGINAL",
+                "textDecoration": "NONE"
+              }
+            },
+            {
+              "name": "+ Lora +/Title 1 (28-34)/Semibold",
+              "type": "typography",
+              "isAlias": false,
+              "value": {
+                "fontSize": 28,
+                "fontFamily": "Lora",
+                "fontWeight": "SemiBold",
+                "lineHeight": 34,
+                "lineHeightUnit": "PIXELS",
+                "letterSpacing": 0,
+                "letterSpacingUnit": "PERCENT",
+                "textCase": "ORIGINAL",
+                "textDecoration": "NONE"
+              }
+            },
+            {
+              "name": "+ Lora +/Title 1 (28-34)/Bold",
+              "type": "typography",
+              "isAlias": false,
+              "value": {
+                "fontSize": 28,
+                "fontFamily": "Lora",
+                "fontWeight": "Bold",
+                "lineHeight": 34,
+                "lineHeightUnit": "PIXELS",
+                "letterSpacing": 0,
+                "letterSpacingUnit": "PERCENT",
+                "textCase": "ORIGINAL",
+                "textDecoration": "NONE"
+              }
+            },
+            {
+              "name": "+ Lora +/Title 2 (22-28)/Regular",
+              "type": "typography",
+              "isAlias": false,
+              "value": {
+                "fontSize": 22,
+                "fontFamily": "Lora",
+                "fontWeight": "Regular",
+                "lineHeight": 28,
+                "lineHeightUnit": "PIXELS",
+                "letterSpacing": 0,
+                "letterSpacingUnit": "PERCENT",
+                "textCase": "ORIGINAL",
+                "textDecoration": "NONE"
+              }
+            },
+            {
+              "name": "+ Lora +/Title 2 (22-28)/Semibold",
+              "type": "typography",
+              "isAlias": false,
+              "value": {
+                "fontSize": 22,
+                "fontFamily": "Lora",
+                "fontWeight": "SemiBold",
+                "lineHeight": 28,
+                "lineHeightUnit": "PIXELS",
+                "letterSpacing": 0,
+                "letterSpacingUnit": "PERCENT",
+                "textCase": "ORIGINAL",
+                "textDecoration": "NONE"
+              }
+            },
+            {
+              "name": "+ Lora +/Title 2 (22-28)/Bold",
+              "type": "typography",
+              "isAlias": false,
+              "value": {
+                "fontSize": 22,
+                "fontFamily": "Lora",
+                "fontWeight": "Bold",
+                "lineHeight": 28,
+                "lineHeightUnit": "PIXELS",
+                "letterSpacing": 0,
+                "letterSpacingUnit": "PERCENT",
+                "textCase": "ORIGINAL",
+                "textDecoration": "NONE"
+              }
+            },
+            {
+              "name": "+ Lora +/Title 3 (20-25)/Regular",
+              "type": "typography",
+              "isAlias": false,
+              "value": {
+                "fontSize": 20,
+                "fontFamily": "Lora",
+                "fontWeight": "Regular",
+                "lineHeight": 25,
+                "lineHeightUnit": "PIXELS",
+                "letterSpacing": 0,
+                "letterSpacingUnit": "PERCENT",
+                "textCase": "ORIGINAL",
+                "textDecoration": "NONE"
+              }
+            },
+            {
+              "name": "+ Lora +/Title 3 (20-25)/Semibold",
+              "type": "typography",
+              "isAlias": false,
+              "value": {
+                "fontSize": 20,
+                "fontFamily": "Lora",
+                "fontWeight": "SemiBold",
+                "lineHeight": 25,
+                "lineHeightUnit": "PIXELS",
+                "letterSpacing": 0,
+                "letterSpacingUnit": "PERCENT",
+                "textCase": "ORIGINAL",
+                "textDecoration": "NONE"
+              }
+            },
+            {
+              "name": "+ Lora +/Title 3 (20-25)/Bold",
+              "type": "typography",
+              "isAlias": false,
+              "value": {
+                "fontSize": 20,
+                "fontFamily": "Lora",
+                "fontWeight": "Bold",
+                "lineHeight": 25,
+                "lineHeightUnit": "PIXELS",
+                "letterSpacing": 0,
+                "letterSpacingUnit": "PERCENT",
+                "textCase": "ORIGINAL",
+                "textDecoration": "NONE"
+              }
+            },
+            {
+              "name": "+ Lora +/Headline (17-22)/Regular",
+              "type": "typography",
+              "isAlias": false,
+              "value": {
+                "fontSize": 17,
+                "fontFamily": "Lora",
+                "fontWeight": "Regular",
+                "lineHeight": 22,
+                "lineHeightUnit": "PIXELS",
+                "letterSpacing": 0,
+                "letterSpacingUnit": "PERCENT",
+                "textCase": "ORIGINAL",
+                "textDecoration": "NONE"
+              }
+            },
+            {
+              "name": "+ Lora +/Headline (17-22)/Semibold",
+              "type": "typography",
+              "isAlias": false,
+              "value": {
+                "fontSize": 17,
+                "fontFamily": "Lora",
+                "fontWeight": "SemiBold",
+                "lineHeight": 22,
+                "lineHeightUnit": "PIXELS",
+                "letterSpacing": 0,
+                "letterSpacingUnit": "PERCENT",
+                "textCase": "ORIGINAL",
+                "textDecoration": "NONE"
+              }
+            },
+            {
+              "name": "+ Lora +/Headline (17-22)/Bold",
+              "type": "typography",
+              "isAlias": false,
+              "value": {
+                "fontSize": 17,
+                "fontFamily": "Lora",
+                "fontWeight": "Bold",
+                "lineHeight": 22,
+                "lineHeightUnit": "PIXELS",
+                "letterSpacing": 0,
+                "letterSpacingUnit": "PERCENT",
+                "textCase": "ORIGINAL",
+                "textDecoration": "NONE"
+              }
+            },
+            {
+              "name": "+ Lora +/Body (17-22)/Regular",
+              "type": "typography",
+              "isAlias": false,
+              "value": {
+                "fontSize": 17,
+                "fontFamily": "Lora",
+                "fontWeight": "Regular",
+                "lineHeight": 22,
+                "lineHeightUnit": "PIXELS",
+                "letterSpacing": 0,
+                "letterSpacingUnit": "PERCENT",
+                "textCase": "ORIGINAL",
+                "textDecoration": "NONE"
+              }
+            },
+            {
+              "name": "+ Lora +/Body (17-22)/Semibold",
+              "type": "typography",
+              "isAlias": false,
+              "value": {
+                "fontSize": 17,
+                "fontFamily": "Lora",
+                "fontWeight": "SemiBold",
+                "lineHeight": 22,
+                "lineHeightUnit": "PIXELS",
+                "letterSpacing": 0,
+                "letterSpacingUnit": "PERCENT",
+                "textCase": "ORIGINAL",
+                "textDecoration": "NONE"
+              }
+            },
+            {
+              "name": "+ Lora +/Body (17-22)/Bold",
+              "type": "typography",
+              "isAlias": false,
+              "value": {
+                "fontSize": 17,
+                "fontFamily": "Lora",
+                "fontWeight": "Bold",
+                "lineHeight": 22,
+                "lineHeightUnit": "PIXELS",
+                "letterSpacing": 0,
+                "letterSpacingUnit": "PERCENT",
+                "textCase": "ORIGINAL",
+                "textDecoration": "NONE"
+              }
+            },
+            {
+              "name": "+ Lora +/Callout (16-21)/Regular",
+              "type": "typography",
+              "isAlias": false,
+              "value": {
+                "fontSize": 16,
+                "fontFamily": "Lora",
+                "fontWeight": "Regular",
+                "lineHeight": 21,
+                "lineHeightUnit": "PIXELS",
+                "letterSpacing": 0,
+                "letterSpacingUnit": "PERCENT",
+                "textCase": "ORIGINAL",
+                "textDecoration": "NONE"
+              }
+            },
+            {
+              "name": "+ Lora +/Callout (16-21)/Semibold",
+              "type": "typography",
+              "isAlias": false,
+              "value": {
+                "fontSize": 16,
+                "fontFamily": "Lora",
+                "fontWeight": "SemiBold",
+                "lineHeight": 21,
+                "lineHeightUnit": "PIXELS",
+                "letterSpacing": 0,
+                "letterSpacingUnit": "PERCENT",
+                "textCase": "ORIGINAL",
+                "textDecoration": "NONE"
+              }
+            },
+            {
+              "name": "+ Lora +/Callout (16-21)/Bold",
+              "type": "typography",
+              "isAlias": false,
+              "value": {
+                "fontSize": 16,
+                "fontFamily": "Lora",
+                "fontWeight": "Bold",
+                "lineHeight": 21,
+                "lineHeightUnit": "PIXELS",
+                "letterSpacing": 0,
+                "letterSpacingUnit": "PERCENT",
+                "textCase": "ORIGINAL",
+                "textDecoration": "NONE"
+              }
+            },
+            {
+              "name": "+ Lora +/Subhead (15-20)/Regular",
+              "type": "typography",
+              "isAlias": false,
+              "value": {
+                "fontSize": 15,
+                "fontFamily": "Lora",
+                "fontWeight": "Regular",
+                "lineHeight": 20,
+                "lineHeightUnit": "PIXELS",
+                "letterSpacing": 0,
+                "letterSpacingUnit": "PERCENT",
+                "textCase": "ORIGINAL",
+                "textDecoration": "NONE"
+              }
+            },
+            {
+              "name": "+ Lora +/Subhead (15-20)/Semibold",
+              "type": "typography",
+              "isAlias": false,
+              "value": {
+                "fontSize": 15,
+                "fontFamily": "Lora",
+                "fontWeight": "SemiBold",
+                "lineHeight": 20,
+                "lineHeightUnit": "PIXELS",
+                "letterSpacing": 0,
+                "letterSpacingUnit": "PERCENT",
+                "textCase": "ORIGINAL",
+                "textDecoration": "NONE"
+              }
+            },
+            {
+              "name": "+ Lora +/Subhead (15-20)/Bold",
+              "type": "typography",
+              "isAlias": false,
+              "value": {
+                "fontSize": 15,
+                "fontFamily": "Lora",
+                "fontWeight": "Bold",
+                "lineHeight": 20,
+                "lineHeightUnit": "PIXELS",
+                "letterSpacing": 0,
+                "letterSpacingUnit": "PERCENT",
+                "textCase": "ORIGINAL",
+                "textDecoration": "NONE"
+              }
+            },
+            {
+              "name": "+ Lora +/Footnote (13-18)/Regular",
+              "type": "typography",
+              "isAlias": false,
+              "value": {
+                "fontSize": 13,
+                "fontFamily": "Lora",
+                "fontWeight": "Regular",
+                "lineHeight": 18,
+                "lineHeightUnit": "PIXELS",
+                "letterSpacing": 0,
+                "letterSpacingUnit": "PERCENT",
+                "textCase": "ORIGINAL",
+                "textDecoration": "NONE"
+              }
+            },
+            {
+              "name": "+ Lora +/Footnote (13-18)/Semibold",
+              "type": "typography",
+              "isAlias": false,
+              "value": {
+                "fontSize": 13,
+                "fontFamily": "Lora",
+                "fontWeight": "SemiBold",
+                "lineHeight": 18,
+                "lineHeightUnit": "PIXELS",
+                "letterSpacing": 0,
+                "letterSpacingUnit": "PERCENT",
+                "textCase": "ORIGINAL",
+                "textDecoration": "NONE"
+              }
+            },
+            {
+              "name": "+ Lora +/Footnote (13-18)/Bold",
+              "type": "typography",
+              "isAlias": false,
+              "value": {
+                "fontSize": 13,
+                "fontFamily": "Lora",
+                "fontWeight": "Bold",
+                "lineHeight": 18,
+                "lineHeightUnit": "PIXELS",
+                "letterSpacing": 0,
+                "letterSpacingUnit": "PERCENT",
+                "textCase": "ORIGINAL",
+                "textDecoration": "NONE"
+              }
+            },
+            {
+              "name": "+ Lora +/Caption 1 (12-16)/Regular",
+              "type": "typography",
+              "isAlias": false,
+              "value": {
+                "fontSize": 12,
+                "fontFamily": "Lora",
+                "fontWeight": "Regular",
+                "lineHeight": 16,
+                "lineHeightUnit": "PIXELS",
+                "letterSpacing": 0,
+                "letterSpacingUnit": "PERCENT",
+                "textCase": "ORIGINAL",
+                "textDecoration": "NONE"
+              }
+            },
+            {
+              "name": "+ Lora +/Caption 1 (12-16)/Semibold",
+              "type": "typography",
+              "isAlias": false,
+              "value": {
+                "fontSize": 12,
+                "fontFamily": "Lora",
+                "fontWeight": "SemiBold",
+                "lineHeight": 16,
+                "lineHeightUnit": "PIXELS",
+                "letterSpacing": 0,
+                "letterSpacingUnit": "PERCENT",
+                "textCase": "ORIGINAL",
+                "textDecoration": "NONE"
+              }
+            },
+            {
+              "name": "+ Lora +/Caption 1 (12-16)/Bold",
+              "type": "typography",
+              "isAlias": false,
+              "value": {
+                "fontSize": 12,
+                "fontFamily": "Lora",
+                "fontWeight": "Bold",
+                "lineHeight": 16,
+                "lineHeightUnit": "PIXELS",
+                "letterSpacing": 0,
+                "letterSpacingUnit": "PERCENT",
+                "textCase": "ORIGINAL",
+                "textDecoration": "NONE"
+              }
+            },
+            {
+              "name": "+ Lora +/Caption 2 (11-13)/Regular",
+              "type": "typography",
+              "isAlias": false,
+              "value": {
+                "fontSize": 11,
+                "fontFamily": "Lora",
+                "fontWeight": "Regular",
+                "lineHeight": 13,
+                "lineHeightUnit": "PIXELS",
+                "letterSpacing": 0,
+                "letterSpacingUnit": "PERCENT",
+                "textCase": "ORIGINAL",
+                "textDecoration": "NONE"
+              }
+            },
+            {
+              "name": "+ Lora +/Caption 2 (11-13)/Semibold",
+              "type": "typography",
+              "isAlias": false,
+              "value": {
+                "fontSize": 11,
+                "fontFamily": "Lora",
+                "fontWeight": "SemiBold",
+                "lineHeight": 13,
+                "lineHeightUnit": "PIXELS",
+                "letterSpacing": 0,
+                "letterSpacingUnit": "PERCENT",
+                "textCase": "ORIGINAL",
+                "textDecoration": "NONE"
+              }
+            },
+            {
+              "name": "+ Lora +/Caption 2 (11-13)/Bold",
+              "type": "typography",
+              "isAlias": false,
+              "value": {
+                "fontSize": 11,
+                "fontFamily": "Lora",
+                "fontWeight": "Bold",
+                "lineHeight": 13,
+                "lineHeightUnit": "PIXELS",
+                "letterSpacing": 0,
+                "letterSpacingUnit": "PERCENT",
+                "textCase": "ORIGINAL",
+                "textDecoration": "NONE"
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "Effects",
+      "modes": [
+        {
+          "name": "Style",
+          "variables": [
+            {
+              "name": "Elevation Level-1",
+              "type": "effect",
+              "isAlias": false,
+              "value": {
+                "effects": [
+                  {
+                    "type": "DROP_SHADOW",
+                    "color": {
+                      "r": 0,
+                      "g": 0,
+                      "b": 0,
+                      "a": 0.1
+                    },
+                    "offset": {
+                      "x": 0,
+                      "y": 1
+                    },
+                    "radius": 4,
+                    "spread": 0
+                  }
+                ]
+              }
+            },
+            {
+              "name": "Elevation Level-2",
+              "type": "effect",
+              "isAlias": false,
+              "value": {
+                "effects": [
+                  {
+                    "type": "DROP_SHADOW",
+                    "color": {
+                      "r": 0,
+                      "g": 0,
+                      "b": 0,
+                      "a": 0.1
+                    },
+                    "offset": {
+                      "x": 0,
+                      "y": 2
+                    },
+                    "radius": 8,
+                    "spread": 0
+                  }
+                ]
+              }
+            },
+            {
+              "name": "Elevation Level-3",
+              "type": "effect",
+              "isAlias": false,
+              "value": {
+                "effects": [
+                  {
+                    "type": "DROP_SHADOW",
+                    "color": {
+                      "r": 0,
+                      "g": 0,
+                      "b": 0,
+                      "a": 0.2
+                    },
+                    "offset": {
+                      "x": 0,
+                      "y": 3
+                    },
+                    "radius": 12,
+                    "spread": 0
+                  }
+                ]
+              }
+            },
+            {
+              "name": "Elevation Level-4",
+              "type": "effect",
+              "isAlias": false,
+              "value": {
+                "effects": [
+                  {
+                    "type": "DROP_SHADOW",
+                    "color": {
+                      "r": 0,
+                      "g": 0,
+                      "b": 0,
+                      "a": 0.2
+                    },
+                    "offset": {
+                      "x": 0,
+                      "y": 4
+                    },
+                    "radius": 20,
+                    "spread": 0
+                  }
+                ]
+              }
+            },
+            {
+              "name": "Elevation Level-5",
+              "type": "effect",
+              "isAlias": false,
+              "value": {
+                "effects": [
+                  {
+                    "type": "DROP_SHADOW",
+                    "color": {
+                      "r": 0,
+                      "g": 0,
+                      "b": 0,
+                      "a": 0.4
+                    },
+                    "offset": {
+                      "x": 0,
+                      "y": 5
+                    },
+                    "radius": 28,
+                    "spread": 0
+                  }
+                ]
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "Grids",
+      "modes": [
+        {
+          "name": "Style",
+          "variables": [
+            {
+              "name": "6 Grid - iOS Portrait (390)",
+              "type": "grid",
+              "isAlias": false,
+              "value": {
+                "layoutGrids": [
+                  {
+                    "pattern": "COLUMNS",
+                    "color": {
+                      "r": 0,
+                      "g": 0,
+                      "b": 0,
+                      "a": 0.1
+                    },
+                    "alignment": "STRETCH",
+                    "gutterSize": 16,
+                    "offset": 16,
+                    "count": 6
+                  }
+                ]
+              }
+            },
+            {
+              "name": "6 Grid - iPad Portrait (834)",
+              "type": "grid",
+              "isAlias": false,
+              "value": {
+                "layoutGrids": [
+                  {
+                    "pattern": "COLUMNS",
+                    "color": {
+                      "r": 0,
+                      "g": 0,
+                      "b": 0,
+                      "a": 0.1
+                    },
+                    "alignment": "STRETCH",
+                    "gutterSize": 32,
+                    "offset": 48,
+                    "count": 6
+                  }
+                ]
+              }
+            },
+            {
+              "name": "6 Grid - iPad Landscape (1194)",
+              "type": "grid",
+              "isAlias": false,
+              "value": {
+                "layoutGrids": [
+                  {
+                    "pattern": "COLUMNS",
+                    "color": {
+                      "r": 0,
+                      "g": 0,
+                      "b": 0,
+                      "a": 0.1
+                    },
+                    "alignment": "STRETCH",
+                    "gutterSize": 32,
+                    "offset": 143,
+                    "count": 6
+                  }
+                ]
+              }
+            },
+            {
+              "name": "iPad - main content",
+              "type": "grid",
+              "isAlias": false,
+              "value": {
+                "layoutGrids": [
+                  {
+                    "pattern": "COLUMNS",
+                    "color": {
+                      "r": 255,
+                      "g": 0,
+                      "b": 0,
+                      "a": 0.1
+                    },
+                    "alignment": "STRETCH",
+                    "gutterSize": 32,
+                    "offset": 16,
+                    "count": 6
+                  }
+                ]
+              }
+            },
+            {
+              "name": "iPad - sidebar content",
+              "type": "grid",
+              "isAlias": false,
+              "value": {
+                "layoutGrids": [
+                  {
+                    "pattern": "COLUMNS",
+                    "color": {
+                      "r": 0,
+                      "g": 0,
+                      "b": 255,
+                      "a": 0.1
+                    },
+                    "alignment": "STRETCH",
+                    "gutterSize": 16,
+                    "offset": 16,
+                    "count": 4
+                  }
+                ]
+              }
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

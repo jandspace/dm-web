@@ -1,0 +1,125 @@
+/* ============================================
+   DM Design System — Web Typography Tokens
+   Version: 1.0.4
+   ============================================
+   Structure:
+   1. Primitive Typography (Font Family, Weight, Line Height, Letter Spacing)
+   2. Semantic Font Size Tokens — Responsive (Desktop / Tablet / Mobile)
+   3. Elevation (Box Shadow)
+
+   Responsive Implementation (Mobile First):
+   Default styles apply to Mobile (<768px).
+   Tablet overrides apply at min-width: 768px.
+   Desktop overrides apply at min-width: 1024px.
+   ============================================ */
+
+/* ============================================
+   1. Primitive Typography Tokens
+   ============================================ */
+:root {
+  /* Font Family */
+  --typography-font-family-sans: "Inter", sans-serif;
+  --typography-font-family-serif: "Lora", Georgia, serif;
+
+  /* Font Weight */
+  --typography-font-weight-regular: 400;
+  --typography-font-weight-semibold: 600;
+  --typography-font-weight-bold: 700;
+  --typography-font-weight-regular-italic: 400;
+  --typography-font-weight-semibold-italic: 600;
+  --typography-font-weight-bold-italic: 700;
+
+  /* Line Height (unitless ratio) */
+  --typography-line-height-narrower: 1.12;
+  --typography-line-height-narrow: 1.2;
+  --typography-line-height-compact: 1.32;
+  --typography-line-height-normal: 1.5;
+  --typography-line-height-wide: 1.75;
+
+  /* Letter Spacing (%) */
+  --typography-letter-spacing-narrow: -0.5%;
+  --typography-letter-spacing-compact: -0.2%;
+  --typography-letter-spacing-normal: 0%;
+  --typography-letter-spacing-wide: 0.25%;
+}
+
+/* ============================================
+   2. Semantic Font Size Tokens — Responsive
+   Mobile First: Mobile is default, Tablet and Desktop
+   override via min-width breakpoints.
+   ============================================ */
+
+/* Mobile — Default (< 768px) */
+:root {
+  --typography-font-size-h1: 26px;
+  --typography-font-size-h2: 22px;
+  --typography-font-size-h3: 20px;
+  --typography-font-size-h4: 18px;
+  --typography-font-size-h5: 16px;
+  --typography-font-size-h6: 14px;
+  --typography-font-size-display-lg: 42px;
+  --typography-font-size-display-md: 38px;
+  --typography-font-size-display-sm: 34px;
+  --typography-font-size-text-lg: 18px;
+  --typography-font-size-text-md: 16px;
+  --typography-font-size-text-sm: 14px;
+  --typography-font-size-text-xsm: 13px;
+  --typography-font-size-text-xxsm: 12px;
+  --typography-font-size-label-xl: 19px;
+  --typography-font-size-label-lg: 18px;
+  --typography-font-size-label-md: 16px;
+  --typography-font-size-label-sm: 14px;
+  --typography-font-size-label-xsm: 13px;
+  --typography-font-size-label-xxsm: 12px;
+}
+
+/* Tablet (≥ 768px) */
+@media (min-width: 768px) {
+  :root {
+    --typography-font-size-h1: 30px;
+    --typography-font-size-h2: 24px;
+    --typography-font-size-h3: 21px;
+    --typography-font-size-display-lg: 54px;
+    --typography-font-size-display-md: 48px;
+    --typography-font-size-display-sm: 42px;
+  }
+}
+
+/* Desktop (≥ 1024px) */
+@media (min-width: 1024px) {
+  :root {
+    --typography-font-size-h1: 36px;
+    --typography-font-size-h2: 28px;
+    --typography-font-size-h3: 22px;
+    --typography-font-size-display-lg: 64px;
+    --typography-font-size-display-md: 56px;
+    --typography-font-size-display-sm: 48px;
+    --typography-font-size-label-xl: 20px;
+  }
+}
+
+/* ============================================
+   Usage Examples
+   ============================================ */
+
+/*
+  Font size tokens scale automatically with breakpoints.
+  Apply tokens directly to CSS classes or component styles.
+
+  Example:
+  .article-headline {
+    font-family: var(--typography-font-family-serif);
+    font-size: var(--typography-font-size-h1);
+    font-weight: var(--typography-font-weight-bold);
+    line-height: var(--typography-line-height-narrow);
+    letter-spacing: var(--typography-letter-spacing-compact);
+  }
+
+  .body-copy {
+    font-family: var(--typography-font-family-sans);
+    font-size: var(--typography-font-size-text-md);
+    font-weight: var(--typography-font-weight-regular);
+    line-height: var(--typography-line-height-normal);
+    letter-spacing: var(--typography-letter-spacing-normal);
+  }
+*/
