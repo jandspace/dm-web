@@ -1,0 +1,1640 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Button Generator — DM Design System</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="../../tokens/dm_tokens.css" />
+    <link rel="stylesheet" href="../../tokens/dm_typography_web_tokens.css" />
+
+    <style>
+      /* ── Reset ── */
+      *,
+      *::before,
+      *::after {
+        box-sizing: border-box;
+        margin: 0;
+        padding: 0;
+      }
+
+      body {
+        font-family: var(--typography-font-family-sans);
+        height: 100vh;
+        display: flex;
+        overflow: hidden;
+        color: var(--color-text-neutral-darker);
+        background: var(--color-background-neutral-lightest);
+        -webkit-font-smoothing: antialiased;
+      }
+
+      /* ─────────────────────────────────────────
+         Left Panel
+      ───────────────────────────────────────── */
+      .gen-panel {
+        width: 300px;
+        flex-shrink: 0;
+        background: #fff;
+        border-right: 1px solid var(--color-border-neutral-light);
+        overflow-y: auto;
+        display: flex;
+        flex-direction: column;
+        gap: 0;
+      }
+
+      .panel-header {
+        padding: 20px 20px 16px;
+        border-bottom: 1px solid var(--color-border-neutral-light);
+        flex-shrink: 0;
+      }
+
+      .panel-title {
+        font-size: var(--typography-font-size-label-md);
+        font-weight: var(--typography-font-weight-semibold);
+        line-height: var(--typography-line-height-narrow);
+        color: var(--color-text-neutral-darker);
+      }
+
+      .panel-controls {
+        padding: 16px 20px 24px;
+        display: flex;
+        flex-direction: column;
+        gap: 18px;
+      }
+
+      /* ── Control Group ── */
+
+      .ctrl-label {
+        font-size: 10px;
+        font-weight: 700;
+        letter-spacing: 0.1em;
+        text-transform: uppercase;
+        color: var(--color-text-neutral-grey-dark);
+        margin-bottom: 7px;
+        display: block;
+      }
+
+      .ctrl-seg {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 4px;
+      }
+
+      .ctrl-seg-btn {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        padding: 7px 14px;
+        border-radius: 999px;
+        border: 1px solid var(--color-border-neutral-grey-light);
+        background: transparent;
+        cursor: pointer;
+        font-family: var(--typography-font-family-sans);
+        font-size: var(--typography-font-size-label-sm);
+        font-weight: var(--typography-font-weight-semibold);
+        color: var(--color-text-neutral-dark);
+        line-height: 1;
+        transition:
+          background 80ms ease,
+          border-color 80ms ease,
+          color 80ms ease;
+        white-space: nowrap;
+        -webkit-font-smoothing: antialiased;
+      }
+
+      .ctrl-seg-btn:hover {
+        border-color: var(--color-border-neutral-darker);
+        color: var(--color-text-neutral-darker);
+        background: var(--color-background-neutral-lightest);
+      }
+
+      .ctrl-seg-btn.is-active {
+        background: var(--color-background-neutral-darker);
+        border-color: var(--color-background-neutral-darker);
+        color: var(--color-text-neutral-lightest);
+      }
+
+      /* ── Background picker ── */
+      .ctrl-bg-row {
+        display: flex;
+        align-items: center;
+        gap: 8px;
+        flex-wrap: wrap;
+      }
+
+      .ctrl-swatches {
+        display: flex;
+        gap: 12px;
+        flex-wrap: wrap;
+      }
+
+      .ctrl-swatch {
+        width: 42px;
+        height: 42px;
+        border-radius: 50%;
+        border: none;
+        cursor: pointer;
+        padding: 0;
+        flex-shrink: 0;
+        box-shadow: inset 0 0 0 1px rgba(0, 0, 0, 0.18);
+        background-size: cover;
+        background-position: center;
+        transition:
+          transform 80ms ease,
+          box-shadow 80ms ease;
+      }
+
+      .ctrl-swatch:hover {
+        transform: scale(1.15);
+      }
+
+      .ctrl-swatch.is-active {
+        box-shadow:
+          0 0 0 2px #fff,
+          0 0 0 3.5px var(--color-background-neutral-darker);
+      }
+
+      .ctrl-color-pick {
+        position: relative;
+        width: 42px;
+        height: 42px;
+        border-radius: 50%;
+        cursor: pointer;
+        flex-shrink: 0;
+        overflow: hidden;
+        background: conic-gradient(from 0deg, #f00, #ff0, #0f0, #0ff, #00f, #f0f, #f00);
+        box-shadow: inset 0 0 0 1px rgba(0, 0, 0, 0.18);
+        transition:
+          transform 80ms ease,
+          box-shadow 80ms ease;
+      }
+
+      .ctrl-color-pick:hover {
+        transform: scale(1.15);
+      }
+
+      .ctrl-color-pick.is-active {
+        box-shadow:
+          0 0 0 2px #fff,
+          0 0 0 3.5px var(--color-background-neutral-darker);
+      }
+
+      .ctrl-color-pick input[type="color"] {
+        position: absolute;
+        inset: 0;
+        opacity: 0;
+        width: 100%;
+        height: 100%;
+        cursor: pointer;
+        border: none;
+        padding: 0;
+      }
+
+      /* ─────────────────────────────────────────
+         Main Preview Area
+      ───────────────────────────────────────── */
+      .gen-main {
+        flex: 1;
+        display: flex;
+        flex-direction: column;
+        overflow: hidden;
+        min-width: 0;
+      }
+
+      .gen-preview-main {
+        position: relative;
+        flex: 1;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        transition: background 150ms ease;
+        min-height: 0;
+      }
+
+      /* ── Preview label ── */
+      .preview-content {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 20px;
+      }
+      .preview-label {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 4px;
+      }
+      .preview-label-name {
+        font-size: var(--typography-font-size-h5);
+        font-weight: var(--typography-font-weight-semibold);
+        color: var(--color-text-neutral-darker);
+        line-height: var(--typography-line-height-narrow);
+        transition: color 150ms ease;
+      }
+      .preview-label-meta {
+        font-size: var(--typography-font-size-label-sm);
+        font-weight: var(--typography-font-weight-semibold);
+        color: var(--color-text-neutral-grey-dark);
+        line-height: var(--typography-line-height-narrow);
+        transition: color 150ms ease;
+      }
+
+      /* ── Token note ── */
+      .token-note {
+        position: absolute;
+        top: 16px;
+        right: 16px;
+        width: 252px;
+        background: #fef9a0;
+        padding: 14px 16px 16px;
+        border-radius: 8px;
+        box-shadow:
+          0 1px 2px rgba(0, 0, 0, 0.08),
+          2px 4px 16px rgba(0, 0, 0, 0.16);
+        z-index: 999;
+      }
+      .tn-heading {
+        font-size: 9px;
+        font-weight: 700;
+        letter-spacing: 0.12em;
+        text-transform: uppercase;
+        color: #8a7a00;
+        padding-bottom: 7px;
+        margin-bottom: 8px;
+        border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+      }
+      .tn-section {
+        margin-bottom: 8px;
+      }
+      .tn-section:last-child {
+        margin-bottom: 0;
+      }
+      .tn-section + .tn-section {
+        padding-top: 8px;
+        border-top: 1px dashed rgba(0, 0, 0, 0.1);
+      }
+      .tn-state {
+        font-size: 9px;
+        font-weight: 700;
+        letter-spacing: 0.08em;
+        text-transform: uppercase;
+        color: #9a8a10;
+        margin-bottom: 4px;
+      }
+      .tn-token {
+        display: block;
+        font-family: "Courier New", Courier, monospace;
+        font-size: 12px;
+        font-weight: 600;
+        color: #b60000;
+        line-height: 1.2;
+        margin-bottom: 0.5rem;
+      }
+      .tn-shadow {
+        display: block;
+        font-family: "Courier New", Courier, monospace;
+        font-size: 12px;
+        font-weight: 600;
+        color: #b60000;
+        line-height: 1.2;
+        margin-bottom: 0.5rem;
+      }
+
+      /* ── States Row ── */
+      .gen-states {
+        height: 148px;
+        flex-shrink: 0;
+        display: flex;
+        border-top: 1px solid var(--color-border-neutral-light);
+        transition:
+          background 150ms ease,
+          border-top-color 150ms ease;
+      }
+
+      .gen-states.is-dark {
+        background: #1a1a1a;
+        border-top-color: #2a2a2a;
+      }
+
+      .gen-state {
+        flex: 1;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        gap: 10px;
+        padding: 16px 12px;
+      }
+
+      .gen-state + .gen-state {
+        border-left: 1px solid var(--color-border-neutral-light);
+      }
+
+      .gen-states.is-dark .gen-state + .gen-state {
+        border-left-color: #2a2a2a;
+      }
+
+      .gen-state-preview {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        flex: 1;
+        width: 100%;
+      }
+
+      .gen-state-label {
+        font-size: 10px;
+        font-weight: 700;
+        letter-spacing: 0.08em;
+        text-transform: uppercase;
+        color: var(--color-text-neutral-grey-dark);
+        flex-shrink: 0;
+      }
+
+      .gen-states.is-dark .gen-state-label {
+        color: #555;
+      }
+
+      /* ══════════════════════════════════════════════════════════
+         Button Base
+      ══════════════════════════════════════════════════════════ */
+
+      .btn {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        height: 40px;
+        padding: 0 14px;
+        border: none;
+        border-radius: 999px;
+        cursor: pointer;
+        font-family: var(--typography-font-family-sans);
+        font-size: var(--typography-font-size-label-md);
+        font-weight: var(--typography-font-weight-semibold);
+        line-height: var(--typography-line-height-narrow);
+        letter-spacing: 0;
+        white-space: nowrap;
+        -webkit-font-smoothing: antialiased;
+        transition:
+          background-color 80ms ease,
+          box-shadow 80ms ease;
+        position: relative;
+      }
+
+      /* ── Size modifiers ── */
+      .btn--xs {
+        height: 28px;
+        padding: 0 10px;
+        font-size: var(--typography-font-size-label-xxsm);
+      }
+      .btn--xs .btn__content {
+        gap: 4px;
+      }
+      .btn--xs.btn--icon-only {
+        width: 28px;
+        padding: 0;
+      }
+
+      .btn--sm {
+        height: 34px;
+        padding: 0 12px;
+        font-size: var(--typography-font-size-label-sm);
+      }
+      .btn--sm .btn__content {
+        gap: 5px;
+      }
+      .btn--sm.btn--icon-only {
+        width: 34px;
+        padding: 0;
+      }
+
+      .btn--lg {
+        height: 46px;
+        padding: 0 16px;
+        font-size: var(--typography-font-size-label-lg);
+      }
+      .btn--lg .btn__content {
+        gap: 8px;
+      }
+      .btn--lg.btn--icon-only {
+        width: 46px;
+        padding: 0;
+      }
+
+      .btn--xl {
+        height: 52px;
+        padding: 0 18px;
+        font-size: var(--typography-font-size-label-xl);
+      }
+      .btn--xl .btn__content {
+        gap: 10px;
+      }
+      .btn--xl.btn--icon-only {
+        width: 52px;
+        padding: 0;
+      }
+
+      .btn--icon-only {
+        width: 40px;
+        padding: 0;
+      }
+
+      .btn__content {
+        display: inline-flex;
+        align-items: center;
+        gap: 6px;
+      }
+
+      .btn__content svg {
+        width: 1em;
+        height: 1em;
+        flex-shrink: 0;
+      }
+
+      /* ── Loading ── */
+      @keyframes btn-spin {
+        to {
+          transform: rotate(360deg);
+        }
+      }
+
+      .btn svg.btn-spinner {
+        display: none;
+      }
+
+      .btn--loading {
+        pointer-events: none;
+        cursor: not-allowed;
+      }
+
+      .btn--loading .btn__label,
+      .btn--loading .btn__content {
+        visibility: hidden;
+      }
+
+      .btn--loading svg.btn-spinner {
+        display: block;
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        width: 24px;
+        height: 24px;
+        margin-top: -12px;
+        margin-left: -12px;
+        opacity: 0.4;
+        animation: btn-spin 1.2s linear infinite;
+      }
+
+      .btn--xs.btn--loading svg.btn-spinner {
+        width: 16px;
+        height: 16px;
+        margin-top: -8px;
+        margin-left: -8px;
+      }
+      .btn--sm.btn--loading svg.btn-spinner {
+        width: 20px;
+        height: 20px;
+        margin-top: -10px;
+        margin-left: -10px;
+      }
+      .btn--lg.btn--loading svg.btn-spinner {
+        width: 28px;
+        height: 28px;
+        margin-top: -14px;
+        margin-left: -14px;
+      }
+      .btn--xl.btn--loading svg.btn-spinner {
+        width: 32px;
+        height: 32px;
+        margin-top: -16px;
+        margin-left: -16px;
+      }
+
+      .is-hover,
+      .is-pressed {
+        pointer-events: none;
+      }
+
+      .btn--dissolve {
+        transition:
+          background-color 1s ease,
+          box-shadow 1s ease !important;
+      }
+
+      /* ══════════════════════════════════════════════════════════
+         Primary Variants
+      ══════════════════════════════════════════════════════════ */
+
+      .btn-brand {
+        background-color: var(--color-background-interaction-primary-default);
+        color: var(--color-text-neutral-white);
+      }
+      .btn-brand:hover {
+        background-color: var(--color-background-interaction-primary-hover);
+      }
+      .btn-brand:active {
+        background-color: var(--color-background-interaction-primary-pressed);
+        box-shadow: inset 0 1px 1px 0 rgba(0, 0, 0, 0.4);
+      }
+      .btn-brand.is-hover {
+        background-color: var(--color-background-interaction-primary-hover);
+      }
+      .btn-brand.is-pressed {
+        background-color: var(--color-background-interaction-primary-pressed);
+        box-shadow: inset 0 1px 1px 0 rgba(0, 0, 0, 0.4);
+      }
+      .btn-brand.btn--loading {
+        background-color: var(--color-background-interaction-primary-pressed);
+      }
+
+      .btn-neutral {
+        background-color: var(--color-background-neutral-darker);
+        color: var(--color-text-neutral-lightest);
+      }
+      .btn-neutral:hover {
+        background-color: var(--color-background-neutral-dark);
+      }
+      .btn-neutral:active {
+        background-color: var(--color-background-neutral-grey-dark);
+        box-shadow: inset 0 1px 1px 0 rgba(0, 0, 0, 0.4);
+      }
+      .btn-neutral.is-hover {
+        background-color: var(--color-background-neutral-dark);
+      }
+      .btn-neutral.is-pressed {
+        background-color: var(--color-background-neutral-grey-dark);
+        box-shadow: inset 0 1px 1px 0 rgba(0, 0, 0, 0.4);
+      }
+      .btn-neutral.btn--loading {
+        background-color: var(--color-background-neutral-grey-dark);
+      }
+
+      .btn-neutral-inverse {
+        background-color: var(--color-background-neutral-light);
+        color: var(--color-text-neutral-darker);
+      }
+      .btn-neutral-inverse:hover {
+        background-color: var(--color-background-neutral-white);
+      }
+      .btn-neutral-inverse:active {
+        background-color: var(--color-background-neutral-lighter);
+        box-shadow: inset 0 1px 1px 0 rgba(0, 0, 0, 0.4);
+      }
+      .btn-neutral-inverse.is-hover {
+        background-color: var(--color-background-neutral-white);
+      }
+      .btn-neutral-inverse.is-pressed {
+        background-color: var(--color-background-neutral-lighter);
+        box-shadow: inset 0 1px 1px 0 rgba(0, 0, 0, 0.4);
+      }
+      .btn-neutral-inverse.btn--loading {
+        background-color: var(--color-background-neutral-lighter);
+      }
+
+      /* ══════════════════════════════════════════════════════════
+         Secondary Variants
+      ══════════════════════════════════════════════════════════ */
+
+      .btn-secondary-brand,
+      .btn-secondary-visible,
+      .btn-secondary-neutral,
+      .btn-secondary-light,
+      .btn-secondary-dark {
+        border-width: 1px;
+        border-style: solid;
+      }
+
+      .btn-secondary-brand {
+        background-color: var(--color-effect-translucent-dark-clear);
+        border-color: var(--color-border-neutral-grey-light);
+        color: var(--color-text-interaction-primary-default);
+      }
+      .btn-secondary-brand:hover {
+        background-color: var(--color-effect-translucent-dark-pale);
+      }
+      .btn-secondary-brand:active {
+        background-color: var(--color-effect-translucent-dark-pale);
+        box-shadow: inset 0 1px 1px 0 rgba(0, 0, 0, 0.4);
+      }
+      .btn-secondary-brand.is-hover {
+        background-color: var(--color-effect-translucent-dark-pale);
+      }
+      .btn-secondary-brand.is-pressed {
+        background-color: var(--color-effect-translucent-dark-pale);
+        box-shadow: inset 0 1px 1px 0 rgba(0, 0, 0, 0.4);
+      }
+      .btn-secondary-brand.btn--loading {
+        background-color: var(--color-effect-translucent-dark-pale);
+      }
+
+      .btn-secondary-visible {
+        background-color: var(--color-effect-translucent-dark-clear);
+        border-color: var(--color-border-translucent-dark-subtle);
+        color: var(--color-text-interaction-primary-default);
+      }
+      .btn-secondary-visible:hover {
+        background-color: var(--color-effect-translucent-dark-pale);
+      }
+      .btn-secondary-visible:active {
+        background-color: var(--color-effect-translucent-dark-pale);
+        box-shadow: inset 0 1px 1px 0 rgba(0, 0, 0, 0.4);
+      }
+      .btn-secondary-visible.is-hover {
+        background-color: var(--color-effect-translucent-dark-pale);
+      }
+      .btn-secondary-visible.is-pressed {
+        background-color: var(--color-effect-translucent-dark-pale);
+        box-shadow: inset 0 1px 1px 0 rgba(0, 0, 0, 0.4);
+      }
+      .btn-secondary-visible.btn--loading {
+        background-color: var(--color-effect-translucent-dark-pale);
+      }
+
+      .btn-secondary-neutral {
+        background-color: var(--color-effect-translucent-dark-clear);
+        border-color: var(--color-border-neutral-grey-light);
+        color: var(--color-text-neutral-darker);
+      }
+      .btn-secondary-neutral:hover {
+        background-color: var(--color-effect-translucent-dark-pale);
+      }
+      .btn-secondary-neutral:active {
+        background-color: var(--color-effect-translucent-dark-pale);
+        box-shadow: inset 0 1px 1px 0 rgba(0, 0, 0, 0.4);
+      }
+      .btn-secondary-neutral.is-hover {
+        background-color: var(--color-effect-translucent-dark-pale);
+      }
+      .btn-secondary-neutral.is-pressed {
+        background-color: var(--color-effect-translucent-dark-pale);
+        box-shadow: inset 0 1px 1px 0 rgba(0, 0, 0, 0.4);
+      }
+      .btn-secondary-neutral.btn--loading {
+        background-color: var(--color-effect-translucent-dark-pale);
+      }
+
+      .btn-secondary-light {
+        background-color: var(--color-effect-translucent-dark-clear);
+        border-color: var(--color-border-translucent-dark-subtle);
+        color: var(--color-text-neutral-darker);
+      }
+      .btn-secondary-light:hover {
+        background-color: var(--color-effect-translucent-dark-pale);
+      }
+      .btn-secondary-light:active {
+        background-color: var(--color-effect-translucent-dark-pale);
+        box-shadow: inset 0 1px 1px 0 rgba(0, 0, 0, 0.4);
+      }
+      .btn-secondary-light.is-hover {
+        background-color: var(--color-effect-translucent-dark-pale);
+      }
+      .btn-secondary-light.is-pressed {
+        background-color: var(--color-effect-translucent-dark-pale);
+        box-shadow: inset 0 1px 1px 0 rgba(0, 0, 0, 0.4);
+      }
+      .btn-secondary-light.btn--loading {
+        background-color: var(--color-effect-translucent-dark-pale);
+      }
+
+      .btn-secondary-dark {
+        background-color: var(--color-effect-translucent-light-clear);
+        border-color: var(--color-border-translucent-light-moderate);
+        color: var(--color-text-neutral-lightest);
+      }
+      .btn-secondary-dark:hover {
+        background-color: var(--color-effect-translucent-light-pale);
+      }
+      .btn-secondary-dark:active {
+        background-color: var(--color-effect-translucent-light-pale);
+        box-shadow: inset 0 1px 1px 0 rgba(0, 0, 0, 0.4);
+      }
+      .btn-secondary-dark.is-hover {
+        background-color: var(--color-effect-translucent-light-pale);
+      }
+      .btn-secondary-dark.is-pressed {
+        background-color: var(--color-effect-translucent-light-pale);
+        box-shadow: inset 0 1px 1px 0 rgba(0, 0, 0, 0.4);
+      }
+      .btn-secondary-dark.btn--loading {
+        background-color: var(--color-effect-translucent-light-pale);
+      }
+
+      /* ══════════════════════════════════════════════════════════
+         Tertiary Variants
+      ══════════════════════════════════════════════════════════ */
+
+      .btn-tertiary-brand {
+        background-color: var(--color-background-neutral-lighter);
+        color: var(--color-text-interaction-primary-default);
+      }
+      .btn-tertiary-brand:hover {
+        background-color: var(--color-background-neutral-light);
+      }
+      .btn-tertiary-brand:active {
+        background-color: var(--color-background-neutral-light);
+        box-shadow: inset 0 1px 1px 0 rgba(0, 0, 0, 0.4);
+      }
+      .btn-tertiary-brand.is-hover {
+        background-color: var(--color-background-neutral-light);
+      }
+      .btn-tertiary-brand.is-pressed {
+        background-color: var(--color-background-neutral-light);
+        box-shadow: inset 0 1px 1px 0 rgba(0, 0, 0, 0.4);
+      }
+      .btn-tertiary-brand.btn--loading {
+        background-color: var(--color-background-neutral-light);
+      }
+
+      .btn-tertiary-visible {
+        background-color: var(--color-effect-translucent-dark-pale);
+        color: var(--color-text-interaction-primary-default);
+      }
+      .btn-tertiary-visible:hover {
+        background-color: var(--color-effect-translucent-dark-subtle);
+      }
+      .btn-tertiary-visible:active {
+        background-color: var(--color-effect-translucent-dark-pale);
+        box-shadow: inset 0 1px 1px 0 rgba(0, 0, 0, 0.4);
+      }
+      .btn-tertiary-visible.is-hover {
+        background-color: var(--color-effect-translucent-dark-subtle);
+      }
+      .btn-tertiary-visible.is-pressed {
+        background-color: var(--color-effect-translucent-dark-pale);
+        box-shadow: inset 0 1px 1px 0 rgba(0, 0, 0, 0.4);
+      }
+      .btn-tertiary-visible.btn--loading {
+        background-color: var(--color-effect-translucent-dark-pale);
+      }
+
+      .btn-tertiary-neutral {
+        background-color: var(--color-background-neutral-lighter);
+        color: var(--color-text-neutral-darker);
+      }
+      .btn-tertiary-neutral:hover {
+        background-color: var(--color-background-neutral-light);
+      }
+      .btn-tertiary-neutral:active {
+        background-color: var(--color-background-neutral-light);
+        box-shadow: inset 0 1px 1px 0 rgba(0, 0, 0, 0.4);
+      }
+      .btn-tertiary-neutral.is-hover {
+        background-color: var(--color-background-neutral-light);
+      }
+      .btn-tertiary-neutral.is-pressed {
+        background-color: var(--color-background-neutral-light);
+        box-shadow: inset 0 1px 1px 0 rgba(0, 0, 0, 0.4);
+      }
+      .btn-tertiary-neutral.btn--loading {
+        background-color: var(--color-background-neutral-light);
+      }
+
+      .btn-tertiary-light {
+        background-color: var(--color-effect-translucent-dark-moderate);
+        color: var(--color-text-neutral-lightest);
+      }
+      .btn-tertiary-light:hover {
+        background-color: var(--color-effect-translucent-dark-deep);
+      }
+      .btn-tertiary-light:active {
+        background-color: var(--color-effect-translucent-dark-deep);
+        box-shadow: inset 0 1px 1px 0 rgba(0, 0, 0, 0.4);
+      }
+      .btn-tertiary-light.is-hover {
+        background-color: var(--color-effect-translucent-dark-deep);
+      }
+      .btn-tertiary-light.is-pressed {
+        background-color: var(--color-effect-translucent-dark-deep);
+        box-shadow: inset 0 1px 1px 0 rgba(0, 0, 0, 0.4);
+      }
+      .btn-tertiary-light.btn--loading {
+        background-color: var(--color-effect-translucent-dark-deep);
+      }
+
+      .btn-tertiary-dark {
+        background-color: var(--color-effect-translucent-light-deep);
+        color: var(--color-text-neutral-darker);
+      }
+      .btn-tertiary-dark:hover {
+        background-color: var(--color-effect-translucent-light-thick);
+      }
+      .btn-tertiary-dark:active {
+        background-color: var(--color-effect-translucent-light-thick);
+        box-shadow: inset 0 1px 1px 0 rgba(0, 0, 0, 0.4);
+      }
+      .btn-tertiary-dark.is-hover {
+        background-color: var(--color-effect-translucent-light-thick);
+      }
+      .btn-tertiary-dark.is-pressed {
+        background-color: var(--color-effect-translucent-light-thick);
+        box-shadow: inset 0 1px 1px 0 rgba(0, 0, 0, 0.4);
+      }
+      .btn-tertiary-dark.btn--loading {
+        background-color: var(--color-effect-translucent-light-thick);
+      }
+
+      /* ══════════════════════════════════════════════════════════
+         Quaternary Variants
+      ══════════════════════════════════════════════════════════ */
+
+      .btn-quaternary-brand {
+        background-color: var(--color-effect-translucent-dark-clear);
+        color: var(--color-text-interaction-primary-default);
+      }
+      .btn-quaternary-brand:hover {
+        background-color: var(--color-background-neutral-light);
+      }
+      .btn-quaternary-brand:active {
+        background-color: var(--color-background-neutral-light);
+        box-shadow: inset 0 1px 1px 0 rgba(0, 0, 0, 0.4);
+      }
+      .btn-quaternary-brand.is-hover {
+        background-color: var(--color-background-neutral-light);
+      }
+      .btn-quaternary-brand.is-pressed {
+        background-color: var(--color-background-neutral-light);
+        box-shadow: inset 0 1px 1px 0 rgba(0, 0, 0, 0.4);
+      }
+      .btn-quaternary-brand.btn--loading {
+        background-color: var(--color-background-neutral-light);
+      }
+
+      .btn-quaternary-neutral {
+        background-color: var(--color-effect-translucent-dark-clear);
+        color: var(--color-text-neutral-darker);
+      }
+      .btn-quaternary-neutral:hover {
+        background-color: var(--color-background-neutral-light);
+      }
+      .btn-quaternary-neutral:active {
+        background-color: var(--color-background-neutral-light);
+        box-shadow: inset 0 1px 1px 0 rgba(0, 0, 0, 0.4);
+      }
+      .btn-quaternary-neutral.is-hover {
+        background-color: var(--color-background-neutral-light);
+      }
+      .btn-quaternary-neutral.is-pressed {
+        background-color: var(--color-background-neutral-light);
+        box-shadow: inset 0 1px 1px 0 rgba(0, 0, 0, 0.4);
+      }
+      .btn-quaternary-neutral.btn--loading {
+        background-color: var(--color-background-neutral-light);
+      }
+
+      .btn-quaternary-light {
+        background-color: var(--color-effect-translucent-dark-clear);
+        color: var(--color-text-neutral-darker);
+      }
+      .btn-quaternary-light:hover {
+        background-color: var(--color-effect-translucent-dark-subtle);
+      }
+      .btn-quaternary-light:active {
+        background-color: var(--color-effect-translucent-dark-subtle);
+        box-shadow: inset 0 1px 1px 0 rgba(0, 0, 0, 0.4);
+      }
+      .btn-quaternary-light.is-hover {
+        background-color: var(--color-effect-translucent-dark-subtle);
+      }
+      .btn-quaternary-light.is-pressed {
+        background-color: var(--color-effect-translucent-dark-subtle);
+        box-shadow: inset 0 1px 1px 0 rgba(0, 0, 0, 0.4);
+      }
+      .btn-quaternary-light.btn--loading {
+        background-color: var(--color-effect-translucent-dark-subtle);
+      }
+
+      .btn-quaternary-dark {
+        background-color: var(--color-effect-translucent-light-clear);
+        color: var(--color-text-neutral-lightest);
+      }
+      .btn-quaternary-dark:hover {
+        background-color: var(--color-effect-translucent-light-subtle);
+      }
+      .btn-quaternary-dark:active {
+        background-color: var(--color-effect-translucent-light-subtle);
+        box-shadow: inset 0 1px 1px 0 rgba(0, 0, 0, 0.4);
+      }
+      .btn-quaternary-dark.is-hover {
+        background-color: var(--color-effect-translucent-light-subtle);
+      }
+      .btn-quaternary-dark.is-pressed {
+        background-color: var(--color-effect-translucent-light-subtle);
+        box-shadow: inset 0 1px 1px 0 rgba(0, 0, 0, 0.4);
+      }
+      .btn-quaternary-dark.btn--loading {
+        background-color: var(--color-effect-translucent-light-subtle);
+      }
+
+      /* ══════════════════════════════════════════════════════════
+         Contextual — Negative
+      ══════════════════════════════════════════════════════════ */
+
+      .btn-negative-solid {
+        background-color: var(--color-background-interaction-negative-default);
+        color: var(--color-text-neutral-white);
+      }
+      .btn-negative-solid:hover {
+        background-color: var(--color-background-interaction-negative-hover);
+      }
+      .btn-negative-solid:active {
+        background-color: var(--color-background-interaction-negative-pressed);
+        box-shadow: inset 0 1px 1px 0 rgba(0, 0, 0, 0.4);
+      }
+      .btn-negative-solid.is-hover {
+        background-color: var(--color-background-interaction-negative-hover);
+      }
+      .btn-negative-solid.is-pressed {
+        background-color: var(--color-background-interaction-negative-pressed);
+        box-shadow: inset 0 1px 1px 0 rgba(0, 0, 0, 0.4);
+      }
+      .btn-negative-solid.btn--loading {
+        background-color: var(--color-background-interaction-negative-pressed);
+      }
+
+      .btn-negative-outline {
+        background-color: var(--color-effect-translucent-dark-clear);
+        border: 1px solid var(--color-border-neutral-grey-light);
+        color: var(--color-text-interaction-negative-default);
+      }
+      .btn-negative-outline:hover {
+        background-color: var(--color-effect-translucent-dark-pale);
+        border-color: var(--color-border-translucent-dark-subtle);
+      }
+      .btn-negative-outline:active {
+        background-color: var(--color-effect-translucent-dark-pale);
+        border-color: var(--color-border-translucent-dark-subtle);
+        box-shadow: inset 0 1px 1px 0 rgba(0, 0, 0, 0.4);
+      }
+      .btn-negative-outline.is-hover {
+        background-color: var(--color-effect-translucent-dark-pale);
+        border-color: var(--color-border-translucent-dark-subtle);
+      }
+      .btn-negative-outline.is-pressed {
+        background-color: var(--color-effect-translucent-dark-pale);
+        border-color: var(--color-border-translucent-dark-subtle);
+        box-shadow: inset 0 1px 1px 0 rgba(0, 0, 0, 0.4);
+      }
+      .btn-negative-outline.btn--loading {
+        background-color: var(--color-effect-translucent-dark-pale);
+        border-color: var(--color-border-translucent-dark-subtle);
+      }
+
+      /* ══════════════════════════════════════════════════════════
+         Contextual — Positive
+      ══════════════════════════════════════════════════════════ */
+
+      .btn-positive-solid {
+        background-color: var(--color-background-interaction-positive-default);
+        color: var(--color-text-neutral-white);
+      }
+      .btn-positive-solid:hover {
+        background-color: var(--color-background-interaction-positive-hover);
+      }
+      .btn-positive-solid:active {
+        background-color: var(--color-background-interaction-positive-pressed);
+        box-shadow: inset 0 1px 1px 0 rgba(0, 0, 0, 0.4);
+      }
+      .btn-positive-solid.is-hover {
+        background-color: var(--color-background-interaction-positive-hover);
+      }
+      .btn-positive-solid.is-pressed {
+        background-color: var(--color-background-interaction-positive-pressed);
+        box-shadow: inset 0 1px 1px 0 rgba(0, 0, 0, 0.4);
+      }
+      .btn-positive-solid.btn--loading {
+        background-color: var(--color-background-interaction-positive-pressed);
+      }
+
+      .btn-positive-outline {
+        background-color: var(--color-effect-translucent-dark-clear);
+        border: 1px solid var(--color-border-neutral-grey-light);
+        color: var(--color-text-interaction-positive-default);
+      }
+      .btn-positive-outline:hover {
+        background-color: var(--color-effect-translucent-dark-pale);
+        border-color: var(--color-border-translucent-dark-subtle);
+      }
+      .btn-positive-outline:active {
+        background-color: var(--color-effect-translucent-dark-pale);
+        border-color: var(--color-border-translucent-dark-subtle);
+        box-shadow: inset 0 1px 1px 0 rgba(0, 0, 0, 0.4);
+      }
+      .btn-positive-outline.is-hover {
+        background-color: var(--color-effect-translucent-dark-pale);
+        border-color: var(--color-border-translucent-dark-subtle);
+      }
+      .btn-positive-outline.is-pressed {
+        background-color: var(--color-effect-translucent-dark-pale);
+        border-color: var(--color-border-translucent-dark-subtle);
+        box-shadow: inset 0 1px 1px 0 rgba(0, 0, 0, 0.4);
+      }
+      .btn-positive-outline.btn--loading {
+        background-color: var(--color-effect-translucent-dark-pale);
+        border-color: var(--color-border-translucent-dark-subtle);
+      }
+
+      /* ── Backdrop blur — non-zero opacity translucent tokens only ──
+         Default state: tertiary variants that start with a visible fill.
+         Hover/pressed/loading: secondary, quaternary light+dark, and
+         outline variants which start clear but transition to non-zero. ── */
+      .btn-tertiary-visible,
+      .btn-tertiary-light,
+      .btn-tertiary-dark,
+      .btn-secondary-brand:hover,
+      .btn-secondary-brand.is-hover,
+      .btn-secondary-brand:active,
+      .btn-secondary-brand.is-pressed,
+      .btn-secondary-brand.btn--loading,
+      .btn-secondary-visible:hover,
+      .btn-secondary-visible.is-hover,
+      .btn-secondary-visible:active,
+      .btn-secondary-visible.is-pressed,
+      .btn-secondary-visible.btn--loading,
+      .btn-secondary-neutral:hover,
+      .btn-secondary-neutral.is-hover,
+      .btn-secondary-neutral:active,
+      .btn-secondary-neutral.is-pressed,
+      .btn-secondary-neutral.btn--loading,
+      .btn-secondary-light:hover,
+      .btn-secondary-light.is-hover,
+      .btn-secondary-light:active,
+      .btn-secondary-light.is-pressed,
+      .btn-secondary-light.btn--loading,
+      .btn-secondary-dark:hover,
+      .btn-secondary-dark.is-hover,
+      .btn-secondary-dark:active,
+      .btn-secondary-dark.is-pressed,
+      .btn-secondary-dark.btn--loading,
+      .btn-quaternary-light:hover,
+      .btn-quaternary-light.is-hover,
+      .btn-quaternary-light:active,
+      .btn-quaternary-light.is-pressed,
+      .btn-quaternary-light.btn--loading,
+      .btn-quaternary-dark:hover,
+      .btn-quaternary-dark.is-hover,
+      .btn-quaternary-dark:active,
+      .btn-quaternary-dark.is-pressed,
+      .btn-quaternary-dark.btn--loading,
+      .btn-negative-outline:hover,
+      .btn-negative-outline.is-hover,
+      .btn-negative-outline:active,
+      .btn-negative-outline.is-pressed,
+      .btn-negative-outline.btn--loading,
+      .btn-positive-outline:hover,
+      .btn-positive-outline.is-hover,
+      .btn-positive-outline:active,
+      .btn-positive-outline.is-pressed,
+      .btn-positive-outline.btn--loading {
+        -webkit-backdrop-filter: blur(8px);
+        backdrop-filter: blur(8px);
+      }
+    </style>
+  </head>
+
+  <body>
+    <!-- ── Left Panel ─────────────────────────── -->
+    <aside class="gen-panel">
+      <div class="panel-header">
+        <h1 class="panel-title">Button Generator</h1>
+      </div>
+
+      <div class="panel-controls">
+        <!-- Style -->
+        <div class="ctrl-group">
+          <span class="ctrl-label">Style</span>
+          <div class="ctrl-seg" data-ctrl="style">
+            <button class="ctrl-seg-btn is-active" data-value="general">General Situation</button>
+            <button class="ctrl-seg-btn" data-value="contextual">Contextual Situation</button>
+          </div>
+        </div>
+
+        <!-- Size -->
+        <div class="ctrl-group">
+          <span class="ctrl-label">Size</span>
+          <div class="ctrl-seg" data-ctrl="size">
+            <button class="ctrl-seg-btn" data-value="xs">XS</button>
+            <button class="ctrl-seg-btn" data-value="sm">SM</button>
+            <button class="ctrl-seg-btn is-active" data-value="md">MD</button>
+            <button class="ctrl-seg-btn" data-value="lg">LG</button>
+            <button class="ctrl-seg-btn" data-value="xl">XL</button>
+          </div>
+        </div>
+
+        <!-- Composition -->
+        <div class="ctrl-group">
+          <span class="ctrl-label">Composition</span>
+          <div class="ctrl-seg" data-ctrl="composition">
+            <button class="ctrl-seg-btn is-active" data-value="label-only">Label Only</button>
+            <button class="ctrl-seg-btn" data-value="icon-label">Icon + Label</button>
+            <button class="ctrl-seg-btn" data-value="label-addon">Label + Addon</button>
+            <button class="ctrl-seg-btn" data-value="icon-only">Icon Only</button>
+          </div>
+        </div>
+
+        <!-- Hierarchy — populated by JS -->
+        <div class="ctrl-group">
+          <span class="ctrl-label">Hierarchy</span>
+          <div class="ctrl-seg" data-ctrl="hierarchy" id="ctrl-hierarchy"></div>
+        </div>
+
+        <!-- Variation — populated by JS -->
+        <div class="ctrl-group">
+          <span class="ctrl-label">Variation</span>
+          <div class="ctrl-seg" data-ctrl="variation" id="ctrl-variation"></div>
+        </div>
+
+        <!-- Background -->
+        <div class="ctrl-group">
+          <span class="ctrl-label">Background</span>
+          <div class="ctrl-bg-row">
+            <div class="ctrl-swatches" id="ctrl-swatches">
+              <button class="ctrl-swatch is-active" data-bg="#ffffff" style="background: #ffffff" title="White"></button>
+              <button class="ctrl-swatch" data-bg="#f5f5f5" style="background: #f5f5f5" title="Lighter"></button>
+              <button class="ctrl-swatch" data-bg="#e3e3e3" style="background: #e3e3e3" title="Light"></button>
+              <button class="ctrl-swatch" data-bg="#cccccc" style="background: #cccccc" title="Grey"></button>
+              <button class="ctrl-swatch" data-bg="#666666" style="background: #666666" title="Grey Dark"></button>
+              <button class="ctrl-swatch" data-bg="#333333" style="background: #333333" title="Dark"></button>
+              <button class="ctrl-swatch" data-bg="#1a1a1a" style="background: #1a1a1a" title="Darker"></button>
+              <button class="ctrl-swatch" data-bg="#000000" style="background: #000000" title="Black"></button>
+              <button class="ctrl-swatch" data-bg-image="../../assets/images/background-light.jpg" style="background-image: url(&quot;../../assets/images/background-light.jpg&quot;)" title="Light Image"></button>
+              <button class="ctrl-swatch" data-bg-image="../../assets/images/background-dark.jpg" style="background-image: url(&quot;../../assets/images/background-dark.jpg&quot;)" title="Dark Image"></button>
+            </div>
+            <label class="ctrl-color-pick" title="Custom colour" id="ctrl-color-pick">
+              <input type="color" id="bg-picker" value="#ffffff" />
+            </label>
+          </div>
+        </div>
+      </div>
+    </aside>
+
+    <!-- ── Main ───────────────────────────────── -->
+    <main class="gen-main">
+      <!-- Live preview -->
+      <div class="gen-preview-main" id="preview-bg">
+        <div class="preview-content">
+          <div class="preview-label" id="preview-label"></div>
+          <div id="live-btn-wrap"></div>
+        </div>
+        <div class="token-note" id="token-note"></div>
+      </div>
+
+      <!-- States row -->
+      <div class="gen-states" id="states-row">
+        <div class="gen-state">
+          <div class="gen-state-preview" id="state-default"></div>
+          <span class="gen-state-label">Default</span>
+        </div>
+        <div class="gen-state">
+          <div class="gen-state-preview" id="state-hover"></div>
+          <span class="gen-state-label">Hover</span>
+        </div>
+        <div class="gen-state">
+          <div class="gen-state-preview" id="state-loading"></div>
+          <span class="gen-state-label">Loading</span>
+        </div>
+        <div class="gen-state">
+          <div class="gen-state-preview" id="state-pressed"></div>
+          <span class="gen-state-label">Pressed</span>
+        </div>
+      </div>
+    </main>
+
+    <script>
+      /* ── SVG fragments ─────────────────────── */
+      const P_POINTER = `<path d="M13.2201 0C14.1715 0.00423785 15.0822 0.349324 15.7521 0.959534C16.4221 1.56974 16.7966 2.39521 16.7935 3.25464V6.83734C17.1674 6.71993 17.5606 6.65995 17.9565 6.65997C18.6119 6.66166 19.2543 6.82599 19.8134 7.13495C20.3725 7.44391 20.8269 7.88565 21.127 8.41199C21.5978 8.20399 22.1292 8.08667 22.6887 8.08667C23.4062 8.08827 24.1066 8.28466 24.6991 8.65033C25.2915 9.016 25.7486 9.53407 26.0111 10.1373C26.445 9.96933 26.9203 9.87732 27.4222 9.87732C28.3736 9.88121 29.2845 10.2257 29.9552 10.8353C30.6258 11.4449 31.0016 12.2699 31 13.1293V20.5894C31 23.332 28.4967 30.44 28.2103 31.2427C28.0524 31.6933 27.586 32 27.0605 32H11.7589C11.2924 32 10.8659 31.756 10.6696 31.3734C10.6518 31.344 9.10793 28.4093 8.52786 27.5013C7.85923 26.46 6.94413 25.1987 5.97292 23.8627C4.64452 22.036 3.14049 19.9653 1.756 17.768C0.688855 16.0693 0.753793 14.4827 1.93606 13.4133C2.60469 12.8067 3.50211 12.4733 4.45708 12.4733H4.47627C4.96061 12.4745 5.43966 12.5644 5.88441 12.7377C6.32915 12.9109 6.73036 13.1639 7.06371 13.4813L9.64229 16.1453V3.25464C9.63955 2.39462 10.0148 1.5688 10.6856 0.958557C11.3565 0.348303 12.2681 0.00352982 13.2201 0ZM13.2216 2.18665C12.5825 2.18665 12.0614 2.66532 12.0614 3.25464V19.0547C12.062 19.277 11.9873 19.4942 11.8474 19.6772C11.7075 19.8601 11.509 20.0001 11.2786 20.0782C11.0482 20.1564 10.7968 20.1691 10.5581 20.1146C10.3195 20.0601 10.105 19.941 9.94336 19.7733L5.27476 14.952C5.05562 14.7613 4.76282 14.6553 4.45857 14.6566C4.15429 14.6578 3.86251 14.7662 3.64528 14.9587C3.18479 15.3747 3.50799 16.128 3.86075 16.6866C5.20538 18.8226 6.68729 20.8627 7.99355 22.664C8.98394 24.0267 9.91827 25.3107 10.6208 26.4053C11.0828 27.1227 12.0216 28.8707 12.5219 29.8134H26.172C27.0281 27.316 28.5808 22.4134 28.5808 20.588V13.1293C28.5808 12.5413 28.0613 12.0614 27.4222 12.0613C26.7875 12.0613 26.2665 12.5427 26.2665 13.1293H26.2635V16.3093C26.2716 16.4573 26.2463 16.6052 26.1892 16.744C26.1321 16.8829 26.0444 17.0098 25.9313 17.1171C25.8183 17.2244 25.6823 17.3098 25.5316 17.3682C25.3809 17.4265 25.2186 17.4567 25.0547 17.4567C24.8907 17.4567 24.7284 17.4265 24.5777 17.3682C24.427 17.3098 24.291 17.2244 24.1779 17.1171C24.0649 17.0098 23.9772 16.8829 23.9201 16.744C23.863 16.6052 23.8377 16.4573 23.8458 16.3093V11.3413C23.8458 10.7507 23.3263 10.272 22.6872 10.272C22.0481 10.272 21.5285 10.7507 21.5285 11.3413V14.8853C21.5131 15.1656 21.3791 15.4298 21.1541 15.6233C20.9291 15.8168 20.6303 15.9247 20.3197 15.9247C20.009 15.9247 19.7102 15.8168 19.4852 15.6233C19.2602 15.4298 19.1261 15.1656 19.1108 14.8853V9.88605C19.1089 9.75642 19.0805 9.62815 19.027 9.50769C18.9699 9.3792 18.8853 9.26209 18.7781 9.16315C18.6709 9.06422 18.5432 8.98534 18.4023 8.93103C18.2613 8.87672 18.1098 8.84807 17.9565 8.84668C17.3145 8.84669 16.7935 9.32533 16.7935 9.91199V13.46C16.7781 13.7403 16.6441 14.0045 16.4191 14.198C16.1941 14.3915 15.8953 14.4993 15.5846 14.4993C15.274 14.4993 14.9752 14.3915 14.7502 14.198C14.5252 14.0045 14.3912 13.7403 14.3758 13.46V3.25464C14.3758 2.66666 13.8577 2.18799 13.2216 2.18665Z" fill="currentColor"/>`;
+      const P_ADD = `<path d="M31.1111 13.7778H18.2222V0.888916H13.7778V13.7778H0.888916V18.2222H13.7778V31.1111H18.2222V18.2222H31.1111V13.7778Z" fill="currentColor"/>`;
+      const P_PLAY = `<path d="M7.61864 30.7537L29.0988 18.3511C30.9036 17.3108 30.9036 14.6969 29.0988 13.6567L7.61864 1.25405C5.81381 0.213824 3.55554 1.52077 3.55554 3.60122V28.3977C3.55554 30.487 5.81381 31.785 7.61864 30.7448V30.7537Z" fill="currentColor"/>`;
+      const P_SPINNER = `<path d="M16 32C7.17714 32 0 24.8229 0 16C0 7.17714 7.17714 0 16 0C24.8229 0 32 7.17714 32 16H28.1905C28.1905 9.28 22.72 3.80952 16 3.80952C9.28 3.80952 3.80952 9.28 3.80952 16C3.80952 22.72 9.28 28.1905 16 28.1905V32Z" fill="currentColor"/>`;
+
+      const mkSvg = (path, cls = "") => `<svg viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg"${cls ? ` class="${cls}"` : ""} aria-hidden="true">${path}</svg>`;
+
+      /* ── State ─────────────────────────────── */
+      const s = {
+        style: "general",
+        size: "md",
+        composition: "label-only",
+        hierarchy: "primary",
+        variation: "brand",
+        bgColor: "#ffffff",
+        bgImage: null,
+      };
+
+      /* ── Data tables ────────────────────────── */
+      const HIERARCHIES = {
+        general: ["primary", "secondary", "tertiary", "quaternary"],
+        contextual: ["negative", "positive"],
+      };
+
+      const HIERARCHY_LABELS = {
+        primary: "Primary",
+        secondary: "Secondary",
+        tertiary: "Tertiary",
+        quaternary: "Quaternary",
+        negative: "Negative",
+        positive: "Positive",
+      };
+
+      const VARIATIONS = {
+        primary: [
+          { id: "brand", label: "Brand" },
+          { id: "neutral", label: "Neutral" },
+          { id: "neutral-inverse", label: "Neutral Inverse" },
+        ],
+        secondary: [
+          { id: "default", label: "Default" },
+          { id: "visible", label: "Visible" },
+          { id: "neutral", label: "Neutral" },
+          { id: "light-surface", label: "Light Surface" },
+          { id: "dark-surface", label: "Dark Surface" },
+        ],
+        tertiary: [
+          { id: "soft", label: "Soft" },
+          { id: "visible", label: "Visible" },
+          { id: "neutral", label: "Neutral" },
+          { id: "light-surface", label: "Light Surface" },
+          { id: "dark-surface", label: "Dark Surface" },
+        ],
+        quaternary: [
+          { id: "default", label: "Default" },
+          { id: "neutral", label: "Neutral" },
+          { id: "light-surface", label: "Light Surface" },
+          { id: "dark-surface", label: "Dark Surface" },
+        ],
+        negative: [
+          { id: "solid", label: "Solid" },
+          { id: "outline", label: "Outline" },
+        ],
+        positive: [
+          { id: "solid", label: "Solid" },
+          { id: "outline", label: "Outline" },
+        ],
+      };
+
+      const VARIANT_CLASS = {
+        "primary/brand": "btn-brand",
+        "primary/neutral": "btn-neutral",
+        "primary/neutral-inverse": "btn-neutral-inverse",
+        "secondary/default": "btn-secondary-brand",
+        "secondary/visible": "btn-secondary-visible",
+        "secondary/neutral": "btn-secondary-neutral",
+        "secondary/light-surface": "btn-secondary-light",
+        "secondary/dark-surface": "btn-secondary-dark",
+        "tertiary/soft": "btn-tertiary-brand",
+        "tertiary/visible": "btn-tertiary-visible",
+        "tertiary/neutral": "btn-tertiary-neutral",
+        "tertiary/light-surface": "btn-tertiary-light",
+        "tertiary/dark-surface": "btn-tertiary-dark",
+        "quaternary/default": "btn-quaternary-brand",
+        "quaternary/neutral": "btn-quaternary-neutral",
+        "quaternary/light-surface": "btn-quaternary-light",
+        "quaternary/dark-surface": "btn-quaternary-dark",
+        "negative/solid": "btn-negative-solid",
+        "negative/outline": "btn-negative-outline",
+        "positive/solid": "btn-positive-solid",
+        "positive/outline": "btn-positive-outline",
+      };
+
+      const SIZE_CLASS = { xs: "btn--xs", sm: "btn--sm", md: "", lg: "btn--lg", xl: "btn--xl" };
+
+      /* ── Helpers ────────────────────────────── */
+      const variantCls = () => VARIANT_CLASS[`${s.hierarchy}/${s.variation}`] || "btn-brand";
+      const sizeCls = () => SIZE_CLASS[s.size] || "";
+
+      function isColorDark(hex) {
+        if (!hex || hex.length < 7) return false;
+        const r = parseInt(hex.slice(1, 3), 16);
+        const g = parseInt(hex.slice(3, 5), 16);
+        const b = parseInt(hex.slice(5, 7), 16);
+        return (0.299 * r + 0.587 * g + 0.114 * b) / 255 < 0.5;
+      }
+
+      function syncPickerUI() {
+        const picker = document.getElementById("bg-picker");
+        const colorPick = document.getElementById("ctrl-color-pick");
+        if (picker && !s.bgImage) picker.value = s.bgColor;
+
+        let matched = false;
+        document.querySelectorAll(".ctrl-swatch").forEach(sw => {
+          let hit = false;
+          if (sw.dataset.bgImage) {
+            hit = sw.dataset.bgImage === s.bgImage;
+          } else if (sw.dataset.bg) {
+            hit = !s.bgImage && sw.dataset.bg.toLowerCase() === s.bgColor.toLowerCase();
+          }
+          sw.classList.toggle("is-active", hit);
+          if (hit) matched = true;
+        });
+        if (colorPick) colorPick.classList.toggle("is-active", !matched && !s.bgImage);
+      }
+
+      function syncBgToVariant() {
+        s.bgImage = null;
+        if (s.variation === "neutral-inverse" || s.variation === "dark-surface") {
+          s.bgColor = "#1a1a1a";
+        } else if (s.variation === "visible") {
+          s.bgColor = "#e3e3e3"; /* --color-background-neutral-light */
+        } else if (s.variation === "light-surface") {
+          s.bgColor = "#cccccc"; /* --color-background-neutral-grey-light */
+        } else {
+          s.bgColor = "#ffffff";
+        }
+        syncPickerUI();
+      }
+
+      /* ── Token data ─────────────────────────── */
+      const TOKEN_DATA = {
+        "primary/brand": [
+          { state: "Default", tokens: ["background-interaction-primary-default", "text-neutral-white"] },
+          { state: "Hover", tokens: ["background-interaction-primary-hover"] },
+          { state: "Pressed", tokens: ["background-interaction-primary-pressed"], shadow: true },
+        ],
+        "primary/neutral": [
+          { state: "Default", tokens: ["background-neutral-darker", "text-neutral-lightest"] },
+          { state: "Hover", tokens: ["background-neutral-dark"] },
+          { state: "Pressed", tokens: ["background-neutral-grey-dark"], shadow: true },
+        ],
+        "primary/neutral-inverse": [
+          { state: "Default", tokens: ["background-neutral-light", "text-neutral-darker"] },
+          { state: "Hover", tokens: ["background-neutral-white"] },
+          { state: "Pressed", tokens: ["background-neutral-lighter"], shadow: true },
+        ],
+        "secondary/default": [
+          { state: "Default", tokens: ["effect-translucent-dark-clear", "border-neutral-grey-light", "text-interaction-primary-default"] },
+          { state: "Hover", tokens: ["effect-translucent-dark-pale"] },
+          { state: "Pressed", tokens: ["effect-translucent-dark-pale"], shadow: true },
+        ],
+        "secondary/visible": [
+          { state: "Default", tokens: ["effect-translucent-dark-clear", "border-translucent-dark-subtle", "text-interaction-primary-default"] },
+          { state: "Hover", tokens: ["effect-translucent-dark-pale"] },
+          { state: "Pressed", tokens: ["effect-translucent-dark-pale"], shadow: true },
+        ],
+        "secondary/neutral": [
+          { state: "Default", tokens: ["effect-translucent-dark-clear", "border-neutral-grey-light", "text-neutral-darker"] },
+          { state: "Hover", tokens: ["effect-translucent-dark-pale"] },
+          { state: "Pressed", tokens: ["effect-translucent-dark-pale"], shadow: true },
+        ],
+        "secondary/light-surface": [
+          { state: "Default", tokens: ["effect-translucent-dark-clear", "border-translucent-dark-subtle", "text-neutral-darker"] },
+          { state: "Hover", tokens: ["effect-translucent-dark-pale"] },
+          { state: "Pressed", tokens: ["effect-translucent-dark-pale"], shadow: true },
+        ],
+        "secondary/dark-surface": [
+          { state: "Default", tokens: ["effect-translucent-light-clear", "border-translucent-light-moderate", "text-neutral-lightest"] },
+          { state: "Hover", tokens: ["effect-translucent-light-pale"] },
+          { state: "Pressed", tokens: ["effect-translucent-light-pale"], shadow: true },
+        ],
+        "tertiary/soft": [
+          { state: "Default", tokens: ["background-neutral-lighter", "text-interaction-primary-default"] },
+          { state: "Hover", tokens: ["background-neutral-light"] },
+          { state: "Pressed", tokens: ["background-neutral-light"], shadow: true },
+        ],
+        "tertiary/visible": [
+          { state: "Default", tokens: ["effect-translucent-dark-pale", "text-interaction-primary-default"] },
+          { state: "Hover", tokens: ["effect-translucent-dark-subtle"] },
+          { state: "Pressed", tokens: ["effect-translucent-dark-pale"], shadow: true },
+        ],
+        "tertiary/neutral": [
+          { state: "Default", tokens: ["background-neutral-lighter", "text-neutral-darker"] },
+          { state: "Hover", tokens: ["background-neutral-light"] },
+          { state: "Pressed", tokens: ["background-neutral-light"], shadow: true },
+        ],
+        "tertiary/light-surface": [
+          { state: "Default", tokens: ["effect-translucent-dark-moderate", "text-neutral-lightest"] },
+          { state: "Hover", tokens: ["effect-translucent-dark-deep"] },
+          { state: "Pressed", tokens: ["effect-translucent-dark-deep"], shadow: true },
+        ],
+        "tertiary/dark-surface": [
+          { state: "Default", tokens: ["effect-translucent-light-deep", "text-neutral-darker"] },
+          { state: "Hover", tokens: ["effect-translucent-light-thick"] },
+          { state: "Pressed", tokens: ["effect-translucent-light-thick"], shadow: true },
+        ],
+        "quaternary/default": [
+          { state: "Default", tokens: ["effect-translucent-dark-clear", "text-interaction-primary-default"] },
+          { state: "Hover", tokens: ["background-neutral-light"] },
+          { state: "Pressed", tokens: ["background-neutral-light"], shadow: true },
+        ],
+        "quaternary/neutral": [
+          { state: "Default", tokens: ["effect-translucent-dark-clear", "text-neutral-darker"] },
+          { state: "Hover", tokens: ["background-neutral-light"] },
+          { state: "Pressed", tokens: ["background-neutral-light"], shadow: true },
+        ],
+        "quaternary/light-surface": [
+          { state: "Default", tokens: ["effect-translucent-dark-clear", "text-neutral-darker"] },
+          { state: "Hover", tokens: ["effect-translucent-dark-subtle"] },
+          { state: "Pressed", tokens: ["effect-translucent-dark-subtle"], shadow: true },
+        ],
+        "quaternary/dark-surface": [
+          { state: "Default", tokens: ["effect-translucent-light-clear", "text-neutral-lightest"] },
+          { state: "Hover", tokens: ["effect-translucent-light-subtle"] },
+          { state: "Pressed", tokens: ["effect-translucent-light-subtle"], shadow: true },
+        ],
+        "negative/solid": [
+          { state: "Default", tokens: ["background-interaction-negative-default", "text-neutral-white"] },
+          { state: "Hover", tokens: ["background-interaction-negative-hover"] },
+          { state: "Pressed", tokens: ["background-interaction-negative-pressed"], shadow: true },
+        ],
+        "negative/outline": [
+          { state: "Default", tokens: ["effect-translucent-dark-clear", "border-neutral-grey-light", "text-interaction-negative-default"] },
+          { state: "Hover", tokens: ["effect-translucent-dark-pale", "border-translucent-dark-subtle"] },
+          { state: "Pressed", tokens: ["effect-translucent-dark-pale", "border-translucent-dark-subtle"], shadow: true },
+        ],
+        "positive/solid": [
+          { state: "Default", tokens: ["background-interaction-positive-default", "text-neutral-white"] },
+          { state: "Hover", tokens: ["background-interaction-positive-hover"] },
+          { state: "Pressed", tokens: ["background-interaction-positive-pressed"], shadow: true },
+        ],
+        "positive/outline": [
+          { state: "Default", tokens: ["effect-translucent-dark-clear", "border-neutral-grey-light", "text-interaction-positive-default"] },
+          { state: "Hover", tokens: ["effect-translucent-dark-pale", "border-translucent-dark-subtle"] },
+          { state: "Pressed", tokens: ["effect-translucent-dark-pale", "border-translucent-dark-subtle"], shadow: true },
+        ],
+      };
+
+      function renderNote() {
+        const key = `${s.hierarchy}/${s.variation}`;
+        const sections = TOKEN_DATA[key] || [];
+        const note = document.getElementById("token-note");
+
+        const sectionsHtml = sections
+          .map(sec => {
+            const tokens = sec.tokens.map(t => `<span class="tn-token">⚫ --color-${t}</span>`).join("");
+            const shadow = sec.shadow ? `<span class="tn-shadow">🔷 box-shadow: inset 0 1px 1px 0 rgba(0,0,0,.4)</span>` : "";
+            return `<div class="tn-section">
+            <div class="tn-state">${sec.state}</div>
+            ${tokens}${shadow}
+          </div>`;
+          })
+          .join("");
+
+        note.innerHTML = `<div class="tn-heading">Colour Tokens</div>${sectionsHtml}`;
+      }
+
+      /* ── Button HTML builder ─────────────────── */
+      function buildBtn(stateClass) {
+        const isIconOnly = s.composition === "icon-only";
+        const isLoading = stateClass === "btn--loading";
+
+        const classes = ["btn", variantCls(), sizeCls(), isIconOnly ? "btn--icon-only" : "", stateClass].filter(Boolean).join(" ");
+
+        const aria = isLoading ? ' aria-label="Loading"' : isIconOnly ? ' aria-label="Action"' : "";
+
+        let inner = "";
+        switch (s.composition) {
+          case "label-only":
+            inner = `<span class="btn__label">Button</span>`;
+            break;
+          case "icon-label":
+            inner = `<span class="btn__content">${mkSvg(P_POINTER)}<span class="btn__label">Button</span></span>`;
+            break;
+          case "label-addon":
+            inner = `<span class="btn__content"><span class="btn__label">Button</span>${mkSvg(P_ADD)}</span>`;
+            break;
+          case "icon-only":
+            inner = `<span class="btn__content">${mkSvg(P_PLAY)}</span>`;
+            break;
+        }
+
+        return `<button class="${classes}"${aria}>${inner}${mkSvg(P_SPINNER, "btn-spinner")}</button>`;
+      }
+
+      /* ── Render ─────────────────────────────── */
+      function applyBg(el) {
+        if (s.bgImage) {
+          el.style.background = "";
+          el.style.backgroundImage = `url('${s.bgImage}')`;
+          el.style.backgroundSize = "cover";
+          el.style.backgroundPosition = "center";
+        } else {
+          el.style.backgroundImage = "";
+          el.style.background = s.bgColor;
+        }
+      }
+
+      function render() {
+        const dark = s.bgImage ? s.bgImage.includes("dark") : isColorDark(s.bgColor);
+
+        const previewBg = document.getElementById("preview-bg");
+        applyBg(previewBg);
+        document.getElementById("live-btn-wrap").innerHTML = buildBtn("");
+
+        const statesRow = document.getElementById("states-row");
+        applyBg(statesRow);
+        statesRow.style.borderTopColor = dark ? "#2a2a2a" : "";
+        statesRow.classList.toggle("is-dark", dark);
+
+        document.getElementById("state-default").innerHTML = buildBtn("");
+        document.getElementById("state-hover").innerHTML = buildBtn("is-hover");
+        document.getElementById("state-loading").innerHTML = buildBtn("btn--loading");
+        document.getElementById("state-pressed").innerHTML = buildBtn("is-pressed");
+
+        const COMP_LABELS = { "label-only": "Label Only", "icon-label": "Icon + Label", "label-addon": "Label + Addon", "icon-only": "Icon Only" };
+        const varLabel = (VARIATIONS[s.hierarchy] || []).find(v => v.id === s.variation)?.label || "";
+        const labelEl = document.getElementById("preview-label");
+        labelEl.innerHTML = `
+          <span class="preview-label-name">${HIERARCHY_LABELS[s.hierarchy]} ${varLabel}</span>
+          <span class="preview-label-meta">${s.size.toUpperCase()} · ${COMP_LABELS[s.composition]}</span>`;
+        labelEl.querySelector(".preview-label-name").style.color = dark ? "rgba(255,255,255,0.85)" : "";
+        labelEl.querySelector(".preview-label-meta").style.color = dark ? "rgba(255,255,255,0.35)" : "";
+
+        attachLiveBtn();
+        renderNote();
+      }
+
+      /* ── Live button click sequence ─────────── */
+      function attachLiveBtn() {
+        const btn = document.querySelector("#live-btn-wrap .btn");
+        if (!btn) return;
+        btn.addEventListener("click", () => {
+          if (btn.dataset.animating) return;
+          btn.dataset.animating = "1";
+          btn.style.pointerEvents = "none";
+
+          btn.classList.add("btn--loading");
+          setTimeout(() => {
+            btn.classList.remove("btn--loading");
+            btn.classList.add("is-pressed");
+            setTimeout(() => {
+              btn.classList.add("btn--dissolve");
+              btn.classList.remove("is-pressed");
+              setTimeout(() => {
+                btn.classList.remove("btn--dissolve");
+                btn.style.pointerEvents = "";
+                delete btn.dataset.animating;
+              }, 1000);
+            }, 3000);
+          }, 3000);
+        });
+      }
+
+      /* ── Control rebuilders ─────────────────── */
+      function rebuildHierarchy() {
+        const wrap = document.getElementById("ctrl-hierarchy");
+        wrap.innerHTML = HIERARCHIES[s.style].map(h => `<button class="ctrl-seg-btn${h === s.hierarchy ? " is-active" : ""}" data-value="${h}">${HIERARCHY_LABELS[h]}</button>`).join("");
+      }
+
+      function rebuildVariation() {
+        const wrap = document.getElementById("ctrl-variation");
+        wrap.innerHTML = (VARIATIONS[s.hierarchy] || []).map(v => `<button class="ctrl-seg-btn${v.id === s.variation ? " is-active" : ""}" data-value="${v.id}">${v.label}</button>`).join("");
+      }
+
+      /* ── Event handling ─────────────────────── */
+      document.querySelectorAll(".ctrl-seg").forEach(seg => {
+        seg.addEventListener("click", e => {
+          const btn = e.target.closest(".ctrl-seg-btn");
+          if (!btn) return;
+
+          const ctrlName = seg.dataset.ctrl;
+          const value = btn.dataset.value;
+
+          seg.querySelectorAll(".ctrl-seg-btn").forEach(b => b.classList.remove("is-active"));
+          btn.classList.add("is-active");
+          s[ctrlName] = value;
+
+          if (ctrlName === "style") {
+            s.hierarchy = HIERARCHIES[value][0];
+            rebuildHierarchy();
+            s.variation = VARIATIONS[s.hierarchy][0].id;
+            rebuildVariation();
+            syncBgToVariant();
+          } else if (ctrlName === "hierarchy") {
+            s.variation = VARIATIONS[value][0].id;
+            rebuildVariation();
+            syncBgToVariant();
+          } else if (ctrlName === "variation") {
+            syncBgToVariant();
+          }
+
+          render();
+        });
+      });
+
+      /* ── Init ───────────────────────────────── */
+      rebuildHierarchy();
+      rebuildVariation();
+      syncPickerUI();
+      render();
+
+      document.getElementById("ctrl-swatches").addEventListener("click", e => {
+        const swatch = e.target.closest(".ctrl-swatch");
+        if (!swatch) return;
+        if (swatch.dataset.bgImage) {
+          s.bgImage = swatch.dataset.bgImage;
+        } else {
+          s.bgImage = null;
+          s.bgColor = swatch.dataset.bg;
+        }
+        syncPickerUI();
+        render();
+      });
+
+      document.getElementById("bg-picker").addEventListener("input", e => {
+        s.bgImage = null;
+        s.bgColor = e.target.value;
+        syncPickerUI();
+        render();
+      });
+    </script>
+  </body>
+</html>

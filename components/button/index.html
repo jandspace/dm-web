@@ -232,9 +232,9 @@
       }
 
       .section-title {
-        font-size: 14px;
+        font-size: 18px;
         font-weight: 600;
-        letter-spacing: 0.08em;
+        letter-spacing: 0;
         color: #444;
         margin-top: 56px;
         margin-bottom: 40px;
@@ -731,6 +731,62 @@
         border-color: var(--color-border-translucent-dark-subtle);
       }
 
+      /* ── Backdrop blur — non-zero opacity translucent tokens only ──
+         Default state: tertiary variants that start with a visible fill.
+         Hover/pressed/loading: secondary, quaternary light+dark, and
+         outline variants which start clear but transition to non-zero. ── */
+      .btn-tertiary-visible,
+      .btn-tertiary-light,
+      .btn-tertiary-dark,
+      .btn-secondary-brand:hover,
+      .btn-secondary-brand.is-hover,
+      .btn-secondary-brand:active,
+      .btn-secondary-brand.is-pressed,
+      .btn-secondary-brand.btn--loading,
+      .btn-secondary-visible:hover,
+      .btn-secondary-visible.is-hover,
+      .btn-secondary-visible:active,
+      .btn-secondary-visible.is-pressed,
+      .btn-secondary-visible.btn--loading,
+      .btn-secondary-neutral:hover,
+      .btn-secondary-neutral.is-hover,
+      .btn-secondary-neutral:active,
+      .btn-secondary-neutral.is-pressed,
+      .btn-secondary-neutral.btn--loading,
+      .btn-secondary-light:hover,
+      .btn-secondary-light.is-hover,
+      .btn-secondary-light:active,
+      .btn-secondary-light.is-pressed,
+      .btn-secondary-light.btn--loading,
+      .btn-secondary-dark:hover,
+      .btn-secondary-dark.is-hover,
+      .btn-secondary-dark:active,
+      .btn-secondary-dark.is-pressed,
+      .btn-secondary-dark.btn--loading,
+      .btn-quaternary-light:hover,
+      .btn-quaternary-light.is-hover,
+      .btn-quaternary-light:active,
+      .btn-quaternary-light.is-pressed,
+      .btn-quaternary-light.btn--loading,
+      .btn-quaternary-dark:hover,
+      .btn-quaternary-dark.is-hover,
+      .btn-quaternary-dark:active,
+      .btn-quaternary-dark.is-pressed,
+      .btn-quaternary-dark.btn--loading,
+      .btn-negative-outline:hover,
+      .btn-negative-outline.is-hover,
+      .btn-negative-outline:active,
+      .btn-negative-outline.is-pressed,
+      .btn-negative-outline.btn--loading,
+      .btn-positive-outline:hover,
+      .btn-positive-outline.is-hover,
+      .btn-positive-outline:active,
+      .btn-positive-outline.is-pressed,
+      .btn-positive-outline.btn--loading {
+        -webkit-backdrop-filter: blur(8px);
+        backdrop-filter: blur(8px);
+      }
+
       /* ══ Size modifiers ═══════════════════════════════════════ */
 
       .btn--xs {
@@ -810,6 +866,13 @@
         display: grid;
         grid-template-columns: 140px repeat(5, 1fr);
       }
+
+      /* ── Rectangular button modifier ── */
+      .btn--rect               { border-radius: 8px; }
+      .btn--rect.btn--xs       { border-radius: 4px; }
+      .btn--rect.btn--sm       { border-radius: 6px; }
+      .btn--rect.btn--lg       { border-radius: 10px; }
+      .btn--rect.btn--xl       { border-radius: 12px; }
     </style>
   </head>
   <body>
@@ -830,7 +893,7 @@
 
     <h1>Button Primary</h1>
 
-    <h2 class="section-title">Button — Primary · MD · Label Only</h2>
+    <h2 class="section-title">Primary · MD · Label Only</h2>
 
     <div class="demo-grid">
       <div class="col-header"></div>
@@ -915,7 +978,7 @@
       </div>
     </div>
 
-    <h2 class="section-title">Button — Primary · MD · Icon + Label</h2>
+    <h2 class="section-title">Primary · MD · Icon + Label</h2>
 
     <div class="demo-grid">
       <div class="col-header"></div>
@@ -1097,7 +1160,7 @@
       </div>
     </div>
 
-    <h2 class="section-title">Button — Primary · MD · Label + Addon</h2>
+    <h2 class="section-title">Primary · MD · Label + Addon</h2>
 
     <div class="demo-grid">
       <div class="col-header"></div>
@@ -1218,7 +1281,7 @@
       </div>
     </div>
 
-    <h2 class="section-title">Button — Primary · MD · Icon Only</h2>
+    <h2 class="section-title">Primary · MD · Icon Only</h2>
 
     <div class="demo-grid">
       <div class="col-header"></div>
@@ -1343,7 +1406,7 @@
     <hr class="category-divider" />
     <h1>Secondary</h1>
 
-    <h2 class="section-title">Button — Secondary · MD · Label Only</h2>
+    <h2 class="section-title">Secondary · MD · Label Only</h2>
 
     <div class="demo-grid">
       <div class="col-header"></div>
@@ -1433,7 +1496,7 @@
       <div class="cell row--dark"><button class="btn btn-secondary-dark is-pressed">Button</button></div>
     </div>
 
-    <h2 class="section-title">Button — Secondary · MD · Icon + Label</h2>
+    <h2 class="section-title">Secondary · MD · Icon + Label</h2>
 
     <div class="demo-grid">
       <div class="col-header"></div>
@@ -1603,7 +1666,7 @@
       </div>
     </div>
 
-    <h2 class="section-title">Button — Secondary · MD · Label + Addon</h2>
+    <h2 class="section-title">Secondary · MD · Label + Addon</h2>
 
     <div class="demo-grid">
       <div class="col-header"></div>
@@ -1773,7 +1836,7 @@
       </div>
     </div>
 
-    <h2 class="section-title">Button — Secondary · MD · Icon Only</h2>
+    <h2 class="section-title">Secondary · MD · Icon Only</h2>
 
     <div class="demo-grid">
       <div class="col-header"></div>
@@ -1947,7 +2010,7 @@
     <hr class="category-divider" />
     <h1>Tertiary</h1>
 
-    <h2 class="section-title">Button — Tertiary · MD · Label Only</h2>
+    <h2 class="section-title">Tertiary · MD · Label Only</h2>
 
     <div class="demo-grid">
       <div class="col-header"></div>
@@ -2037,7 +2100,7 @@
       <div class="cell row--dark"><button class="btn btn-tertiary-dark is-pressed">Button</button></div>
     </div>
 
-    <h2 class="section-title">Button — Tertiary · MD · Icon + Label</h2>
+    <h2 class="section-title">Tertiary · MD · Icon + Label</h2>
 
     <div class="demo-grid">
       <div class="col-header"></div>
@@ -2216,7 +2279,7 @@
       </div>
     </div>
 
-    <h2 class="section-title">Button — Tertiary · MD · Label + Addon</h2>
+    <h2 class="section-title">Tertiary · MD · Label + Addon</h2>
 
     <div class="demo-grid">
       <div class="col-header"></div>
@@ -2396,7 +2459,7 @@
       </div>
     </div>
 
-    <h2 class="section-title">Button — Tertiary · MD · Icon Only</h2>
+    <h2 class="section-title">Tertiary · MD · Icon Only</h2>
 
     <div class="demo-grid">
       <div class="col-header"></div>
@@ -2570,7 +2633,7 @@
     <hr class="category-divider" />
     <h1>Quaternary</h1>
 
-    <h2 class="section-title">Button — Quaternary · MD · Label Only</h2>
+    <h2 class="section-title">Quaternary · MD · Label Only</h2>
 
     <div class="demo-grid">
       <div class="col-header"></div>
@@ -2644,7 +2707,7 @@
       <div class="cell row--dark"><button class="btn btn-quaternary-dark is-pressed">Button</button></div>
     </div>
 
-    <h2 class="section-title">Button — Quaternary · MD · Icon + Label</h2>
+    <h2 class="section-title">Quaternary · MD · Icon + Label</h2>
 
     <div class="demo-grid">
       <div class="col-header"></div>
@@ -2790,7 +2853,7 @@
       </div>
     </div>
 
-    <h2 class="section-title">Button — Quaternary · MD · Label + Addon</h2>
+    <h2 class="section-title">Quaternary · MD · Label + Addon</h2>
 
     <div class="demo-grid">
       <div class="col-header"></div>
@@ -2936,7 +2999,7 @@
       </div>
     </div>
 
-    <h2 class="section-title">Button — Quaternary · MD · Icon Only</h2>
+    <h2 class="section-title">Quaternary · MD · Icon Only</h2>
 
     <div class="demo-grid">
       <div class="col-header"></div>
@@ -3078,7 +3141,7 @@
     <hr class="category-divider" />
     <h1>Contextual Button (Negative)</h1>
 
-    <h2 class="section-title">Button — Negative · MD · Label Only</h2>
+    <h2 class="section-title">Negative · MD · Label Only</h2>
     <div class="demo-grid">
       <div class="col-header"></div>
       <div class="col-header">Default</div>
@@ -3119,7 +3182,7 @@
       <div class="cell"><button class="btn btn-negative-outline is-pressed">Button</button></div>
     </div>
 
-    <h2 class="section-title">Button — Negative · MD · Icon + Label</h2>
+    <h2 class="section-title">Negative · MD · Icon + Label</h2>
     <div class="demo-grid">
       <div class="col-header"></div>
       <div class="col-header">Default</div>
@@ -3196,7 +3259,7 @@
       </div>
     </div>
 
-    <h2 class="section-title">Button — Negative · MD · Label + Addon</h2>
+    <h2 class="section-title">Negative · MD · Label + Addon</h2>
     <div class="demo-grid">
       <div class="col-header"></div>
       <div class="col-header">Default</div>
@@ -3273,7 +3336,7 @@
       </div>
     </div>
 
-    <h2 class="section-title">Button — Negative · MD · Icon Only</h2>
+    <h2 class="section-title">Negative · MD · Icon Only</h2>
     <div class="demo-grid">
       <div class="col-header"></div>
       <div class="col-header">Default</div>
@@ -3350,7 +3413,7 @@
     <hr class="category-divider" />
     <h1>Contextual Button (Positive)</h1>
 
-    <h2 class="section-title">Button — Positive · MD · Label Only</h2>
+    <h2 class="section-title">Positive · MD · Label Only</h2>
     <div class="demo-grid">
       <div class="col-header"></div>
       <div class="col-header">Default</div>
@@ -3391,7 +3454,7 @@
       <div class="cell"><button class="btn btn-positive-outline is-pressed">Button</button></div>
     </div>
 
-    <h2 class="section-title">Button — Positive · MD · Icon + Label</h2>
+    <h2 class="section-title">Positive · MD · Icon + Label</h2>
     <div class="demo-grid">
       <div class="col-header"></div>
       <div class="col-header">Default</div>
@@ -3468,7 +3531,7 @@
       </div>
     </div>
 
-    <h2 class="section-title">Button — Positive · MD · Label + Addon</h2>
+    <h2 class="section-title">Positive · MD · Label + Addon</h2>
     <div class="demo-grid">
       <div class="col-header"></div>
       <div class="col-header">Default</div>
@@ -3545,7 +3608,7 @@
       </div>
     </div>
 
-    <h2 class="section-title">Button — Positive · MD · Icon Only</h2>
+    <h2 class="section-title">Positive · MD · Icon Only</h2>
     <div class="demo-grid">
       <div class="col-header"></div>
       <div class="col-header">Default</div>
@@ -3803,6 +3866,167 @@
         </button>
       </div>
     </div>
+
+    <!-- ═══════════════════════════════════════════════════════ RECTANGULAR -->
+    <hr class="category-divider" />
+    <h1>Rectangular Button</h1>
+
+    <h2 class="section-title">Rectangular · Primary Brand</h2>
+    <div class="demo-grid demo-grid--6col">
+      <div class="col-header"></div>
+      <div class="col-header">XS · 4px</div>
+      <div class="col-header">SM · 6px</div>
+      <div class="col-header">MD · 8px</div>
+      <div class="col-header">LG · 10px</div>
+      <div class="col-header">XL · 12px</div>
+
+      <!-- Label Only -->
+      <div class="row-label">Label Only</div>
+      <div class="cell"><button class="btn btn-brand btn--xs btn--rect"><span class="btn__label">Button</span><svg class="btn-spinner" width="16" height="16" aria-hidden="true"><use href="#ico-spinner" /></svg></button></div>
+      <div class="cell"><button class="btn btn-brand btn--sm btn--rect"><span class="btn__label">Button</span><svg class="btn-spinner" width="20" height="20" aria-hidden="true"><use href="#ico-spinner" /></svg></button></div>
+      <div class="cell"><button class="btn btn-brand btn--rect"><span class="btn__label">Button</span><svg class="btn-spinner" width="24" height="24" aria-hidden="true"><use href="#ico-spinner" /></svg></button></div>
+      <div class="cell"><button class="btn btn-brand btn--lg btn--rect"><span class="btn__label">Button</span><svg class="btn-spinner" width="28" height="28" aria-hidden="true"><use href="#ico-spinner" /></svg></button></div>
+      <div class="cell"><button class="btn btn-brand btn--xl btn--rect"><span class="btn__label">Button</span><svg class="btn-spinner" width="32" height="32" aria-hidden="true"><use href="#ico-spinner" /></svg></button></div>
+
+      <!-- Icon + Label -->
+      <div class="row-label">Icon + Label</div>
+      <div class="cell"><button class="btn btn-brand btn--xs btn--rect"><span class="btn__content"><svg width="1em" height="1em" aria-hidden="true"><use href="#ico-square-dashed" /></svg><span class="btn__label">Button</span></span><svg class="btn-spinner" width="16" height="16" aria-hidden="true"><use href="#ico-spinner" /></svg></button></div>
+      <div class="cell"><button class="btn btn-brand btn--sm btn--rect"><span class="btn__content"><svg width="1em" height="1em" aria-hidden="true"><use href="#ico-square-dashed" /></svg><span class="btn__label">Button</span></span><svg class="btn-spinner" width="20" height="20" aria-hidden="true"><use href="#ico-spinner" /></svg></button></div>
+      <div class="cell"><button class="btn btn-brand btn--rect"><span class="btn__content"><svg width="1em" height="1em" aria-hidden="true"><use href="#ico-square-dashed" /></svg><span class="btn__label">Button</span></span><svg class="btn-spinner" width="24" height="24" aria-hidden="true"><use href="#ico-spinner" /></svg></button></div>
+      <div class="cell"><button class="btn btn-brand btn--lg btn--rect"><span class="btn__content"><svg width="1em" height="1em" aria-hidden="true"><use href="#ico-square-dashed" /></svg><span class="btn__label">Button</span></span><svg class="btn-spinner" width="28" height="28" aria-hidden="true"><use href="#ico-spinner" /></svg></button></div>
+      <div class="cell"><button class="btn btn-brand btn--xl btn--rect"><span class="btn__content"><svg width="1em" height="1em" aria-hidden="true"><use href="#ico-square-dashed" /></svg><span class="btn__label">Button</span></span><svg class="btn-spinner" width="32" height="32" aria-hidden="true"><use href="#ico-spinner" /></svg></button></div>
+
+      <!-- Label + Addon -->
+      <div class="row-label">Label + Addon</div>
+      <div class="cell"><button class="btn btn-brand btn--xs btn--rect"><span class="btn__content"><span class="btn__label">Button</span><svg width="1em" height="1em" aria-hidden="true"><use href="#ico-add" /></svg></span><svg class="btn-spinner" width="16" height="16" aria-hidden="true"><use href="#ico-spinner" /></svg></button></div>
+      <div class="cell"><button class="btn btn-brand btn--sm btn--rect"><span class="btn__content"><span class="btn__label">Button</span><svg width="1em" height="1em" aria-hidden="true"><use href="#ico-add" /></svg></span><svg class="btn-spinner" width="20" height="20" aria-hidden="true"><use href="#ico-spinner" /></svg></button></div>
+      <div class="cell"><button class="btn btn-brand btn--rect"><span class="btn__content"><span class="btn__label">Button</span><svg width="1em" height="1em" aria-hidden="true"><use href="#ico-add" /></svg></span><svg class="btn-spinner" width="24" height="24" aria-hidden="true"><use href="#ico-spinner" /></svg></button></div>
+      <div class="cell"><button class="btn btn-brand btn--lg btn--rect"><span class="btn__content"><span class="btn__label">Button</span><svg width="1em" height="1em" aria-hidden="true"><use href="#ico-add" /></svg></span><svg class="btn-spinner" width="28" height="28" aria-hidden="true"><use href="#ico-spinner" /></svg></button></div>
+      <div class="cell"><button class="btn btn-brand btn--xl btn--rect"><span class="btn__content"><span class="btn__label">Button</span><svg width="1em" height="1em" aria-hidden="true"><use href="#ico-add" /></svg></span><svg class="btn-spinner" width="32" height="32" aria-hidden="true"><use href="#ico-spinner" /></svg></button></div>
+
+      <!-- Icon Only -->
+      <div class="row-label">Icon Only</div>
+      <div class="cell"><button class="btn btn-brand btn--xs btn--icon-only btn--rect" aria-label="Action"><span class="btn__content"><svg width="1em" height="1em" aria-hidden="true"><use href="#ico-heart" /></svg></span><svg class="btn-spinner" width="16" height="16" aria-hidden="true"><use href="#ico-spinner" /></svg></button></div>
+      <div class="cell"><button class="btn btn-brand btn--sm btn--icon-only btn--rect" aria-label="Action"><span class="btn__content"><svg width="1em" height="1em" aria-hidden="true"><use href="#ico-heart" /></svg></span><svg class="btn-spinner" width="20" height="20" aria-hidden="true"><use href="#ico-spinner" /></svg></button></div>
+      <div class="cell"><button class="btn btn-brand btn--icon-only btn--rect" aria-label="Action"><span class="btn__content"><svg width="1em" height="1em" aria-hidden="true"><use href="#ico-heart" /></svg></span><svg class="btn-spinner" width="24" height="24" aria-hidden="true"><use href="#ico-spinner" /></svg></button></div>
+      <div class="cell"><button class="btn btn-brand btn--lg btn--icon-only btn--rect" aria-label="Action"><span class="btn__content"><svg width="1em" height="1em" aria-hidden="true"><use href="#ico-heart" /></svg></span><svg class="btn-spinner" width="28" height="28" aria-hidden="true"><use href="#ico-spinner" /></svg></button></div>
+      <div class="cell"><button class="btn btn-brand btn--xl btn--icon-only btn--rect" aria-label="Action"><span class="btn__content"><svg width="1em" height="1em" aria-hidden="true"><use href="#ico-heart" /></svg></span><svg class="btn-spinner" width="32" height="32" aria-hidden="true"><use href="#ico-spinner" /></svg></button></div>
+    </div>
+
+    <h2 class="section-title">Rectangular · Primary Neutral</h2>
+    <div class="demo-grid demo-grid--6col">
+      <div class="col-header"></div>
+      <div class="col-header">XS · 4px</div>
+      <div class="col-header">SM · 6px</div>
+      <div class="col-header">MD · 8px</div>
+      <div class="col-header">LG · 10px</div>
+      <div class="col-header">XL · 12px</div>
+
+      <div class="row-label">Label Only</div>
+      <div class="cell"><button class="btn btn-neutral btn--xs btn--rect"><span class="btn__label">Button</span><svg class="btn-spinner" width="16" height="16" aria-hidden="true"><use href="#ico-spinner" /></svg></button></div>
+      <div class="cell"><button class="btn btn-neutral btn--sm btn--rect"><span class="btn__label">Button</span><svg class="btn-spinner" width="20" height="20" aria-hidden="true"><use href="#ico-spinner" /></svg></button></div>
+      <div class="cell"><button class="btn btn-neutral btn--rect"><span class="btn__label">Button</span><svg class="btn-spinner" width="24" height="24" aria-hidden="true"><use href="#ico-spinner" /></svg></button></div>
+      <div class="cell"><button class="btn btn-neutral btn--lg btn--rect"><span class="btn__label">Button</span><svg class="btn-spinner" width="28" height="28" aria-hidden="true"><use href="#ico-spinner" /></svg></button></div>
+      <div class="cell"><button class="btn btn-neutral btn--xl btn--rect"><span class="btn__label">Button</span><svg class="btn-spinner" width="32" height="32" aria-hidden="true"><use href="#ico-spinner" /></svg></button></div>
+
+      <div class="row-label">Icon + Label</div>
+      <div class="cell"><button class="btn btn-neutral btn--xs btn--rect"><span class="btn__content"><svg width="1em" height="1em" aria-hidden="true"><use href="#ico-square-dashed" /></svg><span class="btn__label">Button</span></span><svg class="btn-spinner" width="16" height="16" aria-hidden="true"><use href="#ico-spinner" /></svg></button></div>
+      <div class="cell"><button class="btn btn-neutral btn--sm btn--rect"><span class="btn__content"><svg width="1em" height="1em" aria-hidden="true"><use href="#ico-square-dashed" /></svg><span class="btn__label">Button</span></span><svg class="btn-spinner" width="20" height="20" aria-hidden="true"><use href="#ico-spinner" /></svg></button></div>
+      <div class="cell"><button class="btn btn-neutral btn--rect"><span class="btn__content"><svg width="1em" height="1em" aria-hidden="true"><use href="#ico-square-dashed" /></svg><span class="btn__label">Button</span></span><svg class="btn-spinner" width="24" height="24" aria-hidden="true"><use href="#ico-spinner" /></svg></button></div>
+      <div class="cell"><button class="btn btn-neutral btn--lg btn--rect"><span class="btn__content"><svg width="1em" height="1em" aria-hidden="true"><use href="#ico-square-dashed" /></svg><span class="btn__label">Button</span></span><svg class="btn-spinner" width="28" height="28" aria-hidden="true"><use href="#ico-spinner" /></svg></button></div>
+      <div class="cell"><button class="btn btn-neutral btn--xl btn--rect"><span class="btn__content"><svg width="1em" height="1em" aria-hidden="true"><use href="#ico-square-dashed" /></svg><span class="btn__label">Button</span></span><svg class="btn-spinner" width="32" height="32" aria-hidden="true"><use href="#ico-spinner" /></svg></button></div>
+
+      <div class="row-label">Label + Addon</div>
+      <div class="cell"><button class="btn btn-neutral btn--xs btn--rect"><span class="btn__content"><span class="btn__label">Button</span><svg width="1em" height="1em" aria-hidden="true"><use href="#ico-add" /></svg></span><svg class="btn-spinner" width="16" height="16" aria-hidden="true"><use href="#ico-spinner" /></svg></button></div>
+      <div class="cell"><button class="btn btn-neutral btn--sm btn--rect"><span class="btn__content"><span class="btn__label">Button</span><svg width="1em" height="1em" aria-hidden="true"><use href="#ico-add" /></svg></span><svg class="btn-spinner" width="20" height="20" aria-hidden="true"><use href="#ico-spinner" /></svg></button></div>
+      <div class="cell"><button class="btn btn-neutral btn--rect"><span class="btn__content"><span class="btn__label">Button</span><svg width="1em" height="1em" aria-hidden="true"><use href="#ico-add" /></svg></span><svg class="btn-spinner" width="24" height="24" aria-hidden="true"><use href="#ico-spinner" /></svg></button></div>
+      <div class="cell"><button class="btn btn-neutral btn--lg btn--rect"><span class="btn__content"><span class="btn__label">Button</span><svg width="1em" height="1em" aria-hidden="true"><use href="#ico-add" /></svg></span><svg class="btn-spinner" width="28" height="28" aria-hidden="true"><use href="#ico-spinner" /></svg></button></div>
+      <div class="cell"><button class="btn btn-neutral btn--xl btn--rect"><span class="btn__content"><span class="btn__label">Button</span><svg width="1em" height="1em" aria-hidden="true"><use href="#ico-add" /></svg></span><svg class="btn-spinner" width="32" height="32" aria-hidden="true"><use href="#ico-spinner" /></svg></button></div>
+
+      <div class="row-label">Icon Only</div>
+      <div class="cell"><button class="btn btn-neutral btn--xs btn--icon-only btn--rect" aria-label="Action"><span class="btn__content"><svg width="1em" height="1em" aria-hidden="true"><use href="#ico-heart" /></svg></span><svg class="btn-spinner" width="16" height="16" aria-hidden="true"><use href="#ico-spinner" /></svg></button></div>
+      <div class="cell"><button class="btn btn-neutral btn--sm btn--icon-only btn--rect" aria-label="Action"><span class="btn__content"><svg width="1em" height="1em" aria-hidden="true"><use href="#ico-heart" /></svg></span><svg class="btn-spinner" width="20" height="20" aria-hidden="true"><use href="#ico-spinner" /></svg></button></div>
+      <div class="cell"><button class="btn btn-neutral btn--icon-only btn--rect" aria-label="Action"><span class="btn__content"><svg width="1em" height="1em" aria-hidden="true"><use href="#ico-heart" /></svg></span><svg class="btn-spinner" width="24" height="24" aria-hidden="true"><use href="#ico-spinner" /></svg></button></div>
+      <div class="cell"><button class="btn btn-neutral btn--lg btn--icon-only btn--rect" aria-label="Action"><span class="btn__content"><svg width="1em" height="1em" aria-hidden="true"><use href="#ico-heart" /></svg></span><svg class="btn-spinner" width="28" height="28" aria-hidden="true"><use href="#ico-spinner" /></svg></button></div>
+      <div class="cell"><button class="btn btn-neutral btn--xl btn--icon-only btn--rect" aria-label="Action"><span class="btn__content"><svg width="1em" height="1em" aria-hidden="true"><use href="#ico-heart" /></svg></span><svg class="btn-spinner" width="32" height="32" aria-hidden="true"><use href="#ico-spinner" /></svg></button></div>
+    </div>
+
+    <h2 class="section-title">Rectangular · Secondary Default</h2>
+    <div class="demo-grid demo-grid--6col">
+      <div class="col-header"></div>
+      <div class="col-header">XS · 4px</div>
+      <div class="col-header">SM · 6px</div>
+      <div class="col-header">MD · 8px</div>
+      <div class="col-header">LG · 10px</div>
+      <div class="col-header">XL · 12px</div>
+
+      <div class="row-label">Label Only</div>
+      <div class="cell"><button class="btn btn-secondary-brand btn--xs btn--rect"><span class="btn__label">Button</span><svg class="btn-spinner" width="16" height="16" aria-hidden="true"><use href="#ico-spinner" /></svg></button></div>
+      <div class="cell"><button class="btn btn-secondary-brand btn--sm btn--rect"><span class="btn__label">Button</span><svg class="btn-spinner" width="20" height="20" aria-hidden="true"><use href="#ico-spinner" /></svg></button></div>
+      <div class="cell"><button class="btn btn-secondary-brand btn--rect"><span class="btn__label">Button</span><svg class="btn-spinner" width="24" height="24" aria-hidden="true"><use href="#ico-spinner" /></svg></button></div>
+      <div class="cell"><button class="btn btn-secondary-brand btn--lg btn--rect"><span class="btn__label">Button</span><svg class="btn-spinner" width="28" height="28" aria-hidden="true"><use href="#ico-spinner" /></svg></button></div>
+      <div class="cell"><button class="btn btn-secondary-brand btn--xl btn--rect"><span class="btn__label">Button</span><svg class="btn-spinner" width="32" height="32" aria-hidden="true"><use href="#ico-spinner" /></svg></button></div>
+
+      <div class="row-label">Icon + Label</div>
+      <div class="cell"><button class="btn btn-secondary-brand btn--xs btn--rect"><span class="btn__content"><svg width="1em" height="1em" aria-hidden="true"><use href="#ico-square-dashed" /></svg><span class="btn__label">Button</span></span><svg class="btn-spinner" width="16" height="16" aria-hidden="true"><use href="#ico-spinner" /></svg></button></div>
+      <div class="cell"><button class="btn btn-secondary-brand btn--sm btn--rect"><span class="btn__content"><svg width="1em" height="1em" aria-hidden="true"><use href="#ico-square-dashed" /></svg><span class="btn__label">Button</span></span><svg class="btn-spinner" width="20" height="20" aria-hidden="true"><use href="#ico-spinner" /></svg></button></div>
+      <div class="cell"><button class="btn btn-secondary-brand btn--rect"><span class="btn__content"><svg width="1em" height="1em" aria-hidden="true"><use href="#ico-square-dashed" /></svg><span class="btn__label">Button</span></span><svg class="btn-spinner" width="24" height="24" aria-hidden="true"><use href="#ico-spinner" /></svg></button></div>
+      <div class="cell"><button class="btn btn-secondary-brand btn--lg btn--rect"><span class="btn__content"><svg width="1em" height="1em" aria-hidden="true"><use href="#ico-square-dashed" /></svg><span class="btn__label">Button</span></span><svg class="btn-spinner" width="28" height="28" aria-hidden="true"><use href="#ico-spinner" /></svg></button></div>
+      <div class="cell"><button class="btn btn-secondary-brand btn--xl btn--rect"><span class="btn__content"><svg width="1em" height="1em" aria-hidden="true"><use href="#ico-square-dashed" /></svg><span class="btn__label">Button</span></span><svg class="btn-spinner" width="32" height="32" aria-hidden="true"><use href="#ico-spinner" /></svg></button></div>
+
+      <div class="row-label">Label + Addon</div>
+      <div class="cell"><button class="btn btn-secondary-brand btn--xs btn--rect"><span class="btn__content"><span class="btn__label">Button</span><svg width="1em" height="1em" aria-hidden="true"><use href="#ico-add" /></svg></span><svg class="btn-spinner" width="16" height="16" aria-hidden="true"><use href="#ico-spinner" /></svg></button></div>
+      <div class="cell"><button class="btn btn-secondary-brand btn--sm btn--rect"><span class="btn__content"><span class="btn__label">Button</span><svg width="1em" height="1em" aria-hidden="true"><use href="#ico-add" /></svg></span><svg class="btn-spinner" width="20" height="20" aria-hidden="true"><use href="#ico-spinner" /></svg></button></div>
+      <div class="cell"><button class="btn btn-secondary-brand btn--rect"><span class="btn__content"><span class="btn__label">Button</span><svg width="1em" height="1em" aria-hidden="true"><use href="#ico-add" /></svg></span><svg class="btn-spinner" width="24" height="24" aria-hidden="true"><use href="#ico-spinner" /></svg></button></div>
+      <div class="cell"><button class="btn btn-secondary-brand btn--lg btn--rect"><span class="btn__content"><span class="btn__label">Button</span><svg width="1em" height="1em" aria-hidden="true"><use href="#ico-add" /></svg></span><svg class="btn-spinner" width="28" height="28" aria-hidden="true"><use href="#ico-spinner" /></svg></button></div>
+      <div class="cell"><button class="btn btn-secondary-brand btn--xl btn--rect"><span class="btn__content"><span class="btn__label">Button</span><svg width="1em" height="1em" aria-hidden="true"><use href="#ico-add" /></svg></span><svg class="btn-spinner" width="32" height="32" aria-hidden="true"><use href="#ico-spinner" /></svg></button></div>
+
+      <div class="row-label">Icon Only</div>
+      <div class="cell"><button class="btn btn-secondary-brand btn--xs btn--icon-only btn--rect" aria-label="Action"><span class="btn__content"><svg width="1em" height="1em" aria-hidden="true"><use href="#ico-heart" /></svg></span><svg class="btn-spinner" width="16" height="16" aria-hidden="true"><use href="#ico-spinner" /></svg></button></div>
+      <div class="cell"><button class="btn btn-secondary-brand btn--sm btn--icon-only btn--rect" aria-label="Action"><span class="btn__content"><svg width="1em" height="1em" aria-hidden="true"><use href="#ico-heart" /></svg></span><svg class="btn-spinner" width="20" height="20" aria-hidden="true"><use href="#ico-spinner" /></svg></button></div>
+      <div class="cell"><button class="btn btn-secondary-brand btn--icon-only btn--rect" aria-label="Action"><span class="btn__content"><svg width="1em" height="1em" aria-hidden="true"><use href="#ico-heart" /></svg></span><svg class="btn-spinner" width="24" height="24" aria-hidden="true"><use href="#ico-spinner" /></svg></button></div>
+      <div class="cell"><button class="btn btn-secondary-brand btn--lg btn--icon-only btn--rect" aria-label="Action"><span class="btn__content"><svg width="1em" height="1em" aria-hidden="true"><use href="#ico-heart" /></svg></span><svg class="btn-spinner" width="28" height="28" aria-hidden="true"><use href="#ico-spinner" /></svg></button></div>
+      <div class="cell"><button class="btn btn-secondary-brand btn--xl btn--icon-only btn--rect" aria-label="Action"><span class="btn__content"><svg width="1em" height="1em" aria-hidden="true"><use href="#ico-heart" /></svg></span><svg class="btn-spinner" width="32" height="32" aria-hidden="true"><use href="#ico-spinner" /></svg></button></div>
+    </div>
+
+    <h2 class="section-title">Rectangular · Tertiary Soft</h2>
+    <div class="demo-grid demo-grid--6col">
+      <div class="col-header"></div>
+      <div class="col-header">XS · 4px</div>
+      <div class="col-header">SM · 6px</div>
+      <div class="col-header">MD · 8px</div>
+      <div class="col-header">LG · 10px</div>
+      <div class="col-header">XL · 12px</div>
+
+      <div class="row-label">Label Only</div>
+      <div class="cell"><button class="btn btn-tertiary-brand btn--xs btn--rect"><span class="btn__label">Button</span><svg class="btn-spinner" width="16" height="16" aria-hidden="true"><use href="#ico-spinner" /></svg></button></div>
+      <div class="cell"><button class="btn btn-tertiary-brand btn--sm btn--rect"><span class="btn__label">Button</span><svg class="btn-spinner" width="20" height="20" aria-hidden="true"><use href="#ico-spinner" /></svg></button></div>
+      <div class="cell"><button class="btn btn-tertiary-brand btn--rect"><span class="btn__label">Button</span><svg class="btn-spinner" width="24" height="24" aria-hidden="true"><use href="#ico-spinner" /></svg></button></div>
+      <div class="cell"><button class="btn btn-tertiary-brand btn--lg btn--rect"><span class="btn__label">Button</span><svg class="btn-spinner" width="28" height="28" aria-hidden="true"><use href="#ico-spinner" /></svg></button></div>
+      <div class="cell"><button class="btn btn-tertiary-brand btn--xl btn--rect"><span class="btn__label">Button</span><svg class="btn-spinner" width="32" height="32" aria-hidden="true"><use href="#ico-spinner" /></svg></button></div>
+
+      <div class="row-label">Icon + Label</div>
+      <div class="cell"><button class="btn btn-tertiary-brand btn--xs btn--rect"><span class="btn__content"><svg width="1em" height="1em" aria-hidden="true"><use href="#ico-square-dashed" /></svg><span class="btn__label">Button</span></span><svg class="btn-spinner" width="16" height="16" aria-hidden="true"><use href="#ico-spinner" /></svg></button></div>
+      <div class="cell"><button class="btn btn-tertiary-brand btn--sm btn--rect"><span class="btn__content"><svg width="1em" height="1em" aria-hidden="true"><use href="#ico-square-dashed" /></svg><span class="btn__label">Button</span></span><svg class="btn-spinner" width="20" height="20" aria-hidden="true"><use href="#ico-spinner" /></svg></button></div>
+      <div class="cell"><button class="btn btn-tertiary-brand btn--rect"><span class="btn__content"><svg width="1em" height="1em" aria-hidden="true"><use href="#ico-square-dashed" /></svg><span class="btn__label">Button</span></span><svg class="btn-spinner" width="24" height="24" aria-hidden="true"><use href="#ico-spinner" /></svg></button></div>
+      <div class="cell"><button class="btn btn-tertiary-brand btn--lg btn--rect"><span class="btn__content"><svg width="1em" height="1em" aria-hidden="true"><use href="#ico-square-dashed" /></svg><span class="btn__label">Button</span></span><svg class="btn-spinner" width="28" height="28" aria-hidden="true"><use href="#ico-spinner" /></svg></button></div>
+      <div class="cell"><button class="btn btn-tertiary-brand btn--xl btn--rect"><span class="btn__content"><svg width="1em" height="1em" aria-hidden="true"><use href="#ico-square-dashed" /></svg><span class="btn__label">Button</span></span><svg class="btn-spinner" width="32" height="32" aria-hidden="true"><use href="#ico-spinner" /></svg></button></div>
+
+      <div class="row-label">Label + Addon</div>
+      <div class="cell"><button class="btn btn-tertiary-brand btn--xs btn--rect"><span class="btn__content"><span class="btn__label">Button</span><svg width="1em" height="1em" aria-hidden="true"><use href="#ico-add" /></svg></span><svg class="btn-spinner" width="16" height="16" aria-hidden="true"><use href="#ico-spinner" /></svg></button></div>
+      <div class="cell"><button class="btn btn-tertiary-brand btn--sm btn--rect"><span class="btn__content"><span class="btn__label">Button</span><svg width="1em" height="1em" aria-hidden="true"><use href="#ico-add" /></svg></span><svg class="btn-spinner" width="20" height="20" aria-hidden="true"><use href="#ico-spinner" /></svg></button></div>
+      <div class="cell"><button class="btn btn-tertiary-brand btn--rect"><span class="btn__content"><span class="btn__label">Button</span><svg width="1em" height="1em" aria-hidden="true"><use href="#ico-add" /></svg></span><svg class="btn-spinner" width="24" height="24" aria-hidden="true"><use href="#ico-spinner" /></svg></button></div>
+      <div class="cell"><button class="btn btn-tertiary-brand btn--lg btn--rect"><span class="btn__content"><span class="btn__label">Button</span><svg width="1em" height="1em" aria-hidden="true"><use href="#ico-add" /></svg></span><svg class="btn-spinner" width="28" height="28" aria-hidden="true"><use href="#ico-spinner" /></svg></button></div>
+      <div class="cell"><button class="btn btn-tertiary-brand btn--xl btn--rect"><span class="btn__content"><span class="btn__label">Button</span><svg width="1em" height="1em" aria-hidden="true"><use href="#ico-add" /></svg></span><svg class="btn-spinner" width="32" height="32" aria-hidden="true"><use href="#ico-spinner" /></svg></button></div>
+
+      <div class="row-label">Icon Only</div>
+      <div class="cell"><button class="btn btn-tertiary-brand btn--xs btn--icon-only btn--rect" aria-label="Action"><span class="btn__content"><svg width="1em" height="1em" aria-hidden="true"><use href="#ico-heart" /></svg></span><svg class="btn-spinner" width="16" height="16" aria-hidden="true"><use href="#ico-spinner" /></svg></button></div>
+      <div class="cell"><button class="btn btn-tertiary-brand btn--sm btn--icon-only btn--rect" aria-label="Action"><span class="btn__content"><svg width="1em" height="1em" aria-hidden="true"><use href="#ico-heart" /></svg></span><svg class="btn-spinner" width="20" height="20" aria-hidden="true"><use href="#ico-spinner" /></svg></button></div>
+      <div class="cell"><button class="btn btn-tertiary-brand btn--icon-only btn--rect" aria-label="Action"><span class="btn__content"><svg width="1em" height="1em" aria-hidden="true"><use href="#ico-heart" /></svg></span><svg class="btn-spinner" width="24" height="24" aria-hidden="true"><use href="#ico-spinner" /></svg></button></div>
+      <div class="cell"><button class="btn btn-tertiary-brand btn--lg btn--icon-only btn--rect" aria-label="Action"><span class="btn__content"><svg width="1em" height="1em" aria-hidden="true"><use href="#ico-heart" /></svg></span><svg class="btn-spinner" width="28" height="28" aria-hidden="true"><use href="#ico-spinner" /></svg></button></div>
+      <div class="cell"><button class="btn btn-tertiary-brand btn--xl btn--icon-only btn--rect" aria-label="Action"><span class="btn__content"><svg width="1em" height="1em" aria-hidden="true"><use href="#ico-heart" /></svg></span><svg class="btn-spinner" width="32" height="32" aria-hidden="true"><use href="#ico-spinner" /></svg></button></div>
+    </div>
+
     <script>
       document.querySelectorAll(".btn:not(.is-hover):not(.is-pressed):not(.btn--loading)").forEach(btn => {
         btn.addEventListener("click", () => {

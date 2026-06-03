@@ -4,7 +4,9 @@
       "mcp__plugin_figma_figma__get_design_context",
       "Bash(jq -r '.[0].text' \"/Users/joungmin.shin/.claude/projects/-Users-joungmin-shin-Documents-claude-code-dm-web/34926848-cb48-429a-a409-8097f78ecac5/tool-results/mcp-plugin_figma_figma-get_design_context-1780392328634.txt\")",
       "Read(//tmp/**)",
-      "Bash(python3 *)"
+      "Bash(python3 *)",
+      "Bash(curl *)",
+      "WebFetch(domain:localhost)"
     ]
   }
 }
