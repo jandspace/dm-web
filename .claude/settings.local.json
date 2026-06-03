@@ -6,7 +6,10 @@
       "Read(//tmp/**)",
       "Bash(python3 *)",
       "Bash(curl *)",
-      "WebFetch(domain:localhost)"
+      "WebFetch(domain:localhost)",
+      "Bash(grep -E '\\\\.\\(html|css|js\\)$')",
+      "Bash(git -C /Users/joungmin.shin/Documents/claude-code/dm-web show --stat HEAD)",
+      "Bash(pip3 install *)"
     ]
   }
 }
