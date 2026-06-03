@@ -1331,12 +1331,14 @@
 
       function syncBgToVariant() {
         s.bgImage = null;
-        if (s.variation === "neutral-inverse" || s.variation === "dark-surface") {
+        if (s.variation === "dark-surface") {
+          s.bgImage = "../../assets/images/background-dark.jpg";
+        } else if (s.variation === "light-surface") {
+          s.bgImage = "../../assets/images/background-light.jpg";
+        } else if (s.variation === "neutral-inverse") {
           s.bgColor = "#1a1a1a";
         } else if (s.variation === "visible") {
           s.bgColor = "#e3e3e3"; /* --color-background-neutral-light */
-        } else if (s.variation === "light-surface") {
-          s.bgColor = "#cccccc"; /* --color-background-neutral-grey-light */
         } else {
           s.bgColor = "#ffffff";
         }
