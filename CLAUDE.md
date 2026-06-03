@@ -9,6 +9,7 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 This is the **DM (Daily Mail) Design System** prototyping workspace. It stores design tokens exported from Figma variables, converted to CSS custom properties, and serves as the base for component and project prototyping across Web, iOS, and Android.
 
 No build system, test runner, or framework — files are maintained manually or via Figma export.
+Design system documentation is stored in `docs/` and must be read before any component work begins.
 
 ---
 
@@ -45,13 +46,13 @@ projects/
 
 ## Token Files
 
-| File | Format | Purpose |
-|------|--------|---------|
-| `dm_colour_tokens.json` | JSON | Figma variable export — all colour tokens |
-| `dm_colour_tokens.css` | CSS | CSS custom properties for colour tokens |
-| `dm_typography_web_tokens.json` | JSON | Figma variable export — web typography |
-| `dm_typography_web_tokens.css` | CSS | CSS custom properties for web typography |
-| `dm_typography_app_tokens.json` | JSON | Figma variable export — app typography (iOS/Android) |
+| File                            | Format | Purpose                                              |
+| ------------------------------- | ------ | ---------------------------------------------------- |
+| `dm_colour_tokens.json`         | JSON   | Figma variable export — all colour tokens            |
+| `dm_colour_tokens.css`          | CSS    | CSS custom properties for colour tokens              |
+| `dm_typography_web_tokens.json` | JSON   | Figma variable export — web typography               |
+| `dm_typography_web_tokens.css`  | CSS    | CSS custom properties for web typography             |
+| `dm_typography_app_tokens.json` | JSON   | Figma variable export — app typography (iOS/Android) |
 
 ---
 
@@ -60,10 +61,12 @@ projects/
 ### Two-Layer System
 
 **Foundation (Primitive)** — raw values, not for direct use in UI:
+
 - CSS naming: `--primitive-colors-{hue}-{scale}` (e.g. `--primitive-colors-blue-500`)
 - JSON path: `Foundation > Primitive Colors/{Hue}/{Scale}`
 
 **Semantic** — contextual aliases that reference primitive tokens:
+
 - CSS naming: `--color-{category}-{context}-{variant}` (e.g. `--color-background-neutral-white`)
 - JSON: `isAlias: true` with a reference to the Foundation collection
 
@@ -80,23 +83,23 @@ color/icon/*         — icon colours
 
 ### Editorial Section → Colour Mapping
 
-| Section | Colour |
-|---------|--------|
-| Home | Blue |
-| News | Cyan |
-| Showbiz | Red |
-| Sport | Green |
-| Royals | Violet |
-| Money | Purple |
-| Lifestyle | Azure |
-| Health | Turquoise |
-| TV | Magenta |
-| Travel | Navy |
-| Shopping | Indigo |
-| Crime | Petrol |
-| Property | Fuchsia |
-| Podcasts | Yellow |
-| Games | Ultramarine |
+| Section   | Colour      |
+| --------- | ----------- |
+| Home      | Blue        |
+| News      | Cyan        |
+| Showbiz   | Red         |
+| Sport     | Green       |
+| Royals    | Violet      |
+| Money     | Purple      |
+| Lifestyle | Azure       |
+| Health    | Turquoise   |
+| TV        | Magenta     |
+| Travel    | Navy        |
+| Shopping  | Indigo      |
+| Crime     | Petrol      |
+| Property  | Fuchsia     |
+| Podcasts  | Yellow      |
+| Games     | Ultramarine |
 
 Within each section, variants follow the pattern: `base`, `base-darker`, `subtle`, `subtlest`, `deep`.
 
@@ -122,11 +125,11 @@ DM is currently **adaptive**, not fully responsive. Desktop and mobile are serve
 
 ### Desktop Web
 
-| Token | Value | Context |
-|-------|-------|---------|
-| MD | ≥768px | Tablet portrait |
-| LG | ≥1024px | Desktop |
-| XL | ≥1344px | Wide desktop |
+| Token | Value   | Context         |
+| ----- | ------- | --------------- |
+| MD    | ≥768px  | Tablet portrait |
+| LG    | ≥1024px | Desktop         |
+| XL    | ≥1344px | Wide desktop    |
 
 ### Mobile Web
 
@@ -141,10 +144,10 @@ DM is currently **adaptive**, not fully responsive. Desktop and mobile are serve
 
 ### Typefaces
 
-| Role | Family | Usage |
-|------|--------|-------|
-| Sans (default) | Inter | All UI, body copy, labels, metadata |
-| Serif (editorial) | Lora | Article headlines, featured content, quotes only |
+| Role              | Family | Usage                                            |
+| ----------------- | ------ | ------------------------------------------------ |
+| Sans (default)    | Inter  | All UI, body copy, labels, metadata              |
+| Serif (editorial) | Lora   | Article headlines, featured content, quotes only |
 
 Never mix typefaces within a single UI component.
 
@@ -160,11 +163,11 @@ e.g. `--typography-font-size-h1`, `--typography-font-weight-bold`
 
 ### Font Weights
 
-| Weight | Value | Usage |
-|--------|-------|-------|
-| Regular | 400 | Body copy, secondary metadata |
-| Semibold | 600 | Default emphasis — headings, buttons, labels |
-| Bold | 700 | Display only, or H1–H2 where extra impact is needed |
+| Weight   | Value | Usage                                               |
+| -------- | ----- | --------------------------------------------------- |
+| Regular  | 400   | Body copy, secondary metadata                       |
+| Semibold | 600   | Default emphasis — headings, buttons, labels        |
+| Bold     | 700   | Display only, or H1–H2 where extra impact is needed |
 
 Italic variants are for editorial inline use only. Never apply italic to buttons or functional UI.
 
@@ -172,17 +175,17 @@ Italic variants are for editorial inline use only. Never apply italic to buttons
 
 Mobile-first. SM is `:root` base.
 
-| Style | SM (<768px) | MD (≥768px) | LG (≥1024px) |
-|-------|------------|------------|-------------|
-| display-lg | 40px | 52px | 64px |
-| display-md | 36px | 44px | 56px |
-| display-sm | 30px | 34px | 48px |
-| h1 | 28px | 30px | 36px |
-| h2 | 24px | 25px | 28px |
-| h3 | 20px | 21px | 22px |
-| h4 | 18px | 18px | 18px |
-| h5 | 16px | 16px | 16px |
-| h6 | 14px | 14px | 14px |
+| Style      | SM (<768px) | MD (≥768px) | LG (≥1024px) |
+| ---------- | ----------- | ----------- | ------------ |
+| display-lg | 40px        | 52px        | 64px         |
+| display-md | 36px        | 44px        | 56px         |
+| display-sm | 30px        | 34px        | 48px         |
+| h1         | 28px        | 30px        | 36px         |
+| h2         | 24px        | 25px        | 28px         |
+| h3         | 20px        | 21px        | 22px         |
+| h4         | 18px        | 18px        | 18px         |
+| h5         | 16px        | 16px        | 16px         |
+| h6         | 14px        | 14px        | 14px         |
 
 Text and Label are fixed across all breakpoints (except label-xl: SM/MD 19px, LG 20px).
 
@@ -198,13 +201,13 @@ Never use px for line-height on web.
 line-height = font-size × multiplier
 ```
 
-| Token | Multiplier | Applied To |
-|-------|-----------|------------|
-| `--typography-line-height-narrower` | 1.12 | Display (all levels) |
-| `--typography-line-height-narrow` | 1.20 | H1–H4, Label (all) |
-| `--typography-line-height-compact` | 1.32 | H5–H6 |
-| `--typography-line-height-normal` | 1.50 | Text/Body (all) |
-| `--typography-line-height-wide` | 1.75 | Special editorial only |
+| Token                               | Multiplier | Applied To             |
+| ----------------------------------- | ---------- | ---------------------- |
+| `--typography-line-height-narrower` | 1.12       | Display (all levels)   |
+| `--typography-line-height-narrow`   | 1.20       | H1–H4, Label (all)     |
+| `--typography-line-height-compact`  | 1.32       | H5–H6                  |
+| `--typography-line-height-normal`   | 1.50       | Text/Body (all)        |
+| `--typography-line-height-wide`     | 1.75       | Special editorial only |
 
 Line height values do not change across breakpoints.
 
@@ -220,12 +223,12 @@ Follow M3 sp values natively. Always define line height in `sp`, never `dp`.
 
 ## Letter Spacing (Web only)
 
-| Token | Value | Applied To |
-|-------|-------|------------|
-| narrow | -0.5% | Display |
-| compact | -0.2% | H1–H4 |
-| normal | 0 | Body, Label |
-| wide | +0.25% | Small text, metadata |
+| Token   | Value  | Applied To           |
+| ------- | ------ | -------------------- |
+| narrow  | -0.5%  | Display              |
+| compact | -0.2%  | H1–H4                |
+| normal  | 0      | Body, Label          |
+| wide    | +0.25% | Small text, metadata |
 
 iOS and Android: no overrides. Native defaults only.
 
@@ -248,21 +251,33 @@ iOS and Android: no overrides. Native defaults only.
 ```json
 {
   "version": "1.0.4",
-  "collections": [{
-    "name": "Collection Name",
-    "modes": [{
-      "name": "Mode Name",
-      "variables": [{
-        "name": "token/path/name",
-        "type": "color | string | float",
-        "isAlias": true,
-        "value": "<raw value> | { collection, name }"
-      }]
-    }]
-  }]
+  "collections": [
+    {
+      "name": "Collection Name",
+      "modes": [
+        {
+          "name": "Mode Name",
+          "variables": [
+            {
+              "name": "token/path/name",
+              "type": "color | string | float",
+              "isAlias": true,
+              "value": "<raw value> | { collection, name }"
+            }
+          ]
+        }
+      ]
+    }
+  ]
 }
 ```
 
 ## Versioning
 
 All token files share the same version string (currently `1.0.4`). Update the `version` field in JSON files and the CSS comment header together when making changes.
+
+## Working Rules
+
+- Before starting any task, read all `.md` files in the `docs/` folder
+- Apply DM Design System rules and conventions from `docs/` throughout all work
+- When working on a specific component (e.g. button), read the relevant doc file first (e.g. `docs/button.md`)
