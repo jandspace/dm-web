@@ -3914,6 +3914,321 @@
     </div>
 
     <script>
+      /* ── Token Tooltips ── */
+      (function () {
+        const style = document.createElement('style');
+        style.textContent = `
+          .btn-token-tooltip {
+            position: fixed;
+            z-index: 9999;
+            background: #1a1a1a;
+            color: #fff;
+            font-family: monospace;
+            font-size: 11px;
+            border-radius: 6px;
+            padding: 10px 12px;
+            max-width: 420px;
+            pointer-events: none;
+            white-space: nowrap;
+            box-shadow: 0 4px 12px rgba(0,0,0,.4);
+          }
+          .btn-token-tooltip__title {
+            font-size: 10px;
+            text-transform: uppercase;
+            letter-spacing: 0.08em;
+            color: #888;
+            margin-bottom: 6px;
+          }
+          .btn-token-tooltip__line {
+            display: flex;
+            margin-top: 4px;
+          }
+          .btn-token-tooltip__prefix--color  { color: #4a9eff; flex-shrink: 0; }
+          .btn-token-tooltip__prefix--effect { color: #f0a04a; flex-shrink: 0; }
+        `;
+        document.head.appendChild(style);
+
+        // [type, full-token-name]
+        // ic  = unconditional icon token (primary loading: spinner uses explicit icon token)
+        // icC = conditional icon token (shown only when composition contains an icon)
+        const bg  = s => ['bg',        '--color-background-' + s];
+        const tx  = s => ['text',      '--color-text-' + s];
+        const ic  = s => ['icon',      '--color-icon-' + s];
+        const icC = s => ['icon-cond', '--color-icon-' + s];
+        const br  = s => ['border',    '--color-border-' + s];
+        const fx  = s => ['effect',    '--color-effect-' + s];
+        const sh  = ['shadow', null];
+
+        const MAP = {
+          'btn-brand': {
+            l: 'PRIMARY · BRAND',
+            d: [bg('interaction-primary-default'), tx('neutral-white'),  icC('neutral-white')],
+            h: [bg('interaction-primary-hover'),   tx('neutral-white'),  icC('neutral-white')],
+            p: [bg('interaction-primary-pressed'),  tx('neutral-white'), icC('neutral-white'), sh],
+            g: [bg('interaction-primary-pressed'),  ic('neutral-white')],
+          },
+          'btn-neutral': {
+            l: 'PRIMARY · NEUTRAL',
+            d: [bg('neutral-darker'),    tx('neutral-lightest'), icC('neutral-lightest')],
+            h: [bg('neutral-dark'),      tx('neutral-lightest'), icC('neutral-lightest')],
+            p: [bg('neutral-grey-dark'), tx('neutral-lightest'), icC('neutral-lightest'), sh],
+            g: [bg('neutral-grey-dark'), ic('neutral-lightest')],
+          },
+          'btn-neutral-inverse': {
+            l: 'PRIMARY · NEUTRAL INVERSE',
+            d: [bg('neutral-light'),   tx('neutral-darker'), icC('neutral-darker')],
+            h: [bg('neutral-white'),   tx('neutral-darker'), icC('neutral-darker')],
+            p: [bg('neutral-lighter'), tx('neutral-darker'), icC('neutral-darker'), sh],
+            g: [bg('neutral-lighter'), ic('neutral-darker')],
+          },
+          'btn-secondary-brand': {
+            l: 'SECONDARY · BRAND',
+            d: [fx('translucent-dark-clear'), tx('interaction-primary-default'), icC('interaction-primary-default'), br('neutral-grey-light')],
+            h: [fx('translucent-dark-pale'),  tx('interaction-primary-default'), icC('interaction-primary-default'), br('neutral-grey-light')],
+            p: [fx('translucent-dark-pale'),  tx('interaction-primary-default'), icC('interaction-primary-default'), br('neutral-grey-light'), sh],
+            g: [fx('translucent-dark-pale'),  tx('interaction-primary-default'), icC('interaction-primary-default'), br('neutral-grey-light')],
+          },
+          'btn-secondary-visible': {
+            l: 'SECONDARY · VISIBLE',
+            d: [fx('translucent-dark-clear'), tx('interaction-primary-default'), icC('interaction-primary-default'), br('translucent-dark-subtle')],
+            h: [fx('translucent-dark-pale'),  tx('interaction-primary-default'), icC('interaction-primary-default'), br('translucent-dark-subtle')],
+            p: [fx('translucent-dark-pale'),  tx('interaction-primary-default'), icC('interaction-primary-default'), br('translucent-dark-subtle'), sh],
+            g: [fx('translucent-dark-pale'),  tx('interaction-primary-default'), icC('interaction-primary-default'), br('translucent-dark-subtle')],
+          },
+          'btn-secondary-neutral': {
+            l: 'SECONDARY · NEUTRAL',
+            d: [fx('translucent-dark-clear'), tx('neutral-darker'), icC('neutral-darker'), br('neutral-grey-light')],
+            h: [fx('translucent-dark-pale'),  tx('neutral-darker'), icC('neutral-darker'), br('neutral-grey-light')],
+            p: [fx('translucent-dark-pale'),  tx('neutral-darker'), icC('neutral-darker'), br('neutral-grey-light'), sh],
+            g: [fx('translucent-dark-pale'),  tx('neutral-darker'), icC('neutral-darker'), br('neutral-grey-light')],
+          },
+          'btn-secondary-light': {
+            l: 'SECONDARY · LIGHT SURFACE',
+            d: [fx('translucent-dark-clear'), tx('neutral-darker'), icC('neutral-darker'), br('translucent-dark-subtle')],
+            h: [fx('translucent-dark-pale'),  tx('neutral-darker'), icC('neutral-darker'), br('translucent-dark-subtle')],
+            p: [fx('translucent-dark-pale'),  tx('neutral-darker'), icC('neutral-darker'), br('translucent-dark-subtle'), sh],
+            g: [fx('translucent-dark-pale'),  tx('neutral-darker'), icC('neutral-darker'), br('translucent-dark-subtle')],
+          },
+          'btn-secondary-dark': {
+            l: 'SECONDARY · DARK SURFACE',
+            d: [fx('translucent-light-clear'), tx('neutral-lightest'), icC('neutral-lightest'), br('translucent-light-moderate')],
+            h: [fx('translucent-light-pale'),  tx('neutral-lightest'), icC('neutral-lightest'), br('translucent-light-moderate')],
+            p: [fx('translucent-light-pale'),  tx('neutral-lightest'), icC('neutral-lightest'), br('translucent-light-moderate'), sh],
+            g: [fx('translucent-light-pale'),  tx('neutral-lightest'), icC('neutral-lightest'), br('translucent-light-moderate')],
+          },
+          'btn-tertiary-brand': {
+            l: 'TERTIARY · BRAND',
+            d: [bg('neutral-lighter'), tx('interaction-primary-default'), icC('interaction-primary-default')],
+            h: [bg('neutral-light'),   tx('interaction-primary-default'), icC('interaction-primary-default')],
+            p: [bg('neutral-light'),   tx('interaction-primary-default'), icC('interaction-primary-default'), sh],
+            g: [bg('neutral-light'),   tx('interaction-primary-default'), icC('interaction-primary-default')],
+          },
+          'btn-tertiary-visible': {
+            l: 'TERTIARY · VISIBLE',
+            d: [fx('translucent-dark-pale'),   tx('interaction-primary-default'), icC('interaction-primary-default')],
+            h: [fx('translucent-dark-subtle'), tx('interaction-primary-default'), icC('interaction-primary-default')],
+            p: [fx('translucent-dark-pale'),   tx('interaction-primary-default'), icC('interaction-primary-default'), sh],
+            g: [fx('translucent-dark-pale'),   tx('interaction-primary-default'), icC('interaction-primary-default')],
+          },
+          'btn-tertiary-neutral': {
+            l: 'TERTIARY · NEUTRAL',
+            d: [bg('neutral-lighter'), tx('neutral-darker'), icC('neutral-darker')],
+            h: [bg('neutral-light'),   tx('neutral-darker'), icC('neutral-darker')],
+            p: [bg('neutral-light'),   tx('neutral-darker'), icC('neutral-darker'), sh],
+            g: [bg('neutral-light'),   tx('neutral-darker'), icC('neutral-darker')],
+          },
+          'btn-tertiary-light': {
+            l: 'TERTIARY · LIGHT SURFACE',
+            d: [fx('translucent-dark-moderate'), tx('neutral-lightest'), icC('neutral-lightest')],
+            h: [fx('translucent-dark-deep'),     tx('neutral-lightest'), icC('neutral-lightest')],
+            p: [fx('translucent-dark-deep'),     tx('neutral-lightest'), icC('neutral-lightest'), sh],
+            g: [fx('translucent-dark-deep'),     tx('neutral-lightest'), icC('neutral-lightest')],
+          },
+          'btn-tertiary-dark': {
+            l: 'TERTIARY · DARK SURFACE',
+            d: [fx('translucent-light-deep'),  tx('neutral-darker'), icC('neutral-darker')],
+            h: [fx('translucent-light-thick'), tx('neutral-darker'), icC('neutral-darker')],
+            p: [fx('translucent-light-thick'), tx('neutral-darker'), icC('neutral-darker'), sh],
+            g: [fx('translucent-light-thick'), tx('neutral-darker'), icC('neutral-darker')],
+          },
+          'btn-quaternary-brand': {
+            l: 'QUATERNARY · BRAND',
+            d: [fx('translucent-dark-clear'), tx('interaction-primary-default'), icC('interaction-primary-default')],
+            h: [bg('neutral-light'),          tx('interaction-primary-default'), icC('interaction-primary-default')],
+            p: [bg('neutral-light'),          tx('interaction-primary-default'), icC('interaction-primary-default'), sh],
+            g: [bg('neutral-light'),          tx('interaction-primary-default'), icC('interaction-primary-default')],
+          },
+          'btn-quaternary-neutral': {
+            l: 'QUATERNARY · NEUTRAL',
+            d: [fx('translucent-dark-clear'), tx('neutral-darker'), icC('neutral-darker')],
+            h: [bg('neutral-light'),          tx('neutral-darker'), icC('neutral-darker')],
+            p: [bg('neutral-light'),          tx('neutral-darker'), icC('neutral-darker'), sh],
+            g: [bg('neutral-light'),          tx('neutral-darker'), icC('neutral-darker')],
+          },
+          'btn-quaternary-light': {
+            l: 'QUATERNARY · LIGHT SURFACE',
+            d: [fx('translucent-dark-clear'),  tx('neutral-darker'), icC('neutral-darker')],
+            h: [fx('translucent-dark-subtle'), tx('neutral-darker'), icC('neutral-darker')],
+            p: [fx('translucent-dark-subtle'), tx('neutral-darker'), icC('neutral-darker'), sh],
+            g: [fx('translucent-dark-subtle'), tx('neutral-darker'), icC('neutral-darker')],
+          },
+          'btn-quaternary-dark': {
+            l: 'QUATERNARY · DARK SURFACE',
+            d: [fx('translucent-light-clear'),  tx('neutral-lightest'), icC('neutral-lightest')],
+            h: [fx('translucent-light-subtle'), tx('neutral-lightest'), icC('neutral-lightest')],
+            p: [fx('translucent-light-subtle'), tx('neutral-lightest'), icC('neutral-lightest'), sh],
+            g: [fx('translucent-light-subtle'), tx('neutral-lightest'), icC('neutral-lightest')],
+          },
+          'btn-negative-solid': {
+            l: 'NEGATIVE · SOLID',
+            d: [bg('interaction-negative-default'), tx('neutral-white'), icC('neutral-white')],
+            h: [bg('interaction-negative-hover'),   tx('neutral-white'), icC('neutral-white')],
+            p: [bg('interaction-negative-pressed'),  tx('neutral-white'), icC('neutral-white'), sh],
+            g: [bg('interaction-negative-pressed'),  tx('neutral-white')],
+          },
+          'btn-negative-outline': {
+            l: 'NEGATIVE · OUTLINE',
+            d: [fx('translucent-dark-clear'), tx('interaction-negative-default'), icC('interaction-negative-default'), br('neutral-grey-light')],
+            h: [fx('translucent-dark-pale'),  tx('interaction-negative-default'), icC('interaction-negative-default'), br('translucent-dark-subtle')],
+            p: [fx('translucent-dark-pale'),  tx('interaction-negative-default'), icC('interaction-negative-default'), br('translucent-dark-subtle'), sh],
+            g: [fx('translucent-dark-pale'),  tx('interaction-negative-default'), icC('interaction-negative-default'), br('translucent-dark-subtle')],
+          },
+          'btn-positive-solid': {
+            l: 'POSITIVE · SOLID',
+            d: [bg('interaction-positive-default'), tx('neutral-white'), icC('neutral-white')],
+            h: [bg('interaction-positive-hover'),   tx('neutral-white'), icC('neutral-white')],
+            p: [bg('interaction-positive-pressed'),  tx('neutral-white'), icC('neutral-white'), sh],
+            g: [bg('interaction-positive-pressed'),  tx('neutral-white')],
+          },
+          'btn-positive-outline': {
+            l: 'POSITIVE · OUTLINE',
+            d: [fx('translucent-dark-clear'), tx('interaction-positive-default'), icC('interaction-positive-default'), br('neutral-grey-light')],
+            h: [fx('translucent-dark-pale'),  tx('interaction-positive-default'), icC('interaction-positive-default'), br('translucent-dark-subtle')],
+            p: [fx('translucent-dark-pale'),  tx('interaction-positive-default'), icC('interaction-positive-default'), br('translucent-dark-subtle'), sh],
+            g: [fx('translucent-dark-pale'),  tx('interaction-positive-default'), icC('interaction-positive-default'), br('translucent-dark-subtle')],
+          },
+        };
+
+        const VARIANTS = Object.keys(MAP);
+
+        function getVariant(btn) {
+          for (const v of VARIANTS) {
+            if (btn.classList.contains(v)) return v;
+          }
+          return null;
+        }
+
+        function getState(btn) {
+          if (btn.classList.contains('btn--loading')) return 'g';
+          if (btn.classList.contains('is-pressed'))   return 'p';
+          if (btn.classList.contains('is-hover'))     return 'h';
+          return 'd';
+        }
+
+        function getStateLabel(s) {
+          return { d: 'DEFAULT', h: 'HOVER', p: 'PRESSED', g: 'LOADING' }[s];
+        }
+
+        function hasIconComposition(btn) {
+          return btn.classList.contains('btn--icon-only') ||
+                 !!btn.querySelector('.btn__content > svg, .btn__content > use');
+        }
+
+        function buildTooltip(btn) {
+          const varKey = getVariant(btn);
+          if (!varKey) return null;
+          const info   = MAP[varKey];
+          const state  = getState(btn);
+          const tokens = info[state];
+          const hasIcon = hasIconComposition(btn);
+
+          const el = document.createElement('div');
+          el.className = 'btn-token-tooltip';
+
+          const title = document.createElement('div');
+          title.className = 'btn-token-tooltip__title';
+          title.textContent = info.l + ' · ' + getStateLabel(state);
+          el.appendChild(title);
+
+          tokens.forEach(([type, val]) => {
+            if (type === 'icon-cond' && !hasIcon) return;
+
+            const line   = document.createElement('div');
+            line.className = 'btn-token-tooltip__line';
+            const prefix = document.createElement('span');
+
+            if (type === 'shadow') {
+              prefix.className = 'btn-token-tooltip__prefix--effect';
+              prefix.textContent = '◆ ';
+              line.appendChild(prefix);
+              line.appendChild(document.createTextNode('box-shadow: inset 0 1px 1px 0 rgba(0,0,0,.4)'));
+            } else {
+              prefix.className = 'btn-token-tooltip__prefix--color';
+              prefix.textContent = '● ';
+              line.appendChild(prefix);
+              line.appendChild(document.createTextNode(val));
+            }
+            el.appendChild(line);
+          });
+
+          return el;
+        }
+
+        let activeTooltip = null;
+        let hoverTimer    = null;
+
+        function showTooltip(btn) {
+          hideTooltip();
+          const tip = buildTooltip(btn);
+          if (!tip) return;
+
+          tip.style.visibility = 'hidden';
+          tip.style.position   = 'fixed';
+          tip.style.left       = '-9999px';
+          tip.style.top        = '0';
+          document.body.appendChild(tip);
+
+          const rect = btn.getBoundingClientRect();
+          const tw   = tip.offsetWidth;
+          const th   = tip.offsetHeight;
+          const gap  = 8;
+
+          let left = rect.left + rect.width / 2 - tw / 2;
+          left = Math.max(8, Math.min(left, window.innerWidth - tw - 8));
+
+          const top = (rect.top - th - gap < 8)
+            ? rect.bottom + gap
+            : rect.top - th - gap;
+
+          tip.style.top        = top + 'px';
+          tip.style.left       = left + 'px';
+          tip.style.visibility = 'visible';
+          activeTooltip = tip;
+        }
+
+        function hideTooltip() {
+          if (activeTooltip) { activeTooltip.remove(); activeTooltip = null; }
+        }
+
+        // Listen on .cell rather than .btn — static state buttons (.is-hover,
+        // .is-pressed, .btn--loading) have pointer-events:none so mouseenter
+        // never fires directly on them.
+        document.querySelectorAll('.cell').forEach(cell => {
+          const btn = cell.querySelector('.btn');
+          if (!btn) return;
+          cell.addEventListener('mouseenter', () => {
+            clearTimeout(hoverTimer);
+            hoverTimer = setTimeout(() => showTooltip(btn), 200);
+          });
+          cell.addEventListener('mouseleave', () => {
+            clearTimeout(hoverTimer);
+            hideTooltip();
+          });
+        });
+      })();
+    </script>
+
+    <script>
       document.querySelectorAll(".btn:not(.is-hover):not(.is-pressed):not(.btn--loading)").forEach(btn => {
         btn.addEventListener("click", () => {
           if (btn.dataset.animating) return;
