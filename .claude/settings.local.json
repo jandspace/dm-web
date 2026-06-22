@@ -18,7 +18,9 @@
       "Bash(/Applications/Google Chrome.app/Contents/MacOS/Google Chrome *)",
       "Bash(\"/Applications/Google Chrome.app/Contents/MacOS/Google Chrome\" --headless=new --screenshot=/tmp/badge-optical-fix-bottom.png --window-size=1400x400 --hide-scrollbars \"http://localhost:3000/components/editorial-badge/index.html#group-d\")",
       "Bash(\"/Applications/Google Chrome.app/Contents/MacOS/Google Chrome\" --headless=new --screenshot=/tmp/badge-scroll.png --window-size=1400x1600 --hide-scrollbars \"http://localhost:3000/components/editorial-badge/index.html\")",
-      "Bash(\"/Applications/Google Chrome.app/Contents/MacOS/Google Chrome\" --headless=new --screenshot=/tmp/badge-groups.png --window-size=1400x1600 --hide-scrollbars \"http://localhost:3000/components/editorial-badge/index.html\")"
+      "Bash(\"/Applications/Google Chrome.app/Contents/MacOS/Google Chrome\" --headless=new --screenshot=/tmp/badge-groups.png --window-size=1400x1600 --hide-scrollbars \"http://localhost:3000/components/editorial-badge/index.html\")",
+      "Bash(git checkout *)",
+      "Bash(\"/Applications/Google Chrome.app/Contents/MacOS/Google Chrome\" --headless=new --screenshot=/tmp/badge-reordered.png --window-size=1400x1600 --hide-scrollbars \"http://localhost:3000/components/editorial-badge/index.html\")"
     ]
   }
 }
