@@ -9,7 +9,16 @@
       "WebFetch(domain:localhost)",
       "Bash(grep -E '\\\\.\\(html|css|js\\)$')",
       "Bash(git -C /Users/joungmin.shin/Documents/claude-code/dm-web show --stat HEAD)",
-      "Bash(pip3 install *)"
+      "Bash(pip3 install *)",
+      "Bash(npx playwright *)",
+      "Bash('/Applications/Google Chrome.app/Contents/MacOS/Google Chrome' --headless=new --screenshot=/tmp/editorial-badge-full.png --window-size=1400,2400 --hide-scrollbars http://localhost:3000/components/editorial-badge/index.html)",
+      "Bash('/Applications/Google Chrome.app/Contents/MacOS/Google Chrome' --headless=new --screenshot=/tmp/editorial-badge-top.png --window-size=1400,600 --hide-scrollbars http://localhost:3000/components/editorial-badge/index.html)",
+      "Bash('/Applications/Google Chrome.app/Contents/MacOS/Google Chrome' --headless=new --screenshot=/tmp/editorial-badge-groupc.png --window-size=1400,500 --hide-scrollbars 'http://localhost:3000/components/editorial-badge/index.html#')",
+      "Bash(sips -c 460 1400 /tmp/editorial-badge-full.png --out /tmp/editorial-badge-groupc-crop.png)",
+      "Bash(/Applications/Google Chrome.app/Contents/MacOS/Google Chrome *)",
+      "Bash(\"/Applications/Google Chrome.app/Contents/MacOS/Google Chrome\" --headless=new --screenshot=/tmp/badge-optical-fix-bottom.png --window-size=1400x400 --hide-scrollbars \"http://localhost:3000/components/editorial-badge/index.html#group-d\")",
+      "Bash(\"/Applications/Google Chrome.app/Contents/MacOS/Google Chrome\" --headless=new --screenshot=/tmp/badge-scroll.png --window-size=1400x1600 --hide-scrollbars \"http://localhost:3000/components/editorial-badge/index.html\")",
+      "Bash(\"/Applications/Google Chrome.app/Contents/MacOS/Google Chrome\" --headless=new --screenshot=/tmp/badge-groups.png --window-size=1400x1600 --hide-scrollbars \"http://localhost:3000/components/editorial-badge/index.html\")"
     ]
   }
 }
