@@ -110,8 +110,8 @@
 
       /* ── Size variants ── */
       .badge--xl {
-        height: 30px;
-        border-radius: 4px;
+        height: 32px;
+        border-radius: 6px;
       }
       .badge--lg {
         height: 26px;
@@ -122,11 +122,11 @@
         border-radius: 4px;
       }
       .badge--sm {
-        height: 19px;
+        height: 18px;
         border-radius: 3px;
       }
       .badge--xs {
-        height: 17px;
+        height: 16px;
         border-radius: 3px;
       }
 
@@ -186,9 +186,23 @@
       }
 
       .badge__mplus img {
-        height: 100%;
         width: auto;
         display: block;
+      }
+      .badge--xl .badge__mplus img {
+        height: 32px;
+      }
+      .badge--lg .badge__mplus img {
+        height: 26px;
+      }
+      .badge--md .badge__mplus img {
+        height: 22px;
+      }
+      .badge--sm .badge__mplus img {
+        height: 18px;
+      }
+      .badge--xs .badge__mplus img {
+        height: 16px;
       }
 
       /* ── Live indicator ── */
@@ -206,7 +220,7 @@
         border-radius: 50%;
         background-color: var(--color-background-neutral-white);
         flex-shrink: 0;
-        animation: live-pulse 1.4s ease-in-out infinite;
+        animation: live-pulse 1.6s ease-in-out infinite;
       }
 
       @keyframes live-pulse {
@@ -243,12 +257,11 @@
          Nudge only the text span — background, padding and container are untouched. */
       .badge__text {
         position: relative;
-        top: 1px;
       }
 
-      .badge--xl .badge__text,
-      .badge--lg .badge__text {
-        top: 0;
+      .badge--xs .badge__text,
+      .badge--md .badge__text {
+        top: 1px;
       }
     </style>
   </head>
