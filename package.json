@@ -1,0 +1,28 @@
+{
+  "name": "dm-web",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "directories": {
+    "doc": "docs"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "watch": "sass --watch styles/scss/main.scss:styles/css/main.css --style=expanded",
+    "build": "sass styles/scss/main.scss:styles/css/main.css --style=expanded"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/jandspace/dm-web.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/jandspace/dm-web/issues"
+  },
+  "homepage": "https://github.com/jandspace/dm-web#readme",
+  "devDependencies": {
+    "sass": "^1.101.0"
+  }
+}

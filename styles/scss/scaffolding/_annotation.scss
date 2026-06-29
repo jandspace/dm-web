@@ -1,0 +1,414 @@
+// ── Annotation — SCAFFOLDING ONLY ─────────────────────────────────────────────
+// Demo page structure: body layout, section headers, category dividers,
+// token tooltips, and the interactive button generator panel.
+// Never ships to production.
+// All classes prefixed demo- to make scaffolding-only status unmistakable.
+
+// ── Demo page body ────────────────────────────────────────────────────────────
+
+.demo-page-body {
+  padding: var(--spacing-48) 40px;
+}
+
+// ── Demo page h1 ─────────────────────────────────────────────────────────────
+
+.demo-page-h1 {
+  font-size: 22px;
+  font-weight: 700;
+  color: var(--color-text-neutral-darker);
+  margin-bottom: var(--spacing-48);
+}
+
+// ── Section title (button demo sections) ─────────────────────────────────────
+
+.demo-section-title {
+  font-size: 18px;
+  font-weight: 600;
+  letter-spacing: 0;
+  color: #444;
+  margin-top: 56px;
+  margin-bottom: 40px;
+}
+
+// ── Category divider ──────────────────────────────────────────────────────────
+
+.demo-category-divider {
+  margin-top: 80px;
+  margin-bottom: var(--spacing-48);
+  border: none;
+  border-top: 1px solid var(--color-border-neutral-light);
+}
+
+.demo-category-title {
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: #ccc;
+  margin-bottom: var(--spacing-48);
+}
+
+// ── Token tooltip (button/index.html — JS-injected) ───────────────────────────
+
+.demo-token-tooltip {
+  position: fixed;
+  z-index: 9999;
+  background: #1a1a1a;
+  color: #fff;
+  font-family: monospace;
+  font-size: 11px;
+  border-radius: var(--border-radius-6);
+  padding: var(--spacing-10) var(--spacing-12);
+  max-width: 420px;
+  pointer-events: none;
+  white-space: nowrap;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.4);
+}
+
+.demo-token-tooltip__title {
+  font-size: 10px;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: #888;
+  margin-bottom: var(--spacing-6);
+}
+
+.demo-token-tooltip__line {
+  display: flex;
+  margin-top: var(--spacing-4);
+}
+
+.demo-token-tooltip__prefix--color  { color: #4a9eff; flex-shrink: 0; }
+.demo-token-tooltip__prefix--effect { color: #f0a04a; flex-shrink: 0; }
+
+// ── Token note (button-gen.html — static sticky note) ────────────────────────
+
+.demo-token-note {
+  position: absolute;
+  top: 16px;
+  right: 16px;
+  width: 252px;
+  background: #fef9a0;
+  padding: 14px var(--spacing-16) var(--spacing-16);
+  border-radius: var(--border-radius-8);
+  box-shadow:
+    0 1px 2px rgba(0, 0, 0, 0.08),
+    2px 4px 16px rgba(0, 0, 0, 0.16);
+  z-index: 999;
+}
+
+.demo-tn-heading {
+  font-size: 9px;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: #8a7a00;
+  padding-bottom: 7px;
+  margin-bottom: var(--spacing-8);
+  border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+}
+
+.demo-tn-section {
+  margin-bottom: var(--spacing-8);
+
+  &:last-child { margin-bottom: 0; }
+
+  & + .demo-tn-section {
+    padding-top: var(--spacing-8);
+    border-top: 1px dashed rgba(0, 0, 0, 0.1);
+  }
+}
+
+.demo-tn-state {
+  font-size: 9px;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: #9a8a10;
+  margin-bottom: var(--spacing-4);
+}
+
+.demo-tn-token,
+.demo-tn-shadow {
+  display: block;
+  font-family: "Courier New", Courier, monospace;
+  font-size: 12px;
+  font-weight: 600;
+  color: #b60000;
+  line-height: 1.2;
+  margin-bottom: 0.5rem;
+}
+
+// ── Button generator — left panel ────────────────────────────────────────────
+
+.demo-gen-panel {
+  width: 300px;
+  flex-shrink: 0;
+  background: #fff;
+  border-right: 1px solid var(--color-border-neutral-light);
+  overflow-y: auto;
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+}
+
+.demo-panel-header {
+  padding: var(--spacing-20) var(--spacing-20) var(--spacing-16);
+  border-bottom: 1px solid var(--color-border-neutral-light);
+  flex-shrink: 0;
+}
+
+.demo-panel-title {
+  font-size: var(--typography-font-size-label-md);
+  font-weight: var(--typography-font-weight-semibold);
+  line-height: var(--typography-line-height-narrow);
+  color: var(--color-text-neutral-darker);
+}
+
+.demo-panel-controls {
+  padding: var(--spacing-16) var(--spacing-20) var(--spacing-24);
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+}
+
+// ── Button generator — control groups ────────────────────────────────────────
+
+.demo-ctrl-label {
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--color-text-neutral-grey-dark);
+  margin-bottom: 7px;
+  display: block;
+}
+
+.demo-ctrl-seg {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--spacing-4);
+}
+
+.demo-ctrl-seg-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 7px 14px;
+  border-radius: var(--border-radius-full);
+  border: 1px solid var(--color-border-neutral-grey-light);
+  background: transparent;
+  cursor: pointer;
+  font-family: var(--typography-font-family-sans);
+  font-size: var(--typography-font-size-label-sm);
+  font-weight: var(--typography-font-weight-semibold);
+  color: var(--color-text-neutral-dark);
+  line-height: 1;
+  transition:
+    background 80ms ease,
+    border-color 80ms ease,
+    color 80ms ease;
+  white-space: nowrap;
+  -webkit-font-smoothing: antialiased;
+
+  &:hover {
+    border-color: var(--color-border-neutral-darker);
+    color: var(--color-text-neutral-darker);
+    background: var(--color-background-neutral-lightest);
+  }
+
+  &.is-active {
+    background: var(--color-background-neutral-darker);
+    border-color: var(--color-background-neutral-darker);
+    color: var(--color-text-neutral-lightest);
+  }
+}
+
+// ── Button generator — background picker ─────────────────────────────────────
+
+.demo-ctrl-bg-row {
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-8);
+  flex-wrap: wrap;
+}
+
+.demo-ctrl-swatches {
+  display: flex;
+  gap: var(--spacing-12);
+  flex-wrap: wrap;
+}
+
+.demo-ctrl-swatch {
+  width: 42px;
+  height: 42px;
+  border-radius: 50%;
+  border: none;
+  cursor: pointer;
+  padding: 0;
+  flex-shrink: 0;
+  box-shadow: inset 0 0 0 1px rgba(0, 0, 0, 0.18);
+  background-size: cover;
+  background-position: center;
+  transition:
+    transform 80ms ease,
+    box-shadow 80ms ease;
+
+  &:hover { transform: scale(1.15); }
+
+  &.is-active {
+    box-shadow:
+      0 0 0 2px #fff,
+      0 0 0 3.5px var(--color-background-neutral-darker);
+  }
+}
+
+.demo-ctrl-color-pick {
+  position: relative;
+  width: 42px;
+  height: 42px;
+  border-radius: 50%;
+  cursor: pointer;
+  flex-shrink: 0;
+  overflow: hidden;
+  background: conic-gradient(from 0deg, #f00, #ff0, #0f0, #0ff, #00f, #f0f, #f00);
+  box-shadow: inset 0 0 0 1px rgba(0, 0, 0, 0.18);
+  transition:
+    transform 80ms ease,
+    box-shadow 80ms ease;
+
+  &:hover { transform: scale(1.15); }
+
+  &.is-active {
+    box-shadow:
+      0 0 0 2px #fff,
+      0 0 0 3.5px var(--color-background-neutral-darker);
+  }
+
+  input[type="color"] {
+    position: absolute;
+    inset: 0;
+    opacity: 0;
+    width: 100%;
+    height: 100%;
+    cursor: pointer;
+    border: none;
+    padding: 0;
+  }
+}
+
+// ── Button generator — main preview area ──────────────────────────────────────
+
+.demo-gen-main {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  min-width: 0;
+}
+
+.demo-gen-preview-main {
+  position: relative;
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: background 150ms ease;
+  min-height: 0;
+}
+
+.demo-preview-content {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--spacing-20);
+}
+
+.demo-preview-label {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--spacing-4);
+}
+
+.demo-preview-label-name {
+  font-size: var(--typography-font-size-h5);
+  font-weight: var(--typography-font-weight-semibold);
+  color: var(--color-text-neutral-darker);
+  line-height: var(--typography-line-height-narrow);
+  transition: color 150ms ease;
+}
+
+.demo-preview-label-meta {
+  font-size: var(--typography-font-size-label-sm);
+  font-weight: var(--typography-font-weight-semibold);
+  color: var(--color-text-neutral-grey-dark);
+  line-height: var(--typography-line-height-narrow);
+  transition: color 150ms ease;
+}
+
+// ── Button generator — states row ─────────────────────────────────────────────
+
+.demo-gen-states {
+  height: 148px;
+  flex-shrink: 0;
+  display: flex;
+  border-top: 1px solid var(--color-border-neutral-light);
+  transition:
+    background 150ms ease,
+    border-top-color 150ms ease;
+
+  &.is-dark {
+    background: #1a1a1a;
+    border-top-color: #2a2a2a;
+  }
+}
+
+.demo-gen-state {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: var(--spacing-10);
+  padding: var(--spacing-16) var(--spacing-12);
+
+  & + .demo-gen-state {
+    border-left: 1px solid var(--color-border-neutral-light);
+  }
+
+  .demo-gen-states.is-dark & + .demo-gen-state {
+    border-left-color: #2a2a2a;
+  }
+}
+
+.demo-gen-state-preview {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex: 1;
+  width: 100%;
+}
+
+.demo-gen-state-label {
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--color-text-neutral-grey-dark);
+  flex-shrink: 0;
+
+  .demo-gen-states.is-dark & { color: #555; }
+}
+
+// ── Button generator — body layout override ───────────────────────────────────
+// button-gen.html uses a full-viewport flex layout. .demo-gen-layout overrides
+// the padding from .demo-page-body (both are single-class selectors; source
+// order ensures this rule wins).
+
+.demo-gen-layout {
+  padding: 0;
+  height: 100vh;
+  display: flex;
+  overflow: hidden;
+}

@@ -177,17 +177,49 @@ Mobile-first. SM is `:root` base.
 
 | Style      | SM (<768px) | MD (≥768px) | LG (≥1024px) |
 | ---------- | ----------- | ----------- | ------------ |
-| display-lg | 40px        | 52px        | 64px         |
-| display-md | 36px        | 44px        | 56px         |
-| display-sm | 30px        | 34px        | 48px         |
-| h1         | 28px        | 30px        | 36px         |
-| h2         | 24px        | 25px        | 28px         |
+| display-lg | 42px        | 54px        | 64px         |
+| display-md | 38px        | 48px        | 56px         |
+| display-sm | 34px        | 42px        | 48px         |
+| h1         | 26px        | 30px        | 36px         |
+| h2         | 22px        | 24px        | 28px         |
 | h3         | 20px        | 21px        | 22px         |
 | h4         | 18px        | 18px        | 18px         |
 | h5         | 16px        | 16px        | 16px         |
 | h6         | 14px        | 14px        | 14px         |
 
 Text and Label are fixed across all breakpoints (except label-xl: SM/MD 19px, LG 20px).
+
+> Confirmed against three independent sources (Figma variables, `tokens/dm_typography_web_tokens.css`, and Zeroheight docs) as of 2026-06-24. An earlier version of the docs/ markdown had incorrect SM values for h1 (28→26), h2 (24→22), display-lg (40→42), and display-md (36→38) — corrected here.
+
+### Semantic Style vs Semantic Token
+
+These two terms look similar but operate at different layers of the system.
+
+**Semantic Token** — a single named CSS custom property that resolves to one value per viewport mode:
+
+```css
+--typography-font-size-h2: 22px;          /* SM: root */
+--typography-font-size-h2: 24px;          /* MD: ≥768px */
+--typography-font-size-h2: 28px;          /* LG: ≥1024px */
+```
+
+**Semantic Style** — a Figma-only construct that bundles multiple tokens into one selectable package:
+
+```
+dmw_sans/h2/Semibold
+  → font-family:    typography-font-family-sans
+  → font-size:      typography-font-size-h2      (responsive)
+  → font-weight:    typography-font-weight-semibold
+  → line-height:    typography-line-height-narrow
+  → letter-spacing: typography-letter-spacing-compact
+```
+
+**Who uses which:**
+
+- Designers select **Semantic Styles** in the Figma text panel (one click sets all five attributes)
+- Engineers reference **Semantic Tokens** individually in CSS (`var(--typography-font-size-h2)` etc.)
+
+**Why our CSS classes bundle tokens:** The `.h2` utility class in `styles/scss/foundation/_typography.scss` applies font-size, weight, line-height, and letter-spacing together — it is the code-side equivalent of the Figma Semantic Style, ensuring a single class applies the full correct treatment without requiring engineers to assemble the tokens manually.
 
 ---
 
@@ -275,6 +307,31 @@ iOS and Android: no overrides. Native defaults only.
 ## Versioning
 
 All token files share the same version string (currently `1.0.4`). Update the `version` field in JSON files and the CSS comment header together when making changes.
+
+## Styles Architecture
+
+- SCSS source: `styles/scss/`
+- Compiled CSS: `styles/css/main.css` (auto-generated — do not edit manually)
+- Compile once: `npm run build`
+- Watch mode (auto-recompile on save): `npm run watch`
+
+### SCSS Structure
+
+- `foundation/` — reset, breakpoints, typography utilities, spacing
+- `components/` — **PRODUCT** styles, one file per component (`_button.scss`, `_editorial-badge.scss`, etc.) — these would ship to the real DM site
+- `modules/` — project-specific compositions (future use)
+- `scaffolding/` — **PROTOTYPE-ONLY** styles for demo pages: grid layout, section headers, token tooltips. Never shipped to production. Clearly separated from `components/` so the real component CSS can be handed off cleanly to developers.
+- `main.scss` — entry point, `@use` only, no actual styles written here
+
+### Rules
+
+- Never write `<style>` blocks inside HTML files
+- New components always go in `styles/scss/components/_[name].scss`
+- New demo/prototype-only styling always goes in `styles/scss/scaffolding/_[name].scss` — never mix into `components/`
+- Always add new files to `main.scss` via `@use`
+- Always use semantic colour tokens (`var(--color-...)`) and typography tokens (`var(--typography-...)`) — never raw hex or px line-height
+
+---
 
 ## Working Rules
 

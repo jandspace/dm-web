@@ -1,0 +1,37 @@
+// ── Breakpoints ───────────────────────────────────────────────────────────────
+// DMDS breakpoint system. All breakpoints use min-width (mobile-first).
+// XS is the default — styles written without a breakpoint apply to XS.
+// Reference: Foundation > Layout & Grid > 2-B, 2-C
+
+@use 'sass:map';
+
+$breakpoints: (
+  sm:  640px,   // Smartphones landscape, foldables, mini tablets
+  md:  768px,   // Standard tablets (iPad), small laptops
+  lg:  1024px,  // Tablets landscape, compact/legacy laptops
+  xl:  1376px,  // Standard laptops (1440px+), desktop monitors
+);
+
+// respond-to($breakpoint) — apply styles at a named breakpoint and up.
+// Usage: @include respond-to(md) { ... }
+@mixin respond-to($breakpoint) {
+  $value: map.get($breakpoints, $breakpoint);
+
+  @if $value != null {
+    @media (min-width: #{$value}) {
+      @content;
+    }
+  } @else {
+    @warn "Unknown breakpoint `#{$breakpoint}`. Available: sm, md, lg, xl.";
+  }
+}
+
+// phone-landscape — restores Mobile Web layout for rotated smartphones.
+// max-height: 500px isolates phones (landscape h < 500px) from tablets (h > 500px).
+// Typography does not change on phone landscape — layout and padding only.
+// Reference: Foundation > Layout & Grid > 2-E
+@mixin phone-landscape {
+  @media (orientation: landscape) and (max-height: 500px) {
+    @content;
+  }
+}

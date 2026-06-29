@@ -1,0 +1,37 @@
+// ── Article Headline ──────────────────────────────────────────────────────────
+// Editorial heading H1–H6 with optional inline badge at the start of text.
+// Badge is a genuine inline span in the heading's text flow — no
+// position:absolute, no text-indent, no per-label-length indent calculation.
+// Wrapping is correct by construction; badge size mapping: H1→xl H2→lg
+// H3/H4→md H5→sm H6→xs.
+
+.article-headline {
+  &--center {
+    text-align: center;
+  }
+
+  &__badge {
+    // vertical-align: middle is the starting point — check per badge size visually.
+    // Badge display (inline-flex) and chrome come from badge--* classes; don't override.
+    vertical-align: middle;
+
+    &.badge--xl {
+      margin-right: var(--number-spacing-10, 10px);
+      transform: translateY(-4px);
+    }
+    &.badge--lg {
+      margin-right: var(--number-spacing-8, 8px);
+      transform: translateY(-2px);
+    }
+    &.badge--md,
+    &.badge--sm {
+      margin-right: var(--number-spacing-6, 6px);
+    }
+    &.badge--sm {
+      transform: translateY(-1px);
+    }
+    &.badge--xs {
+      margin-right: var(--number-spacing-4, 4px);
+    }
+  }
+}

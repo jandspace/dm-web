@@ -1,0 +1,72 @@
+// ── Spacing ───────────────────────────────────────────────────────────────────
+// DMDS 4-point spacing scale and layout container.
+// CSS custom properties (--spacing-*) are defined in dm_tokens.css.
+// This file adds the SCSS-layer container and component-padding utilities.
+// Reference: Foundation > Spacing, Token > Spatial Tokens
+
+@use 'breakpoints' as bp;
+
+// ── Spacing scale (SCSS map) ──────────────────────────────
+// For compile-time SCSS use only (e.g. map-get($spacing, 16) in calculations).
+// For runtime CSS, always use: var(--spacing-N)
+$spacing: (
+   0:   0px,
+   1:   1px,
+   2:   2px,
+   4:   4px,
+   6:   6px,
+   8:   8px,
+  10:  10px,
+  12:  12px,
+  16:  16px,
+  20:  20px,
+  24:  24px,
+  28:  28px,
+  32:  32px,
+  48:  48px,
+  64:  64px,
+);
+
+// ── Spacing aliases ───────────────────────────────────────
+// dm_tokens.css exports --number-spacing-N. These aliases let component files
+// use the shorter --spacing-N form without touching the token source.
+:root {
+  --spacing-0:  var(--number-spacing-0);
+  --spacing-1:  var(--number-spacing-1);
+  --spacing-2:  var(--number-spacing-2);
+  --spacing-4:  var(--number-spacing-4);
+  --spacing-6:  var(--number-spacing-6);
+  --spacing-8:  var(--number-spacing-8);
+  --spacing-10: var(--number-spacing-10);
+  --spacing-12: var(--number-spacing-12);
+  --spacing-16: var(--number-spacing-16);
+  --spacing-20: var(--number-spacing-20);
+  --spacing-24: var(--number-spacing-24);
+  --spacing-28: var(--number-spacing-28);
+  --spacing-32: var(--number-spacing-32);
+  --spacing-48: var(--number-spacing-48);
+  --spacing-64: var(--number-spacing-64);
+}
+
+// ── Container ─────────────────────────────────────────────
+// Width-constrained, centred content wrapper.
+// Carries NO padding — each component holds its own 16px horizontal inset.
+// Visual 32px gutter between adjacent components is emergent (2 × 16px), not set here.
+// Reference: Foundation > Spacing > 4-A, Layout & Grid > 3-B
+.container {
+  width: 100%;
+  margin-inline: auto;
+
+  @include bp.respond-to(sm) { max-width: 720px; }
+  @include bp.respond-to(md) { max-width: 960px; }
+  @include bp.respond-to(lg) { max-width: 996px; }
+  @include bp.respond-to(xl) { max-width: 1224px; }
+}
+
+// ── component-padding mixin ───────────────────────────────
+// Apply to each component/module that needs the standard 16px horizontal inset.
+// Never apply to the column container — padding lives at the component level.
+// Reference: Foundation > Spacing > 4-A
+@mixin component-padding {
+  padding-inline: var(--spacing-16);
+}

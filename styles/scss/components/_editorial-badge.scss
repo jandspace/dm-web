@@ -1,0 +1,188 @@
+// ── Editorial Badge ───────────────────────────────────────────────────────────
+// Badge variants, sizes, type colours, M+ lozenge, and live indicator.
+// Reference: DM Design System — Editorial Badge component
+
+// ── Base ──────────────────────────────────────────────────────────────────────
+
+.badge {
+  display: inline-flex;
+  align-items: stretch;
+  overflow: hidden;
+  background-color: var(--color-background-neutral-dark);
+}
+
+// ── Size variants ─────────────────────────────────────────────────────────────
+
+.badge--xl {
+  height: 32px;
+  border-radius: var(--border-radius-6);
+
+  .badge__label {
+    padding: 0 var(--spacing-6);
+    font-size: var(--typography-font-size-label-xl);
+  }
+  .badge__mplus img {
+    height: 32px;
+  }
+  .badge__live-dot {
+    width: 12px;
+    height: 12px;
+  }
+}
+
+.badge--lg {
+  height: 26px;
+  border-radius: var(--border-radius-4);
+
+  .badge__label {
+    padding: 0 var(--spacing-4);
+    font-size: var(--typography-font-size-label-lg);
+  }
+  .badge__mplus img {
+    height: 26px;
+  }
+  .badge__live-dot {
+    width: 10px;
+    height: 10px;
+  }
+}
+
+.badge--md {
+  height: 22px;
+  border-radius: var(--border-radius-4);
+
+  .badge__label {
+    padding: 0 var(--spacing-4);
+    font-size: var(--typography-font-size-label-md);
+  }
+  .badge__mplus img {
+    height: 22px;
+  }
+  .badge__live-dot {
+    width: 8px;
+    height: 8px;
+  }
+}
+
+.badge--sm {
+  height: 18px;
+  border-radius: 3px;
+
+  .badge__label {
+    padding: 0 3px;
+    font-size: var(--typography-font-size-label-sm);
+  }
+  .badge__mplus img {
+    height: 18px;
+  }
+  .badge__live-dot {
+    width: 6px;
+    height: 6px;
+  }
+}
+
+.badge--xs {
+  height: 16px;
+  border-radius: 3px;
+
+  .badge__label {
+    padding: 0 3px;
+    font-size: var(--typography-font-size-label-xxsm);
+  }
+  .badge__mplus img {
+    height: 16px;
+  }
+  .badge__live-dot {
+    width: 6px;
+    height: 6px;
+  }
+  .badge__text {
+    top: 1px;
+  }
+}
+
+// ── Label segment ─────────────────────────────────────────────────────────────
+
+.badge__label {
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-4);
+  font-family: var(--typography-font-family-sans);
+  font-weight: var(--typography-font-weight-bold);
+  line-height: var(--typography-line-height-narrow);
+  letter-spacing: 0;
+  white-space: nowrap;
+  text-transform: uppercase;
+  color: var(--color-text-neutral-white);
+  -webkit-font-smoothing: antialiased;
+}
+
+// ── Type colour tokens ────────────────────────────────────────────────────────
+
+.badge--highlight {
+  .badge__label {
+    background-color: var(--color-background-editorial-highlight-base);
+  }
+}
+.badge--feature {
+  .badge__label {
+    background-color: var(--color-background-editorial-feature-base);
+  }
+}
+.badge--analysis {
+  .badge__label {
+    background-color: var(--color-background-editorial-analysis-base);
+  }
+}
+
+// ── M+ lozenge ───────────────────────────────────────────────────────────────
+
+.badge__mplus {
+  display: flex;
+  align-items: stretch;
+  flex-shrink: 0;
+
+  img {
+    width: auto;
+    display: block;
+  }
+}
+
+// ── Live indicator ────────────────────────────────────────────────────────────
+
+.badge__live-indicator {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: 1px solid var(--color-border-neutral-white);
+  border-radius: var(--border-radius-full);
+  padding: var(--spacing-2);
+  flex-shrink: 0;
+}
+
+.badge__live-dot {
+  border-radius: 50%;
+  background-color: var(--color-background-neutral-white);
+  flex-shrink: 0;
+  animation: live-pulse 1.6s ease-in-out infinite;
+}
+
+@keyframes live-pulse {
+  0%,
+  100% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.2;
+  }
+}
+
+// ── Optical centering ─────────────────────────────────────────────────────────
+// text-transform: uppercase removes descenders but line-height still reserves
+// space for them, pushing text visually above geometric centre.
+// Nudge only the text span — background, padding, and container are untouched.
+
+.badge__text {
+  position: relative;
+  line-height: 1;
+}

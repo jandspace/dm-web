@@ -9,340 +9,86 @@
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet" />
     <link rel="stylesheet" href="../../tokens/dm_tokens.css" />
     <link rel="stylesheet" href="../../tokens/dm_typography_web_tokens.css" />
-
-    <style>
-      /* ── Reset & base ── */
-      *,
-      *::before,
-      *::after {
-        box-sizing: border-box;
-        margin: 0;
-        padding: 0;
-      }
-
-      body {
-        font-family: var(--typography-font-family-sans);
-        background: var(--color-background-neutral-lightest);
-        padding: 48px 40px;
-        color: var(--color-text-neutral-darker);
-      }
-
-      h1 {
-        font-size: 22px;
-        font-weight: 700;
-        color: var(--color-text-neutral-darker);
-        margin-bottom: 48px;
-      }
-
-      /* ── Demo grid ── */
-      .demo-grid {
-        display: grid;
-        grid-template-columns: 160px repeat(5, 1fr);
-      }
-
-      .col-header {
-        font-size: 11px;
-        font-weight: 600;
-        letter-spacing: 0.06em;
-        text-transform: uppercase;
-        color: #666;
-        padding: 0 20px 16px;
-      }
-
-      .col-header:first-child {
-        padding-left: 0;
-      }
-
-      .col-header small {
-        display: block;
-        font-size: 10px;
-        font-weight: 400;
-        letter-spacing: 0.03em;
-        text-transform: none;
-        color: #999;
-        margin-top: 3px;
-      }
-
-      .row-label {
-        font-size: 11px;
-        font-weight: 600;
-        letter-spacing: 0.04em;
-        color: #505050;
-        display: flex;
-        align-items: center;
-        padding: 20px 16px 20px 0;
-        border-top: 1px solid var(--color-border-neutral-light);
-      }
-
-      .cell {
-        display: flex;
-        align-items: flex-start;
-        padding: 20px;
-        border-top: 1px solid var(--color-border-neutral-light);
-      }
-
-      /* ── Group headers ── */
-      .group-header {
-        grid-column: 1 / -1;
-        padding: 48px 0 14px;
-      }
-
-      .group-header:first-of-type {
-        padding-top: 16px;
-      }
-
-      .group-title {
-        font-size: 10px;
-        font-weight: 700;
-        letter-spacing: 0.12em;
-        text-transform: uppercase;
-        color: #bbb;
-      }
-
-      /* ══ Badge base ══════════════════════════════════════════ */
-
-      .badge {
-        display: inline-flex;
-        align-items: stretch;
-        overflow: hidden;
-        background-color: var(--color-background-neutral-dark);
-      }
-
-      /* ── Size variants ── */
-      .badge--xl {
-        height: 32px;
-        border-radius: 6px;
-      }
-      .badge--lg {
-        height: 26px;
-        border-radius: 4px;
-      }
-      .badge--md {
-        height: 22px;
-        border-radius: 4px;
-      }
-      .badge--sm {
-        height: 18px;
-        border-radius: 3px;
-      }
-      .badge--xs {
-        height: 16px;
-        border-radius: 3px;
-      }
-
-      /* ── Label segment ── */
-      .badge__label {
-        display: flex;
-        align-items: center;
-        gap: 4px;
-        font-family: var(--typography-font-family-sans);
-        font-weight: var(--typography-font-weight-bold);
-        line-height: var(--typography-line-height-narrow);
-        letter-spacing: 0;
-        white-space: nowrap;
-        text-transform: uppercase;
-        color: var(--color-text-neutral-white);
-        -webkit-font-smoothing: antialiased;
-      }
-
-      /* Size-specific font and padding */
-      .badge--xl .badge__label {
-        padding: 0 6px;
-        font-size: var(--typography-font-size-label-xl);
-      }
-      .badge--lg .badge__label {
-        padding: 0 4px;
-        font-size: var(--typography-font-size-label-lg);
-      }
-      .badge--md .badge__label {
-        padding: 0 4px;
-        font-size: var(--typography-font-size-label-md);
-      }
-      .badge--sm .badge__label {
-        padding: 0 3px;
-        font-size: var(--typography-font-size-label-sm);
-      }
-      .badge--xs .badge__label {
-        padding: 0 3px;
-        font-size: var(--typography-font-size-label-xsm);
-      }
-
-      /* ── Type colour tokens ── */
-      .badge--highlight .badge__label {
-        background-color: var(--color-background-editorial-highlight-base);
-      }
-      .badge--feature .badge__label {
-        background-color: var(--color-background-editorial-feature-base);
-      }
-      .badge--analysis .badge__label {
-        background-color: var(--color-background-editorial-analysis-base);
-      }
-
-      /* ── M+ lozenge ── */
-      .badge__mplus {
-        display: flex;
-        align-items: stretch;
-        flex-shrink: 0;
-      }
-
-      .badge__mplus img {
-        width: auto;
-        display: block;
-      }
-      .badge--xl .badge__mplus img {
-        height: 32px;
-      }
-      .badge--lg .badge__mplus img {
-        height: 26px;
-      }
-      .badge--md .badge__mplus img {
-        height: 22px;
-      }
-      .badge--sm .badge__mplus img {
-        height: 18px;
-      }
-      .badge--xs .badge__mplus img {
-        height: 16px;
-      }
-
-      /* ── Live indicator ── */
-      .badge__live-indicator {
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        border: 1px solid var(--color-border-neutral-white);
-        border-radius: 999px;
-        padding: 2px;
-        flex-shrink: 0;
-      }
-
-      .badge__live-dot {
-        border-radius: 50%;
-        background-color: var(--color-background-neutral-white);
-        flex-shrink: 0;
-        animation: live-pulse 1.6s ease-in-out infinite;
-      }
-
-      @keyframes live-pulse {
-        0%,
-        100% {
-          opacity: 1;
-        }
-        50% {
-          opacity: 0.2;
-        }
-      }
-
-      .badge--xl .badge__live-dot {
-        width: 12px;
-        height: 12px;
-      }
-      .badge--lg .badge__live-dot {
-        width: 10px;
-        height: 10px;
-      }
-      .badge--md .badge__live-dot {
-        width: 8px;
-        height: 8px;
-      }
-      .badge--sm .badge__live-dot,
-      .badge--xs .badge__live-dot {
-        width: 6px;
-        height: 6px;
-      }
-
-      /* ── Optical centering for uppercase text ──
-         text-transform: uppercase removes descenders but line-height still
-         reserves space for them, pushing text visually above geometric centre.
-         Nudge only the text span — background, padding and container are untouched. */
-      .badge__text {
-        position: relative;
-      }
-
-      .badge--xs .badge__text,
-      .badge--md .badge__text {
-        top: 1px;
-      }
-    </style>
+    <link rel="stylesheet" href="../../styles/css/main.css" />
   </head>
-  <body>
-    <h1>Editorial Badge</h1>
+  <body class="demo-page-body">
+    <h1 class="demo-page-h1">Editorial Badge</h1>
 
-    <div class="demo-grid">
+    <div class="demo-grid demo-grid--badge">
       <!-- ── Column headers ── -->
-      <div class="col-header"></div>
-      <div class="col-header">xSmall<small>17px · 3px · label-xsm · r3</small></div>
-      <div class="col-header">Small<small>19px · 3px · label-sm · r3</small></div>
-      <div class="col-header">Medium<small>22px · 4px · label-md · r4</small></div>
-      <div class="col-header">Large<small>26px · 4px · label-lg · r4</small></div>
-      <div class="col-header">xLarge<small>30px · 6px · label-xl · r4</small></div>
+      <div class="demo-col-header"></div>
+      <div class="demo-col-header">xSmall<small>17px · 3px · label-xsm · r3</small></div>
+      <div class="demo-col-header">Small<small>19px · 3px · label-sm · r3</small></div>
+      <div class="demo-col-header">Medium<small>22px · 4px · label-md · r4</small></div>
+      <div class="demo-col-header">Large<small>26px · 4px · label-lg · r4</small></div>
+      <div class="demo-col-header">xLarge<small>30px · 6px · label-xl · r4</small></div>
 
       <!-- ════════════════════════════════════════════════════
            A — HIGHLIGHT
            Single segment · full-width red fill
            bg: --color-background-editorial-highlight-base
       ════════════════════════════════════════════════════ -->
-      <div class="group-header"><span class="group-title">A — Highlight</span></div>
+      <div class="demo-group-header"><span class="demo-group-title">A — Highlight</span></div>
 
       <!-- Exclusive -->
-      <div class="row-label">Exclusive</div>
-      <div class="cell">
+      <div class="demo-row-label">Exclusive</div>
+      <div class="demo-cell">
         <div class="badge badge--xs badge--highlight">
           <span class="badge__label"><span class="badge__text">Exclusive</span></span>
         </div>
       </div>
-      <div class="cell">
+      <div class="demo-cell">
         <div class="badge badge--sm badge--highlight">
           <span class="badge__label"><span class="badge__text">Exclusive</span></span>
         </div>
       </div>
-      <div class="cell">
+      <div class="demo-cell">
         <div class="badge badge--md badge--highlight">
           <span class="badge__label"><span class="badge__text">Exclusive</span></span>
         </div>
       </div>
-      <div class="cell">
+      <div class="demo-cell">
         <div class="badge badge--lg badge--highlight">
           <span class="badge__label"><span class="badge__text">Exclusive</span></span>
         </div>
       </div>
-      <div class="cell">
+      <div class="demo-cell">
         <div class="badge badge--xl badge--highlight">
           <span class="badge__label"><span class="badge__text">Exclusive</span></span>
         </div>
       </div>
 
       <!-- Breaking -->
-      <div class="row-label">Breaking</div>
-      <div class="cell">
+      <div class="demo-row-label">Breaking</div>
+      <div class="demo-cell">
         <div class="badge badge--xs badge--highlight">
           <span class="badge__label"><span class="badge__text">Breaking</span></span>
         </div>
       </div>
-      <div class="cell">
+      <div class="demo-cell">
         <div class="badge badge--sm badge--highlight">
           <span class="badge__label"><span class="badge__text">Breaking</span></span>
         </div>
       </div>
-      <div class="cell">
+      <div class="demo-cell">
         <div class="badge badge--md badge--highlight">
           <span class="badge__label"><span class="badge__text">Breaking</span></span>
         </div>
       </div>
-      <div class="cell">
+      <div class="demo-cell">
         <div class="badge badge--lg badge--highlight">
           <span class="badge__label"><span class="badge__text">Breaking</span></span>
         </div>
       </div>
-      <div class="cell">
+      <div class="demo-cell">
         <div class="badge badge--xl badge--highlight">
           <span class="badge__label"><span class="badge__text">Breaking</span></span>
         </div>
       </div>
 
       <!-- Live -->
-      <div class="row-label">Live</div>
-      <div class="cell">
+      <div class="demo-row-label">Live</div>
+      <div class="demo-cell">
         <div class="badge badge--xs badge--highlight">
           <span class="badge__label">
             <span class="badge__live-indicator" aria-hidden="true">
@@ -352,7 +98,7 @@
           </span>
         </div>
       </div>
-      <div class="cell">
+      <div class="demo-cell">
         <div class="badge badge--sm badge--highlight">
           <span class="badge__label">
             <span class="badge__live-indicator" aria-hidden="true">
@@ -362,7 +108,7 @@
           </span>
         </div>
       </div>
-      <div class="cell">
+      <div class="demo-cell">
         <div class="badge badge--md badge--highlight">
           <span class="badge__label">
             <span class="badge__live-indicator" aria-hidden="true">
@@ -372,7 +118,7 @@
           </span>
         </div>
       </div>
-      <div class="cell">
+      <div class="demo-cell">
         <div class="badge badge--lg badge--highlight">
           <span class="badge__label">
             <span class="badge__live-indicator" aria-hidden="true">
@@ -382,7 +128,7 @@
           </span>
         </div>
       </div>
-      <div class="cell">
+      <div class="demo-cell">
         <div class="badge badge--xl badge--highlight">
           <span class="badge__label">
             <span class="badge__live-indicator" aria-hidden="true">
@@ -399,39 +145,39 @@
            Outer bg: --color-background-neutral-dark
            Lozenge: SVG asset with built-in gradient
       ════════════════════════════════════════════════════ -->
-      <div class="group-header"><span class="group-title">B — M+</span></div>
+      <div class="demo-group-header"><span class="demo-group-title">B — M+</span></div>
 
       <!-- M+ -->
-      <div class="row-label">M+</div>
-      <div class="cell">
+      <div class="demo-row-label">M+</div>
+      <div class="demo-cell">
         <div class="badge badge--xs">
           <span class="badge__mplus">
             <img src="../../assets/images/mail-plus-lozenge.svg" alt="M+" />
           </span>
         </div>
       </div>
-      <div class="cell">
+      <div class="demo-cell">
         <div class="badge badge--sm">
           <span class="badge__mplus">
             <img src="../../assets/images/mail-plus-lozenge.svg" alt="M+" />
           </span>
         </div>
       </div>
-      <div class="cell">
+      <div class="demo-cell">
         <div class="badge badge--md">
           <span class="badge__mplus">
             <img src="../../assets/images/mail-plus-lozenge.svg" alt="M+" />
           </span>
         </div>
       </div>
-      <div class="cell">
+      <div class="demo-cell">
         <div class="badge badge--lg">
           <span class="badge__mplus">
             <img src="../../assets/images/mail-plus-lozenge.svg" alt="M+" />
           </span>
         </div>
       </div>
-      <div class="cell">
+      <div class="demo-cell">
         <div class="badge badge--xl">
           <span class="badge__mplus">
             <img src="../../assets/images/mail-plus-lozenge.svg" alt="M+" />
@@ -446,35 +192,35 @@
            Label bg: --color-background-editorial-highlight-base
            No gap between segments — overflow:hidden clips corners
       ════════════════════════════════════════════════════ -->
-      <div class="group-header"><span class="group-title">C — M+ Compound</span></div>
+      <div class="demo-group-header"><span class="demo-group-title">C — M+ Compound</span></div>
 
       <!-- M+ Exclusive -->
-      <div class="row-label">M+ Exclusive</div>
-      <div class="cell">
+      <div class="demo-row-label">M+ Exclusive</div>
+      <div class="demo-cell">
         <div class="badge badge--xs badge--highlight">
           <span class="badge__mplus"><img src="../../assets/images/mail-plus-lozenge.svg" alt="M+" /></span>
           <span class="badge__label"><span class="badge__text">Exclusive</span></span>
         </div>
       </div>
-      <div class="cell">
+      <div class="demo-cell">
         <div class="badge badge--sm badge--highlight">
           <span class="badge__mplus"><img src="../../assets/images/mail-plus-lozenge.svg" alt="M+" /></span>
           <span class="badge__label"><span class="badge__text">Exclusive</span></span>
         </div>
       </div>
-      <div class="cell">
+      <div class="demo-cell">
         <div class="badge badge--md badge--highlight">
           <span class="badge__mplus"><img src="../../assets/images/mail-plus-lozenge.svg" alt="M+" /></span>
           <span class="badge__label"><span class="badge__text">Exclusive</span></span>
         </div>
       </div>
-      <div class="cell">
+      <div class="demo-cell">
         <div class="badge badge--lg badge--highlight">
           <span class="badge__mplus"><img src="../../assets/images/mail-plus-lozenge.svg" alt="M+" /></span>
           <span class="badge__label"><span class="badge__text">Exclusive</span></span>
         </div>
       </div>
-      <div class="cell">
+      <div class="demo-cell">
         <div class="badge badge--xl badge--highlight">
           <span class="badge__mplus"><img src="../../assets/images/mail-plus-lozenge.svg" alt="M+" /></span>
           <span class="badge__label"><span class="badge__text">Exclusive</span></span>
@@ -482,32 +228,32 @@
       </div>
 
       <!-- M+ Special Report -->
-      <div class="row-label">M+ Special Report</div>
-      <div class="cell">
+      <div class="demo-row-label">M+ Special Report</div>
+      <div class="demo-cell">
         <div class="badge badge--xs badge--highlight">
           <span class="badge__mplus"><img src="../../assets/images/mail-plus-lozenge.svg" alt="M+" /></span>
           <span class="badge__label"><span class="badge__text">Special Report</span></span>
         </div>
       </div>
-      <div class="cell">
+      <div class="demo-cell">
         <div class="badge badge--sm badge--highlight">
           <span class="badge__mplus"><img src="../../assets/images/mail-plus-lozenge.svg" alt="M+" /></span>
           <span class="badge__label"><span class="badge__text">Special Report</span></span>
         </div>
       </div>
-      <div class="cell">
+      <div class="demo-cell">
         <div class="badge badge--md badge--highlight">
           <span class="badge__mplus"><img src="../../assets/images/mail-plus-lozenge.svg" alt="M+" /></span>
           <span class="badge__label"><span class="badge__text">Special Report</span></span>
         </div>
       </div>
-      <div class="cell">
+      <div class="demo-cell">
         <div class="badge badge--lg badge--highlight">
           <span class="badge__mplus"><img src="../../assets/images/mail-plus-lozenge.svg" alt="M+" /></span>
           <span class="badge__label"><span class="badge__text">Special Report</span></span>
         </div>
       </div>
-      <div class="cell">
+      <div class="demo-cell">
         <div class="badge badge--xl badge--highlight">
           <span class="badge__mplus"><img src="../../assets/images/mail-plus-lozenge.svg" alt="M+" /></span>
           <span class="badge__label"><span class="badge__text">Special Report</span></span>
@@ -515,32 +261,32 @@
       </div>
 
       <!-- M+ Investigation -->
-      <div class="row-label">M+ Investigation</div>
-      <div class="cell">
+      <div class="demo-row-label">M+ Investigation</div>
+      <div class="demo-cell">
         <div class="badge badge--xs badge--highlight">
           <span class="badge__mplus"><img src="../../assets/images/mail-plus-lozenge.svg" alt="M+" /></span>
           <span class="badge__label"><span class="badge__text">Investigation</span></span>
         </div>
       </div>
-      <div class="cell">
+      <div class="demo-cell">
         <div class="badge badge--sm badge--highlight">
           <span class="badge__mplus"><img src="../../assets/images/mail-plus-lozenge.svg" alt="M+" /></span>
           <span class="badge__label"><span class="badge__text">Investigation</span></span>
         </div>
       </div>
-      <div class="cell">
+      <div class="demo-cell">
         <div class="badge badge--md badge--highlight">
           <span class="badge__mplus"><img src="../../assets/images/mail-plus-lozenge.svg" alt="M+" /></span>
           <span class="badge__label"><span class="badge__text">Investigation</span></span>
         </div>
       </div>
-      <div class="cell">
+      <div class="demo-cell">
         <div class="badge badge--lg badge--highlight">
           <span class="badge__mplus"><img src="../../assets/images/mail-plus-lozenge.svg" alt="M+" /></span>
           <span class="badge__label"><span class="badge__text">Investigation</span></span>
         </div>
       </div>
-      <div class="cell">
+      <div class="demo-cell">
         <div class="badge badge--xl badge--highlight">
           <span class="badge__mplus"><img src="../../assets/images/mail-plus-lozenge.svg" alt="M+" /></span>
           <span class="badge__label"><span class="badge__text">Investigation</span></span>
@@ -548,32 +294,32 @@
       </div>
 
       <!-- M+ Opinion -->
-      <div class="row-label">M+ Opinion</div>
-      <div class="cell">
+      <div class="demo-row-label">M+ Opinion</div>
+      <div class="demo-cell">
         <div class="badge badge--xs badge--highlight">
           <span class="badge__mplus"><img src="../../assets/images/mail-plus-lozenge.svg" alt="M+" /></span>
           <span class="badge__label"><span class="badge__text">Opinion</span></span>
         </div>
       </div>
-      <div class="cell">
+      <div class="demo-cell">
         <div class="badge badge--sm badge--highlight">
           <span class="badge__mplus"><img src="../../assets/images/mail-plus-lozenge.svg" alt="M+" /></span>
           <span class="badge__label"><span class="badge__text">Opinion</span></span>
         </div>
       </div>
-      <div class="cell">
+      <div class="demo-cell">
         <div class="badge badge--md badge--highlight">
           <span class="badge__mplus"><img src="../../assets/images/mail-plus-lozenge.svg" alt="M+" /></span>
           <span class="badge__label"><span class="badge__text">Opinion</span></span>
         </div>
       </div>
-      <div class="cell">
+      <div class="demo-cell">
         <div class="badge badge--lg badge--highlight">
           <span class="badge__mplus"><img src="../../assets/images/mail-plus-lozenge.svg" alt="M+" /></span>
           <span class="badge__label"><span class="badge__text">Opinion</span></span>
         </div>
       </div>
-      <div class="cell">
+      <div class="demo-cell">
         <div class="badge badge--xl badge--highlight">
           <span class="badge__mplus"><img src="../../assets/images/mail-plus-lozenge.svg" alt="M+" /></span>
           <span class="badge__label"><span class="badge__text">Opinion</span></span>
@@ -581,32 +327,32 @@
       </div>
 
       <!-- M+ Inside Story -->
-      <div class="row-label">M+ Inside Story</div>
-      <div class="cell">
+      <div class="demo-row-label">M+ Inside Story</div>
+      <div class="demo-cell">
         <div class="badge badge--xs badge--highlight">
           <span class="badge__mplus"><img src="../../assets/images/mail-plus-lozenge.svg" alt="M+" /></span>
           <span class="badge__label"><span class="badge__text">Inside Story</span></span>
         </div>
       </div>
-      <div class="cell">
+      <div class="demo-cell">
         <div class="badge badge--sm badge--highlight">
           <span class="badge__mplus"><img src="../../assets/images/mail-plus-lozenge.svg" alt="M+" /></span>
           <span class="badge__label"><span class="badge__text">Inside Story</span></span>
         </div>
       </div>
-      <div class="cell">
+      <div class="demo-cell">
         <div class="badge badge--md badge--highlight">
           <span class="badge__mplus"><img src="../../assets/images/mail-plus-lozenge.svg" alt="M+" /></span>
           <span class="badge__label"><span class="badge__text">Inside Story</span></span>
         </div>
       </div>
-      <div class="cell">
+      <div class="demo-cell">
         <div class="badge badge--lg badge--highlight">
           <span class="badge__mplus"><img src="../../assets/images/mail-plus-lozenge.svg" alt="M+" /></span>
           <span class="badge__label"><span class="badge__text">Inside Story</span></span>
         </div>
       </div>
-      <div class="cell">
+      <div class="demo-cell">
         <div class="badge badge--xl badge--highlight">
           <span class="badge__mplus"><img src="../../assets/images/mail-plus-lozenge.svg" alt="M+" /></span>
           <span class="badge__label"><span class="badge__text">Inside Story</span></span>
@@ -614,32 +360,32 @@
       </div>
 
       <!-- M+ Interview -->
-      <div class="row-label">M+ Interview</div>
-      <div class="cell">
+      <div class="demo-row-label">M+ Interview</div>
+      <div class="demo-cell">
         <div class="badge badge--xs badge--highlight">
           <span class="badge__mplus"><img src="../../assets/images/mail-plus-lozenge.svg" alt="M+" /></span>
           <span class="badge__label"><span class="badge__text">Interview</span></span>
         </div>
       </div>
-      <div class="cell">
+      <div class="demo-cell">
         <div class="badge badge--sm badge--highlight">
           <span class="badge__mplus"><img src="../../assets/images/mail-plus-lozenge.svg" alt="M+" /></span>
           <span class="badge__label"><span class="badge__text">Interview</span></span>
         </div>
       </div>
-      <div class="cell">
+      <div class="demo-cell">
         <div class="badge badge--md badge--highlight">
           <span class="badge__mplus"><img src="../../assets/images/mail-plus-lozenge.svg" alt="M+" /></span>
           <span class="badge__label"><span class="badge__text">Interview</span></span>
         </div>
       </div>
-      <div class="cell">
+      <div class="demo-cell">
         <div class="badge badge--lg badge--highlight">
           <span class="badge__mplus"><img src="../../assets/images/mail-plus-lozenge.svg" alt="M+" /></span>
           <span class="badge__label"><span class="badge__text">Interview</span></span>
         </div>
       </div>
-      <div class="cell">
+      <div class="demo-cell">
         <div class="badge badge--xl badge--highlight">
           <span class="badge__mplus"><img src="../../assets/images/mail-plus-lozenge.svg" alt="M+" /></span>
           <span class="badge__label"><span class="badge__text">Interview</span></span>
@@ -650,31 +396,31 @@
            D — FEATURE
            Single segment · --color-background-editorial-feature-base
       ════════════════════════════════════════════════════ -->
-      <div class="group-header"><span class="group-title">D — Feature</span></div>
+      <div class="demo-group-header"><span class="demo-group-title">D — Feature</span></div>
 
       <!-- Poll -->
-      <div class="row-label">Poll</div>
-      <div class="cell">
+      <div class="demo-row-label">Poll</div>
+      <div class="demo-cell">
         <div class="badge badge--xs badge--feature">
           <span class="badge__label"><span class="badge__text">Poll</span></span>
         </div>
       </div>
-      <div class="cell">
+      <div class="demo-cell">
         <div class="badge badge--sm badge--feature">
           <span class="badge__label"><span class="badge__text">Poll</span></span>
         </div>
       </div>
-      <div class="cell">
+      <div class="demo-cell">
         <div class="badge badge--md badge--feature">
           <span class="badge__label"><span class="badge__text">Poll</span></span>
         </div>
       </div>
-      <div class="cell">
+      <div class="demo-cell">
         <div class="badge badge--lg badge--feature">
           <span class="badge__label"><span class="badge__text">Poll</span></span>
         </div>
       </div>
-      <div class="cell">
+      <div class="demo-cell">
         <div class="badge badge--xl badge--feature">
           <span class="badge__label"><span class="badge__text">Poll</span></span>
         </div>
@@ -684,31 +430,31 @@
            E — ANALYSIS
            Single segment · --color-background-editorial-analysis-base
       ════════════════════════════════════════════════════ -->
-      <div class="group-header"><span class="group-title">E — Analysis</span></div>
+      <div class="demo-group-header"><span class="demo-group-title">E — Analysis</span></div>
 
       <!-- Deep Dive -->
-      <div class="row-label">Deep Dive</div>
-      <div class="cell">
+      <div class="demo-row-label">Deep Dive</div>
+      <div class="demo-cell">
         <div class="badge badge--xs badge--analysis">
           <span class="badge__label"><span class="badge__text">Deep Dive</span></span>
         </div>
       </div>
-      <div class="cell">
+      <div class="demo-cell">
         <div class="badge badge--sm badge--analysis">
           <span class="badge__label"><span class="badge__text">Deep Dive</span></span>
         </div>
       </div>
-      <div class="cell">
+      <div class="demo-cell">
         <div class="badge badge--md badge--analysis">
           <span class="badge__label"><span class="badge__text">Deep Dive</span></span>
         </div>
       </div>
-      <div class="cell">
+      <div class="demo-cell">
         <div class="badge badge--lg badge--analysis">
           <span class="badge__label"><span class="badge__text">Deep Dive</span></span>
         </div>
       </div>
-      <div class="cell">
+      <div class="demo-cell">
         <div class="badge badge--xl badge--analysis">
           <span class="badge__label"><span class="badge__text">Deep Dive</span></span>
         </div>

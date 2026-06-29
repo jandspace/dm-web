@@ -1,0 +1,26 @@
+// ── Reset ─────────────────────────────────────────────────────────────────────
+// Box-sizing, margin/padding reset, and base body styles.
+// Reference: Foundation > Spacing > 6-B
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+}
+
+// Base body — DMDS defaults:
+// Background: neutral-lightest (not pure white — prevents halation, supports reading endurance)
+// Text: neutral-darker (not pure black — reduces visual vibration on long-form content)
+// Reference: Foundation > Colour > 10-A
+body {
+  font-family: var(--typography-font-family-sans);
+  background-color: var(--color-background-neutral-lightest);
+  color: var(--color-text-neutral-darker);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}

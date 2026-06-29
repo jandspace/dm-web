@@ -1,0 +1,22 @@
+// ── DM Design System — Main Entry Point ──────────────────────────────────────
+// Foundation only. Components, modules, and scaffolding are imported here
+// as they are added to their respective directories.
+
+// Foundation
+@use 'foundation/reset';
+@use 'foundation/breakpoints';
+@use 'foundation/typography';
+@use 'foundation/spacing';
+@use 'foundation/border-radius';
+
+// Components
+@use 'components/button';
+@use 'components/editorial-badge';
+@use 'components/article-headline';
+
+// Modules
+// @use 'modules/...';
+
+// Scaffolding (prototype/demo only — never shipped to production)
+@use 'scaffolding/demo-grid';
+@use 'scaffolding/annotation';

@@ -1,0 +1,21 @@
+// ── Border Radius ─────────────────────────────────────────────────────────────
+// Aliases for --number-border-radius-N tokens from dm_tokens.css.
+// Use --border-radius-N in component files; never use raw px values.
+
+:root {
+  --border-radius-0:    var(--number-border-radius-0);
+  --border-radius-2:    var(--number-border-radius-2);
+  --border-radius-4:    var(--number-border-radius-4);
+  --border-radius-6:    var(--number-border-radius-6);
+  --border-radius-8:    var(--number-border-radius-8);
+  --border-radius-10:   var(--number-border-radius-10);
+  --border-radius-12:   var(--number-border-radius-12);
+  --border-radius-16:   var(--number-border-radius-16);
+  --border-radius-20:   var(--number-border-radius-20);
+  --border-radius-24:   var(--number-border-radius-24);
+  --border-radius-28:   var(--number-border-radius-28);
+  --border-radius-32:   var(--number-border-radius-32);
+  --border-radius-48:   var(--number-border-radius-48);
+  --border-radius-64:   var(--number-border-radius-64);
+  --border-radius-full: var(--number-border-radius-full);
+}

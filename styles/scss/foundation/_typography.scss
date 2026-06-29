@@ -1,0 +1,111 @@
+// ── Typography ────────────────────────────────────────────────────────────────
+// Utility classes for DMDS type roles: Display, Heading, Text, Label.
+// Consumes CSS custom properties from dm_typography_web_tokens.css —
+// responsive font sizes (h1–h3, display) are handled by those tokens at runtime.
+// Reference: Foundation > Typography, Token > Typography Tokens > 6
+
+// Role–weight–line-height–letter-spacing mapping (DMDS spec):
+//   Display  → Bold (700)     | Narrower (1.12) | narrow  (-0.5%)
+//   H1–H4   → Semibold (600) | Narrow   (1.20) | compact (-0.2%)
+//   H5–H6   → Semibold (600) | Compact  (1.32) | normal  (0)
+//   Text     → Regular (400)  | Normal   (1.50) | normal  (0)
+//   Label    → Semibold (600) | Narrow   (1.20) | normal  (0)
+//
+// Font family: sans (Inter) is the default for all roles.
+// For editorial article headlines, add .serif to override.
+
+// ── Native heading reset ───────────────────────────────────
+// Sets font-family and removes browser default margin only.
+// Visual size (Level) is applied via .h1–.h6 classes, not bare tag selectors,
+// so semantic heading level and visual size stay independent (e.g. <h1 class="h3">).
+
+h1, h2, h3, h4, h5, h6 {
+  font-family: var(--typography-font-family-sans);
+  margin: 0;
+}
+
+// ── Display ───────────────────────────────────────────────
+// High-impact surfaces only — hero, splash, campaign headers. Use sparingly.
+%type-display-base {
+  font-family: var(--typography-font-family-sans);
+  font-weight: var(--typography-font-weight-bold);
+  line-height: var(--typography-line-height-narrower);
+  letter-spacing: var(--typography-letter-spacing-narrow);
+}
+
+.display-lg {
+  @extend %type-display-base;
+  font-size: var(--typography-font-size-display-lg);
+}
+
+.display-md {
+  @extend %type-display-base;
+  font-size: var(--typography-font-size-display-md);
+}
+
+.display-sm {
+  @extend %type-display-base;
+  font-size: var(--typography-font-size-display-sm);
+}
+
+// ── Heading ───────────────────────────────────────────────
+// Structural content hierarchy. Sans default; add .serif for editorial headlines.
+// Bold (700) is permitted for H1–H2 where editorial impact demands it.
+%type-heading-h1-h4 {
+  font-family: var(--typography-font-family-sans);
+  font-weight: var(--typography-font-weight-semibold);
+  line-height: var(--typography-line-height-narrow);
+  letter-spacing: var(--typography-letter-spacing-compact);
+}
+
+%type-heading-h5-h6 {
+  font-family: var(--typography-font-family-sans);
+  font-weight: var(--typography-font-weight-semibold);
+  line-height: var(--typography-line-height-compact);
+  letter-spacing: var(--typography-letter-spacing-normal);
+}
+
+.h1 { @extend %type-heading-h1-h4; font-size: var(--typography-font-size-h1); }
+.h2 { @extend %type-heading-h1-h4; font-size: var(--typography-font-size-h2); }
+.h3 { @extend %type-heading-h1-h4; font-size: var(--typography-font-size-h3); }
+.h4 { @extend %type-heading-h1-h4; font-size: var(--typography-font-size-h4); }
+.h5 { @extend %type-heading-h5-h6; font-size: var(--typography-font-size-h5); }
+.h6 { @extend %type-heading-h5-h6; font-size: var(--typography-font-size-h6); }
+
+// ── Text ──────────────────────────────────────────────────
+// Long-form reading — article body paragraphs, descriptions, editorial passages.
+%type-text-base {
+  font-family: var(--typography-font-family-sans);
+  font-weight: var(--typography-font-weight-regular);
+  line-height: var(--typography-line-height-normal);
+  letter-spacing: var(--typography-letter-spacing-normal);
+}
+
+.text-lg   { @extend %type-text-base; font-size: var(--typography-font-size-text-lg); }
+.text-md   { @extend %type-text-base; font-size: var(--typography-font-size-text-md); }
+.text-sm   { @extend %type-text-base; font-size: var(--typography-font-size-text-sm); }
+.text-xsm  { @extend %type-text-base; font-size: var(--typography-font-size-text-xsm); }
+.text-xxsm { @extend %type-text-base; font-size: var(--typography-font-size-text-xxsm); }
+
+// ── Label ─────────────────────────────────────────────────
+// Functional UI text — buttons, badges, navigation, metadata, timestamps.
+%type-label-base {
+  font-family: var(--typography-font-family-sans);
+  font-weight: var(--typography-font-weight-semibold);
+  line-height: var(--typography-line-height-narrow);
+  letter-spacing: var(--typography-letter-spacing-normal);
+}
+
+.label-xl   { @extend %type-label-base; font-size: var(--typography-font-size-label-xl); }
+.label-lg   { @extend %type-label-base; font-size: var(--typography-font-size-label-lg); }
+.label-md   { @extend %type-label-base; font-size: var(--typography-font-size-label-md); }
+.label-sm   { @extend %type-label-base; font-size: var(--typography-font-size-label-sm); }
+.label-xsm  { @extend %type-label-base; font-size: var(--typography-font-size-label-xsm); }
+.label-xxsm { @extend %type-label-base; font-size: var(--typography-font-size-label-xxsm); }
+
+// ── Font-family modifiers ──────────────────────────────────
+// Add to a type class to override the default sans.
+// Serif: editorial article headlines and featured content only.
+// Never mix typefaces within a single UI component.
+.serif { font-family: var(--typography-font-family-serif); }
+.sans  { font-family: var(--typography-font-family-sans); }

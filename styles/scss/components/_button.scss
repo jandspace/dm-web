@@ -1,0 +1,730 @@
+// ── Button ────────────────────────────────────────────────────────────────────
+// All button variants, sizes, states, and loading behaviour.
+// Reference: DM Design System — Button component
+
+// ── Base ──────────────────────────────────────────────────────────────────────
+
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  height: 40px;
+  padding: 0 14px;
+  border: none;
+  border-radius: var(--border-radius-full);
+  cursor: pointer;
+  font-family: var(--typography-font-family-sans);
+  font-size: var(--typography-font-size-label-md);
+  font-weight: var(--typography-font-weight-semibold);
+  line-height: var(--typography-line-height-narrow);
+  letter-spacing: 0;
+  white-space: nowrap;
+  -webkit-font-smoothing: antialiased;
+  transition:
+    background-color 80ms ease,
+    box-shadow 80ms ease;
+  position: relative;
+}
+
+.btn__content {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--spacing-6);
+
+  svg {
+    width: 1em;
+    height: 1em;
+    flex-shrink: 0;
+  }
+}
+
+// ── Static state helpers (for demo display) ───────────────────────────────────
+
+.is-hover,
+.is-pressed {
+  pointer-events: none;
+}
+
+// ── Loading ───────────────────────────────────────────────────────────────────
+
+@keyframes btn-spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+.btn svg.btn-spinner {
+  display: none;
+}
+
+.btn--loading {
+  pointer-events: none;
+  cursor: not-allowed;
+
+  .btn__label,
+  .btn__content {
+    visibility: hidden;
+  }
+
+  svg.btn-spinner {
+    display: block;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 24px;
+    height: 24px;
+    margin-top: -12px;
+    margin-left: -12px;
+    opacity: 0.4;
+    animation: btn-spin 1.2s linear infinite;
+  }
+}
+
+// ── Icon-only ─────────────────────────────────────────────────────────────────
+
+.btn--icon-only {
+  width: 40px;
+  padding: 0;
+}
+
+// ── Primary — Brand ───────────────────────────────────────────────────────────
+
+.btn-brand {
+  background-color: var(--color-background-interaction-primary-default);
+  color: var(--color-text-neutral-white);
+
+  &:hover {
+    background-color: var(--color-background-interaction-primary-hover);
+  }
+  &.is-hover {
+    background-color: var(--color-background-interaction-primary-hover);
+  }
+  &:active {
+    background-color: var(--color-background-interaction-primary-pressed);
+    box-shadow: inset 0 1px 1px 0 rgba(0, 0, 0, 0.4);
+  }
+  &.is-pressed {
+    background-color: var(--color-background-interaction-primary-pressed);
+    box-shadow: inset 0 1px 1px 0 rgba(0, 0, 0, 0.4);
+  }
+  &.btn--loading {
+    background-color: var(--color-background-interaction-primary-pressed);
+  }
+}
+
+// ── Primary — Neutral ─────────────────────────────────────────────────────────
+
+.btn-neutral {
+  background-color: var(--color-background-neutral-darker);
+  color: var(--color-text-neutral-lightest);
+
+  &:hover {
+    background-color: var(--color-background-neutral-dark);
+  }
+  &.is-hover {
+    background-color: var(--color-background-neutral-dark);
+  }
+  &:active {
+    background-color: var(--color-background-neutral-grey-dark);
+    box-shadow: inset 0 1px 1px 0 rgba(0, 0, 0, 0.4);
+  }
+  &.is-pressed {
+    background-color: var(--color-background-neutral-grey-dark);
+    box-shadow: inset 0 1px 1px 0 rgba(0, 0, 0, 0.4);
+  }
+  &.btn--loading {
+    background-color: var(--color-background-neutral-grey-dark);
+  }
+}
+
+// ── Primary — Neutral Inverse ─────────────────────────────────────────────────
+
+.btn-neutral-inverse {
+  background-color: var(--color-background-neutral-lightest);
+  color: var(--color-text-neutral-darker);
+
+  &:hover {
+    background-color: var(--color-background-neutral-light);
+  }
+  &.is-hover {
+    background-color: var(--color-background-neutral-light);
+  }
+  &:active {
+    background-color: var(--color-background-neutral-lighter);
+    box-shadow: inset 0 1px 1px 0 rgba(0, 0, 0, 0.4);
+  }
+  &.is-pressed {
+    background-color: var(--color-background-neutral-lighter);
+    box-shadow: inset 0 1px 1px 0 rgba(0, 0, 0, 0.4);
+  }
+  &.btn--loading {
+    background-color: var(--color-background-neutral-lighter);
+  }
+}
+
+// ── Secondary variants ────────────────────────────────────────────────────────
+
+.btn-secondary-brand,
+.btn-secondary-visible,
+.btn-secondary-neutral,
+.btn-secondary-light,
+.btn-secondary-dark {
+  border-width: 1px;
+  border-style: solid;
+}
+
+.btn-secondary-brand {
+  background-color: var(--color-effect-translucent-dark-clear);
+  border-color: var(--color-border-neutral-grey-light);
+  color: var(--color-text-interaction-primary-default);
+
+  &:hover,
+  &.is-hover {
+    background-color: var(--color-effect-translucent-dark-pale);
+    -webkit-backdrop-filter: blur(8px);
+    backdrop-filter: blur(8px);
+  }
+  &:active,
+  &.is-pressed {
+    background-color: var(--color-effect-translucent-dark-pale);
+    box-shadow: inset 0 1px 1px 0 rgba(0, 0, 0, 0.4);
+    -webkit-backdrop-filter: blur(8px);
+    backdrop-filter: blur(8px);
+  }
+  &.btn--loading {
+    background-color: var(--color-effect-translucent-dark-pale);
+    -webkit-backdrop-filter: blur(8px);
+    backdrop-filter: blur(8px);
+  }
+}
+
+.btn-secondary-visible {
+  background-color: var(--color-effect-translucent-dark-clear);
+  border-color: var(--color-border-translucent-dark-subtle);
+  color: var(--color-text-interaction-primary-default);
+
+  &:hover,
+  &.is-hover {
+    background-color: var(--color-effect-translucent-dark-pale);
+    -webkit-backdrop-filter: blur(8px);
+    backdrop-filter: blur(8px);
+  }
+  &:active,
+  &.is-pressed {
+    background-color: var(--color-effect-translucent-dark-pale);
+    box-shadow: inset 0 1px 1px 0 rgba(0, 0, 0, 0.4);
+    -webkit-backdrop-filter: blur(8px);
+    backdrop-filter: blur(8px);
+  }
+  &.btn--loading {
+    background-color: var(--color-effect-translucent-dark-pale);
+    -webkit-backdrop-filter: blur(8px);
+    backdrop-filter: blur(8px);
+  }
+}
+
+.btn-secondary-neutral {
+  background-color: var(--color-effect-translucent-dark-clear);
+  border-color: var(--color-border-neutral-grey-light);
+  color: var(--color-text-neutral-darker);
+
+  &:hover,
+  &.is-hover {
+    background-color: var(--color-effect-translucent-dark-pale);
+    -webkit-backdrop-filter: blur(8px);
+    backdrop-filter: blur(8px);
+  }
+  &:active,
+  &.is-pressed {
+    background-color: var(--color-effect-translucent-dark-pale);
+    box-shadow: inset 0 1px 1px 0 rgba(0, 0, 0, 0.4);
+    -webkit-backdrop-filter: blur(8px);
+    backdrop-filter: blur(8px);
+  }
+  &.btn--loading {
+    background-color: var(--color-effect-translucent-dark-pale);
+    -webkit-backdrop-filter: blur(8px);
+    backdrop-filter: blur(8px);
+  }
+}
+
+.btn-secondary-light {
+  background-color: var(--color-effect-translucent-dark-clear);
+  border-color: var(--color-border-translucent-dark-subtle);
+  color: var(--color-text-neutral-darker);
+
+  &:hover,
+  &.is-hover {
+    background-color: var(--color-effect-translucent-dark-pale);
+    -webkit-backdrop-filter: blur(8px);
+    backdrop-filter: blur(8px);
+  }
+  &:active,
+  &.is-pressed {
+    background-color: var(--color-effect-translucent-dark-pale);
+    box-shadow: inset 0 1px 1px 0 rgba(0, 0, 0, 0.4);
+    -webkit-backdrop-filter: blur(8px);
+    backdrop-filter: blur(8px);
+  }
+  &.btn--loading {
+    background-color: var(--color-effect-translucent-dark-pale);
+    -webkit-backdrop-filter: blur(8px);
+    backdrop-filter: blur(8px);
+  }
+}
+
+.btn-secondary-dark {
+  background-color: var(--color-effect-translucent-light-clear);
+  border-color: var(--color-border-translucent-light-moderate);
+  color: var(--color-text-neutral-lightest);
+
+  &:hover,
+  &.is-hover {
+    background-color: var(--color-effect-translucent-light-pale);
+    -webkit-backdrop-filter: blur(8px);
+    backdrop-filter: blur(8px);
+  }
+  &:active,
+  &.is-pressed {
+    background-color: var(--color-effect-translucent-light-pale);
+    box-shadow: inset 0 1px 1px 0 rgba(0, 0, 0, 0.4);
+    -webkit-backdrop-filter: blur(8px);
+    backdrop-filter: blur(8px);
+  }
+  &.btn--loading {
+    background-color: var(--color-effect-translucent-light-pale);
+    -webkit-backdrop-filter: blur(8px);
+    backdrop-filter: blur(8px);
+  }
+}
+
+// ── Tertiary variants ─────────────────────────────────────────────────────────
+
+.btn-tertiary-brand {
+  background-color: var(--color-background-neutral-lighter);
+  color: var(--color-text-interaction-primary-default);
+
+  &:hover {
+    background-color: var(--color-background-neutral-light);
+  }
+  &.is-hover {
+    background-color: var(--color-background-neutral-light);
+  }
+  &:active {
+    background-color: var(--color-background-neutral-light);
+    box-shadow: inset 0 1px 1px 0 rgba(0, 0, 0, 0.4);
+  }
+  &.is-pressed {
+    background-color: var(--color-background-neutral-light);
+    box-shadow: inset 0 1px 1px 0 rgba(0, 0, 0, 0.4);
+  }
+  &.btn--loading {
+    background-color: var(--color-background-neutral-light);
+  }
+}
+
+// Translucent fill at rest — backdrop-filter applies to all states via cascade
+.btn-tertiary-visible {
+  background-color: var(--color-effect-translucent-dark-pale);
+  color: var(--color-text-interaction-primary-default);
+  -webkit-backdrop-filter: blur(8px);
+  backdrop-filter: blur(8px);
+
+  &:hover {
+    background-color: var(--color-effect-translucent-dark-subtle);
+  }
+  &.is-hover {
+    background-color: var(--color-effect-translucent-dark-subtle);
+  }
+  &:active {
+    background-color: var(--color-effect-translucent-dark-pale);
+    box-shadow: inset 0 1px 1px 0 rgba(0, 0, 0, 0.4);
+  }
+  &.is-pressed {
+    background-color: var(--color-effect-translucent-dark-pale);
+    box-shadow: inset 0 1px 1px 0 rgba(0, 0, 0, 0.4);
+  }
+  &.btn--loading {
+    background-color: var(--color-effect-translucent-dark-pale);
+  }
+}
+
+.btn-tertiary-neutral {
+  background-color: var(--color-background-neutral-lighter);
+  color: var(--color-text-neutral-darker);
+
+  &:hover {
+    background-color: var(--color-background-neutral-light);
+  }
+  &.is-hover {
+    background-color: var(--color-background-neutral-light);
+  }
+  &:active {
+    background-color: var(--color-background-neutral-light);
+    box-shadow: inset 0 1px 1px 0 rgba(0, 0, 0, 0.4);
+  }
+  &.is-pressed {
+    background-color: var(--color-background-neutral-light);
+    box-shadow: inset 0 1px 1px 0 rgba(0, 0, 0, 0.4);
+  }
+  &.btn--loading {
+    background-color: var(--color-background-neutral-light);
+  }
+}
+
+.btn-tertiary-light {
+  background-color: var(--color-effect-translucent-dark-moderate);
+  color: var(--color-text-neutral-lightest);
+  -webkit-backdrop-filter: blur(8px);
+  backdrop-filter: blur(8px);
+
+  &:hover {
+    background-color: var(--color-effect-translucent-dark-deep);
+  }
+  &.is-hover {
+    background-color: var(--color-effect-translucent-dark-deep);
+  }
+  &:active {
+    background-color: var(--color-effect-translucent-dark-deep);
+    box-shadow: inset 0 1px 1px 0 rgba(0, 0, 0, 0.4);
+  }
+  &.is-pressed {
+    background-color: var(--color-effect-translucent-dark-deep);
+    box-shadow: inset 0 1px 1px 0 rgba(0, 0, 0, 0.4);
+  }
+  &.btn--loading {
+    background-color: var(--color-effect-translucent-dark-deep);
+  }
+}
+
+.btn-tertiary-dark {
+  background-color: var(--color-effect-translucent-light-deep);
+  color: var(--color-text-neutral-darker);
+  -webkit-backdrop-filter: blur(8px);
+  backdrop-filter: blur(8px);
+
+  &:hover {
+    background-color: var(--color-effect-translucent-light-thick);
+  }
+  &.is-hover {
+    background-color: var(--color-effect-translucent-light-thick);
+  }
+  &:active {
+    background-color: var(--color-effect-translucent-light-thick);
+    box-shadow: inset 0 1px 1px 0 rgba(0, 0, 0, 0.4);
+  }
+  &.is-pressed {
+    background-color: var(--color-effect-translucent-light-thick);
+    box-shadow: inset 0 1px 1px 0 rgba(0, 0, 0, 0.4);
+  }
+  &.btn--loading {
+    background-color: var(--color-effect-translucent-light-thick);
+  }
+}
+
+// ── Quaternary variants ───────────────────────────────────────────────────────
+
+.btn-quaternary-brand {
+  background-color: var(--color-effect-translucent-dark-clear);
+  color: var(--color-text-interaction-primary-default);
+
+  &:hover {
+    background-color: var(--color-background-neutral-light);
+  }
+  &.is-hover {
+    background-color: var(--color-background-neutral-light);
+  }
+  &:active {
+    background-color: var(--color-background-neutral-light);
+    box-shadow: inset 0 1px 1px 0 rgba(0, 0, 0, 0.4);
+  }
+  &.is-pressed {
+    background-color: var(--color-background-neutral-light);
+    box-shadow: inset 0 1px 1px 0 rgba(0, 0, 0, 0.4);
+  }
+  &.btn--loading {
+    background-color: var(--color-background-neutral-light);
+  }
+}
+
+.btn-quaternary-neutral {
+  background-color: var(--color-effect-translucent-dark-clear);
+  color: var(--color-text-neutral-darker);
+
+  &:hover {
+    background-color: var(--color-background-neutral-light);
+  }
+  &.is-hover {
+    background-color: var(--color-background-neutral-light);
+  }
+  &:active {
+    background-color: var(--color-background-neutral-light);
+    box-shadow: inset 0 1px 1px 0 rgba(0, 0, 0, 0.4);
+  }
+  &.is-pressed {
+    background-color: var(--color-background-neutral-light);
+    box-shadow: inset 0 1px 1px 0 rgba(0, 0, 0, 0.4);
+  }
+  &.btn--loading {
+    background-color: var(--color-background-neutral-light);
+  }
+}
+
+.btn-quaternary-light {
+  background-color: var(--color-effect-translucent-dark-clear);
+  color: var(--color-text-neutral-darker);
+
+  &:hover,
+  &.is-hover {
+    background-color: var(--color-effect-translucent-dark-subtle);
+    -webkit-backdrop-filter: blur(8px);
+    backdrop-filter: blur(8px);
+  }
+  &:active,
+  &.is-pressed {
+    background-color: var(--color-effect-translucent-dark-subtle);
+    box-shadow: inset 0 1px 1px 0 rgba(0, 0, 0, 0.4);
+    -webkit-backdrop-filter: blur(8px);
+    backdrop-filter: blur(8px);
+  }
+  &.btn--loading {
+    background-color: var(--color-effect-translucent-dark-subtle);
+    -webkit-backdrop-filter: blur(8px);
+    backdrop-filter: blur(8px);
+  }
+}
+
+.btn-quaternary-dark {
+  background-color: var(--color-effect-translucent-light-clear);
+  color: var(--color-text-neutral-lightest);
+
+  &:hover,
+  &.is-hover {
+    background-color: var(--color-effect-translucent-light-subtle);
+    -webkit-backdrop-filter: blur(8px);
+    backdrop-filter: blur(8px);
+  }
+  &:active,
+  &.is-pressed {
+    background-color: var(--color-effect-translucent-light-subtle);
+    box-shadow: inset 0 1px 1px 0 rgba(0, 0, 0, 0.4);
+    -webkit-backdrop-filter: blur(8px);
+    backdrop-filter: blur(8px);
+  }
+  &.btn--loading {
+    background-color: var(--color-effect-translucent-light-subtle);
+    -webkit-backdrop-filter: blur(8px);
+    backdrop-filter: blur(8px);
+  }
+}
+
+// ── Contextual — Negative ─────────────────────────────────────────────────────
+
+.btn-negative-solid {
+  background-color: var(--color-background-interaction-negative-default);
+  color: var(--color-text-neutral-white);
+
+  &:hover {
+    background-color: var(--color-background-interaction-negative-hover);
+  }
+  &.is-hover {
+    background-color: var(--color-background-interaction-negative-hover);
+  }
+  &:active {
+    background-color: var(--color-background-interaction-negative-pressed);
+    box-shadow: inset 0 1px 1px 0 rgba(0, 0, 0, 0.4);
+  }
+  &.is-pressed {
+    background-color: var(--color-background-interaction-negative-pressed);
+    box-shadow: inset 0 1px 1px 0 rgba(0, 0, 0, 0.4);
+  }
+  &.btn--loading {
+    background-color: var(--color-background-interaction-negative-pressed);
+  }
+}
+
+.btn-negative-outline {
+  background-color: var(--color-effect-translucent-dark-clear);
+  border: 1px solid var(--color-border-neutral-grey-light);
+  color: var(--color-text-interaction-negative-default);
+
+  &:hover,
+  &.is-hover {
+    background-color: var(--color-effect-translucent-dark-pale);
+    border-color: var(--color-border-translucent-dark-subtle);
+    -webkit-backdrop-filter: blur(8px);
+    backdrop-filter: blur(8px);
+  }
+  &:active,
+  &.is-pressed {
+    background-color: var(--color-effect-translucent-dark-pale);
+    border-color: var(--color-border-translucent-dark-subtle);
+    box-shadow: inset 0 1px 1px 0 rgba(0, 0, 0, 0.4);
+    -webkit-backdrop-filter: blur(8px);
+    backdrop-filter: blur(8px);
+  }
+  &.btn--loading {
+    background-color: var(--color-effect-translucent-dark-pale);
+    border-color: var(--color-border-translucent-dark-subtle);
+    -webkit-backdrop-filter: blur(8px);
+    backdrop-filter: blur(8px);
+  }
+}
+
+// ── Contextual — Positive ─────────────────────────────────────────────────────
+
+.btn-positive-solid {
+  background-color: var(--color-background-interaction-positive-default);
+  color: var(--color-text-neutral-white);
+
+  &:hover {
+    background-color: var(--color-background-interaction-positive-hover);
+  }
+  &.is-hover {
+    background-color: var(--color-background-interaction-positive-hover);
+  }
+  &:active {
+    background-color: var(--color-background-interaction-positive-pressed);
+    box-shadow: inset 0 1px 1px 0 rgba(0, 0, 0, 0.4);
+  }
+  &.is-pressed {
+    background-color: var(--color-background-interaction-positive-pressed);
+    box-shadow: inset 0 1px 1px 0 rgba(0, 0, 0, 0.4);
+  }
+  &.btn--loading {
+    background-color: var(--color-background-interaction-positive-pressed);
+  }
+}
+
+.btn-positive-outline {
+  background-color: var(--color-effect-translucent-dark-clear);
+  border: 1px solid var(--color-border-neutral-grey-light);
+  color: var(--color-text-interaction-positive-default);
+
+  &:hover,
+  &.is-hover {
+    background-color: var(--color-effect-translucent-dark-pale);
+    border-color: var(--color-border-translucent-dark-subtle);
+    -webkit-backdrop-filter: blur(8px);
+    backdrop-filter: blur(8px);
+  }
+  &:active,
+  &.is-pressed {
+    background-color: var(--color-effect-translucent-dark-pale);
+    border-color: var(--color-border-translucent-dark-subtle);
+    box-shadow: inset 0 1px 1px 0 rgba(0, 0, 0, 0.4);
+    -webkit-backdrop-filter: blur(8px);
+    backdrop-filter: blur(8px);
+  }
+  &.btn--loading {
+    background-color: var(--color-effect-translucent-dark-pale);
+    border-color: var(--color-border-translucent-dark-subtle);
+    -webkit-backdrop-filter: blur(8px);
+    backdrop-filter: blur(8px);
+  }
+}
+
+// ── Size modifiers ────────────────────────────────────────────────────────────
+
+.btn--xs {
+  height: 28px;
+  padding: 0 var(--spacing-10);
+  font-size: var(--typography-font-size-label-xxsm);
+
+  .btn__content {
+    gap: var(--spacing-4);
+  }
+
+  &.btn--icon-only {
+    width: 28px;
+  }
+
+  &.btn--loading svg.btn-spinner {
+    width: 16px;
+    height: 16px;
+    margin-top: -8px;
+    margin-left: -8px;
+  }
+}
+
+.btn--sm {
+  height: 34px;
+  padding: 0 var(--spacing-12);
+  font-size: var(--typography-font-size-label-sm);
+
+  .btn__content {
+    gap: 5px;
+  }
+
+  &.btn--icon-only {
+    width: 34px;
+  }
+
+  &.btn--loading svg.btn-spinner {
+    width: 20px;
+    height: 20px;
+    margin-top: -10px;
+    margin-left: -10px;
+  }
+}
+
+.btn--lg {
+  height: 46px;
+  padding: 0 var(--spacing-16);
+  font-size: var(--typography-font-size-label-lg);
+
+  .btn__content {
+    gap: var(--spacing-8);
+  }
+
+  &.btn--icon-only {
+    width: 46px;
+  }
+
+  &.btn--loading svg.btn-spinner {
+    width: 28px;
+    height: 28px;
+    margin-top: -14px;
+    margin-left: -14px;
+  }
+}
+
+.btn--xl {
+  height: 52px;
+  padding: 0 18px;
+  font-size: var(--typography-font-size-label-xl);
+
+  .btn__content {
+    gap: var(--spacing-10);
+  }
+
+  &.btn--icon-only {
+    width: 52px;
+  }
+
+  &.btn--loading svg.btn-spinner {
+    width: 32px;
+    height: 32px;
+    margin-top: -16px;
+    margin-left: -16px;
+  }
+}
+
+// ── Rectangular modifier ──────────────────────────────────────────────────────
+
+.btn--rect {
+  border-radius: var(--border-radius-8);
+
+  &.btn--xs {
+    border-radius: var(--border-radius-4);
+  }
+  &.btn--sm {
+    border-radius: var(--border-radius-6);
+  }
+  &.btn--lg {
+    border-radius: var(--border-radius-10);
+  }
+  &.btn--xl {
+    border-radius: var(--border-radius-12);
+  }
+}
