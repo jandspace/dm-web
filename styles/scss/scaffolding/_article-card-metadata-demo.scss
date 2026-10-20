@@ -1,0 +1,50 @@
+// ── Article Card Metadata Demo — SCAFFOLDING ONLY ─────────────────────────────
+// Demo page layout for components/article-card-metadata/. Never ships.
+// Columns: type label · Figma width (358).
+
+.demo-grid--metadata {
+  grid-template-columns: 160px max-content;
+
+  .demo-cell {
+    align-items: center;
+    padding: var(--spacing-20) var(--spacing-24) var(--spacing-20) 0;
+  }
+}
+
+// Card-surface sample so the metadata row's real width is visible
+.demo-metadata-sample {
+  padding: var(--spacing-8) 0;
+  background-color: var(--color-background-neutral-lightest);
+  box-shadow: 0 0 0 var(--spacing-8) var(--color-background-neutral-lightest);
+
+  &--358 {
+    width: 358px;
+  }
+}
+
+.demo-metadata-note {
+  font-size: 12px;
+  line-height: 1.5;
+  color: #888;
+}
+
+// ── Columnist Profile Photo strip ─────────────────────────────────────────────
+
+.demo-photo-rows {
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-24);
+  margin-top: var(--spacing-24);
+}
+
+.demo-photo-row {
+  display: flex;
+  align-items: flex-end;
+  gap: var(--spacing-24);
+}
+
+// Note beside a sample (e.g. pointer to the Columnist section)
+.demo-metadata-note--aside {
+  max-width: 220px;
+  margin: 0 0 0 var(--spacing-24);
+}

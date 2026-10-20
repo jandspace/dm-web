@@ -1,0 +1,121 @@
+// ── Columnist Profile Photo ───────────────────────────────────────────────────
+// Author photo on a home-blue disc. Default: LG (64px), Rectangle.
+//
+//   Rectangle — cut-out portrait (80:93) whose head rises above the disc;
+//               only the bottom corners are rounded.
+//   Circle    — square portrait clipped to the disc.
+//   --live    — green blinking dot, bottom-right (author is live in comments).
+//
+// Sizes: xs 20 · sm 32 · md 48 · lg 64 · xl 80 · xxl 96 · xxxl 112
+//
+// Reference: Figma Web UI Kit › Columnist Profile Photo (5417:3916)
+
+.columnist-photo {
+  --columnist-photo-size: 64px;
+  --columnist-photo-dot: 18px;
+  --columnist-photo-ring: 2px;
+
+  position: relative;
+  display: inline-block;
+  flex-shrink: 0;
+  width: var(--columnist-photo-size);
+  height: var(--columnist-photo-size);
+
+  // Disc behind the portrait
+  &::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    border-radius: var(--border-radius-full);
+    background-color: var(--color-background-home-blue-subtle);
+  }
+}
+
+.columnist-photo__img {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  display: block;
+  width: 100%;
+  // Rectangle: taller than the disc (80:93), head breaks out of the top
+  aspect-ratio: 80 / 93;
+  object-fit: cover;
+  border-radius: 0 0 var(--border-radius-full) var(--border-radius-full);
+}
+
+.columnist-photo--circle .columnist-photo__img {
+  aspect-ratio: 1;
+  border-radius: var(--border-radius-full);
+}
+
+// ── Live dot ──────────────────────────────────────────────────────────────────
+// Green disc with a surface-coloured ring so it reads against the photo.
+
+.columnist-photo--live::after {
+  content: '';
+  position: absolute;
+  right: 0;
+  bottom: 0;
+  box-sizing: border-box;
+  width: var(--columnist-photo-dot);
+  height: var(--columnist-photo-dot);
+  border: var(--columnist-photo-ring) solid var(--color-border-neutral-lightest);
+  border-radius: var(--border-radius-full);
+  background-color: var(--color-icon-interaction-positive-default);
+  animation: columnist-live-blink 1.6s ease-in-out infinite;
+}
+
+@keyframes columnist-live-blink {
+  0%,
+  100% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.35;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .columnist-photo--live::after {
+    animation: none;
+  }
+}
+
+// ── Sizes ─────────────────────────────────────────────────────────────────────
+
+.columnist-photo--xs {
+  --columnist-photo-size: 20px;
+  --columnist-photo-dot: 6px;
+  --columnist-photo-ring: 1px;
+}
+
+.columnist-photo--sm {
+  --columnist-photo-size: 32px;
+  --columnist-photo-dot: 10px;
+  --columnist-photo-ring: 1px;
+}
+
+.columnist-photo--md {
+  --columnist-photo-size: 48px;
+  --columnist-photo-dot: 16px;
+}
+
+.columnist-photo--lg {
+  --columnist-photo-size: 64px;
+  --columnist-photo-dot: 18px;
+}
+
+.columnist-photo--xl {
+  --columnist-photo-size: 80px;
+  --columnist-photo-dot: 20px;
+}
+
+.columnist-photo--xxl {
+  --columnist-photo-size: 96px;
+  --columnist-photo-dot: 24px;
+}
+
+.columnist-photo--xxxl {
+  --columnist-photo-size: 112px;
+  --columnist-photo-dot: 24px;
+}

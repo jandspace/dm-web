@@ -1,0 +1,263 @@
+// ── Article Card Metadata ─────────────────────────────────────────────────────
+// Bottom row of the article card. Identical at every breakpoint.
+//
+//   [ info (left, flexible)                     ][ comments (right) ]
+//
+// Info slot — one of:
+//   Channel (link) · Timestamp · Channel + Timestamp · Ad Feature · Sponsored
+//   · Affiliate Content (link) · nothing (Comment Only)
+// Comments slot — speech-bubble icon + count (link to comments).
+// CTA type replaces the whole row with an XS brand button (see _button.scss).
+// Columnist type uses Columnist Profile Photo + Columnist Comment Announcement.
+//
+// Reference: Figma Web UI Kit › Article Card Metadata (108:7232)
+
+.article-card-metadata {
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-4);
+  min-height: 20px;
+  font-family: var(--typography-font-family-sans);
+  font-size: var(--typography-font-size-label-xxsm);
+  line-height: var(--typography-line-height-narrow);
+  letter-spacing: var(--typography-letter-spacing-normal);
+}
+
+// ── Info slot ─────────────────────────────────────────────────────────────────
+
+.article-card-metadata__info {
+  display: flex;
+  flex: 1 1 0;
+  align-items: center;
+  gap: var(--spacing-4);
+  min-width: 0;
+}
+
+// Shared truncation for every info item
+.article-card-metadata__channel-text,
+.article-card-metadata__time,
+.article-card-metadata__label,
+.article-card-metadata__affiliate-text {
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+}
+
+// ── Hover line ────────────────────────────────────────────────────────────────
+// Channel, comments and affiliate links: a 1px line under the whole link that
+// grows from the left on hover (replaces text underline). The link is the
+// positioning container, so the line spans its full width (icon included).
+
+.article-card-metadata__channel,
+.article-card-metadata__comments,
+.article-card-metadata__affiliate {
+  position: relative;
+
+  &::before {
+    content: '';
+    position: absolute;
+    right: 0;
+    bottom: -2px;
+    left: 0;
+    height: 1px;
+    background: var(--color-effect-translucent-dark-deep);
+    transform: scaleX(0); // zero width at rest — invisible without opacity
+    transform-origin: left center;
+    transition: transform 0.2s;
+  }
+
+  &:hover::before,
+  &:focus-visible::before {
+    transform: scaleX(1);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .article-card-metadata__channel::before,
+  .article-card-metadata__comments::before,
+  .article-card-metadata__affiliate::before {
+    transition: none;
+  }
+}
+
+// Channel link — text truncates inside, so the line (on the link) is not clipped.
+// Hover colour = the channel's section colour, via --article-card-channel-color.
+// Default Home blue; set a section modifier on the link (or the variable on any
+// ancestor, e.g. the card) to switch: --showbiz → text-showbiz-red-base, etc.
+.article-card-metadata__channel {
+  display: inline-flex;
+  min-width: 0;
+  font-weight: var(--typography-font-weight-semibold);
+  color: var(--color-text-neutral-dark);
+  text-decoration: none;
+
+  &:hover {
+    color: var(--article-card-channel-color, var(--color-text-home-blue-base));
+  }
+}
+
+// Section → channel colour (Editorial Section → Colour Mapping)
+$article-card-channel-sections: (
+  home: home-blue,
+  news: news-cyan,
+  showbiz: showbiz-red,
+  sport: sport-green,
+  royals: royals-violet,
+  money: money-purple,
+  lifestyle: lifestyle-azure,
+  health: health-turquoise,
+  tv: tv-magenta,
+  travel: travel-navy,
+  shopping: shopping-indigo,
+  crime: crime-petrol,
+  property: property-fuchsia,
+  podcasts: podcasts-yellow,
+  games: games-ultramarine,
+  science: science-orange,
+);
+
+@each $section, $colour in $article-card-channel-sections {
+  .article-card-metadata__channel--#{$section} {
+    --article-card-channel-color: var(--color-text-#{$colour}-base);
+  }
+}
+
+.article-card-metadata__time {
+  display: inline-flex;
+  flex-shrink: 0;
+  align-items: center;
+  gap: var(--spacing-4);
+  font-weight: var(--typography-font-weight-regular);
+  color: var(--color-text-neutral-grey-dark);
+}
+
+// Separator disc — only when the timestamp follows a channel
+.article-card-metadata__channel + .article-card-metadata__time::before {
+  content: '';
+  flex-shrink: 0;
+  width: 4px;
+  height: 4px;
+  border-radius: var(--border-radius-full);
+  background-color: var(--color-icon-neutral-grey-light);
+}
+
+// Ad Feature / Sponsored
+.article-card-metadata__label {
+  font-style: italic;
+  font-weight: var(--typography-font-weight-regular);
+  color: var(--color-text-neutral-dark);
+}
+
+// Affiliate Content — external link with icon
+.article-card-metadata__affiliate {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--spacing-6);
+  min-width: 0;
+  font-style: italic;
+  font-weight: var(--typography-font-weight-regular);
+  color: var(--color-text-interaction-primary-default);
+  text-decoration: none;
+}
+
+.article-card-metadata__affiliate-icon {
+  flex-shrink: 0;
+  width: 14px;
+  height: 14px;
+  color: var(--color-icon-interaction-primary-default);
+}
+
+// ── Comments slot ─────────────────────────────────────────────────────────────
+
+.article-card-metadata__comments {
+  display: inline-flex;
+  flex-shrink: 0;
+  align-items: center;
+  gap: var(--spacing-4);
+  margin-left: auto;
+  font-weight: var(--typography-font-weight-semibold);
+  color: var(--color-text-interaction-primary-default);
+  white-space: nowrap;
+  text-decoration: none;
+
+  &:hover {
+    color: var(--color-text-interaction-primary-hover);
+  }
+
+  &:hover .article-card-metadata__comments-icon {
+    color: var(--color-icon-interaction-primary-hover);
+  }
+}
+
+.article-card-metadata__comments-icon {
+  flex-shrink: 0;
+  width: 14px;
+  height: 14px;
+  color: var(--color-icon-interaction-primary-default);
+}
+
+// ── Columnist type ────────────────────────────────────────────────────────────
+// Byline row (name + role · comments · LG profile photo) with an optional
+// Columnist Comment Announcement underneath. Four modes:
+//   Normal    — photo without dot, no announcement
+//   Scheduled — photo without dot, announcement --scheduled
+//   Live      — photo --live (green dot), announcement --live
+//   Ended     — photo without dot, announcement --ended
+
+.article-card-metadata--columnist {
+  flex-direction: column;
+  align-items: stretch;
+  gap: var(--spacing-8);
+}
+
+.article-card-metadata__columnist {
+  display: flex;
+  align-items: flex-end;
+  gap: var(--spacing-16);
+  padding-top: var(--spacing-8);
+}
+
+// Name/role + comments share the space left of the photo, bottom-aligned
+.article-card-metadata__byline {
+  display: flex;
+  flex: 1 1 0;
+  align-items: flex-end;
+  gap: var(--spacing-12);
+  min-width: 0;
+  padding: var(--spacing-4) 0;
+}
+
+.article-card-metadata__author {
+  display: flex;
+  flex: 1 1 0;
+  flex-direction: column;
+  gap: var(--spacing-2);
+  min-width: 0;
+}
+
+.article-card-metadata__author-name {
+  overflow: hidden;
+  font-size: var(--typography-font-size-label-lg);
+  font-weight: var(--typography-font-weight-semibold);
+  color: var(--color-text-neutral-darker);
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  text-decoration: none;
+
+  &:hover {
+    text-decoration: underline;
+  }
+}
+
+.article-card-metadata__author-role {
+  font-size: var(--typography-font-size-label-xsm);
+  font-weight: var(--typography-font-weight-regular);
+  color: var(--color-text-neutral-dark);
+}
+
+// ── CTA type ──────────────────────────────────────────────────────────────────
+// Row holds a single XS brand button (.btn.btn-brand.btn--xs).
+
+.article-card-metadata--cta {
+  min-height: 28px;
+}

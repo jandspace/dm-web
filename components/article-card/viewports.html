@@ -1,0 +1,244 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Article Card — Viewports</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="../../tokens/dm_tokens.css" />
+    <link rel="stylesheet" href="../../tokens/dm_typography_web_tokens.css" />
+    <link rel="stylesheet" href="../../styles/css/main.css" />
+  </head>
+  <body class="demo-page-body demo-page-body--canvas">
+    <h1 class="demo-page-h1">Article Card — Viewports</h1>
+    <p class="demo-page-intro">
+      Every card type at every breakpoint. Each cell is <a href="index.html">index.html</a> rendered in a frame
+      at that viewport width, cropped to the card and scaled by the same factor, so sizes compare like the Figma sheet.
+      Numbers under each card are its real rendered size in px.
+    </p>
+
+    <div class="demo-vp-toolbar demo-vp-toolbar--sticky">
+      <span id="demo-vp-zoom-label">Zoom</span>
+      <div class="demo-vp-toggle" role="group" aria-labelledby="demo-vp-zoom-label" id="demo-vp-zoom">
+        <button type="button" data-zoom="fit" aria-pressed="true">Fit</button>
+        <button type="button" data-zoom="1" aria-pressed="false">100%</button>
+      </div>
+      <span class="demo-vp-toolbar__divider" aria-hidden="true"></span>
+      <label for="demo-badge-select">Badge</label>
+      <select class="demo-vp-select" id="demo-badge-select">
+        <option value="">None</option>
+        <optgroup label="Highlight">
+          <option value="exclusive">Exclusive</option>
+          <option value="breaking">Breaking</option>
+          <option value="live">Live</option>
+        </optgroup>
+        <optgroup label="M+">
+          <option value="mplus">M+</option>
+        </optgroup>
+        <optgroup label="M+ Compound">
+          <option value="mplus-exclusive">M+ Exclusive</option>
+          <option value="mplus-special-report">M+ Special Report</option>
+          <option value="mplus-investigation">M+ Investigation</option>
+          <option value="mplus-opinion">M+ Opinion</option>
+          <option value="mplus-inside-story">M+ Inside Story</option>
+          <option value="mplus-interview">M+ Interview</option>
+          <option value="mplus-chat">M+ Chat</option>
+        </optgroup>
+        <optgroup label="Feature">
+          <option value="poll">Poll</option>
+        </optgroup>
+        <optgroup label="Analysis">
+          <option value="deep-dive">Deep Dive</option>
+        </optgroup>
+      </select>
+      <span class="demo-vp-toolbar__divider" aria-hidden="true"></span>
+      <span id="demo-extra-switch-label">Preview</span>
+      <div class="demo-vp-toggle" role="group" aria-labelledby="demo-extra-switch-label" id="demo-extra-switch">
+        <button type="button" data-extra="off" aria-pressed="true">Off</button>
+        <button type="button" data-extra="text" aria-pressed="false">Text</button>
+        <button type="button" data-extra="keyupdates" aria-pressed="false">Key Update (Live only)</button>
+      </div>
+      <span class="demo-vp-toolbar__divider" aria-hidden="true"></span>
+      <label for="demo-meta-select">Metadata</label>
+      <select class="demo-vp-select" id="demo-meta-select">
+        <option value="off">Off</option>
+        <optgroup label="Standard">
+          <option value="channel">Channel Only</option>
+          <option value="timestamp">Timestamp Only</option>
+          <option value="channel-timestamp">Channel + Timestamp</option>
+          <option value="comment-only">Comment Only</option>
+          <option value="ad-feature">Ad Feature</option>
+          <option value="sponsored">Sponsored</option>
+          <option value="affiliate">Affiliate Content</option>
+          <option value="cta">CTA</option>
+        </optgroup>
+        <optgroup label="Columnist">
+          <option value="columnist">Columnist · Normal</option>
+          <option value="columnist-scheduled">Columnist · Scheduled</option>
+          <option value="columnist-live">Columnist · Live</option>
+          <option value="columnist-ended">Columnist · Ended</option>
+        </optgroup>
+      </select>
+    </div>
+
+    <!-- Rows = card types, columns = breakpoints. Built by the script below. -->
+    <div class="demo-vp-sheet" id="demo-vp-sheet"></div>
+
+    <script>
+      (() => {
+        const TYPES = [
+          ['xl', 'XL'],
+          ['xl-horizontal', 'XL (Horizontal)'],
+          ['xl-triple', 'XL (Triple)'],
+          ['md-vertical', 'MD (Vertical Media)'],
+          ['md', 'MD'],
+          ['sm-left', 'SM: Left Thumb'],
+          ['sm-right', 'SM: Right Thumb'],
+        ];
+
+        // Viewport widths match the Figma frames; maxCard = widest card in that column.
+        const VIEWPORTS = [
+          { label: 'XL ≥1376', width: 1440, maxCard: 1224 },
+          { label: 'LG ≥1024', width: 1024, maxCard: 996 },
+          { label: 'MD ≥768', width: 768, maxCard: 768 },
+          { label: 'SM-XS <768', width: 390, maxCard: 390 },
+        ];
+
+        const LABEL_COL = 140;
+        const GAP = 32;
+
+        const sheet = document.getElementById('demo-vp-sheet');
+        const zoom = document.getElementById('demo-vp-zoom');
+        const extraToggle = document.getElementById('demo-extra-switch');
+        const badgeSelect = document.getElementById('demo-badge-select');
+        let zoomMode = 'fit';
+        let preview = false;
+        let badge = '';
+        let meta = 'channel';
+        const cells = [];
+        const src = (type) =>
+          `index.html?only=${type}${preview ? '&preview' : ''}${badge ? `&badge=${badge}` : ''}${meta !== 'channel' ? `&meta=${meta}` : ''}`;
+        const reloadAll = () => {
+          cells.forEach((entry) => {
+            entry.size.textContent = '…';
+            entry.iframe.src = src(entry.type);
+          });
+        };
+
+        const el = (tag, className, html) => {
+          const node = document.createElement(tag);
+          if (className) node.className = className;
+          if (html) node.innerHTML = html;
+          return node;
+        };
+
+        // Column headers (first cell is the sticky corner above the row labels)
+        sheet.append(el('div', 'demo-vp-corner'));
+        VIEWPORTS.forEach((vp) => {
+          sheet.append(el('div', 'demo-vp-col-header', `${vp.label}<small>${vp.width}px viewport</small>`));
+        });
+
+        // Rows
+        TYPES.forEach(([type, name]) => {
+          sheet.append(el('div', 'demo-vp-row-label', name));
+
+          VIEWPORTS.forEach((vp) => {
+            const cell = el('div', 'demo-vp-cell');
+            const frame = el('div', 'demo-vp-frame');
+            const size = el('div', 'demo-vp-size', '…');
+            const iframe = document.createElement('iframe');
+
+            iframe.src = src(type);
+            iframe.width = vp.width;
+            iframe.height = 1200;
+            iframe.title = `${name} at ${vp.label}`;
+            iframe.tabIndex = -1;
+
+            frame.append(iframe);
+            cell.append(frame, size);
+            sheet.append(cell);
+
+            const entry = { type, iframe, frame, size, rect: null };
+            cells.push(entry);
+
+            iframe.addEventListener('load', async () => {
+              const doc = iframe.contentDocument;
+              await doc.fonts.ready;
+              const card = doc.querySelector('.article-card');
+              if (!card) return;
+              iframe.height = doc.documentElement.scrollHeight;
+              entry.rect = card.getBoundingClientRect();
+              size.textContent = `${Math.round(entry.rect.width)} × ${Math.round(entry.rect.height)}`;
+              apply(entry);
+            });
+          });
+        });
+
+        const scale = () => {
+          if (zoomMode !== 'fit') return Number(zoomMode);
+          const natural = VIEWPORTS.reduce((sum, vp) => sum + vp.maxCard, 0);
+          const available = sheet.clientWidth - LABEL_COL - GAP * VIEWPORTS.length;
+          return Math.max(0.15, Math.min(1, available / natural));
+        };
+
+        const apply = (entry) => {
+          if (!entry.rect) return;
+          const s = scale();
+          const { left, top, width, height } = entry.rect;
+          entry.frame.style.width = `${width * s}px`;
+          entry.frame.style.height = `${height * s}px`;
+          entry.iframe.style.transform = `scale(${s}) translate(${-left}px, ${-top}px)`;
+        };
+
+        const applyAll = () => cells.forEach(apply);
+
+        zoom.addEventListener('click', (event) => {
+          const button = event.target.closest('button[data-zoom]');
+          if (!button) return;
+          zoomMode = button.dataset.zoom;
+          zoom.querySelectorAll('button').forEach((b) => b.setAttribute('aria-pressed', String(b === button)));
+          applyAll();
+        });
+        window.addEventListener('resize', () => zoomMode === 'fit' && applyAll());
+
+        // Preview (Off | Text | Key Update) and Badge — same rules as index.html:
+        // Live badge ⇔ key updates; preview text and key updates share one slot.
+        // Every change reloads all frames; each load re-measures its card.
+        const syncControls = () => {
+          const mode = badge === 'live' ? 'keyupdates' : preview ? 'text' : 'off';
+          extraToggle.querySelectorAll('button').forEach((b) => b.setAttribute('aria-pressed', String(b.dataset.extra === mode)));
+          badgeSelect.value = badge;
+        };
+
+        extraToggle.addEventListener('click', (event) => {
+          const button = event.target.closest('button[data-extra]');
+          if (!button) return;
+          if (button.dataset.extra === 'keyupdates') {
+            badge = 'live';
+            preview = false;
+          } else {
+            preview = button.dataset.extra === 'text';
+            if (badge === 'live') badge = '';
+          }
+          syncControls();
+          reloadAll();
+        });
+
+        // Metadata type — every frame swaps its Article Card Metadata
+        document.getElementById('demo-meta-select').addEventListener('change', (event) => {
+          meta = event.target.value;
+          reloadAll();
+        });
+
+        badgeSelect.addEventListener('change', () => {
+          badge = badgeSelect.value;
+          if (badge === 'live') preview = false;
+          syncControls();
+          reloadAll();
+        });
+      })();
+    </script>
+  </body>
+</html>

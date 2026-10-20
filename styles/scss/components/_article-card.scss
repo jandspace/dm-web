@@ -1,0 +1,320 @@
+// ── Article Card ──────────────────────────────────────────────────────────────
+// Skeleton: Media container + Headline container (.article-headline) +
+// optional Preview text / Live Key Updates + Article Card Metadata.
+// Card carries its own 16px inset and bottom keyline; the column container
+// carries no padding (Foundation > Layout & Grid > 3).
+//
+// Card type → headline level (sizes scale via responsive h-tokens):
+//   XL → H2 · XL Horizontal → H3 · XL Triple → H2 · MD Vertical → H2
+//   MD → H4 · SM Left Thumb → H5 · SM Right Thumb → H6
+//
+// Media aspect ratios (Figma "Article Card Media"):
+//   Landscape 358:215 · Portrait 2:3 · Thumbnail 4:3
+//
+// Reference: Figma Web UI Kit › Article Card (5209:5051)
+
+@use '../foundation/breakpoints' as bp;
+
+// ── Base ──────────────────────────────────────────────────────────────────────
+
+.article-card {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-12);
+  width: 100%;
+  padding: var(--spacing-16);
+  background-color: var(--color-background-neutral-lightest);
+
+  // Keyline — inset to match the 16px content edge
+  &::after {
+    content: '';
+    position: absolute;
+    right: var(--spacing-16);
+    bottom: 0;
+    left: var(--spacing-16);
+    height: 1px;
+    background-color: var(--color-effect-translucent-dark-pale);
+  }
+
+  &--no-keyline::after {
+    display: none;
+  }
+}
+
+// ── Article link ──────────────────────────────────────────────────────────────
+// One link per card, on the headline (<a class="article-card__link">). Its
+// ::after stretches over the whole card, so the card is clickable anywhere
+// while the markup keeps a single, readable link.
+//
+// Hover: only the headline colour changes, to text/interaction-primary/default
+// (the resting headline is neutral-darker, so default reads better than hover).
+// Other links in the card (metadata, announcement) sit above the stretched
+// area, keep their own hover rules, and don't trigger the headline hover.
+
+.article-card__link {
+  color: inherit;
+  text-decoration: none;
+
+  &::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+  }
+
+  // Focus ring goes on the whole card instead (see below)
+  &:focus-visible {
+    outline: none;
+  }
+}
+
+.article-card:hover:not(:has(.article-card__metadata a:hover, .article-card__metadata button:hover)),
+.article-card:has(.article-card__link:focus-visible) {
+  .article-headline {
+    color: var(--color-text-interaction-primary-default);
+  }
+}
+
+.article-card:has(.article-card__link:focus-visible) {
+  outline: 2px solid var(--color-border-home-blue-base);
+  outline-offset: -2px;
+}
+
+// Secondary links/buttons stay clickable above the stretched article link
+.article-card__metadata a,
+.article-card__metadata button {
+  position: relative;
+  z-index: 1;
+}
+
+// ── Media container ───────────────────────────────────────────────────────────
+
+.article-card__media {
+  position: relative;
+  flex-shrink: 0;
+  overflow: hidden;
+  border-radius: var(--border-radius-4);
+  aspect-ratio: 358 / 215;
+
+  img {
+    display: block;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+}
+
+// ── Headline + metadata container ─────────────────────────────────────────────
+
+.article-card__body {
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-8);
+  min-width: 0;
+}
+
+// ── Preview text (optional) ───────────────────────────────────────────────────
+// Editor-controlled in the CMS: present in the HTML only when switched on.
+// Sits between headline and metadata (MD Vertical: between media and metadata).
+// Design rules handled here:
+//   · SM-XS (<768): never shown — keeps mobile browsing fast
+//   · SM Left / Right Thumb: never shown
+//   · Size: XL card → LG (text-sm 14px); every other type → MD (text-xsm 13px)
+//   · 3 lines max, ellipsis
+
+.article-card__preview {
+  display: none;
+  // Spacing as margin, not padding — overflow clips at the padding edge,
+  // so padding would let the top of a 4th line show through.
+  margin: 0 0 var(--spacing-8);
+  overflow: hidden;
+  font-family: var(--typography-font-family-sans);
+  font-size: var(--typography-font-size-text-xsm);
+  font-weight: var(--typography-font-weight-regular);
+  line-height: var(--typography-line-height-normal);
+  letter-spacing: var(--typography-letter-spacing-wide);
+  color: var(--color-text-neutral-grey-dark);
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 3;
+  line-clamp: 3;
+
+  @include bp.respond-to(md) {
+    display: -webkit-box;
+  }
+}
+
+.article-card--xl .article-card__preview {
+  font-size: var(--typography-font-size-text-sm);
+}
+
+.article-card--sm-left .article-card__preview,
+.article-card--sm-right .article-card__preview {
+  display: none;
+}
+
+// ── Live Key Updates (extra slot) ─────────────────────────────────────────────
+// Component styles live in _article-card-key-updates.scss. The card only rules
+// where it may appear: every breakpoint, but never on SM Left / Right Thumb.
+
+.article-card--sm-left .article-card-key-updates,
+.article-card--sm-right .article-card-key-updates {
+  display: none;
+}
+
+// ── Metadata container ────────────────────────────────────────────────────────
+// .article-card__metadata is the slot hook; the element is an Article Card
+// Metadata component (class mix: "article-card__metadata article-card-metadata"),
+// which carries all of its own styling — see _article-card-metadata.scss.
+
+// ── Max width per card type ───────────────────────────────────────────────────
+// Card fills its grid column(s) up to the column span of the active breakpoint
+// (Figma card widths). SM-XS: no cap, card runs the full container width.
+//
+//                       MD    LG    XL
+//   XL / XL Horizontal  768   664   816
+//   XL Triple           768   996   1224
+//   1-column types      384   332   408
+
+.article-card--xl,
+.article-card--xl-horizontal {
+  @include bp.respond-to(md) { max-width: 768px; }
+  @include bp.respond-to(lg) { max-width: 664px; }
+  @include bp.respond-to(xl) { max-width: 816px; }
+}
+
+.article-card--xl-triple {
+  @include bp.respond-to(md) { max-width: 768px; }
+  @include bp.respond-to(lg) { max-width: 996px; }
+  @include bp.respond-to(xl) { max-width: 1224px; }
+}
+
+.article-card--md-vertical,
+.article-card--md,
+.article-card--sm-left,
+.article-card--sm-right {
+  @include bp.respond-to(md) { max-width: 384px; }
+  @include bp.respond-to(lg) { max-width: 332px; }
+  @include bp.respond-to(xl) { max-width: 408px; }
+}
+
+// ── Card type: XL ─────────────────────────────────────────────────────────────
+// Stacked: media (358:215) → headline → metadata. Base styles cover it.
+
+// ── Card type: XL (Horizontal) ────────────────────────────────────────────────
+// SM-XS: stacked like XL. MD+: text left, media right (fixed media width).
+
+.article-card--xl-horizontal {
+  @include bp.respond-to(md) {
+    flex-direction: row;
+    align-items: flex-start;
+    gap: var(--spacing-16);
+
+    .article-card__body {
+      flex: 1 1 0;
+    }
+
+    .article-card__media {
+      order: 1;
+      width: 480px;
+    }
+  }
+
+  @include bp.respond-to(lg) {
+    .article-card__media {
+      width: 383px;
+    }
+  }
+
+  @include bp.respond-to(xl) {
+    .article-card__media {
+      width: 478px;
+    }
+  }
+}
+
+// ── Card type: XL (Triple) ────────────────────────────────────────────────────
+// SM-XS: stacked. MD: same split as Horizontal. LG+: equal halves, 32px gap.
+
+.article-card--xl-triple {
+  @include bp.respond-to(md) {
+    flex-direction: row;
+    align-items: flex-start;
+    gap: var(--spacing-16);
+
+    .article-card__body {
+      flex: 1 1 0;
+    }
+
+    .article-card__media {
+      order: 1;
+      width: 480px;
+    }
+  }
+
+  @include bp.respond-to(lg) {
+    gap: var(--spacing-32);
+
+    .article-card__media {
+      flex: 1 1 0;
+      width: auto;
+    }
+  }
+}
+
+// ── Card type: MD (Vertical Media) ────────────────────────────────────────────
+// headline → portrait media (2:3) → metadata. Children sit directly in the card.
+// Always expects portrait (2:3) image or video source.
+
+.article-card--md-vertical {
+  .article-card__media {
+    aspect-ratio: 2 / 3;
+  }
+}
+
+// ── Card type: MD ─────────────────────────────────────────────────────────────
+// Stacked: media (358:215) → headline → metadata. Base styles cover it.
+
+// ── Card type: SM (Left / Right Thumb) ────────────────────────────────────────
+// Row: 4:3 thumbnail + text. Thumb width — SM-XS/MD 128 · LG 120 · XL 152.
+
+.article-card--sm-left,
+.article-card--sm-right {
+  flex-direction: row;
+  align-items: flex-start;
+
+  .article-card__body {
+    flex: 1 1 0;
+  }
+
+  .article-card__media {
+    width: 128px;
+    aspect-ratio: 4 / 3;
+
+    @include bp.respond-to(lg) {
+      width: 120px;
+    }
+
+    @include bp.respond-to(xl) {
+      width: 152px;
+    }
+  }
+}
+
+// Columnist metadata needs ≥300px of text width, so SM cards drop the
+// thumbnail when they carry a columnist byline.
+.article-card--sm-left:has(.article-card-metadata--columnist),
+.article-card--sm-right:has(.article-card-metadata--columnist) {
+  .article-card__media {
+    display: none;
+  }
+}
+
+// Right Thumb: thumbnail moves right from LG up (sidebar context).
+// SM-XS and MD keep it on the left, as in the Figma variants.
+.article-card--sm-right {
+  @include bp.respond-to(lg) {
+    .article-card__media {
+      order: 1;
+    }
+  }
+}

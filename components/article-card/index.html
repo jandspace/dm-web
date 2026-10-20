@@ -1,0 +1,608 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Article Card</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="../../tokens/dm_tokens.css" />
+    <link rel="stylesheet" href="../../tokens/dm_typography_web_tokens.css" />
+    <link rel="stylesheet" href="../../styles/css/main.css" />
+  </head>
+  <body class="demo-page-body demo-page-body--canvas demo-page-body--flush">
+    <svg style="display: none" aria-hidden="true">
+      <symbol id="ico-speechbubble-ellipsis" viewBox="0 0 14 14">
+        <path d="M13.6587 1.79014C13.4312 1.35381 13.0944 1.01783 12.6613 0.786569C12.2238 0.555311 11.6944 0.4375 11.0688 0.4375H2.94C2.31 0.4375 1.77625 0.555311 1.33875 0.786569C0.905625 1.01783 0.573125 1.35381 0.345625 1.79014C0.118125 2.22212 0 2.74572 0 3.36532V8.19993C0 8.81952 0.11375 9.34749 0.345625 9.78383C0.5775 10.2158 0.91 10.5474 1.33875 10.7787C1.77188 11.0099 2.2925 11.1277 2.89625 11.1277H3.23313V12.6593C3.23313 12.9385 3.30313 13.1567 3.43875 13.3182C3.57875 13.4796 3.77562 13.5625 4.025 13.5625C4.2 13.5625 4.36625 13.5189 4.51937 13.4272C4.6725 13.34 4.85625 13.2047 5.07063 13.0171L7.20562 11.1277H11.0644C11.69 11.1277 12.2194 11.0099 12.6569 10.7787C13.0944 10.5474 13.4269 10.2158 13.6544 9.78383C13.8819 9.34749 14 8.81952 14 8.19993V3.36532C14 2.74572 13.8863 2.22212 13.6544 1.79014H13.6587ZM4.64188 6.43713C4.4625 6.62039 4.24375 6.71202 3.98563 6.71202C3.7275 6.71202 3.50875 6.62039 3.325 6.43713C3.14563 6.25386 3.05813 6.0357 3.05813 5.78262C3.05813 5.52955 3.14563 5.31138 3.325 5.12812C3.50875 4.94486 3.7275 4.85322 3.98563 4.85322C4.24375 4.85322 4.4625 4.94486 4.64188 5.12812C4.82125 5.31138 4.90875 5.52955 4.90875 5.78262C4.90875 6.0357 4.82125 6.25386 4.64188 6.43713ZM7.665 6.43713C7.48125 6.62039 7.2625 6.71202 7.00875 6.71202C6.755 6.71202 6.53188 6.62039 6.34812 6.43713C6.16438 6.25386 6.0725 6.0357 6.0725 5.78262C6.0725 5.52955 6.16438 5.31138 6.34812 5.12812C6.53188 4.94486 6.75063 4.85322 7.00875 4.85322C7.26688 4.85322 7.48125 4.94486 7.665 5.12812C7.84875 5.31138 7.94062 5.52955 7.94062 5.78262C7.94062 6.0357 7.84875 6.25386 7.665 6.43713ZM10.6794 6.43713C10.5 6.62039 10.2812 6.71202 10.0231 6.71202C9.765 6.71202 9.55062 6.62039 9.36687 6.43713C9.1875 6.25386 9.1 6.0357 9.1 5.78262C9.1 5.52955 9.1875 5.31138 9.36687 5.12812C9.55062 4.94486 9.76937 4.85322 10.0231 4.85322C10.2769 4.85322 10.5 4.94486 10.6794 5.12812C10.8631 5.31138 10.955 5.52955 10.955 5.78262C10.955 6.0357 10.8631 6.25386 10.6794 6.43713Z" fill="currentColor" />
+      </symbol>
+      <symbol id="ico-square-arrow-up-right" viewBox="0 0 14 14">
+        <path d="M12.6778 10.9278C12.6778 11.8922 11.8922 12.6778 10.9278 12.6778H3.07222C2.10778 12.6778 1.32222 11.8922 1.32222 10.9278V3.07222C1.32222 2.10778 2.10778 1.32222 3.07222 1.32222H6.52944V0.388889H3.07222C1.59056 0.388889 0.388889 1.59056 0.388889 3.07222V10.9239C0.388889 12.4056 1.59056 13.6072 3.07222 13.6072H10.9239C12.4056 13.6072 13.6072 12.4056 13.6072 10.9239V7.46667H12.6739V10.9239L12.6778 10.9278Z" fill="currentColor" />
+        <path d="M10.9278 0.388889C10.9278 0.388889 10.9317 0.388889 10.9356 0.388889H8.85111C8.77333 0.388889 8.69167 0.412222 8.62556 0.455C8.55944 0.497778 8.50889 0.563889 8.47778 0.633889C8.44667 0.707778 8.43889 0.789444 8.45445 0.867222C8.47 0.945 8.50889 1.015 8.56333 1.07333L10.01 2.52L6.81722 5.71278C6.75889 5.77111 6.75889 5.86833 6.81722 5.92667L8.06944 7.17889C8.12778 7.23722 8.225 7.23722 8.28333 7.17889L11.4761 3.98611L12.9228 5.43278C12.9772 5.48722 13.0511 5.52611 13.1289 5.54167C13.2028 5.55722 13.2844 5.54944 13.3622 5.51833C13.4361 5.48722 13.4983 5.43667 13.5411 5.37056C13.5839 5.30444 13.6072 5.22667 13.6072 5.145V3.06444C13.6072 3.06444 13.6072 3.06833 13.6072 3.07222V0.388889H10.9239H10.9278Z" fill="currentColor" />
+      </symbol>
+      <symbol id="ico-square-dashed" viewBox="0 0 32 32">
+        <path d="M12.733 32H6.893C3.093 32 0 28.907 0 25.107v-5.84h3.387v5.84c0 1.933 1.573 3.507 3.506 3.507h5.84V32zm19.267-19.267h-3.387V6.893c0-1.933-1.573-3.506-3.506-3.506h-5.84V0h5.84C28.907 0 32 3.093 32 6.893v5.84zM3.387 12.733H0V6.893C0 3.093 3.093 0 6.893 0h5.84v3.387h-5.84c-1.933 0-3.506 1.573-3.506 3.506v5.84zm21.72 19.267h-5.84v-3.387h5.84c1.933 0 3.507-1.573 3.507-3.506v-5.84H32v5.84C32 28.907 28.907 32 25.107 32z" fill="currentColor" />
+      </symbol>
+    </svg>
+    <div class="demo-card-page">
+    <h1 class="demo-page-h1">Article Card</h1>
+    <p class="demo-page-intro">
+      Media container, headline (Article Headline) and metadata (Article Card Metadata).
+      Pick a viewport below, resize the window in Live mode, or open
+      <a href="viewports.html">all breakpoints side by side</a>.
+    </p>
+    </div>
+
+    <!-- Sticky toolbar sits directly in <body>: a sticky element only sticks
+         within its parent, and the page wrapper gets short when a fixed
+         viewport hides the grid. -->
+    <div class="demo-vp-toolbar demo-vp-toolbar--sticky demo-vp-toolbar--page">
+      <span id="demo-vp-switch-label">Viewport</span>
+      <div class="demo-vp-toggle" role="group" aria-labelledby="demo-vp-switch-label" id="demo-vp-switch">
+        <button type="button" data-vp="live" aria-pressed="true">Live</button>
+        <button type="button" data-vp="xl" aria-pressed="false">XL 1440</button>
+        <button type="button" data-vp="lg" aria-pressed="false">LG 1024</button>
+        <button type="button" data-vp="md" aria-pressed="false">MD 768</button>
+        <button type="button" data-vp="sm" aria-pressed="false">SM-XS 390</button>
+      </div>
+      <span class="demo-vp-toolbar__divider" aria-hidden="true"></span>
+      <label for="demo-badge-select">Badge</label>
+      <select class="demo-vp-select" id="demo-badge-select">
+        <option value="">None</option>
+        <optgroup label="Highlight">
+          <option value="exclusive">Exclusive</option>
+          <option value="breaking">Breaking</option>
+          <option value="live">Live</option>
+        </optgroup>
+        <optgroup label="M+">
+          <option value="mplus">M+</option>
+        </optgroup>
+        <optgroup label="M+ Compound">
+          <option value="mplus-exclusive">M+ Exclusive</option>
+          <option value="mplus-special-report">M+ Special Report</option>
+          <option value="mplus-investigation">M+ Investigation</option>
+          <option value="mplus-opinion">M+ Opinion</option>
+          <option value="mplus-inside-story">M+ Inside Story</option>
+          <option value="mplus-interview">M+ Interview</option>
+          <option value="mplus-chat">M+ Chat</option>
+        </optgroup>
+        <optgroup label="Feature">
+          <option value="poll">Poll</option>
+        </optgroup>
+        <optgroup label="Analysis">
+          <option value="deep-dive">Deep Dive</option>
+        </optgroup>
+      </select>
+      <span class="demo-vp-toolbar__divider" aria-hidden="true"></span>
+      <span id="demo-extra-switch-label">Preview</span>
+      <div class="demo-vp-toggle" role="group" aria-labelledby="demo-extra-switch-label" id="demo-extra-switch">
+        <button type="button" data-extra="off" aria-pressed="true">Off</button>
+        <button type="button" data-extra="text" aria-pressed="false">Text</button>
+        <button type="button" data-extra="keyupdates" aria-pressed="false">Key Update (Live only)</button>
+      </div>
+      <span class="demo-vp-toolbar__divider" aria-hidden="true"></span>
+      <label for="demo-meta-select">Metadata</label>
+      <select class="demo-vp-select" id="demo-meta-select">
+        <option value="off">Off</option>
+        <optgroup label="Standard">
+          <option value="channel">Channel Only</option>
+          <option value="timestamp">Timestamp Only</option>
+          <option value="channel-timestamp">Channel + Timestamp</option>
+          <option value="comment-only">Comment Only</option>
+          <option value="ad-feature">Ad Feature</option>
+          <option value="sponsored">Sponsored</option>
+          <option value="affiliate">Affiliate Content</option>
+          <option value="cta">CTA</option>
+        </optgroup>
+        <optgroup label="Columnist">
+          <option value="columnist">Columnist · Normal</option>
+          <option value="columnist-scheduled">Columnist · Scheduled</option>
+          <option value="columnist-live">Columnist · Live</option>
+          <option value="columnist-ended">Columnist · Ended</option>
+        </optgroup>
+      </select>
+      <span class="demo-vp-status" id="demo-vp-status"></span>
+    </div>
+
+    <div class="demo-card-page">
+
+    <!-- Main Content columns — 3 (LG+), 2 (MD), 1 (SM-XS); demo-only 24px gap.
+         Card structure:
+           .article-card__media    — placeholder image at the defined aspect ratio
+           .article-card__body     — headline + metadata
+             .article-headline     — reused from components/article-headline;
+                                     holds the article link: <a class="article-card__link"> (whole card clickable)
+             .article-card__preview  — optional, CMS-controlled ("Preview › Text"):
+                                       <p class="article-card__preview">…</p> before the metadata
+             .article-card-key-updates — Live articles only ("Preview › Key Update" or Badge › Live),
+                                       same slot as the preview text; shown at every breakpoint
+             .article-card__metadata — Article Card Metadata (type via the Metadata select), components/article-card-metadata -->
+    <main class="demo-card-grid" id="demo-card-grid">
+    <!-- ════════════════════════════════════════════════════
+         XL
+         2 columns (or full width) · media 358:215 · H2
+    ════════════════════════════════════════════════════ -->
+    <div class="demo-card-section demo-span-3">
+      <div class="demo-card-section__title">XL</div>
+      <p class="demo-card-section__note">2 columns (or full width) · media 358:215 · H2</p>
+    </div>
+    <article class="article-card article-card--xl demo-span-2">
+      <div class="article-card__media"><img src="../../assets/images/article-card-placeholder.png" alt="" /></div>
+      <div class="article-card__body">
+        <h2 class="h2 article-headline"><a class="article-card__link" href="#article">Headline of Daily Mail article preview card - lorem ipsum dolor sit amet, con sectetur adipiscing jand</a></h2>
+        <div class="article-card__metadata article-card-metadata"><div class="article-card-metadata__info"><a class="article-card-metadata__channel" href="#channel"><span class="article-card-metadata__channel-text">Channel</span></a></div><a class="article-card-metadata__comments" href="#comments" aria-label="9.9k comments"><svg class="article-card-metadata__comments-icon" aria-hidden="true"><use href="#ico-speechbubble-ellipsis" /></svg><span class="article-card-metadata__comments-count">9.9k</span></a></div>
+      </div>
+    </article>
+
+    <!-- ════════════════════════════════════════════════════
+         XL (HORIZONTAL)
+         2 columns · text left, media right from MD · media 358:215 · H3
+    ════════════════════════════════════════════════════ -->
+    <div class="demo-card-section demo-span-3">
+      <div class="demo-card-section__title">XL (Horizontal)</div>
+      <p class="demo-card-section__note">2 columns · text left, media right from MD · media 358:215 · H3</p>
+    </div>
+    <article class="article-card article-card--xl-horizontal demo-span-2">
+      <div class="article-card__media"><img src="../../assets/images/article-card-placeholder.png" alt="" /></div>
+      <div class="article-card__body">
+        <h3 class="h3 article-headline"><a class="article-card__link" href="#article">Headline of Daily Mail article preview card - lorem ipsum dolor sit amet, con sectetur adipiscing jand</a></h3>
+        <div class="article-card__metadata article-card-metadata"><div class="article-card-metadata__info"><a class="article-card-metadata__channel" href="#channel"><span class="article-card-metadata__channel-text">Channel</span></a></div><a class="article-card-metadata__comments" href="#comments" aria-label="9.9k comments"><svg class="article-card-metadata__comments-icon" aria-hidden="true"><use href="#ico-speechbubble-ellipsis" /></svg><span class="article-card-metadata__comments-count">9.9k</span></a></div>
+      </div>
+    </article>
+
+    <!-- ════════════════════════════════════════════════════
+         XL (TRIPLE)
+         Full width · 50/50 split from LG · media 358:215 · H2
+    ════════════════════════════════════════════════════ -->
+    <div class="demo-card-section demo-span-3">
+      <div class="demo-card-section__title">XL (Triple)</div>
+      <p class="demo-card-section__note">Full width · 50/50 split from LG · media 358:215 · H2</p>
+    </div>
+    <article class="article-card article-card--xl-triple demo-span-3">
+      <div class="article-card__media"><img src="../../assets/images/article-card-placeholder.png" alt="" /></div>
+      <div class="article-card__body">
+        <h2 class="h2 article-headline"><a class="article-card__link" href="#article">Headline of Daily Mail article preview card - lorem ipsum dolor sit amet, con sectetur adipiscing jand</a></h2>
+        <div class="article-card__metadata article-card-metadata"><div class="article-card-metadata__info"><a class="article-card-metadata__channel" href="#channel"><span class="article-card-metadata__channel-text">Channel</span></a></div><a class="article-card-metadata__comments" href="#comments" aria-label="9.9k comments"><svg class="article-card-metadata__comments-icon" aria-hidden="true"><use href="#ico-speechbubble-ellipsis" /></svg><span class="article-card-metadata__comments-count">9.9k</span></a></div>
+      </div>
+    </article>
+
+    <!-- ════════════════════════════════════════════════════
+         MD (VERTICAL MEDIA)
+         1 column · headline, portrait media 2:3, metadata · H2
+    ════════════════════════════════════════════════════ -->
+    <div class="demo-card-section demo-span-3">
+      <div class="demo-card-section__title">MD (Vertical Media)</div>
+      <p class="demo-card-section__note">1 column · headline, portrait media 2:3, metadata · H2</p>
+    </div>
+    <article class="article-card article-card--md-vertical">
+      <h2 class="h2 article-headline"><a class="article-card__link" href="#article">Headline of Daily Mail article preview card - lorem ipsum dolor sit amet, con sectetur adipiscing jand</a></h2>
+      <div class="article-card__media"><img src="../../assets/images/article-card-placeholder-portrait.png" alt="" /></div>
+      <div class="article-card__metadata article-card-metadata"><div class="article-card-metadata__info"><a class="article-card-metadata__channel" href="#channel"><span class="article-card-metadata__channel-text">Channel</span></a></div><a class="article-card-metadata__comments" href="#comments" aria-label="9.9k comments"><svg class="article-card-metadata__comments-icon" aria-hidden="true"><use href="#ico-speechbubble-ellipsis" /></svg><span class="article-card-metadata__comments-count">9.9k</span></a></div>
+    </article>
+
+    <!-- ════════════════════════════════════════════════════
+         MD
+         1 column · media 358:215 · H4
+    ════════════════════════════════════════════════════ -->
+    <div class="demo-card-section demo-span-3">
+      <div class="demo-card-section__title">MD</div>
+      <p class="demo-card-section__note">1 column · media 358:215 · H4</p>
+    </div>
+    <article class="article-card article-card--md">
+      <div class="article-card__media"><img src="../../assets/images/article-card-placeholder.png" alt="" /></div>
+      <div class="article-card__body">
+        <h4 class="h4 article-headline"><a class="article-card__link" href="#article">Headline of Daily Mail article preview card - lorem ipsum dolor sit amet, con sectetur adipiscing jand</a></h4>
+        <div class="article-card__metadata article-card-metadata"><div class="article-card-metadata__info"><a class="article-card-metadata__channel" href="#channel"><span class="article-card-metadata__channel-text">Channel</span></a></div><a class="article-card-metadata__comments" href="#comments" aria-label="9.9k comments"><svg class="article-card-metadata__comments-icon" aria-hidden="true"><use href="#ico-speechbubble-ellipsis" /></svg><span class="article-card-metadata__comments-count">9.9k</span></a></div>
+      </div>
+    </article>
+
+    <!-- ════════════════════════════════════════════════════
+         SM: LEFT THUMB
+         1 column · thumbnail 4:3 on the left (XL 152 · LG 120 · MD/SM-XS 128px) · H5
+    ════════════════════════════════════════════════════ -->
+    <div class="demo-card-section demo-span-3">
+      <div class="demo-card-section__title">SM: Left Thumb</div>
+      <p class="demo-card-section__note">1 column · thumbnail 4:3 on the left (XL 152 · LG 120 · MD/SM-XS 128px) · H5</p>
+    </div>
+    <article class="article-card article-card--sm-left">
+      <div class="article-card__media"><img src="../../assets/images/article-card-placeholder.png" alt="" /></div>
+      <div class="article-card__body">
+        <h5 class="h5 article-headline"><a class="article-card__link" href="#article">Headline of Daily Mail article preview card - lorem ipsum dolor sit amet, con sectetur adipiscing jand</a></h5>
+        <div class="article-card__metadata article-card-metadata"><div class="article-card-metadata__info"><a class="article-card-metadata__channel" href="#channel"><span class="article-card-metadata__channel-text">Channel</span></a></div><a class="article-card-metadata__comments" href="#comments" aria-label="9.9k comments"><svg class="article-card-metadata__comments-icon" aria-hidden="true"><use href="#ico-speechbubble-ellipsis" /></svg><span class="article-card-metadata__comments-count">9.9k</span></a></div>
+      </div>
+    </article>
+
+    <!-- ════════════════════════════════════════════════════
+         SM: RIGHT THUMB
+         1 column · thumbnail 4:3 on the right from LG, on the left at MD and SM-XS · H6
+    ════════════════════════════════════════════════════ -->
+    <div class="demo-card-section demo-span-3">
+      <div class="demo-card-section__title">SM: Right Thumb</div>
+      <p class="demo-card-section__note">1 column · thumbnail 4:3 on the right from LG, on the left at MD and SM-XS · H6</p>
+    </div>
+    <article class="article-card article-card--sm-right">
+      <div class="article-card__media"><img src="../../assets/images/article-card-placeholder.png" alt="" /></div>
+      <div class="article-card__body">
+        <h6 class="h6 article-headline"><a class="article-card__link" href="#article">Headline of Daily Mail article preview card - lorem ipsum dolor sit amet, con sectetur adipiscing jand</a></h6>
+        <div class="article-card__metadata article-card-metadata"><div class="article-card-metadata__info"><a class="article-card-metadata__channel" href="#channel"><span class="article-card-metadata__channel-text">Channel</span></a></div><a class="article-card-metadata__comments" href="#comments" aria-label="9.9k comments"><svg class="article-card-metadata__comments-icon" aria-hidden="true"><use href="#ico-speechbubble-ellipsis" /></svg><span class="article-card-metadata__comments-count">9.9k</span></a></div>
+      </div>
+    </article>
+    </main>
+    </div>
+
+    <!-- Fixed-viewport preview: this page rendered in an iframe at the chosen width -->
+    <div class="demo-vp-stage" id="demo-vp-stage" hidden></div>
+
+    <div class="demo-bp-indicator" aria-hidden="true"></div>
+
+    <script>
+      // Scaffolding only — demo page modes.
+      //   ?only=<card-type>  single card, no page chrome (used by viewports.html)
+      //   ?frame             page without toolbar (rendered inside the viewport stage)
+      //   ?vp=xl|lg|md|sm    preview the page at a fixed viewport width
+      //   ?preview           add preview text to every card type that supports it
+      //   ?badge=live        Live badge — always comes with Live Key Updates (replaces preview text)
+      //   ?meta=<type>       Article Card Metadata type (keys of META_TYPES below; default channel; off = none)
+      //   ?badge=<kind>      editorial badge in every headline (keys of BADGES below)
+      (() => {
+        const params = new URLSearchParams(location.search);
+        const only = params.get('only');
+
+        // Preview text is CMS-optional: the element exists only when switched on.
+        // SM Left / Right Thumb never take it.
+        const PREVIEW_TEXT =
+          'Preview Text, Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quisque quis massa sit amet ex con sectetur fermentum. Duis pharetra suscipit enim, vitae commodo enim aliquam et. Mauris sit amet lectus nisi. In id diam in odio luctus imperdiet et non nunc.';
+
+        // Extra-slot elements go right before the metadata; with Metadata › Off
+        // they go at the end of the card's text area instead.
+        const textArea = (card) => card.querySelector('.article-card__body') || card;
+        const insertBeforeMeta = (card, el) => {
+          const metaEl = card.querySelector('.article-card__metadata');
+          if (metaEl) metaEl.before(el);
+          else textArea(card).append(el);
+        };
+
+        const setPreview = (on) => {
+          document.querySelectorAll('.article-card').forEach((card) => {
+            if (card.matches('.article-card--sm-left, .article-card--sm-right')) return;
+            const existing = card.querySelector('.article-card__preview');
+            if (on && !existing) {
+              const p = document.createElement('p');
+              p.className = 'article-card__preview';
+              p.textContent = PREVIEW_TEXT;
+              insertBeforeMeta(card, p);
+            } else if (!on && existing) {
+              existing.remove();
+            }
+          });
+        };
+
+        // Live Key Updates — Live articles only. Same slot as the preview text,
+        // shown at every breakpoint. SM Left / Right Thumb never take it.
+        const KEY_UPDATES = [
+          'Lorem ipsum dolor sit amet - consectetur adipiscing elit pellentes que bibend um semper odio sed sagittis liber',
+          'Pellentesque bibendum semper odio dove',
+        ];
+
+        const keyUpdatesHTML = () => `
+          <div class="article-card-key-updates">
+            <p class="article-card-key-updates__title">Key updates</p>
+            <ul class="article-card-key-updates__list">
+              ${KEY_UPDATES.map(
+                (text, i) => `<li class="article-card-key-updates__item${i === 0 ? ' article-card-key-updates__item--latest' : ''}">
+                <span class="article-card-key-updates__text">${text}</span>
+              </li>`,
+              ).join('')}
+            </ul>
+          </div>`;
+
+        const setKeyUpdates = (on) => {
+          document.querySelectorAll('.article-card').forEach((card) => {
+            if (card.matches('.article-card--sm-left, .article-card--sm-right')) return;
+            const existing = card.querySelector('.article-card-key-updates');
+            if (on && !existing) {
+              const tpl = document.createElement('template');
+              tpl.innerHTML = keyUpdatesHTML().trim();
+              insertBeforeMeta(card, tpl.content.firstElementChild);
+            } else if (!on && existing) {
+              existing.remove();
+            }
+          });
+        };
+
+        // Live badge ⇔ key updates; preview text and key updates share one slot.
+        const initialLive = params.get('badge') === 'live';
+        setPreview(params.has('preview') && !initialLive);
+        setKeyUpdates(initialLive);
+
+        // Editorial badge — same markup as components/article-headline.
+        // Badge size follows the headline level: H2→lg · H3/H4→md · H5→sm · H6→xs
+        const BADGE_SIZE = { h2: 'lg', h3: 'md', h4: 'md', h5: 'sm', h6: 'xs' };
+        const MPLUS = '<span class="badge__mplus"><img src="../../assets/images/mail-plus-lozenge.svg" alt="M+" /></span>';
+        const LIVE_DOT = '<span class="badge__live-indicator" aria-hidden="true"><span class="badge__live-dot"></span></span>';
+        // tone → badge--{tone} (label colour) · mplus → M+ lozenge · live → pulsing dot
+        const BADGES = {
+          exclusive: { tone: 'highlight', label: 'Exclusive' },
+          breaking: { tone: 'highlight', label: 'Breaking' },
+          live: { tone: 'highlight', label: 'Live', live: true },
+          mplus: { mplus: true },
+          'mplus-exclusive': { mplus: true, tone: 'highlight', label: 'Exclusive' },
+          'mplus-special-report': { mplus: true, tone: 'highlight', label: 'Special Report' },
+          'mplus-investigation': { mplus: true, tone: 'highlight', label: 'Investigation' },
+          'mplus-opinion': { mplus: true, tone: 'highlight', label: 'Opinion' },
+          'mplus-inside-story': { mplus: true, tone: 'highlight', label: 'Inside Story' },
+          'mplus-interview': { mplus: true, tone: 'highlight', label: 'Interview' },
+          'mplus-chat': { mplus: true, tone: 'feature', label: 'Chat' },
+          poll: { tone: 'feature', label: 'Poll' },
+          'deep-dive': { tone: 'analysis', label: 'Deep Dive' },
+        };
+
+        const badgeHTML = (b, size) => {
+          const tone = b.tone ? ` badge--${b.tone}` : '';
+          const lozenge = b.mplus ? MPLUS : '';
+          const label = b.label
+            ? `<span class="badge__label">${b.live ? LIVE_DOT : ''}<span class="badge__text">${b.label}</span></span>`
+            : '';
+          return `<span class="badge badge--${size}${tone} article-headline__badge">${lozenge}${label}</span>`;
+        };
+
+        const setBadge = (kind) => {
+          document.querySelectorAll('.article-headline').forEach((h) => {
+            h.querySelector('.article-headline__badge')?.remove();
+            if (!BADGES[kind]) return;
+            // Badge goes inside the article link, at the start of the headline text
+            const target = h.querySelector('.article-card__link') || h;
+            target.insertAdjacentHTML('afterbegin', badgeHTML(BADGES[kind], BADGE_SIZE[h.tagName.toLowerCase()]));
+          });
+        };
+
+        setBadge(params.get('badge'));
+
+        // Article Card Metadata — same markup as components/article-card-metadata.
+        // The element keeps the card's slot hook: "article-card__metadata article-card-metadata".
+        const COMMENTS =
+          '<a class="article-card-metadata__comments" href="#comments" aria-label="9.9k comments">' +
+          '<svg class="article-card-metadata__comments-icon" aria-hidden="true"><use href="#ico-speechbubble-ellipsis" /></svg>' +
+          '<span class="article-card-metadata__comments-count">9.9k</span></a>';
+        const CHANNEL =
+          '<a class="article-card-metadata__channel" href="#channel"><span class="article-card-metadata__channel-text">Channel</span></a>';
+        const TIME = '<time class="article-card-metadata__time" datetime="2026-10-20T11:30">30m ago</time>';
+        const LABEL = (text) => `<span class="article-card-metadata__label">${text}</span>`;
+        const AFFILIATE =
+          '<a class="article-card-metadata__affiliate" href="#affiliate" rel="sponsored noopener" target="_blank">' +
+          '<span class="article-card-metadata__affiliate-text">Affiliate Content</span>' +
+          '<svg class="article-card-metadata__affiliate-icon" aria-hidden="true"><use href="#ico-square-arrow-up-right" /></svg></a>';
+
+        const standard = (info) =>
+          `<div class="article-card__metadata article-card-metadata"><div class="article-card-metadata__info">${info}</div>${COMMENTS}</div>`;
+
+        const ANNOUNCE = {
+          scheduled: ['', 'Join Columnist in the comments', 'From 2.30pm'],
+          live: [
+            '<span class="badge badge--xs badge--highlight columnist-announcement__badge"><span class="badge__label">' +
+              LIVE_DOT +
+              '<span class="badge__text">Live</span></span></span>',
+            'Columnist is in the comments',
+            'Join now',
+          ],
+          ended: ['', 'Columnist logged off', 'Read their comments'],
+        };
+
+        const columnist = (mode) => {
+          const announce = ANNOUNCE[mode]
+            ? `<a class="columnist-announcement columnist-announcement--${mode}" href="#comments">` +
+              `<span class="columnist-announcement__text">${ANNOUNCE[mode][0]}${ANNOUNCE[mode][1]}</span>` +
+              `<span class="columnist-announcement__action">${ANNOUNCE[mode][2]}</span></a>`
+            : '';
+          return (
+            '<div class="article-card__metadata article-card-metadata article-card-metadata--columnist">' +
+            '<div class="article-card-metadata__columnist"><div class="article-card-metadata__byline">' +
+            '<div class="article-card-metadata__author">' +
+            '<a class="article-card-metadata__author-name" href="#author">Columnist Name</a>' +
+            '<span class="article-card-metadata__author-role">Daily Mail Columnist</span></div>' +
+            COMMENTS +
+            '</div>' +
+            `<span class="columnist-photo columnist-photo--lg${mode === 'live' ? ' columnist-photo--live' : ''}">` +
+            '<img class="columnist-photo__img" src="../../assets/images/columnist-placeholder.png" alt="Columnist Name" /></span>' +
+            '</div>' +
+            announce +
+            '</div>'
+          );
+        };
+
+        const META_TYPES = {
+          channel: () => standard(CHANNEL),
+          timestamp: () => standard(TIME),
+          'channel-timestamp': () => standard(CHANNEL + TIME),
+          'comment-only': () => standard(''),
+          'ad-feature': () => standard(LABEL('Ad Feature')),
+          sponsored: () => standard(LABEL('Sponsored')),
+          affiliate: () => standard(AFFILIATE),
+          cta: () =>
+            '<div class="article-card__metadata article-card-metadata article-card-metadata--cta">' +
+            '<a class="btn btn-brand btn--xs" href="#cta"><span class="btn__content">' +
+            '<svg width="1em" height="1em" aria-hidden="true"><use href="#ico-square-dashed" /></svg>' +
+            '<span class="btn__label">Button</span></span></a></div>',
+          columnist: () => columnist('normal'),
+          'columnist-scheduled': () => columnist('scheduled'),
+          'columnist-live': () => columnist('live'),
+          'columnist-ended': () => columnist('ended'),
+        };
+
+        // off → remove the metadata element entirely; any other type → (re)build it
+        // in place, or append it at the end of the text area if it was off.
+        const setMeta = (type) => {
+          document.querySelectorAll('.article-card').forEach((card) => {
+            const existing = card.querySelector('.article-card__metadata');
+            if (type === 'off') {
+              existing?.remove();
+              return;
+            }
+            const html = (META_TYPES[type] || META_TYPES.channel)();
+            if (existing) existing.outerHTML = html;
+            else textArea(card).insertAdjacentHTML('beforeend', html);
+          });
+        };
+
+        setMeta(params.get('meta'));
+
+        if (only) {
+          document.body.classList.add('demo-embed');
+          document.querySelectorAll('.demo-card-grid > *').forEach((el) => {
+            if (!el.classList.contains(`article-card--${only}`)) el.remove();
+          });
+          return;
+        }
+
+        if (params.has('frame')) {
+          document.body.classList.add('demo-frame');
+          return;
+        }
+
+        const VIEWPORTS = {
+          xl: { label: 'XL ≥1376', width: 1440 },
+          lg: { label: 'LG ≥1024', width: 1024 },
+          md: { label: 'MD ≥768', width: 768 },
+          sm: { label: 'SM-XS <768', width: 390 },
+        };
+
+        const toggle = document.getElementById('demo-vp-switch');
+        const extraToggle = document.getElementById('demo-extra-switch');
+        const badgeSelect = document.getElementById('demo-badge-select');
+        const metaSelect = document.getElementById('demo-meta-select');
+        const status = document.getElementById('demo-vp-status');
+        const grid = document.getElementById('demo-card-grid');
+        const stage = document.getElementById('demo-vp-stage');
+        let iframe = null;
+        let width = 0;
+        let current = 'live';
+        let badge = BADGES[params.get('badge')] ? params.get('badge') : '';
+        let preview = params.has('preview') && badge !== 'live';
+        badgeSelect.value = badge;
+        let meta = META_TYPES[params.get('meta')] || params.get('meta') === 'off' ? params.get('meta') : 'channel';
+        metaSelect.value = meta;
+
+        // Current demo state, passed on to the fixed-viewport frame
+        const stateQuery = () =>
+          `${preview ? '&preview' : ''}${badge ? `&badge=${badge}` : ''}${meta !== 'channel' ? `&meta=${meta}` : ''}`;
+
+        const fit = () => {
+          if (!iframe || !iframe.contentDocument) return;
+          const scale = Math.min(1, (stage.parentElement.clientWidth - 32) / width);
+          const height = iframe.contentDocument.documentElement.scrollHeight;
+          iframe.height = height;
+          iframe.style.transform = `scale(${scale})`;
+          stage.style.width = `${width * scale}px`;
+          stage.style.height = `${height * scale}px`;
+          status.textContent = `${width}px viewport · ${Math.round(scale * 100)}%`;
+        };
+
+        const select = (key) => {
+          const vp = VIEWPORTS[key];
+          toggle.querySelectorAll('button').forEach((b) => {
+            b.setAttribute('aria-pressed', String(b.dataset.vp === (vp ? key : 'live')));
+          });
+
+          current = vp ? key : 'live';
+          const url = new URL(location.href);
+          if (vp) url.searchParams.set('vp', key);
+          else url.searchParams.delete('vp');
+          history.replaceState(null, '', url);
+
+          if (!vp) {
+            stage.hidden = true;
+            stage.replaceChildren();
+            iframe = null;
+            grid.hidden = false;
+            document.body.classList.remove('demo-vp-fixed');
+            status.textContent = '';
+            return;
+          }
+
+          width = vp.width;
+          grid.hidden = true;
+          stage.hidden = false;
+          document.body.classList.add('demo-vp-fixed');
+          status.textContent = 'Loading…';
+
+          iframe = document.createElement('iframe');
+          iframe.src = `index.html?frame${stateQuery()}`;
+          iframe.width = width;
+          iframe.title = `Article Card at ${vp.label}`;
+          iframe.addEventListener('load', async () => {
+            await iframe.contentDocument.fonts.ready;
+            fit();
+          });
+          stage.replaceChildren(iframe);
+        };
+
+        toggle.addEventListener('click', (event) => {
+          const button = event.target.closest('button[data-vp]');
+          if (button) select(button.dataset.vp);
+        });
+        window.addEventListener('resize', fit);
+
+        // Extra slot state: Off | Text (preview) | Key Update (= Live badge)
+        const extraMode = () => (badge === 'live' ? 'keyupdates' : preview ? 'text' : 'off');
+
+        const syncControls = () => {
+          extraToggle.querySelectorAll('button').forEach((b) => {
+            b.setAttribute('aria-pressed', String(b.dataset.extra === extraMode()));
+          });
+          badgeSelect.value = badge;
+        };
+
+        const applyState = () => {
+          setBadge(badge);
+          setPreview(preview);
+          setKeyUpdates(badge === 'live');
+          syncControls();
+
+          const url = new URL(location.href);
+          if (preview) url.searchParams.set('preview', '');
+          else url.searchParams.delete('preview');
+          if (badge) url.searchParams.set('badge', badge);
+          else url.searchParams.delete('badge');
+          history.replaceState(null, '', url);
+
+          if (current !== 'live') select(current); // re-render the frame with the new state
+        };
+
+        extraToggle.addEventListener('click', (event) => {
+          const button = event.target.closest('button[data-extra]');
+          if (!button) return;
+          const mode = button.dataset.extra;
+          if (mode === 'keyupdates') {
+            badge = 'live';
+            preview = false;
+          } else {
+            preview = mode === 'text';
+            if (badge === 'live') badge = ''; // Live always carries key updates
+          }
+          applyState();
+        });
+
+        badgeSelect.addEventListener('change', () => {
+          badge = badgeSelect.value;
+          if (badge === 'live') preview = false;
+          applyState();
+        });
+
+        metaSelect.addEventListener('change', () => {
+          meta = metaSelect.value;
+          setMeta(meta);
+
+          const url = new URL(location.href);
+          if (meta !== 'channel') url.searchParams.set('meta', meta);
+          else url.searchParams.delete('meta');
+          history.replaceState(null, '', url);
+
+          if (current !== 'live') select(current);
+        });
+
+        syncControls();
+        select(params.get('vp') || 'live');
+      })();
+    </script>
+  </body>
+</html>

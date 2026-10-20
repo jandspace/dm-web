@@ -1,0 +1,61 @@
+// ── Columnist Comment Announcement ────────────────────────────────────────────
+// Bar under the columnist byline that announces the author's live comment
+// session. Links to the comments.
+//
+//   --scheduled  "Join Columnist in the comments"     · From 2.30pm
+//   --live       [LIVE] "Columnist is in the comments" · Join now
+//   --ended      "Columnist logged off"               · Read their comments
+//
+// The LIVE badge is the editorial badge (badge--xs badge--highlight).
+//
+// Reference: Figma Web UI Kit › Columnist Comment Announcement (5344:29588)
+
+.columnist-announcement {
+  display: flex;
+  flex-wrap: wrap; // narrow containers: action drops under the text
+  align-items: center;
+  gap: var(--spacing-4) var(--spacing-8);
+  min-height: 42px;
+  padding: 14px var(--spacing-12);
+  border-radius: var(--border-radius-8);
+  background-color: var(--color-background-home-blue-subtlest);
+  font-family: var(--typography-font-family-sans);
+  line-height: var(--typography-line-height-narrow);
+  letter-spacing: var(--typography-letter-spacing-normal);
+  text-decoration: none;
+
+  // Hover / keyboard focus: 10% dark overlay on the surface (Figma "Surface -
+  // overlay"). Layered as a background image so only the surface darkens,
+  // not the text.
+  &:hover,
+  &:focus-visible {
+    background-image: linear-gradient(
+      var(--color-effect-translucent-dark-pale),
+      var(--color-effect-translucent-dark-pale)
+    );
+  }
+}
+
+// Text block — the LIVE badge sits inline at the start of the first line
+// (as in Article Headline), so a wrapped second line runs under the badge.
+.columnist-announcement__text {
+  flex: 1 1 auto;
+  min-width: 0;
+  font-size: var(--typography-font-size-label-xsm);
+  font-weight: var(--typography-font-weight-semibold);
+  color: var(--color-text-neutral-darker);
+}
+
+.columnist-announcement__badge {
+  margin-right: var(--spacing-4);
+  vertical-align: middle;
+  transform: translateY(-1px);
+}
+
+.columnist-announcement__action {
+  flex-shrink: 0;
+  font-size: var(--typography-font-size-label-xxsm);
+  font-weight: var(--typography-font-weight-regular);
+  color: var(--color-text-neutral-dark);
+  white-space: nowrap;
+}

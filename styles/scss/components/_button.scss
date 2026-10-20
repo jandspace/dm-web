@@ -19,6 +19,7 @@
   line-height: var(--typography-line-height-narrow);
   letter-spacing: 0;
   white-space: nowrap;
+  text-decoration: none; // also used on <a> (e.g. metadata CTA)
   -webkit-font-smoothing: antialiased;
   transition:
     background-color 80ms ease,

@@ -1,0 +1,113 @@
+// ── Article Card Live Key Updates ─────────────────────────────────────────────
+// Live articles only. Sits in the article card's extra slot — after the
+// headline (or preview text), before the metadata. Unlike preview text it is
+// shown at every breakpoint, SM-XS included. Not used on SM Left / Right Thumb.
+//
+// Structure: title → list of updates. The newest update has a pulsing dot;
+// a dotted line joins the dots from the first one down.
+//
+// Reference: Figma Web UI Kit › Article Card Live Key Updates (108:7301)
+
+.article-card-key-updates {
+  display: flex;
+  flex-direction: column;
+  padding-top: var(--spacing-8);
+}
+
+.article-card-key-updates__title {
+  margin: 0;
+  font-family: var(--typography-font-family-sans);
+  font-size: var(--typography-font-size-h5);
+  font-weight: var(--typography-font-weight-bold);
+  line-height: var(--typography-line-height-compact);
+  letter-spacing: var(--typography-letter-spacing-normal);
+  color: var(--color-text-neutral-darker);
+}
+
+.article-card-key-updates__list {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-12);
+  margin: 0;
+  padding: var(--spacing-8) 0;
+  list-style: none;
+
+  // Dotted connector — 1px on / 1px off, from the first dot's centre to the end.
+  // Top = list padding (8) + dot top (6) + dot radius (4).
+  &::before {
+    content: '';
+    position: absolute;
+    top: calc(var(--spacing-8) + 10px);
+    bottom: 0;
+    left: 3.5px;
+    width: 1px;
+    background-image: repeating-linear-gradient(
+      to bottom,
+      var(--color-icon-home-blue-base) 0 1px,
+      transparent 1px 2px
+    );
+  }
+}
+
+.article-card-key-updates__item {
+  position: relative;
+  padding-left: var(--spacing-16);
+
+  // Dot
+  &::before {
+    content: '';
+    position: absolute;
+    top: 6px;
+    left: 0;
+    width: 8px;
+    height: 8px;
+    border-radius: var(--border-radius-full);
+    background-color: var(--color-icon-home-blue-base);
+  }
+
+  // Newest update — pulsing ring behind the dot
+  &--latest::after {
+    content: '';
+    position: absolute;
+    top: 6px;
+    left: 0;
+    width: 8px;
+    height: 8px;
+    border-radius: var(--border-radius-full);
+    background-color: var(--color-icon-home-blue-base);
+    animation: key-update-pulse 1.6s ease-out infinite;
+  }
+}
+
+.article-card-key-updates__text {
+  display: -webkit-box;
+  overflow: hidden;
+  font-family: var(--typography-font-family-sans);
+  font-size: var(--typography-font-size-text-sm);
+  font-weight: var(--typography-font-weight-regular);
+  line-height: var(--typography-line-height-normal);
+  letter-spacing: var(--typography-letter-spacing-wide);
+  color: var(--color-text-neutral-dark);
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 2;
+  line-clamp: 2;
+}
+
+@keyframes key-update-pulse {
+  0% {
+    transform: scale(1);
+    opacity: 0.6;
+  }
+  100% {
+    transform: scale(2.5);
+    opacity: 0;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .article-card-key-updates__item--latest::after {
+    animation: none;
+    opacity: 0;
+  }
+}

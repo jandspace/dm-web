@@ -1,0 +1,390 @@
+// ── Article Card Demo — SCAFFOLDING ONLY ──────────────────────────────────────
+// Demo page layout for components/article-card/. Never ships to production.
+// Emulates the Main Content columns: 3 (LG+), 2 (MD), 1 (SM-XS).
+// Columns are capped at the Figma card widths (XL 408 · LG 332 · MD 384) and
+// separated by a demo-only gap so each card reads as its own unit.
+
+@use '../foundation/breakpoints' as bp;
+
+$demo-card-gap: 24px;
+
+// Page canvas — slightly darker than the card surface so card edges show
+.demo-page-body--canvas {
+  background-color: var(--color-background-neutral-lighter);
+}
+
+// No side padding — index.html handles its own inset via .demo-card-page
+.demo-page-body--flush {
+  padding-inline: 0;
+}
+
+// SM-XS: cards run full-bleed (they carry their own 16px inset);
+// only the page text gets side padding. MD+: whole page is inset.
+.demo-card-page {
+  max-width: calc(408px * 3 + #{$demo-card-gap} * 2 + 32px);
+  margin-inline: auto;
+
+  .demo-page-h1,
+  .demo-page-intro,
+  .demo-vp-toolbar,
+  .demo-card-section {
+    padding-inline: var(--spacing-16);
+  }
+
+  @include bp.respond-to(md) {
+    padding-inline: var(--spacing-16);
+
+    .demo-page-h1,
+    .demo-page-intro,
+    .demo-vp-toolbar,
+    .demo-card-section {
+      padding-inline: 0;
+    }
+  }
+}
+
+// ── Viewport switch (index.html) ──────────────────────────────────────────────
+// Fixed viewport: the page is re-rendered in an iframe (?frame) at the chosen
+// width, scaled down only when it is wider than the window.
+
+.demo-vp-status {
+  font-family: monospace;
+  font-size: 11px;
+  color: #999;
+}
+
+.demo-vp-stage {
+  position: relative;
+  overflow: hidden;
+  margin-inline: auto;
+  // Viewport edge — outline so it adds no size to the stage
+  outline: 1px solid var(--color-border-translucent-dark-pale);
+
+  iframe {
+    display: block;
+    border: 0;
+    transform-origin: 0 0;
+  }
+}
+
+// The grid's display: grid would otherwise override the [hidden] attribute
+.demo-card-grid[hidden] {
+  display: none;
+}
+
+// Outer page's breakpoint badge would describe the window, not the preview
+.demo-vp-fixed .demo-bp-indicator {
+  display: none;
+}
+
+// Page as rendered inside the stage — cards only.
+// One step darker than the outer canvas so the viewport area reads as a container.
+.demo-frame {
+  padding-top: var(--spacing-16);
+  background-color: var(--color-background-neutral-light);
+
+  .demo-page-h1,
+  .demo-page-intro,
+  .demo-vp-toolbar,
+  .demo-bp-indicator {
+    display: none;
+  }
+}
+
+.demo-page-intro {
+  max-width: 720px;
+  margin-top: calc(var(--spacing-48) * -1 + var(--spacing-12));
+  margin-bottom: var(--spacing-48);
+  font-size: 13px;
+  line-height: 1.5;
+  color: #666;
+}
+
+// ── Section header ────────────────────────────────────────────────────────────
+
+.demo-card-section {
+  padding-top: var(--spacing-32);
+
+  &:first-child {
+    padding-top: 0;
+  }
+}
+
+.demo-card-section__title {
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: #999;
+}
+
+.demo-card-section__note {
+  margin-top: var(--spacing-4);
+  font-size: 12px;
+  line-height: 1.5;
+  color: #777;
+}
+
+// ── Column grid ───────────────────────────────────────────────────────────────
+
+.demo-card-grid {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr);
+  gap: $demo-card-gap;
+  align-items: start;
+
+  @include bp.respond-to(md) {
+    grid-template-columns: repeat(2, minmax(0, 384px));
+  }
+
+  @include bp.respond-to(lg) {
+    grid-template-columns: repeat(3, minmax(0, 332px));
+  }
+
+  @include bp.respond-to(xl) {
+    grid-template-columns: repeat(3, minmax(0, 408px));
+  }
+}
+
+// Column spans — 2-col span fills the full row on MD (2-col grid)
+.demo-span-2 {
+  @include bp.respond-to(md) {
+    grid-column: span 2;
+  }
+}
+
+.demo-span-3 {
+  grid-column: 1 / -1;
+}
+
+// ── Empty slot outline (metadata placeholder) ─────────────────────────────────
+// outline, not border, so the slot keeps its real 20px height
+
+.demo-slot {
+  padding-inline: var(--spacing-6);
+  outline: 1px dashed #c4c4c4;
+  outline-offset: -1px;
+  border-radius: var(--border-radius-2);
+  color: #999;
+}
+
+// ── Active breakpoint indicator ───────────────────────────────────────────────
+
+.demo-bp-indicator {
+  position: fixed;
+  right: var(--spacing-12);
+  bottom: var(--spacing-12);
+  z-index: 9999;
+  padding: var(--spacing-4) var(--spacing-8);
+  border-radius: var(--border-radius-4);
+  background: #1a1a1a;
+  color: #fff;
+  font-family: monospace;
+  font-size: 11px;
+
+  &::after {
+    content: 'SM-XS <768';
+  }
+
+  @include bp.respond-to(md) {
+    &::after { content: 'MD ≥768'; }
+  }
+
+  @include bp.respond-to(lg) {
+    &::after { content: 'LG ≥1024'; }
+  }
+
+  @include bp.respond-to(xl) {
+    &::after { content: 'XL ≥1376'; }
+  }
+}
+
+// ── Embed mode (index.html?only=<type>, loaded by viewports.html) ─────────────
+// Single card, no page chrome, no demo gap — so column tracks equal the real
+// Figma card widths at each viewport (XL 408 · LG 332 · MD 384).
+
+.demo-embed {
+  padding: 0;
+
+  .demo-page-h1,
+  .demo-page-intro,
+  .demo-vp-toolbar,
+  .demo-bp-indicator {
+    display: none;
+  }
+
+  .demo-card-page {
+    max-width: none;
+    padding: 0;
+  }
+
+  .demo-card-grid {
+    gap: 0;
+  }
+}
+
+// ── Viewports sheet (viewports.html) ──────────────────────────────────────────
+// Rows = card types, columns = breakpoints. Each cell is an iframe of
+// index.html?only=<type> at the breakpoint's viewport width, cropped to the
+// card and scaled uniformly so relative sizes match the Figma sheet.
+
+.demo-vp-toolbar {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: var(--spacing-8);
+  margin-bottom: var(--spacing-32);
+  font-size: 12px;
+  color: #666;
+}
+
+// Sticky toolbar — stays at the top while scrolling the cards.
+// Canvas background bleeds edge to edge (box-shadow + clip-path), with a
+// hairline along the bottom.
+.demo-vp-toolbar--sticky {
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  padding-block: var(--spacing-12);
+  background-color: var(--color-background-neutral-lighter);
+  box-shadow: 0 0 0 100vmax var(--color-background-neutral-lighter);
+  clip-path: inset(0 -100vmax);
+
+  &::after {
+    content: '';
+    position: absolute;
+    right: -100vmax;
+    bottom: 0;
+    left: -100vmax;
+    height: 1px;
+    background-color: var(--color-border-neutral-light);
+  }
+}
+
+// index.html: the toolbar lives outside .demo-card-page (so it can stick for
+// the whole page), but lines up with it — same max-width and 16px inset.
+.demo-vp-toolbar--page {
+  max-width: calc(408px * 3 + #{$demo-card-gap} * 2 + 32px);
+  margin-inline: auto;
+  padding-inline: var(--spacing-16);
+}
+
+.demo-vp-toolbar__divider {
+  width: 1px;
+  height: 20px;
+  margin-inline: var(--spacing-8);
+  background-color: var(--color-border-neutral-light);
+}
+
+// Dropdown (Badge) — same height and surface as the segmented toggles
+.demo-vp-select {
+  height: 30px;
+  padding: 0 var(--spacing-8);
+  border: 0;
+  border-radius: var(--border-radius-6);
+  background-color: var(--color-background-neutral-light);
+  font: inherit;
+  font-weight: 600;
+  color: var(--color-text-neutral-darker);
+  cursor: pointer;
+}
+
+// Segmented toggle (Fit / 100%, Viewport, Preview text)
+.demo-vp-toggle {
+  display: inline-flex;
+  padding: 2px;
+  border-radius: var(--border-radius-6);
+  background-color: var(--color-background-neutral-light);
+
+  button {
+    padding: var(--spacing-4) var(--spacing-12);
+    border: 0;
+    border-radius: var(--border-radius-4);
+    background: transparent;
+    font: inherit;
+    font-weight: 600;
+    color: #666;
+    cursor: pointer;
+
+    &[aria-pressed='true'] {
+      background-color: var(--color-background-neutral-lightest);
+      color: var(--color-text-neutral-darker);
+      box-shadow: 0 1px 2px rgba(0, 0, 0, 0.12);
+    }
+  }
+}
+
+.demo-vp-sheet {
+  display: grid;
+  grid-template-columns: 140px repeat(4, max-content);
+  gap: var(--spacing-32);
+  align-items: start;
+  overflow-x: auto;
+  padding-bottom: var(--spacing-32);
+}
+
+.demo-vp-col-header {
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: #666;
+
+  small {
+    display: block;
+    margin-top: 3px;
+    font-size: 10px;
+    font-weight: 400;
+    letter-spacing: 0.03em;
+    text-transform: none;
+    color: #999;
+  }
+}
+
+.demo-vp-row-label {
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  color: #505050;
+}
+
+// Sticky label column — stays put while the sheet scrolls horizontally (100%).
+// Background extends over the column gap so cards slide cleanly underneath.
+.demo-vp-corner,
+.demo-vp-row-label {
+  position: sticky;
+  left: 0;
+  z-index: 1;
+  align-self: stretch;
+  margin-right: calc(var(--spacing-32) * -1);
+  padding-right: var(--spacing-32);
+  background-color: var(--color-background-neutral-lighter);
+}
+
+.demo-vp-cell {
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-6);
+}
+
+.demo-vp-frame {
+  position: relative;
+  overflow: hidden;
+  background-color: var(--color-background-neutral-lightest);
+
+  iframe {
+    position: absolute;
+    top: 0;
+    left: 0;
+    border: 0;
+    transform-origin: 0 0;
+    pointer-events: none;
+  }
+}
+
+.demo-vp-size {
+  font-family: monospace;
+  font-size: 10px;
+  color: #999;
+}
