@@ -49,7 +49,7 @@
 //
 // Hover: only the headline colour changes, to text/interaction-primary/default
 // (the resting headline is neutral-darker, so default reads better than hover).
-// Other links in the card (metadata, announcement) sit above the stretched
+// Other links in the card (metadata, announcement, key updates) sit above the stretched
 // area, keep their own hover rules, and don't trigger the headline hover.
 
 .article-card__link {
@@ -68,7 +68,7 @@
   }
 }
 
-.article-card:hover:not(:has(.article-card__metadata a:hover, .article-card__metadata button:hover)),
+.article-card:hover:not(:has(.article-card__metadata a:hover, .article-card__metadata button:hover, .article-card-key-updates a:hover)),
 .article-card:has(.article-card__link:focus-visible) {
   .article-headline {
     color: var(--color-text-interaction-primary-default);
@@ -82,7 +82,8 @@
 
 // Secondary links/buttons stay clickable above the stretched article link
 .article-card__metadata a,
-.article-card__metadata button {
+.article-card__metadata button,
+.article-card-key-updates a {
   position: relative;
   z-index: 1;
 }

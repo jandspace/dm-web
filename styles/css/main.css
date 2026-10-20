@@ -1063,7 +1063,7 @@ h1, h2, h3, h4, h5, h6 {
   outline: none;
 }
 
-.article-card:hover:not(:has(.article-card__metadata a:hover, .article-card__metadata button:hover)) .article-headline,
+.article-card:hover:not(:has(.article-card__metadata a:hover, .article-card__metadata button:hover, .article-card-key-updates a:hover)) .article-headline,
 .article-card:has(.article-card__link:focus-visible) .article-headline {
   color: var(--color-text-interaction-primary-default);
 }
@@ -1074,7 +1074,8 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 .article-card__metadata a,
-.article-card__metadata button {
+.article-card__metadata button,
+.article-card-key-updates a {
   position: relative;
   z-index: 1;
 }
@@ -1355,9 +1356,13 @@ h1, h2, h3, h4, h5, h6 {
   line-height: var(--typography-line-height-normal);
   letter-spacing: var(--typography-letter-spacing-wide);
   color: var(--color-text-neutral-dark);
+  text-decoration: none;
   -webkit-box-orient: vertical;
   -webkit-line-clamp: 2;
   line-clamp: 2;
+}
+.article-card-key-updates__text:hover, .article-card-key-updates__text:focus-visible {
+  color: var(--color-text-interaction-primary-default);
 }
 
 @keyframes key-update-pulse {

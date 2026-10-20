@@ -3,8 +3,8 @@
 // headline (or preview text), before the metadata. Unlike preview text it is
 // shown at every breakpoint, SM-XS included. Not used on SM Left / Right Thumb.
 //
-// Structure: title → list of updates. The newest update has a pulsing dot;
-// a dotted line joins the dots from the first one down.
+// Structure: title → list of updates (each text is a link to that entry).
+// The newest update has a pulsing dot; a dotted line joins the dots.
 //
 // Reference: Figma Web UI Kit › Article Card Live Key Updates (108:7301)
 
@@ -89,9 +89,16 @@
   line-height: var(--typography-line-height-normal);
   letter-spacing: var(--typography-letter-spacing-wide);
   color: var(--color-text-neutral-dark);
+  text-decoration: none;
   -webkit-box-orient: vertical;
   -webkit-line-clamp: 2;
   line-clamp: 2;
+
+  // Each update links to its entry in the live article; hover changes colour only
+  &:hover,
+  &:focus-visible {
+    color: var(--color-text-interaction-primary-default);
+  }
 }
 
 @keyframes key-update-pulse {

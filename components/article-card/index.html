@@ -290,7 +290,7 @@
             <ul class="article-card-key-updates__list">
               ${KEY_UPDATES.map(
                 (text, i) => `<li class="article-card-key-updates__item${i === 0 ? ' article-card-key-updates__item--latest' : ''}">
-                <span class="article-card-key-updates__text">${text}</span>
+                <a class="article-card-key-updates__text" href="#update-${i + 1}">${text}</a>
               </li>`,
               ).join('')}
             </ul>
