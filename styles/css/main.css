@@ -1036,6 +1036,28 @@ h1, h2, h3, h4, h5, h6 {
   width: 100%;
   padding: var(--spacing-16);
   background-color: var(--color-background-neutral-lightest);
+  isolation: isolate;
+}
+.article-card::before {
+  content: "";
+  position: absolute;
+  inset: var(--spacing-8);
+  z-index: -1;
+  border-radius: var(--border-radius-8);
+  background-color: var(--color-background-neutral-black);
+  opacity: 0;
+  transform: scale(0.4);
+  pointer-events: none;
+}
+@media (min-width: 768px) and (hover: hover) {
+  .article-card::before {
+    transition: transform 0.15s, opacity 0.15s;
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  .article-card::before {
+    transition: none;
+  }
 }
 .article-card::after {
   content: "";
@@ -1063,9 +1085,16 @@ h1, h2, h3, h4, h5, h6 {
   outline: none;
 }
 
-.article-card:hover:not(:has(.article-card__metadata a:hover, .article-card__metadata button:hover, .article-card-key-updates a:hover)) .article-headline,
+.article-card:hover .article-headline,
 .article-card:has(.article-card__link:focus-visible) .article-headline {
   color: var(--color-text-interaction-primary-default);
+}
+@media (min-width: 768px) and (hover: hover) {
+  .article-card:hover::before,
+  .article-card:has(.article-card__link:focus-visible)::before {
+    opacity: 0.04;
+    transform: scale(1);
+  }
 }
 
 .article-card:has(.article-card__link:focus-visible) {

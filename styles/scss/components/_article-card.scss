@@ -26,6 +26,38 @@
   padding: var(--spacing-16);
   background-color: var(--color-background-neutral-lightest);
 
+  // Own stacking context so the hover surface (z-index -1) sits above the
+  // card background but below the content
+  isolation: isolate;
+
+  // Hover surface (Figma "Article Card - Hover effect") — background/neutral/black,
+  // inset 8px (half the card padding), 8px corners. At rest it is scaled down
+  // to 0.4 and transparent; on article hover / focus it zooms to 1 at 4%.
+  // MD+ with a pointing device only — touch / mobile gets no hover surface.
+  &::before {
+    content: '';
+    position: absolute;
+    inset: var(--spacing-8);
+    z-index: -1;
+    border-radius: var(--border-radius-8);
+    background-color: var(--color-background-neutral-black);
+    opacity: 0;
+    transform: scale(0.4);
+    pointer-events: none;
+
+    @include bp.respond-to(md) {
+      @media (hover: hover) {
+        transition:
+          transform 0.15s,
+          opacity 0.15s;
+      }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      transition: none;
+    }
+  }
+
   // Keyline — inset to match the 16px content edge
   &::after {
     content: '';
@@ -47,10 +79,12 @@
 // ::after stretches over the whole card, so the card is clickable anywhere
 // while the markup keeps a single, readable link.
 //
-// Hover: only the headline colour changes, to text/interaction-primary/default
-// (the resting headline is neutral-darker, so default reads better than hover).
-// Other links in the card (metadata, announcement, key updates) sit above the stretched
-// area, keep their own hover rules, and don't trigger the headline hover.
+// Hover: while the pointer is anywhere in the card the headline turns
+// text/interaction-primary/default (the resting headline is neutral-darker, so
+// default reads better than hover) and the hover surface (.article-card::before)
+// zooms in at 4% (MD+, mouse only). Other links in the card (metadata,
+// announcement, key updates) sit above the stretched area and add their own
+// hover on top.
 
 .article-card__link {
   color: inherit;
@@ -68,10 +102,22 @@
   }
 }
 
-.article-card:hover:not(:has(.article-card__metadata a:hover, .article-card__metadata button:hover, .article-card-key-updates a:hover)),
+// Card hover state — holds for as long as the pointer is anywhere in the card,
+// secondary links included, so moving onto channel / comments never flickers
+// the headline colour or the hover surface.
+.article-card:hover,
 .article-card:has(.article-card__link:focus-visible) {
   .article-headline {
     color: var(--color-text-interaction-primary-default);
+  }
+
+  @include bp.respond-to(md) {
+    @media (hover: hover) {
+      &::before {
+        opacity: 0.04;
+        transform: scale(1);
+      }
+    }
   }
 }
 
