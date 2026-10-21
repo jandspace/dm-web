@@ -1,0 +1,70 @@
+// ── Video Player Controls demo — SCAFFOLDING ONLY ─────────────────────────────
+// Layout for components/video-player-controls. Never ships to production.
+
+// label + 7 play sizes (xxxl → xs, Figma order)
+.demo-grid--vpc {
+  grid-template-columns: 120px repeat(7, minmax(92px, 1fr));
+
+  .demo-cell {
+    align-items: center;
+    justify-content: center;
+    padding: var(--spacing-24) var(--spacing-16);
+  }
+}
+
+// Controls are translucent overlays — show them on a surface like the Figma
+// sheet (light grey) or on a dark "video" surface.
+.demo-vpc-surface {
+  background: var(--color-background-neutral-grey-light);
+}
+
+.demo-vpc-surface--dark {
+  background: var(--color-background-neutral-darker);
+}
+
+.demo-vpc-stack {
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-20);
+  max-width: 640px;
+  padding: var(--spacing-20) 0;
+}
+
+.demo-vpc-item {
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-8);
+}
+
+.demo-vpc-item__label {
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  color: #505050;
+
+  small {
+    margin-left: var(--spacing-8);
+    font-weight: 400;
+    letter-spacing: 0.03em;
+    text-transform: none;
+    color: #999;
+  }
+}
+
+.demo-vpc-item__surface {
+  display: flex;
+  justify-content: center;
+  border-radius: var(--border-radius-4);
+  overflow: hidden;
+}
+
+.demo-vpc-item--sm .demo-vpc-item__surface { width: 300px; }
+.demo-vpc-item--md .demo-vpc-item__surface { width: 428px; }
+.demo-vpc-item--lg .demo-vpc-item__surface { width: 640px; }
+.demo-vpc-item--progress .demo-vpc-item__surface { width: 358px; }
+
+.demo-vpc-item--timer .demo-vpc-item__surface {
+  width: 120px;
+  padding: var(--spacing-16);
+}

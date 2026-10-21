@@ -4,6 +4,8 @@ An Article Card previews one article: media, headline and metadata. It is the bu
 
 Figma: Web UI Kit › Article Card (`5209:5051`), Article Card - Image Only (`5525:5532`), Article Card Metadata (`108:7232`)
 
+The full-width top story is a separate block — see [Article Card — Banner Story](4_Components__10_Article-Card-Banner.md).
+
 ---
 
 ## 1. Anatomy
@@ -70,6 +72,23 @@ XL 152 · LG 120 · MD / SM-XS 128px
 - Shown at **every** breakpoint, SM-XS included. Never on SM thumbs.
 - Each update is a link to its entry; hover changes the text colour only (`color/text/interaction-primary/default`).
 
+### 3-C. Play Icon (video articles)
+
+- **Video articles only.** Present in the HTML only for video; never shipped and hidden. Decorative (`aria-hidden`) — the whole card is the link.
+- Markup: `.article-card__video` inside `.article-card__media`, holding a Video Player Controls play button (`.video-play`, see `components/video-player-controls/`).
+- Position: bottom-left, 8px inset (SM thumbs 6px). MD (Vertical Media): centred on the media, with the duration pill (`.video-timer`) 8px below.
+- Size by card type — set per breakpoint in CSS (`play-size()` mixin), not with a modifier:
+
+| Card type | Play size |
+|---|---|
+| XL | SM-XS lg 56 · MD+ xl 68 |
+| XL (Horizontal) | lg 56 · LG md 44 · XL lg 56 |
+| XL (Triple) | lg 56 |
+| MD (Vertical Media) | lg 56 + duration pill |
+| MD | md 44 |
+| SM: Left / Right Thumb | xs 28 |
+| Image Only | — (none) |
+
 ---
 
 ## 4. Image Only
@@ -121,7 +140,36 @@ The channel link turns its section colour on hover through `--article-card-chann
 
 ---
 
-## 6. Implementation Notes
+## 6. Metadata
+
+Article Card Metadata (`.article-card__metadata.article-card-metadata`) — one type per card: Channel, Timestamp, Channel + Timestamp, Comment Only, Ad Feature, Sponsored, Affiliate Content, CTA or Columnist. Channel hover colour: §5-D.
+
+- **Columnist name** (link to the author page): on hover turns `color/text/interaction-primary/default` — the same colour as the headline on card hover — and gets an underline.
+- **Columnist photo** is also a link to the author page: `<a class="columnist-photo" href="…" tabindex="-1" aria-hidden="true">` — a duplicate of the name link, so it is hidden from keyboard and screen readers. On hover: 3px outline, no offset, `color/effect/translucent-dark/subtle`, round with the disc. Outside a card (static) the photo stays a `<span>`.
+
+### 6-A. Columnist Photo Colour
+
+The disc behind the columnist photo is **editor-controlled per channel**, from the section's `/subtle` or `/base` background. Default: `color/background/home-blue/subtle` (no modifier).
+
+| Modifier on `.columnist-photo` | Disc colour |
+|---|---|
+| — | `color/background/home-blue/subtle` |
+| `--{section}` | `color/background/{section}/subtle` |
+| `--{section}-base` | `color/background/{section}/base` |
+
+```html
+<span class="columnist-photo columnist-photo--lg columnist-photo--lifestyle">
+  <img class="columnist-photo__img" src="…" alt="Amanda Platell" />
+</span>
+```
+
+- `{section}`: home · news · showbiz · sport · royals · money · lifestyle · health · tv · travel · shopping · crime · property · podcasts · games · science (Editorial Section → Colour Mapping, e.g. `lifestyle` → `lifestyle-azure`).
+- The modifiers set `--columnist-photo-color`; the section list is shared with the channel colours (`styles/scss/foundation/_sections.scss`).
+- Columnist photos are cut-out portraits — keep them PNG (real transparency).
+
+---
+
+## 7. Implementation Notes
 
 - **Grid stacking, not `position: absolute`,** for layers inside the media (Image Only image, scrim, overlay, badge). An absolutely positioned ancestor would trap the stretched link inside it.
 - **Line-clamped blocks space with `margin`, not `padding`.** Overflow clips at the padding edge, so bottom padding lets the next line show through.
@@ -130,11 +178,12 @@ The channel link turns its section colour on hover through `--article-card-chann
 
 ---
 
-## 7. Files
+## 8. Files
 
 | | Path |
 |---|---|
-| Card | `styles/scss/components/_article-card.scss`, `_article-card-image-only.scss`, `_article-card-key-updates.scss` |
-| Metadata | `_article-card-metadata.scss`, `_columnist-profile-photo.scss`, `_columnist-comment-announcement.scss` |
-| Demo | `components/article-card/index.html` (toolbar: Viewport · Badge · Preview · Metadata), `viewports.html` (every type × breakpoint), `components/article-card-metadata/index.html` |
+| Card | `styles/scss/components/_article-card.scss`, `_article-card-image-only.scss`, `_article-card-key-updates.scss`, `_article-card-video.scss` |
+| Video controls | `_video-player-controls.scss` — demo `components/video-player-controls/index.html` |
+| Metadata | `_article-card-metadata.scss`, `_columnist-profile-photo.scss`, `_columnist-comment-announcement.scss` · section map `foundation/_sections.scss` |
+| Demo | `components/article-card/index.html` (toolbar: Viewport · Badge · Preview · Metadata · Play icon), `viewports.html` (every type × breakpoint), `components/article-card-metadata/index.html` |
 | Generators | `tools/demo-generators/` — the two `index.html` demo pages are generated |

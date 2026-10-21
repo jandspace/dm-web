@@ -238,6 +238,18 @@ $demo-card-gap: 24px;
   color: #666;
 }
 
+// Two rows: Viewport (+ status) on top, the content filters in one line below.
+// The filter row never wraps — it scrolls sideways in a narrow window.
+.demo-vp-toolbar__row {
+  display: flex;
+  flex: 1 0 100%;
+  align-items: center;
+  gap: var(--spacing-8);
+  min-width: 0;
+  overflow-x: auto;
+  white-space: nowrap;
+}
+
 // Sticky toolbar — stays at the top while scrolling the cards.
 // Canvas background bleeds edge to edge (box-shadow + clip-path), with a
 // hairline along the bottom.

@@ -81,6 +81,12 @@
           <option value="columnist-ended">Columnist · Ended</option>
         </optgroup>
       </select>
+      <span class="demo-vp-toolbar__divider" aria-hidden="true"></span>
+      <span id="demo-play-switch-label">Play icon</span>
+      <div class="demo-vp-toggle" role="group" aria-labelledby="demo-play-switch-label" id="demo-play-switch">
+        <button type="button" data-play="off" aria-pressed="true">Off</button>
+        <button type="button" data-play="on" aria-pressed="false">On</button>
+      </div>
     </div>
 
     <!-- Rows = card types, columns = breakpoints. Built by the script below. -->
@@ -119,9 +125,10 @@
         let preview = false;
         let badge = '';
         let meta = 'channel';
+        let play = false;
         const cells = [];
         const src = (type) =>
-          `index.html?only=${type}${preview ? '&preview' : ''}${badge ? `&badge=${badge}` : ''}${meta !== 'channel' ? `&meta=${meta}` : ''}`;
+          `index.html?only=${type}${preview ? '&preview' : ''}${badge ? `&badge=${badge}` : ''}${meta !== 'channel' ? `&meta=${meta}` : ''}${play ? '&play' : ''}`;
         const reloadAll = () => {
           cells.forEach((entry) => {
             entry.size.textContent = '…';
@@ -231,6 +238,16 @@
         // Metadata type — every frame swaps its Article Card Metadata
         document.getElementById('demo-meta-select').addEventListener('change', (event) => {
           meta = event.target.value;
+          reloadAll();
+        });
+
+        // Play icon (video articles) — Off | On
+        const playToggle = document.getElementById('demo-play-switch');
+        playToggle.addEventListener('click', (event) => {
+          const button = event.target.closest('button[data-play]');
+          if (!button) return;
+          play = button.dataset.play === 'on';
+          playToggle.querySelectorAll('button').forEach((b) => b.setAttribute('aria-pressed', String(b === button)));
           reloadAll();
         });
 

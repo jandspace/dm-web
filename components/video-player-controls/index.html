@@ -1,0 +1,220 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Video Player Controls</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="../../tokens/dm_tokens.css" />
+    <link rel="stylesheet" href="../../tokens/dm_typography_web_tokens.css" />
+    <link rel="stylesheet" href="../../styles/css/main.css" />
+  </head>
+  <body class="demo-page-body">
+    <!-- Icons: assets/icons/ico-media-*.svg as a sprite, fill="currentColor" -->
+    <svg style="display: none" aria-hidden="true">
+      <symbol id="ico-media-play" viewBox="0 0 32 32">
+        <path d="M7.61864 30.7537L29.0988 18.3511C30.9036 17.3108 30.9036 14.6969 29.0988 13.6567L7.61864 1.25405C5.81381 0.213824 3.55554 1.52077 3.55554 3.60122V28.3977C3.55554 30.487 5.81381 31.785 7.61864 30.7448V30.7537Z" fill="currentColor"/>
+      </symbol>
+      <symbol id="ico-media-pause" viewBox="0 0 32 32">
+        <path d="M5.61804 31C4.74536 31 4.08794 30.7826 3.64578 30.3478C3.21526 29.913 3 29.2666 3 28.4085V3.57437C3 2.71625 3.22108 2.07551 3.66324 1.65217C4.10539 1.21739 4.75699 1 5.61804 1H9.80689C10.6679 1 11.3195 1.21167 11.7617 1.63501C12.2038 2.05835 12.4249 2.70481 12.4249 3.57437V28.4085C12.4249 29.2666 12.2038 29.913 11.7617 30.3478C11.3195 30.7826 10.6679 31 9.80689 31H5.61804ZM22.2106 31C21.3262 31 20.663 30.7826 20.2209 30.3478C19.7903 29.913 19.5751 29.2666 19.5751 28.4085V3.57437C19.5751 2.71625 19.7962 2.07551 20.2383 1.65217C20.6805 1.21739 21.3379 1 22.2106 1H26.382C27.2546 1 27.9062 1.21167 28.3368 1.63501C28.7789 2.05835 29 2.70481 29 3.57437V28.4085C29 29.2666 28.7789 29.913 28.3368 30.3478C27.9062 30.7826 27.2546 31 26.382 31H22.2106Z" fill="currentColor"/>
+      </symbol>
+      <symbol id="ico-media-play-back" viewBox="0 0 32 32">
+        <path d="M8.46222 15.7133L30.7378 2.78292C31.2978 2.46122 32 2.86334 32 3.51567V29.3765C32 30.0288 31.2978 30.4309 30.7378 30.1092L8.46222 17.1788C7.90222 16.8571 7.90222 16.0439 8.46222 15.7133Z" fill="currentColor"/>
+        <path d="M4.64 2.66675H0.782222C0.350213 2.66675 0 3.01882 0 3.45312V29.4301C0 29.8644 0.350213 30.2164 0.782222 30.2164H4.64C5.07201 30.2164 5.42222 29.8644 5.42222 29.4301V3.45312C5.42222 3.01882 5.07201 2.66675 4.64 2.66675Z" fill="currentColor"/>
+      </symbol>
+      <symbol id="ico-media-play-next" viewBox="0 0 32 32">
+        <path d="M23.5378 15.7133L1.26222 2.78292C0.702221 2.46122 0 2.86334 0 3.51567V29.3765C0 30.0288 0.702221 30.4309 1.26222 30.1092L23.5378 17.1788C24.0978 16.8571 24.0978 16.0439 23.5378 15.7133Z" fill="currentColor"/>
+        <path d="M27.36 2.66675H31.2178C31.6498 2.66675 32 3.01882 32 3.45312V29.4301C32 29.8644 31.6498 30.2164 31.2178 30.2164H27.36C26.928 30.2164 26.5778 29.8644 26.5778 29.4301V3.45312C26.5778 3.01882 26.928 2.66675 27.36 2.66675Z" fill="currentColor"/>
+      </symbol>
+    </svg>
+
+    <h1 class="demo-page-h1">Video Player Controls</h1>
+    <p class="demo-page-intro">
+      Overlay controls for video. Figma: Web UI Kit › Video Player Controls (198:5783).
+      Click any play / pause button to toggle it.
+    </p>
+
+    <!-- ════════════════════════════════════════════════════
+         PLAY AND PAUSE
+         .video-play  + .video-play--{xs|sm|md|lg|xl|xxl|xxxl}  (default xl)
+         Play  — bg effect/translucent-light/thick · icon icon/neutral/black
+         Pause — .video-play--pause · bg effect/translucent-dark/thick · icon icon/neutral/white
+    ════════════════════════════════════════════════════ -->
+    <div class="demo-grid demo-grid--vpc">
+      <div class="demo-group-header"><span class="demo-group-title">Play and Pause</span></div>
+      <div class="demo-col-header"></div>
+      <div class="demo-col-header">xxxLarge<small>92 · icon 36px</small></div>
+      <div class="demo-col-header">xxLarge<small>80 · icon 32px</small></div>
+      <div class="demo-col-header">xLarge<small>68 · icon 28px</small></div>
+      <div class="demo-col-header">Large<small>56 · icon 24px</small></div>
+      <div class="demo-col-header">Medium<small>44 · icon 18px</small></div>
+      <div class="demo-col-header">Small<small>34 · icon 14px</small></div>
+      <div class="demo-col-header">xSmall<small>28 · icon 12px</small></div>
+
+      <div class="demo-row-label">Play</div>
+      <div class="demo-cell demo-vpc-surface">
+        <button type="button" class="video-play video-play--xxxl" aria-label="Play video"><svg aria-hidden="true"><use href="#ico-media-play" /></svg></button>
+      </div>
+      <div class="demo-cell demo-vpc-surface">
+        <button type="button" class="video-play video-play--xxl" aria-label="Play video"><svg aria-hidden="true"><use href="#ico-media-play" /></svg></button>
+      </div>
+      <div class="demo-cell demo-vpc-surface">
+        <button type="button" class="video-play video-play--xl" aria-label="Play video"><svg aria-hidden="true"><use href="#ico-media-play" /></svg></button>
+      </div>
+      <div class="demo-cell demo-vpc-surface">
+        <button type="button" class="video-play video-play--lg" aria-label="Play video"><svg aria-hidden="true"><use href="#ico-media-play" /></svg></button>
+      </div>
+      <div class="demo-cell demo-vpc-surface">
+        <button type="button" class="video-play video-play--md" aria-label="Play video"><svg aria-hidden="true"><use href="#ico-media-play" /></svg></button>
+      </div>
+      <div class="demo-cell demo-vpc-surface">
+        <button type="button" class="video-play video-play--sm" aria-label="Play video"><svg aria-hidden="true"><use href="#ico-media-play" /></svg></button>
+      </div>
+      <div class="demo-cell demo-vpc-surface">
+        <button type="button" class="video-play video-play--xs" aria-label="Play video"><svg aria-hidden="true"><use href="#ico-media-play" /></svg></button>
+      </div>
+
+      <div class="demo-row-label">Pause</div>
+      <div class="demo-cell demo-vpc-surface">
+        <button type="button" class="video-play video-play--xxxl video-play--pause" aria-label="Pause video"><svg aria-hidden="true"><use href="#ico-media-pause" /></svg></button>
+      </div>
+      <div class="demo-cell demo-vpc-surface">
+        <button type="button" class="video-play video-play--xxl video-play--pause" aria-label="Pause video"><svg aria-hidden="true"><use href="#ico-media-pause" /></svg></button>
+      </div>
+      <div class="demo-cell demo-vpc-surface">
+        <button type="button" class="video-play video-play--xl video-play--pause" aria-label="Pause video"><svg aria-hidden="true"><use href="#ico-media-pause" /></svg></button>
+      </div>
+      <div class="demo-cell demo-vpc-surface">
+        <button type="button" class="video-play video-play--lg video-play--pause" aria-label="Pause video"><svg aria-hidden="true"><use href="#ico-media-pause" /></svg></button>
+      </div>
+      <div class="demo-cell demo-vpc-surface">
+        <button type="button" class="video-play video-play--md video-play--pause" aria-label="Pause video"><svg aria-hidden="true"><use href="#ico-media-pause" /></svg></button>
+      </div>
+      <div class="demo-cell demo-vpc-surface">
+        <button type="button" class="video-play video-play--sm video-play--pause" aria-label="Pause video"><svg aria-hidden="true"><use href="#ico-media-pause" /></svg></button>
+      </div>
+      <div class="demo-cell demo-vpc-surface">
+        <button type="button" class="video-play video-play--xs video-play--pause" aria-label="Pause video"><svg aria-hidden="true"><use href="#ico-media-pause" /></svg></button>
+      </div>
+    </div>
+
+    <!-- ════════════════════════════════════════════════════
+         COMMERCIAL PLAYER — CONTROLLER
+         .video-controller--{sm|md|lg} — back · play/pause · next
+         sm: row max 160 · icons 18 · play md 44
+         md: row max 192 · icons 22 · play lg 56
+         lg: row max 256 · icons 28 · play xl 68
+    ════════════════════════════════════════════════════ -->
+    <div class="demo-grid">
+      <div class="demo-group-header"><span class="demo-group-title">Commercial Player — Controller</span></div>
+    </div>
+    <div class="demo-vpc-stack">
+        <div class="demo-vpc-item demo-vpc-item--sm">
+          <div class="demo-vpc-item__label">Small<small>300 · row max 160 · icons 18 · play 44</small></div>
+          <div class="demo-vpc-item__surface demo-vpc-surface--dark">
+            <div class="video-controller video-controller--sm">
+              <div class="video-controller__inner">
+                <div class="video-controller__side">
+                  <button type="button" class="video-controller__skip" aria-label="Previous video"><svg aria-hidden="true"><use href="#ico-media-play-back" /></svg></button>
+                </div>
+                <button type="button" class="video-play" aria-label="Play video"><svg aria-hidden="true"><use href="#ico-media-play" /></svg></button>
+                <div class="video-controller__side">
+                  <button type="button" class="video-controller__skip" aria-label="Next video"><svg aria-hidden="true"><use href="#ico-media-play-next" /></svg></button>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="demo-vpc-item demo-vpc-item--md">
+          <div class="demo-vpc-item__label">Medium<small>428 · row max 192 · icons 22 · play 56</small></div>
+          <div class="demo-vpc-item__surface demo-vpc-surface--dark">
+            <div class="video-controller video-controller--md">
+              <div class="video-controller__inner">
+                <div class="video-controller__side">
+                  <button type="button" class="video-controller__skip" aria-label="Previous video"><svg aria-hidden="true"><use href="#ico-media-play-back" /></svg></button>
+                </div>
+                <button type="button" class="video-play" aria-label="Play video"><svg aria-hidden="true"><use href="#ico-media-play" /></svg></button>
+                <div class="video-controller__side">
+                  <button type="button" class="video-controller__skip" aria-label="Next video"><svg aria-hidden="true"><use href="#ico-media-play-next" /></svg></button>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="demo-vpc-item demo-vpc-item--lg">
+          <div class="demo-vpc-item__label">Large<small>640 · row max 256 · icons 28 · play 68</small></div>
+          <div class="demo-vpc-item__surface demo-vpc-surface--dark">
+            <div class="video-controller video-controller--lg">
+              <div class="video-controller__inner">
+                <div class="video-controller__side">
+                  <button type="button" class="video-controller__skip" aria-label="Previous video"><svg aria-hidden="true"><use href="#ico-media-play-back" /></svg></button>
+                </div>
+                <button type="button" class="video-play" aria-label="Play video"><svg aria-hidden="true"><use href="#ico-media-play" /></svg></button>
+                <div class="video-controller__side">
+                  <button type="button" class="video-controller__skip" aria-label="Next video"><svg aria-hidden="true"><use href="#ico-media-play-next" /></svg></button>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+    </div>
+
+    <!-- ════════════════════════════════════════════════════
+         PROGRESS BAR
+         .video-progress — gradient effect/translucent-dark clear → deep
+           __track  4px · effect/translucent-light/subtle
+           __bar    background/home-blue/base · width via --video-progress
+           __time   elapsed (regular) · remaining (semibold) · text/neutral/lightest
+    ════════════════════════════════════════════════════ -->
+    <div class="demo-grid">
+      <div class="demo-group-header"><span class="demo-group-title">Progress Bar</span></div>
+    </div>
+    <div class="demo-vpc-stack">
+      <div class="demo-vpc-item demo-vpc-item--progress">
+        <div class="demo-vpc-item__label">Progress Bar<small>358 · track 4px · time label-xxsm</small></div>
+        <div class="demo-vpc-item__surface demo-vpc-surface">
+          <div class="video-progress" style="--video-progress: 28%">
+            <div class="video-progress__track" role="progressbar" aria-label="Video progress" aria-valuemin="0" aria-valuemax="100" aria-valuenow="28">
+              <div class="video-progress__bar"></div>
+            </div>
+            <div class="video-progress__time">
+              <span class="video-progress__elapsed">3:35</span>
+              <span class="video-progress__remaining">-20:24</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ════════════════════════════════════════════════════
+         TIMER
+         .video-timer — duration pill under the play button
+         (Article Card › MD Vertical Media)
+         bg background/shade/thick · label-xxsm regular · line-height narrow · pad 4 / 8 · text/neutral/lightest
+    ════════════════════════════════════════════════════ -->
+    <div class="demo-grid">
+      <div class="demo-group-header"><span class="demo-group-title">Timer</span></div>
+    </div>
+    <div class="demo-vpc-stack">
+      <div class="demo-vpc-item demo-vpc-item--timer">
+        <div class="demo-vpc-item__label">Duration<small>label-xxsm · pad 4 / 8</small></div>
+        <div class="demo-vpc-item__surface demo-vpc-surface">
+          <span class="video-timer">29:59</span>
+        </div>
+      </div>
+    </div>
+
+    <script>
+      // Scaffolding only — toggle play ⇄ pause on click.
+      document.addEventListener('click', (event) => {
+        const button = event.target.closest('button.video-play');
+        if (!button) return;
+        const paused = button.classList.toggle('video-play--pause');
+        button.setAttribute('aria-label', paused ? 'Pause video' : 'Play video');
+        button.querySelector('use').setAttribute('href', paused ? '#ico-media-pause' : '#ico-media-play');
+      });
+    </script>
+  </body>
+</html>

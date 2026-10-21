@@ -1,0 +1,218 @@
+// ── Video Player Controls ─────────────────────────────────────────────────────
+// Overlay controls that sit on video / video thumbnails:
+//
+//   .video-play        Play / Pause button — 7 sizes (xs → xxxl)
+//   .video-controller  Commercial Player controller — back · play/pause · next (sm / md / lg)
+//   .video-progress    Progress bar + elapsed / remaining time
+//   .video-timer       Duration pill (Article Card › MD Vertical Media)
+//
+// Play  = translucent-light/thick fill + neutral/black icon
+// Pause = translucent-dark/thick fill + neutral/white icon
+//
+// Reference: Figma Web UI Kit › Video Player Controls (198:5783)
+
+@use 'sass:list';
+@use 'sass:map';
+
+// ── Play / Pause ──────────────────────────────────────────────────────────────
+
+// size → (button, icon) in px — Figma "Video Player Controls - Play and Pause"
+$play-sizes: (
+  xs: (28px, 12px),
+  sm: (34px, 14px),
+  md: (44px, 18px),
+  lg: (56px, 24px),
+  xl: (68px, 28px),
+  xxl: (80px, 32px),
+  xxxl: (92px, 36px),
+);
+
+// Sets a play button size. Also used by components that pick the size per
+// breakpoint (Article Card) instead of with a modifier class.
+@mixin play-size($size) {
+  $values: map.get($play-sizes, $size);
+  --video-play-size: #{list.nth($values, 1)};
+  --video-play-icon: #{list.nth($values, 2)};
+}
+
+.video-play {
+  @include play-size(xl);
+
+  display: inline-flex;
+  flex-shrink: 0;
+  align-items: center;
+  justify-content: center;
+  width: var(--video-play-size);
+  height: var(--video-play-size);
+  padding: 0;
+  border: 0;
+  border-radius: var(--border-radius-full);
+  background-color: var(--color-effect-translucent-light-thick);
+  color: var(--color-icon-neutral-black);
+
+  svg {
+    display: block;
+    width: var(--video-play-icon);
+    height: var(--video-play-icon);
+  }
+}
+
+button.video-play {
+  cursor: pointer;
+}
+
+.video-play--pause {
+  background-color: var(--color-effect-translucent-dark-thick);
+  color: var(--color-icon-neutral-white);
+}
+
+@each $size, $values in $play-sizes {
+  .video-play--#{$size} {
+    @include play-size($size);
+  }
+}
+
+// ── Commercial Player controller ──────────────────────────────────────────────
+// back · play/pause · next. The side slots share the free width equally, so the
+// play button stays centred; the row is capped per size.
+//   sm: max 160 · icons 18 · play md (44)
+//   md: max 192 · icons 22 · play lg (56)
+//   lg: max 256 · icons 28 · play xl (68)
+
+.video-controller {
+  --video-controller-max: 160px;
+  --video-controller-icon: 18px;
+
+  display: flex;
+  justify-content: center;
+  width: 100%;
+  padding: var(--spacing-12) var(--spacing-16);
+}
+
+.video-controller__inner {
+  display: flex;
+  flex: 1 1 0;
+  align-items: center;
+  gap: var(--spacing-6);
+  max-width: var(--video-controller-max);
+}
+
+.video-controller__side {
+  display: flex;
+  flex: 1 1 0;
+  min-width: 0;
+
+  &:last-child {
+    justify-content: flex-end;
+  }
+}
+
+.video-controller__skip {
+  display: flex;
+  padding: 0;
+  border: 0;
+  background: none;
+  color: var(--color-icon-neutral-white);
+  cursor: pointer;
+
+  svg {
+    display: block;
+    width: var(--video-controller-icon);
+    height: var(--video-controller-icon);
+  }
+}
+
+.video-controller--sm .video-play {
+  @include play-size(md);
+}
+
+.video-controller--md {
+  --video-controller-max: 192px;
+  --video-controller-icon: 22px;
+
+  .video-play {
+    @include play-size(lg);
+  }
+}
+
+// Figma fixes the Large row at 80px — the 68px play button eats into the
+// 12px vertical padding rather than growing the row.
+.video-controller--lg {
+  --video-controller-max: 256px;
+  --video-controller-icon: 28px;
+
+  align-items: center;
+  height: 80px;
+
+  .video-play {
+    @include play-size(xl);
+  }
+}
+
+.video-play:focus-visible,
+.video-controller__skip:focus-visible {
+  outline: 2px solid var(--color-border-home-blue-base);
+  outline-offset: 2px;
+}
+
+// ── Progress bar ──────────────────────────────────────────────────────────────
+// Bottom of the player: dark gradient (clear → deep) behind a 4px track and
+// the elapsed / remaining time. Progress is set with --video-progress (0–100%).
+
+.video-progress {
+  --video-progress: 0%;
+
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-4);
+  width: 100%;
+  padding: var(--spacing-4) var(--spacing-16) var(--spacing-16);
+  background-image: linear-gradient(
+    to bottom,
+    var(--color-effect-translucent-dark-clear),
+    var(--color-effect-translucent-dark-deep)
+  );
+}
+
+.video-progress__track {
+  height: 4px;
+  overflow: hidden;
+  border-radius: var(--border-radius-full);
+  background-color: var(--color-effect-translucent-light-subtle);
+}
+
+.video-progress__bar {
+  width: var(--video-progress);
+  height: 100%;
+  border-radius: var(--border-radius-full);
+  background-color: var(--color-background-home-blue-base);
+}
+
+.video-progress__time {
+  display: flex;
+  justify-content: space-between;
+  font-size: var(--typography-font-size-label-xxsm);
+  font-weight: var(--typography-font-weight-regular);
+  line-height: var(--typography-line-height-narrow);
+  font-variant-numeric: tabular-nums;
+  color: var(--color-text-neutral-lightest);
+}
+
+.video-progress__remaining {
+  font-weight: var(--typography-font-weight-semibold);
+}
+
+// ── Timer (duration pill) ─────────────────────────────────────────────────────
+
+.video-timer {
+  display: inline-flex;
+  padding: var(--spacing-4) var(--spacing-8);
+  border-radius: var(--border-radius-full);
+  background-color: var(--color-background-shade-thick);
+  font-size: var(--typography-font-size-label-xxsm);
+  font-weight: var(--typography-font-weight-regular);
+  line-height: var(--typography-line-height-narrow);
+  font-variant-numeric: tabular-nums;
+  color: var(--color-text-neutral-lightest);
+  white-space: nowrap;
+}

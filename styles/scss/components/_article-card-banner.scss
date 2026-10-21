@@ -1,0 +1,207 @@
+// ── Article Card — Banner Story ───────────────────────────────────────────────
+// Full-width top banner: editorial image, headline and comments on a black
+// panel. Built as a block that later layouts attach related stories to, so it
+// is its own component rather than an .article-card type.
+//
+//   .article-card-banner                 white surface, bottom keyline (border/neutral/light)
+//     .article-card-banner__story        16px white inset from MD up (16px below at SM / XS)
+//       .article-card-banner__panel      background/neutral/black, inner keyline
+//         .article-card-banner__media    <picture> — artwork per breakpoint
+//         .article-card-banner__content
+//           .article-card-banner__headline > a.article-card-banner__link
+//           .article-card-banner__metadata   comments (Article Card Metadata)
+//
+// The banner title ("BANNER STORY") is part of the artwork, not live text, so
+// the image is art-directed per breakpoint (<picture>):
+//   XS <640   (phone portrait)   stacked · media 360:336 · full bleed
+//   SM ≥640   (phone landscape)  media left (50%, 360:336), text right, centred
+//   MD ≥768+                     stacked · media 964:544 · 16px inset
+// Headline h2 at every breakpoint (token: XS/SM 22 · MD 24 · LG+ 28).
+//
+// Hover (after Image Only): the whole panel is the link; on hover the image
+// dims (translucent-dark clear → pale) and the text stays white.
+//
+// Reference: Figma Web UI Kit › Article Card - Banner (8138:232841)
+
+@use '../foundation/breakpoints' as bp;
+
+// ── Shell ─────────────────────────────────────────────────────────────────────
+
+.article-card-banner {
+  position: relative;
+  background-color: var(--color-background-neutral-lightest);
+
+  // Bottom keyline, 16px inset
+  &::after {
+    content: '';
+    position: absolute;
+    right: var(--spacing-16);
+    bottom: 0;
+    left: var(--spacing-16);
+    height: 1px;
+    background-color: var(--color-border-neutral-light);
+  }
+}
+
+.article-card-banner__story {
+  padding-bottom: var(--spacing-16);
+
+  @include bp.respond-to(md) {
+    padding: var(--spacing-16);
+  }
+}
+
+.article-card-banner__panel {
+  position: relative; // containing block of the stretched link
+  display: flex;
+  flex-direction: column;
+  background-color: var(--color-background-neutral-black);
+
+  // Inner keyline (separates related stories when they follow)
+  &::after {
+    content: '';
+    position: absolute;
+    right: var(--spacing-16);
+    bottom: 0;
+    left: var(--spacing-16);
+    height: 1px;
+    background-color: var(--color-border-translucent-light-subtle);
+  }
+
+  @include bp.respond-to(sm) {
+    flex-direction: row;
+  }
+
+  @include bp.respond-to(md) {
+    flex-direction: column;
+  }
+}
+
+// ── Media ─────────────────────────────────────────────────────────────────────
+
+.article-card-banner__media {
+  position: relative;
+  display: block; // <picture> is inline by default
+  flex-shrink: 0;
+  overflow: hidden;
+  aspect-ratio: 360 / 336;
+
+  img {
+    display: block;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+
+  // Hover dim (see Card hover)
+  &::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background-color: var(--color-effect-translucent-dark-clear);
+    transition: background-color 0.2s;
+  }
+
+  @include bp.respond-to(sm) {
+    width: 50%;
+  }
+
+  @include bp.respond-to(md) {
+    width: auto;
+    aspect-ratio: 964 / 544;
+  }
+}
+
+// ── Content ───────────────────────────────────────────────────────────────────
+
+.article-card-banner__content {
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-16);
+  padding: var(--spacing-8) var(--spacing-16) var(--spacing-16);
+
+  // SM: text column beside the image, vertically centred
+  @include bp.respond-to(sm) {
+    flex: 1 1 0;
+    justify-content: center;
+    min-width: 0;
+    padding-top: var(--spacing-16);
+  }
+
+  @include bp.respond-to(md) {
+    flex: none;
+  }
+}
+
+.article-card-banner__headline {
+  margin: 0;
+  font-family: var(--typography-font-family-sans);
+  font-size: var(--typography-font-size-h2);
+  font-weight: var(--typography-font-weight-semibold);
+  line-height: var(--typography-line-height-narrow);
+  letter-spacing: var(--typography-letter-spacing-compact);
+  color: var(--color-text-neutral-lightest);
+  text-align: center;
+}
+
+.article-card-banner__link {
+  color: inherit;
+  text-decoration: none;
+
+  // Whole panel is the link
+  &::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+  }
+
+  &:focus-visible {
+    outline: none;
+  }
+}
+
+// ── Metadata (comments) ───────────────────────────────────────────────────────
+// Article Card Metadata, Comment Only, centred and light on the black panel.
+
+.article-card-banner__metadata {
+  justify-content: center;
+
+  .article-card-metadata__comments {
+    z-index: 1; // above the stretched link
+    margin-left: 0;
+    color: var(--color-text-neutral-lightest);
+
+    &::before {
+      background: var(--color-effect-translucent-light-deep);
+    }
+
+    &:hover {
+      color: var(--color-text-neutral-lightest);
+    }
+  }
+
+  .article-card-metadata__comments-icon,
+  .article-card-metadata__comments:hover .article-card-metadata__comments-icon {
+    color: var(--color-icon-neutral-lightest);
+  }
+}
+
+// ── Card hover (pointer anywhere in the panel) ───────────────────────────────
+
+.article-card-banner__panel:hover,
+.article-card-banner__panel:has(.article-card-banner__link:focus-visible) {
+  .article-card-banner__media::after {
+    background-color: var(--color-effect-translucent-dark-pale);
+  }
+}
+
+.article-card-banner__panel:has(.article-card-banner__link:focus-visible) {
+  outline: 2px solid var(--color-border-home-blue-base);
+  outline-offset: -2px;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .article-card-banner__media::after {
+    transition: none;
+  }
+}

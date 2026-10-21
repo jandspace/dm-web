@@ -66,9 +66,9 @@ def columnist(mode, name='Columnist Name', role='Daily Mail Columnist', n='9.9k'
               </div>
               {COMMENTS.format(n=n)}
             </div>
-            <span class="columnist-photo columnist-photo--lg{live}"
+            <a class="columnist-photo columnist-photo--lg{live}" href="#author" tabindex="-1" aria-hidden="true"
               ><img class="columnist-photo__img" src="../../assets/images/columnist-placeholder.png" alt="{name}"
-            /></span>
+            /></a>
           </div>'''
     if mode in ANNOUNCE:
         badge, text, action = ANNOUNCE[mode]

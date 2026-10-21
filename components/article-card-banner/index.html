@@ -1,0 +1,163 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Article Card — Banner Story</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="../../tokens/dm_tokens.css" />
+    <link rel="stylesheet" href="../../tokens/dm_typography_web_tokens.css" />
+    <link rel="stylesheet" href="../../styles/css/main.css" />
+  </head>
+  <body class="demo-page-body demo-page-body--canvas demo-page-body--flush">
+    <svg style="display: none" aria-hidden="true">
+      <symbol id="ico-speechbubble-ellipsis" viewBox="0 0 14 14">
+        <path d="M13.6587 1.79014C13.4312 1.35381 13.0944 1.01783 12.6613 0.786569C12.2238 0.555311 11.6944 0.4375 11.0688 0.4375H2.94C2.31 0.4375 1.77625 0.555311 1.33875 0.786569C0.905625 1.01783 0.573125 1.35381 0.345625 1.79014C0.118125 2.22212 0 2.74572 0 3.36532V8.19993C0 8.81952 0.11375 9.34749 0.345625 9.78383C0.5775 10.2158 0.91 10.5474 1.33875 10.7787C1.77188 11.0099 2.2925 11.1277 2.89625 11.1277H3.23313V12.6593C3.23313 12.9385 3.30313 13.1567 3.43875 13.3182C3.57875 13.4796 3.77562 13.5625 4.025 13.5625C4.2 13.5625 4.36625 13.5189 4.51937 13.4272C4.6725 13.34 4.85625 13.2047 5.07063 13.0171L7.20562 11.1277H11.0644C11.69 11.1277 12.2194 11.0099 12.6569 10.7787C13.0944 10.5474 13.4269 10.2158 13.6544 9.78383C13.8819 9.34749 14 8.81952 14 8.19993V3.36532C14 2.74572 13.8863 2.22212 13.6544 1.79014H13.6587ZM4.64188 6.43713C4.4625 6.62039 4.24375 6.71202 3.98563 6.71202C3.7275 6.71202 3.50875 6.62039 3.325 6.43713C3.14563 6.25386 3.05813 6.0357 3.05813 5.78262C3.05813 5.52955 3.14563 5.31138 3.325 5.12812C3.50875 4.94486 3.7275 4.85322 3.98563 4.85322C4.24375 4.85322 4.4625 4.94486 4.64188 5.12812C4.82125 5.31138 4.90875 5.52955 4.90875 5.78262C4.90875 6.0357 4.82125 6.25386 4.64188 6.43713ZM7.665 6.43713C7.48125 6.62039 7.2625 6.71202 7.00875 6.71202C6.755 6.71202 6.53188 6.62039 6.34812 6.43713C6.16438 6.25386 6.0725 6.0357 6.0725 5.78262C6.0725 5.52955 6.16438 5.31138 6.34812 5.12812C6.53188 4.94486 6.75063 4.85322 7.00875 4.85322C7.26688 4.85322 7.48125 4.94486 7.665 5.12812C7.84875 5.31138 7.94062 5.52955 7.94062 5.78262C7.94062 6.0357 7.84875 6.25386 7.665 6.43713ZM10.6794 6.43713C10.5 6.62039 10.2812 6.71202 10.0231 6.71202C9.765 6.71202 9.55062 6.62039 9.36687 6.43713C9.1875 6.25386 9.1 6.0357 9.1 5.78262C9.1 5.52955 9.1875 5.31138 9.36687 5.12812C9.55062 4.94486 9.76937 4.85322 10.0231 4.85322C10.2769 4.85322 10.5 4.94486 10.6794 5.12812C10.8631 5.31138 10.955 5.52955 10.955 5.78262C10.955 6.0357 10.8631 6.25386 10.6794 6.43713Z" fill="currentColor" />
+      </symbol>
+    </svg>
+    <div class="demo-card-page">
+      <h1 class="demo-page-h1">Article Card — Banner Story</h1>
+      <p class="demo-page-intro">
+        Full-width top banner. Figma: Web UI Kit › Article Card - Banner (8138:232841).
+        SM ≥640 (phone landscape) and XS &lt;640 (phone portrait) are separate layouts;
+        the banner title is part of the artwork, swapped per breakpoint.
+      </p>
+    </div>
+
+    <div class="demo-vp-toolbar demo-vp-toolbar--sticky demo-vp-toolbar--page">
+      <div class="demo-vp-toolbar__row">
+        <span id="demo-vp-switch-label">Viewport</span>
+        <div class="demo-vp-toggle" role="group" aria-labelledby="demo-vp-switch-label" id="demo-vp-switch">
+          <button type="button" data-vp="live" aria-pressed="true">Live</button>
+          <button type="button" data-vp="xl" aria-pressed="false">XL 1440</button>
+          <button type="button" data-vp="lg" aria-pressed="false">LG 1024</button>
+          <button type="button" data-vp="md" aria-pressed="false">MD 768</button>
+          <button type="button" data-vp="sm" aria-pressed="false">SM 720</button>
+          <button type="button" data-vp="xs" aria-pressed="false">XS 390</button>
+        </div>
+        <span class="demo-vp-status" id="demo-vp-status"></span>
+      </div>
+    </div>
+
+    <!-- Banner Story in the page container (720 · 960 · 996 · 1224; full width below 640).
+         Structure:
+           .article-card-banner             white surface + bottom keyline
+             .article-card-banner__story    16px inset from MD
+               .article-card-banner__panel  black panel — the whole panel is the link
+                 .article-card-banner__media      <picture>: artwork per breakpoint
+                                                  (the banner title is part of the image)
+                 .article-card-banner__content
+                   h2.article-card-banner__headline > a.article-card-banner__link
+                   .article-card-banner__metadata  Article Card Metadata — comments -->
+    <main class="container" id="demo-banner">
+      <article class="article-card-banner">
+        <div class="article-card-banner__story">
+          <div class="article-card-banner__panel">
+            <picture class="article-card-banner__media">
+              <source media="(min-width: 768px)" srcset="../../assets/images/article-card-banner-wide.jpg" />
+              <source media="(min-width: 640px)" srcset="../../assets/images/article-card-banner-sm.jpg" />
+              <img src="../../assets/images/article-card-banner-xs.jpg" alt="Banner Story" />
+            </picture>
+            <div class="article-card-banner__content">
+              <h2 class="article-card-banner__headline">
+                <a class="article-card-banner__link" href="#article">Headline of Daily Mail article preview card - lorem ipsum dolor sit amet, con sectetur adipiscing jand</a>
+              </h2>
+              <div class="article-card-banner__metadata article-card-metadata">
+                <a class="article-card-metadata__comments" href="#comments" aria-label="2.1k comments">
+                  <svg class="article-card-metadata__comments-icon" aria-hidden="true"><use href="#ico-speechbubble-ellipsis" /></svg>
+                  <span class="article-card-metadata__comments-count">2.1k comments</span>
+                </a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </article>
+    </main>
+
+    <!-- Fixed-viewport preview: this page rendered in an iframe at the chosen width -->
+    <div class="demo-vp-stage" id="demo-vp-stage" hidden></div>
+
+    <script>
+      // Scaffolding only — viewport preview.
+      //   ?frame          page without chrome (rendered inside the viewport stage)
+      //   ?vp=xl|lg|md|sm|xs  preview at a fixed viewport width
+      (() => {
+        const params = new URLSearchParams(location.search);
+        if (params.has('frame')) {
+          document.body.classList.add('demo-frame');
+          return;
+        }
+
+        const VIEWPORTS = {
+          xl: { label: 'XL ≥1376', width: 1440 },
+          lg: { label: 'LG ≥1024', width: 1024 },
+          md: { label: 'MD ≥768', width: 768 },
+          sm: { label: 'SM ≥640', width: 720 },
+          xs: { label: 'XS <640', width: 390 },
+        };
+
+        const toggle = document.getElementById('demo-vp-switch');
+        const status = document.getElementById('demo-vp-status');
+        const banner = document.getElementById('demo-banner');
+        const stage = document.getElementById('demo-vp-stage');
+        let iframe = null;
+        let width = 0;
+
+        const fit = () => {
+          if (!iframe || !iframe.contentDocument) return;
+          const scale = Math.min(1, (stage.parentElement.clientWidth - 32) / width);
+          const height = iframe.contentDocument.documentElement.scrollHeight;
+          iframe.height = height;
+          iframe.style.transform = `scale(${scale})`;
+          stage.style.width = `${width * scale}px`;
+          stage.style.height = `${height * scale}px`;
+          status.textContent = `${width}px viewport · ${Math.round(scale * 100)}%`;
+        };
+
+        const select = (key) => {
+          const vp = VIEWPORTS[key];
+          toggle.querySelectorAll('button').forEach((b) => {
+            b.setAttribute('aria-pressed', String(b.dataset.vp === (vp ? key : 'live')));
+          });
+          const url = new URL(location.href);
+          if (vp) url.searchParams.set('vp', key);
+          else url.searchParams.delete('vp');
+          history.replaceState(null, '', url);
+
+          if (!vp) {
+            stage.hidden = true;
+            stage.replaceChildren();
+            iframe = null;
+            banner.hidden = false;
+            status.textContent = '';
+            return;
+          }
+
+          width = vp.width;
+          banner.hidden = true;
+          stage.hidden = false;
+          status.textContent = 'Loading…';
+          iframe = document.createElement('iframe');
+          iframe.src = 'index.html?frame';
+          iframe.width = width;
+          iframe.title = `Banner Story at ${vp.label}`;
+          iframe.addEventListener('load', async () => {
+            await iframe.contentDocument.fonts.ready;
+            fit();
+            iframe.contentDocument.querySelectorAll('img').forEach((img) => img.addEventListener('load', fit));
+          });
+          stage.replaceChildren(iframe);
+        };
+
+        toggle.addEventListener('click', (event) => {
+          const button = event.target.closest('button[data-vp]');
+          if (button) select(button.dataset.vp);
+        });
+        window.addEventListener('resize', fit);
+        select(params.get('vp') || 'live');
+      })();
+    </script>
+  </body>
+</html>

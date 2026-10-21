@@ -12,10 +12,13 @@
 // Components
 @use 'components/button';
 @use 'components/editorial-badge';
+@use 'components/video-player-controls';
 @use 'components/article-headline';
 @use 'components/article-card';
 @use 'components/article-card-image-only';
 @use 'components/article-card-key-updates';
+@use 'components/article-card-video';
+@use 'components/article-card-banner';
 @use 'components/article-card-metadata';
 @use 'components/columnist-profile-photo';
 @use 'components/columnist-comment-announcement';
@@ -28,3 +31,4 @@
 @use 'scaffolding/annotation';
 @use 'scaffolding/article-card-demo';
 @use 'scaffolding/article-card-metadata-demo';
+@use 'scaffolding/video-player-controls-demo';

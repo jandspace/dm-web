@@ -8,10 +8,22 @@
 //
 // Sizes: xs 20 · sm 32 · md 48 · lg 64 · xl 80 · xxl 96 · xxxl 112
 //
+// Disc colour — set by the editor per channel, from the section's /subtle or
+// /base background (default Home blue subtle):
+//   .columnist-photo--{section}           background/{section}/subtle
+//   .columnist-photo--{section}-base      background/{section}/base
+//   e.g. --lifestyle → background/lifestyle-azure/subtle
+//
+// Clickable: use <a class="columnist-photo" href="…"> (to the author page) —
+// hover ring, see below. Static: <span>.
+//
 // Reference: Figma Web UI Kit › Columnist Profile Photo (5417:3916)
+
+@use '../foundation/sections';
 
 .columnist-photo {
   --columnist-photo-size: 64px;
+  --columnist-photo-color: var(--color-background-home-blue-subtle);
   --columnist-photo-dot: 18px;
   --columnist-photo-ring: 2px;
 
@@ -20,6 +32,7 @@
   flex-shrink: 0;
   width: var(--columnist-photo-size);
   height: var(--columnist-photo-size);
+  border-radius: var(--border-radius-full); // outline follows the disc
 
   // Disc behind the portrait
   &::before {
@@ -27,7 +40,24 @@
     position: absolute;
     inset: 0;
     border-radius: var(--border-radius-full);
-    background-color: var(--color-background-home-blue-subtle);
+    background-color: var(--columnist-photo-color);
+  }
+}
+
+// Linked photo (<a class="columnist-photo">, to the author page): on hover a
+// 3px ring hugging the disc. The cut-out head may break out over it, like the disc.
+a.columnist-photo:hover,
+a.columnist-photo:focus-visible {
+  outline: 3px solid var(--color-effect-translucent-dark-subtle);
+}
+
+@each $section, $colour in sections.$sections {
+  .columnist-photo--#{$section} {
+    --columnist-photo-color: var(--color-background-#{$colour}-subtle);
+  }
+
+  .columnist-photo--#{$section}-base {
+    --columnist-photo-color: var(--color-background-#{$colour}-base);
   }
 }
 

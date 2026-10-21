@@ -286,6 +286,7 @@ iOS and Android: no overrides. Native defaults only.
 - Mobile-first CSS: SM as `:root` base, scale up with `min-width` breakpoints.
 - Mobile landscape handled with `orientation: landscape`, not px breakpoints.
 - Typography does not change on mobile landscape — layout and padding only.
+- **Images:** photos are JPEG (quality ~82). PNG only when real transparency is needed (e.g. columnist cut-out photos). Figma often exports opaque photos as RGBA PNG — check the alpha before keeping PNG. Icons are SVG.
 - British English for UI copy and documentation.
 - American English for token names, CSS variable names, and code.
 

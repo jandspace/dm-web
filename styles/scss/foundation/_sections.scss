@@ -1,0 +1,24 @@
+// ── Editorial sections ────────────────────────────────────────────────────────
+// Section → colour family used in semantic colour tokens
+// (--color-{category}-{family}-{variant}, e.g. --color-text-showbiz-red-base).
+// Shared by components that take a per-channel colour. No CSS output.
+// Reference: CLAUDE.md › Editorial Section → Colour Mapping
+
+$sections: (
+  home: home-blue,
+  news: news-cyan,
+  showbiz: showbiz-red,
+  sport: sport-green,
+  royals: royals-violet,
+  money: money-purple,
+  lifestyle: lifestyle-azure,
+  health: health-turquoise,
+  tv: tv-magenta,
+  travel: travel-navy,
+  shopping: shopping-indigo,
+  crime: crime-petrol,
+  property: property-fuchsia,
+  podcasts: podcasts-yellow,
+  games: games-ultramarine,
+  science: science-orange,
+);

@@ -8,8 +8,8 @@ Run from the repo root:
 """
 
 HEADLINE = "Headline of Daily Mail article preview card - lorem ipsum dolor sit amet, con sectetur adipiscing jand"
-IMG = '<img src="../../assets/images/article-card-placeholder.png" alt="" />'
-IMG_PORTRAIT = '<img src="../../assets/images/article-card-placeholder-portrait.png" alt="" />'
+IMG = '<img src="../../assets/images/article-card-placeholder.jpg" alt="" />'
+IMG_PORTRAIT = '<img src="../../assets/images/article-card-placeholder-portrait.jpg" alt="" />'
 BADGE_SIZE = {2: "lg", 3: "md", 4: "md", 5: "sm", 6: "xs"}
 MPLUS = '<span class="badge__mplus"><img src="../../assets/images/mail-plus-lozenge.svg" alt="M+" /></span>'
 # Article Card Metadata — Channel Only (components/article-card-metadata)

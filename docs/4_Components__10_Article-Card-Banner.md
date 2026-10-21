@@ -1,0 +1,106 @@
+# Article Card — Banner Story
+
+The Banner Story is the full-width top story of a section front: editorial artwork, headline and comments on a black panel. It is a **block**, not an Article Card type — later layouts attach related stories to it (2-Col, Latest, Columnists — not built yet), so it lives in its own component and folder.
+
+Figma: Web UI Kit › Article Card - Banner (`8138:232841`)
+
+---
+
+## 1. Anatomy
+
+| Element | Description |
+|---|---|
+| **Shell** (`.article-card-banner`) | `color/background/neutral/lightest` surface with a 1px bottom keyline, inset 16px — `color/border/neutral/light` |
+| **Story** (`__story`) | 16px white inset from MD up; 16px below the panel at SM / XS |
+| **Panel** (`__panel`) | `color/background/neutral/black`. Inner bottom keyline, inset 16px — `color/border/translucent-light/subtle` (separates related stories when they follow) |
+| **Media** (`__media`) | `<picture>` — editorial artwork, art-directed per breakpoint (§3) |
+| **Headline** (`__headline`) | H2, centred, `color/text/neutral/lightest`. Holds the article link |
+| **Metadata** (`__metadata`) | Article Card Metadata, Comment Only, centred (§4) |
+
+```html
+<article class="article-card-banner">
+  <div class="article-card-banner__story">
+    <div class="article-card-banner__panel">
+      <picture class="article-card-banner__media">
+        <source media="(min-width: 768px)" srcset="banner-wide.jpg" />
+        <source media="(min-width: 640px)" srcset="banner-sm.jpg" />
+        <img src="banner-xs.jpg" alt="Tiger maul victim" />
+      </picture>
+      <div class="article-card-banner__content">
+        <h2 class="article-card-banner__headline">
+          <a class="article-card-banner__link" href="…">Headline</a>
+        </h2>
+        <div class="article-card-banner__metadata article-card-metadata">
+          <a class="article-card-metadata__comments" href="…">…2.1k comments</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</article>
+```
+
+The banner sits in the page `.container` (SM 720 · MD 960 · LG 996 · XL 1224; full width below 640).
+
+---
+
+## 2. Layout by Breakpoint
+
+Unlike the Article Card, **SM and XS are separate layouts**: SM (≥640) targets phones in landscape, XS (<640) phones in portrait.
+
+| Breakpoint | Layout | Media ratio | Panel inset | Content padding | Headline |
+|---|---|---|---|---|---|
+| **XS** <640 | Stacked, full bleed | 360:336 | — | 8 · 16 · 16 | H2 (22) |
+| **SM** ≥640 | Media left (50%), text right, vertically centred | 360:336 | — | 16 | H2 (22) |
+| **MD** ≥768 | Stacked | 964:544 | 16 | 16 | H2 (24) |
+| **LG** ≥1024 | Stacked | 964:544 | 16 | 16 | H2 (28) |
+| **XL** ≥1376 | Stacked | 964:544 | 16 | 16 | H2 (28) |
+
+- Headline: `typography/font-size/h2` (sizes follow the token), semibold, line-height narrow, letter-spacing compact.
+- Content: headline and metadata 16px apart.
+
+---
+
+## 3. Artwork
+
+- **The banner title is part of the image** (e.g. "TIGER MAUL VICTIM"), not live text — the slab display face stays in the artwork, so no display font ships with the page.
+- **One artwork per layout**, swapped with `<picture>`:
+
+| Source | Used at | Note |
+|---|---|---|
+| Wide | MD+ (`min-width: 768px`) | 964:544, title included |
+| SM | SM (`min-width: 640px`) | 360:336, beside the text — usually **without** the title |
+| XS | below 640 (`<img>` fallback) | 360:336, title included |
+
+- **`alt` carries the title text** of the artwork, so screen readers get what sighted users read in the image. The CMS supplies it per story.
+- Artwork is a photo — **JPEG**.
+
+---
+
+## 4. Metadata
+
+Article Card Metadata, Comment Only, centred and light on the black panel:
+
+- Comment link: `color/text/neutral/lightest`, icon `color/icon/neutral/lightest`, label-xxsm semibold ("2.1k comments").
+- Hover line (Article Card §5-C) in `color/effect/translucent-light/deep`.
+- Sits above the stretched article link (`z-index: 1`), so it keeps its own target.
+
+---
+
+## 5. Interaction
+
+- **One link per banner**, on the headline: `<a class="article-card-banner__link">`. Its `::after` stretches over the whole **panel**.
+- **Hover** (after Image Only — pointer anywhere in the panel, or keyboard focus): the image dims, `color/effect/translucent-dark/clear` → `translucent-dark/pale` (`transition: background-color 0.2s`). Text stays white. No hover surface.
+- **Keyboard focus:** 2px `color/border/home-blue/base` outline on the panel.
+- `prefers-reduced-motion`: no transition.
+
+> The hover is provisional — the Figma hover layer is hidden. Confirm with design before handoff.
+
+---
+
+## 6. Files
+
+| | Path |
+|---|---|
+| Component | `styles/scss/components/_article-card-banner.scss` |
+| Demo | `components/article-card-banner/index.html` (Viewport: Live · XL 1440 · LG 1024 · MD 768 · SM 720 · XS 390) |
+| Artwork (demo) | `assets/images/article-card-banner-wide.jpg`, `-sm.jpg`, `-xs.jpg` |

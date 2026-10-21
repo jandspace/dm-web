@@ -1,0 +1,95 @@
+// ── Article Card — Video ──────────────────────────────────────────────────────
+// Play icon (Video Player Controls › Play) on the media of video articles.
+// Decorative — the whole card is the link — so it is a <span aria-hidden>, and
+// it exists only on video articles (not hidden with CSS).
+//
+//   .article-card__media
+//     img
+//     .article-card__video          bottom-left, 8px inset (SM thumbs 6px)
+//       .video-play                 size per card type / breakpoint below
+//       .video-timer                MD (Vertical Media) only
+//
+// Size (Figma "Article Card", Video Play Icon on):
+//   XL            SM-XS lg 56 · MD+ xl 68
+//   XL Horizontal lg 56 · LG md 44 · XL lg 56
+//   XL Triple     lg 56
+//   MD            md 44
+//   MD Vertical   lg 56, centred, with the duration pill under it
+//   SM thumbs     xs 28
+//   Image Only    none
+//
+// Reference: Figma Web UI Kit › Article Card (5209:5051)
+
+@use '../foundation/breakpoints' as bp;
+@use 'video-player-controls' as vpc;
+
+.article-card__video {
+  position: absolute;
+  bottom: var(--spacing-8);
+  left: var(--spacing-8);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--spacing-8);
+  pointer-events: none;
+
+  .video-play {
+    @include vpc.play-size(md);
+  }
+}
+
+.article-card--xl .article-card__video .video-play {
+  @include vpc.play-size(lg);
+
+  @include bp.respond-to(md) {
+    @include vpc.play-size(xl);
+  }
+}
+
+.article-card--xl-horizontal .article-card__video .video-play {
+  @include vpc.play-size(lg);
+
+  @include bp.respond-to(lg) {
+    @include vpc.play-size(md);
+  }
+
+  @include bp.respond-to(xl) {
+    @include vpc.play-size(lg);
+  }
+}
+
+.article-card--xl-triple .article-card__video .video-play {
+  @include vpc.play-size(lg);
+}
+
+// The play button sits dead centre; the duration pill hangs 8px below it
+// (it does not push the button up).
+.article-card--md-vertical .article-card__video {
+  top: 50%;
+  bottom: auto;
+  left: 50%;
+  transform: translate(-50%, -50%);
+
+  .video-play {
+    @include vpc.play-size(lg);
+  }
+
+  .video-timer {
+    position: absolute;
+    top: calc(100% + var(--spacing-8));
+    left: 50%;
+    transform: translateX(-50%);
+  }
+}
+
+.article-card--sm-left,
+.article-card--sm-right {
+  .article-card__video {
+    bottom: var(--spacing-6);
+    left: var(--spacing-6);
+
+    .video-play {
+      @include vpc.play-size(xs);
+    }
+  }
+}

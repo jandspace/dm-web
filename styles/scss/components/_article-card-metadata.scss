@@ -12,6 +12,8 @@
 //
 // Reference: Figma Web UI Kit › Article Card Metadata (108:7232)
 
+@use '../foundation/sections';
+
 .article-card-metadata {
   display: flex;
   align-items: center;
@@ -97,26 +99,7 @@
 }
 
 // Section → channel colour (Editorial Section → Colour Mapping)
-$article-card-channel-sections: (
-  home: home-blue,
-  news: news-cyan,
-  showbiz: showbiz-red,
-  sport: sport-green,
-  royals: royals-violet,
-  money: money-purple,
-  lifestyle: lifestyle-azure,
-  health: health-turquoise,
-  tv: tv-magenta,
-  travel: travel-navy,
-  shopping: shopping-indigo,
-  crime: crime-petrol,
-  property: property-fuchsia,
-  podcasts: podcasts-yellow,
-  games: games-ultramarine,
-  science: science-orange,
-);
-
-@each $section, $colour in $article-card-channel-sections {
+@each $section, $colour in sections.$sections {
   .article-card-metadata__channel--#{$section} {
     --article-card-channel-color: var(--color-text-#{$colour}-base);
   }
@@ -244,7 +227,9 @@ $article-card-channel-sections: (
   text-overflow: ellipsis;
   text-decoration: none;
 
+  // Same colour as the headline on card hover, plus an underline
   &:hover {
+    color: var(--color-text-interaction-primary-default);
     text-decoration: underline;
   }
 }
