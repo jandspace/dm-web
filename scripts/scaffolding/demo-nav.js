@@ -56,10 +56,13 @@
     return a;
   };
 
-  // Daily Mail logo (Figma Symbol - DailyMail 60:2081) — links to the index
+  // Daily Mail logo (Figma Symbol - DailyMail 60:2081) + strapline — links to the index
   const logo = () => {
     const a = link('', '', 'demo-nav__logo');
-    a.append(el('img', { src: new URL('assets/images/logo-dailymail.svg', root).href, alt: 'Daily Mail', width: '140', height: '29' }));
+    a.append(
+      el('img', { src: new URL('assets/images/logo-dailymail.svg', root).href, alt: 'Daily Mail', width: '140', height: '29' }),
+      el('span', { class: 'demo-nav__strapline', text: 'Web UI Kit V2' }),
+    );
     return a;
   };
 

@@ -2964,11 +2964,23 @@ a.columnist-photo:focus-visible {
   width: fit-content;
   margin-bottom: var(--spacing-24);
   padding-inline: var(--spacing-8);
+  text-decoration: none;
 }
 .demo-nav__logo img {
   display: block;
   width: 140px;
   height: auto;
+}
+
+.demo-nav__strapline {
+  display: block;
+  margin-top: var(--spacing-6);
+  font-size: var(--typography-font-size-label-sm);
+  font-weight: var(--typography-font-weight-bold);
+  line-height: var(--typography-line-height-narrow);
+  letter-spacing: var(--typography-letter-spacing-wide);
+  color: var(--color-text-neutral-darker);
+  text-transform: uppercase;
 }
 
 .demo-nav__group {
