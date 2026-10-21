@@ -1,0 +1,426 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Experiment · Preview hover · B (variant)</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Inter:ital,wght@0,400;0,600;0,700;1,400&display=swap" rel="stylesheet" />
+
+    <!-- B = variant: same shared, untouched files as A. The only difference is
+         the inline "B OVERRIDES" block below — nothing in styles/ is changed. -->
+    <link rel="stylesheet" href="../../tokens/dm_tokens.css" />
+    <link rel="stylesheet" href="../../tokens/dm_typography_web_tokens.css" />
+    <link rel="stylesheet" href="../../styles/css/main.css" />
+
+    <!-- ════════════════════════════════════════════════════
+         EXPERIMENT PAGE LAYOUT ONLY — no component overrides.
+         Lays out the Figma "lead-alpha" block (996px LG container:
+         alpha 664 + beta 332) and the fixed-LG preview frame.
+         Figma: Web UI Kit › lead-alpha (8104:231432)
+    ════════════════════════════════════════════════════ -->
+    <style>
+      /* ── Shell: shows the page in a 1024px frame so the cards always
+            render with LG ≥1024 rules, whatever the window width ── */
+      .exp-shell {
+        min-height: 100vh;
+        padding: var(--spacing-32) var(--spacing-16);
+        background-color: var(--color-background-neutral-lighter);
+      }
+
+      .exp-shell__header {
+        max-width: 1024px;
+        margin: 0 auto var(--spacing-16);
+        font-family: var(--typography-font-family-sans);
+      }
+
+      .exp-shell__title {
+        margin: 0;
+        font-size: 18px;
+        font-weight: 700;
+        color: var(--color-text-neutral-darker);
+      }
+
+      .exp-shell__meta {
+        margin: var(--spacing-4) 0 0;
+        font-size: 12px;
+        line-height: 1.5;
+        color: var(--color-text-neutral-grey-dark);
+      }
+
+      .exp-shell__stage {
+        width: 1024px;
+        margin: 0 auto;
+        outline: 1px solid var(--color-border-translucent-dark-pale);
+      }
+
+      .exp-shell__stage iframe {
+        display: block;
+        width: 1024px;
+        border: 0;
+      }
+
+      /* Frame mode (?frame) shows the mockup; window mode shows the shell */
+      .exp-frame .exp-shell,
+      body:not(.exp-frame) .exp-page {
+        display: none;
+      }
+
+      .exp-frame {
+        padding: var(--spacing-16) 0;
+      }
+
+      /* ── lead-alpha: alpha (2 cols) + beta (1 col, puffs) ── */
+      .exp-lead {
+        display: grid;
+        grid-template-columns: 664px 332px;
+        align-items: start;
+      }
+
+      .exp-column {
+        display: flex;
+        flex-direction: column;
+      }
+
+      .exp-split {
+        display: grid;
+        grid-template-columns: 332px 332px;
+        align-items: start;
+      }
+
+      /* beta: 1px vertical keyline on its left edge, 16px inset top and bottom
+         (Figma "Keyline" 8104:231457 — Spliter: color/border/neutral/light).
+         z-index lifts it above the cards, whose own backgrounds would cover it. */
+      .exp-beta {
+        position: relative;
+      }
+
+      .exp-beta::before {
+        content: '';
+        position: absolute;
+        top: var(--spacing-16);
+        bottom: var(--spacing-16);
+        left: 0;
+        z-index: 1;
+        width: 1px;
+        background-color: var(--color-border-neutral-light);
+        pointer-events: none;
+      }
+    </style>
+
+    <!-- ════════════════════════════════════════════════════
+         B OVERRIDES — the variant under test (inline on purpose).
+         Overrides the shared card hover only; styles/ stays untouched.
+         Source: components/article-card/index-hover2.html
+           · Card hover surface (grey background) — removed
+           · Headline — underline on card hover (colour change kept)
+           · Banner Story headline — same underline on panel hover
+           · Live Key Updates — underline on the hovered update (colour change kept)
+    ════════════════════════════════════════════════════ -->
+    <style>
+      .article-card::before {
+        display: none;
+      }
+
+      .article-card:hover .article-card__link,
+      .article-card:has(.article-card__link:focus-visible) .article-card__link,
+      .article-card-banner__panel:hover .article-card-banner__link,
+      .article-card-banner__panel:has(.article-card-banner__link:focus-visible) .article-card-banner__link,
+      .article-card-key-updates__text:hover,
+      .article-card-key-updates__text:focus-visible {
+        text-decoration: underline;
+        text-decoration-thickness: 1px;
+        text-underline-offset: 0.15em;
+      }
+    </style>
+  </head>
+  <body>
+    <svg style="display: none" aria-hidden="true">
+      <symbol id="ico-speechbubble-ellipsis" viewBox="0 0 14 14">
+        <path d="M13.6587 1.79014C13.4312 1.35381 13.0944 1.01783 12.6613 0.786569C12.2238 0.555311 11.6944 0.4375 11.0688 0.4375H2.94C2.31 0.4375 1.77625 0.555311 1.33875 0.786569C0.905625 1.01783 0.573125 1.35381 0.345625 1.79014C0.118125 2.22212 0 2.74572 0 3.36532V8.19993C0 8.81952 0.11375 9.34749 0.345625 9.78383C0.5775 10.2158 0.91 10.5474 1.33875 10.7787C1.77188 11.0099 2.2925 11.1277 2.89625 11.1277H3.23313V12.6593C3.23313 12.9385 3.30313 13.1567 3.43875 13.3182C3.57875 13.4796 3.77562 13.5625 4.025 13.5625C4.2 13.5625 4.36625 13.5189 4.51937 13.4272C4.6725 13.34 4.85625 13.2047 5.07063 13.0171L7.20562 11.1277H11.0644C11.69 11.1277 12.2194 11.0099 12.6569 10.7787C13.0944 10.5474 13.4269 10.2158 13.6544 9.78383C13.8819 9.34749 14 8.81952 14 8.19993V3.36532C14 2.74572 13.8863 2.22212 13.6544 1.79014H13.6587ZM4.64188 6.43713C4.4625 6.62039 4.24375 6.71202 3.98563 6.71202C3.7275 6.71202 3.50875 6.62039 3.325 6.43713C3.14563 6.25386 3.05813 6.0357 3.05813 5.78262C3.05813 5.52955 3.14563 5.31138 3.325 5.12812C3.50875 4.94486 3.7275 4.85322 3.98563 4.85322C4.24375 4.85322 4.4625 4.94486 4.64188 5.12812C4.82125 5.31138 4.90875 5.52955 4.90875 5.78262C4.90875 6.0357 4.82125 6.25386 4.64188 6.43713ZM7.665 6.43713C7.48125 6.62039 7.2625 6.71202 7.00875 6.71202C6.755 6.71202 6.53188 6.62039 6.34812 6.43713C6.16438 6.25386 6.0725 6.0357 6.0725 5.78262C6.0725 5.52955 6.16438 5.31138 6.34812 5.12812C6.53188 4.94486 6.75063 4.85322 7.00875 4.85322C7.26688 4.85322 7.48125 4.94486 7.665 5.12812C7.84875 5.31138 7.94062 5.52955 7.94062 5.78262C7.94062 6.0357 7.84875 6.25386 7.665 6.43713ZM10.6794 6.43713C10.5 6.62039 10.2812 6.71202 10.0231 6.71202C9.765 6.71202 9.55062 6.62039 9.36687 6.43713C9.1875 6.25386 9.1 6.0357 9.1 5.78262C9.1 5.52955 9.1875 5.31138 9.36687 5.12812C9.55062 4.94486 9.76937 4.85322 10.0231 4.85322C10.2769 4.85322 10.5 4.94486 10.6794 5.12812C10.8631 5.31138 10.955 5.52955 10.955 5.78262C10.955 6.0357 10.8631 6.25386 10.6794 6.43713Z" fill="currentColor" />
+      </symbol>
+      <symbol id="ico-arrow-right-light" viewBox="0 0 12 12">
+        <path d="M0.333333 6.32667H9.84667L5.81 10.3633L6.48333 11.0367L11.6667 5.85333L6.48333 0.666667L5.81 1.34L9.84667 5.37667H0.333333V6.32667Z" fill="currentColor" />
+      </symbol>
+      <symbol id="ico-media-play" viewBox="0 0 32 32">
+        <path d="M7.61864 30.7537L29.0988 18.3511C30.9036 17.3108 30.9036 14.6969 29.0988 13.6567L7.61864 1.25405C5.81381 0.213824 3.55554 1.52077 3.55554 3.60122V28.3977C3.55554 30.487 5.81381 31.785 7.61864 30.7448V30.7537Z" fill="currentColor"/>
+      </symbol>
+    </svg>
+
+    <!-- Window mode: header + 1024px LG frame (filled by the script below) -->
+    <div class="exp-shell">
+      <header class="exp-shell__header">
+        <h1 class="exp-shell__title">Preview hover · B (variant)</h1>
+        <p class="exp-shell__meta">
+          Variant — shared CSS plus inline overrides: no hover surface, headline underline on card hover.
+          Gamma (Banner Story) + lead block “lead-alpha”, rendered at LG ≥1024 in a 1024px frame. Hover the cards to compare with A.
+        </p>
+      </header>
+      <div class="exp-shell__stage" id="exp-stage"></div>
+    </div>
+
+    <!-- ════════════════════════════════════════════════════
+         MOCKUP — gamma (Banner Story) + lead-alpha (Figma 8104:231432)
+         Wrapped in the shared page .container (LG ≥1024 → 996px)
+    ════════════════════════════════════════════════════ -->
+    <main class="container exp-page">
+      <!-- gamma — Article Card - Banner (Figma 8138:233166) -->
+      <section class="exp-gamma">
+        <article class="article-card-banner">
+          <div class="article-card-banner__story">
+            <div class="article-card-banner__panel">
+              <!-- LG-only experiment: one artwork (the banner title is part of the image) -->
+              <picture class="article-card-banner__media">
+                <img src="images/00-tiger-maul-victim.jpg" alt="Tiger maul victim" />
+              </picture>
+              <div class="article-card-banner__content">
+                <h2 class="article-card-banner__headline">
+                  <a class="article-card-banner__link" href="#article">Pictured: Man mauled to death by tiger at Yorkshire zoo as video shows him walking up to the cat</a>
+                </h2>
+                <div class="article-card-banner__metadata article-card-metadata">
+                  <a class="article-card-metadata__comments" href="#comments" aria-label="2.1k comments">
+                    <svg class="article-card-metadata__comments-icon" aria-hidden="true"><use href="#ico-speechbubble-ellipsis" /></svg>
+                    <span class="article-card-metadata__comments-count">2.1k comments</span>
+                  </a>
+                </div>
+              </div>
+            </div>
+          </div>
+        </article>
+      </section>
+
+      <!-- lead-alpha — alpha + beta -->
+      <div class="exp-lead">
+        <!-- ── alpha (664) ── -->
+        <div class="exp-column exp-alpha">
+          <!-- XL · preview text -->
+          <article class="article-card article-card--xl">
+            <div class="article-card__media"><img src="images/01-hasselhoff.jpg" alt="" /><span class="article-card__video" aria-hidden="true"><span class="video-play"><svg><use href="#ico-media-play" /></svg></span></span></div>
+            <div class="article-card__body">
+              <h2 class="h2 article-headline"><a class="article-card__link" href="#article">David Hasselhoff, 73, cuts frail figure as Baywatch icon leans on wife in first public sighting in months after surgeries</a></h2>
+              <p class="article-card__preview">David Hasselhoff looked frail when he was spotted for the first time in months on Monday as he enjoyed a hike in nature with his wife, Hayley Roberts, at his side. But the 73-year-old Baywatch icon - who was outfitted with two trekking poles to handle the uneven terrain out in Calabasas, California - is actually on the upswing after undergoing both knee- and hip-replacement surgery, the Daily Mail has learned. A representative for Hasselhoff revealed that he had undergone the medical procedures, after he was previously seen requiring a wheelchair to get around at Los Angeles's LAX airport.</p>
+              <div class="article-card__metadata article-card-metadata">
+                <div class="article-card-metadata__info"><a class="article-card-metadata__channel article-card-metadata__channel--showbiz" href="#channel"><span class="article-card-metadata__channel-text">Showbiz</span></a></div>
+                <a class="article-card-metadata__comments" href="#comments" aria-label="357 comments"><svg class="article-card-metadata__comments-icon" aria-hidden="true"><use href="#ico-speechbubble-ellipsis" /></svg><span class="article-card-metadata__comments-count">357</span></a>
+              </div>
+            </div>
+          </article>
+
+          <!-- XL (Horizontal) · M+ · preview text -->
+          <article class="article-card article-card--xl-horizontal">
+            <div class="article-card__media"><img src="images/02-machete-gang.jpg" alt="" /><span class="article-card__video" aria-hidden="true"><span class="video-play"><svg><use href="#ico-media-play" /></svg></span></span></div>
+            <div class="article-card__body">
+              <h3 class="h3 article-headline"><a class="article-card__link" href="#article"><span class="badge badge--md article-headline__badge"><span class="badge__mplus"><img src="../../assets/images/mail-plus-lozenge.svg" alt="M+" /></span></span>Chilling moment two innocent teenagers are 'hunted down' by machete-wielding gang in mistaken identity 'revenge' murder is shown in court</a></h3>
+              <p class="article-card__preview">CCTV footage captured the horrific 33-second attack on Mason Rist, 15, and his close friend Max Dixon, 16, aaa</p>
+              <div class="article-card__metadata article-card-metadata">
+                <div class="article-card-metadata__info"><a class="article-card-metadata__channel article-card-metadata__channel--news" href="#channel"><span class="article-card-metadata__channel-text">News</span></a></div>
+                <a class="article-card-metadata__comments" href="#comments" aria-label="529 comments"><svg class="article-card-metadata__comments-icon" aria-hidden="true"><use href="#ico-speechbubble-ellipsis" /></svg><span class="article-card-metadata__comments-count">529</span></a>
+              </div>
+            </div>
+          </article>
+
+          <!-- Image Only (Large) -->
+          <article class="article-card article-card--image-only article-card--image-only-large">
+            <div class="article-card__media">
+              <img src="images/03-migration-deep-dive.jpg" alt="" />
+              <div class="article-card__overlay">
+                <div class="article-card__scrim"></div>
+                <div class="article-card__overlay-content">
+                  <h3 class="h3 article-headline"><a class="article-card__link" href="#article">Think you understand Britain's migration crisis? You've never seen it like this. DEEP DIVE</a></h3>
+                  <span class="btn btn-quaternary-dark btn--xs article-card__read-more" aria-hidden="true"><span class="btn__content"><span class="btn__label">Read more</span><svg width="1em" height="1em"><use href="#ico-arrow-right-light" /></svg></span></span>
+                </div>
+              </div>
+              <div class="article-card__signpost"></div>
+            </div>
+            <div class="article-card__metadata article-card-metadata">
+              <div class="article-card-metadata__info"><a class="article-card-metadata__channel" href="#channel"><span class="article-card-metadata__channel-text">Deep Dive</span></a></div>
+              <a class="article-card-metadata__comments" href="#comments" aria-label="785 comments"><svg class="article-card-metadata__comments-icon" aria-hidden="true"><use href="#ico-speechbubble-ellipsis" /></svg><span class="article-card-metadata__comments-count">785</span></a>
+            </div>
+          </article>
+
+          <!-- column-splitter: two 332 columns -->
+          <div class="exp-split">
+            <div class="exp-column">
+              <!-- MD (Vertical Media) · Exclusive -->
+              <article class="article-card article-card--md-vertical">
+                <h2 class="h2 article-headline"><a class="article-card__link" href="#article"><span class="badge badge--lg badge--highlight article-headline__badge"><span class="badge__label"><span class="badge__text">Exclusive</span></span></span>Beat the Burnham Budget! SIMON LAMBERT reveals how to protect your money</a></h2>
+                <div class="article-card__media"><img src="images/04-burnham-budget.jpg" alt="" /><span class="article-card__video" aria-hidden="true"><span class="video-play"><svg><use href="#ico-media-play" /></svg></span><span class="video-timer">29:59</span></span></div>
+                <div class="article-card__metadata article-card-metadata">
+                  <div class="article-card-metadata__info"><a class="article-card-metadata__channel article-card-metadata__channel--money" href="#channel"><span class="article-card-metadata__channel-text">Money</span></a></div>
+                  <a class="article-card-metadata__comments" href="#comments" aria-label="892 comments"><svg class="article-card-metadata__comments-icon" aria-hidden="true"><use href="#ico-speechbubble-ellipsis" /></svg><span class="article-card-metadata__comments-count">892</span></a>
+                </div>
+              </article>
+
+              <!-- MD · Live + Key Updates · no keyline -->
+              <article class="article-card article-card--md article-card--no-keyline">
+                <div class="article-card__media"><img src="images/05-russell-brand-live.jpg" alt="" /></div>
+                <div class="article-card__body">
+                  <h4 class="h4 article-headline"><a class="article-card__link" href="#article"><span class="badge badge--md badge--highlight article-headline__badge"><span class="badge__label"><span class="badge__live-indicator" aria-hidden="true"><span class="badge__live-dot"></span></span><span class="badge__text">Live</span></span></span>Russell Brand trial live: Court is shown photos of star's home where woman claims he raped her before ordering her to 'clear up the mess you've made'</a></h4>
+                  <div class="article-card-key-updates">
+                    <p class="article-card-key-updates__title">Key updates</p>
+                    <ul class="article-card-key-updates__list">
+                      <li class="article-card-key-updates__item article-card-key-updates__item--latest"><a class="article-card-key-updates__text" href="#update-1">Brand told woman 'I will hold you and help you', court hears</a></li>
+                      <li class="article-card-key-updates__item"><a class="article-card-key-updates__text" href="#update-2">Photos of Russell Brand's home are released</a></li>
+                    </ul>
+                  </div>
+                  <div class="article-card__metadata article-card-metadata">
+                    <div class="article-card-metadata__info"><a class="article-card-metadata__channel article-card-metadata__channel--crime" href="#channel"><span class="article-card-metadata__channel-text">Crime Desk</span></a></div>
+                    <a class="article-card-metadata__comments" href="#comments" aria-label="1.7k comments"><svg class="article-card-metadata__comments-icon" aria-hidden="true"><use href="#ico-speechbubble-ellipsis" /></svg><span class="article-card-metadata__comments-count">1.7k</span></a>
+                  </div>
+                </div>
+              </article>
+            </div>
+
+            <div class="exp-column">
+              <!-- Image Only (Medium) · M+ signpost -->
+              <article class="article-card article-card--image-only article-card--image-only-medium">
+                <div class="article-card__media">
+                  <img src="images/06-meghan-photos.jpg" alt="" />
+                  <div class="article-card__overlay">
+                    <div class="article-card__scrim"></div>
+                    <div class="article-card__overlay-content">
+                      <h4 class="h4 article-headline"><a class="article-card__link" href="#article">Hidden details in Meghan's photos showing her new life in the country - including £2,000 Oura ring</a></h4>
+                      <span class="btn btn-quaternary-dark btn--xs article-card__read-more" aria-hidden="true"><span class="btn__content"><span class="btn__label">Read more</span><svg width="1em" height="1em"><use href="#ico-arrow-right-light" /></svg></span></span>
+                    </div>
+                  </div>
+                  <div class="article-card__signpost"><span class="badge badge--lg article-headline__badge"><span class="badge__mplus"><img src="../../assets/images/mail-plus-lozenge.svg" alt="M+" /></span></span></div>
+                </div>
+                <div class="article-card__metadata article-card-metadata">
+                  <div class="article-card-metadata__info"><a class="article-card-metadata__channel article-card-metadata__channel--royals" href="#channel"><span class="article-card-metadata__channel-text">Royals</span></a></div>
+                  <a class="article-card-metadata__comments" href="#comments" aria-label="913 comments"><svg class="article-card-metadata__comments-icon" aria-hidden="true"><use href="#ico-speechbubble-ellipsis" /></svg><span class="article-card-metadata__comments-count">913</span></a>
+                </div>
+              </article>
+
+              <!-- SM: Left Thumb ×4 -->
+              <article class="article-card article-card--sm-left">
+                <div class="article-card__media"><img src="images/07-argentina-kit.jpg" alt="" /></div>
+                <div class="article-card__body">
+                  <h5 class="h5 article-headline"><a class="article-card__link" href="#article">Bad omen for England? Argentina request to wear their 'LUCKY' blue kit for World Cup semi-final</a></h5>
+                  <div class="article-card__metadata article-card-metadata">
+                    <div class="article-card-metadata__info"><a class="article-card-metadata__channel article-card-metadata__channel--sport" href="#channel"><span class="article-card-metadata__channel-text">Sport</span></a></div>
+                    <a class="article-card-metadata__comments" href="#comments" aria-label="5 comments"><svg class="article-card-metadata__comments-icon" aria-hidden="true"><use href="#ico-speechbubble-ellipsis" /></svg><span class="article-card-metadata__comments-count">5</span></a>
+                  </div>
+                </div>
+              </article>
+
+              <article class="article-card article-card--sm-left">
+                <div class="article-card__media"><img src="images/08-russell-brand-court.jpg" alt="" /><span class="article-card__video" aria-hidden="true"><span class="video-play"><svg><use href="#ico-media-play" /></svg></span></span></div>
+                <div class="article-card__body">
+                  <h5 class="h5 article-headline"><a class="article-card__link" href="#article"><span class="badge badge--sm article-headline__badge"><span class="badge__mplus"><img src="../../assets/images/mail-plus-lozenge.svg" alt="M+" /></span></span>Russell Brand is a ruthless 'sexual predator' who raped victims while pursuing a 'goal', court hears</a></h5>
+                  <div class="article-card__metadata article-card-metadata">
+                    <div class="article-card-metadata__info"><a class="article-card-metadata__channel article-card-metadata__channel--news" href="#channel"><span class="article-card-metadata__channel-text">News</span></a></div>
+                  </div>
+                </div>
+              </article>
+
+              <article class="article-card article-card--sm-left">
+                <div class="article-card__media"><img src="images/09-billie-piper.jpg" alt="" /></div>
+                <div class="article-card__body">
+                  <h5 class="h5 article-headline"><a class="article-card__link" href="#article">Billie Piper exudes glamour in a kooky furry strapless dress at Variety London Film Festival dinner</a></h5>
+                  <div class="article-card__metadata article-card-metadata">
+                    <div class="article-card-metadata__info"><a class="article-card-metadata__channel article-card-metadata__channel--showbiz" href="#channel"><span class="article-card-metadata__channel-text">Showbiz</span></a></div>
+                    <a class="article-card-metadata__comments" href="#comments" aria-label="Comment"><svg class="article-card-metadata__comments-icon" aria-hidden="true"><use href="#ico-speechbubble-ellipsis" /></svg><span class="article-card-metadata__comments-count">Comment</span></a>
+                  </div>
+                </div>
+              </article>
+
+              <!-- Columnist (normal) — SM Left Thumb with Columnist metadata: no thumbnail -->
+              <article class="article-card article-card--sm-left article-card--no-keyline">
+                <div class="article-card__body">
+                  <h5 class="h5 article-headline"><a class="article-card__link" href="#article"><span class="badge badge--sm badge--highlight article-headline__badge"><span class="badge__mplus"><img src="../../assets/images/mail-plus-lozenge.svg" alt="M+" /></span><span class="badge__label"><span class="badge__text">Opinion</span></span></span>AMANDA PLATELL: Sydney Sweeney is under attack again. This is the point that the jealous, snobby sisterhood is missing - and why THEY are the ones being misogynistic</a></h5>
+                  <div class="article-card__metadata article-card-metadata article-card-metadata--columnist">
+                    <div class="article-card-metadata__columnist">
+                      <div class="article-card-metadata__byline">
+                        <div class="article-card-metadata__author">
+                          <a class="article-card-metadata__author-name" href="#author">Amanda Platell</a>
+                          <span class="article-card-metadata__author-role">Daily Mail Columnist</span>
+                        </div>
+                        <a class="article-card-metadata__comments" href="#comments" aria-label="7 comments"><svg class="article-card-metadata__comments-icon" aria-hidden="true"><use href="#ico-speechbubble-ellipsis" /></svg><span class="article-card-metadata__comments-count">7</span></a>
+                      </div>
+                      <a class="columnist-photo columnist-photo--lg" href="#author" tabindex="-1" aria-hidden="true"><img class="columnist-photo__img" src="images/17-amanda-platell.png" alt="Amanda Platell" /></a>
+                    </div>
+                  </div>
+                </div>
+              </article>
+            </div>
+          </div>
+        </div>
+
+        <!-- ── beta (332) · puffs — sidebar: no metadata except the ad ── -->
+        <div class="exp-column exp-beta">
+          <!-- MD · no metadata -->
+          <article class="article-card article-card--md">
+            <div class="article-card__media"><img src="images/11-daisy-edgar-jones.jpg" alt="" /><span class="article-card__video" aria-hidden="true"><span class="video-play"><svg><use href="#ico-media-play" /></svg></span></span></div>
+            <div class="article-card__body">
+              <h4 class="h4 article-headline"><a class="article-card__link" href="#article">Daisy Edgar-Jones exudes glamour in a satin corset off-shoulder dress as she steps out in New York</a></h4>
+            </div>
+          </article>
+
+          <!-- SM: Right Thumb ×5 -->
+          <article class="article-card article-card--sm-right">
+            <div class="article-card__media"><img src="images/12-vogue-williams.jpg" alt="" /></div>
+            <div class="article-card__body">
+              <h6 class="h6 article-headline"><a class="article-card__link" href="#article">Vogue Williams overshadows Spencer Matthews' ex Lucy Watson's pregnancy announcement</a></h6>
+            </div>
+          </article>
+
+          <article class="article-card article-card--sm-right">
+            <div class="article-card__media"><img src="images/13-roxy-horner.jpg" alt="" /></div>
+            <div class="article-card__body">
+              <h6 class="h6 article-headline"><a class="article-card__link" href="#article">Roxy Horner tries on wedding dresses ahead of big day with Jack Whitehall</a></h6>
+            </div>
+          </article>
+
+          <article class="article-card article-card--sm-right">
+            <div class="article-card__media"><img src="images/14-alice-vanderpump.jpg" alt="" /><span class="article-card__video" aria-hidden="true"><span class="video-play"><svg><use href="#ico-media-play" /></svg></span></span></div>
+            <div class="article-card__body">
+              <h6 class="h6 article-headline"><a class="article-card__link" href="#article"><span class="badge badge--xs badge--highlight article-headline__badge"><span class="badge__mplus"><img src="../../assets/images/mail-plus-lozenge.svg" alt="M+" /></span><span class="badge__label"><span class="badge__text">Exclusive</span></span></span>Scandalous pictures raise questions about THAT shot of Alice Vanderpump with reality star</a></h6>
+            </div>
+          </article>
+
+          <article class="article-card article-card--sm-right">
+            <div class="article-card__media"><img src="images/15-meghan-wardrobe.jpg" alt="" /></div>
+            <div class="article-card__body">
+              <h6 class="h6 article-headline"><a class="article-card__link" href="#article"><span class="badge badge--xs article-headline__badge"><span class="badge__mplus"><img src="../../assets/images/mail-plus-lozenge.svg" alt="M+" /></span></span>The 8 hidden meanings in Meghan's wardrobe for her quasi-royal tour - including subtle nods to Harry</a></h6>
+            </div>
+          </article>
+
+          <article class="article-card article-card--sm-right article-card--no-keyline">
+            <div class="article-card__media"><img src="images/16-self-tan-spf.jpg" alt="" /></div>
+            <div class="article-card__body">
+              <h6 class="h6 article-headline"><a class="article-card__link" href="#article">The brand behind the self-tan that sells every 20 seconds drops glow-boosting SPF - as fans praise how it 'evens skin tone'</a></h6>
+              <div class="article-card__metadata article-card-metadata">
+                <div class="article-card-metadata__info"><span class="article-card-metadata__label">Ad Feature</span></div>
+              </div>
+            </div>
+          </article>
+        </div>
+      </div>
+    </main>
+
+    <script>
+      // Experiment scaffolding — fixed LG preview.
+      // The card CSS reacts to the viewport, so the page renders itself in a
+      // 1024px iframe (?frame) to always show LG ≥1024, on any screen.
+      (() => {
+        if (new URLSearchParams(location.search).has('frame')) {
+          document.body.classList.add('exp-frame');
+          return;
+        }
+        const iframe = document.createElement('iframe');
+        iframe.src = `${location.pathname}?frame`;
+        iframe.title = 'Lead block at LG 1024';
+        iframe.addEventListener('load', async () => {
+          await iframe.contentDocument.fonts.ready;
+          const fit = () => {
+            iframe.height = iframe.contentDocument.documentElement.scrollHeight;
+          };
+          fit();
+          iframe.contentDocument.querySelectorAll('img').forEach((img) => img.addEventListener('load', fit));
+        });
+        document.getElementById('exp-stage').append(iframe);
+      })();
+    </script>
+  </body>
+</html>
