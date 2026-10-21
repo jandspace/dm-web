@@ -16,16 +16,18 @@
     <p class="demo-page-intro">
       Every card type at every breakpoint. Each cell is <a href="index.html">index.html</a> rendered in a frame
       at that viewport width, cropped to the card and scaled by the same factor, so sizes compare like the Figma sheet.
-      Numbers under each card are its real rendered size in px.
+      Under each card: its width in px (fixed per breakpoint) — height is auto (hugs the content).
     </p>
 
     <div class="demo-vp-toolbar demo-vp-toolbar--sticky">
+      <div class="demo-vp-toolbar__row">
       <span id="demo-vp-zoom-label">Zoom</span>
       <div class="demo-vp-toggle" role="group" aria-labelledby="demo-vp-zoom-label" id="demo-vp-zoom">
         <button type="button" data-zoom="fit" aria-pressed="true">Fit</button>
         <button type="button" data-zoom="1" aria-pressed="false">100%</button>
       </div>
-      <span class="demo-vp-toolbar__divider" aria-hidden="true"></span>
+      </div>
+      <div class="demo-vp-toolbar__row">
       <label for="demo-badge-select">Badge</label>
       <select class="demo-vp-select" id="demo-badge-select">
         <option value="">None</option>
@@ -62,10 +64,10 @@
       </div>
       <span class="demo-vp-toolbar__divider" aria-hidden="true"></span>
       <label for="demo-meta-select">Metadata</label>
-      <select class="demo-vp-select" id="demo-meta-select">
+      <select class="demo-vp-select" id="demo-meta-select" autocomplete="off">
         <option value="off">Off</option>
         <optgroup label="Standard">
-          <option value="channel">Channel Only</option>
+          <option value="channel" selected>Channel Only</option>
           <option value="timestamp">Timestamp Only</option>
           <option value="channel-timestamp">Channel + Timestamp</option>
           <option value="comment-only">Comment Only</option>
@@ -86,6 +88,7 @@
       <div class="demo-vp-toggle" role="group" aria-labelledby="demo-play-switch-label" id="demo-play-switch">
         <button type="button" data-play="off" aria-pressed="true">Off</button>
         <button type="button" data-play="on" aria-pressed="false">On</button>
+      </div>
       </div>
     </div>
 
@@ -179,7 +182,7 @@
               if (!card) return;
               iframe.height = doc.documentElement.scrollHeight;
               entry.rect = card.getBoundingClientRect();
-              size.textContent = `${Math.round(entry.rect.width)} × ${Math.round(entry.rect.height)}`;
+              size.textContent = `${Math.round(entry.rect.width)} × auto`;
               apply(entry);
             });
           });

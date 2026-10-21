@@ -1,0 +1,143 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Article Card — Banner Story — Viewports</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="../../tokens/dm_tokens.css" />
+    <link rel="stylesheet" href="../../tokens/dm_typography_web_tokens.css" />
+    <link rel="stylesheet" href="../../styles/css/main.css" />
+  </head>
+  <body class="demo-page-body demo-page-body--canvas">
+    <h1 class="demo-page-h1">Article Card — Banner Story — Viewports</h1>
+    <p class="demo-page-intro">
+      Every layout at every breakpoint. Each cell is <a href="index.html">index.html</a> rendered in a frame at that
+      viewport width, cropped to the banner and scaled by the same factor, so sizes compare like the Figma sheet.
+      Under each banner: its width in px (the page container) — height is auto (hugs the content).
+      SM ≥640 and XS &lt;640 are separate layouts.
+    </p>
+
+    <div class="demo-vp-toolbar demo-vp-toolbar--sticky">
+      <div class="demo-vp-toolbar__row">
+        <span id="demo-vp-zoom-label">Zoom</span>
+        <div class="demo-vp-toggle" role="group" aria-labelledby="demo-vp-zoom-label" id="demo-vp-zoom">
+          <button type="button" data-zoom="fit" aria-pressed="true">Fit</button>
+          <button type="button" data-zoom="1" aria-pressed="false">100%</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- Rows = layouts, columns = breakpoints. Built by the script below. -->
+    <div class="demo-vp-sheet" id="demo-vp-sheet"></div>
+
+    <script>
+      (() => {
+        // Layouts — 1-Col only for now. Add a row per layout as it is built
+        // (2-Col, 2-Col Latest, 2-Col Columnists); `query` picks it in index.html.
+        const LAYOUTS = [['1-col', '1-Col', '']];
+
+        // Viewport widths match the Figma frames; maxCard = banner width in that column.
+        const VIEWPORTS = [
+          { label: 'XL ≥1376', width: 1440, maxCard: 1224 },
+          { label: 'LG ≥1024', width: 1024, maxCard: 996 },
+          { label: 'MD ≥768', width: 768, maxCard: 768 },
+          { label: 'SM ≥640', width: 720, maxCard: 720 },
+          { label: 'XS <640', width: 390, maxCard: 390 },
+        ];
+
+        const LABEL_COL = 140;
+        const GAP = 32;
+
+        const sheet = document.getElementById('demo-vp-sheet');
+        const zoom = document.getElementById('demo-vp-zoom');
+        sheet.style.setProperty('--demo-vp-cols', VIEWPORTS.length);
+        let zoomMode = 'fit';
+        const cells = [];
+
+        const el = (tag, className, html) => {
+          const node = document.createElement(tag);
+          if (className) node.className = className;
+          if (html) node.innerHTML = html;
+          return node;
+        };
+
+        // Column headers (first cell is the sticky corner above the row labels)
+        sheet.append(el('div', 'demo-vp-corner'));
+        VIEWPORTS.forEach((vp) => {
+          sheet.append(el('div', 'demo-vp-col-header', `${vp.label}<small>${vp.width}px viewport</small>`));
+        });
+
+        // Rows
+        LAYOUTS.forEach(([key, name, query]) => {
+          sheet.append(el('div', 'demo-vp-row-label', name));
+
+          VIEWPORTS.forEach((vp) => {
+            const cell = el('div', 'demo-vp-cell');
+            const frame = el('div', 'demo-vp-frame');
+            const size = el('div', 'demo-vp-size', '…');
+            const iframe = document.createElement('iframe');
+
+            iframe.src = `index.html?frame${query}`;
+            iframe.width = vp.width;
+            iframe.height = 1200;
+            iframe.title = `Banner Story ${name} at ${vp.label}`;
+            iframe.tabIndex = -1;
+
+            frame.append(iframe);
+            cell.append(frame, size);
+            sheet.append(cell);
+
+            const entry = { key, iframe, frame, size, rect: null };
+            cells.push(entry);
+
+            const measure = () => {
+              const banner = iframe.contentDocument.querySelector('.article-card-banner');
+              if (!banner) return;
+              iframe.height = iframe.contentDocument.documentElement.scrollHeight;
+              entry.rect = banner.getBoundingClientRect();
+              size.textContent = `${Math.round(entry.rect.width)} × auto`;
+              apply(entry);
+            };
+
+            iframe.addEventListener('load', async () => {
+              await iframe.contentDocument.fonts.ready;
+              measure();
+              // The artwork can finish loading after the fonts — re-measure then
+              iframe.contentDocument.querySelectorAll('img').forEach((img) => img.addEventListener('load', measure));
+            });
+          });
+        });
+
+        const scale = () => {
+          if (zoomMode !== 'fit') return Number(zoomMode);
+          const natural = VIEWPORTS.reduce((sum, vp) => sum + vp.maxCard, 0);
+          const available = sheet.clientWidth - LABEL_COL - GAP * VIEWPORTS.length;
+          return Math.max(0.15, Math.min(1, available / natural));
+        };
+
+        const apply = (entry) => {
+          if (!entry.rect) return;
+          const s = scale();
+          const { left, top, width, height } = entry.rect;
+          entry.frame.style.width = `${width * s}px`;
+          entry.frame.style.height = `${height * s}px`;
+          entry.iframe.style.transform = `scale(${s}) translate(${-left}px, ${-top}px)`;
+        };
+
+        const applyAll = () => cells.forEach(apply);
+
+        zoom.addEventListener('click', (event) => {
+          const button = event.target.closest('button[data-zoom]');
+          if (!button) return;
+          zoomMode = button.dataset.zoom;
+          zoom.querySelectorAll('button').forEach((b) => b.setAttribute('aria-pressed', String(b === button)));
+          applyAll();
+        });
+        window.addEventListener('resize', () => zoomMode === 'fit' && applyAll());
+      })();
+    </script>
+  </body>
+</html>

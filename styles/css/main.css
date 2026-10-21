@@ -3249,7 +3249,7 @@ a.columnist-photo:focus-visible {
 
 .demo-vp-sheet {
   display: grid;
-  grid-template-columns: 140px repeat(4, max-content);
+  grid-template-columns: 140px repeat(var(--demo-vp-cols, 4), max-content);
   gap: var(--spacing-32);
   align-items: start;
   overflow-x: auto;
