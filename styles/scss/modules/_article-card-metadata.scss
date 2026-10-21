@@ -12,7 +12,6 @@
 //
 // Reference: Figma Web UI Kit › Article Card Metadata (108:7232)
 
-@use '../foundation/sections';
 
 .article-card-metadata {
   display: flex;
@@ -83,9 +82,7 @@
 }
 
 // Channel link — text truncates inside, so the line (on the link) is not clipped.
-// Hover colour = the channel's section colour, via --article-card-channel-color.
-// Default Home blue; set a section modifier on the link (or the variable on any
-// ancestor, e.g. the card) to switch: --showbiz → text-showbiz-red-base, etc.
+// Hover: text/neutral/darker (one step darker than rest) + the hover line.
 .article-card-metadata__channel {
   display: inline-flex;
   min-width: 0;
@@ -94,14 +91,7 @@
   text-decoration: none;
 
   &:hover {
-    color: var(--article-card-channel-color, var(--color-text-home-blue-base));
-  }
-}
-
-// Section → channel colour (Editorial Section → Colour Mapping)
-@each $section, $colour in sections.$sections {
-  .article-card-metadata__channel--#{$section} {
-    --article-card-channel-color: var(--color-text-#{$colour}-base);
+    color: var(--color-text-neutral-darker);
   }
 }
 

@@ -2019,71 +2019,7 @@ button.video-play {
   text-decoration: none;
 }
 .article-card-metadata__channel:hover {
-  color: var(--article-card-channel-color, var(--color-text-home-blue-base));
-}
-
-.article-card-metadata__channel--home {
-  --article-card-channel-color: var(--color-text-home-blue-base);
-}
-
-.article-card-metadata__channel--news {
-  --article-card-channel-color: var(--color-text-news-cyan-base);
-}
-
-.article-card-metadata__channel--showbiz {
-  --article-card-channel-color: var(--color-text-showbiz-red-base);
-}
-
-.article-card-metadata__channel--sport {
-  --article-card-channel-color: var(--color-text-sport-green-base);
-}
-
-.article-card-metadata__channel--royals {
-  --article-card-channel-color: var(--color-text-royals-violet-base);
-}
-
-.article-card-metadata__channel--money {
-  --article-card-channel-color: var(--color-text-money-purple-base);
-}
-
-.article-card-metadata__channel--lifestyle {
-  --article-card-channel-color: var(--color-text-lifestyle-azure-base);
-}
-
-.article-card-metadata__channel--health {
-  --article-card-channel-color: var(--color-text-health-turquoise-base);
-}
-
-.article-card-metadata__channel--tv {
-  --article-card-channel-color: var(--color-text-tv-magenta-base);
-}
-
-.article-card-metadata__channel--travel {
-  --article-card-channel-color: var(--color-text-travel-navy-base);
-}
-
-.article-card-metadata__channel--shopping {
-  --article-card-channel-color: var(--color-text-shopping-indigo-base);
-}
-
-.article-card-metadata__channel--crime {
-  --article-card-channel-color: var(--color-text-crime-petrol-base);
-}
-
-.article-card-metadata__channel--property {
-  --article-card-channel-color: var(--color-text-property-fuchsia-base);
-}
-
-.article-card-metadata__channel--podcasts {
-  --article-card-channel-color: var(--color-text-podcasts-yellow-base);
-}
-
-.article-card-metadata__channel--games {
-  --article-card-channel-color: var(--color-text-games-ultramarine-base);
-}
-
-.article-card-metadata__channel--science {
-  --article-card-channel-color: var(--color-text-science-orange-base);
+  color: var(--color-text-neutral-darker);
 }
 
 .article-card-metadata__time {

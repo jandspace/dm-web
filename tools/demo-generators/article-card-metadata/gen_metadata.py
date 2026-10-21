@@ -9,9 +9,8 @@ COMMENTS = '''<a class="article-card-metadata__comments" href="#comments" aria-l
             ><span class="article-card-metadata__comments-count">{n}</span></a
           >'''
 
-def channel(t, section=''):
-    mod = f' article-card-metadata__channel--{section}' if section else ''
-    return f'<a class="article-card-metadata__channel{mod}" href="#channel"><span class="article-card-metadata__channel-text">{t}</span></a>'
+def channel(t):
+    return f'<a class="article-card-metadata__channel" href="#channel"><span class="article-card-metadata__channel-text">{t}</span></a>'
 def time(t, iso='2026-10-20T11:30'): return f'<time class="article-card-metadata__time" datetime="{iso}">{t}</time>'
 def label(t): return f'<span class="article-card-metadata__label">{t}</span>'
 def affiliate(t): return (f'<a class="article-card-metadata__affiliate" href="#affiliate" rel="sponsored noopener" target="_blank"'
@@ -37,7 +36,6 @@ CTA = '''<div class="article-card-metadata article-card-metadata--cta">
 # (label, note, default content, long content)
 TYPES = [
   ('Channel Only', 'Channel links to its section', row(channel('Channel')), row(channel('Royal Family News'), '12.3k')),
-  ('Channel (Showbiz)', 'Hover uses the section colour', row(channel('Showbiz', 'showbiz')), row(channel('Showbiz', 'showbiz'), '12.3k')),
   ('Timestamp Only', '', row(time('30m ago')), row(time('Updated 2 hours ago'), '12.3k')),
   ('Channel + Timestamp', '4px disc separator', row(channel('Channel') + time('30m ago')), row(channel('Royal Family News') + time('30m ago'), '12.3k')),
   ('Comment Only', 'Info slot empty', row(''), row('', '12.3k')),

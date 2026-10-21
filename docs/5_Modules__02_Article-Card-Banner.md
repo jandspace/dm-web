@@ -23,7 +23,6 @@ Figma: Web UI Kit › Article Card - Banner (`8138:232841`)
     <div class="article-card-banner__panel">
       <picture class="article-card-banner__media">
         <source media="(min-width: 768px)" srcset="banner-wide.jpg" />
-        <source media="(min-width: 640px)" srcset="banner-sm.jpg" />
         <img src="banner-xs.jpg" alt="Tiger maul victim" />
       </picture>
       <div class="article-card-banner__content">
@@ -63,13 +62,12 @@ Unlike the Article Card, **SM and XS are separate layouts**: SM (≥640) targets
 ## 3. Artwork
 
 - **The banner title is part of the image** (e.g. "TIGER MAUL VICTIM"), not live text — the slab display face stays in the artwork, so no display font ships with the page.
-- **One artwork per layout**, swapped with `<picture>`:
+- **Two artworks**, swapped with `<picture>` — SM and XS share one (both 360:336):
 
 | Source | Used at | Note |
 |---|---|---|
 | Wide | MD+ (`min-width: 768px`) | 964:544, title included |
-| SM | SM (`min-width: 640px`) | 360:336, beside the text — usually **without** the title |
-| XS | below 640 (`<img>` fallback) | 360:336, title included |
+| Small | SM and XS, below 768 (`<img>` fallback) | 360:336, title included — at SM it sits beside the text |
 
 - **`alt` carries the title text** of the artwork, so screen readers get what sighted users read in the image. The CMS supplies it per story.
 - Artwork is a photo — **JPEG**.
@@ -103,4 +101,4 @@ Article Card Metadata, Comment Only, centred and light on the black panel:
 |---|---|
 | Component | `styles/scss/modules/_article-card-banner.scss` |
 | Demo | `modules/article-card-banner/index.html` (Viewport: Live · XL 1440 · LG 1024 · MD 768 · SM 720 · XS 390) |
-| Artwork (demo) | `assets/images/article-card-banner-wide.jpg`, `-sm.jpg`, `-xs.jpg` |
+| Artwork (demo) | `assets/images/article-card-banner-wide.jpg`, `-xs.jpg` (SM + XS) |

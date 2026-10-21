@@ -136,7 +136,7 @@ Channel, comment counter, affiliate link and Read more share one pattern — a l
 
 ### 5-D. Channel Hover Colour
 
-The channel link turns its section colour on hover through `--article-card-channel-color` (default Home blue). Set it with a modifier — `.article-card-metadata__channel--showbiz` → `color/text/showbiz-red/base` — or on any ancestor (card, section).
+The channel link turns `color/text/neutral/darker` on hover (rest: `neutral/dark`), with the hover line (§5-C). One colour for every section — no per-section hover colour.
 
 ---
 
@@ -164,7 +164,7 @@ The disc behind the columnist photo is **editor-controlled per channel**, from t
 ```
 
 - `{section}`: home · news · showbiz · sport · royals · money · lifestyle · health · tv · travel · shopping · crime · property · podcasts · games · science (Editorial Section → Colour Mapping, e.g. `lifestyle` → `lifestyle-azure`).
-- The modifiers set `--columnist-photo-color`; the section list is shared with the channel colours (`styles/scss/foundation/_sections.scss`).
+- The modifiers set `--columnist-photo-color`; the section list lives in `styles/scss/foundation/_sections.scss`.
 - Columnist photos are cut-out portraits — keep them PNG (real transparency).
 
 ---
