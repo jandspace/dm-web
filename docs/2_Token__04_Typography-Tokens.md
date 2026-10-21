@@ -30,6 +30,8 @@ We utilise two distinct typefaces to balance Daily Mail's editorial heritage wit
 - **Sans (Inter):** Used for all other elements, including body copy, paragraphs, and functional labels, to ensure maximum legibility on digital screens.
 - **Serif (Lora):** Reserved for editorial headlines and story titles to convey trust and authority.
 
+By default, article headlines use Inter on Web and Lora on App (iOS/Android). This is the default, not an absolute rule — exceptions exist (e.g. a columnist's quote).
+
 #### Type Scale
 
 Defined in Points (pt) to align with our visual hierarchy. Our scale ranges from micro-labels to large display headings, ensuring a harmonious progression that guides the reader's eye.
@@ -101,8 +103,10 @@ Primitive tokens are the raw, immutable values of our design system. These do no
 
 We utilise two distinct typefaces to balance editorial authority with functional clarity:
 
-- **Serif (`typography-font-family-serif`):** Lora. Used for headlines to convey the 'Trusted Authority' of the Daily Mail brand.
-- **Sans (`typography-font-family-sans`):** Inter. Used for UI elements and body copy to ensure 'Frictionless Diversity' and legibility.
+- **Serif (`typography-font-family-serif`):** Lora. Used for editorial emphasis (App article headlines, quotes) to convey the 'Trusted Authority' of the Daily Mail brand.
+- **Sans (`typography-font-family-sans`):** Inter. Used for UI elements, body copy and Web article headlines to ensure 'Frictionless Diversity' and legibility.
+
+By default, article headlines use Inter on Web and Lora on App (iOS/Android). This is the default, not an absolute rule — exceptions exist (e.g. a columnist's quote).
 
 ### 4-B. Font Weight
 

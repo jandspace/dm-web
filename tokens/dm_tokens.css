@@ -1,7 +1,40 @@
 /* ============================================
+   DM Design System — Colour & Number Tokens
+   Version: 1.0.4
+   ============================================
+   Generated from tokens/dm_tokens.json by
+   tools/token-build/build_dm_tokens.py — do not edit by hand.
+
+   Structure:
+     1. Primitive colours (Foundation, Games Foundation)
+     2. Semantic colours — Light (:root) and Dark ([data-theme="dark"]),
+        grouped category › context › variant
+     3. Primitive and semantic numbers (spacing, border radius)
+   Typography tokens: dm_typography_web_tokens.css
+   ============================================ */
+
+
+/* ============================================
    Foundation - Primitive Color Scales
    ============================================ */
 :root {
+
+  /* Greys Scale */
+  --primitive-colors-greys-0: #ffffff;
+  --primitive-colors-greys-100: #fcfcfc;
+  --primitive-colors-greys-200: #f5f5f5;
+  --primitive-colors-greys-300: #e3e3e3;
+  --primitive-colors-greys-350: #e0e0e0;
+  --primitive-colors-greys-400: #cccccc;
+  --primitive-colors-greys-500: #999999;
+  --primitive-colors-greys-600: #666666;
+  --primitive-colors-greys-700: #4c4c4c;
+  --primitive-colors-greys-750: #404040;
+  --primitive-colors-greys-800: #333333;
+  --primitive-colors-greys-850: #242424;
+  --primitive-colors-greys-900: #191919;
+  --primitive-colors-greys-950: #121212;
+  --primitive-colors-greys-1000: #000000;
 
   /* Blue Scale */
   --primitive-colors-blue-50: #e6edf7;
@@ -39,18 +72,6 @@
   --primitive-colors-red-800: #5a0b1b;
   --primitive-colors-red-900: #2d060e;
 
-  /* Violet Scale */
-  --primitive-colors-violet-50: #eee7f1;
-  --primitive-colors-violet-100: #ddd0e3;
-  --primitive-colors-violet-200: #baa1c7;
-  --primitive-colors-violet-300: #9872ab;
-  --primitive-colors-violet-400: #75438f;
-  --primitive-colors-violet-500: #531473;
-  --primitive-colors-violet-600: #42105c;
-  --primitive-colors-violet-700: #320c45;
-  --primitive-colors-violet-800: #21082e;
-  --primitive-colors-violet-900: #110417;
-
   /* Green Scale */
   --primitive-colors-green-50: #e7f7e7;
   --primitive-colors-green-100: #ceeece;
@@ -63,17 +84,17 @@
   --primitive-colors-green-800: #054505;
   --primitive-colors-green-900: #022202;
 
-  /* Azure Scale */
-  --primitive-colors-azure-50: #edf0fc;
-  --primitive-colors-azure-100: #dae2fa;
-  --primitive-colors-azure-200: #b6c4f5;
-  --primitive-colors-azure-300: #91a7ef;
-  --primitive-colors-azure-400: #6d89ea;
-  --primitive-colors-azure-500: #486ce5;
-  --primitive-colors-azure-600: #3a56b7;
-  --primitive-colors-azure-700: #2b4189;
-  --primitive-colors-azure-800: #1d2b5c;
-  --primitive-colors-azure-900: #0e162e;
+  /* Violet Scale */
+  --primitive-colors-violet-50: #eee7f1;
+  --primitive-colors-violet-100: #ddd0e3;
+  --primitive-colors-violet-200: #baa1c7;
+  --primitive-colors-violet-300: #9872ab;
+  --primitive-colors-violet-400: #75438f;
+  --primitive-colors-violet-500: #531473;
+  --primitive-colors-violet-600: #42105c;
+  --primitive-colors-violet-700: #320c45;
+  --primitive-colors-violet-800: #21082e;
+  --primitive-colors-violet-900: #110417;
 
   /* Purple Scale */
   --primitive-colors-purple-50: #ece7ec;
@@ -86,6 +107,18 @@
   --primitive-colors-purple-700: #290b29;
   --primitive-colors-purple-800: #1c081b;
   --primitive-colors-purple-900: #0e040e;
+
+  /* Azure Scale */
+  --primitive-colors-azure-50: #edf0fc;
+  --primitive-colors-azure-100: #dae2fa;
+  --primitive-colors-azure-200: #b6c4f5;
+  --primitive-colors-azure-300: #91a7ef;
+  --primitive-colors-azure-400: #6d89ea;
+  --primitive-colors-azure-500: #486ce5;
+  --primitive-colors-azure-600: #3a56b7;
+  --primitive-colors-azure-700: #2b4189;
+  --primitive-colors-azure-800: #1d2b5c;
+  --primitive-colors-azure-900: #0e162e;
 
   /* Turquoise Scale */
   --primitive-colors-turquoise-50: #ebfafa;
@@ -147,17 +180,17 @@
   --primitive-colors-indigo-800: #060426;
   --primitive-colors-indigo-900: #030213;
 
-  /* Yellow Scale */
-  --primitive-colors-yellow-50: #fffde6;
-  --primitive-colors-yellow-100: #fffbcc;
-  --primitive-colors-yellow-200: #fff799;
-  --primitive-colors-yellow-300: #fef266;
-  --primitive-colors-yellow-400: #feee33;
-  --primitive-colors-yellow-500: #feea00;
-  --primitive-colors-yellow-600: #cbbb00;
-  --primitive-colors-yellow-700: #988c00;
-  --primitive-colors-yellow-800: #665e00;
-  --primitive-colors-yellow-900: #332f00;
+  /* Petrol Scale */
+  --primitive-colors-petrol-50: #e6ebed;
+  --primitive-colors-petrol-100: #ccd7db;
+  --primitive-colors-petrol-200: #99b0b7;
+  --primitive-colors-petrol-300: #678893;
+  --primitive-colors-petrol-400: #34616f;
+  --primitive-colors-petrol-500: #01394b;
+  --primitive-colors-petrol-600: #012e3c;
+  --primitive-colors-petrol-700: #01222d;
+  --primitive-colors-petrol-800: #00171e;
+  --primitive-colors-petrol-900: #000b0f;
 
   /* Fuchsia Scale */
   --primitive-colors-fuchsia-50: #f7edf9;
@@ -171,46 +204,17 @@
   --primitive-colors-fuchsia-800: #451c4f;
   --primitive-colors-fuchsia-900: #220e28;
 
-  /* Greys Scale */
-  --primitive-colors-greys-0: #ffffff;
-  --primitive-colors-greys-100: #fcfcfc;
-  --primitive-colors-greys-200: #f5f5f5;
-  --primitive-colors-greys-300: #e3e3e3;
-  --primitive-colors-greys-350: #e0e0e0;
-  --primitive-colors-greys-400: #cccccc;
-  --primitive-colors-greys-500: #999999;
-  --primitive-colors-greys-600: #666666;
-  --primitive-colors-greys-700: #4c4c4c;
-  --primitive-colors-greys-750: #404040;
-  --primitive-colors-greys-800: #333333;
-  --primitive-colors-greys-850: #242424;
-  --primitive-colors-greys-900: #191919;
-  --primitive-colors-greys-950: #121212;
-  --primitive-colors-greys-1000: #000000;
-
-  /* Pink Scale */
-  --primitive-colors-pink-50: #f9eff6;
-  --primitive-colors-pink-100: #f3e0ed;
-  --primitive-colors-pink-200: #e8c0db;
-  --primitive-colors-pink-300: #dca1c9;
-  --primitive-colors-pink-400: #d181b7;
-  --primitive-colors-pink-500: #c562a5;
-  --primitive-colors-pink-600: #9e4e84;
-  --primitive-colors-pink-700: #763b63;
-  --primitive-colors-pink-800: #4f2742;
-  --primitive-colors-pink-900: #271421;
-
-  /* Petrol Scale */
-  --primitive-colors-petrol-50: #e6ebed;
-  --primitive-colors-petrol-100: #ccd7db;
-  --primitive-colors-petrol-200: #99b0b7;
-  --primitive-colors-petrol-300: #678893;
-  --primitive-colors-petrol-400: #34616f;
-  --primitive-colors-petrol-500: #01394b;
-  --primitive-colors-petrol-600: #012e3c;
-  --primitive-colors-petrol-700: #01222d;
-  --primitive-colors-petrol-800: #00171e;
-  --primitive-colors-petrol-900: #000b0f;
+  /* Yellow Scale */
+  --primitive-colors-yellow-50: #fffde6;
+  --primitive-colors-yellow-100: #fffbcc;
+  --primitive-colors-yellow-200: #fff799;
+  --primitive-colors-yellow-300: #fef266;
+  --primitive-colors-yellow-400: #feee33;
+  --primitive-colors-yellow-500: #feea00;
+  --primitive-colors-yellow-600: #cbbb00;
+  --primitive-colors-yellow-700: #988c00;
+  --primitive-colors-yellow-800: #665e00;
+  --primitive-colors-yellow-900: #332f00;
 
   /* Ultramarine Scale */
   --primitive-colors-ultramarine-50: #eeedfc;
@@ -224,29 +228,42 @@
   --primitive-colors-ultramarine-800: #24205c;
   --primitive-colors-ultramarine-900: #12102e;
 
+  /* Pink Scale */
+  --primitive-colors-pink-50: #f9eff6;
+  --primitive-colors-pink-100: #f3e0ed;
+  --primitive-colors-pink-200: #e8c0db;
+  --primitive-colors-pink-300: #dca1c9;
+  --primitive-colors-pink-400: #d181b7;
+  --primitive-colors-pink-500: #c562a5;
+  --primitive-colors-pink-600: #9e4e84;
+  --primitive-colors-pink-700: #763b63;
+  --primitive-colors-pink-800: #4f2742;
+  --primitive-colors-pink-900: #271421;
+
   /* Translucent Scale */
   --primitive-colors-translucent-black-opacity-0: #00000000;
-  --primitive-colors-translucent-white-opacity-0: #ffffff00;
   --primitive-colors-translucent-black-opacity-10: #0000001a;
-  --primitive-colors-translucent-white-opacity-10: #ffffff1a;
   --primitive-colors-translucent-black-opacity-20: #00000033;
-  --primitive-colors-translucent-white-opacity-20: #ffffff33;
   --primitive-colors-translucent-black-opacity-30: #0000004d;
-  --primitive-colors-translucent-white-opacity-30: #ffffff4d;
   --primitive-colors-translucent-black-opacity-40: #00000066;
-  --primitive-colors-translucent-white-opacity-40: #ffffff66;
   --primitive-colors-translucent-black-opacity-50: #00000080;
-  --primitive-colors-translucent-white-opacity-50: #ffffff80;
   --primitive-colors-translucent-black-opacity-60: #00000099;
-  --primitive-colors-translucent-white-opacity-60: #ffffff99;
   --primitive-colors-translucent-black-opacity-70: #000000b3;
-  --primitive-colors-translucent-white-opacity-70: #ffffffb3;
   --primitive-colors-translucent-black-opacity-80: #000000cc;
-  --primitive-colors-translucent-white-opacity-80: #ffffffcc;
   --primitive-colors-translucent-black-opacity-90: #000000e6;
-  --primitive-colors-translucent-white-opacity-90: #ffffffe6;
   --primitive-colors-translucent-black-opacity-100: #000000;
+  --primitive-colors-translucent-white-opacity-0: #ffffff00;
+  --primitive-colors-translucent-white-opacity-10: #ffffff1a;
+  --primitive-colors-translucent-white-opacity-20: #ffffff33;
+  --primitive-colors-translucent-white-opacity-30: #ffffff4d;
+  --primitive-colors-translucent-white-opacity-40: #ffffff66;
+  --primitive-colors-translucent-white-opacity-50: #ffffff80;
+  --primitive-colors-translucent-white-opacity-60: #ffffff99;
+  --primitive-colors-translucent-white-opacity-70: #ffffffb3;
+  --primitive-colors-translucent-white-opacity-80: #ffffffcc;
+  --primitive-colors-translucent-white-opacity-90: #ffffffe6;
   --primitive-colors-translucent-white-opacity-100: #ffffff;
+
 }
 
 
@@ -314,6 +331,7 @@
   --primitive-colors-quiz-green-700: #007a5e;
   --primitive-colors-quiz-green-800: #00523f;
   --primitive-colors-quiz-green-900: #00291f;
+
 }
 
 
@@ -389,13 +407,6 @@
   --color-background-health-turquoise-subtlest: var(--primitive-colors-turquoise-50);
   --color-background-health-turquoise-deep: var(--primitive-colors-turquoise-700);
 
-  /* Background - Science Orange */
-  --color-background-science-orange-base: var(--primitive-colors-orange-500);
-  --color-background-science-orange-base-darker: var(--primitive-colors-orange-500);
-  --color-background-science-orange-subtle: var(--primitive-colors-orange-300);
-  --color-background-science-orange-subtlest: var(--primitive-colors-orange-50);
-  --color-background-science-orange-deep: var(--primitive-colors-orange-700);
-
   /* Background - TV Magenta */
   --color-background-tv-magenta-base: var(--primitive-colors-magenta-500);
   --color-background-tv-magenta-base-darker: var(--primitive-colors-magenta-500);
@@ -426,12 +437,70 @@
 
   /* Background - Property Fuchsia */
   --color-background-property-fuchsia-base: var(--primitive-colors-fuchsia-500);
+  --color-background-property-fuchsia-base-darker: var(--primitive-colors-fuchsia-500);
+  --color-background-property-fuchsia-subtle: var(--primitive-colors-fuchsia-300);
+  --color-background-property-fuchsia-subtlest: var(--primitive-colors-fuchsia-50);
+  --color-background-property-fuchsia-deep: var(--primitive-colors-fuchsia-700);
 
   /* Background - Podcasts Yellow */
   --color-background-podcasts-yellow-base: var(--primitive-colors-yellow-500);
+  --color-background-podcasts-yellow-base-darker: var(--primitive-colors-yellow-500);
+  --color-background-podcasts-yellow-subtle: var(--primitive-colors-yellow-300);
+  --color-background-podcasts-yellow-subtlest: var(--primitive-colors-yellow-50);
+  --color-background-podcasts-yellow-deep: var(--primitive-colors-yellow-700);
 
   /* Background - Games Ultramarine */
   --color-background-games-ultramarine-base: var(--primitive-colors-ultramarine-500);
+  --color-background-games-ultramarine-base-darker: var(--primitive-colors-ultramarine-500);
+  --color-background-games-ultramarine-subtle: var(--primitive-colors-ultramarine-300);
+  --color-background-games-ultramarine-subtlest: var(--primitive-colors-ultramarine-50);
+  --color-background-games-ultramarine-deep: var(--primitive-colors-ultramarine-700);
+
+  /* Background - Science Orange */
+  --color-background-science-orange-base: var(--primitive-colors-orange-500);
+  --color-background-science-orange-base-darker: var(--primitive-colors-orange-500);
+  --color-background-science-orange-subtle: var(--primitive-colors-orange-300);
+  --color-background-science-orange-subtlest: var(--primitive-colors-orange-50);
+  --color-background-science-orange-deep: var(--primitive-colors-orange-700);
+
+  /* Background - Interaction Primary */
+  --color-background-interaction-primary-default: var(--primitive-colors-blue-500);
+  --color-background-interaction-primary-hover: var(--primitive-colors-blue-700);
+  --color-background-interaction-primary-pressed: var(--primitive-colors-blue-300);
+
+  /* Background - Interaction Positive */
+  --color-background-interaction-positive-default: var(--primitive-colors-green-500);
+  --color-background-interaction-positive-hover: var(--primitive-colors-green-700);
+  --color-background-interaction-positive-pressed: var(--primitive-colors-green-300);
+
+  /* Background - Interaction Negative */
+  --color-background-interaction-negative-default: var(--primitive-colors-red-500);
+  --color-background-interaction-negative-hover: var(--primitive-colors-red-700);
+  --color-background-interaction-negative-pressed: var(--primitive-colors-red-300);
+
+  /* Background - Semantic Info */
+  --color-background-semantic-info-base: var(--primitive-colors-blue-500);
+  --color-background-semantic-info-subtle: var(--primitive-colors-blue-300);
+  --color-background-semantic-info-subtlest: var(--primitive-colors-blue-50);
+  --color-background-semantic-info-deep: var(--primitive-colors-blue-700);
+
+  /* Background - Semantic Success */
+  --color-background-semantic-success-base: var(--primitive-colors-green-500);
+  --color-background-semantic-success-subtle: var(--primitive-colors-green-300);
+  --color-background-semantic-success-subtlest: var(--primitive-colors-green-50);
+  --color-background-semantic-success-deep: var(--primitive-colors-green-700);
+
+  /* Background - Semantic Warning */
+  --color-background-semantic-warning-base: var(--primitive-colors-orange-500);
+  --color-background-semantic-warning-subtle: var(--primitive-colors-orange-300);
+  --color-background-semantic-warning-subtlest: var(--primitive-colors-orange-50);
+  --color-background-semantic-warning-deep: var(--primitive-colors-orange-700);
+
+  /* Background - Semantic Error */
+  --color-background-semantic-error-base: var(--primitive-colors-red-500);
+  --color-background-semantic-error-subtle: var(--primitive-colors-red-300);
+  --color-background-semantic-error-subtlest: var(--primitive-colors-red-50);
+  --color-background-semantic-error-deep: var(--primitive-colors-red-700);
 
   /* Background - Editorial Highlight */
   --color-background-editorial-highlight-base: var(--primitive-colors-red-500);
@@ -441,63 +510,6 @@
 
   /* Background - Editorial Analysis */
   --color-background-editorial-analysis-base: var(--primitive-colors-greys-900);
-
-  /* Background - Games Ultramarine */
-  --color-background-games-ultramarine-base-darker: var(--primitive-colors-ultramarine-500);
-  --color-background-games-ultramarine-subtle: var(--primitive-colors-ultramarine-300);
-  --color-background-games-ultramarine-subtlest: var(--primitive-colors-ultramarine-50);
-  --color-background-games-ultramarine-deep: var(--primitive-colors-ultramarine-700);
-
-  /* Background - Podcasts Yellow */
-  --color-background-podcasts-yellow-base-darker: var(--primitive-colors-yellow-500);
-  --color-background-podcasts-yellow-subtle: var(--primitive-colors-yellow-300);
-  --color-background-podcasts-yellow-subtlest: var(--primitive-colors-yellow-50);
-  --color-background-podcasts-yellow-deep: var(--primitive-colors-yellow-700);
-
-  /* Background - Property Fuchsia */
-  --color-background-property-fuchsia-base-darker: var(--primitive-colors-fuchsia-500);
-  --color-background-property-fuchsia-subtle: var(--primitive-colors-fuchsia-300);
-  --color-background-property-fuchsia-subtlest: var(--primitive-colors-fuchsia-50);
-  --color-background-property-fuchsia-deep: var(--primitive-colors-fuchsia-700);
-
-  /* Background - Interaction Primary */
-  --color-background-interaction-primary-default: var(--primitive-colors-blue-500);
-  --color-background-interaction-primary-hover: var(--primitive-colors-blue-700);
-  --color-background-interaction-primary-pressed: var(--primitive-colors-blue-300);
-
-  /* Background - Interaction Negative */
-  --color-background-interaction-negative-default: var(--primitive-colors-red-500);
-  --color-background-interaction-negative-hover: var(--primitive-colors-red-700);
-  --color-background-interaction-negative-pressed: var(--primitive-colors-red-300);
-
-  /* Background - Interaction Positive */
-  --color-background-interaction-positive-default: var(--primitive-colors-green-500);
-  --color-background-interaction-positive-hover: var(--primitive-colors-green-700);
-  --color-background-interaction-positive-pressed: var(--primitive-colors-green-300);
-
-  /* Background - Semantic Info */
-  --color-background-semantic-info-base: var(--primitive-colors-blue-500);
-  --color-background-semantic-info-subtlest: var(--primitive-colors-blue-50);
-  --color-background-semantic-info-subtle: var(--primitive-colors-blue-300);
-  --color-background-semantic-info-deep: var(--primitive-colors-blue-700);
-
-  /* Background - Semantic Success */
-  --color-background-semantic-success-base: var(--primitive-colors-green-500);
-  --color-background-semantic-success-subtlest: var(--primitive-colors-green-50);
-  --color-background-semantic-success-subtle: var(--primitive-colors-green-300);
-  --color-background-semantic-success-deep: var(--primitive-colors-green-700);
-
-  /* Background - Semantic Error */
-  --color-background-semantic-error-base: var(--primitive-colors-red-500);
-  --color-background-semantic-error-subtlest: var(--primitive-colors-red-50);
-  --color-background-semantic-error-subtle: var(--primitive-colors-red-300);
-  --color-background-semantic-error-deep: var(--primitive-colors-red-700);
-
-  /* Background - Semantic Warning */
-  --color-background-semantic-warning-base: var(--primitive-colors-orange-500);
-  --color-background-semantic-warning-subtlest: var(--primitive-colors-orange-50);
-  --color-background-semantic-warning-subtle: var(--primitive-colors-orange-300);
-  --color-background-semantic-warning-deep: var(--primitive-colors-orange-700);
 
   /* Background - Shade */
   --color-background-shade-pale: var(--primitive-colors-translucent-black-opacity-10);
@@ -555,11 +567,6 @@
   --color-text-health-turquoise-subtle: var(--primitive-colors-turquoise-300);
   --color-text-health-turquoise-deep: var(--primitive-colors-turquoise-700);
 
-  /* Text - Science Orange */
-  --color-text-science-orange-base: var(--primitive-colors-orange-500);
-  --color-text-science-orange-subtle: var(--primitive-colors-orange-300);
-  --color-text-science-orange-deep: var(--primitive-colors-orange-700);
-
   /* Text - TV Magenta */
   --color-text-tv-magenta-base: var(--primitive-colors-magenta-500);
   --color-text-tv-magenta-subtle: var(--primitive-colors-magenta-300);
@@ -572,22 +579,18 @@
 
   /* Text - Shopping Indigo */
   --color-text-shopping-indigo-base: var(--primitive-colors-indigo-500);
+  --color-text-shopping-indigo-subtle: var(--primitive-colors-indigo-300);
+  --color-text-shopping-indigo-deep: var(--primitive-colors-indigo-700);
 
   /* Text - Crime Petrol */
   --color-text-crime-petrol-base: var(--primitive-colors-petrol-500);
+  --color-text-crime-petrol-subtle: var(--primitive-colors-petrol-300);
+  --color-text-crime-petrol-deep: var(--primitive-colors-petrol-700);
 
   /* Text - Property Fuchsia */
   --color-text-property-fuchsia-base: var(--primitive-colors-fuchsia-500);
   --color-text-property-fuchsia-subtle: var(--primitive-colors-fuchsia-300);
   --color-text-property-fuchsia-deep: var(--primitive-colors-fuchsia-700);
-
-  /* Text - Crime Petrol */
-  --color-text-crime-petrol-subtle: var(--primitive-colors-petrol-300);
-  --color-text-crime-petrol-deep: var(--primitive-colors-petrol-700);
-
-  /* Text - Shopping Indigo */
-  --color-text-shopping-indigo-subtle: var(--primitive-colors-indigo-300);
-  --color-text-shopping-indigo-deep: var(--primitive-colors-indigo-700);
 
   /* Text - Podcasts Yellow */
   --color-text-podcasts-yellow-base: var(--primitive-colors-yellow-500);
@@ -599,20 +602,15 @@
   --color-text-games-ultramarine-subtle: var(--primitive-colors-ultramarine-300);
   --color-text-games-ultramarine-deep: var(--primitive-colors-ultramarine-700);
 
-  /* Text - Editorial Highlight */
-  --color-text-editorial-highlight-base: var(--primitive-colors-red-500);
-
-  /* Text - Editorial Feature */
-  --color-text-editorial-feature-base: var(--primitive-colors-blue-700);
-
-  /* Text - Editorial Analysis */
-  --color-text-editorial-analysis-base: var(--primitive-colors-greys-900);
+  /* Text - Science Orange */
+  --color-text-science-orange-base: var(--primitive-colors-orange-500);
+  --color-text-science-orange-subtle: var(--primitive-colors-orange-300);
+  --color-text-science-orange-deep: var(--primitive-colors-orange-700);
 
   /* Text - Interaction Primary */
   --color-text-interaction-primary-default: var(--primitive-colors-blue-500);
-
-  /* Text - Interaction Negative */
-  --color-text-interaction-negative-default: var(--primitive-colors-red-500);
+  --color-text-interaction-primary-hover: var(--primitive-colors-blue-700);
+  --color-text-interaction-primary-pressed: var(--primitive-colors-blue-300);
 
   /* Text - Interaction Positive */
   --color-text-interaction-positive-default: var(--primitive-colors-green-500);
@@ -620,12 +618,9 @@
   --color-text-interaction-positive-pressed: var(--primitive-colors-green-300);
 
   /* Text - Interaction Negative */
+  --color-text-interaction-negative-default: var(--primitive-colors-red-500);
   --color-text-interaction-negative-hover: var(--primitive-colors-red-700);
   --color-text-interaction-negative-pressed: var(--primitive-colors-red-300);
-
-  /* Text - Interaction Primary */
-  --color-text-interaction-primary-hover: var(--primitive-colors-blue-700);
-  --color-text-interaction-primary-pressed: var(--primitive-colors-blue-300);
 
   /* Text - Semantic Info */
   --color-text-semantic-info-base: var(--primitive-colors-blue-500);
@@ -635,20 +630,25 @@
   --color-text-semantic-success-base: var(--primitive-colors-green-500);
   --color-text-semantic-success-deep: var(--primitive-colors-green-700);
 
+  /* Text - Semantic Warning */
+  --color-text-semantic-warning-base: var(--primitive-colors-orange-500);
+  --color-text-semantic-warning-deep: var(--primitive-colors-orange-700);
+
   /* Text - Semantic Error */
   --color-text-semantic-error-base: var(--primitive-colors-red-500);
   --color-text-semantic-error-deep: var(--primitive-colors-red-700);
 
-  /* Text - Semantic Warning */
-  --color-text-semantic-warning-base: var(--primitive-colors-orange-500);
+  /* Text - Editorial Highlight */
+  --color-text-editorial-highlight-base: var(--primitive-colors-red-500);
+
+  /* Text - Editorial Feature */
+  --color-text-editorial-feature-base: var(--primitive-colors-blue-700);
+
+  /* Text - Editorial Analysis */
+  --color-text-editorial-analysis-base: var(--primitive-colors-greys-900);
 
   /* Icon - Neutral */
   --color-icon-neutral-white: var(--primitive-colors-greys-0);
-
-  /* Text - Semantic Warning */
-  --color-text-semantic-warning-deep: var(--primitive-colors-orange-700);
-
-  /* Icon - Neutral */
   --color-icon-neutral-lightest: var(--primitive-colors-greys-100);
   --color-icon-neutral-grey-light: var(--primitive-colors-greys-400);
   --color-icon-neutral-grey-dark: var(--primitive-colors-greys-600);
@@ -696,11 +696,6 @@
   --color-icon-health-turquoise-subtle: var(--primitive-colors-turquoise-300);
   --color-icon-health-turquoise-deep: var(--primitive-colors-turquoise-700);
 
-  /* Icon - Science Orange */
-  --color-icon-science-orange-base: var(--primitive-colors-orange-500);
-  --color-icon-science-orange-subtle: var(--primitive-colors-orange-300);
-  --color-icon-science-orange-deep: var(--primitive-colors-orange-700);
-
   /* Icon - TV Magenta */
   --color-icon-tv-magenta-base: var(--primitive-colors-magenta-500);
   --color-icon-tv-magenta-subtle: var(--primitive-colors-magenta-300);
@@ -713,22 +708,18 @@
 
   /* Icon - Shopping Indigo */
   --color-icon-shopping-indigo-base: var(--primitive-colors-indigo-500);
+  --color-icon-shopping-indigo-subtle: var(--primitive-colors-indigo-300);
+  --color-icon-shopping-indigo-deep: var(--primitive-colors-indigo-700);
 
   /* Icon - Crime Petrol */
   --color-icon-crime-petrol-base: var(--primitive-colors-petrol-500);
+  --color-icon-crime-petrol-subtle: var(--primitive-colors-petrol-300);
+  --color-icon-crime-petrol-deep: var(--primitive-colors-petrol-700);
 
   /* Icon - Property Fuchsia */
   --color-icon-property-fuchsia-base: var(--primitive-colors-fuchsia-500);
   --color-icon-property-fuchsia-subtle: var(--primitive-colors-fuchsia-300);
   --color-icon-property-fuchsia-deep: var(--primitive-colors-fuchsia-700);
-
-  /* Icon - Crime Petrol */
-  --color-icon-crime-petrol-subtle: var(--primitive-colors-petrol-300);
-  --color-icon-crime-petrol-deep: var(--primitive-colors-petrol-700);
-
-  /* Icon - Shopping Indigo */
-  --color-icon-shopping-indigo-subtle: var(--primitive-colors-indigo-300);
-  --color-icon-shopping-indigo-deep: var(--primitive-colors-indigo-700);
 
   /* Icon - Podcasts Yellow */
   --color-icon-podcasts-yellow-base: var(--primitive-colors-yellow-500);
@@ -737,34 +728,28 @@
 
   /* Icon - Games Ultramarine */
   --color-icon-games-ultramarine-base: var(--primitive-colors-ultramarine-500);
-
-  /* Icon - Editorial Highlight */
-  --color-icon-editorial-highlight-base: var(--primitive-colors-red-500);
-
-  /* Icon - Editorial Feature */
-  --color-icon-editorial-feature-base: var(--primitive-colors-blue-700);
-
-  /* Icon - Editorial Analysis */
-  --color-icon-editorial-analysis-base: var(--primitive-colors-greys-900);
-
-  /* Icon - Games Ultramarine */
   --color-icon-games-ultramarine-subtle: var(--primitive-colors-ultramarine-300);
   --color-icon-games-ultramarine-deep: var(--primitive-colors-ultramarine-700);
+
+  /* Icon - Science Orange */
+  --color-icon-science-orange-base: var(--primitive-colors-orange-500);
+  --color-icon-science-orange-subtle: var(--primitive-colors-orange-300);
+  --color-icon-science-orange-deep: var(--primitive-colors-orange-700);
 
   /* Icon - Interaction Primary */
   --color-icon-interaction-primary-default: var(--primitive-colors-blue-500);
   --color-icon-interaction-primary-hover: var(--primitive-colors-blue-700);
   --color-icon-interaction-primary-pressed: var(--primitive-colors-blue-300);
 
-  /* Icon - Interaction Negative */
-  --color-icon-interaction-negative-default: var(--primitive-colors-red-500);
-  --color-icon-interaction-negative-hover: var(--primitive-colors-red-700);
-  --color-icon-interaction-negative-pressed: var(--primitive-colors-red-300);
-
   /* Icon - Interaction Positive */
   --color-icon-interaction-positive-default: var(--primitive-colors-green-500);
   --color-icon-interaction-positive-hover: var(--primitive-colors-green-700);
   --color-icon-interaction-positive-pressed: var(--primitive-colors-green-300);
+
+  /* Icon - Interaction Negative */
+  --color-icon-interaction-negative-default: var(--primitive-colors-red-500);
+  --color-icon-interaction-negative-hover: var(--primitive-colors-red-700);
+  --color-icon-interaction-negative-pressed: var(--primitive-colors-red-300);
 
   /* Icon - Semantic Info */
   --color-icon-semantic-info-base: var(--primitive-colors-blue-500);
@@ -774,13 +759,22 @@
   --color-icon-semantic-success-base: var(--primitive-colors-green-500);
   --color-icon-semantic-success-deep: var(--primitive-colors-green-700);
 
+  /* Icon - Semantic Warning */
+  --color-icon-semantic-warning-base: var(--primitive-colors-orange-500);
+  --color-icon-semantic-warning-deep: var(--primitive-colors-orange-700);
+
   /* Icon - Semantic Error */
   --color-icon-semantic-error-base: var(--primitive-colors-red-500);
   --color-icon-semantic-error-deep: var(--primitive-colors-red-700);
 
-  /* Icon - Semantic Warning */
-  --color-icon-semantic-warning-base: var(--primitive-colors-orange-500);
-  --color-icon-semantic-warning-deep: var(--primitive-colors-orange-700);
+  /* Icon - Editorial Highlight */
+  --color-icon-editorial-highlight-base: var(--primitive-colors-red-500);
+
+  /* Icon - Editorial Feature */
+  --color-icon-editorial-feature-base: var(--primitive-colors-blue-700);
+
+  /* Icon - Editorial Analysis */
+  --color-icon-editorial-analysis-base: var(--primitive-colors-greys-900);
 
   /* Border - Neutral */
   --color-border-neutral-white: var(--primitive-colors-greys-0);
@@ -825,10 +819,6 @@
   --color-border-health-turquoise-base: var(--primitive-colors-turquoise-500);
   --color-border-health-turquoise-subtle: var(--primitive-colors-turquoise-300);
 
-  /* Border - Science Orange */
-  --color-border-science-orange-base: var(--primitive-colors-orange-500);
-  --color-border-science-orange-subtle: var(--primitive-colors-orange-300);
-
   /* Border - TV Magenta */
   --color-border-tv-magenta-base: var(--primitive-colors-magenta-500);
   --color-border-tv-magenta-subtle: var(--primitive-colors-magenta-300);
@@ -851,13 +841,35 @@
 
   /* Border - Podcasts Yellow */
   --color-border-podcasts-yellow-base: var(--primitive-colors-yellow-500);
+  --color-border-podcasts-yellow-subtle: var(--primitive-colors-yellow-300);
 
   /* Border - Games Ultramarine */
   --color-border-games-ultramarine-base: var(--primitive-colors-ultramarine-500);
   --color-border-games-ultramarine-subtle: var(--primitive-colors-ultramarine-300);
 
-  /* Border - Podcasts Yellow */
-  --color-border-podcasts-yellow-subtle: var(--primitive-colors-yellow-300);
+  /* Border - Science Orange */
+  --color-border-science-orange-base: var(--primitive-colors-orange-500);
+  --color-border-science-orange-subtle: var(--primitive-colors-orange-300);
+
+  /* Border - Semantic Info */
+  --color-border-semantic-info-base: var(--primitive-colors-blue-500);
+  --color-border-semantic-info-subtle: var(--primitive-colors-blue-300);
+  --color-border-semantic-info-deep: var(--primitive-colors-blue-700);
+
+  /* Border - Semantic Success */
+  --color-border-semantic-success-base: var(--primitive-colors-green-500);
+  --color-border-semantic-success-subtle: var(--primitive-colors-green-300);
+  --color-border-semantic-success-deep: var(--primitive-colors-green-700);
+
+  /* Border - Semantic Warning */
+  --color-border-semantic-warning-base: var(--primitive-colors-orange-500);
+  --color-border-semantic-warning-subtle: var(--primitive-colors-orange-300);
+  --color-border-semantic-warning-deep: var(--primitive-colors-orange-700);
+
+  /* Border - Semantic Error */
+  --color-border-semantic-error-base: var(--primitive-colors-red-500);
+  --color-border-semantic-error-subtle: var(--primitive-colors-red-300);
+  --color-border-semantic-error-deep: var(--primitive-colors-red-700);
 
   /* Border - Translucent Dark */
   --color-border-translucent-dark-clear: var(--primitive-colors-translucent-black-opacity-0);
@@ -871,35 +883,8 @@
   --color-border-translucent-light-subtle: var(--primitive-colors-translucent-white-opacity-20);
   --color-border-translucent-light-moderate: var(--primitive-colors-translucent-white-opacity-40);
 
-  /* Border - Semantic Info */
-  --color-border-semantic-info-base: var(--primitive-colors-blue-500);
-  --color-border-semantic-info-subtle: var(--primitive-colors-blue-300);
-  --color-border-semantic-info-deep: var(--primitive-colors-blue-700);
-
-  /* Border - Semantic Success */
-  --color-border-semantic-success-base: var(--primitive-colors-green-500);
-  --color-border-semantic-success-subtle: var(--primitive-colors-green-300);
-  --color-border-semantic-success-deep: var(--primitive-colors-green-700);
-
-  /* Border - Semantic Error */
-  --color-border-semantic-error-base: var(--primitive-colors-red-500);
-  --color-border-semantic-error-subtle: var(--primitive-colors-red-300);
-  --color-border-semantic-error-deep: var(--primitive-colors-red-700);
-
-  /* Border - Semantic Warning */
-  --color-border-semantic-warning-base: var(--primitive-colors-orange-500);
-  --color-border-semantic-warning-subtle: var(--primitive-colors-orange-300);
-  --color-border-semantic-warning-deep: var(--primitive-colors-orange-700);
-
   /* Effect - Translucent Dark */
   --color-effect-translucent-dark-clear: var(--primitive-colors-translucent-black-opacity-0);
-
-  /* Miscellaneous */
-  --color-miscellaneous-mailplus-mplus-blue: var(--primitive-colors-blue-500);
-  --color-miscellaneous-mailplus-mplus-solid-blue: #1b47a0;
-  --color-miscellaneous-mailplus-mplus-dark-blue: #1e3264;
-
-  /* Effect - Translucent Dark */
   --color-effect-translucent-dark-pale: var(--primitive-colors-translucent-black-opacity-10);
   --color-effect-translucent-dark-subtle: var(--primitive-colors-translucent-black-opacity-20);
   --color-effect-translucent-dark-moderate: var(--primitive-colors-translucent-black-opacity-40);
@@ -915,6 +900,11 @@
   --color-effect-translucent-light-deep: var(--primitive-colors-translucent-white-opacity-60);
   --color-effect-translucent-light-thick: var(--primitive-colors-translucent-white-opacity-80);
   --color-effect-translucent-light-solid: var(--primitive-colors-translucent-white-opacity-100);
+
+  /* Miscellaneous - Mailplus */
+  --color-miscellaneous-mailplus-mplus-blue: var(--primitive-colors-blue-500);
+  --color-miscellaneous-mailplus-mplus-solid-blue: #1b47a0;
+  --color-miscellaneous-mailplus-mplus-dark-blue: #1e3264;
 }
 
 
@@ -989,13 +979,6 @@
   --color-background-health-turquoise-subtlest: #263838;
   --color-background-health-turquoise-deep: var(--primitive-colors-turquoise-200);
 
-  /* Background - Science Orange (Dark) */
-  --color-background-science-orange-base: var(--primitive-colors-orange-300);
-  --color-background-science-orange-base-darker: var(--primitive-colors-orange-800);
-  --color-background-science-orange-subtle: var(--primitive-colors-orange-600);
-  --color-background-science-orange-subtlest: #3e2c20;
-  --color-background-science-orange-deep: var(--primitive-colors-orange-200);
-
   /* Background - TV Magenta (Dark) */
   --color-background-tv-magenta-base: var(--primitive-colors-magenta-300);
   --color-background-tv-magenta-base-darker: var(--primitive-colors-magenta-800);
@@ -1026,12 +1009,70 @@
 
   /* Background - Property Fuchsia (Dark) */
   --color-background-property-fuchsia-base: var(--primitive-colors-fuchsia-300);
+  --color-background-property-fuchsia-base-darker: var(--primitive-colors-fuchsia-800);
+  --color-background-property-fuchsia-subtle: var(--primitive-colors-fuchsia-600);
+  --color-background-property-fuchsia-subtlest: #342837;
+  --color-background-property-fuchsia-deep: var(--primitive-colors-fuchsia-200);
 
   /* Background - Podcasts Yellow (Dark) */
   --color-background-podcasts-yellow-base: var(--primitive-colors-yellow-300);
+  --color-background-podcasts-yellow-base-darker: var(--primitive-colors-yellow-800);
+  --color-background-podcasts-yellow-subtle: var(--primitive-colors-yellow-600);
+  --color-background-podcasts-yellow-subtlest: #3e3c20;
+  --color-background-podcasts-yellow-deep: var(--primitive-colors-yellow-200);
 
   /* Background - Games Ultramarine (Dark) */
   --color-background-games-ultramarine-base: var(--primitive-colors-ultramarine-300);
+  --color-background-games-ultramarine-base-darker: var(--primitive-colors-ultramarine-800);
+  --color-background-games-ultramarine-subtle: var(--primitive-colors-ultramarine-600);
+  --color-background-games-ultramarine-subtlest: #2a293b;
+  --color-background-games-ultramarine-deep: var(--primitive-colors-ultramarine-200);
+
+  /* Background - Science Orange (Dark) */
+  --color-background-science-orange-base: var(--primitive-colors-orange-300);
+  --color-background-science-orange-base-darker: var(--primitive-colors-orange-800);
+  --color-background-science-orange-subtle: var(--primitive-colors-orange-600);
+  --color-background-science-orange-subtlest: #3e2c20;
+  --color-background-science-orange-deep: var(--primitive-colors-orange-200);
+
+  /* Background - Interaction Primary (Dark) */
+  --color-background-interaction-primary-default: var(--primitive-colors-blue-300);
+  --color-background-interaction-primary-hover: var(--primitive-colors-blue-200);
+  --color-background-interaction-primary-pressed: var(--primitive-colors-blue-600);
+
+  /* Background - Interaction Positive (Dark) */
+  --color-background-interaction-positive-default: var(--primitive-colors-green-300);
+  --color-background-interaction-positive-hover: var(--primitive-colors-green-200);
+  --color-background-interaction-positive-pressed: var(--primitive-colors-green-600);
+
+  /* Background - Interaction Negative (Dark) */
+  --color-background-interaction-negative-default: var(--primitive-colors-red-300);
+  --color-background-interaction-negative-hover: var(--primitive-colors-red-200);
+  --color-background-interaction-negative-pressed: var(--primitive-colors-red-600);
+
+  /* Background - Semantic Info (Dark) */
+  --color-background-semantic-info-base: var(--primitive-colors-blue-300);
+  --color-background-semantic-info-subtle: var(--primitive-colors-blue-600);
+  --color-background-semantic-info-subtlest: #202935;
+  --color-background-semantic-info-deep: var(--primitive-colors-blue-200);
+
+  /* Background - Semantic Success (Dark) */
+  --color-background-semantic-success-base: var(--primitive-colors-green-300);
+  --color-background-semantic-success-subtle: var(--primitive-colors-green-600);
+  --color-background-semantic-success-subtlest: #213421;
+  --color-background-semantic-success-deep: var(--primitive-colors-green-200);
+
+  /* Background - Semantic Warning (Dark) */
+  --color-background-semantic-warning-base: var(--primitive-colors-orange-300);
+  --color-background-semantic-warning-subtle: var(--primitive-colors-orange-600);
+  --color-background-semantic-warning-subtlest: #3e2c20;
+  --color-background-semantic-warning-deep: var(--primitive-colors-orange-200);
+
+  /* Background - Semantic Error (Dark) */
+  --color-background-semantic-error-base: var(--primitive-colors-red-300);
+  --color-background-semantic-error-subtle: var(--primitive-colors-red-600);
+  --color-background-semantic-error-subtlest: #3b2328;
+  --color-background-semantic-error-deep: var(--primitive-colors-red-200);
 
   /* Background - Editorial Highlight (Dark) */
   --color-background-editorial-highlight-base: var(--primitive-colors-red-300);
@@ -1041,63 +1082,6 @@
 
   /* Background - Editorial Analysis (Dark) */
   --color-background-editorial-analysis-base: var(--primitive-colors-greys-350);
-
-  /* Background - Games Ultramarine (Dark) */
-  --color-background-games-ultramarine-base-darker: var(--primitive-colors-ultramarine-800);
-  --color-background-games-ultramarine-subtle: var(--primitive-colors-ultramarine-600);
-  --color-background-games-ultramarine-subtlest: #2a293b;
-  --color-background-games-ultramarine-deep: var(--primitive-colors-ultramarine-200);
-
-  /* Background - Podcasts Yellow (Dark) */
-  --color-background-podcasts-yellow-base-darker: var(--primitive-colors-yellow-800);
-  --color-background-podcasts-yellow-subtle: var(--primitive-colors-yellow-600);
-  --color-background-podcasts-yellow-subtlest: #3e3c20;
-  --color-background-podcasts-yellow-deep: var(--primitive-colors-yellow-200);
-
-  /* Background - Property Fuchsia (Dark) */
-  --color-background-property-fuchsia-base-darker: var(--primitive-colors-fuchsia-800);
-  --color-background-property-fuchsia-subtle: var(--primitive-colors-fuchsia-600);
-  --color-background-property-fuchsia-subtlest: #342837;
-  --color-background-property-fuchsia-deep: var(--primitive-colors-fuchsia-200);
-
-  /* Background - Interaction Primary (Dark) */
-  --color-background-interaction-primary-default: var(--primitive-colors-blue-300);
-  --color-background-interaction-primary-hover: var(--primitive-colors-blue-200);
-  --color-background-interaction-primary-pressed: var(--primitive-colors-blue-600);
-
-  /* Background - Interaction Negative (Dark) */
-  --color-background-interaction-negative-default: var(--primitive-colors-red-300);
-  --color-background-interaction-negative-hover: var(--primitive-colors-red-200);
-  --color-background-interaction-negative-pressed: var(--primitive-colors-red-600);
-
-  /* Background - Interaction Positive (Dark) */
-  --color-background-interaction-positive-default: var(--primitive-colors-green-300);
-  --color-background-interaction-positive-hover: var(--primitive-colors-green-200);
-  --color-background-interaction-positive-pressed: var(--primitive-colors-green-600);
-
-  /* Background - Semantic Info (Dark) */
-  --color-background-semantic-info-base: var(--primitive-colors-blue-300);
-  --color-background-semantic-info-subtlest: #202935;
-  --color-background-semantic-info-subtle: var(--primitive-colors-blue-600);
-  --color-background-semantic-info-deep: var(--primitive-colors-blue-200);
-
-  /* Background - Semantic Success (Dark) */
-  --color-background-semantic-success-base: var(--primitive-colors-green-300);
-  --color-background-semantic-success-subtlest: #213421;
-  --color-background-semantic-success-subtle: var(--primitive-colors-green-600);
-  --color-background-semantic-success-deep: var(--primitive-colors-green-200);
-
-  /* Background - Semantic Error (Dark) */
-  --color-background-semantic-error-base: var(--primitive-colors-red-300);
-  --color-background-semantic-error-subtlest: #3b2328;
-  --color-background-semantic-error-subtle: var(--primitive-colors-red-600);
-  --color-background-semantic-error-deep: var(--primitive-colors-red-200);
-
-  /* Background - Semantic Warning (Dark) */
-  --color-background-semantic-warning-base: var(--primitive-colors-orange-300);
-  --color-background-semantic-warning-subtlest: #3e2c20;
-  --color-background-semantic-warning-subtle: var(--primitive-colors-orange-600);
-  --color-background-semantic-warning-deep: var(--primitive-colors-orange-200);
 
   /* Background - Shade (Dark) */
   --color-background-shade-pale: var(--primitive-colors-translucent-black-opacity-20);
@@ -1155,11 +1139,6 @@
   --color-text-health-turquoise-subtle: var(--primitive-colors-turquoise-600);
   --color-text-health-turquoise-deep: var(--primitive-colors-turquoise-200);
 
-  /* Text - Science Orange (Dark) */
-  --color-text-science-orange-base: var(--primitive-colors-orange-300);
-  --color-text-science-orange-subtle: var(--primitive-colors-orange-600);
-  --color-text-science-orange-deep: var(--primitive-colors-orange-200);
-
   /* Text - TV Magenta (Dark) */
   --color-text-tv-magenta-base: var(--primitive-colors-magenta-300);
   --color-text-tv-magenta-subtle: var(--primitive-colors-magenta-600);
@@ -1172,22 +1151,18 @@
 
   /* Text - Shopping Indigo (Dark) */
   --color-text-shopping-indigo-base: var(--primitive-colors-indigo-300);
+  --color-text-shopping-indigo-subtle: var(--primitive-colors-indigo-600);
+  --color-text-shopping-indigo-deep: var(--primitive-colors-indigo-200);
 
   /* Text - Crime Petrol (Dark) */
   --color-text-crime-petrol-base: var(--primitive-colors-petrol-300);
+  --color-text-crime-petrol-subtle: var(--primitive-colors-petrol-600);
+  --color-text-crime-petrol-deep: var(--primitive-colors-petrol-200);
 
   /* Text - Property Fuchsia (Dark) */
   --color-text-property-fuchsia-base: var(--primitive-colors-fuchsia-300);
   --color-text-property-fuchsia-subtle: var(--primitive-colors-fuchsia-600);
   --color-text-property-fuchsia-deep: var(--primitive-colors-fuchsia-200);
-
-  /* Text - Crime Petrol (Dark) */
-  --color-text-crime-petrol-subtle: var(--primitive-colors-petrol-600);
-  --color-text-crime-petrol-deep: var(--primitive-colors-petrol-200);
-
-  /* Text - Shopping Indigo (Dark) */
-  --color-text-shopping-indigo-subtle: var(--primitive-colors-indigo-600);
-  --color-text-shopping-indigo-deep: var(--primitive-colors-indigo-200);
 
   /* Text - Podcasts Yellow (Dark) */
   --color-text-podcasts-yellow-base: var(--primitive-colors-yellow-300);
@@ -1199,20 +1174,15 @@
   --color-text-games-ultramarine-subtle: var(--primitive-colors-ultramarine-600);
   --color-text-games-ultramarine-deep: var(--primitive-colors-ultramarine-200);
 
-  /* Text - Editorial Highlight (Dark) */
-  --color-text-editorial-highlight-base: var(--primitive-colors-red-300);
-
-  /* Text - Editorial Feature (Dark) */
-  --color-text-editorial-feature-base: var(--primitive-colors-blue-200);
-
-  /* Text - Editorial Analysis (Dark) */
-  --color-text-editorial-analysis-base: var(--primitive-colors-greys-350);
+  /* Text - Science Orange (Dark) */
+  --color-text-science-orange-base: var(--primitive-colors-orange-300);
+  --color-text-science-orange-subtle: var(--primitive-colors-orange-600);
+  --color-text-science-orange-deep: var(--primitive-colors-orange-200);
 
   /* Text - Interaction Primary (Dark) */
   --color-text-interaction-primary-default: var(--primitive-colors-blue-300);
-
-  /* Text - Interaction Negative (Dark) */
-  --color-text-interaction-negative-default: var(--primitive-colors-red-300);
+  --color-text-interaction-primary-hover: var(--primitive-colors-blue-200);
+  --color-text-interaction-primary-pressed: var(--primitive-colors-blue-600);
 
   /* Text - Interaction Positive (Dark) */
   --color-text-interaction-positive-default: var(--primitive-colors-green-300);
@@ -1220,12 +1190,9 @@
   --color-text-interaction-positive-pressed: var(--primitive-colors-green-600);
 
   /* Text - Interaction Negative (Dark) */
+  --color-text-interaction-negative-default: var(--primitive-colors-red-300);
   --color-text-interaction-negative-hover: var(--primitive-colors-red-200);
   --color-text-interaction-negative-pressed: var(--primitive-colors-red-600);
-
-  /* Text - Interaction Primary (Dark) */
-  --color-text-interaction-primary-hover: var(--primitive-colors-blue-200);
-  --color-text-interaction-primary-pressed: var(--primitive-colors-blue-600);
 
   /* Text - Semantic Info (Dark) */
   --color-text-semantic-info-base: var(--primitive-colors-blue-300);
@@ -1235,20 +1202,25 @@
   --color-text-semantic-success-base: var(--primitive-colors-green-300);
   --color-text-semantic-success-deep: var(--primitive-colors-green-200);
 
+  /* Text - Semantic Warning (Dark) */
+  --color-text-semantic-warning-base: var(--primitive-colors-orange-300);
+  --color-text-semantic-warning-deep: var(--primitive-colors-orange-200);
+
   /* Text - Semantic Error (Dark) */
   --color-text-semantic-error-base: var(--primitive-colors-red-300);
   --color-text-semantic-error-deep: var(--primitive-colors-red-200);
 
-  /* Text - Semantic Warning (Dark) */
-  --color-text-semantic-warning-base: var(--primitive-colors-orange-300);
+  /* Text - Editorial Highlight (Dark) */
+  --color-text-editorial-highlight-base: var(--primitive-colors-red-300);
+
+  /* Text - Editorial Feature (Dark) */
+  --color-text-editorial-feature-base: var(--primitive-colors-blue-200);
+
+  /* Text - Editorial Analysis (Dark) */
+  --color-text-editorial-analysis-base: var(--primitive-colors-greys-350);
 
   /* Icon - Neutral (Dark) */
   --color-icon-neutral-white: var(--primitive-colors-greys-1000);
-
-  /* Text - Semantic Warning (Dark) */
-  --color-text-semantic-warning-deep: var(--primitive-colors-orange-200);
-
-  /* Icon - Neutral (Dark) */
   --color-icon-neutral-lightest: var(--primitive-colors-greys-950);
   --color-icon-neutral-grey-light: var(--primitive-colors-greys-750);
   --color-icon-neutral-grey-dark: var(--primitive-colors-greys-500);
@@ -1296,11 +1268,6 @@
   --color-icon-health-turquoise-subtle: var(--primitive-colors-turquoise-600);
   --color-icon-health-turquoise-deep: var(--primitive-colors-turquoise-200);
 
-  /* Icon - Science Orange (Dark) */
-  --color-icon-science-orange-base: var(--primitive-colors-orange-300);
-  --color-icon-science-orange-subtle: var(--primitive-colors-orange-600);
-  --color-icon-science-orange-deep: var(--primitive-colors-orange-200);
-
   /* Icon - TV Magenta (Dark) */
   --color-icon-tv-magenta-base: var(--primitive-colors-magenta-300);
   --color-icon-tv-magenta-subtle: var(--primitive-colors-magenta-600);
@@ -1313,22 +1280,18 @@
 
   /* Icon - Shopping Indigo (Dark) */
   --color-icon-shopping-indigo-base: var(--primitive-colors-indigo-300);
+  --color-icon-shopping-indigo-subtle: var(--primitive-colors-indigo-600);
+  --color-icon-shopping-indigo-deep: var(--primitive-colors-indigo-200);
 
   /* Icon - Crime Petrol (Dark) */
   --color-icon-crime-petrol-base: var(--primitive-colors-petrol-300);
+  --color-icon-crime-petrol-subtle: var(--primitive-colors-petrol-600);
+  --color-icon-crime-petrol-deep: var(--primitive-colors-petrol-200);
 
   /* Icon - Property Fuchsia (Dark) */
   --color-icon-property-fuchsia-base: var(--primitive-colors-fuchsia-300);
   --color-icon-property-fuchsia-subtle: var(--primitive-colors-fuchsia-600);
   --color-icon-property-fuchsia-deep: var(--primitive-colors-fuchsia-200);
-
-  /* Icon - Crime Petrol (Dark) */
-  --color-icon-crime-petrol-subtle: var(--primitive-colors-petrol-600);
-  --color-icon-crime-petrol-deep: var(--primitive-colors-petrol-200);
-
-  /* Icon - Shopping Indigo (Dark) */
-  --color-icon-shopping-indigo-subtle: var(--primitive-colors-indigo-600);
-  --color-icon-shopping-indigo-deep: var(--primitive-colors-indigo-200);
 
   /* Icon - Podcasts Yellow (Dark) */
   --color-icon-podcasts-yellow-base: var(--primitive-colors-yellow-300);
@@ -1337,34 +1300,28 @@
 
   /* Icon - Games Ultramarine (Dark) */
   --color-icon-games-ultramarine-base: var(--primitive-colors-ultramarine-300);
-
-  /* Icon - Editorial Highlight (Dark) */
-  --color-icon-editorial-highlight-base: var(--primitive-colors-red-300);
-
-  /* Icon - Editorial Feature (Dark) */
-  --color-icon-editorial-feature-base: var(--primitive-colors-blue-200);
-
-  /* Icon - Editorial Analysis (Dark) */
-  --color-icon-editorial-analysis-base: var(--primitive-colors-greys-350);
-
-  /* Icon - Games Ultramarine (Dark) */
   --color-icon-games-ultramarine-subtle: var(--primitive-colors-ultramarine-600);
   --color-icon-games-ultramarine-deep: var(--primitive-colors-ultramarine-200);
+
+  /* Icon - Science Orange (Dark) */
+  --color-icon-science-orange-base: var(--primitive-colors-orange-300);
+  --color-icon-science-orange-subtle: var(--primitive-colors-orange-600);
+  --color-icon-science-orange-deep: var(--primitive-colors-orange-200);
 
   /* Icon - Interaction Primary (Dark) */
   --color-icon-interaction-primary-default: var(--primitive-colors-blue-300);
   --color-icon-interaction-primary-hover: var(--primitive-colors-blue-200);
   --color-icon-interaction-primary-pressed: var(--primitive-colors-blue-600);
 
-  /* Icon - Interaction Negative (Dark) */
-  --color-icon-interaction-negative-default: var(--primitive-colors-red-300);
-  --color-icon-interaction-negative-hover: var(--primitive-colors-red-200);
-  --color-icon-interaction-negative-pressed: var(--primitive-colors-red-600);
-
   /* Icon - Interaction Positive (Dark) */
   --color-icon-interaction-positive-default: var(--primitive-colors-green-300);
   --color-icon-interaction-positive-hover: var(--primitive-colors-green-200);
   --color-icon-interaction-positive-pressed: var(--primitive-colors-green-600);
+
+  /* Icon - Interaction Negative (Dark) */
+  --color-icon-interaction-negative-default: var(--primitive-colors-red-300);
+  --color-icon-interaction-negative-hover: var(--primitive-colors-red-200);
+  --color-icon-interaction-negative-pressed: var(--primitive-colors-red-600);
 
   /* Icon - Semantic Info (Dark) */
   --color-icon-semantic-info-base: var(--primitive-colors-blue-300);
@@ -1374,13 +1331,22 @@
   --color-icon-semantic-success-base: var(--primitive-colors-green-300);
   --color-icon-semantic-success-deep: var(--primitive-colors-green-200);
 
+  /* Icon - Semantic Warning (Dark) */
+  --color-icon-semantic-warning-base: var(--primitive-colors-orange-300);
+  --color-icon-semantic-warning-deep: var(--primitive-colors-orange-200);
+
   /* Icon - Semantic Error (Dark) */
   --color-icon-semantic-error-base: var(--primitive-colors-red-300);
   --color-icon-semantic-error-deep: var(--primitive-colors-red-200);
 
-  /* Icon - Semantic Warning (Dark) */
-  --color-icon-semantic-warning-base: var(--primitive-colors-orange-300);
-  --color-icon-semantic-warning-deep: var(--primitive-colors-orange-200);
+  /* Icon - Editorial Highlight (Dark) */
+  --color-icon-editorial-highlight-base: var(--primitive-colors-red-300);
+
+  /* Icon - Editorial Feature (Dark) */
+  --color-icon-editorial-feature-base: var(--primitive-colors-blue-200);
+
+  /* Icon - Editorial Analysis (Dark) */
+  --color-icon-editorial-analysis-base: var(--primitive-colors-greys-350);
 
   /* Border - Neutral (Dark) */
   --color-border-neutral-white: var(--primitive-colors-greys-1000);
@@ -1425,10 +1391,6 @@
   --color-border-health-turquoise-base: var(--primitive-colors-turquoise-300);
   --color-border-health-turquoise-subtle: var(--primitive-colors-turquoise-600);
 
-  /* Border - Science Orange (Dark) */
-  --color-border-science-orange-base: var(--primitive-colors-orange-300);
-  --color-border-science-orange-subtle: var(--primitive-colors-orange-600);
-
   /* Border - TV Magenta (Dark) */
   --color-border-tv-magenta-base: var(--primitive-colors-magenta-300);
   --color-border-tv-magenta-subtle: var(--primitive-colors-magenta-600);
@@ -1451,13 +1413,35 @@
 
   /* Border - Podcasts Yellow (Dark) */
   --color-border-podcasts-yellow-base: var(--primitive-colors-yellow-300);
+  --color-border-podcasts-yellow-subtle: var(--primitive-colors-yellow-600);
 
   /* Border - Games Ultramarine (Dark) */
   --color-border-games-ultramarine-base: var(--primitive-colors-ultramarine-300);
   --color-border-games-ultramarine-subtle: var(--primitive-colors-ultramarine-600);
 
-  /* Border - Podcasts Yellow (Dark) */
-  --color-border-podcasts-yellow-subtle: var(--primitive-colors-yellow-600);
+  /* Border - Science Orange (Dark) */
+  --color-border-science-orange-base: var(--primitive-colors-orange-300);
+  --color-border-science-orange-subtle: var(--primitive-colors-orange-600);
+
+  /* Border - Semantic Info (Dark) */
+  --color-border-semantic-info-base: var(--primitive-colors-blue-300);
+  --color-border-semantic-info-subtle: var(--primitive-colors-blue-600);
+  --color-border-semantic-info-deep: var(--primitive-colors-blue-200);
+
+  /* Border - Semantic Success (Dark) */
+  --color-border-semantic-success-base: var(--primitive-colors-green-300);
+  --color-border-semantic-success-subtle: var(--primitive-colors-green-600);
+  --color-border-semantic-success-deep: var(--primitive-colors-green-200);
+
+  /* Border - Semantic Warning (Dark) */
+  --color-border-semantic-warning-base: var(--primitive-colors-orange-300);
+  --color-border-semantic-warning-subtle: var(--primitive-colors-orange-600);
+  --color-border-semantic-warning-deep: var(--primitive-colors-orange-200);
+
+  /* Border - Semantic Error (Dark) */
+  --color-border-semantic-error-base: var(--primitive-colors-red-300);
+  --color-border-semantic-error-subtle: var(--primitive-colors-red-600);
+  --color-border-semantic-error-deep: var(--primitive-colors-red-200);
 
   /* Border - Translucent Dark (Dark) */
   --color-border-translucent-dark-clear: var(--primitive-colors-translucent-white-opacity-0);
@@ -1471,35 +1455,8 @@
   --color-border-translucent-light-subtle: var(--primitive-colors-translucent-black-opacity-20);
   --color-border-translucent-light-moderate: var(--primitive-colors-translucent-black-opacity-40);
 
-  /* Border - Semantic Info (Dark) */
-  --color-border-semantic-info-base: var(--primitive-colors-blue-300);
-  --color-border-semantic-info-subtle: var(--primitive-colors-blue-600);
-  --color-border-semantic-info-deep: var(--primitive-colors-blue-200);
-
-  /* Border - Semantic Success (Dark) */
-  --color-border-semantic-success-base: var(--primitive-colors-green-300);
-  --color-border-semantic-success-subtle: var(--primitive-colors-green-600);
-  --color-border-semantic-success-deep: var(--primitive-colors-green-200);
-
-  /* Border - Semantic Error (Dark) */
-  --color-border-semantic-error-base: var(--primitive-colors-red-300);
-  --color-border-semantic-error-subtle: var(--primitive-colors-red-600);
-  --color-border-semantic-error-deep: var(--primitive-colors-red-200);
-
-  /* Border - Semantic Warning (Dark) */
-  --color-border-semantic-warning-base: var(--primitive-colors-orange-300);
-  --color-border-semantic-warning-subtle: var(--primitive-colors-orange-600);
-  --color-border-semantic-warning-deep: var(--primitive-colors-orange-200);
-
   /* Effect - Translucent Dark (Dark) */
   --color-effect-translucent-dark-clear: var(--primitive-colors-translucent-white-opacity-0);
-
-  /* Miscellaneous */
-  --color-miscellaneous-mailplus-mplus-blue: var(--primitive-colors-blue-300);
-  --color-miscellaneous-mailplus-mplus-solid-blue: #1b47a0;
-  --color-miscellaneous-mailplus-mplus-dark-blue: #1e3264;
-
-  /* Effect - Translucent Dark (Dark) */
   --color-effect-translucent-dark-pale: var(--primitive-colors-translucent-white-opacity-10);
   --color-effect-translucent-dark-subtle: var(--primitive-colors-translucent-white-opacity-20);
   --color-effect-translucent-dark-moderate: var(--primitive-colors-translucent-white-opacity-40);
@@ -1515,6 +1472,11 @@
   --color-effect-translucent-light-deep: var(--primitive-colors-translucent-black-opacity-60);
   --color-effect-translucent-light-thick: var(--primitive-colors-translucent-black-opacity-80);
   --color-effect-translucent-light-solid: var(--primitive-colors-translucent-black-opacity-100);
+
+  /* Miscellaneous - Mailplus (Dark) */
+  --color-miscellaneous-mailplus-mplus-blue: var(--primitive-colors-blue-300);
+  --color-miscellaneous-mailplus-mplus-solid-blue: #1b47a0;
+  --color-miscellaneous-mailplus-mplus-dark-blue: #1e3264;
 }
 
 
@@ -1742,32 +1704,6 @@
 
 
 /* ============================================
-   Usage Examples
-   ============================================ */
-
-/*
-  Light Mode (Default):
-  - No need to set data-theme attribute
-  - OR set <html data-theme="light">
-
-  Dark Mode:
-  - Set <html data-theme="dark">
-
-  Example HTML:
-  <html data-theme="light"> <!-- or "dark" -->
-    <body>
-      <div style="background-color: var(--color-background-home-blue-base);">
-        <p style="color: var(--color-text-neutral-white);">Home Blue Background</p>
-      </div>
-    </body>
-  </html>
-
-  JavaScript Theme Toggle:
-  document.documentElement.setAttribute('data-theme', 'dark');
-  document.documentElement.setAttribute('data-theme', 'light');
-*/
-
-/* ============================================
    Foundation - Primitive Numbers
    ============================================ */
 :root {
@@ -1795,7 +1731,7 @@
   --primitive-numbers-1400: 56px;
   --primitive-numbers-1500: 60px;
   --primitive-numbers-1600: 64px;
-  --primitive-numbers-full: 9999px;
+  --primitive-numbers-full: 999px;
 
 }
 
@@ -1849,31 +1785,17 @@
 
 
 /* ============================================
-   Foundation - Primitive Typography
+   Usage
    ============================================ */
-:root {
 
-  --primitive-typography-font-sans: 'Inter', sans-serif;
-  --primitive-typography-font-serif: 'Lora', serif;
+/*
+  Light mode (default): nothing to set, or <html data-theme="light">.
+  Dark mode: <html data-theme="dark">.
 
-}
+  Use semantic tokens in UI, never primitives:
+    background-color: var(--color-background-home-blue-base);
+    color: var(--color-text-neutral-white);
 
-
-/* ============================================
-   Semantic Typography Tokens
-   ============================================ */
-:root {
-
-  /* Font Family */
-  --typography-font-family-sans: var(--primitive-typography-font-sans);
-  --typography-font-family-serif: var(--primitive-typography-font-serif);
-
-  /* Font Weight */
-  --typography-font-weight-regular: 400;
-  --typography-font-weight-semibold: 600;
-  --typography-font-weight-bold: 700;
-  --typography-font-weight-regular-italic: 400;
-  --typography-font-weight-semibold-italic: 600;
-  --typography-font-weight-bold-italic: 700;
-
-}
+  Theme toggle:
+    document.documentElement.setAttribute('data-theme', 'dark');
+*/

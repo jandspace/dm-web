@@ -19,6 +19,7 @@ Design system documentation is stored in `docs/` and must be read before any com
 tokens/           — Design token source files (JSON + CSS)
 styles/           — SCSS source (styles/scss/) and compiled CSS (styles/css/main.css)
 index.html        — Demo index (Components / Modules), same list as the demo side panel
+foundation/       — Foundation: token reference pages (Colour…), values read live from tokens/
 components/       — Components: base UI elements (Button, Input, Tabs…) — one demo folder each
 modules/          — Modules: editorial / product blocks built from components (Article Card, Video Player Controls…)
 scripts/          — Demo-only JS (scripts/scaffolding/: side panel + index)
@@ -26,7 +27,7 @@ projects/         — Project-specific prototypes, organised by project > platfo
 experiments/      — A/B tests and one-off experiments (self-contained, never imported elsewhere)
 assets/           — Icons (Figma SVG originals) and images
 docs/             — Design system documentation (read before component work)
-tools/            — Demo page generators (tools/demo-generators/)
+tools/            — Generators: demo pages (tools/demo-generators/), token CSS (tools/token-build/)
 CLAUDE.md         — This file
 ```
 
@@ -67,6 +68,8 @@ Folders follow the Figma UI Kit and design system taxonomy: **Foundation › Com
 | `dm_typography_web_tokens.json` | JSON   | Figma variable export — web typography                               |
 | `dm_typography_web_tokens.css`  | CSS    | CSS custom properties for web typography                             |
 | `dm_typography_app_tokens.json` | JSON   | Figma variable export — app typography (iOS/Android)                 |
+
+`dm_tokens.css` is **generated** from `dm_tokens.json` — never edit it by hand. After a Figma export, run `python3 tools/token-build/build_dm_tokens.py > tokens/dm_tokens.css` (groups tokens by path: category › context › variant, in the Colour Tokens doc order). Typography (font family, weights, sizes) lives only in `dm_typography_web_tokens.css`.
 
 SCSS aliases: use `--spacing-N` and `--border-radius-N` in component files — they map to `--number-spacing-N` / `--number-border-radius-N` (`styles/scss/foundation/_spacing.scss`, `_border-radius.scss`).
 
@@ -166,10 +169,12 @@ Source of truth: `styles/scss/foundation/_breakpoints.scss` — use `@include bp
 
 ### Typefaces
 
-| Role              | Family | Usage                                            |
-| ----------------- | ------ | ------------------------------------------------ |
-| Sans (default)    | Inter  | All UI, body copy, labels, metadata              |
-| Serif (editorial) | Lora   | Article headlines, featured content, quotes only |
+| Role              | Family | Usage                                                              |
+| ----------------- | ------ | ------------------------------------------------------------------ |
+| Sans (default)    | Inter  | All UI, body copy, labels, metadata — **and article headlines on Web** |
+| Serif (editorial) | Lora   | Article headlines on **App** (iOS/Android), featured content, quotes |
+
+**Article headlines:** By default, article headlines use Inter on Web and Lora on App (iOS/Android). This is the default, not an absolute rule — exceptions exist (e.g. a columnist's quote). Follow Figma for each case.
 
 Never mix typefaces within a single UI component.
 
@@ -267,15 +272,15 @@ Line height values do not change across breakpoints.
 
 ### iOS
 
-Follow Apple HIG Dynamic Type natively. Do not override system leading values.
+Structured on Apple HIG Dynamic Type (Large Title … Caption 2), with DM's own values: fixed leading in `pt` per style and per Dynamic Type size — `typography-ios/leading/*` in `dm_typography_app_tokens.json` (modes: Large (Default), Small, xxxLarge). Use these token values, not the system defaults.
 
 ### Android
 
-Follow M3 sp values natively. Always define line height in `sp`, never `dp`.
+M3 role names with DM's own values (override the M3 defaults). Font size and line height in `sp`, never `dp` — `typography-android/size/*` and `typography-android/line-height/*` (modes: Default 1.0x, Small 0.9x, xxxLarge 1.35x; minimum 11sp). Role names follow the token file (e.g. 28sp = Headline Medium, 22sp = Headline Small, 20sp = Title Large, 17sp = Title Medium).
 
 ---
 
-## Letter Spacing (Web only)
+## Letter Spacing
 
 | Token   | Value  | Applied To           |
 | ------- | ------ | -------------------- |
@@ -284,7 +289,7 @@ Follow M3 sp values natively. Always define line height in `sp`, never `dp`.
 | normal  | 0      | Body, Label          |
 | wide    | +0.25% | Small text, metadata |
 
-iOS and Android: no overrides. Native defaults only.
+iOS and Android use the same four steps (`typography-ios/letter-spacing/*`, `typography-android/letter-spacing/*`: -0.5 / -0.2 / 0 / 0.25 — percent of the font size, as in Figma).
 
 ---
 
@@ -329,7 +334,7 @@ iOS and Android: no overrides. Native defaults only.
 
 ## Versioning
 
-All token files share the same version string (currently `1.0.4`). Update the `version` field in JSON files and the CSS comment header together when making changes.
+All token files share the same version string (currently `1.0.4`). Update the `version` field in JSON files and the CSS comment header together when making changes — for `dm_tokens.css` the generator writes the header from the JSON `version`.
 
 ## Styles Architecture
 
@@ -378,6 +383,7 @@ One-off tests and A/B variants live in `experiments/YYYYMM-exp-<name>/` (e.g. `2
 - **B (variant)** — same links, plus an inline `<style>` that overrides only the changed parts. Shared SCSS/CSS/JS is never edited for a variant, so A is unaffected.
 - **Fixed breakpoint:** when a test targets one breakpoint, the page frames itself in an iframe of that width (e.g. 1024px for LG) instead of being responsive.
 - Images go in the experiment's own `images/` folder.
+- **Experiment notes — always:** whenever you create or change files in `experiments/`, add or update that experiment's entry in `experiments/index.html` (the `EXPERIMENTS` list, newest first) in the same turn, without being asked: `id` (folder), `date` (start date), `title`, `status` (In progress / Decided / Archived), `notes` (what is tested and why — short), `result` (once decided), `pages` (label, file, one-line description for each test page). The year filter (All / YYYY) is built from `date`.
 - **After the test:** move the winning change into `styles/scss/components/` or `modules/` and `docs/`; keep or delete the folder.
 
 ---

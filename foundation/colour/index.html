@@ -1,0 +1,280 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Colour</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="../../tokens/dm_tokens.css" />
+    <link rel="stylesheet" href="../../tokens/dm_typography_web_tokens.css" />
+    <link rel="stylesheet" href="../../styles/css/main.css" />
+    <script src="../../scripts/scaffolding/demo-nav.js" defer></script>
+  </head>
+  <body class="demo-page-body">
+    <h1 class="demo-page-h1">Colour</h1>
+    <p class="demo-page-intro">
+      Every colour token, read live from <code>tokens/dm_tokens.json</code> (the Figma export) and grouped by its
+      designed path — family › category › context › variant, in the order of the Colour Tokens doc. Semantic tokens
+      show Light and Dark side by side with the primitive they point to (<em>custom</em> = a hand-set dark hex).
+      Use semantic tokens in UI, never primitives. Click a token name to copy <code>var(--…)</code>.
+    </p>
+
+    <div class="demo-vp-toolbar demo-vp-toolbar--sticky">
+      <span id="demo-colour-view-label">View</span>
+      <div class="demo-vp-toggle" role="group" aria-labelledby="demo-colour-view-label" id="demo-colour-view">
+        <button type="button" data-view="semantic" aria-pressed="true">Semantic</button>
+        <button type="button" data-view="primitive" aria-pressed="false">Primitive</button>
+      </div>
+      <span class="demo-vp-toolbar__divider" aria-hidden="true"></span>
+      <label for="demo-colour-search">Search</label>
+      <input class="demo-colour__search" id="demo-colour-search" type="search" placeholder="e.g. home-blue, text, 500" autocomplete="off" />
+      <span class="demo-vp-status" id="demo-colour-status"></span>
+    </div>
+
+    <!-- Built by the script below from the token file -->
+    <main class="demo-colour" id="demo-colour"></main>
+
+    <script>
+      // Scaffolding only — reads tokens/dm_tokens.json (the Figma export) and
+      // groups tokens by their designed path, not by file order:
+      //   Semantic  color/{category}/{context}/{variant}
+      //     set (DM · Games) → family (docs › Colour Tokens order) → category
+      //     table → context rows → variants in design order. Light | Dark.
+      //   Primitive Primitive Colors/{Scale}/{Step} (Foundation · Games Foundation)
+      // ?view=primitive|semantic and ?q=<search> are kept in the URL.
+      (async () => {
+        const root = document.getElementById('demo-colour');
+        const viewToggle = document.getElementById('demo-colour-view');
+        const search = document.getElementById('demo-colour-search');
+        const status = document.getElementById('demo-colour-status');
+
+        const json = await (await fetch('../../tokens/dm_tokens.json')).json();
+        const collection = (name) => json.collections.find((c) => c.name === name);
+        const slug = (s) => s.toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/^-|-$/g, '');
+        const title = (s) => s.replace(/-/g, ' ').replace(/\b\w/g, (c) => c.toUpperCase()).replace(/\bTv\b/, 'TV');
+
+        // ── Design order (docs/2_Token__02_Colour-Tokens.md) ──
+        const SECTIONS = ['home-blue', 'news-cyan', 'showbiz-red', 'sport-green', 'royals-violet', 'money-purple',
+          'lifestyle-azure', 'health-turquoise', 'tv-magenta', 'travel-navy', 'shopping-indigo', 'crime-petrol',
+          'property-fuchsia', 'podcasts-yellow', 'games-ultramarine', 'science-orange'];
+        const FAMILIES = [
+          ['Neutral', (c) => c === 'neutral'],
+          ['Brand & Channel', (c) => SECTIONS.includes(c)],
+          ['Interaction', (c) => c.startsWith('interaction-')],
+          ['Semantic Feedback', (c) => c.startsWith('semantic-')],
+          ['Editorial', (c) => c.startsWith('editorial-')],
+          ['Translucent & Shade', (c) => c === 'shade' || c.startsWith('translucent-')],
+          ['Miscellaneous', () => true],
+        ];
+        const CONTEXT_ORDER = ['neutral', ...SECTIONS,
+          'interaction-primary', 'interaction-positive', 'interaction-negative',
+          'semantic-info', 'semantic-success', 'semantic-warning', 'semantic-error',
+          'editorial-highlight', 'editorial-feature', 'editorial-analysis',
+          'shade', 'translucent-dark', 'translucent-light'];
+        const CATEGORY_ORDER = ['background', 'text', 'icon', 'border', 'effect', 'miscellaneous'];
+        const VARIANT_ORDER = ['white', 'lightest', 'lighter', 'light', 'grey-light', 'grey-dark', 'dark', 'darker', 'black',
+          'base', 'base-darker', 'subtle', 'subtlest', 'deep',
+          'default', 'hover', 'pressed',
+          'clear', 'pale', 'moderate', 'thick', 'solid'];
+        const rank = (list, v) => (list.indexOf(v) === -1 ? 999 : list.indexOf(v));
+
+        // ── Primitives: name → { hex, css var, short alias } ──
+        const primitives = new Map();
+        const primitiveSets = [];
+        [['Foundation', 'Foundation'], ['Games Foundation', 'Games']].forEach(([cname, set]) => {
+          const scales = new Map();
+          collection(cname).modes[0].variables
+            .filter((v) => v.type === 'color' && v.name.startsWith('Primitive Colors/'))
+            .forEach((v) => {
+              const [, scale, step] = v.name.split('/');
+              // Translucent holds black and white — show them as two scales
+              const scaleName = scale === 'Translucent' ? `Translucent ${title(step.split('-')[0])}` : title(scale);
+              const token = { name: `--primitive-colors-${slug(scale)}-${slug(step)}`, short: `${slug(scale)}-${slug(step)}`, value: v.value };
+              primitives.set(v.name, token);
+              if (!scales.has(scaleName)) scales.set(scaleName, []);
+              scales.get(scaleName).push(token);
+            });
+          primitiveSets.push({ set, scales });
+        });
+
+        // ── Semantic: set → family → category → context → variants ──
+        const semanticSets = [['DM Token', 'DM'], ['DM Games Token', 'Games']].map(([cname, set]) => {
+          const modes = collection(cname).modes;
+          const darkMode = modes.find((m) => m.name === 'Dark');
+          const darkByName = new Map(darkMode.variables.map((v) => [v.name, v]));
+          const tokens = modes
+            .find((m) => m.name === 'Light')
+            .variables.filter((v) => v.type === 'color')
+            .map((v) => {
+              const [, category, context, ...rest] = v.name.split('/');
+              return { name: `--${v.name.replace(/\//g, '-')}`, category, context, variant: rest.join('/'), light: v, dark: darkByName.get(v.name) };
+            });
+          return { set, tokens };
+        });
+
+        const valueOf = (v) => {
+          if (!v) return null;
+          if (!v.isAlias) return { hex: v.value, alias: 'custom' };
+          const p = primitives.get(v.value.name);
+          return p ? { hex: p.value, alias: p.short } : { hex: '', alias: v.value.name };
+        };
+
+        // ── Render helpers ──
+        const el = (tag, className, text) => {
+          const node = document.createElement(tag);
+          if (className) node.className = className;
+          if (text !== undefined) node.textContent = text;
+          return node;
+        };
+
+        const chip = (value) => {
+          const c = el('span', 'demo-colour__chip');
+          const fill = el('span');
+          fill.style.background = value;
+          c.append(fill);
+          return c;
+        };
+
+        // label: what is shown (defaults to the full name); copy is always var(--full-name)
+        const nameButton = (name, label = name) => {
+          const b = el('button', 'demo-colour__name', label);
+          b.type = 'button';
+          b.title = `Copy var(${name})`;
+          b.addEventListener('click', async () => {
+            try {
+              await navigator.clipboard.writeText(`var(${name})`);
+            } catch (e) {
+              /* clipboard may be unavailable — still show the name */
+            }
+            b.dataset.copied = '';
+            setTimeout(() => delete b.dataset.copied, 1200);
+          });
+          return b;
+        };
+
+        const valueCell = (v) => {
+          const td = el('td');
+          const val = valueOf(v);
+          if (!val) return td;
+          const wrap = el('div', 'demo-colour__value');
+          const text = el('div');
+          text.append(el('span', 'demo-colour__hex', val.hex), el('span', 'demo-colour__alias', val.alias));
+          wrap.append(chip(val.hex), text);
+          td.append(wrap);
+          return td;
+        };
+
+        const matches = (q, ...fields) => !q || fields.some((f) => f.toLowerCase().includes(q));
+
+        const renderPrimitive = (q) => {
+          let shown = 0;
+          primitiveSets.forEach(({ set, scales }) => {
+            const blocks = [];
+            scales.forEach((tokens, scaleName) => {
+              const hits = tokens.filter((t) => matches(q, t.name, scaleName));
+              if (!hits.length) return;
+              const strip = el('div', 'demo-colour__scale');
+              hits.forEach((t) => {
+                const step = el('div', 'demo-colour__step');
+                step.append(chip(t.value), nameButton(t.name, t.short), el('span', 'demo-colour__hex', t.value));
+                strip.append(step);
+              });
+              shown += hits.length;
+              blocks.push(el('h3', 'demo-colour__group', scaleName), strip);
+            });
+            if (blocks.length) root.append(el('h2', 'demo-colour__set', `${set} — primitive`), ...blocks);
+          });
+          return shown;
+        };
+
+        const renderSemantic = (q) => {
+          let shown = 0;
+          semanticSets.forEach(({ set, tokens }) => {
+            const hits = tokens.filter((t) => matches(q, t.name, title(t.context), t.category));
+            if (!hits.length) return;
+            root.append(el('h2', 'demo-colour__set', `${set} — semantic`));
+
+            // Games: one family; DM: families in docs order
+            const families = set === 'Games' ? [['Games', () => true]] : FAMILIES;
+            const used = new Set();
+            families.forEach(([family, test]) => {
+              const inFamily = hits.filter((t) => !used.has(t) && test(t.context));
+              inFamily.forEach((t) => used.add(t));
+              if (!inFamily.length) return;
+              root.append(el('h3', 'demo-colour__family', family));
+
+              [...new Set(inFamily.map((t) => t.category))]
+                .sort((a, b) => rank(CATEGORY_ORDER, a) - rank(CATEGORY_ORDER, b))
+                .forEach((category) => {
+                  const table = el('table', 'demo-colour__table');
+                  const caption = el('caption', 'demo-colour__category', title(category));
+                  const head = el('thead');
+                  const hr = el('tr');
+                  ['Token', 'Light', 'Dark'].forEach((h) => hr.append(el('th', '', h)));
+                  head.append(hr);
+                  table.append(caption, head);
+
+                  const inCategory = inFamily.filter((t) => t.category === category);
+                  [...new Set(inCategory.map((t) => t.context))]
+                    .sort((a, b) => rank(CONTEXT_ORDER, a) - rank(CONTEXT_ORDER, b))
+                    .forEach((context) => {
+                      const body = el('tbody');
+                      const lr = el('tr');
+                      const lc = el('th', 'demo-colour__subgroup', title(context));
+                      lc.colSpan = 3;
+                      lr.append(lc);
+                      body.append(lr);
+                      inCategory
+                        .filter((t) => t.context === context)
+                        .sort((a, b) => rank(VARIANT_ORDER, a.variant) - rank(VARIANT_ORDER, b.variant))
+                        .forEach((t) => {
+                          const tr = el('tr');
+                          const nameCell = el('td');
+                          nameCell.append(nameButton(t.name));
+                          tr.append(nameCell, valueCell(t.light), valueCell(t.dark));
+                          body.append(tr);
+                        });
+                      table.append(body);
+                    });
+                  root.append(table);
+                  shown += inCategory.length;
+                });
+            });
+          });
+          return shown;
+        };
+
+        // ── State ──
+        const params = new URLSearchParams(location.search);
+        let view = params.get('view') === 'primitive' ? 'primitive' : 'semantic';
+        search.value = params.get('q') || '';
+
+        const render = () => {
+          const q = search.value.trim().toLowerCase();
+          root.replaceChildren();
+          const shown = view === 'primitive' ? renderPrimitive(q) : renderSemantic(q);
+          if (!shown) root.append(el('p', 'demo-colour__empty', `No ${view} colour tokens match “${search.value}”.`));
+          status.textContent = `${shown} tokens`;
+          viewToggle.querySelectorAll('button').forEach((b) => b.setAttribute('aria-pressed', String(b.dataset.view === view)));
+
+          const url = new URL(location.href);
+          url.searchParams.set('view', view);
+          if (q) url.searchParams.set('q', search.value.trim());
+          else url.searchParams.delete('q');
+          history.replaceState(null, '', url);
+        };
+
+        viewToggle.addEventListener('click', (event) => {
+          const b = event.target.closest('button[data-view]');
+          if (!b) return;
+          view = b.dataset.view;
+          render();
+        });
+        search.addEventListener('input', render);
+        render();
+      })();
+    </script>
+  </body>
+</html>

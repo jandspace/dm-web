@@ -32,13 +32,14 @@ image required
 
 | Typeface | Role | Usage |
 |---|---|---|
-| **Sans (Inter)** | Primary | Used for the majority of UI and content. Body text and paragraphs, UI components (buttons, labels, navigation), metadata and supporting text. Inter is optimised for screen readability and should be used as the default typeface across all platforms. |
-| **Serif (Lora)** | Editorial | Used selectively for editorial emphasis. Article headlines and story titles, content cards and featured sections, author comments and quotes. Lora introduces a sense of authority and distinction, and should only be used in editorial contexts. |
+| **Sans (Inter)** | Primary | Used for the majority of UI and content. Body text and paragraphs, UI components (buttons, labels, navigation), metadata and supporting text, and article headlines on Web. Inter is optimised for screen readability and should be used as the default typeface across all platforms. |
+| **Serif (Lora)** | Editorial | Used selectively for editorial emphasis. Article headlines and story titles on App (iOS/Android), content cards and featured sections, author comments and quotes. Lora introduces a sense of authority and distinction, and should only be used in editorial contexts. |
 
 ### 2-B. Usage Principles
 
 - Default to Sans (Inter) for all functional and UI-related content
-- Use Serif (Lora) only where editorial emphasis is required (e.g., Article Headline)
+- Use Serif (Lora) only where editorial emphasis is required
+- **Article headlines:** By default, article headlines use Inter on Web and Lora on App (iOS/Android). This is the default, not an absolute rule — exceptions exist (e.g. a columnist's quote).
 - Avoid mixing typefaces within the same UI component
 - Prioritise readability and consistency over stylistic variation
 - Not all content requires editorial styling. Use Serif only where it adds clear value.

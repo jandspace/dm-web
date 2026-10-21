@@ -1,0 +1,407 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Experiments — DM Web UI Kit</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="../tokens/dm_tokens.css" />
+    <link rel="stylesheet" href="../tokens/dm_typography_web_tokens.css" />
+    <link rel="stylesheet" href="../styles/css/main.css" />
+
+    <!-- Page layout only (experiments may use an inline <style>):
+         left panel (logo · year menu) + accordion cards.
+         Folder / A-B conventions: CLAUDE.md › Experiments. -->
+    <style>
+      .exp-layout {
+        font-family: var(--typography-font-family-sans);
+        color: var(--color-text-neutral-darker);
+      }
+
+      /* ── Left panel ── */
+      .exp-nav {
+        padding: var(--spacing-24) var(--spacing-24) var(--spacing-32);
+        border-bottom: 1px solid var(--color-border-neutral-light);
+        background-color: var(--color-background-neutral-lighter);
+      }
+
+      @media (min-width: 768px) {
+        .exp-nav {
+          position: fixed;
+          top: 0;
+          bottom: 0;
+          left: 0;
+          width: 272px;
+          overflow-y: auto;
+          border-right: 1px solid var(--color-border-neutral-light);
+          border-bottom: 0;
+        }
+
+        .exp-main {
+          margin-left: 272px;
+        }
+      }
+
+      .exp-nav__logo {
+        display: block;
+        width: fit-content;
+        margin-bottom: var(--spacing-24);
+        text-decoration: none;
+      }
+
+      .exp-nav__logo img {
+        display: block;
+        width: 140px;
+        height: auto;
+      }
+
+      .exp-nav__strapline {
+        display: block;
+        margin-top: var(--spacing-6);
+        font-size: var(--typography-font-size-label-sm);
+        font-weight: var(--typography-font-weight-bold);
+        line-height: var(--typography-line-height-narrow);
+        letter-spacing: var(--typography-letter-spacing-wide);
+        color: var(--color-text-neutral-darker);
+        text-transform: uppercase;
+      }
+
+      .exp-nav__heading {
+        margin: var(--spacing-24) 0 var(--spacing-8);
+        font-size: 10px;
+        font-weight: var(--typography-font-weight-bold);
+        letter-spacing: 0.12em;
+        text-transform: uppercase;
+        color: var(--color-text-neutral-grey-dark);
+      }
+
+      .exp-nav__menu {
+        margin: 0;
+        padding: 0;
+        list-style: none;
+      }
+
+      .exp-nav__item {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        width: 100%;
+        padding: var(--spacing-6) var(--spacing-8);
+        border: 0;
+        border-radius: var(--border-radius-6);
+        background: none;
+        font: inherit;
+        font-size: 13px;
+        font-weight: var(--typography-font-weight-semibold);
+        color: var(--color-text-neutral-dark);
+        text-align: left;
+        cursor: pointer;
+      }
+
+      .exp-nav__item:hover {
+        background-color: var(--color-background-neutral-light);
+      }
+
+      .exp-nav__item[aria-current='true'] {
+        background-color: var(--color-background-neutral-lightest);
+        color: var(--color-text-interaction-primary-default);
+      }
+
+      .exp-nav__count {
+        font-weight: var(--typography-font-weight-regular);
+        color: var(--color-text-neutral-grey-dark);
+      }
+
+      .exp-nav__back {
+        display: inline-block;
+        margin-top: var(--spacing-24);
+        font-size: 12px;
+        color: var(--color-text-interaction-primary-default);
+      }
+
+      /* ── Content ── */
+      .exp-main {
+        max-width: calc(880px + 80px);
+        padding: var(--spacing-48) 40px;
+      }
+
+      .exp-main__title {
+        margin: 0 0 var(--spacing-24);
+        font-size: var(--typography-font-size-h2);
+        font-weight: var(--typography-font-weight-bold);
+        line-height: var(--typography-line-height-narrow);
+      }
+
+      .exp-year {
+        margin: var(--spacing-32) 0 var(--spacing-12);
+        font-size: 11px;
+        font-weight: var(--typography-font-weight-bold);
+        letter-spacing: 0.12em;
+        color: var(--color-text-neutral-grey-dark);
+      }
+
+      .exp-year:first-child {
+        margin-top: 0;
+      }
+
+      /* Card + accordion (<details>): head always visible, body collapses */
+      .exp-card {
+        margin-bottom: var(--spacing-12);
+        border: 1px solid var(--color-border-neutral-light);
+        border-radius: var(--border-radius-8);
+        background-color: var(--color-background-neutral-white);
+      }
+
+      .exp-card__head {
+        position: relative;
+        display: block;
+        padding: var(--spacing-16) var(--spacing-48) var(--spacing-16) var(--spacing-20);
+        cursor: pointer;
+        list-style: none;
+      }
+
+      .exp-card__head::-webkit-details-marker {
+        display: none;
+      }
+
+      /* Chevron — points down when closed, up when open */
+      .exp-card__head::after {
+        content: '';
+        position: absolute;
+        top: 50%;
+        right: var(--spacing-20);
+        width: 8px;
+        height: 8px;
+        border-right: 1.5px solid var(--color-icon-neutral-dark);
+        border-bottom: 1.5px solid var(--color-icon-neutral-dark);
+        transform: translateY(-75%) rotate(45deg);
+        transition: transform 0.2s;
+      }
+
+      .exp-card[open] .exp-card__head::after {
+        transform: translateY(-25%) rotate(-135deg);
+      }
+
+      .exp-card__head:hover .exp-card__title {
+        color: var(--color-text-interaction-primary-default);
+      }
+
+      .exp-card__head:focus-visible {
+        outline: 2px solid var(--color-border-home-blue-base);
+        outline-offset: -2px;
+        border-radius: var(--border-radius-8);
+      }
+
+      .exp-card__meta {
+        display: flex;
+        flex-wrap: wrap;
+        align-items: center;
+        gap: var(--spacing-8);
+        margin-bottom: var(--spacing-6);
+        font-size: 12px;
+        color: var(--color-text-neutral-grey-dark);
+      }
+
+      /* Status badge — colour by status (semantic tokens) */
+      .exp-card__status {
+        padding: 1px var(--spacing-6);
+        border-radius: var(--border-radius-4);
+        background-color: var(--color-background-neutral-lighter);
+        font-weight: var(--typography-font-weight-semibold);
+        color: var(--color-text-neutral-dark);
+      }
+
+      .exp-card__status--in-progress {
+        background-color: var(--color-background-semantic-info-subtlest);
+        color: var(--color-text-semantic-info-deep);
+      }
+
+      .exp-card__status--decided {
+        background-color: var(--color-background-semantic-success-subtlest);
+        color: var(--color-text-semantic-success-deep);
+      }
+
+      .exp-card__status--archived {
+        background-color: var(--color-background-neutral-lighter);
+        color: var(--color-text-neutral-grey-dark);
+      }
+
+      /* Archived experiments read as past work */
+      .exp-card--archived {
+        opacity: 0.7;
+      }
+
+      .exp-card__title {
+        margin: 0;
+        font-size: var(--typography-font-size-h5);
+        font-weight: var(--typography-font-weight-semibold);
+        line-height: var(--typography-line-height-compact);
+      }
+
+      .exp-card__body {
+        padding: var(--spacing-16) var(--spacing-20) var(--spacing-20);
+        border-top: 1px solid var(--color-border-neutral-light);
+      }
+
+      .exp-card__text {
+        margin: 0 0 var(--spacing-8);
+        font-size: var(--typography-font-size-text-sm);
+        line-height: var(--typography-line-height-normal);
+        color: var(--color-text-neutral-dark);
+      }
+
+      .exp-card__links {
+        display: flex;
+        flex-direction: column;
+        gap: var(--spacing-4);
+        margin: var(--spacing-12) 0 0;
+        padding: 0;
+        list-style: none;
+        font-size: var(--typography-font-size-text-sm);
+        line-height: var(--typography-line-height-normal);
+      }
+
+      .exp-card__links a {
+        font-weight: var(--typography-font-weight-semibold);
+        color: var(--color-text-interaction-primary-default);
+      }
+
+      .exp-card__links span {
+        color: var(--color-text-neutral-grey-dark);
+      }
+    </style>
+  </head>
+  <body>
+    <div class="exp-layout">
+      <nav class="exp-nav" aria-label="Experiments">
+        <a class="exp-nav__logo" href="./">
+          <img src="../assets/images/logo-dailymail.svg" alt="Daily Mail" width="140" height="29" />
+          <span class="exp-nav__strapline">Experiments</span>
+        </a>
+
+        <p class="exp-nav__heading" id="exp-year-label">Year</p>
+        <ul class="exp-nav__menu" id="exp-year" aria-labelledby="exp-year-label"></ul>
+
+        <a class="exp-nav__back" href="../">← Web UI Kit</a>
+      </nav>
+
+      <main class="exp-main">
+        <h1 class="exp-main__title">Experiments</h1>
+        <div id="exp-list"></div>
+      </main>
+    </div>
+
+    <script>
+      // ── Experiment notes ────────────────────────────────────────────────────
+      // One entry per experiment, newest first. Claude Code adds or updates the
+      // entry whenever it creates or changes files in experiments/ (CLAUDE.md ›
+      // Experiments). The year menu is built from `date`.
+      //
+      //   id       folder name (YYYYMM-exp-<name>)
+      //   date     'YYYY-MM-DD' — when the experiment started
+      //   title    short name
+      //   status   'In progress' | 'Decided' | 'Archived'
+      //   notes    what is tested and why (one or more paragraphs)
+      //   result   outcome / decision, once there is one
+      //   pages    [label, file in the folder, one-line description]
+      const EXPERIMENTS = [
+        {
+          id: '202610-exp-preview-hover',
+          date: '2026-10-21',
+          title: 'Preview hover — card hover treatment',
+          status: 'In progress',
+          notes: [
+            'Compares two hover treatments for article cards on a real section front: Figma lead block “lead-alpha” (8104:231432) with a gamma Banner Story on top, fixed at LG ≥1024 in a 1024px frame.',
+            'A is the design system as it is today. B removes the grey hover surface and underlines the headline instead — also on the Banner Story headline and on each Live Key Update.',
+          ],
+          result: '',
+          pages: [
+            ['A — Control', 'hover-a.html', 'Shared CSS only: grey hover surface (zoom-in) + headline turns interaction-primary.'],
+            ['B — Variant', 'hover-b.html', 'Inline overrides: no hover surface, headline / banner / key-update underline.'],
+          ],
+        },
+      ];
+
+      (() => {
+        const list = document.getElementById('exp-list');
+        const menu = document.getElementById('exp-year');
+        const years = [...new Set(EXPERIMENTS.map((e) => e.date.slice(0, 4)))].sort().reverse();
+
+        const el = (tag, className, text) => {
+          const node = document.createElement(tag);
+          if (className) node.className = className;
+          if (text) node.textContent = text;
+          return node;
+        };
+
+        // Accordion card: <details> head = date · status · folder · title
+        const card = (e, open) => {
+          const status = e.status.toLowerCase().replace(/\s+/g, '-'); // 'In progress' → in-progress
+          const item = el('details', `exp-card exp-card--${status}`);
+          item.open = open;
+
+          const head = el('summary', 'exp-card__head');
+          const meta = el('div', 'exp-card__meta');
+          meta.append(el('span', '', e.date), el('span', `exp-card__status exp-card__status--${status}`, e.status), el('code', '', e.id));
+          head.append(meta, el('h3', 'exp-card__title', e.title));
+
+          const body = el('div', 'exp-card__body');
+          e.notes.forEach((p) => body.append(el('p', 'exp-card__text', p)));
+          if (e.result) body.append(el('p', 'exp-card__text', `Result: ${e.result}`));
+          const links = el('ul', 'exp-card__links');
+          e.pages.forEach(([label, file, desc]) => {
+            const li = el('li');
+            const a = el('a', '', label);
+            a.href = `${e.id}/${file}`;
+            li.append(a, el('span', '', ` — ${desc}`));
+            links.append(li);
+          });
+          body.append(links);
+
+          item.append(head, body);
+          return item;
+        };
+
+        const render = (year) => {
+          list.replaceChildren();
+          let first = true; // the top item of the list starts open
+          years
+            .filter((y) => year === 'all' || y === year)
+            .forEach((y) => {
+              list.append(el('h2', 'exp-year', y));
+              EXPERIMENTS.filter((e) => e.date.startsWith(y)).forEach((e) => {
+                list.append(card(e, first));
+                first = false;
+              });
+            });
+          menu.querySelectorAll('button').forEach((b) => b.setAttribute('aria-current', String(b.dataset.year === year)));
+          const url = new URL(location.href);
+          if (year === 'all') url.searchParams.delete('year');
+          else url.searchParams.set('year', year);
+          history.replaceState(null, '', url);
+        };
+
+        // Year menu: All + one item per year, with counts
+        ['all', ...years].forEach((y) => {
+          const count = y === 'all' ? EXPERIMENTS.length : EXPERIMENTS.filter((e) => e.date.startsWith(y)).length;
+          const b = el('button', 'exp-nav__item');
+          b.type = 'button';
+          b.dataset.year = y;
+          b.append(el('span', '', y === 'all' ? 'All' : y), el('span', 'exp-nav__count', String(count)));
+          const li = el('li');
+          li.append(b);
+          menu.append(li);
+        });
+        menu.addEventListener('click', (event) => {
+          const b = event.target.closest('button[data-year]');
+          if (b) render(b.dataset.year);
+        });
+
+        const initial = new URLSearchParams(location.search).get('year');
+        render(years.includes(initial) ? initial : 'all');
+      })();
+    </script>
+  </body>
+</html>

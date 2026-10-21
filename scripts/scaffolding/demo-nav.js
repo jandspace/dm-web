@@ -18,6 +18,10 @@
 (() => {
   const NAV = [
     {
+      group: 'Foundation',
+      items: [{ name: 'Colour', path: 'foundation/colour/' }],
+    },
+    {
       group: 'Components',
       items: [{ name: 'Button', path: 'components/button/', pages: [['Generator', 'button-gen.html']] }],
     },
