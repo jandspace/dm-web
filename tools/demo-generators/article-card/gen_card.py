@@ -1,10 +1,10 @@
-"""Generates components/article-card/index.html (Article Card demo page).
+"""Generates modules/article-card/index.html (Article Card demo page).
 
 Card markup is built here; the page shell, toolbar and demo script live in
 card_template.html ({body} is replaced with the generated cards).
 
 Run from the repo root:
-    python3 tools/demo-generators/article-card/gen_card.py > components/article-card/index.html
+    python3 tools/demo-generators/article-card/gen_card.py > modules/article-card/index.html
 """
 
 HEADLINE = "Headline of Daily Mail article preview card - lorem ipsum dolor sit amet, con sectetur adipiscing jand"
@@ -12,7 +12,7 @@ IMG = '<img src="../../assets/images/article-card-placeholder.jpg" alt="" />'
 IMG_PORTRAIT = '<img src="../../assets/images/article-card-placeholder-portrait.jpg" alt="" />'
 BADGE_SIZE = {2: "lg", 3: "md", 4: "md", 5: "sm", 6: "xs"}
 MPLUS = '<span class="badge__mplus"><img src="../../assets/images/mail-plus-lozenge.svg" alt="M+" /></span>'
-# Article Card Metadata — Channel Only (components/article-card-metadata)
+# Article Card Metadata — Channel Only (modules/article-card-metadata)
 META = ('<div class="article-card__metadata article-card-metadata">'
         '<div class="article-card-metadata__info">'
         '<a class="article-card-metadata__channel" href="#channel"><span class="article-card-metadata__channel-text">Channel</span></a>'

@@ -101,6 +101,6 @@ Article Card Metadata, Comment Only, centred and light on the black panel:
 
 | | Path |
 |---|---|
-| Component | `styles/scss/components/_article-card-banner.scss` |
-| Demo | `components/article-card-banner/index.html` (Viewport: Live · XL 1440 · LG 1024 · MD 768 · SM 720 · XS 390) |
+| Component | `styles/scss/modules/_article-card-banner.scss` |
+| Demo | `modules/article-card-banner/index.html` (Viewport: Live · XL 1440 · LG 1024 · MD 768 · SM 720 · XS 390) |
 | Artwork (demo) | `assets/images/article-card-banner-wide.jpg`, `-sm.jpg`, `-xs.jpg` |

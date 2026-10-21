@@ -4,7 +4,7 @@ An Article Card previews one article: media, headline and metadata. It is the bu
 
 Figma: Web UI Kit › Article Card (`5209:5051`), Article Card - Image Only (`5525:5532`), Article Card Metadata (`108:7232`)
 
-The full-width top story is a separate block — see [Article Card — Banner Story](4_Components__10_Article-Card-Banner.md).
+The full-width top story is a separate block — see [Article Card — Banner Story](5_Modules__02_Article-Card-Banner.md).
 
 ---
 
@@ -75,7 +75,7 @@ XL 152 · LG 120 · MD / SM-XS 128px
 ### 3-C. Play Icon (video articles)
 
 - **Video articles only.** Present in the HTML only for video; never shipped and hidden. Decorative (`aria-hidden`) — the whole card is the link.
-- Markup: `.article-card__video` inside `.article-card__media`, holding a Video Player Controls play button (`.video-play`, see `components/video-player-controls/`).
+- Markup: `.article-card__video` inside `.article-card__media`, holding a Video Player Controls play button (`.video-play`, see `modules/video-player-controls/`).
 - Position: bottom-left, 8px inset (SM thumbs 6px). MD (Vertical Media): centred on the media, with the duration pill (`.video-timer`) 8px below.
 - Size by card type — set per breakpoint in CSS (`play-size()` mixin), not with a modifier:
 
@@ -182,8 +182,8 @@ The disc behind the columnist photo is **editor-controlled per channel**, from t
 
 | | Path |
 |---|---|
-| Card | `styles/scss/components/_article-card.scss`, `_article-card-image-only.scss`, `_article-card-key-updates.scss`, `_article-card-video.scss` |
-| Video controls | `_video-player-controls.scss` — demo `components/video-player-controls/index.html` |
+| Card | `styles/scss/modules/_article-card.scss`, `_article-card-image-only.scss`, `_article-card-key-updates.scss`, `_article-card-video.scss` |
+| Video controls | `_video-player-controls.scss` — demo `modules/video-player-controls/index.html` |
 | Metadata | `_article-card-metadata.scss`, `_columnist-profile-photo.scss`, `_columnist-comment-announcement.scss` · section map `foundation/_sections.scss` |
-| Demo | `components/article-card/index.html` (toolbar: Viewport · Badge · Preview · Metadata · Play icon), `viewports.html` (every type × breakpoint), `components/article-card-metadata/index.html` |
+| Demo | `modules/article-card/index.html` (toolbar: Viewport · Badge · Preview · Metadata · Play icon), `viewports.html` (every type × breakpoint), `modules/article-card-metadata/index.html` |
 | Generators | `tools/demo-generators/` — the two `index.html` demo pages are generated |

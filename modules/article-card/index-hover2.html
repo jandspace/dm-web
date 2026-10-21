@@ -3,13 +3,34 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Article Card</title>
+    <title>Article Card — Hover test 2</title>
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet" />
     <link rel="stylesheet" href="../../tokens/dm_tokens.css" />
     <link rel="stylesheet" href="../../tokens/dm_typography_web_tokens.css" />
     <link rel="stylesheet" href="../../styles/css/main.css" />
+    <script src="../../scripts/scaffolding/demo-nav.js" defer></script>
+    <!-- ════════════════════════════════════════════════════
+         HOVER TEST 2 — throwaway comparison page.
+         Inline <style> on purpose (exception to the no-<style> rule):
+         this file overrides index.html's hover only, and gets deleted
+         once a direction is chosen. Nothing in styles/ is changed.
+           · Card hover surface (grey background) — removed
+           · Headline — underline on card hover (colour change kept)
+    ════════════════════════════════════════════════════ -->
+    <style>
+      .article-card::before {
+        display: none;
+      }
+
+      .article-card:hover .article-card__link,
+      .article-card:has(.article-card__link:focus-visible) .article-card__link {
+        text-decoration: underline;
+        text-decoration-thickness: 1px;
+        text-underline-offset: 0.15em;
+      }
+    </style>
   </head>
   <body class="demo-page-body demo-page-body--canvas demo-page-body--flush">
     <svg style="display: none" aria-hidden="true">
@@ -26,9 +47,6 @@
       <symbol id="ico-square-dashed" viewBox="0 0 32 32">
         <path d="M12.733 32H6.893C3.093 32 0 28.907 0 25.107v-5.84h3.387v5.84c0 1.933 1.573 3.507 3.506 3.507h5.84V32zm19.267-19.267h-3.387V6.893c0-1.933-1.573-3.506-3.506-3.506h-5.84V0h5.84C28.907 0 32 3.093 32 6.893v5.84zM3.387 12.733H0V6.893C0 3.093 3.093 0 6.893 0h5.84v3.387h-5.84c-1.933 0-3.506 1.573-3.506 3.506v5.84zm21.72 19.267h-5.84v-3.387h5.84c1.933 0 3.507-1.573 3.507-3.506v-5.84H32v5.84C32 28.907 28.907 32 25.107 32z" fill="currentColor" />
       </symbol>
-      <symbol id="ico-media-play" viewBox="0 0 32 32">
-        <path d="M7.61864 30.7537L29.0988 18.3511C30.9036 17.3108 30.9036 14.6969 29.0988 13.6567L7.61864 1.25405C5.81381 0.213824 3.55554 1.52077 3.55554 3.60122V28.3977C3.55554 30.487 5.81381 31.785 7.61864 30.7448V30.7537Z" fill="currentColor"/>
-      </symbol>
     </svg>
     <div class="demo-card-page">
     <h1 class="demo-page-h1">Article Card</h1>
@@ -43,7 +61,6 @@
          within its parent, and the page wrapper gets short when a fixed
          viewport hides the grid. -->
     <div class="demo-vp-toolbar demo-vp-toolbar--sticky demo-vp-toolbar--page">
-      <div class="demo-vp-toolbar__row">
       <span id="demo-vp-switch-label">Viewport</span>
       <div class="demo-vp-toggle" role="group" aria-labelledby="demo-vp-switch-label" id="demo-vp-switch">
         <button type="button" data-vp="live" aria-pressed="true">Live</button>
@@ -52,9 +69,7 @@
         <button type="button" data-vp="md" aria-pressed="false">MD 768</button>
         <button type="button" data-vp="sm" aria-pressed="false">SM-XS 390</button>
       </div>
-      <span class="demo-vp-status" id="demo-vp-status"></span>
-      </div>
-      <div class="demo-vp-toolbar__row">
+      <span class="demo-vp-toolbar__divider" aria-hidden="true"></span>
       <label for="demo-badge-select">Badge</label>
       <select class="demo-vp-select" id="demo-badge-select">
         <option value="">None</option>
@@ -110,13 +125,7 @@
           <option value="columnist-ended">Columnist · Ended</option>
         </optgroup>
       </select>
-      <span class="demo-vp-toolbar__divider" aria-hidden="true"></span>
-      <span id="demo-play-switch-label">Play icon</span>
-      <div class="demo-vp-toggle" role="group" aria-labelledby="demo-play-switch-label" id="demo-play-switch">
-        <button type="button" data-play="off" aria-pressed="true">Off</button>
-        <button type="button" data-play="on" aria-pressed="false">On</button>
-      </div>
-      </div>
+      <span class="demo-vp-status" id="demo-vp-status"></span>
     </div>
 
     <div class="demo-card-page">
@@ -124,16 +133,14 @@
     <!-- Main Content columns — 3 (LG+), 2 (MD), 1 (SM-XS); demo-only 24px gap.
          Card structure:
            .article-card__media    — placeholder image at the defined aspect ratio
-             .article-card__video  — video articles only ("Play icon › On"): play icon (Video Player
-                                     Controls), + duration pill on MD Vertical; never on Image Only
            .article-card__body     — headline + metadata
-             .article-headline     — reused from components/article-headline;
+             .article-headline     — reused from modules/article-headline;
                                      holds the article link: <a class="article-card__link"> (whole card clickable)
              .article-card__preview  — optional, CMS-controlled ("Preview › Text"):
                                        <p class="article-card__preview">…</p> before the metadata
              .article-card-key-updates — Live articles only ("Preview › Key Update" or Badge › Live),
                                        same slot as the preview text; shown at every breakpoint
-             .article-card__metadata — Article Card Metadata (type via the Metadata select), components/article-card-metadata -->
+             .article-card__metadata — Article Card Metadata (type via the Metadata select), modules/article-card-metadata -->
     <main class="demo-card-grid" id="demo-card-grid">
     <!-- ════════════════════════════════════════════════════
          XL
@@ -313,7 +320,6 @@
       //   ?badge=live        Live badge — always comes with Live Key Updates (replaces preview text)
       //   ?meta=<type>       Article Card Metadata type (keys of META_TYPES below; default channel; off = none)
       //   ?badge=<kind>      editorial badge in every headline (keys of BADGES below)
-      //   ?play              video articles — play icon on the media (Image Only excluded)
       (() => {
         const params = new URLSearchParams(location.search);
         const only = params.get('only');
@@ -385,7 +391,7 @@
         setPreview(params.has('preview') && !initialLive);
         setKeyUpdates(initialLive);
 
-        // Editorial badge — same markup as components/article-headline.
+        // Editorial badge — same markup as modules/article-headline.
         // Badge size follows the headline level: H2→lg · H3/H4→md · H5→sm · H6→xs
         const BADGE_SIZE = { h2: 'lg', h3: 'md', h4: 'md', h5: 'sm', h6: 'xs' };
         const MPLUS = '<span class="badge__mplus"><img src="../../assets/images/mail-plus-lozenge.svg" alt="M+" /></span>';
@@ -435,7 +441,7 @@
 
         setBadge(params.get('badge'));
 
-        // Article Card Metadata — same markup as components/article-card-metadata.
+        // Article Card Metadata — same markup as modules/article-card-metadata.
         // The element keeps the card's slot hook: "article-card__metadata article-card-metadata".
         const COMMENTS =
           '<a class="article-card-metadata__comments" href="#comments" aria-label="9.9k comments">' +
@@ -523,32 +529,6 @@
 
         setMeta(params.get('meta'));
 
-        // Play icon — video articles only, so it is added / removed, not hidden.
-        // Decorative (the card is the link). Size per card type: _article-card-video.scss.
-        // MD (Vertical Media) also carries the duration pill. Image Only never has it.
-        const PLAY_HTML =
-          '<span class="article-card__video" aria-hidden="true">' +
-          '<span class="video-play"><svg><use href="#ico-media-play" /></svg></span></span>';
-        const TIMER_HTML = '<span class="video-timer">29:59</span>';
-
-        const setPlay = (on) => {
-          document.querySelectorAll('.article-card').forEach((card) => {
-            if (card.matches('.article-card--image-only')) return;
-            const media = card.querySelector('.article-card__media');
-            const existing = media?.querySelector('.article-card__video');
-            if (on && media && !existing) {
-              media.insertAdjacentHTML('beforeend', PLAY_HTML);
-              if (card.matches('.article-card--md-vertical')) {
-                media.querySelector('.article-card__video').insertAdjacentHTML('beforeend', TIMER_HTML);
-              }
-            } else if (!on && existing) {
-              existing.remove();
-            }
-          });
-        };
-
-        setPlay(params.has('play'));
-
         if (only) {
           document.body.classList.add('demo-embed');
           document.querySelectorAll('.demo-card-grid > *').forEach((el) => {
@@ -573,7 +553,6 @@
         const extraToggle = document.getElementById('demo-extra-switch');
         const badgeSelect = document.getElementById('demo-badge-select');
         const metaSelect = document.getElementById('demo-meta-select');
-        const playToggle = document.getElementById('demo-play-switch');
         const status = document.getElementById('demo-vp-status');
         const grid = document.getElementById('demo-card-grid');
         const stage = document.getElementById('demo-vp-stage');
@@ -585,11 +564,10 @@
         badgeSelect.value = badge;
         let meta = META_TYPES[params.get('meta')] || params.get('meta') === 'off' ? params.get('meta') : 'channel';
         metaSelect.value = meta;
-        let play = params.has('play');
 
         // Current demo state, passed on to the fixed-viewport frame
         const stateQuery = () =>
-          `${preview ? '&preview' : ''}${badge ? `&badge=${badge}` : ''}${meta !== 'channel' ? `&meta=${meta}` : ''}${play ? '&play' : ''}`;
+          `${preview ? '&preview' : ''}${badge ? `&badge=${badge}` : ''}${meta !== 'channel' ? `&meta=${meta}` : ''}`;
 
         const fit = () => {
           if (!iframe || !iframe.contentDocument) return;
@@ -631,7 +609,7 @@
           status.textContent = 'Loading…';
 
           iframe = document.createElement('iframe');
-          iframe.src = `index.html?frame${stateQuery()}`;
+          iframe.src = `index-hover2.html?frame${stateQuery()}`;
           iframe.width = width;
           iframe.title = `Article Card at ${vp.label}`;
           iframe.addEventListener('load', async () => {
@@ -705,28 +683,6 @@
           if (current !== 'live') select(current);
         });
 
-        const syncPlay = () => {
-          playToggle.querySelectorAll('button').forEach((b) => {
-            b.setAttribute('aria-pressed', String(b.dataset.play === (play ? 'on' : 'off')));
-          });
-        };
-
-        playToggle.addEventListener('click', (event) => {
-          const button = event.target.closest('button[data-play]');
-          if (!button) return;
-          play = button.dataset.play === 'on';
-          setPlay(play);
-          syncPlay();
-
-          const url = new URL(location.href);
-          if (play) url.searchParams.set('play', '');
-          else url.searchParams.delete('play');
-          history.replaceState(null, '', url);
-
-          if (current !== 'live') select(current);
-        });
-
-        syncPlay();
         syncControls();
         select(params.get('vp') || 'live');
       })();

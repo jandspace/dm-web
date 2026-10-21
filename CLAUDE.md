@@ -18,7 +18,10 @@ Design system documentation is stored in `docs/` and must be read before any com
 ```
 tokens/           — Design token source files (JSON + CSS)
 styles/           — SCSS source (styles/scss/) and compiled CSS (styles/css/main.css)
-components/       — Reusable UI components (shared across projects) — one demo page per component
+index.html        — Demo index (Components / Modules), same list as the demo side panel
+components/       — Components: base UI elements (Button, Input, Tabs…) — one demo folder each
+modules/          — Modules: editorial / product blocks built from components (Article Card, Video Player Controls…)
+scripts/          — Demo-only JS (scripts/scaffolding/: side panel + index)
 projects/         — Project-specific prototypes, organised by project > platform
 experiments/      — A/B tests and one-off experiments (self-contained, never imported elsewhere)
 assets/           — Icons (Figma SVG originals) and images
@@ -44,7 +47,13 @@ projects/
 └── ...
 ```
 
-- `components/` → reusable modules shared across multiple projects
+### Components vs Modules
+
+Folders follow the Figma UI Kit and design system taxonomy: **Foundation › Components › Modules**. The demo folders (`components/`, `modules/`) and the SCSS folders (`styles/scss/components/`, `styles/scss/modules/`) mirror each other.
+
+- **Component** — a base UI element listed under Figma "DM Web ::: Components" (Button, Divider, Dropdowns, Input, Modal, Tabs, Toast, Toggle, Tooltip…).
+- **Module** — a block listed under Figma "DM Web ::: Modules" (Article Card, Article Editorial Badge, Breadcrumbs, Carousel, Navigation, Video Player Controls…). Parts of a module (e.g. Article Card Metadata, Columnist Profile Photo) live in `modules/` too.
+- When unsure, check which Figma page the frame lives on.
 - `projects/` → project-specific screens and flows, split by platform
 
 ---
@@ -333,22 +342,23 @@ All token files share the same version string (currently `1.0.4`). Update the `v
 
 ### Local Preview
 
-- From the repo root: `python3 -m http.server 3000` → `http://localhost:3000/components/<name>/`
+- From the repo root: `python3 -m http.server 3000` → `http://localhost:3000/` (index) or `/components/<name>/`, `/modules/<name>/`
 - The server sends no cache headers, so hard-refresh (Cmd+Shift+R) after every build or the old `main.css` is shown.
 
 ### SCSS Structure
 
 - `foundation/` — reset, breakpoints, typography utilities, spacing
-- `components/` — **PRODUCT** styles, one file per component (`_button.scss`, `_editorial-badge.scss`, etc.) — these would ship to the real DM site
-- `modules/` — project-specific compositions (future use)
-- `scaffolding/` — **PROTOTYPE-ONLY** styles for demo pages: grid layout, section headers, token tooltips. Never shipped to production. Clearly separated from `components/` so the real component CSS can be handed off cleanly to developers.
+- `components/` — **PRODUCT** styles for Components, one file per component (`_button.scss`) — these would ship to the real DM site
+- `modules/` — **PRODUCT** styles for Modules, one file per module or module part (`_article-card.scss`, `_editorial-badge.scss`, …) — these would ship too
+- `scaffolding/` — **PROTOTYPE-ONLY** styles for demo pages: grid layout, section headers, side panel, token tooltips. Never shipped to production. Clearly separated from `components/` and `modules/` so the real CSS can be handed off cleanly to developers.
 - `main.scss` — entry point, `@use` only, no actual styles written here
 
 ### Rules
 
 - Never write `<style>` blocks inside HTML files (only exception: `experiments/`, see below)
-- New components always go in `styles/scss/components/_[name].scss`
-- New demo/prototype-only styling always goes in `styles/scss/scaffolding/_[name].scss` — never mix into `components/`
+- New components go in `styles/scss/components/_[name].scss` (demo: `components/[name]/`); new modules in `styles/scss/modules/_[name].scss` (demo: `modules/[name]/`)
+- New demo/prototype-only styling always goes in `styles/scss/scaffolding/_[name].scss` — never mix into `components/` or `modules/`
+- Every new demo page loads the side panel (`<script src="../../scripts/scaffolding/demo-nav.js" defer></script>`) and gets an entry in `scripts/scaffolding/demo-nav.js`
 - Always add new files to `main.scss` via `@use`
 - Always use semantic colour tokens (`var(--color-...)`) and typography tokens (`var(--typography-...)`) — never raw hex or px line-height
 
@@ -366,7 +376,7 @@ One-off tests and A/B variants live in `experiments/YYYYMM-exp-<name>/` (e.g. `2
 - **B (variant)** — same links, plus an inline `<style>` that overrides only the changed parts. Shared SCSS/CSS/JS is never edited for a variant, so A is unaffected.
 - **Fixed breakpoint:** when a test targets one breakpoint, the page frames itself in an iframe of that width (e.g. 1024px for LG) instead of being responsive.
 - Images go in the experiment's own `images/` folder.
-- **After the test:** move the winning change into `styles/scss/components/` and `docs/`; keep or delete the folder.
+- **After the test:** move the winning change into `styles/scss/components/` or `modules/` and `docs/`; keep or delete the folder.
 
 ---
 
@@ -381,5 +391,5 @@ One-off tests and A/B variants live in `experiments/YYYYMM-exp-<name>/` (e.g. `2
 
 - Before starting any task, read all `.md` files in the `docs/` folder
 - Apply DM Design System rules and conventions from `docs/` throughout all work
-- When working on a specific component, read its doc first. Docs are named `docs/<section>_<Group>__<NN>_<Name>.md` (e.g. `docs/4_Components__01_Button.md`, `docs/4_Components__09_Article-Card.md`)
+- When working on a specific component, read its doc first. Docs are named `docs/<section>_<Group>__<NN>_<Name>.md` (e.g. `docs/4_Components__01_Button.md`, `docs/5_Modules__01_Article-Card.md`)
 - Figma MCP: the desktop server only reads the file open in the active Figma tab ("node not found" otherwise); the remote server works from the fileKey in the URL

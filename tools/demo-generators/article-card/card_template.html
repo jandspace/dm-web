@@ -10,6 +10,7 @@
     <link rel="stylesheet" href="../../tokens/dm_tokens.css" />
     <link rel="stylesheet" href="../../tokens/dm_typography_web_tokens.css" />
     <link rel="stylesheet" href="../../styles/css/main.css" />
+    <script src="../../scripts/scaffolding/demo-nav.js" defer></script>
   </head>
   <body class="demo-page-body demo-page-body--canvas demo-page-body--flush">
     <svg style="display: none" aria-hidden="true">
@@ -127,13 +128,13 @@
              .article-card__video  — video articles only ("Play icon › On"): play icon (Video Player
                                      Controls), + duration pill on MD Vertical; never on Image Only
            .article-card__body     — headline + metadata
-             .article-headline     — reused from components/article-headline;
+             .article-headline     — reused from modules/article-headline;
                                      holds the article link: <a class="article-card__link"> (whole card clickable)
              .article-card__preview  — optional, CMS-controlled ("Preview › Text"):
                                        <p class="article-card__preview">…</p> before the metadata
              .article-card-key-updates — Live articles only ("Preview › Key Update" or Badge › Live),
                                        same slot as the preview text; shown at every breakpoint
-             .article-card__metadata — Article Card Metadata (type via the Metadata select), components/article-card-metadata -->
+             .article-card__metadata — Article Card Metadata (type via the Metadata select), modules/article-card-metadata -->
     <main class="demo-card-grid" id="demo-card-grid">
 {body}
     </main>
@@ -225,7 +226,7 @@
         setPreview(params.has('preview') && !initialLive);
         setKeyUpdates(initialLive);
 
-        // Editorial badge — same markup as components/article-headline.
+        // Editorial badge — same markup as modules/article-headline.
         // Badge size follows the headline level: H2→lg · H3/H4→md · H5→sm · H6→xs
         const BADGE_SIZE = { h2: 'lg', h3: 'md', h4: 'md', h5: 'sm', h6: 'xs' };
         const MPLUS = '<span class="badge__mplus"><img src="../../assets/images/mail-plus-lozenge.svg" alt="M+" /></span>';
@@ -275,7 +276,7 @@
 
         setBadge(params.get('badge'));
 
-        // Article Card Metadata — same markup as components/article-card-metadata.
+        // Article Card Metadata — same markup as modules/article-card-metadata.
         // The element keeps the card's slot hook: "article-card__metadata article-card-metadata".
         const COMMENTS =
           '<a class="article-card-metadata__comments" href="#comments" aria-label="9.9k comments">' +

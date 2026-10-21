@@ -1,7 +1,7 @@
-"""Generates components/article-card-metadata/index.html (Article Card Metadata demo page).
+"""Generates modules/article-card-metadata/index.html (Article Card Metadata demo page).
 
 Run from the repo root:
-    python3 tools/demo-generators/article-card-metadata/gen_metadata.py > components/article-card-metadata/index.html
+    python3 tools/demo-generators/article-card-metadata/gen_metadata.py > modules/article-card-metadata/index.html
 """
 
 COMMENTS = '''<a class="article-card-metadata__comments" href="#comments" aria-label="{n} comments"
@@ -164,6 +164,7 @@ print(f'''<!doctype html>
     <link rel="stylesheet" href="../../tokens/dm_tokens.css" />
     <link rel="stylesheet" href="../../tokens/dm_typography_web_tokens.css" />
     <link rel="stylesheet" href="../../styles/css/main.css" />
+    <script src="../../scripts/scaffolding/demo-nav.js" defer></script>
   </head>
   <body class="demo-page-body demo-page-body--canvas">
 {SPRITE}

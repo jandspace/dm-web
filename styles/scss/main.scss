@@ -1,6 +1,6 @@
 // ── DM Design System — Main Entry Point ──────────────────────────────────────
-// Foundation only. Components, modules, and scaffolding are imported here
-// as they are added to their respective directories.
+// @use only — no styles written here. Layers follow the UI Kit / design system
+// taxonomy: Foundation → Components → Modules, plus demo-only Scaffolding.
 
 // Foundation
 @use 'foundation/reset';
@@ -9,26 +9,26 @@
 @use 'foundation/spacing';
 @use 'foundation/border-radius';
 
-// Components
+// Components — base UI elements (Figma "DM Web ::: Components")
 @use 'components/button';
-@use 'components/editorial-badge';
-@use 'components/video-player-controls';
-@use 'components/article-headline';
-@use 'components/article-card';
-@use 'components/article-card-image-only';
-@use 'components/article-card-key-updates';
-@use 'components/article-card-video';
-@use 'components/article-card-banner';
-@use 'components/article-card-metadata';
-@use 'components/columnist-profile-photo';
-@use 'components/columnist-comment-announcement';
 
-// Modules
-// @use 'modules/...';
+// Modules — editorial / product blocks built from components (Figma "DM Web ::: Modules")
+@use 'modules/editorial-badge';
+@use 'modules/video-player-controls';
+@use 'modules/article-headline';
+@use 'modules/article-card';
+@use 'modules/article-card-image-only';
+@use 'modules/article-card-key-updates';
+@use 'modules/article-card-video';
+@use 'modules/article-card-banner';
+@use 'modules/article-card-metadata';
+@use 'modules/columnist-profile-photo';
+@use 'modules/columnist-comment-announcement';
 
 // Scaffolding (prototype/demo only — never shipped to production)
 @use 'scaffolding/demo-grid';
 @use 'scaffolding/annotation';
+@use 'scaffolding/demo-nav';
 @use 'scaffolding/article-card-demo';
 @use 'scaffolding/article-card-metadata-demo';
 @use 'scaffolding/video-player-controls-demo';
