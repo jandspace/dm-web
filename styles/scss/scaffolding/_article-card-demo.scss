@@ -14,10 +14,10 @@ $demo-card-gap: 24px;
 }
 
 // SM-XS: cards run full-bleed (they carry their own 16px inset);
-// only the page text gets side padding. MD+: whole page is inset.
+// only the page text gets side padding. MD+: whole page is inset by 40px and
+// left-aligned, like every other demo page (.demo-page-body padding).
 .demo-card-page {
-  max-width: calc(408px * 3 + #{$demo-card-gap} * 2 + 32px);
-  margin-inline: auto;
+  max-width: calc(408px * 3 + #{$demo-card-gap} * 2 + 80px);
 
   .demo-page-h1,
   .demo-page-intro,
@@ -27,7 +27,7 @@ $demo-card-gap: 24px;
   }
 
   @include bp.respond-to(md) {
-    padding-inline: var(--spacing-16);
+    padding-inline: 40px;
 
     .demo-page-h1,
     .demo-page-intro,
@@ -51,7 +51,7 @@ $demo-card-gap: 24px;
 .demo-vp-stage {
   position: relative;
   overflow: hidden;
-  margin-inline: auto;
+  margin-left: 40px;
   // Viewport edge — outline so it adds no size to the stage
   outline: 1px solid var(--color-border-translucent-dark-pale);
 
@@ -77,6 +77,16 @@ $demo-card-gap: 24px;
 .demo-frame {
   padding-top: var(--spacing-16);
   background-color: var(--color-background-neutral-light);
+
+  // The preview reproduces a real page: content centred, 16px inset
+  .demo-card-page {
+    max-width: calc(408px * 3 + #{$demo-card-gap} * 2 + 32px);
+    margin-inline: auto;
+
+    @include bp.respond-to(md) {
+      padding-inline: var(--spacing-16);
+    }
+  }
 
   .demo-page-h1,
   .demo-page-intro,
@@ -271,9 +281,23 @@ $demo-card-gap: 24px;
 // index.html: the toolbar lives outside .demo-card-page (so it can stick for
 // the whole page), but lines up with it — same max-width and 16px inset.
 .demo-vp-toolbar--page {
-  max-width: calc(408px * 3 + #{$demo-card-gap} * 2 + 32px);
-  margin-inline: auto;
+  max-width: calc(408px * 3 + #{$demo-card-gap} * 2 + 80px);
   padding-inline: var(--spacing-16);
+
+  @include bp.respond-to(md) {
+    padding-inline: 40px;
+  }
+}
+
+// Page container left-aligned on the demo page (Banner Story). Inside a
+// viewport preview frame the real, centred .container is kept.
+body:not(.demo-frame) .demo-container-start {
+  width: auto;
+  margin-inline: 0;
+
+  @include bp.respond-to(md) {
+    margin-left: calc(40px - var(--spacing-16)); // banner carries its own 16px inset
+  }
 }
 
 .demo-vp-toolbar__divider {
