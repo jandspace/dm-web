@@ -358,6 +358,8 @@ All token files share the same version string (currently `1.0.4`). Update the `v
 - Never write `<style>` blocks inside HTML files (only exception: `experiments/`, see below)
 - New components go in `styles/scss/components/_[name].scss` (demo: `components/[name]/`); new modules in `styles/scss/modules/_[name].scss` (demo: `modules/[name]/`)
 - New demo/prototype-only styling always goes in `styles/scss/scaffolding/_[name].scss` — never mix into `components/` or `modules/`
+- Demo pages use `<body class="demo-page-body">` — background `color/background/neutral/lighter` for every page in `components/`, `modules/` and the index. Keep it unless asked otherwise; put light/dark surfaces on the samples, not on the page.
+- Pages in `experiments/` and `projects/` keep the base body background `color/background/neutral/lightest` (set in `foundation/_reset.scss`) — don't paint a different page background unless asked.
 - Every new demo page loads the side panel (`<script src="../../scripts/scaffolding/demo-nav.js" defer></script>`) and gets an entry in `scripts/scaffolding/demo-nav.js`
 - Always add new files to `main.scss` via `@use`
 - Always use semantic colour tokens (`var(--color-...)`) and typography tokens (`var(--typography-...)`) — never raw hex or px line-height

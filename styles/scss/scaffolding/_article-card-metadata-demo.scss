@@ -43,6 +43,22 @@
   gap: var(--spacing-24);
 }
 
+// One photo + its size label underneath (e.g. "XS - 20")
+.demo-photo {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--spacing-8);
+  margin: 0;
+}
+
+.demo-photo__size {
+  font-family: monospace;
+  font-size: 10px;
+  color: #999;
+  white-space: nowrap;
+}
+
 // Note beside a sample (e.g. pointer to the Columnist section)
 .demo-metadata-note--aside {
   max-width: 220px;

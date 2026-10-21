@@ -1,13 +1,16 @@
 // ── Annotation — SCAFFOLDING ONLY ─────────────────────────────────────────────
 // Demo page structure: body layout, section headers, category dividers,
-// token tooltips, and the interactive button generator panel.
+// token notes, and the interactive button generator panel.
 // Never ships to production.
 // All classes prefixed demo- to make scaffolding-only status unmistakable.
 
 // ── Demo page body ────────────────────────────────────────────────────────────
 
+// Every demo page (components/, modules/, index) sits on neutral/lighter by
+// default — the same canvas the sticky toolbars and side panel are drawn on.
 .demo-page-body {
   padding: var(--spacing-48) 40px;
+  background-color: var(--color-background-neutral-lighter);
 }
 
 // ── Demo page h1 ─────────────────────────────────────────────────────────────
@@ -47,39 +50,6 @@
   color: #ccc;
   margin-bottom: var(--spacing-48);
 }
-
-// ── Token tooltip (button/index.html — JS-injected) ───────────────────────────
-
-.demo-token-tooltip {
-  position: fixed;
-  z-index: 9999;
-  background: #1a1a1a;
-  color: #fff;
-  font-family: monospace;
-  font-size: 11px;
-  border-radius: var(--border-radius-6);
-  padding: var(--spacing-10) var(--spacing-12);
-  max-width: 420px;
-  pointer-events: none;
-  white-space: nowrap;
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.4);
-}
-
-.demo-token-tooltip__title {
-  font-size: 10px;
-  text-transform: uppercase;
-  letter-spacing: 0.08em;
-  color: #888;
-  margin-bottom: var(--spacing-6);
-}
-
-.demo-token-tooltip__line {
-  display: flex;
-  margin-top: var(--spacing-4);
-}
-
-.demo-token-tooltip__prefix--color  { color: #4a9eff; flex-shrink: 0; }
-.demo-token-tooltip__prefix--effect { color: #f0a04a; flex-shrink: 0; }
 
 // ── Token note (button-gen.html — static sticky note) ────────────────────────
 

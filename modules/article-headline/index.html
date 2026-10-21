@@ -15,6 +15,20 @@
   <body class="demo-page-body">
     <h1 class="demo-page-h1">Article Headline</h1>
 
+    <!-- Viewport filter: applies the typography token values of the chosen
+         breakpoint (read from tokens/dm_typography_web_tokens.css) to the grid.
+         Live = the real window width. -->
+    <div class="demo-vp-toolbar demo-vp-toolbar--sticky">
+      <span id="demo-type-vp-label">Viewport</span>
+      <div class="demo-vp-toggle" role="group" aria-labelledby="demo-type-vp-label" id="demo-type-vp">
+        <button type="button" data-vp="live" aria-pressed="true">Live</button>
+        <button type="button" data-vp="lg" aria-pressed="false">LG ≥1024</button>
+        <button type="button" data-vp="md" aria-pressed="false">MD ≥768</button>
+        <button type="button" data-vp="sm" aria-pressed="false">SM &lt;768</button>
+      </div>
+      <span class="demo-vp-status" id="demo-type-vp-status"></span>
+    </div>
+
     <div class="demo-grid demo-grid--headline">
       <!-- ── Column headers ── -->
       <div class="demo-col-header"></div>
@@ -622,119 +636,81 @@
     </div>
 
     <script>
-      (function () {
-        const SIZE_INFO = {
-          h1: { token: "--typography-font-size-h1", sm: "26px", md: "30px", lg: "36px", gap: "--number-spacing-10", gapPx: "10px" },
-          h2: { token: "--typography-font-size-h2", sm: "22px", md: "24px", lg: "28px", gap: "--number-spacing-8", gapPx: "8px" },
-          h3: { token: "--typography-font-size-h3", sm: "20px", md: "21px", lg: "22px", gap: "--number-spacing-6", gapPx: "6px" },
-          h4: { token: "--typography-font-size-h4", sm: "18px", md: "18px", lg: "18px", gap: "--number-spacing-6", gapPx: "6px" },
-          h5: { token: "--typography-font-size-h5", sm: "16px", md: "16px", lg: "16px", gap: "--number-spacing-6", gapPx: "6px" },
-          h6: { token: "--typography-font-size-h6", sm: "14px", md: "14px", lg: "14px", gap: "--number-spacing-4", gapPx: "4px" },
+      // Scaffolding only — Viewport filter.
+      // Reads every --typography-* value per breakpoint from the token stylesheet
+      // (:root = SM, @media (min-width: 768px) = MD, (min-width: 1024px) = LG),
+      // sets the chosen breakpoint's values on the grid, and rewrites the column
+      // headers from the same data with the active value in bold.
+      (() => {
+        const grid = document.querySelector('.demo-grid--headline');
+        const toggle = document.getElementById('demo-type-vp');
+        const status = document.getElementById('demo-type-vp-status');
+        const BPS = [['sm', 0], ['md', 768], ['lg', 1024]];
+        const LEVELS = ['h1', 'h2', 'h3', 'h4', 'h5', 'h6'];
+        const BADGE = { h1: 'badge-xl', h2: 'badge-lg', h3: 'badge-md', h4: 'badge-md', h5: 'badge-sm', h6: 'badge-xs' };
+
+        // values[min-width][--var] from the token sheet
+        const values = { 0: {}, 768: {}, 1024: {} };
+        const collect = (rules, minWidth) => {
+          [...rules].forEach((rule) => {
+            if (rule.media) {
+              const m = rule.media.mediaText.match(/min-width:\s*(\d+)px/);
+              if (m && values[m[1]]) collect(rule.cssRules, Number(m[1]));
+            } else if (rule.style && /:root/.test(rule.selectorText || '')) {
+              [...rule.style].filter((p) => p.startsWith('--typography-')).forEach((p) => {
+                values[minWidth][p] = rule.style.getPropertyValue(p).trim();
+              });
+            }
+          });
+        };
+        const sheet = [...document.styleSheets].find((s) => (s.href || '').includes('dm_typography_web_tokens'));
+        collect(sheet.cssRules, 0);
+
+        // Cascade: SM base, then MD, then LG overrides
+        const resolved = (bp) => {
+          const out = {};
+          BPS.forEach(([key, min]) => {
+            if (min <= BPS.find(([k]) => k === bp)[1]) Object.assign(out, values[min]);
+          });
+          return out;
         };
 
-        const BADGE_SIZE = {
-          h1: "badge--xl",
-          h2: "badge--lg",
-          h3: "badge--md",
-          h4: "badge--md",
-          h5: "badge--sm",
-          h6: "badge--xs",
+        const liveBp = () => (matchMedia('(min-width: 1024px)').matches ? 'lg' : matchMedia('(min-width: 768px)').matches ? 'md' : 'sm');
+
+        const headers = [...grid.querySelectorAll('.demo-col-header')].slice(1); // skip the corner
+        const renderHeaders = (active) => {
+          headers.forEach((header, i) => {
+            const level = LEVELS[i];
+            const prop = `--typography-font-size-${level}`;
+            // Same order as the filter: LG · MD · SM
+            const sizes = [...BPS].reverse().map(([bp]) => {
+              const v = parseInt(resolved(bp)[prop], 10);
+              return bp === active ? `<b>${bp.toUpperCase()} ${v}</b>` : `${bp.toUpperCase()} ${v}`;
+            });
+            header.innerHTML = `${level.toUpperCase()}<small>${sizes.join(' · ')} · ${BADGE[level]}</small>`;
+          });
         };
 
-        function headingKey(el) {
-          for (const k of ["h1", "h2", "h3", "h4", "h5", "h6"]) {
-            if (el.classList.contains(k)) return k;
+        let mode = 'live';
+        const apply = () => {
+          const bp = mode === 'live' ? liveBp() : mode;
+          grid.removeAttribute('style');
+          if (mode !== 'live') {
+            Object.entries(resolved(bp)).forEach(([p, v]) => grid.style.setProperty(p, v));
           }
-          return null;
-        }
+          renderHeaders(bp);
+          status.textContent = mode === 'live' ? `window ${innerWidth}px → ${bp.toUpperCase()}` : `${bp.toUpperCase()} token values`;
+        };
 
-        function buildTooltip(cell) {
-          const hl = cell.querySelector(".article-headline");
-          if (!hl) return null;
-          const key = headingKey(hl);
-          if (!key) return null;
-          const info = SIZE_INFO[key];
-          const hasBadge = !!hl.querySelector(".article-headline__badge");
-
-          const tip = document.createElement("div");
-          tip.className = "demo-token-tooltip";
-
-          const title = document.createElement("div");
-          title.className = "demo-token-tooltip__title";
-          title.textContent = key.toUpperCase() + (hasBadge ? " · " + BADGE_SIZE[key] : " · no badge");
-          tip.appendChild(title);
-
-          [
-            ["SM", info.sm],
-            ["MD", info.md],
-            ["LG", info.lg],
-          ].forEach(([label, val]) => {
-            const line = document.createElement("div");
-            line.className = "demo-token-tooltip__line";
-            const pfx = document.createElement("span");
-            pfx.className = "demo-token-tooltip__prefix--color";
-            pfx.textContent = "● ";
-            line.appendChild(pfx);
-            line.appendChild(document.createTextNode(info.token + " · " + label + ": " + val));
-            tip.appendChild(line);
-          });
-
-          if (hasBadge) {
-            const gapLine = document.createElement("div");
-            gapLine.className = "demo-token-tooltip__line";
-            const gpfx = document.createElement("span");
-            gpfx.className = "demo-token-tooltip__prefix--effect";
-            gpfx.textContent = "◆ ";
-            gapLine.appendChild(gpfx);
-            gapLine.appendChild(document.createTextNode("margin-right: " + info.gap + " (" + info.gapPx + ")"));
-            tip.appendChild(gapLine);
-          }
-
-          return tip;
-        }
-
-        let active = null;
-        let timer = null;
-
-        function show(cell) {
-          hide();
-          const tip = buildTooltip(cell);
-          if (!tip) return;
-
-          tip.style.cssText = "visibility:hidden;position:fixed;left:-9999px;top:0";
-          document.body.appendChild(tip);
-
-          const hl = cell.querySelector(".article-headline");
-          const rect = hl.getBoundingClientRect();
-          const tw = tip.offsetWidth;
-          const th = tip.offsetHeight;
-          const gap = 8;
-
-          let left = rect.left + rect.width / 2 - tw / 2;
-          left = Math.max(8, Math.min(left, window.innerWidth - tw - 8));
-          const top = rect.top - th - gap < 8 ? rect.bottom + gap : rect.top - th - gap;
-
-          tip.style.cssText = "position:fixed;top:" + top + "px;left:" + left + "px";
-          active = tip;
-        }
-
-        function hide() {
-          if (active) {
-            active.remove();
-            active = null;
-          }
-        }
-
-        document.querySelectorAll(".demo-grid--headline .demo-cell").forEach(cell => {
-          cell.addEventListener("mouseenter", () => {
-            clearTimeout(timer);
-            timer = setTimeout(() => show(cell), 200);
-          });
-          cell.addEventListener("mouseleave", () => {
-            clearTimeout(timer);
-            hide();
-          });
+        toggle.addEventListener('click', (event) => {
+          const button = event.target.closest('button[data-vp]');
+          if (!button) return;
+          mode = button.dataset.vp;
+          toggle.querySelectorAll('button').forEach((b) => b.setAttribute('aria-pressed', String(b === button)));
+          apply();
         });
+        window.addEventListener('resize', () => mode === 'live' && apply());
+        apply();
       })();
     </script>
   </body>

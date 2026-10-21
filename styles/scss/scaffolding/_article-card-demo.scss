@@ -8,11 +8,6 @@
 
 $demo-card-gap: 24px;
 
-// Page canvas — slightly darker than the card surface so card edges show
-.demo-page-body--canvas {
-  background-color: var(--color-background-neutral-lighter);
-}
-
 // No side padding — index.html handles its own inset via .demo-card-page
 .demo-page-body--flush {
   padding-inline: 0;

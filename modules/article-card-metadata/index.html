@@ -12,7 +12,7 @@
     <link rel="stylesheet" href="../../styles/css/main.css" />
     <script src="../../scripts/scaffolding/demo-nav.js" defer></script>
   </head>
-  <body class="demo-page-body demo-page-body--canvas">
+  <body class="demo-page-body">
     <svg style="display: none" aria-hidden="true">
       <symbol id="ico-speechbubble-ellipsis" viewBox="0 0 14 14">
         <path d="M13.6587 1.79014C13.4312 1.35381 13.0944 1.01783 12.6613 0.786569C12.2238 0.555311 11.6944 0.4375 11.0688 0.4375H2.94C2.31 0.4375 1.77625 0.555311 1.33875 0.786569C0.905625 1.01783 0.573125 1.35381 0.345625 1.79014C0.118125 2.22212 0 2.74572 0 3.36532V8.19993C0 8.81952 0.11375 9.34749 0.345625 9.78383C0.5775 10.2158 0.91 10.5474 1.33875 10.7787C1.77188 11.0099 2.2925 11.1277 2.89625 11.1277H3.23313V12.6593C3.23313 12.9385 3.30313 13.1567 3.43875 13.3182C3.57875 13.4796 3.77562 13.5625 4.025 13.5625C4.2 13.5625 4.36625 13.5189 4.51937 13.4272C4.6725 13.34 4.85625 13.2047 5.07063 13.0171L7.20562 11.1277H11.0644C11.69 11.1277 12.2194 11.0099 12.6569 10.7787C13.0944 10.5474 13.4269 10.2158 13.6544 9.78383C13.8819 9.34749 14 8.81952 14 8.19993V3.36532C14 2.74572 13.8863 2.22212 13.6544 1.79014H13.6587ZM4.64188 6.43713C4.4625 6.62039 4.24375 6.71202 3.98563 6.71202C3.7275 6.71202 3.50875 6.62039 3.325 6.43713C3.14563 6.25386 3.05813 6.0357 3.05813 5.78262C3.05813 5.52955 3.14563 5.31138 3.325 5.12812C3.50875 4.94486 3.7275 4.85322 3.98563 4.85322C4.24375 4.85322 4.4625 4.94486 4.64188 5.12812C4.82125 5.31138 4.90875 5.52955 4.90875 5.78262C4.90875 6.0357 4.82125 6.25386 4.64188 6.43713ZM7.665 6.43713C7.48125 6.62039 7.2625 6.71202 7.00875 6.71202C6.755 6.71202 6.53188 6.62039 6.34812 6.43713C6.16438 6.25386 6.0725 6.0357 6.0725 5.78262C6.0725 5.52955 6.16438 5.31138 6.34812 5.12812C6.53188 4.94486 6.75063 4.85322 7.00875 4.85322C7.26688 4.85322 7.48125 4.94486 7.665 5.12812C7.84875 5.31138 7.94062 5.52955 7.94062 5.78262C7.94062 6.0357 7.84875 6.25386 7.665 6.43713ZM10.6794 6.43713C10.5 6.62039 10.2812 6.71202 10.0231 6.71202C9.765 6.71202 9.55062 6.62039 9.36687 6.43713C9.1875 6.25386 9.1 6.0357 9.1 5.78262C9.1 5.52955 9.1875 5.31138 9.36687 5.12812C9.55062 4.94486 9.76937 4.85322 10.0231 4.85322C10.2769 4.85322 10.5 4.94486 10.6794 5.12812C10.8631 5.31138 10.955 5.52955 10.955 5.78262C10.955 6.0357 10.8631 6.25386 10.6794 6.43713Z" fill="currentColor" />
@@ -38,9 +38,6 @@
              .article-card-metadata__comments  — speech-bubble icon + count, links to comments
            CTA type: .article-card-metadata--cta holding a .btn.btn-brand.btn--xs -->
     <div class="demo-grid demo-grid--metadata">
-      <div class="demo-col-header"></div>
-      <div class="demo-col-header">Default<small>358px · Figma width</small></div>
-
       <div class="demo-group-header"><span class="demo-group-title">Standard</span></div>
 
       <!-- Channel Only -->
@@ -307,100 +304,141 @@
     </div>
 
     <h2 class="demo-section-title">Columnist Profile Photo</h2>
-    <p class="demo-metadata-note">Sizes xs 20 · sm 32 · md 48 · lg 64 (default) · xl 80 · xxl 96 · xxxl 112 — Rectangle and Circle, with and without the live dot.</p>
-    <div class="demo-photo-rows">
-      <div class="demo-photo-row">
-          <span class="columnist-photo columnist-photo--xs"
-            ><img class="columnist-photo__img" src="../../assets/images/columnist-placeholder.png" alt=""
-          /></span>
-          <span class="columnist-photo columnist-photo--sm"
-            ><img class="columnist-photo__img" src="../../assets/images/columnist-placeholder.png" alt=""
-          /></span>
-          <span class="columnist-photo columnist-photo--md"
-            ><img class="columnist-photo__img" src="../../assets/images/columnist-placeholder.png" alt=""
-          /></span>
-          <span class="columnist-photo columnist-photo--lg"
-            ><img class="columnist-photo__img" src="../../assets/images/columnist-placeholder.png" alt=""
-          /></span>
-          <span class="columnist-photo columnist-photo--xl"
-            ><img class="columnist-photo__img" src="../../assets/images/columnist-placeholder.png" alt=""
-          /></span>
-          <span class="columnist-photo columnist-photo--xxl"
-            ><img class="columnist-photo__img" src="../../assets/images/columnist-placeholder.png" alt=""
-          /></span>
-          <span class="columnist-photo columnist-photo--xxxl"
-            ><img class="columnist-photo__img" src="../../assets/images/columnist-placeholder.png" alt=""
-          /></span>
-      </div>
-      <div class="demo-photo-row">
-          <span class="columnist-photo columnist-photo--xs columnist-photo--live"
-            ><img class="columnist-photo__img" src="../../assets/images/columnist-placeholder.png" alt=""
-          /></span>
-          <span class="columnist-photo columnist-photo--sm columnist-photo--live"
-            ><img class="columnist-photo__img" src="../../assets/images/columnist-placeholder.png" alt=""
-          /></span>
-          <span class="columnist-photo columnist-photo--md columnist-photo--live"
-            ><img class="columnist-photo__img" src="../../assets/images/columnist-placeholder.png" alt=""
-          /></span>
-          <span class="columnist-photo columnist-photo--lg columnist-photo--live"
-            ><img class="columnist-photo__img" src="../../assets/images/columnist-placeholder.png" alt=""
-          /></span>
-          <span class="columnist-photo columnist-photo--xl columnist-photo--live"
-            ><img class="columnist-photo__img" src="../../assets/images/columnist-placeholder.png" alt=""
-          /></span>
-          <span class="columnist-photo columnist-photo--xxl columnist-photo--live"
-            ><img class="columnist-photo__img" src="../../assets/images/columnist-placeholder.png" alt=""
-          /></span>
-          <span class="columnist-photo columnist-photo--xxxl columnist-photo--live"
-            ><img class="columnist-photo__img" src="../../assets/images/columnist-placeholder.png" alt=""
-          /></span>
-      </div>
-      <div class="demo-photo-row">
-          <span class="columnist-photo columnist-photo--xs columnist-photo--circle"
-            ><img class="columnist-photo__img" src="../../assets/images/columnist-placeholder-circle.png" alt=""
-          /></span>
-          <span class="columnist-photo columnist-photo--sm columnist-photo--circle"
-            ><img class="columnist-photo__img" src="../../assets/images/columnist-placeholder-circle.png" alt=""
-          /></span>
-          <span class="columnist-photo columnist-photo--md columnist-photo--circle"
-            ><img class="columnist-photo__img" src="../../assets/images/columnist-placeholder-circle.png" alt=""
-          /></span>
-          <span class="columnist-photo columnist-photo--lg columnist-photo--circle"
-            ><img class="columnist-photo__img" src="../../assets/images/columnist-placeholder-circle.png" alt=""
-          /></span>
-          <span class="columnist-photo columnist-photo--xl columnist-photo--circle"
-            ><img class="columnist-photo__img" src="../../assets/images/columnist-placeholder-circle.png" alt=""
-          /></span>
-          <span class="columnist-photo columnist-photo--xxl columnist-photo--circle"
-            ><img class="columnist-photo__img" src="../../assets/images/columnist-placeholder-circle.png" alt=""
-          /></span>
-          <span class="columnist-photo columnist-photo--xxxl columnist-photo--circle"
-            ><img class="columnist-photo__img" src="../../assets/images/columnist-placeholder-circle.png" alt=""
-          /></span>
-      </div>
-      <div class="demo-photo-row">
-          <span class="columnist-photo columnist-photo--xs columnist-photo--circle columnist-photo--live"
-            ><img class="columnist-photo__img" src="../../assets/images/columnist-placeholder-circle.png" alt=""
-          /></span>
-          <span class="columnist-photo columnist-photo--sm columnist-photo--circle columnist-photo--live"
-            ><img class="columnist-photo__img" src="../../assets/images/columnist-placeholder-circle.png" alt=""
-          /></span>
-          <span class="columnist-photo columnist-photo--md columnist-photo--circle columnist-photo--live"
-            ><img class="columnist-photo__img" src="../../assets/images/columnist-placeholder-circle.png" alt=""
-          /></span>
-          <span class="columnist-photo columnist-photo--lg columnist-photo--circle columnist-photo--live"
-            ><img class="columnist-photo__img" src="../../assets/images/columnist-placeholder-circle.png" alt=""
-          /></span>
-          <span class="columnist-photo columnist-photo--xl columnist-photo--circle columnist-photo--live"
-            ><img class="columnist-photo__img" src="../../assets/images/columnist-placeholder-circle.png" alt=""
-          /></span>
-          <span class="columnist-photo columnist-photo--xxl columnist-photo--circle columnist-photo--live"
-            ><img class="columnist-photo__img" src="../../assets/images/columnist-placeholder-circle.png" alt=""
-          /></span>
-          <span class="columnist-photo columnist-photo--xxxl columnist-photo--circle columnist-photo--live"
-            ><img class="columnist-photo__img" src="../../assets/images/columnist-placeholder-circle.png" alt=""
-          /></span>
+    <p class="demo-metadata-note">Sizes xs 20 · sm 32 · md 48 · lg 64 (default) · xl 80 · xxl 96 · xxxl 112 — Rectangle (top) and Circle (bottom). Live adds the green dot (.columnist-photo--live).</p>
+    <!-- Disc colour per channel (author profiles' background): .columnist-photo--{section} → background/{section}/subtle -->
+    <div class="demo-vp-toolbar">
+      <label for="demo-photo-colour">Background</label>
+      <select class="demo-vp-select" id="demo-photo-colour" autocomplete="off">
+        <option value="">Columnist and x-channel writers — home-blue/subtle</option>
+        <option value="news">News — news-cyan/subtle</option>
+        <option value="showbiz">Showbiz — showbiz-red/subtle</option>
+        <option value="sport">Sport — sport-green/subtle</option>
+        <option value="royals">Royal — royals-violet/subtle</option>
+        <option value="money">TiM — money-purple/subtle</option>
+        <option value="lifestyle">Lifestyle — lifestyle-azure/subtle</option>
+        <option value="health">Health — health-turquoise/subtle</option>
+        <option value="science">Science — science-orange/subtle</option>
+        <option value="crime">Crime Desk — crime-petrol/subtle</option>
+      </select>
+      <span class="demo-vp-toolbar__divider" aria-hidden="true"></span>
+      <span id="demo-photo-live-label">Live</span>
+      <div class="demo-vp-toggle" role="group" aria-labelledby="demo-photo-live-label" id="demo-photo-live">
+        <button type="button" data-live="off" aria-pressed="true">Off</button>
+        <button type="button" data-live="on" aria-pressed="false">On</button>
       </div>
     </div>
+    <div class="demo-photo-rows" id="demo-photo-rows">
+      <div class="demo-photo-row">
+          <figure class="demo-photo">
+            <span class="columnist-photo columnist-photo--xs"
+              ><img class="columnist-photo__img" src="../../assets/images/columnist-placeholder.png" alt=""
+            /></span>
+            <figcaption class="demo-photo__size">XS - 20</figcaption>
+          </figure>
+          <figure class="demo-photo">
+            <span class="columnist-photo columnist-photo--sm"
+              ><img class="columnist-photo__img" src="../../assets/images/columnist-placeholder.png" alt=""
+            /></span>
+            <figcaption class="demo-photo__size">SM - 32</figcaption>
+          </figure>
+          <figure class="demo-photo">
+            <span class="columnist-photo columnist-photo--md"
+              ><img class="columnist-photo__img" src="../../assets/images/columnist-placeholder.png" alt=""
+            /></span>
+            <figcaption class="demo-photo__size">MD - 48</figcaption>
+          </figure>
+          <figure class="demo-photo">
+            <span class="columnist-photo columnist-photo--lg"
+              ><img class="columnist-photo__img" src="../../assets/images/columnist-placeholder.png" alt=""
+            /></span>
+            <figcaption class="demo-photo__size">LG - 64</figcaption>
+          </figure>
+          <figure class="demo-photo">
+            <span class="columnist-photo columnist-photo--xl"
+              ><img class="columnist-photo__img" src="../../assets/images/columnist-placeholder.png" alt=""
+            /></span>
+            <figcaption class="demo-photo__size">XL - 80</figcaption>
+          </figure>
+          <figure class="demo-photo">
+            <span class="columnist-photo columnist-photo--xxl"
+              ><img class="columnist-photo__img" src="../../assets/images/columnist-placeholder.png" alt=""
+            /></span>
+            <figcaption class="demo-photo__size">XXL - 96</figcaption>
+          </figure>
+          <figure class="demo-photo">
+            <span class="columnist-photo columnist-photo--xxxl"
+              ><img class="columnist-photo__img" src="../../assets/images/columnist-placeholder.png" alt=""
+            /></span>
+            <figcaption class="demo-photo__size">XXXL - 112</figcaption>
+          </figure>
+      </div>
+      <div class="demo-photo-row">
+          <figure class="demo-photo">
+            <span class="columnist-photo columnist-photo--xs columnist-photo--circle"
+              ><img class="columnist-photo__img" src="../../assets/images/columnist-placeholder-circle.png" alt=""
+            /></span>
+            <figcaption class="demo-photo__size">XS - 20</figcaption>
+          </figure>
+          <figure class="demo-photo">
+            <span class="columnist-photo columnist-photo--sm columnist-photo--circle"
+              ><img class="columnist-photo__img" src="../../assets/images/columnist-placeholder-circle.png" alt=""
+            /></span>
+            <figcaption class="demo-photo__size">SM - 32</figcaption>
+          </figure>
+          <figure class="demo-photo">
+            <span class="columnist-photo columnist-photo--md columnist-photo--circle"
+              ><img class="columnist-photo__img" src="../../assets/images/columnist-placeholder-circle.png" alt=""
+            /></span>
+            <figcaption class="demo-photo__size">MD - 48</figcaption>
+          </figure>
+          <figure class="demo-photo">
+            <span class="columnist-photo columnist-photo--lg columnist-photo--circle"
+              ><img class="columnist-photo__img" src="../../assets/images/columnist-placeholder-circle.png" alt=""
+            /></span>
+            <figcaption class="demo-photo__size">LG - 64</figcaption>
+          </figure>
+          <figure class="demo-photo">
+            <span class="columnist-photo columnist-photo--xl columnist-photo--circle"
+              ><img class="columnist-photo__img" src="../../assets/images/columnist-placeholder-circle.png" alt=""
+            /></span>
+            <figcaption class="demo-photo__size">XL - 80</figcaption>
+          </figure>
+          <figure class="demo-photo">
+            <span class="columnist-photo columnist-photo--xxl columnist-photo--circle"
+              ><img class="columnist-photo__img" src="../../assets/images/columnist-placeholder-circle.png" alt=""
+            /></span>
+            <figcaption class="demo-photo__size">XXL - 96</figcaption>
+          </figure>
+          <figure class="demo-photo">
+            <span class="columnist-photo columnist-photo--xxxl columnist-photo--circle"
+              ><img class="columnist-photo__img" src="../../assets/images/columnist-placeholder-circle.png" alt=""
+            /></span>
+            <figcaption class="demo-photo__size">XXXL - 112</figcaption>
+          </figure>
+      </div>
+    </div>
+
+    <script>
+      // Scaffolding only — Background swaps the disc colour modifier, Live toggles
+      // the live dot, on every photo above.
+      (() => {
+        const select = document.getElementById('demo-photo-colour');
+        const live = document.getElementById('demo-photo-live');
+        const photos = document.querySelectorAll('#demo-photo-rows .columnist-photo');
+        live.addEventListener('click', (event) => {
+          const button = event.target.closest('button[data-live]');
+          if (!button) return;
+          live.querySelectorAll('button').forEach((b) => b.setAttribute('aria-pressed', String(b === button)));
+          photos.forEach((photo) => photo.classList.toggle('columnist-photo--live', button.dataset.live === 'on'));
+        });
+        const sections = [...select.options].map((o) => o.value).filter(Boolean);
+        select.addEventListener('change', () => {
+          photos.forEach((photo) => {
+            sections.forEach((s) => photo.classList.remove(`columnist-photo--${s}`));
+            if (select.value) photo.classList.add(`columnist-photo--${select.value}`);
+          });
+        });
+      })();
+    </script>
   </body>
 </html>

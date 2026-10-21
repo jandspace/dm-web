@@ -25,9 +25,12 @@
   grid-template-columns: 140px repeat(5, 1fr);
 }
 
-// 7-column layout: label + 6 heading levels (article headline demo)
+// 7-column layout: label + 6 heading levels (article headline demo).
+// Each heading keeps at least 300px of width (+ 2 × 16px cell padding);
+// when the window is narrower the grid scrolls sideways instead of squeezing.
 .demo-grid--headline {
-  grid-template-columns: 120px repeat(6, minmax(180px, 1fr));
+  grid-template-columns: 120px repeat(6, minmax(calc(300px + var(--spacing-16) * 2), 1fr));
+  overflow-x: auto;
 }
 
 .demo-grid--headline .demo-cell {
@@ -63,6 +66,12 @@
     color: #999;
     margin-top: 3px;
   }
+}
+
+// Active breakpoint value in a header (article headline Viewport filter)
+.demo-col-header small b {
+  font-weight: 700;
+  color: var(--color-text-neutral-dark);
 }
 
 // ── Row label ─────────────────────────────────────────────────────────────────

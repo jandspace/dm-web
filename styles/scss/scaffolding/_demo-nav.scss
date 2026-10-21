@@ -34,7 +34,7 @@ $demo-nav-pinned: 1920px;
   width: $demo-nav-rail;
   overflow: hidden;
   border-right: 1px solid var(--color-border-neutral-light);
-  background-color: var(--color-background-neutral-lighter);
+  background-color: var(--color-background-neutral-lightest);
   font-family: var(--typography-font-family-sans);
   transition: width 0.15s, box-shadow 0.15s;
 
@@ -161,7 +161,7 @@ $demo-nav-pinned: 1920px;
   }
 
   &[aria-current='page'] {
-    background-color: var(--color-background-neutral-lightest);
+    background-color: var(--color-background-neutral-lighter);
     color: var(--color-text-interaction-primary-default);
   }
 }

@@ -124,30 +124,55 @@ for name, a, b in COLUMNIST:
       <div class="demo-row-label">{name}</div>
 {cell(a, 358)}''')
 
-SIZES = ['xs', 'sm', 'md', 'lg', 'xl', 'xxl', 'xxxl']
-def photos(kind, live):
+SIZES = [('xs', 20), ('sm', 32), ('md', 48), ('lg', 64), ('xl', 80), ('xxl', 96), ('xxxl', 112)]
+def photos(kind):
     img = 'columnist-placeholder-circle.png' if kind == 'circle' else 'columnist-placeholder.png'
     mod = ' columnist-photo--circle' if kind == 'circle' else ''
-    lv = ' columnist-photo--live' if live else ''
-    return '\n'.join(f'''          <span class="columnist-photo columnist-photo--{s}{mod}{lv}"
-            ><img class="columnist-photo__img" src="../../assets/images/{img}" alt=""
-          /></span>''' for s in SIZES)
+    return '\n'.join(f'''          <figure class="demo-photo">
+            <span class="columnist-photo columnist-photo--{s}{mod}"
+              ><img class="columnist-photo__img" src="../../assets/images/{img}" alt=""
+            /></span>
+            <figcaption class="demo-photo__size">{s.upper()} - {px}</figcaption>
+          </figure>''' for s, px in SIZES)
+
+# Author profiles' background (Figma) — label → section modifier → background/{token}/subtle.
+# Figma hex values match the tokens except Crime Desk (#6B7B8C vs crime-petrol/subtle #678893).
+PHOTO_COLOURS = [
+    ('', 'Columnist and x-channel writers', 'home-blue'),
+    ('news', 'News', 'news-cyan'),
+    ('showbiz', 'Showbiz', 'showbiz-red'),
+    ('sport', 'Sport', 'sport-green'),
+    ('royals', 'Royal', 'royals-violet'),
+    ('money', 'TiM', 'money-purple'),
+    ('lifestyle', 'Lifestyle', 'lifestyle-azure'),
+    ('health', 'Health', 'health-turquoise'),
+    ('science', 'Science', 'science-orange'),
+    ('crime', 'Crime Desk', 'crime-petrol'),
+]
+COLOUR_OPTIONS = '\n'.join(f'        <option value="{v}">{label} — {token}/subtle</option>' for v, label, token in PHOTO_COLOURS)
 
 PHOTO_SECTION = f'''
     <h2 class="demo-section-title">Columnist Profile Photo</h2>
-    <p class="demo-metadata-note">Sizes xs 20 · sm 32 · md 48 · lg 64 (default) · xl 80 · xxl 96 · xxxl 112 — Rectangle and Circle, with and without the live dot.</p>
-    <div class="demo-photo-rows">
+    <p class="demo-metadata-note">Sizes xs 20 · sm 32 · md 48 · lg 64 (default) · xl 80 · xxl 96 · xxxl 112 — Rectangle (top) and Circle (bottom). Live adds the green dot (.columnist-photo--live).</p>
+    <!-- Disc colour per channel (author profiles' background): .columnist-photo--{{section}} → background/{{section}}/subtle -->
+    <div class="demo-vp-toolbar">
+      <label for="demo-photo-colour">Background</label>
+      <select class="demo-vp-select" id="demo-photo-colour" autocomplete="off">
+{COLOUR_OPTIONS}
+      </select>
+      <span class="demo-vp-toolbar__divider" aria-hidden="true"></span>
+      <span id="demo-photo-live-label">Live</span>
+      <div class="demo-vp-toggle" role="group" aria-labelledby="demo-photo-live-label" id="demo-photo-live">
+        <button type="button" data-live="off" aria-pressed="true">Off</button>
+        <button type="button" data-live="on" aria-pressed="false">On</button>
+      </div>
+    </div>
+    <div class="demo-photo-rows" id="demo-photo-rows">
       <div class="demo-photo-row">
-{photos('rect', False)}
+{photos('rect')}
       </div>
       <div class="demo-photo-row">
-{photos('rect', True)}
-      </div>
-      <div class="demo-photo-row">
-{photos('circle', False)}
-      </div>
-      <div class="demo-photo-row">
-{photos('circle', True)}
+{photos('circle')}
       </div>
     </div>'''
 
@@ -166,7 +191,7 @@ print(f'''<!doctype html>
     <link rel="stylesheet" href="../../styles/css/main.css" />
     <script src="../../scripts/scaffolding/demo-nav.js" defer></script>
   </head>
-  <body class="demo-page-body demo-page-body--canvas">
+  <body class="demo-page-body">
 {SPRITE}
 
     <h1 class="demo-page-h1">Article Card Metadata</h1>
@@ -181,11 +206,31 @@ print(f'''<!doctype html>
              .article-card-metadata__comments  — speech-bubble icon + count, links to comments
            CTA type: .article-card-metadata--cta holding a .btn.btn-brand.btn--xs -->
     <div class="demo-grid demo-grid--metadata">
-      <div class="demo-col-header"></div>
-      <div class="demo-col-header">Default<small>358px · Figma width</small></div>
-
 {body}
     </div>
 {PHOTO_SECTION}
+
+    <script>
+      // Scaffolding only — Background swaps the disc colour modifier, Live toggles
+      // the live dot, on every photo above.
+      (() => {{
+        const select = document.getElementById('demo-photo-colour');
+        const live = document.getElementById('demo-photo-live');
+        const photos = document.querySelectorAll('#demo-photo-rows .columnist-photo');
+        live.addEventListener('click', (event) => {{
+          const button = event.target.closest('button[data-live]');
+          if (!button) return;
+          live.querySelectorAll('button').forEach((b) => b.setAttribute('aria-pressed', String(b === button)));
+          photos.forEach((photo) => photo.classList.toggle('columnist-photo--live', button.dataset.live === 'on'));
+        }});
+        const sections = [...select.options].map((o) => o.value).filter(Boolean);
+        select.addEventListener('change', () => {{
+          photos.forEach((photo) => {{
+            sections.forEach((s) => photo.classList.remove(`columnist-photo--${{s}}`));
+            if (select.value) photo.classList.add(`columnist-photo--${{select.value}}`);
+          }});
+        }});
+      }})();
+    </script>
   </body>
 </html>''')
