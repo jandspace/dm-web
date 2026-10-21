@@ -1166,19 +1166,22 @@ h1, h2, h3, h4, h5, h6 {
 
 @media (min-width: 768px) {
   .article-card--xl,
-  .article-card--xl-horizontal {
+  .article-card--xl-horizontal,
+  .article-card--image-only-large {
     max-width: 768px;
   }
 }
 @media (min-width: 1024px) {
   .article-card--xl,
-  .article-card--xl-horizontal {
+  .article-card--xl-horizontal,
+  .article-card--image-only-large {
     max-width: 664px;
   }
 }
 @media (min-width: 1376px) {
   .article-card--xl,
-  .article-card--xl-horizontal {
+  .article-card--xl-horizontal,
+  .article-card--image-only-large {
     max-width: 816px;
   }
 }
@@ -1203,7 +1206,8 @@ h1, h2, h3, h4, h5, h6 {
   .article-card--md-vertical,
   .article-card--md,
   .article-card--sm-left,
-  .article-card--sm-right {
+  .article-card--sm-right,
+  .article-card--image-only-medium {
     max-width: 384px;
   }
 }
@@ -1211,7 +1215,8 @@ h1, h2, h3, h4, h5, h6 {
   .article-card--md-vertical,
   .article-card--md,
   .article-card--sm-left,
-  .article-card--sm-right {
+  .article-card--sm-right,
+  .article-card--image-only-medium {
     max-width: 332px;
   }
 }
@@ -1219,7 +1224,8 @@ h1, h2, h3, h4, h5, h6 {
   .article-card--md-vertical,
   .article-card--md,
   .article-card--sm-left,
-  .article-card--sm-right {
+  .article-card--sm-right,
+  .article-card--image-only-medium {
     max-width: 408px;
   }
 }
@@ -1315,6 +1321,117 @@ h1, h2, h3, h4, h5, h6 {
   }
 }
 
+.article-card--image-only .article-card__media {
+  position: static;
+  display: grid;
+  grid-template: minmax(0, 1fr)/minmax(0, 1fr);
+  border-radius: var(--border-radius-8);
+}
+.article-card--image-only .article-card__media > * {
+  grid-area: 1/1;
+}
+.article-card--image-only .article-headline {
+  color: var(--color-text-neutral-white);
+  text-align: center;
+}
+
+.article-card--image-only-large .article-card__media {
+  aspect-ratio: 15/16;
+}
+@media (min-width: 768px) {
+  .article-card--image-only-large .article-card__media {
+    aspect-ratio: 358/215;
+  }
+}
+
+.article-card--image-only-medium .article-card__media {
+  aspect-ratio: 15/16;
+}
+
+.article-card__overlay {
+  display: grid;
+  align-self: end;
+}
+.article-card__overlay > * {
+  grid-area: 1/1;
+}
+
+.article-card__scrim {
+  background-color: var(--color-effect-translucent-dark-thick);
+  -webkit-backdrop-filter: blur(16px);
+  backdrop-filter: blur(16px);
+  -webkit-mask-image: linear-gradient(to bottom, transparent, black);
+  mask-image: linear-gradient(to bottom, transparent, black);
+  transition: background-color 0.2s;
+}
+
+.article-card__overlay-content {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  align-items: center;
+  gap: var(--spacing-4);
+  min-height: 228px;
+  padding: var(--spacing-64) var(--spacing-16) var(--spacing-8);
+  isolation: isolate;
+}
+.article-card__overlay-content .article-headline {
+  width: 100%;
+}
+
+.article-card__read-more {
+  pointer-events: none;
+}
+.article-card__read-more .btn__content {
+  position: relative;
+}
+.article-card__read-more .btn__content::before {
+  content: "";
+  position: absolute;
+  right: 0;
+  bottom: -2px;
+  left: 0;
+  height: 1px;
+  background: var(--color-effect-translucent-light-deep);
+  transform: scaleX(0);
+  transform-origin: left center;
+  transition: transform 0.2s;
+}
+
+.article-card__signpost {
+  align-self: start;
+  justify-self: start;
+  display: flex;
+  padding: var(--spacing-16);
+  isolation: isolate;
+}
+.article-card__signpost:empty {
+  display: none;
+}
+.article-card__signpost .badge {
+  margin: 0;
+  transform: none;
+}
+
+.article-card--image-only:hover .article-card__read-more .btn__content::before,
+.article-card--image-only:has(.article-card__link:focus-visible) .article-card__read-more .btn__content::before {
+  transform: scaleX(1);
+}
+.article-card--image-only:hover .article-card__scrim,
+.article-card--image-only:has(.article-card__link:focus-visible) .article-card__scrim {
+  background-color: var(--color-effect-translucent-dark-solid);
+}
+.article-card--image-only:hover .article-headline,
+.article-card--image-only:has(.article-card__link:focus-visible) .article-headline {
+  color: var(--color-text-neutral-white);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .article-card__scrim,
+  .article-card__read-more .btn__content::before {
+    transition: none;
+  }
+}
 .article-card-key-updates {
   display: flex;
   flex-direction: column;

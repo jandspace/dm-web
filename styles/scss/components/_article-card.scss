@@ -223,7 +223,8 @@
 //   1-column types      384   332   408
 
 .article-card--xl,
-.article-card--xl-horizontal {
+.article-card--xl-horizontal,
+.article-card--image-only-large {
   @include bp.respond-to(md) { max-width: 768px; }
   @include bp.respond-to(lg) { max-width: 664px; }
   @include bp.respond-to(xl) { max-width: 816px; }
@@ -238,7 +239,8 @@
 .article-card--md-vertical,
 .article-card--md,
 .article-card--sm-left,
-.article-card--sm-right {
+.article-card--sm-right,
+.article-card--image-only-medium {
   @include bp.respond-to(md) { max-width: 384px; }
   @include bp.respond-to(lg) { max-width: 332px; }
   @include bp.respond-to(xl) { max-width: 408px; }

@@ -8,7 +8,7 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 
 This is the **DM (Daily Mail) Design System** prototyping workspace. It stores design tokens exported from Figma variables, converted to CSS custom properties, and serves as the base for component and project prototyping across Web, iOS, and Android.
 
-No build system, test runner, or framework — files are maintained manually or via Figma export.
+No framework or test runner. The only build step is compiling SCSS to CSS (Sass, see Styles Architecture). Tokens come from Figma export; everything else is maintained by hand or by the demo generators in `tools/`.
 Design system documentation is stored in `docs/` and must be read before any component work begins.
 
 ---
@@ -17,8 +17,13 @@ Design system documentation is stored in `docs/` and must be read before any com
 
 ```
 tokens/           — Design token source files (JSON + CSS)
-components/       — Reusable UI components (shared across projects)
+styles/           — SCSS source (styles/scss/) and compiled CSS (styles/css/main.css)
+components/       — Reusable UI components (shared across projects) — one demo page per component
 projects/         — Project-specific prototypes, organised by project > platform
+experiments/      — A/B tests and one-off experiments (self-contained, never imported elsewhere)
+assets/           — Icons (Figma SVG originals) and images
+docs/             — Design system documentation (read before component work)
+tools/            — Demo page generators (tools/demo-generators/)
 CLAUDE.md         — This file
 ```
 
@@ -46,13 +51,15 @@ projects/
 
 ## Token Files
 
-| File                            | Format | Purpose                                              |
-| ------------------------------- | ------ | ---------------------------------------------------- |
-| `dm_colour_tokens.json`         | JSON   | Figma variable export — all colour tokens            |
-| `dm_colour_tokens.css`          | CSS    | CSS custom properties for colour tokens              |
-| `dm_typography_web_tokens.json` | JSON   | Figma variable export — web typography               |
-| `dm_typography_web_tokens.css`  | CSS    | CSS custom properties for web typography             |
-| `dm_typography_app_tokens.json` | JSON   | Figma variable export — app typography (iOS/Android) |
+| File                            | Format | Purpose                                                              |
+| ------------------------------- | ------ | -------------------------------------------------------------------- |
+| `dm_tokens.json`                | JSON   | Figma variable export — colour, spacing and border-radius tokens     |
+| `dm_tokens.css`                 | CSS    | CSS custom properties for the above (`--color-*`, `--number-*`)      |
+| `dm_typography_web_tokens.json` | JSON   | Figma variable export — web typography                               |
+| `dm_typography_web_tokens.css`  | CSS    | CSS custom properties for web typography                             |
+| `dm_typography_app_tokens.json` | JSON   | Figma variable export — app typography (iOS/Android)                 |
+
+SCSS aliases: use `--spacing-N` and `--border-radius-N` in component files — they map to `--number-spacing-N` / `--number-border-radius-N` (`styles/scss/foundation/_spacing.scss`, `_border-radius.scss`).
 
 ---
 
@@ -100,13 +107,16 @@ color/icon/*         — icon colours
 | Property  | Fuchsia     |
 | Podcasts  | Yellow      |
 | Games     | Ultramarine |
+| Science   | Orange      |
 
-Within each section, variants follow the pattern: `base`, `base-darker`, `subtle`, `subtlest`, `deep`.
+Within each section, variants follow the pattern: `base`, `base-darker`, `subtle`, `subtlest`, `deep`. Token example: `--color-text-showbiz-red-base`.
+
+`dm_tokens.css` also defines game colours (Quiz green, Sudoku blue, Word orange, Number pink, Brain purple) — not editorial sections.
 
 ### Light & Dark Modes
 
-- Light mode: `:root`
-- Dark mode: check `dm_colour_tokens.css` for the exact selector (class or data attribute)
+- Light mode: `:root, [data-theme="light"]`
+- Dark mode: `[data-theme="dark"]`
 
 ---
 
@@ -125,16 +135,19 @@ DM is currently **adaptive**, not fully responsive. Desktop and mobile are serve
 
 ### Desktop Web
 
-| Token | Value   | Context         |
-| ----- | ------- | --------------- |
-| MD    | ≥768px  | Tablet portrait |
-| LG    | ≥1024px | Desktop         |
-| XL    | ≥1344px | Wide desktop    |
+| Token | Value   | Container | Context         |
+| ----- | ------- | --------- | --------------- |
+| SM    | ≥640px  | 720px     | Phone landscape, foldables |
+| MD    | ≥768px  | 960px     | Tablet portrait |
+| LG    | ≥1024px | 996px     | Desktop         |
+| XL    | ≥1376px | 1224px    | Wide desktop    |
+
+Source of truth: `styles/scss/foundation/_breakpoints.scss` — use `@include bp.respond-to(md)` etc., never hard-coded media queries. Typography tokens still switch at 768 / 1024 only.
 
 ### Mobile Web
 
 - **Base (Portrait):** default, no px breakpoint needed
-- **Landscape:** `@media screen and (orientation: landscape)` — adjust layout columns and padding only. Do not change typography.
+- **Landscape:** `@include bp.phone-landscape` (`(orientation: landscape) and (max-height: 500px)`, so tablets are excluded) — adjust layout columns and padding only. Do not change typography.
 
 > A responsive (unified) build is not currently planned. Update this section if that changes.
 
@@ -169,7 +182,7 @@ e.g. `--typography-font-size-h1`, `--typography-font-weight-bold`
 | Semibold | 600   | Default emphasis — headings, buttons, labels        |
 | Bold     | 700   | Display only, or H1–H2 where extra impact is needed |
 
-Italic variants are for editorial inline use only. Never apply italic to buttons or functional UI.
+Italic variants are for editorial inline use only. Never apply italic to buttons or functional UI. Exception (per Figma): the commercial labels in Article Card Metadata — Ad Feature, Sponsored, Affiliate.
 
 ### Responsive Font Sizes (Web only)
 
@@ -314,6 +327,13 @@ All token files share the same version string (currently `1.0.4`). Update the `v
 - Compiled CSS: `styles/css/main.css` (auto-generated — do not edit manually)
 - Compile once: `npm run build`
 - Watch mode (auto-recompile on save): `npm run watch`
+- Requires Node 20 (`nvm use 20`). Older Node fails with `globalThis is not defined`.
+- `node_modules/` is committed for now (Sass only, small). Untrack it and add it to `.gitignore` if it grows large.
+
+### Local Preview
+
+- From the repo root: `python3 -m http.server 3000` → `http://localhost:3000/components/<name>/`
+- The server sends no cache headers, so hard-refresh (Cmd+Shift+R) after every build or the old `main.css` is shown.
 
 ### SCSS Structure
 
@@ -325,11 +345,34 @@ All token files share the same version string (currently `1.0.4`). Update the `v
 
 ### Rules
 
-- Never write `<style>` blocks inside HTML files
+- Never write `<style>` blocks inside HTML files (only exception: `experiments/`, see below)
 - New components always go in `styles/scss/components/_[name].scss`
 - New demo/prototype-only styling always goes in `styles/scss/scaffolding/_[name].scss` — never mix into `components/`
 - Always add new files to `main.scss` via `@use`
 - Always use semantic colour tokens (`var(--color-...)`) and typography tokens (`var(--typography-...)`) — never raw hex or px line-height
+
+### Demo Generators
+
+Some demo pages are generated — edit the generator in `tools/demo-generators/`, not the HTML, then regenerate. See `tools/demo-generators/README.md` for the list and commands.
+
+---
+
+## Experiments
+
+One-off tests and A/B variants live in `experiments/YYYYMM-exp-<name>/` (e.g. `202610-exp-preview-hover/`). Nothing outside the folder may import from it.
+
+- **A (control)** — links the shared `tokens/*.css` and `styles/css/main.css` only. Inline `<style>` is allowed for page layout (grid, widths) — never for component styles.
+- **B (variant)** — same links, plus an inline `<style>` that overrides only the changed parts. Shared SCSS/CSS/JS is never edited for a variant, so A is unaffected.
+- **Fixed breakpoint:** when a test targets one breakpoint, the page frames itself in an iframe of that width (e.g. 1024px for LG) instead of being responsive.
+- Images go in the experiment's own `images/` folder.
+- **After the test:** move the winning change into `styles/scss/components/` and `docs/`; keep or delete the folder.
+
+---
+
+## Git
+
+- Commit directly to `main`. Message format: `update: <Component> - <change>` (e.g. `update: Article Card - hover surface`).
+- `.DS_Store` and `.claude/settings.local.json` are ignored (`.gitignore`).
 
 ---
 
@@ -337,4 +380,5 @@ All token files share the same version string (currently `1.0.4`). Update the `v
 
 - Before starting any task, read all `.md` files in the `docs/` folder
 - Apply DM Design System rules and conventions from `docs/` throughout all work
-- When working on a specific component (e.g. button), read the relevant doc file first (e.g. `docs/button.md`)
+- When working on a specific component, read its doc first. Docs are named `docs/<section>_<Group>__<NN>_<Name>.md` (e.g. `docs/4_Components__01_Button.md`, `docs/4_Components__09_Article-Card.md`)
+- Figma MCP: the desktop server only reads the file open in the active Figma tab ("node not found" otherwise); the remote server works from the fileKey in the URL
