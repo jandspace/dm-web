@@ -1,0 +1,669 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Navigation — Masthead</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&family=Lora:ital,wght@0,400;0,500;0,600;0,700;1,400&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="../../tokens/dm_tokens.css" />
+    <link rel="stylesheet" href="../../tokens/dm_typography_web_tokens.css" />
+    <link rel="stylesheet" href="../../styles/css/main.css" />
+    <script src="../../scripts/scaffolding/demo-nav.js" defer></script>
+  </head>
+  <body class="demo-page-body demo-nav-page">
+    <svg style="display: none" aria-hidden="true">
+      <symbol id="ico-magnifier" viewBox="0 0 32 32">
+        <path d="M24.9956 22.3111C26.5778 20.0889 27.5111 17.36 27.5111 14.4C27.5111 6.94225 21.5467 0.888916 14.1956 0.888916C6.84447 0.888916 0.888916 6.94225 0.888916 14.4C0.888916 21.8578 6.84447 27.9111 14.1956 27.9111C17.3334 27.9111 20.2222 26.8089 22.4978 24.96L28.2934 30.8356C28.6489 31.1911 29.2267 31.2 29.5822 30.8356L30.8445 29.5556C31.2 29.2 31.2 28.6134 30.8445 28.2489L24.9867 22.3111H24.9956ZM14.2045 24.2489C8.84447 24.2489 4.50669 19.84 4.50669 14.4C4.50669 8.96003 8.84447 4.55114 14.1956 4.55114C19.5467 4.55114 23.8934 8.96003 23.8934 14.4C23.8934 19.84 19.5467 24.2489 14.1956 24.2489H14.2045Z" fill="currentColor"/>
+      </symbol>
+      <symbol id="ico-chevron-down" viewBox="0 0 32 32">
+        <path d="M29.5378 8.37108C29.1822 8.02442 28.5956 8.02442 28.2311 8.37108L15.9911 20.3L3.76003 8.37108C3.40447 8.02442 2.8178 8.02442 2.46225 8.37108L1.15558 9.6422C0.800027 9.98886 0.800027 10.5578 1.15558 10.9133L14.0445 23.4733L15.3511 24.7444C15.7067 25.0911 16.2934 25.0911 16.6489 24.7444L17.9556 23.4733L30.8445 10.9133C31.2 10.5666 31.2 9.99775 30.8445 9.6422L29.5378 8.37108Z" fill="currentColor"/>
+      </symbol>
+      <symbol id="ico-three-lines-magnifier" viewBox="0 0 32 32">
+        <path d="M13.1111 18.0002H2C0.897778 18.0002 0 17.1024 0 16.0002C0 14.8979 0.897778 14.0002 2 14.0002H13.1111C14.2133 14.0002 15.1111 14.8979 15.1111 16.0002C15.1111 17.1024 14.2133 18.0002 13.1111 18.0002ZM16.7822 26.6668C16.7822 25.5646 15.8844 24.6668 14.7822 24.6668H2C0.897778 24.6668 0 25.5646 0 26.6668C0 27.7691 0.897778 28.6668 2 28.6668H14.7822C15.8844 28.6668 16.7822 27.7691 16.7822 26.6668ZM32 5.3335C32 4.23127 31.1022 3.3335 30 3.3335H2C0.897778 3.3335 0 4.23127 0 5.3335C0 6.43572 0.897778 7.3335 2 7.3335H30C31.1022 7.3335 32 6.43572 32 5.3335Z" fill="currentColor"/>
+        <path d="M31.4756 22.2224C32.2222 20.2668 32.16 18.1424 31.3156 16.2313C30.4622 14.3202 28.9156 12.8624 26.9689 12.1157C25.0222 11.3691 22.8889 11.4313 20.9778 12.2846C19.0667 13.1379 17.6 14.6846 16.8622 16.6313C16.1156 18.5868 16.1778 20.7113 17.0222 22.6224C17.8756 24.5335 19.4222 25.9913 21.3689 26.7379C22.7733 27.2713 24.24 27.4135 25.7867 27.0846L27.5467 31.0224C27.8133 31.6179 28.4 32.0002 29.0489 32.0002C29.28 32.0002 29.5022 31.9557 29.7156 31.8579C30.1156 31.6802 30.4267 31.3513 30.5778 30.9424C30.7378 30.5335 30.72 30.0891 30.5422 29.6802L28.7822 25.7424C30 24.8535 30.9244 23.6446 31.4667 22.2224H31.4756ZM28.4089 21.0491C27.9733 22.1779 27.1289 23.0757 26.0178 23.5735C24.9156 24.0713 23.68 24.0979 22.5422 23.6713C21.4133 23.2357 20.5156 22.3913 20.0178 21.2802C19.52 20.1691 19.4933 18.9424 19.92 17.8046C20.5867 16.0624 22.2933 14.8891 24.1689 14.8891C24.72 14.8891 25.2622 14.9868 25.7867 15.1913C26.9156 15.6268 27.8133 16.4713 28.3111 17.5824C28.8089 18.6935 28.8356 19.9202 28.4089 21.0579V21.0491Z" fill="currentColor"/>
+      </symbol>
+      <symbol id="ico-arrow-right-light" viewBox="0 0 12 12">
+        <path d="M0.333333 6.32667H9.84667L5.81 10.3633L6.48333 11.0367L11.6667 5.85333L6.48333 0.666667L5.81 1.34L9.84667 5.37667H0.333333V6.32667Z" fill="currentColor"/>
+      </symbol>
+      <symbol id="ico-xmark-light" viewBox="0 0 16 16">
+        <path d="M13.7556 0.888672L8 6.64423L2.24444 0.888672L0.888889 2.24423L6.64444 7.99978L0.888889 13.7553L2.24444 15.1109L8 9.35534L13.7556 15.1109L15.1111 13.7553L9.35556 7.99978L15.1111 2.24423L13.7556 0.888672Z" fill="currentColor"/>
+      </symbol>
+      <symbol id="ico-tick" viewBox="0 0 32 32">
+        <path d="M27.8621 3.21463C27.7304 3.07805 27.5516 3 27.3728 3C27.194 3 27.0058 3.07805 26.8835 3.21463L11.2916 19.1951L5.11887 12.8732C4.98714 12.7366 4.80835 12.6585 4.62957 12.6585C4.45078 12.6585 4.26259 12.7366 4.14026 12.8732L0.207013 16.9024C0.0752775 17.039 0 17.2146 0 17.4098C0 17.5951 0.0564581 17.7805 0.178784 17.9171L10.7741 28.7951C10.9058 28.9317 11.0846 29 11.2634 29C11.4516 29 11.6304 28.922 11.7527 28.7951L31.7953 8.23902C32.0682 7.96585 32.0682 7.51707 31.7953 7.23415L27.8621 3.21463Z" fill="currentColor"/>
+      </symbol>
+
+      <symbol id="ico-person-outline" viewBox="0 0 14 14">
+        <path d="M7 1.4C8.34167 1.4 9.43833 2.49083 9.43833 3.83833C9.43833 5.18583 8.3475 6.27667 7 6.27667C5.6525 6.27667 4.56167 5.18583 4.56167 3.83833C4.56167 2.49083 5.6525 1.4 7 1.4ZM10.115 9.8C11.4858 9.8 12.6 10.9142 12.6 12.285V12.6H1.4V12.285C1.4 10.9142 2.51417 9.8 3.885 9.8H10.115ZM7 0C4.88833 0 3.16167 1.715 3.16167 3.83833C3.16167 5.96167 4.87667 7.67667 7 7.67667C9.12333 7.67667 10.8383 5.95583 10.8383 3.83833C10.8383 1.72083 9.11167 0 7 0ZM10.115 8.4H3.885C1.74417 8.4 0 10.1383 0 12.285V14H14V12.285C14 10.1442 12.2617 8.4 10.115 8.4Z" fill="currentColor" />
+      </symbol>
+      <symbol id="logo-mplus-wordmark" viewBox="0 0 114 20">
+        <path d="M89.695 2.13381C91.3769 1.61916 93.281 1.04513 94.9352 0.50673C95.4152 0.348377 95.5382 0.431512 95.5382 0.81156V14.0538C95.5382 14.3626 95.5659 14.4299 95.7682 14.5368L97.1963 15.3088C97.4343 15.4473 97.3788 15.5978 97.2281 15.7086C96.3911 16.3302 95.6016 16.9438 94.7567 17.6366C93.2612 16.9279 91.6863 16.2589 90.1908 15.673C89.9488 15.578 89.9488 15.4473 90.1234 15.285L90.8612 14.6002V4.04988C90.8612 3.10372 90.524 2.68013 89.6751 2.47031C89.4728 2.41884 89.453 2.20903 89.7029 2.13381H89.695ZM84.058 2.42676C84.0818 1.15994 84.9149 0.150435 86.2557 0.186065C87.3743 0.217736 88.0686 0.938242 88.0289 2.18131C87.9813 3.74109 86.22 4.78622 85.26 4.72684C84.6729 4.69121 84.0342 3.74505 84.058 2.42676ZM87.6838 14.0499C87.6838 14.3587 87.7115 14.426 87.9138 14.5329L89.3419 15.3048C89.5839 15.4355 89.5244 15.5938 89.3736 15.7047C88.5366 16.3262 87.7472 16.9398 86.9023 17.6326C85.4068 16.924 83.8319 16.2549 82.3364 15.669C82.0944 15.574 82.0944 15.4434 82.269 15.2811L83.0068 14.5962V8.55503C83.0068 8.24624 82.979 8.17894 82.7767 8.07205L81.3487 7.29612C81.1067 7.16548 81.1622 7.00317 81.3169 6.89628C82.1262 6.32621 83.0981 5.61362 83.9033 4.96833C85.375 5.68092 86.8111 6.31433 88.3542 6.93191C88.5961 7.03088 88.5961 7.15756 88.4216 7.31987L87.6838 8.00475V14.0459V14.0499ZM75.1484 14.901V8.55899C75.1484 8.27791 75.1286 8.16706 74.9184 8.07601L72.8834 7.04671C71.7528 7.71576 70.896 8.87965 70.896 10.5899C70.896 13.7886 73.5577 15.4592 75.1445 14.901H75.1484ZM74.7478 15.6295C73.9385 16.2114 72.9191 17.015 72.1733 17.6405C70.3684 17.6405 67.3377 16.2352 67.3377 12.9968C67.3377 8.93903 71.6021 6.09264 75.9339 4.97229C77.4294 5.68092 79.0042 6.34996 80.4997 6.93587C80.7417 7.03088 80.7417 7.16152 80.5672 7.32383L79.8294 8.00871V14.0499C79.8294 14.3587 79.8571 14.426 80.0594 14.5329L81.4875 15.3048C81.7295 15.4355 81.67 15.5938 81.5192 15.7047C80.6822 16.3262 79.8928 16.9398 79.0479 17.6326C77.7666 17.0269 76.1283 16.2154 74.7478 15.6215V15.6295ZM57.5514 10.8195V14.0499C57.5514 14.3587 57.5752 14.4378 57.7815 14.5329L58.0988 14.6833V10.8155H57.5514V10.8195ZM57.5514 2.92557V7.51781H58.0988V2.76722C58.0076 2.73555 57.9322 2.71971 57.8806 2.71971C57.6942 2.71971 57.603 2.81473 57.5474 2.92557H57.5514ZM50.2999 14.707V2.77118C50.2047 2.73951 50.1294 2.71971 50.0818 2.71971C49.8953 2.71971 49.8001 2.81473 49.7486 2.92557V14.0499C49.7486 14.3587 49.7763 14.426 49.9786 14.5329L50.2999 14.707ZM50.5657 10.8195V14.8496L51.4067 15.3048C51.6447 15.4434 51.5892 15.5938 51.4384 15.7047C50.6014 16.3262 49.812 16.9398 48.9671 17.6326C47.5152 16.9992 45.623 16.2154 44.1711 15.669C43.9291 15.574 43.9053 15.4196 44.0997 15.2811L45.0676 14.5962V4.21219C45.0676 3.9034 45.0399 3.8361 44.8376 3.72922L42.9216 2.69596C42.6796 2.56532 42.7391 2.40697 42.8898 2.29612C43.7268 1.67458 45.0042 0.696754 45.8531 0C47.2693 0.716548 48.6339 1.34996 49.9429 1.88836C50.9862 1.34204 52.0771 0.728424 53.1878 0C54.5167 0.787807 56.0122 1.57561 57.2459 2.15756C58.3963 1.51227 59.638 0.783848 60.8201 0C62.3037 0.847189 64.1959 1.78939 65.5724 2.40301C65.8104 2.5099 65.8144 2.62866 65.6398 2.79097L65.3582 3.04038V12.6564C65.3582 14.1251 65.62 14.6952 66.4094 14.9921C66.6157 15.0713 66.6117 15.2375 66.465 15.3405C65.62 15.9501 64.3506 16.8844 63.343 17.6405C61.1295 17.1615 60.6773 16.061 60.6773 13.5154V4.46952C60.6773 4.16073 60.6416 4.10531 60.4472 3.98258C59.999 3.7015 58.9993 3.13935 58.3686 2.87015V7.51386H60.3877L58.3686 10.7799V14.806L59.4317 15.3048C59.6816 15.4236 59.6181 15.5978 59.4634 15.7047C58.6264 16.2787 57.7101 16.9359 56.7739 17.6326C55.2784 16.924 53.7035 16.2549 52.208 15.669C51.966 15.574 51.966 15.4434 52.1406 15.2811L52.8784 14.5962V10.8155H50.5657V10.8195ZM50.5657 2.87411V10.1069L52.2041 7.51781H52.8705V4.47348C52.8705 4.16469 52.8348 4.10926 52.6404 3.98654C52.1921 3.70546 51.1925 3.14331 50.5657 2.87411ZM113.73 6.59145H108.665V1.5479C108.665 1.40143 108.546 1.2787 108.395 1.2787H104.321C104.174 1.2787 104.051 1.39747 104.051 1.5479V6.59145H98.9774C98.8307 6.59145 98.7077 6.71021 98.7077 6.86065V10.9343C98.7077 11.0808 98.8267 11.2035 98.9774 11.2035H104.051V16.2708C104.051 16.4173 104.17 16.54 104.321 16.54H108.395C108.542 16.54 108.665 16.4212 108.665 16.2708V11.2035H113.73C113.877 11.2035 114 11.0847 114 10.9343V6.86065C114 6.71417 113.881 6.59145 113.73 6.59145ZM4.62934 16.54H0V1.2787H4.39926C8.11226 1.2787 10.6868 3.39272 10.6868 8.61045V9.23199C10.6868 14.1211 8.63192 16.5439 4.62537 16.5439L4.62934 16.54ZM9.42132 8.71338C9.42132 4.48931 7.6164 2.27237 4.33579 2.27237H1.22576V15.5701H4.75231C7.82267 15.5701 9.42132 13.6025 9.42132 9.12906V8.71338ZM19.9613 16.54L19.878 14.4497C19.3583 15.8591 17.7399 16.6865 15.9151 16.6865C13.6341 16.6865 11.7221 15.4434 11.7221 12.7118V12.5059C11.7221 10.2059 13.3842 8.50752 16.1214 8.50752C17.7597 8.50752 19.1719 9.1924 19.8582 10.4949V7.98892C19.8582 6.78939 19.1322 5.62945 16.8076 5.62945C15.3954 5.62945 13.9634 6.02138 13.174 6.45685V5.44339C13.9436 5.02771 15.2923 4.67538 16.9703 4.67538C19.9177 4.67538 21.0165 6.35392 21.0165 7.90578V16.5439H19.9573L19.9613 16.54ZM19.8542 12.3357C19.8542 10.8432 18.4618 9.3943 16.3038 9.3943C14.2926 9.3943 12.9003 10.6374 12.9003 12.3555V12.6643C12.9003 14.715 14.3125 15.772 16.3038 15.772C18.5451 15.772 19.8542 14.323 19.8542 12.6445V12.3357ZM23.3133 3.61837V1.85669H24.8683V3.61837H23.3133ZM23.4998 16.54V4.92082H24.7255V16.54H23.4998ZM26.9192 16.54V1.2787H28.1212V16.5439H26.9192V16.54ZM34.0675 20H32.8655L34.4444 16.4371L29.5254 4.98416H30.7909L35.1267 15.0911L39.5061 4.98416H40.7081L34.0675 20Z" fill="currentColor"/>
+      </symbol>
+      <symbol id="logo-mplus-lozenge" viewBox="0 0 28 12">
+        <path d="M10.1094 7.36271V9.55932C10.1094 9.76814 10.1258 9.82237 10.2651 9.89017L10.4836 9.99322V7.36271H10.1094ZM10.1094 1.99593V5.11729H10.4836V1.88746C10.4208 1.86576 10.3689 1.85492 10.3361 1.85492C10.2078 1.85492 10.1449 1.91729 10.1094 1.99593ZM5.15274 1.89017C5.0872 1.86847 5.03804 1.85763 5.00254 1.85763C4.87418 1.85763 4.81137 1.92 4.77587 1.99864V9.56475C4.77587 9.77356 4.79499 9.81966 4.93153 9.89559L5.15274 10.0149V1.89017ZM5.33299 7.36271V10.1044L5.90922 10.4136C6.07035 10.5058 6.03484 10.6115 5.93107 10.6875C5.35757 11.1105 4.81956 11.5254 4.2406 12C3.24926 11.5688 1.95478 11.0373 0.960711 10.663C0.794122 10.598 0.780467 10.4922 0.914284 10.4L1.57791 9.93356V2.86915C1.57791 2.66034 1.55879 2.61424 1.42224 2.5383L0.11138 1.83593C-0.0524775 1.74644 -0.014244 1.64068 0.0895327 1.56203C0.663035 1.13898 1.53421 0.474576 2.11591 0C3.08267 0.485424 4.01939 0.919322 4.90969 1.28542C5.62247 0.913898 6.36802 0.496271 7.12723 0C8.03664 0.534237 9.05802 1.07119 9.90189 1.46983C10.6884 1.03051 11.5377 0.536949 12.3461 0C13.362 0.577627 14.6538 1.21763 15.596 1.63525C15.7598 1.70847 15.7625 1.78983 15.6424 1.89831L15.4485 2.06644V8.60474C15.4485 9.60271 15.626 9.99322 16.1667 10.1939C16.3087 10.2454 16.3033 10.3593 16.205 10.4325C15.6287 10.8475 14.7575 11.482 14.0721 11.9973C12.5591 11.6719 12.2505 10.9234 12.2505 9.19051V3.04C12.2505 2.83119 12.2259 2.79322 12.0949 2.70915C11.789 2.51661 11.1035 2.13424 10.6748 1.95254V5.11186H12.0539L10.6748 7.33288V10.0719L11.4012 10.4108C11.5705 10.4895 11.5295 10.6115 11.423 10.6847C10.8523 11.0753 10.2269 11.5227 9.5851 11.9973C8.56099 11.5173 7.48499 11.0617 6.46361 10.6603C6.29702 10.5953 6.29702 10.5058 6.41718 10.3973L6.91968 9.93085V7.36H5.34391L5.33299 7.36271ZM5.33299 1.95797V6.87729L6.45268 5.11729H6.90875V3.04542C6.90875 2.83661 6.88418 2.79864 6.75309 2.71458C6.44722 2.52203 5.76448 2.14237 5.33299 1.95797Z" fill="currentColor"/>
+        <path d="M27.8116 4.40407H24.3023V0.927463C24.3023 0.824412 24.2203 0.740344 24.1138 0.740344H21.2927C21.189 0.740344 21.1043 0.8217 21.1043 0.927463V4.40407H17.5896C17.4858 4.40407 17.4011 4.48543 17.4011 4.59119V7.39797C17.4011 7.50102 17.4831 7.58509 17.5896 7.58509H21.1043V11.078C21.1043 11.181 21.1862 11.2651 21.2927 11.2651H24.1138C24.2176 11.2651 24.3023 11.1837 24.3023 11.078V7.58509H27.8116C27.9153 7.58509 28 7.50373 28 7.39797V4.59119C28 4.48814 27.9181 4.40407 27.8116 4.40407Z" fill="currentColor"/>
+      </symbol>
+      <symbol id="ico-ch-mailplus" viewBox="0 0 26 14">
+        <path d="M25.1102 5.55706H21.9669V2.42108C21.9669 2.32877 21.8916 2.25347 21.7993 2.25347H19.2706C19.1783 2.25347 19.103 2.32877 19.103 2.42108V5.55706H15.9548C15.8625 5.55706 15.7872 5.63237 15.7872 5.72467V8.25581C15.7872 8.34812 15.8625 8.42342 15.9548 8.42342H19.103V11.574C19.103 11.6663 19.1783 11.7416 19.2706 11.7416H21.7993C21.8916 11.7416 21.9669 11.6663 21.9669 11.574V8.42342H25.1102C25.2025 8.42342 25.2778 8.34812 25.2778 8.25581V5.72467C25.2778 5.63237 25.2025 5.55706 25.1102 5.55706Z" fill="currentColor"/>
+        <path d="M9.06101 10.2088C9.06101 10.3983 9.07559 10.4469 9.2019 10.5052L9.39623 10.5975V8.22423H9.06101V10.2088ZM9.06101 3.38301V6.20078H9.39623V3.28584C9.34036 3.26641 9.29421 3.25669 9.26263 3.25669C9.14846 3.25669 9.09259 3.31499 9.05858 3.38301H9.06101ZM4.62059 10.6121V3.28827C4.56229 3.26884 4.51614 3.25669 4.48699 3.25669C4.37282 3.25669 4.31452 3.31499 4.28294 3.38301V10.2088C4.28294 10.3983 4.29995 10.4396 4.42383 10.5052L4.62059 10.6121ZM4.78334 8.22666V10.6995L5.29831 10.9788C5.44406 11.0639 5.41005 11.1562 5.31775 11.2242C4.8052 11.6056 4.32181 11.9821 3.80441 12.4072C2.91535 12.0185 1.75667 11.5375 0.867609 11.2023C0.719433 11.144 0.704859 11.0493 0.823885 10.9643L1.41659 10.544V4.17247C1.41659 3.983 1.39959 3.9417 1.2757 3.87612L0.100009 3.24212C-0.0481666 3.16196 -0.0117299 3.06479 0.0805764 2.99678C0.59312 2.61541 1.37529 2.01541 1.89512 1.58789C2.76232 2.02756 3.59793 2.41622 4.39954 2.74658C5.0384 2.41136 5.70641 2.03485 6.38656 1.58789C7.20031 2.07128 8.11609 2.55468 8.87154 2.91176C9.57599 2.51581 10.3363 2.06886 11.0602 1.58789C11.9687 2.10772 13.1273 2.68585 13.9703 3.06236C14.116 3.12795 14.1184 3.20082 14.0115 3.30042L13.8391 3.45345V9.35377C13.8391 10.255 13.9994 10.6048 14.4828 10.7869C14.6091 10.8355 14.6067 10.9376 14.5168 11.0007C13.9994 11.3748 13.2221 11.9481 12.6051 12.412C11.2496 12.1181 10.9727 11.4428 10.9727 9.88089V4.33036C10.9727 4.14089 10.9509 4.10688 10.8318 4.03158C10.5573 3.85911 9.94521 3.51418 9.55898 3.349V6.19835H10.7954L9.55898 8.20237V10.6728L10.21 10.9788C10.363 11.0517 10.3242 11.1586 10.2294 11.2242C9.71687 11.5764 9.15575 11.9796 8.58248 12.4072C7.6667 11.9724 6.70234 11.5618 5.78657 11.2023C5.63839 11.144 5.63839 11.0639 5.74527 10.9643L6.19709 10.544V8.22423H4.78577L4.78334 8.22666ZM4.78334 3.35143V7.78942L5.78657 6.20078H6.19466V4.33279C6.19466 4.14332 6.1728 4.10931 6.05377 4.03401C5.77928 3.86154 5.16714 3.51661 4.78334 3.35143Z" fill="currentColor"/>
+      </symbol>
+    </svg>
+
+    <!-- ── Nav Sheet (Mweb) — opened by the burger ──────────────────────────── -->
+    <div class="masthead-sheet" id="masthead-sheet" role="dialog" aria-modal="true" aria-label="Menu" hidden>
+      <div class="masthead-sheet__bar">
+        <button type="button" class="masthead-sheet__close" aria-label="Close menu"><svg aria-hidden="true"><use href="#ico-xmark-light" /></svg></button>
+      </div>
+      <div class="masthead-sheet__top">
+        <div class="masthead-sheet__home">
+          <a class="masthead-sheet__home-link" href="#"><img src="../../assets/icons/ico-ch-home-color.svg" alt="" />Home</a>
+          <button type="button" class="masthead-sheet__edition"><img src="../../assets/icons/ico-flag-united-kingdom.svg" alt="" />UK<svg aria-hidden="true"><use href="#ico-chevron-down" /></svg></button>
+        </div>
+        <a class="masthead-sheet__login" href="#login"><svg aria-hidden="true"><use href="#ico-person-outline" /></svg>Login</a>
+      </div>
+      <div class="masthead-sheet__body">
+        <label class="masthead-sheet__search"><svg aria-hidden="true"><use href="#ico-magnifier" /></svg><input type="search" placeholder="Search" aria-label="Search" /></label>
+        <ul class="masthead-sheet__playlists">
+          <li><a class="masthead-sheet__playlist" href="#live"><span class="masthead-sheet__playlist-icon"><span class="masthead-sheet__live"></span></span>Live</a></li>
+          <li><a class="masthead-sheet__playlist" href="#todays-pick"><span class="masthead-sheet__playlist-icon"><img src="../../assets/icons/ico-spotlight.svg" alt="" /></span>Today’s Pick</a></li>
+          <li><a class="masthead-sheet__playlist" href="#podcasts"><span class="masthead-sheet__playlist-icon"><img src="../../assets/icons/ico-headphone-audiowave.svg" alt="" /></span>Podcasts</a></li>
+          <li><a class="masthead-sheet__playlist" href="#deep-dive"><span class="masthead-sheet__playlist-icon"><img src="../../assets/icons/ico-arrow-down-waves.svg" alt="" /></span>Deep-Dive</a></li>
+        </ul>
+        <ul class="masthead-sheet__channels">
+          <li class="masthead-sheet__channel">
+            <div class="masthead-sheet__channel-row">
+              <a class="masthead-sheet__channel-link" href="#"><img src="../../assets/icons/ico-ch-news.svg" alt="" />News</a><button type="button" class="masthead-sheet__expand" aria-expanded="false" aria-controls="sheet-sub-news" aria-label="Show News sections"><svg aria-hidden="true"><use href="#ico-chevron-down" /></svg></button>
+            </div>
+            <ul class="masthead-sheet__subchannels" id="sheet-sub-news" hidden>
+              <li><a href="#">Latest Headlines</a></li>
+              <li><a href="#">Science</a></li>
+              <li><a href="#">Australia</a></li>
+              <li><a href="#">Scotland</a></li>
+              <li><a href="#">Voting Intention</a></li>
+              <li><a href="#">World News</a></li>
+              <li><a href="#">Debate</a></li>
+              <li><a href="#">Weather</a></li>
+              <li><a href="#">The Harry Trial</a></li>
+            </ul>
+          </li>
+          <li class="masthead-sheet__channel">
+            <div class="masthead-sheet__channel-row">
+              <a class="masthead-sheet__channel-link" href="#comment"><img src="../../assets/icons/ico-ch-columnist.svg" alt="" />Comment</a>
+            </div>
+          </li>
+          <li class="masthead-sheet__channel">
+            <div class="masthead-sheet__channel-row">
+              <a class="masthead-sheet__channel-link" href="#"><img src="../../assets/icons/ico-ch-uk-showbiz.svg" alt="" />Showbiz</a><button type="button" class="masthead-sheet__expand" aria-expanded="false" aria-controls="sheet-sub-showbiz" aria-label="Show Showbiz sections"><svg aria-hidden="true"><use href="#ico-chevron-down" /></svg></button>
+            </div>
+            <ul class="masthead-sheet__subchannels" id="sheet-sub-showbiz" hidden>
+              <li><a href="#">Headlines</a></li>
+              <li><a href="#">Showbiz</a></li>
+              <li><a href="#">Newsletter</a></li>
+              <li><a href="#">TV Guide</a></li>
+              <li><a href="#">Best Shows</a></li>
+            </ul>
+          </li>
+          <li class="masthead-sheet__channel">
+            <div class="masthead-sheet__channel-row">
+              <a class="masthead-sheet__channel-link" href="#"><img src="../../assets/icons/ico-ch-lifestyle.svg" alt="" />Lifestyle</a><button type="button" class="masthead-sheet__expand" aria-expanded="false" aria-controls="sheet-sub-lifestyle" aria-label="Show Lifestyle sections"><svg aria-hidden="true"><use href="#ico-chevron-down" /></svg></button>
+            </div>
+            <ul class="masthead-sheet__subchannels" id="sheet-sub-lifestyle" hidden>
+              <li><a href="#">You Mag</a></li>
+              <li><a href="#">Femail</a></li>
+              <li><a href="#">Health</a></li>
+              <li><a href="#">Food &amp; Drink</a></li>
+              <li><a href="#">Horoscopes</a></li>
+              <li><a href="#">Gardening</a></li>
+              <li><a href="#">Fitness &amp; Wellbeing</a></li>
+              <li><a href="#">Homes</a></li>
+              <li><a href="#">Fashion</a></li>
+              <li><a href="#">Beauty</a></li>
+              <li><a href="#">Love &amp; Sex</a></li>
+              <li><a href="#">Books</a></li>
+              <li><a href="#">Cars</a></li>
+              <li><a href="#">Mail Shop</a></li>
+            </ul>
+          </li>
+          <li class="masthead-sheet__channel">
+            <div class="masthead-sheet__channel-row">
+              <a class="masthead-sheet__channel-link" href="#"><img src="../../assets/icons/ico-ch-sport.svg" alt="" />Sport</a><button type="button" class="masthead-sheet__expand" aria-expanded="false" aria-controls="sheet-sub-sport" aria-label="Show Sport sections"><svg aria-hidden="true"><use href="#ico-chevron-down" /></svg></button>
+            </div>
+            <ul class="masthead-sheet__subchannels" id="sheet-sub-sport" hidden>
+              <li><a href="#">Football</a></li>
+              <li><a href="#">Premier League</a></li>
+              <li><a href="#">Transfer News</a></li>
+              <li><a href="#">M+ Sport</a></li>
+              <li><a href="#">Racing</a></li>
+              <li><a href="#">Golf</a></li>
+              <li><a href="#">F1</a></li>
+              <li><a href="#">Tennis</a></li>
+              <li><a href="#">Boxing</a></li>
+              <li><a href="#">Cricket</a></li>
+              <li><a href="#">Rugby</a></li>
+              <li><a href="#">US Sports</a></li>
+              <li><a href="#">More</a></li>
+            </ul>
+          </li>
+          <li class="masthead-sheet__channel">
+            <div class="masthead-sheet__channel-row">
+              <a class="masthead-sheet__channel-link" href="#"><img src="../../assets/icons/ico-ch-money.svg" alt="" />Money</a><button type="button" class="masthead-sheet__expand" aria-expanded="false" aria-controls="sheet-sub-money" aria-label="Show Money sections"><svg aria-hidden="true"><use href="#ico-chevron-down" /></svg></button>
+            </div>
+            <ul class="masthead-sheet__subchannels" id="sheet-sub-money" hidden>
+              <li><a href="#">Money</a></li>
+              <li><a href="#">Business</a></li>
+              <li><a href="#">Saving &amp; banking</a></li>
+              <li><a href="#">Investing</a></li>
+              <li><a href="#">Bills</a></li>
+              <li><a href="#">Cars</a></li>
+              <li><a href="#">Cards &amp; loans</a></li>
+              <li><a href="#">Pensions</a></li>
+              <li><a href="#">Mortgages</a></li>
+              <li><a href="#">Buy-to-let</a></li>
+            </ul>
+          </li>
+          <li class="masthead-sheet__channel">
+            <div class="masthead-sheet__channel-row">
+              <a class="masthead-sheet__channel-link" href="#"><img src="../../assets/icons/ico-ch-royals.svg" alt="" />Royals</a><button type="button" class="masthead-sheet__expand" aria-expanded="false" aria-controls="sheet-sub-royals" aria-label="Show Royals sections"><svg aria-hidden="true"><use href="#ico-chevron-down" /></svg></button>
+            </div>
+            <ul class="masthead-sheet__subchannels" id="sheet-sub-royals" hidden>
+              <li><a href="#">King Charles III</a></li>
+              <li><a href="#">Prince William</a></li>
+              <li><a href="#">Kate Middleton</a></li>
+              <li><a href="#">Prince Harry</a></li>
+              <li><a href="#">Meghan Markle</a></li>
+              <li><a href="#">Newsletter</a></li>
+            </ul>
+          </li>
+          <li class="masthead-sheet__channel">
+            <div class="masthead-sheet__channel-row">
+              <a class="masthead-sheet__channel-link" href="#"><img src="../../assets/icons/ico-ch-shopping.svg" alt="" />Buyline</a><button type="button" class="masthead-sheet__expand" aria-expanded="false" aria-controls="sheet-sub-buyline" aria-label="Show Buyline sections"><svg aria-hidden="true"><use href="#ico-chevron-down" /></svg></button>
+            </div>
+            <ul class="masthead-sheet__subchannels" id="sheet-sub-buyline" hidden>
+              <li><a href="#">Beauty</a></li>
+              <li><a href="#">Fashion</a></li>
+              <li><a href="#">Home and Garden</a></li>
+              <li><a href="#">Amazon Prime Day</a></li>
+            </ul>
+          </li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="demo-nav-content">
+      <h1 class="demo-page-h1">Navigation — Masthead</h1>
+      <p class="demo-page-intro">
+        Topbar · Branding · Navbar L1 (Figma Web UI Kit › Masthead 71:2568), plus the Mweb Nav Sheet (332:8626).
+        The masthead always fills the browser width; its content sits in the page container. Below 768 the
+        masthead takes the channel colour and the burger opens the Nav Sheet. On LG+ with a mouse, channels with
+        subchannels (every channel except Crime Desk) open a dropdown panel on hover, with a short hover-intent delay (open 150ms · close 300ms). Links are placeholders (#).
+        Every part on its own: <a href="anatomy.html">Navigation Anatomy</a>.
+      </p>
+
+      <div class="demo-vp-toolbar">
+        <div class="demo-vp-toolbar__row">
+          <span id="demo-vp-switch-label">Viewport</span>
+          <div class="demo-vp-toggle" role="group" aria-labelledby="demo-vp-switch-label" id="demo-vp-switch">
+            <button type="button" data-vp="live" aria-pressed="true">Live</button>
+            <button type="button" data-vp="xl" aria-pressed="false">XL 1440</button>
+            <button type="button" data-vp="lg" aria-pressed="false">LG 1024</button>
+            <button type="button" data-vp="md" aria-pressed="false">MD 768</button>
+            <button type="button" data-vp="xs" aria-pressed="false">Mweb 390</button>
+          </div>
+          <span class="demo-vp-toolbar__divider"></span>
+          <label for="demo-channel">Channel</label>
+          <select class="demo-vp-select" id="demo-channel">
+            <option value="Home">Home</option>
+            <option value="News">News</option>
+            <option value="Royals">Royals</option>
+            <option value="Sport">Sport</option>
+            <option value="Showbiz">Showbiz</option>
+            <option value="Lifestyle">Lifestyle</option>
+            <option value="Money">Money</option>
+            <option value="Crime Desk">Crime Desk</option>
+            <option value="Games">Games</option>
+            <option value="Travel">Travel</option>
+            <option value="Buyline">Buyline</option>
+          </select>
+          <span class="demo-vp-status" id="demo-vp-status"></span>
+        </div>
+      </div>
+
+      <!-- ── Masthead — full width of its container (the browser in production) ──
+           header.masthead.masthead--{section}
+             .masthead__inner                 page container
+               .masthead-topbar                (desktop) channel id · updated · edition / login / search
+               .masthead-branding              logo … slot (desktop) / Subscribe pill + login (Mweb)
+               nav.masthead-nav                burger (Mweb) + L1 items (+ dropdown panels, LG+) -->
+      <header class="masthead masthead--home" id="demo-masthead">
+        <div class="masthead__inner">
+          <div class="masthead-topbar">
+            <p class="masthead-topbar__id">
+              <span class="masthead-topbar__channel" id="demo-channel-name">Home</span>
+              <span class="masthead-topbar__updated">Last updated: <time datetime="2026-10-22T16:14">16:14 BST, 22 October 2026</time></span>
+            </p>
+            <div class="masthead-topbar__actions">
+              <div class="masthead-topbar__action">
+                <button type="button" class="masthead-action masthead-edition" aria-expanded="false" aria-controls="masthead-edition-menu">
+                  <img src="../../assets/icons/ico-flag-united-kingdom.svg" alt="" /><span>UK Edition</span><svg class="masthead-edition__chevron" aria-hidden="true"><use href="#ico-chevron-down" /></svg>
+                </button>
+                <div class="masthead-edition-menu" id="masthead-edition-menu" hidden>
+                  <p class="masthead-edition-menu__title">Select Edition</p>
+                  <a class="masthead-edition-menu__option" href="#uk" aria-current="true"><img src="../../assets/icons/ico-flag-united-kingdom.svg" alt="" />UK<svg aria-hidden="true"><use href="#ico-tick" /></svg></a>
+                  <a class="masthead-edition-menu__option" href="#us"><img src="../../assets/icons/ico-flag-united-states.svg" alt="" />US</a>
+                  <a class="masthead-edition-menu__option" href="#au"><img src="../../assets/icons/ico-flag-australia.svg" alt="" />AU</a>
+                  <a class="masthead-edition-menu__option" href="#ie"><img src="../../assets/icons/ico-flag-ireland.svg" alt="" />IE</a>
+                </div>
+              </div>
+              <div class="masthead-topbar__action">
+                <a class="masthead-action" href="#login"><svg aria-hidden="true"><use href="#ico-person-outline" /></svg><span>Login</span></a>
+              </div>
+              <div class="masthead-topbar__action">
+                <button type="button" class="masthead-action"><svg aria-hidden="true"><use href="#ico-magnifier" /></svg><span>Search</span></button>
+              </div>
+            </div>
+          </div>
+
+          <div class="masthead-branding">
+            <a class="masthead-branding__logo" href="#home" aria-label="Daily Mail home">
+              <img class="masthead-branding__logo-dark" src="../../assets/images/logo-dailymail.svg" alt="Daily Mail" />
+              <img class="masthead-branding__logo-light" src="../../assets/images/logo-dailymail-white.svg" alt="Daily Mail" />
+            </a>
+            <!-- Slot: Subscribe by default — any branding element can go here -->
+            <div class="masthead-branding__slot">
+              <a class="masthead-subscribe" href="#subscribe"><svg aria-label="Daily Mail+"><use href="#logo-mplus-wordmark" /></svg>Subscribe</a>
+            </div>
+            <div class="masthead-branding__mobile">
+              <a class="masthead-subscribe-pill" href="#subscribe"><svg aria-hidden="true"><use href="#ico-ch-mailplus" /></svg>Subscribe</a>
+              <a class="masthead-login-round" href="#login" aria-label="Login"><svg aria-hidden="true"><use href="#ico-person-outline" /></svg></a>
+            </div>
+          </div>
+
+          <nav class="masthead-nav" aria-label="Channels">
+            <button type="button" class="masthead-nav__trigger" aria-label="Menu and search" aria-controls="masthead-sheet" aria-expanded="false">
+              <svg aria-hidden="true"><use href="#ico-three-lines-magnifier" /></svg>
+            </button>
+            <div class="masthead-nav__scroller">
+              <ul class="masthead-nav__list">
+                <li class="masthead-nav__item masthead-nav__item--home masthead-nav__item--has-panel" data-channel="home" data-label="Home">
+                  <a class="masthead-nav__link" href="#" aria-current="page">Home</a>
+                  <div class="masthead-nav__panel">
+                    <a class="masthead-nav__panel-channel" href="#"><span>Home</span><svg aria-hidden="true"><use href="#ico-arrow-right-light" /></svg></a>
+                    <ul class="masthead-nav__panel-topics">
+                      <li><a class="masthead-nav__panel-topic" href="#">Latest Headlines</a></li>
+                      <li><a class="masthead-nav__panel-topic" href="#">Deep Dive</a></li>
+                      <li><a class="masthead-nav__panel-topic" href="#">Video</a></li>
+                      <li><a class="masthead-nav__panel-topic" href="#">Podcasts</a></li>
+                      <li><a class="masthead-nav__panel-topic" href="#">Columnists</a></li>
+                      <li><a class="masthead-nav__panel-topic" href="#">University Guide</a></li>
+                      <li><a class="masthead-nav__panel-topic" href="#">Kim Kardashian</a></li>
+                    </ul>
+                  </div>
+                </li>
+                <li class="masthead-nav__item masthead-nav__item--news masthead-nav__item--has-panel" data-channel="news" data-label="News">
+                  <a class="masthead-nav__link" href="#">News</a>
+                  <div class="masthead-nav__panel">
+                    <a class="masthead-nav__panel-channel" href="#"><span>News</span><svg aria-hidden="true"><use href="#ico-arrow-right-light" /></svg></a>
+                    <ul class="masthead-nav__panel-topics">
+                      <li><a class="masthead-nav__panel-topic" href="#">Latest Headlines</a></li>
+                      <li><a class="masthead-nav__panel-topic" href="#">Science</a></li>
+                      <li><a class="masthead-nav__panel-topic" href="#">Australia</a></li>
+                      <li><a class="masthead-nav__panel-topic" href="#">Scotland</a></li>
+                      <li><a class="masthead-nav__panel-topic" href="#">Voting Intention</a></li>
+                      <li><a class="masthead-nav__panel-topic" href="#">World News</a></li>
+                      <li><a class="masthead-nav__panel-topic" href="#">Debate</a></li>
+                      <li><a class="masthead-nav__panel-topic" href="#">Weather</a></li>
+                      <li><a class="masthead-nav__panel-topic" href="#">The Harry Trial</a></li>
+                    </ul>
+                  </div>
+                </li>
+                <li class="masthead-nav__item masthead-nav__item--royals masthead-nav__item--has-panel" data-channel="royals" data-label="Royals">
+                  <a class="masthead-nav__link" href="#">Royals</a>
+                  <div class="masthead-nav__panel">
+                    <a class="masthead-nav__panel-channel" href="#"><span>Royals</span><svg aria-hidden="true"><use href="#ico-arrow-right-light" /></svg></a>
+                    <ul class="masthead-nav__panel-topics">
+                      <li><a class="masthead-nav__panel-topic" href="#">King Charles III</a></li>
+                      <li><a class="masthead-nav__panel-topic" href="#">Prince William</a></li>
+                      <li><a class="masthead-nav__panel-topic" href="#">Kate Middleton</a></li>
+                      <li><a class="masthead-nav__panel-topic" href="#">Prince Harry</a></li>
+                      <li><a class="masthead-nav__panel-topic" href="#">Meghan Markle</a></li>
+                      <li><a class="masthead-nav__panel-topic" href="#">Newsletter</a></li>
+                    </ul>
+                  </div>
+                </li>
+                <li class="masthead-nav__item masthead-nav__item--home masthead-nav__item--has-panel" data-channel="home" data-label="US">
+                  <a class="masthead-nav__link" href="#">US</a>
+                  <div class="masthead-nav__panel">
+                    <a class="masthead-nav__panel-channel" href="#"><span>US</span><svg aria-hidden="true"><use href="#ico-arrow-right-light" /></svg></a>
+                    <ul class="masthead-nav__panel-topics">
+                      <li><a class="masthead-nav__panel-topic" href="#">Latest Headlines</a></li>
+                      <li><a class="masthead-nav__panel-topic" href="#">Podcasts</a></li>
+                      <li><a class="masthead-nav__panel-topic" href="#">Video</a></li>
+                    </ul>
+                  </div>
+                </li>
+                <li class="masthead-nav__item masthead-nav__item--sport masthead-nav__item--has-panel" data-channel="sport" data-label="Sport">
+                  <a class="masthead-nav__link" href="#">Sport</a>
+                  <div class="masthead-nav__panel">
+                    <a class="masthead-nav__panel-channel" href="#"><span>Sport</span><svg aria-hidden="true"><use href="#ico-arrow-right-light" /></svg></a>
+                    <ul class="masthead-nav__panel-topics">
+                      <li><a class="masthead-nav__panel-topic" href="#">Football</a></li>
+                      <li><a class="masthead-nav__panel-topic" href="#">Premier League</a></li>
+                      <li><a class="masthead-nav__panel-topic" href="#">Transfer News</a></li>
+                      <li><a class="masthead-nav__panel-topic" href="#">M+ Sport</a></li>
+                      <li><a class="masthead-nav__panel-topic" href="#">Racing</a></li>
+                      <li><a class="masthead-nav__panel-topic" href="#">Golf</a></li>
+                      <li><a class="masthead-nav__panel-topic" href="#">F1</a></li>
+                      <li><a class="masthead-nav__panel-topic" href="#">Tennis</a></li>
+                      <li><a class="masthead-nav__panel-topic" href="#">Boxing</a></li>
+                      <li><a class="masthead-nav__panel-topic" href="#">Cricket</a></li>
+                      <li><a class="masthead-nav__panel-topic" href="#">Rugby</a></li>
+                      <li><a class="masthead-nav__panel-topic" href="#">US Sports</a></li>
+                      <li><a class="masthead-nav__panel-topic" href="#">More</a></li>
+                    </ul>
+                  </div>
+                </li>
+                <li class="masthead-nav__item masthead-nav__item--showbiz masthead-nav__item--has-panel" data-channel="showbiz" data-label="Showbiz">
+                  <a class="masthead-nav__link" href="#">Showbiz</a>
+                  <div class="masthead-nav__panel">
+                    <a class="masthead-nav__panel-channel" href="#"><span>Showbiz</span><svg aria-hidden="true"><use href="#ico-arrow-right-light" /></svg></a>
+                    <ul class="masthead-nav__panel-topics">
+                      <li><a class="masthead-nav__panel-topic" href="#">Headlines</a></li>
+                      <li><a class="masthead-nav__panel-topic" href="#">Showbiz</a></li>
+                      <li><a class="masthead-nav__panel-topic" href="#">Newsletter</a></li>
+                      <li><a class="masthead-nav__panel-topic" href="#">TV Guide</a></li>
+                      <li><a class="masthead-nav__panel-topic" href="#">Best Shows</a></li>
+                    </ul>
+                  </div>
+                </li>
+                <li class="masthead-nav__item masthead-nav__item--lifestyle masthead-nav__item--has-panel" data-channel="lifestyle" data-label="Lifestyle">
+                  <a class="masthead-nav__link" href="#">Lifestyle</a>
+                  <div class="masthead-nav__panel">
+                    <a class="masthead-nav__panel-channel" href="#"><span>Lifestyle</span><svg aria-hidden="true"><use href="#ico-arrow-right-light" /></svg></a>
+                    <ul class="masthead-nav__panel-topics">
+                      <li><a class="masthead-nav__panel-topic" href="#">You Mag</a></li>
+                      <li><a class="masthead-nav__panel-topic" href="#">Femail</a></li>
+                      <li><a class="masthead-nav__panel-topic" href="#">Health</a></li>
+                      <li><a class="masthead-nav__panel-topic" href="#">Food &amp; Drink</a></li>
+                      <li><a class="masthead-nav__panel-topic" href="#">Horoscopes</a></li>
+                      <li><a class="masthead-nav__panel-topic" href="#">Gardening</a></li>
+                      <li><a class="masthead-nav__panel-topic" href="#">Fitness &amp; Wellbeing</a></li>
+                      <li><a class="masthead-nav__panel-topic" href="#">Homes</a></li>
+                      <li><a class="masthead-nav__panel-topic" href="#">Fashion</a></li>
+                      <li><a class="masthead-nav__panel-topic" href="#">Beauty</a></li>
+                      <li><a class="masthead-nav__panel-topic" href="#">Love &amp; Sex</a></li>
+                      <li><a class="masthead-nav__panel-topic" href="#">Books</a></li>
+                      <li><a class="masthead-nav__panel-topic" href="#">Cars</a></li>
+                      <li><a class="masthead-nav__panel-topic" href="#">Mail Shop</a></li>
+                    </ul>
+                  </div>
+                </li>
+                <li class="masthead-nav__item masthead-nav__item--money masthead-nav__item--has-panel" data-channel="money" data-label="Money">
+                  <a class="masthead-nav__link" href="#">Money</a>
+                  <div class="masthead-nav__panel">
+                    <a class="masthead-nav__panel-channel" href="#"><span>Money</span><svg aria-hidden="true"><use href="#ico-arrow-right-light" /></svg></a>
+                    <ul class="masthead-nav__panel-topics">
+                      <li><a class="masthead-nav__panel-topic" href="#">Money</a></li>
+                      <li><a class="masthead-nav__panel-topic" href="#">Business</a></li>
+                      <li><a class="masthead-nav__panel-topic" href="#">Saving &amp; banking</a></li>
+                      <li><a class="masthead-nav__panel-topic" href="#">Investing</a></li>
+                      <li><a class="masthead-nav__panel-topic" href="#">Bills</a></li>
+                      <li><a class="masthead-nav__panel-topic" href="#">Cars</a></li>
+                      <li><a class="masthead-nav__panel-topic" href="#">Cards &amp; loans</a></li>
+                      <li><a class="masthead-nav__panel-topic" href="#">Pensions</a></li>
+                      <li><a class="masthead-nav__panel-topic" href="#">Mortgages</a></li>
+                      <li><a class="masthead-nav__panel-topic" href="#">Buy-to-let</a></li>
+                    </ul>
+                  </div>
+                </li>
+                <li class="masthead-nav__item masthead-nav__item--crime" data-channel="crime" data-label="Crime Desk">
+                  <a class="masthead-nav__link" href="#">Crime Desk</a>
+                </li>
+                <li class="masthead-nav__item masthead-nav__item--games masthead-nav__item--has-panel" data-channel="games" data-label="Games">
+                  <a class="masthead-nav__link" href="#">Games</a>
+                  <div class="masthead-nav__panel masthead-nav__panel--end">
+                    <a class="masthead-nav__panel-channel" href="#"><span>Games</span><svg aria-hidden="true"><use href="#ico-arrow-right-light" /></svg></a>
+                    <ul class="masthead-nav__panel-topics">
+                      <li><a class="masthead-nav__panel-topic" href="#">Arcade Games</a></li>
+                    </ul>
+                  </div>
+                </li>
+                <li class="masthead-nav__item masthead-nav__item--travel masthead-nav__item--has-panel" data-channel="travel" data-label="Travel">
+                  <a class="masthead-nav__link" href="#">Travel</a>
+                  <div class="masthead-nav__panel masthead-nav__panel--end">
+                    <a class="masthead-nav__panel-channel" href="#"><span>Travel</span><svg aria-hidden="true"><use href="#ico-arrow-right-light" /></svg></a>
+                    <ul class="masthead-nav__panel-topics">
+                      <li><a class="masthead-nav__panel-topic" href="#">Latest Headlines</a></li>
+                      <li><a class="masthead-nav__panel-topic" href="#">Escape</a></li>
+                      <li><a class="masthead-nav__panel-topic" href="#">Destinations</a></li>
+                      <li><a class="masthead-nav__panel-topic" href="#">Holiday Types</a></li>
+                      <li><a class="masthead-nav__panel-topic" href="#">Holidays</a></li>
+                      <li><a class="masthead-nav__panel-topic" href="#">Expert Reviews</a></li>
+                    </ul>
+                  </div>
+                </li>
+                <li class="masthead-nav__item masthead-nav__item--shopping masthead-nav__item--has-panel" data-channel="shopping" data-label="Buyline">
+                  <a class="masthead-nav__link" href="#">Buyline</a>
+                  <div class="masthead-nav__panel masthead-nav__panel--end">
+                    <a class="masthead-nav__panel-channel" href="#"><span>Buyline</span><svg aria-hidden="true"><use href="#ico-arrow-right-light" /></svg></a>
+                    <ul class="masthead-nav__panel-topics">
+                      <li><a class="masthead-nav__panel-topic" href="#">Beauty</a></li>
+                      <li><a class="masthead-nav__panel-topic" href="#">Fashion</a></li>
+                      <li><a class="masthead-nav__panel-topic" href="#">Home and Garden</a></li>
+                      <li><a class="masthead-nav__panel-topic" href="#">Amazon Prime Day</a></li>
+                    </ul>
+                  </div>
+                </li>
+                <li class="masthead-nav__item masthead-nav__item--home masthead-nav__mplus masthead-nav__item--has-panel" data-channel="home" data-label="Daily Mail+">
+                  <a class="masthead-nav__link" href="#" aria-label="Daily Mail+"><svg class="masthead-nav__mplus-wordmark" aria-hidden="true"><use href="#logo-mplus-wordmark" /></svg><svg class="masthead-nav__mplus-lozenge" aria-hidden="true"><use href="#logo-mplus-lozenge" /></svg></a>
+                  <div class="masthead-nav__panel masthead-nav__panel--end">
+                    <a class="masthead-nav__panel-channel" href="#"><span>Daily Mail+</span><svg aria-hidden="true"><use href="#ico-arrow-right-light" /></svg></a>
+                    <ul class="masthead-nav__panel-topics">
+                      <li><a class="masthead-nav__panel-topic" href="#">Puzzles</a></li>
+                    </ul>
+                  </div>
+                </li>
+              </ul>
+            </div>
+          </nav>
+        </div>
+      </header>
+
+      <!-- Fixed-viewport preview: this page rendered in an iframe at the chosen width -->
+      <div class="demo-vp-stage demo-nav-stage" id="demo-vp-stage" hidden></div>
+    </div>
+
+    <script>
+      // Masthead behaviour (reference for the build):
+      //   · burger opens the Nav Sheet; close button / Escape closes it
+      //   · Edition button toggles its menu (click outside closes)
+      //   · Nav Sheet expand buttons show / hide a channel's subchannels
+      //   · the current channel is scrolled into view when the row scrolls
+      //   · LG+ with a mouse: dropdown panels open after 150ms on an item and
+      //     close 300ms after the pointer leaves (hover intent) — passing over
+      //     other tabs on the way to a panel does not swap it
+      window.mastheadRevealCurrent = () => {
+        const list = document.querySelector('.masthead-nav__list');
+        const current = list.querySelector('[aria-current="page"]');
+        if (!current || list.scrollWidth <= list.clientWidth) return;
+        const item = current.parentElement;
+        list.scrollLeft = item.offsetLeft - (list.clientWidth - item.offsetWidth) / 2;
+      };
+      (() => {
+        const sheet = document.getElementById('masthead-sheet');
+        const trigger = document.querySelector('.masthead-nav__trigger');
+        const setSheet = (open) => {
+          sheet.hidden = !open;
+          trigger.setAttribute('aria-expanded', String(open));
+          document.documentElement.classList.toggle('masthead-sheet-open', open);
+          if (open) sheet.querySelector('.masthead-sheet__close').focus();
+          else trigger.focus();
+        };
+        trigger.addEventListener('click', () => setSheet(true));
+        sheet.querySelector('.masthead-sheet__close').addEventListener('click', () => setSheet(false));
+
+        const edition = document.querySelector('.masthead-edition');
+        const menu = document.getElementById('masthead-edition-menu');
+        const setMenu = (open) => {
+          menu.hidden = !open;
+          edition.setAttribute('aria-expanded', String(open));
+        };
+        edition.addEventListener('click', (e) => {
+          e.stopPropagation();
+          setMenu(menu.hidden);
+        });
+        document.addEventListener('click', (e) => {
+          if (!menu.hidden && !menu.contains(e.target)) setMenu(false);
+        });
+        document.addEventListener('keydown', (e) => {
+          if (e.key !== 'Escape') return;
+          if (!sheet.hidden) setSheet(false);
+          if (!menu.hidden) setMenu(false);
+        });
+
+        const nav = document.querySelector('.masthead-nav');
+        const desktop = window.matchMedia('(min-width: 1024px) and (hover: hover)');
+        const OPEN_DELAY = 150;
+        const CLOSE_DELAY = 300;
+        let openItem = null;
+        let openTimer = 0;
+        let closeTimer = 0;
+        const closePanel = () => {
+          openItem?.classList.remove('is-open');
+          openItem = null;
+        };
+        const openPanel = (item) => {
+          if (openItem && openItem !== item) openItem.classList.remove('is-open');
+          item.classList.add('is-open');
+          openItem = item;
+        };
+        nav.classList.add('masthead-nav--intent');
+        nav.querySelectorAll('.masthead-nav__item').forEach((item) => {
+          const hasPanel = item.classList.contains('masthead-nav__item--has-panel');
+          item.addEventListener('mouseenter', () => {
+            if (!desktop.matches) return;
+            clearTimeout(closeTimer);
+            clearTimeout(openTimer);
+            if (item === openItem) return;
+            // after the delay: open this item's panel, or close the open one
+            openTimer = setTimeout(() => (hasPanel ? openPanel(item) : closePanel()), OPEN_DELAY);
+          });
+          item.addEventListener('mouseleave', () => {
+            clearTimeout(openTimer);
+            closeTimer = setTimeout(closePanel, CLOSE_DELAY);
+          });
+        });
+        document.addEventListener('keydown', (e) => e.key === 'Escape' && closePanel());
+
+        sheet.querySelectorAll('.masthead-sheet__expand').forEach((btn) => {
+          btn.addEventListener('click', () => {
+            const open = btn.getAttribute('aria-expanded') !== 'true';
+            btn.setAttribute('aria-expanded', String(open));
+            document.getElementById(btn.getAttribute('aria-controls')).hidden = !open;
+          });
+        });
+      })();
+    </script>
+
+    <script>
+      // Scaffolding only — channel switch + viewport preview.
+      //   ?channel=News       current channel (colour, topbar name, current item)
+      //   ?frame              masthead only (rendered inside the viewport stage)
+      //   ?vp=xl|lg|md|xs     preview at a fixed viewport width
+      (() => {
+        const params = new URLSearchParams(location.search);
+        const masthead = document.getElementById('demo-masthead');
+
+        const setChannel = (label) => {
+          const item = [...masthead.querySelectorAll('.masthead-nav__item')].find((li) => li.dataset.label === label);
+          if (!item) return;
+          masthead.className = masthead.className.replace(/masthead--[\w-]+/, `masthead--${item.dataset.channel}`);
+          document.getElementById('demo-channel-name').textContent = label;
+          masthead.querySelectorAll('.masthead-nav__link').forEach((a) => a.removeAttribute('aria-current'));
+          item.querySelector('.masthead-nav__link').setAttribute('aria-current', 'page');
+        };
+        setChannel(params.get('channel') || 'Home');
+        document.fonts.ready.then(window.mastheadRevealCurrent);
+
+        if (params.has('frame')) {
+          document.body.classList.add('demo-frame');
+          return;
+        }
+
+        const select = document.getElementById('demo-channel');
+        select.value = params.get('channel') || 'Home';
+
+        const VIEWPORTS = {
+          xl: { label: 'XL ≥1376', width: 1440 },
+          lg: { label: 'LG ≥1024', width: 1024 },
+          md: { label: 'MD ≥768', width: 768 },
+          xs: { label: 'SM-XS <768', width: 390 },
+        };
+        const toggle = document.getElementById('demo-vp-switch');
+        const status = document.getElementById('demo-vp-status');
+        const stage = document.getElementById('demo-vp-stage');
+        let iframe = null;
+        let width = 0;
+        let vpKey = 'live';
+
+        const fit = () => {
+          if (!iframe || !iframe.contentDocument) return;
+          const scale = Math.min(1, (stage.parentElement.clientWidth - 40) / width);
+          const height = Math.max(iframe.contentDocument.documentElement.scrollHeight, 420);
+          iframe.height = height;
+          iframe.style.transform = `scale(${scale})`;
+          stage.style.width = `${width * scale}px`;
+          stage.style.height = `${height * scale}px`;
+          status.textContent = `${width}px viewport · ${Math.round(scale * 100)}%`;
+        };
+
+        const syncUrl = () => {
+          const url = new URL(location.href);
+          vpKey === 'live' ? url.searchParams.delete('vp') : url.searchParams.set('vp', vpKey);
+          select.value === 'Home' ? url.searchParams.delete('channel') : url.searchParams.set('channel', select.value);
+          history.replaceState(null, '', url);
+        };
+
+        const show = (key) => {
+          vpKey = VIEWPORTS[key] ? key : 'live';
+          toggle.querySelectorAll('button').forEach((b) => b.setAttribute('aria-pressed', String(b.dataset.vp === vpKey)));
+          syncUrl();
+          const vp = VIEWPORTS[vpKey];
+          masthead.hidden = Boolean(vp);
+          if (!vp) {
+            stage.hidden = true;
+            stage.replaceChildren();
+            iframe = null;
+            status.textContent = '';
+            return;
+          }
+          width = vp.width;
+          stage.hidden = false;
+          status.textContent = 'Loading…';
+          iframe = document.createElement('iframe');
+          iframe.src = `index.html?frame&channel=${encodeURIComponent(select.value)}`;
+          iframe.width = width;
+          iframe.title = `Masthead at ${vp.label}`;
+          iframe.addEventListener('load', async () => {
+            await iframe.contentDocument.fonts.ready;
+            fit();
+          });
+          stage.replaceChildren(iframe);
+        };
+
+        toggle.addEventListener('click', (e) => {
+          const b = e.target.closest('button[data-vp]');
+          if (b) show(b.dataset.vp);
+        });
+        select.addEventListener('change', () => {
+          setChannel(select.value);
+          window.mastheadRevealCurrent();
+          show(vpKey); // reload the preview with the new channel
+        });
+        window.addEventListener('resize', fit);
+        show(params.get('vp') || 'live');
+      })();
+    </script>
+  </body>
+</html>
+

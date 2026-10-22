@@ -1,0 +1,832 @@
+// ── Masthead (Navigation) ─────────────────────────────────────────────────────
+// Site header: Topbar › Branding › Navbar L1. Always spans the full browser
+// width; the content sits in the page container (720 · 960 · 996 · 1224) with
+// a 16px inset.
+//
+//   header.masthead.masthead--{section}         section → channel colour
+//     .masthead__inner                          page container
+//       .masthead-topbar                        channel id · last updated · edition / login / search
+//       .masthead-branding                      logo … slot (Subscribe, or other branding)
+//       nav.masthead-nav                        burger (Mweb) + L1 channel items
+//         li.masthead-nav__item--{section}      item colour (indicator, dropdown tint)
+//           a.masthead-nav__link                label + active indicator
+//           .masthead-nav__panel                optional dropdown (LG+, mouse)
+//
+// Desktop (≥768): lightest surface, dark text, keyline under the navbar.
+// Mweb (<768): the whole masthead takes the channel colour (background/{c}/base),
+// white logo and labels, Subscribe pill + round login; no Topbar. The burger
+// opens the Nav Sheet (_masthead-sheet.scss).
+//
+// Reference: Figma Web UI Kit › Masthead (71:2568) · Topbar (2839:29038) ·
+// Branding (2841:11471) · Navbar - L1 (2839:29304)
+
+@use '../foundation/breakpoints' as bp;
+@use '../foundation/sections';
+
+// ── Channel colours ───────────────────────────────────────────────────────────
+
+.masthead {
+  --masthead-color: var(--color-background-home-blue-base);
+  --masthead-keyline: var(--color-border-home-blue-base);
+}
+
+.masthead-nav__item {
+  --masthead-item-color: var(--color-background-home-blue-base);
+  --masthead-item-tint: var(--color-background-home-blue-subtlest);
+}
+
+@each $section, $colour in sections.$sections {
+  .masthead--#{$section} {
+    --masthead-color: var(--color-background-#{$colour}-base);
+    --masthead-keyline: var(--color-border-#{$colour}-base);
+  }
+
+  .masthead-nav__item--#{$section} {
+    --masthead-item-color: var(--color-background-#{$colour}-base);
+    --masthead-item-tint: var(--color-background-#{$colour}-subtlest);
+  }
+}
+
+// ── Shell ─────────────────────────────────────────────────────────────────────
+
+.masthead {
+  position: relative;
+  z-index: 50; // dropdown panels above the page
+  width: 100%;
+  padding-top: var(--spacing-4);
+  background-color: var(--masthead-color);
+  font-family: var(--typography-font-family-sans);
+
+  @include bp.respond-to(md) {
+    padding-top: 0;
+    background-color: var(--color-background-neutral-lightest);
+  }
+}
+
+.masthead__inner {
+  width: 100%;
+  margin-inline: auto;
+
+  @include bp.respond-to(md) {
+    max-width: 960px;
+    padding-inline: var(--spacing-16);
+  }
+
+  @include bp.respond-to(lg) { max-width: 996px; }
+  @include bp.respond-to(xl) { max-width: 1224px; }
+
+  // Keyline under the navbar (desktop)
+  @include bp.respond-to(md) {
+    border-bottom: 1px solid var(--color-border-neutral-light);
+  }
+}
+
+// Shared: label-sm Semibold item with an optional 14px icon
+.masthead-action {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  gap: var(--spacing-6);
+  padding: 0;
+  border: 0;
+  background: none;
+  font: inherit;
+  font-size: var(--typography-font-size-label-sm);
+  font-weight: var(--typography-font-weight-semibold);
+  line-height: var(--typography-line-height-narrow);
+  color: var(--color-text-neutral-darker);
+  white-space: nowrap;
+  text-decoration: none;
+  cursor: pointer;
+
+  svg,
+  img {
+    position: relative;
+    flex-shrink: 0;
+    width: 14px;
+    height: 14px;
+  }
+
+  > span {
+    position: relative;
+  }
+
+  // Hover surface — background/neutral/light pill, 4px / 8px outside the content
+  &::before {
+    content: '';
+    position: absolute;
+    inset: -4px -8px;
+    border-radius: var(--border-radius-full);
+    background-color: var(--color-background-neutral-light);
+    opacity: 0;
+    transition: opacity 0.15s;
+  }
+
+  &:hover::before,
+  &:focus-visible::before,
+  &[aria-expanded='true']::before,
+  &.is-hover::before {
+    opacity: 1;
+  }
+
+  &:focus-visible {
+    outline: none;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    &::before {
+      transition: none;
+    }
+  }
+}
+
+// ── 1. Topbar (desktop only) ──────────────────────────────────────────────────
+// 32px row, keyline below. Left: channel id (3px channel-colour bar) + last
+// updated (LG+). Right: Edition · Login · Search, each 16px inset with a
+// 1px keyline on its left.
+
+.masthead-topbar {
+  display: none;
+
+  @include bp.respond-to(md) {
+    display: flex;
+    align-items: center;
+    gap: var(--spacing-16);
+    min-height: 32px;
+    padding-block: 2px;
+    border-bottom: 1px solid var(--color-border-neutral-light);
+  }
+}
+
+.masthead-topbar__id {
+  display: flex;
+  flex: 1 1 auto;
+  align-items: center;
+  gap: var(--spacing-8);
+  min-width: 0;
+  margin: 0;
+  font-size: var(--typography-font-size-label-xsm);
+  line-height: var(--typography-line-height-narrow);
+}
+
+.masthead-topbar__channel {
+  padding-left: var(--spacing-8);
+  border-left: 3px solid var(--masthead-keyline);
+  font-weight: var(--typography-font-weight-bold);
+  color: var(--color-text-neutral-darker);
+  white-space: nowrap;
+}
+
+.masthead-topbar__updated {
+  display: none;
+  font-weight: var(--typography-font-weight-regular);
+  color: var(--color-text-neutral-dark);
+  white-space: nowrap;
+
+  @include bp.respond-to(lg) {
+    display: inline;
+  }
+}
+
+.masthead-topbar__actions {
+  display: flex;
+  align-self: stretch;
+  align-items: center;
+}
+
+.masthead-topbar__action {
+  position: relative;
+  display: flex;
+  align-items: center;
+  min-height: 22px;
+  padding-inline: var(--spacing-16);
+  border-left: 1px solid var(--color-border-neutral-light);
+
+  &:last-child {
+    padding-right: 0;
+  }
+}
+
+// Edition: flag 14 · label · chevron 12, 4px apart
+.masthead-edition {
+  gap: var(--spacing-4);
+
+  .masthead-edition__chevron {
+    width: 12px;
+    height: 12px;
+    transition: transform 0.15s;
+  }
+
+  &[aria-expanded='true'] .masthead-edition__chevron {
+    transform: rotate(180deg);
+  }
+}
+
+// Edition menu — Elevation Lv-4 panel under the button
+.masthead-edition-menu {
+  position: absolute;
+  top: calc(100% + var(--spacing-8));
+  right: 0;
+  z-index: 10;
+  min-width: 200px;
+  padding: var(--spacing-8) 0;
+  border-radius: var(--border-radius-8);
+  background-color: var(--color-background-neutral-lightest);
+  box-shadow: 0 4px 20px var(--color-effect-translucent-dark-subtle);
+
+  &[hidden] {
+    display: none;
+  }
+}
+
+.masthead-edition-menu__title {
+  margin: 0;
+  padding: var(--spacing-8) var(--spacing-16);
+  font-size: var(--typography-font-size-label-xsm);
+  font-weight: var(--typography-font-weight-bold);
+  color: var(--color-text-neutral-grey-dark);
+}
+
+.masthead-edition-menu__option {
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-8);
+  padding: var(--spacing-8) var(--spacing-16);
+  font-size: var(--typography-font-size-label-sm);
+  font-weight: var(--typography-font-weight-semibold);
+  color: var(--color-text-neutral-darker);
+  text-decoration: none;
+
+  img {
+    width: 16px;
+    height: 16px;
+  }
+
+  // Tick on the current edition
+  svg {
+    width: 14px;
+    height: 14px;
+    margin-left: auto;
+    color: var(--color-icon-interaction-primary-default);
+  }
+
+  &:hover,
+  &:focus-visible {
+    background-color: var(--color-background-neutral-lighter);
+  }
+}
+
+// ── 2. Branding ───────────────────────────────────────────────────────────────
+// Desktop: logo left (LG+ 331×68 · MD 267×55), slot right (max 480) — the
+// Subscribe button by default, or any branding element.
+// Mweb: white logo 127×26 · Subscribe pill + round login.
+
+.masthead-branding {
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-16);
+  padding: var(--spacing-2) var(--spacing-6) var(--spacing-2) var(--spacing-12);
+
+  @include bp.respond-to(md) {
+    gap: 0;
+    height: 72px;
+    padding: 0;
+  }
+
+  @include bp.respond-to(lg) {
+    height: 84px;
+  }
+}
+
+.masthead-branding__logo {
+  display: flex;
+  flex: 0 1 auto; // the link hugs the logo — no hover area beyond it
+  align-items: center;
+  min-width: 0;
+
+  // Hover — logo lighter (72% opacity over the masthead surface)
+  img {
+    transition: opacity 0.15s;
+  }
+
+  &:hover img,
+  &:focus-visible img,
+  &.is-hover img {
+    opacity: 0.72;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    img {
+      transition: none;
+    }
+  }
+
+  @include bp.respond-to(md) {
+    padding: var(--spacing-12) 0 var(--spacing-4) var(--spacing-8);
+  }
+
+  img {
+    display: block;
+    width: 127px;
+    height: 26px;
+
+    @include bp.respond-to(md) {
+      width: 267px;
+      height: 55px;
+    }
+
+    @include bp.respond-to(lg) {
+      width: 331px;
+      height: 68px;
+    }
+  }
+
+  // Dark logo on desktop, white on the channel colour (Mweb)
+  .masthead-branding__logo-light { display: block; }
+  .masthead-branding__logo-dark { display: none; }
+
+  @include bp.respond-to(md) {
+    .masthead-branding__logo-light { display: none; }
+    .masthead-branding__logo-dark { display: block; }
+  }
+}
+
+// Desktop slot — right column, content right-aligned and centred vertically
+.masthead-branding__slot {
+  display: none;
+
+  @include bp.respond-to(md) {
+    display: flex;
+    flex: 1 1 auto;
+    align-items: center;
+    justify-content: flex-end;
+    max-width: 480px;
+    margin-left: auto;
+    height: 100%;
+    overflow: hidden;
+  }
+}
+
+// Mail+ Subscribe button (Figma "DailyMail+ Subs Button"): 48px, Mail+ gradient,
+// Daily Mail+ wordmark 114×20 + "Subscribe" label-xl Semibold, white
+.masthead-subscribe {
+  display: inline-flex;
+  flex-shrink: 0;
+  align-items: center;
+  gap: var(--spacing-8);
+  height: 48px;
+  padding-inline: var(--spacing-16);
+  border-radius: var(--border-radius-full);
+  background-image: linear-gradient(
+    160deg,
+    var(--color-miscellaneous-mailplus-mplus-dark-blue) 4%,
+    var(--color-miscellaneous-mailplus-mplus-solid-blue) 65%
+  );
+  font-size: var(--typography-font-size-label-xl);
+  font-weight: var(--typography-font-weight-semibold);
+  line-height: var(--typography-line-height-narrow);
+  color: var(--color-text-neutral-white);
+  white-space: nowrap;
+  text-decoration: none;
+
+  svg {
+    width: 114px;
+    height: 20px;
+    margin-top: 1px;
+  }
+
+  // Hover — same as the primary (brand) button: interaction-primary/hover
+  &:hover,
+  &:focus-visible,
+  &.is-hover {
+    background-image: none;
+    background-color: var(--color-background-interaction-primary-hover);
+  }
+}
+
+// Mweb actions — Subscribe pill (primary on dark) + round login (secondary on dark)
+.masthead-branding__mobile {
+  display: flex;
+  flex-shrink: 0;
+  align-items: center;
+  margin-left: auto;
+
+  @include bp.respond-to(md) {
+    display: none;
+  }
+}
+
+.masthead-subscribe-pill {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--spacing-10);
+  height: 34px;
+  margin-inline: var(--spacing-4);
+  padding: 0 var(--spacing-12) 0 var(--spacing-16);
+  border-radius: var(--border-radius-full);
+  background-color: var(--color-background-neutral-lightest);
+  font-size: var(--typography-font-size-label-sm);
+  font-weight: var(--typography-font-weight-semibold);
+  line-height: var(--typography-line-height-narrow);
+  color: var(--color-text-neutral-darker);
+  text-decoration: none;
+
+  svg {
+    width: 26px;
+    height: 14px;
+    margin-inline: -6px -6px; // 26px artwork on a 14px icon slot, as in Figma
+  }
+}
+
+.masthead-login-round {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 44px;
+  height: 44px;
+  color: var(--color-icon-neutral-lightest);
+
+  &::before {
+    content: '';
+    position: absolute;
+    width: 34px;
+    height: 34px;
+    border: 1px solid var(--color-border-translucent-light-moderate);
+    border-radius: var(--border-radius-full);
+  }
+
+  svg {
+    width: 14px;
+    height: 14px;
+  }
+}
+
+// ── 3. Navbar L1 ──────────────────────────────────────────────────────────────
+// Desktop: 38px items spread across the container (LG+); MD scrolls sideways
+// with 16px fades at both ends. Item: label-sm Bold, neutral/dark (current:
+// darker); a 4px channel-colour indicator under the label — shown on the
+// current channel and on hover.
+// Mweb: burger + items that scroll sideways (right edge fades), label-sm
+// Semibold, lightest; the current channel gets a lightest 4px pill indicator.
+
+.masthead-nav {
+  position: relative;
+  display: flex;
+  align-items: flex-end;
+}
+
+// Burger (Mweb) — 44×44, 20px icon
+.masthead-nav__trigger {
+  display: flex;
+  flex-shrink: 0;
+  align-items: center;
+  justify-content: center;
+  width: 44px;
+  height: 44px;
+  padding: 0;
+  border: 0;
+  background: none;
+  color: var(--color-icon-neutral-lightest);
+  cursor: pointer;
+
+  svg {
+    width: 20px;
+    height: 20px;
+  }
+
+  @include bp.respond-to(md) {
+    display: none;
+  }
+}
+
+.masthead-nav__scroller {
+  position: relative;
+  flex: 1 1 auto;
+  min-width: 0;
+
+  // MD: the scrolling row runs into the container's 16px inset (Figma), so
+  // the fades sit at the container edge and the first label lines up at 24px
+  @include bp.respond-to(md) {
+    margin-inline: calc(var(--spacing-16) * -1);
+  }
+
+  @include bp.respond-to(lg) {
+    margin-inline: 0;
+  }
+}
+
+.masthead-nav__list {
+  display: flex;
+  gap: 1px;
+  margin: 0;
+  padding: 0 var(--spacing-28) 0 var(--spacing-2);
+  overflow-x: auto;
+  list-style: none;
+  scrollbar-width: none;
+  -webkit-mask-image: linear-gradient(to left, transparent, black 28px);
+  mask-image: linear-gradient(to left, transparent, black 28px);
+
+  &::-webkit-scrollbar {
+    display: none;
+  }
+
+  @include bp.respond-to(md) {
+    gap: 0;
+    padding: 0 var(--spacing-16);
+    -webkit-mask-image: none;
+    mask-image: none;
+  }
+
+  // LG+: every item fits — spread across the container, no scrolling, so the
+  // dropdown panels can leave the row
+  @include bp.respond-to(lg) {
+    justify-content: space-between;
+    padding: 0;
+    overflow: visible;
+  }
+}
+
+// MD: 16px fades at both ends of the scrolling row
+.masthead-nav__scroller::before,
+.masthead-nav__scroller::after {
+  display: none;
+
+  @include bp.respond-to(md) {
+    content: '';
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    z-index: 1;
+    display: block;
+    width: 16px;
+    pointer-events: none;
+  }
+
+  @include bp.respond-to(lg) {
+    display: none;
+  }
+}
+
+.masthead-nav__scroller::before {
+  left: 0;
+  background: linear-gradient(to left, transparent, var(--color-background-neutral-lightest) 90%);
+}
+
+.masthead-nav__scroller::after {
+  right: 0;
+  background: linear-gradient(to right, transparent, var(--color-background-neutral-lightest) 90%);
+}
+
+.masthead-nav__item {
+  position: relative;
+  flex-shrink: 0;
+}
+
+.masthead-nav__link {
+  position: relative;
+  display: flex;
+  align-items: center;
+  height: 44px;
+  padding: 3px var(--spacing-10);
+  overflow: hidden;
+  font-size: var(--typography-font-size-label-sm);
+  font-weight: var(--typography-font-weight-semibold);
+  line-height: var(--typography-line-height-narrow);
+  color: var(--color-text-neutral-lightest);
+  white-space: nowrap;
+  text-decoration: none;
+
+  // Active indicator — 4px, inset 8px; Mweb: lightest pill, current only
+  &::after {
+    content: '';
+    position: absolute;
+    right: var(--spacing-8);
+    bottom: 3px;
+    left: var(--spacing-8);
+    height: 4px;
+    border-radius: var(--border-radius-full);
+    background-color: var(--color-background-neutral-lightest);
+    opacity: 0;
+  }
+
+  &[aria-current='page']::after {
+    opacity: 1;
+  }
+
+  @include bp.respond-to(md) {
+    height: 38px;
+    padding: 6px var(--spacing-8) 7px;
+    font-weight: var(--typography-font-weight-bold);
+    color: var(--color-text-neutral-dark);
+
+    // Desktop: square bar in the item's channel colour, slides up from below
+    &::after {
+      bottom: 0;
+      border-radius: 0;
+      background-color: var(--masthead-item-color);
+      opacity: 1;
+      transform: translateY(100%);
+      transition: transform 0.15s;
+    }
+
+    &[aria-current='page'] {
+      color: var(--color-text-neutral-darker);
+
+      &::after {
+        transform: none;
+      }
+    }
+
+    &:hover,
+    &:focus-visible,
+    &.is-hover {
+      color: var(--color-text-neutral-darker);
+
+      &::after {
+        transform: none;
+      }
+    }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    &::after {
+      transition: none;
+    }
+  }
+}
+
+// Daily Mail+ item — wordmark on Mweb (74×13, white), M+ lozenge on desktop (28×12)
+.masthead-nav__mplus {
+  .masthead-nav__mplus-wordmark {
+    width: 74px;
+    height: 13px;
+    margin-top: 2px;
+  }
+
+  .masthead-nav__mplus-lozenge {
+    display: none;
+    width: 28px;
+    height: 12px;
+  }
+
+  @include bp.respond-to(md) {
+    .masthead-nav__mplus-wordmark { display: none; }
+    .masthead-nav__mplus-lozenge { display: block; }
+  }
+}
+
+// ── Dropdown panel (LG+, pointing device) ─────────────────────────────────────
+// Figma "Hover - Dropdown": the tab takes the channel's subtlest tint with 8px
+// top corners; the panel (Elevation Lv-4, 24px padding, 8px bottom corners)
+// lists the channel link and its subchannels in two 160px columns.
+
+.masthead-nav__panel {
+  display: none;
+}
+
+@mixin masthead-panel-open {
+  .masthead-nav__link {
+    border-radius: var(--border-radius-8) var(--border-radius-8) 0 0;
+    background-color: var(--masthead-item-tint);
+    color: var(--color-text-neutral-darker);
+
+    &::after {
+      transform: translateY(100%); // the tab replaces the bar
+    }
+  }
+
+  .masthead-nav__panel {
+    display: block;
+  }
+}
+
+@include bp.respond-to(lg) {
+  // Without the behaviour script the panel follows :hover straight away; with
+  // it (.masthead-nav--intent) the script opens / closes it through .is-open
+  // with a short delay (hover intent), so a diagonal move across other tabs
+  // does not swap panels. Keyboard focus always opens it at once.
+  @media (hover: hover) {
+    .masthead-nav:not(.masthead-nav--intent) .masthead-nav__item--has-panel:hover,
+    .masthead-nav__item--has-panel:focus-within {
+      @include masthead-panel-open;
+    }
+  }
+}
+
+// Items with a dropdown (LG+, mouse): hover darkens the label only — no channel
+// bar. The bar would show during the hover-intent delay and then give way to
+// the tab, which reads as a flicker. The current channel keeps its bar.
+@include bp.respond-to(lg) {
+  @media (hover: hover) {
+    .masthead-nav__item--has-panel .masthead-nav__link:not([aria-current='page']):is(:hover, :focus-visible, .is-hover)::after {
+      transform: translateY(100%);
+    }
+  }
+}
+
+// Static open state (Anatomy page): .masthead-nav__item.is-open, MD+
+@include bp.respond-to(md) {
+  .masthead-nav__item.is-open {
+    @include masthead-panel-open;
+  }
+}
+
+.masthead-nav__panel {
+  position: absolute;
+  top: 100%;
+  left: calc(var(--spacing-16) * -1); // 16px out past the tab's left edge
+  padding: var(--spacing-24);
+  border-radius: var(--border-radius-8); // all corners — the panel runs past the tab on both sides
+  background-color: var(--color-background-neutral-lightest);
+  box-shadow: 0 4px 20px var(--color-effect-translucent-dark-subtle);
+
+  // Items near the right edge open to the left — 16px out past the tab's right edge
+  &--end {
+    right: calc(var(--spacing-16) * -1);
+    left: auto;
+  }
+}
+
+// Channel link — label-md Bold + arrow, hover pill (neutral/light)
+.masthead-nav__panel-channel {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  gap: var(--spacing-8);
+  margin-bottom: var(--spacing-16);
+  padding-block: var(--spacing-8);
+  font-size: var(--typography-font-size-label-md);
+  font-weight: var(--typography-font-weight-bold);
+  line-height: var(--typography-line-height-narrow);
+  color: var(--color-text-neutral-darker);
+  white-space: nowrap;
+  text-decoration: none;
+
+  svg {
+    position: relative;
+    width: 14px;
+    height: 14px;
+  }
+
+  span {
+    position: relative;
+  }
+
+  &::before {
+    content: '';
+    position: absolute;
+    inset: 2px -8px;
+    border-radius: var(--border-radius-full);
+    background-color: var(--color-background-neutral-light);
+    opacity: 0;
+    transition: opacity 0.15s;
+  }
+
+  &:hover::before,
+  &:focus-visible::before,
+  &.is-hover::before {
+    opacity: 1;
+  }
+}
+
+.masthead-nav__panel-topics {
+  display: grid;
+  grid-template-columns: repeat(2, 160px);
+  gap: var(--spacing-12);
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+// Subchannel — label-sm Regular, 1px grey-dark line grows from the left on hover
+.masthead-nav__panel-topic {
+  position: relative;
+  display: inline-block;
+  padding-block: var(--spacing-4);
+  font-size: var(--typography-font-size-label-sm);
+  font-weight: var(--typography-font-weight-regular);
+  line-height: var(--typography-line-height-narrow);
+  color: var(--color-text-neutral-darker);
+  white-space: nowrap;
+  text-decoration: none;
+
+  &::after {
+    content: '';
+    position: absolute;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    height: 1px;
+    background-color: var(--color-border-neutral-grey-dark);
+    transform: scaleX(0);
+    transform-origin: left center;
+    transition: transform 0.2s;
+  }
+
+  &:hover::after,
+  &:focus-visible::after,
+  &.is-hover::after {
+    transform: scaleX(1);
+  }
+}

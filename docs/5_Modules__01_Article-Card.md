@@ -95,7 +95,7 @@ XL 152 · LG 120 · MD / SM-XS 128px
 
 The headline sits on the image instead of below it.
 
-- **Overlay:** 228px at the bottom of the image — `color/effect/translucent-dark/thick` + 16px backdrop blur, faded in from the top with a gradient mask. Deepens to `translucent-dark/solid` on article hover (pointer on the card, not on channel / comments).
+- **Overlay:** the bottom 60% of the image (no fixed height) — `color/effect/translucent-dark/thick` + 16px backdrop blur, faded in from the top with a cubic ease-out mask (alpha = 1 − (1 − t)³, stops every 20%: 0 · .488 · .784 · .936 · .992 · 1) — it builds up fast and stays dark for most of its height. The headline sits on it with a 32px solid-black text shadow. Deepens to `translucent-dark/solid` on article hover (pointer on the card, not on channel / comments).
 - **Headline:** white (`color/text/neutral/white`), centred. Stays white on hover.
 - **Read more:** Quaternary XS button on dark (`.btn-quaternary-dark .btn--xs`) with a trailing arrow. Decorative — the whole card is the link. On article hover a hover line grows under it (§5-C), no button hover. On channel / comments both Read more and overlay go back to rest, and return when the pointer is back on the card.
 - **Badge:** signposted top-left on the image, 16px inset, always lg — never inline in the headline.

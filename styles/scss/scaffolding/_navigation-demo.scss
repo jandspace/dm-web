@@ -1,0 +1,147 @@
+// ── Navigation demo — SCAFFOLDING ONLY ────────────────────────────────────────
+// Layout for modules/navigation/ (index + anatomy). Never ships to production.
+
+// Index: the live masthead sits under the intro and toolbar
+.demo-nav-content .masthead {
+  margin-bottom: var(--spacing-48);
+}
+
+// Inside the viewport stage (?frame): the masthead only, edge to edge
+.demo-frame.demo-nav-page {
+  padding: 0;
+  background-color: var(--color-background-neutral-lighter);
+
+  .demo-page-h1,
+  .demo-page-intro,
+  .demo-vp-toolbar {
+    display: none;
+  }
+}
+
+.demo-nav-stage {
+  margin-left: 0;
+}
+
+// ── Anatomy (anatomy.html) ────────────────────────────────────────────────────
+// One specimen per part: a lightest box holding the part in a masthead context
+// (so channel colours and Mweb styles apply), with its name and class below.
+
+.demo-anatomy {
+  max-width: 1224px;
+}
+
+.demo-anatomy__group {
+  margin: var(--spacing-48) 0 var(--spacing-4);
+  font-family: var(--typography-font-family-serif);
+  font-size: 16px;
+  font-weight: 600;
+  color: var(--color-text-neutral-darker);
+}
+
+.demo-anatomy__note {
+  max-width: 720px;
+  margin: 0 0 var(--spacing-16);
+  font-family: var(--typography-font-family-serif);
+  font-size: 13px;
+  line-height: 1.5;
+  color: var(--color-text-neutral-grey-dark);
+}
+
+.demo-anatomy__row {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: flex-start;
+  gap: var(--spacing-24) var(--spacing-32);
+  margin-bottom: var(--spacing-24);
+}
+
+.demo-anatomy__item {
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-8);
+  margin: 0;
+
+  &--wide {
+    flex: 1 1 100%;
+  }
+
+  figcaption {
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+  }
+}
+
+.demo-anatomy__specimen {
+  overflow: visible;
+  border: 1px dashed var(--color-border-neutral-light);
+  border-radius: var(--border-radius-8);
+}
+
+.demo-anatomy__name {
+  font-size: 12px;
+  font-weight: 600;
+  color: var(--color-text-neutral-darker);
+}
+
+.demo-anatomy__class {
+  font-family: monospace;
+  font-size: 11px;
+  color: var(--color-text-neutral-grey-dark);
+}
+
+.demo-anatomy__list {
+  display: flex;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+// Masthead context around a part
+.demo-anatomy__context.masthead {
+  width: auto;
+  padding: var(--spacing-12) var(--spacing-20);
+  border-radius: var(--border-radius-8);
+}
+
+.demo-anatomy__context--sheet {
+  padding: var(--spacing-12) var(--spacing-20);
+  border-radius: var(--border-radius-8);
+  background-color: var(--color-background-neutral-lightest);
+}
+
+// Open states need room for what they open
+.demo-anatomy__menu {
+  position: relative;
+  min-width: 232px;
+  padding-bottom: 230px;
+
+  .masthead-edition-menu {
+    top: 30px; // just under the button (the box's bottom padding is room for it)
+    right: auto;
+    left: -8px;
+  }
+}
+
+.demo-anatomy__item--panel .demo-anatomy__context {
+  padding-bottom: 330px;
+}
+
+// Mweb parts: rendered in a 390px frame (anatomy.html?mobile)
+.demo-anatomy__frame {
+  display: block;
+  border: 0;
+}
+
+.demo-anatomy-frame {
+  padding: 0;
+  background-color: var(--color-background-neutral-lighter);
+
+  .demo-section-title {
+    display: none;
+  }
+
+  .demo-anatomy__group:first-of-type {
+    margin-top: 0;
+  }
+}

@@ -9,6 +9,7 @@
 // drop their own neutral-lightest background, so the surface shows through —
 // one colour source for the whole block, gaps and keylines included. The last
 // card loses its keyline; the block's own keyline closes it instead.
+// Card hover inside the block uses no blue: the headline stays neutral/darker.
 //
 //   <div class="channel-puff channel-puff--showbiz">
 //     <div class="channel-puff__inner"> …article cards… </div>
@@ -56,6 +57,12 @@
 
   .article-card:last-child::after {
     display: none;
+  }
+
+  // Article hover on the channel surface: no interaction blue — the headline
+  // keeps its resting neutral/darker (Image Only stays white)
+  .article-card:not(.article-card--image-only):has(.article-card__link:hover, .article-card__link:focus-visible) .article-headline {
+    color: var(--color-text-neutral-darker);
   }
 }
 

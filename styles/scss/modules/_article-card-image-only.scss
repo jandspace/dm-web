@@ -3,6 +3,7 @@
 // whole-card link, metadata all shared). What is specific to Image Only:
 //
 //   · Headline sits on the image — white, centred, over a blurred dark scrim
+//     (bottom 60% of the image, cubic ease-out fade)
 //   · "Read more" quaternary button under the headline (decorative — the whole
 //     card is the link); on card hover a line grows under it (no button hover)
 //   · Editorial badge signposted top-left on the image (not inline), size lg
@@ -62,21 +63,35 @@
 
 .article-card__overlay {
   display: grid;
-  align-self: end;
+  align-self: stretch; // the whole image area — the scrim height is a % of it
 
   > * {
     grid-area: 1 / 1;
   }
 }
 
-// Scrim — translucent-dark-thick with a 16px backdrop blur, faded in from the
-// top by a gradient mask (transparent → opaque, like the Figma mask).
+// Scrim — translucent-dark-thick with a 16px backdrop blur over the bottom 60%
+// of the image, faded in from the top with a cubic ease-out mask
+// (alpha = 1 − (1 − t)³): it builds up fast and stays dark for most of its
+// height. Stops sample the curve every 20%. Mask colours carry alpha only.
 .article-card__scrim {
+  $ease-out: linear-gradient(
+    to bottom,
+    rgb(0 0 0 / 0) 0%,
+    rgb(0 0 0 / 0.488) 20%,
+    rgb(0 0 0 / 0.784) 40%,
+    rgb(0 0 0 / 0.936) 60%,
+    rgb(0 0 0 / 0.992) 80%,
+    rgb(0 0 0) 100%
+  );
+
+  align-self: end;
+  height: 60%;
   background-color: var(--color-effect-translucent-dark-thick);
   -webkit-backdrop-filter: blur(16px);
   backdrop-filter: blur(16px);
-  -webkit-mask-image: linear-gradient(to bottom, transparent, black);
-  mask-image: linear-gradient(to bottom, transparent, black);
+  -webkit-mask-image: $ease-out;
+  mask-image: $ease-out;
   transition: background-color 0.2s;
 }
 
@@ -85,8 +100,8 @@
   flex-direction: column;
   justify-content: flex-end;
   align-items: center;
+  align-self: end;
   gap: var(--spacing-4);
-  min-height: 228px;
   padding: var(--spacing-64) var(--spacing-16) var(--spacing-8);
   isolation: isolate; // paints above the scrim (scrim is a stacking context)
 

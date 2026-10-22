@@ -1,0 +1,362 @@
+// ── Masthead — Nav Sheet (Mweb) ───────────────────────────────────────────────
+// Full-screen navigation the burger opens on Mweb (<768).
+//
+//   .masthead-sheet[hidden]              lightest, fixed, covers the viewport
+//     .masthead-sheet__bar               close (44 · icon 16)
+//     .masthead-sheet__top               Home + edition pill … Login (secondary)
+//     .masthead-sheet__body              scrolls
+//       .masthead-sheet__search          pill input (lighter, grey-light border)
+//       .masthead-sheet__playlists       Live · Today's Pick · Podcasts · Deep-Dive
+//       .masthead-sheet__channels        channel rows (icon 20 · label-md) + expand
+//
+// The behaviour script toggles [hidden] on the sheet and aria-expanded on each
+// channel's expand button (its subchannel list follows).
+//
+// Reference: Figma Web UI Kit › Nav Sheet (332:8626)
+
+.masthead-sheet {
+  position: fixed;
+  inset: 0;
+  z-index: 1100;
+  display: flex;
+  flex-direction: column;
+  background-color: var(--color-background-neutral-lightest);
+  font-family: var(--typography-font-family-sans);
+
+  &[hidden] {
+    display: none;
+  }
+}
+
+.masthead-sheet__bar {
+  display: flex;
+  flex-shrink: 0;
+}
+
+.masthead-sheet__close {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 44px;
+  height: 44px;
+  padding: 0;
+  border: 0;
+  background: none;
+  color: var(--color-icon-neutral-darker);
+  cursor: pointer;
+
+  svg {
+    width: 16px;
+    height: 16px;
+  }
+}
+
+// Home + edition pill … Login
+.masthead-sheet__top {
+  display: flex;
+  flex-shrink: 0;
+  align-items: center;
+  gap: var(--spacing-16);
+  padding-inline: var(--spacing-16);
+}
+
+.masthead-sheet__home {
+  display: flex;
+  flex: 1 1 auto;
+  align-items: center;
+  gap: var(--spacing-8);
+  height: 50px;
+  padding: var(--spacing-8) var(--spacing-4);
+}
+
+.masthead-sheet__home-link {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--spacing-8);
+  font-size: var(--typography-font-size-label-md);
+  font-weight: var(--typography-font-weight-semibold);
+  line-height: var(--typography-line-height-narrow);
+  color: var(--color-text-neutral-darker);
+  text-decoration: none;
+
+  img {
+    width: 20px;
+    height: 20px;
+  }
+}
+
+// Edition pill — tertiary XS: lighter surface, flag 12 · label-xxsm · chevron 12
+.masthead-sheet__edition {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--spacing-4);
+  height: 28px;
+  padding: 0 var(--spacing-10);
+  border: 0;
+  border-radius: var(--border-radius-full);
+  background-color: var(--color-background-neutral-lighter);
+  font: inherit;
+  font-size: var(--typography-font-size-label-xxsm);
+  font-weight: var(--typography-font-weight-semibold);
+  color: var(--color-text-neutral-darker);
+  cursor: pointer;
+
+  img,
+  svg {
+    width: 12px;
+    height: 12px;
+  }
+}
+
+// Login — secondary SM: 33px, grey-light border, person 14 + label-sm
+.masthead-sheet__login {
+  display: inline-flex;
+  flex-shrink: 0;
+  align-items: center;
+  gap: 5px;
+  height: 33px;
+  padding: 0 var(--spacing-12);
+  border: 1px solid var(--color-border-neutral-grey-light);
+  border-radius: var(--border-radius-full);
+  font-size: var(--typography-font-size-label-sm);
+  font-weight: var(--typography-font-weight-semibold);
+  line-height: var(--typography-line-height-narrow);
+  color: var(--color-text-neutral-darker);
+  text-decoration: none;
+
+  svg {
+    width: 14px;
+    height: 14px;
+  }
+}
+
+.masthead-sheet__body {
+  display: flex;
+  flex: 1 1 auto;
+  flex-direction: column;
+  gap: var(--spacing-16);
+  min-height: 0;
+  padding: var(--spacing-16) 0 160px;
+  overflow-y: auto;
+}
+
+// Search — pill input
+.masthead-sheet__search {
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-8);
+  min-height: 40px;
+  margin-inline: var(--spacing-16);
+  padding: var(--spacing-8) 15px;
+  border: 1px solid var(--color-border-neutral-grey-light);
+  border-radius: var(--border-radius-full);
+  background-color: var(--color-background-neutral-lighter);
+  color: var(--color-icon-neutral-darker);
+
+  svg {
+    flex-shrink: 0;
+    width: 16px;
+    height: 16px;
+  }
+
+  input {
+    flex: 1 1 auto;
+    min-width: 0;
+    padding: 0;
+    border: 0;
+    background: none;
+    font: inherit;
+    font-size: var(--typography-font-size-text-md);
+    line-height: var(--typography-line-height-normal);
+    color: var(--color-text-neutral-darker);
+    outline: none;
+
+    &::placeholder {
+      color: var(--color-text-neutral-darker);
+      opacity: 0.4;
+    }
+  }
+}
+
+// Playlists — four tiles: 56px icon box (lighter, light border, 8px corners) + label-xsm
+.masthead-sheet__playlists {
+  display: flex;
+  gap: var(--spacing-8);
+  margin: 0;
+  padding: var(--spacing-8) var(--spacing-16);
+  list-style: none;
+
+  li {
+    flex: 1 1 0;
+    min-width: 0;
+  }
+}
+
+.masthead-sheet__playlist {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--spacing-8);
+  padding: var(--spacing-2) 0 var(--spacing-8);
+  border-radius: var(--border-radius-8);
+  font-size: var(--typography-font-size-label-xsm);
+  font-weight: var(--typography-font-weight-semibold);
+  line-height: var(--typography-line-height-narrow);
+  color: var(--color-text-neutral-darker);
+  text-align: center;
+  text-decoration: none;
+}
+
+.masthead-sheet__playlist-icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 56px;
+  height: 56px;
+  border: 1px solid var(--color-border-neutral-light);
+  border-radius: var(--border-radius-8);
+  background-color: var(--color-background-neutral-lighter);
+
+  img {
+    width: 28px;
+    height: 28px;
+  }
+}
+
+// Live — 28px ring (2px, showbiz-red) around a 16px dot that pulses
+.masthead-sheet__live {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 28px;
+  height: 28px;
+  border: 2px solid var(--color-icon-showbiz-red-base);
+  border-radius: var(--border-radius-full);
+
+  &::before {
+    content: '';
+    width: 16px;
+    height: 16px;
+    border-radius: var(--border-radius-full);
+    background-color: var(--color-icon-showbiz-red-base);
+    animation: masthead-live-pulse 1.6s ease-in-out infinite;
+  }
+}
+
+@keyframes masthead-live-pulse {
+  0%,
+  100% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(0.7);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .masthead-sheet__live::before {
+    animation: none;
+  }
+}
+
+// Channels — rows with a light keyline; expand button opens the subchannels
+.masthead-sheet__channels {
+  margin: 0 var(--spacing-16);
+  padding: 0;
+  border-top: 1px solid var(--color-border-neutral-light);
+  list-style: none;
+}
+
+.masthead-sheet__channel {
+  padding-block: var(--spacing-2);
+  border-bottom: 1px solid var(--color-border-neutral-light);
+}
+
+.masthead-sheet__channel-row {
+  display: flex;
+  align-items: center;
+  height: 50px;
+}
+
+.masthead-sheet__channel-link {
+  display: flex;
+  flex: 1 1 auto;
+  align-items: center;
+  gap: var(--spacing-12);
+  height: 100%;
+  padding-inline: var(--spacing-8);
+  font-size: var(--typography-font-size-label-md);
+  font-weight: var(--typography-font-weight-semibold);
+  line-height: var(--typography-line-height-narrow);
+  color: var(--color-text-neutral-darker);
+  text-decoration: none;
+
+  img {
+    width: 20px;
+    height: 20px;
+  }
+}
+
+// Expand — borderless 40px rectangular icon button, chevron 16 (turns when open)
+.masthead-sheet__expand {
+  display: flex;
+  flex-shrink: 0;
+  align-items: center;
+  justify-content: center;
+  width: 40px;
+  height: 40px;
+  margin: var(--spacing-4);
+  padding: 0;
+  border: 0;
+  border-radius: 6px;
+  background: none;
+  color: var(--color-icon-neutral-darker);
+  cursor: pointer;
+
+  svg {
+    width: 16px;
+    height: 16px;
+    transition: transform 0.2s;
+  }
+
+  &:hover,
+  &.is-hover {
+    background-color: var(--color-background-neutral-lighter);
+  }
+
+  &[aria-expanded='true'] svg {
+    transform: rotate(180deg);
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    svg {
+      transition: none;
+    }
+  }
+}
+
+.masthead-sheet__subchannels {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: var(--spacing-12);
+  margin: 0;
+  padding: var(--spacing-4) var(--spacing-8) var(--spacing-16) 40px; // under the label (8 + 20 icon + 12 gap)
+  list-style: none;
+
+  &[hidden] {
+    display: none;
+  }
+
+  a {
+    font-size: var(--typography-font-size-label-sm);
+    font-weight: var(--typography-font-weight-regular);
+    line-height: var(--typography-line-height-narrow);
+    color: var(--color-text-neutral-darker);
+    text-decoration: none;
+  }
+}
+
+// Page under an open sheet does not scroll
+.masthead-sheet-open {
+  overflow: hidden;
+}
