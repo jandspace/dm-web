@@ -123,13 +123,13 @@ $demo-nav-pinned: 1640px;
 // Strapline under the logo
 .demo-nav__strapline {
   display: block;
+  font-family: var(--typography-font-family-serif); // library chrome in Lora
   margin-top: var(--spacing-6);
   font-size: var(--typography-font-size-label-sm);
   font-weight: var(--typography-font-weight-bold);
   line-height: var(--typography-line-height-narrow);
   letter-spacing: var(--typography-letter-spacing-wide);
   color: var(--color-text-neutral-darker);
-  text-transform: uppercase;
 }
 
 .demo-nav__group {
@@ -181,7 +181,7 @@ $demo-nav-pinned: 1640px;
 
 // Sub-pages (viewports, generator) — indented like Figma's layer tree
 .demo-nav__link--sub {
-  padding-left: var(--spacing-24);
+  padding-left: var(--spacing-16);
   font-weight: 400;
   color: var(--color-text-neutral-grey-dark);
 
@@ -193,6 +193,7 @@ $demo-nav-pinned: 1640px;
 // ── Root index ────────────────────────────────────────────────────────────────
 
 .demo-index__group {
+  font-family: var(--typography-font-family-serif); // library chrome in Lora
   margin: var(--spacing-32) 0 var(--spacing-12);
   font-size: 11px;
   font-weight: 700;
@@ -218,6 +219,7 @@ $demo-nav-pinned: 1640px;
 }
 
 .demo-index__name {
+  font-family: var(--typography-font-family-serif); // library chrome in Lora
   font-size: 15px;
   font-weight: 600;
   color: var(--color-text-neutral-darker);
@@ -237,6 +239,7 @@ $demo-nav-pinned: 1640px;
 }
 
 .demo-index__sub {
+  font-family: var(--typography-font-family-serif); // library chrome in Lora
   font-size: 13px;
   color: var(--color-text-interaction-primary-default);
   text-decoration: none;

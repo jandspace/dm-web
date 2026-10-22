@@ -2333,10 +2333,10 @@ a.columnist-photo:focus-visible {
 
 @keyframes columnist-live-blink {
   0%, 100% {
-    opacity: 1;
+    background-color: var(--color-icon-interaction-positive-default);
   }
   50% {
-    opacity: 0.35;
+    background-color: color-mix(in srgb, var(--color-icon-interaction-positive-default) 35%, var(--color-border-neutral-lightest));
   }
 }
 @media (prefers-reduced-motion: reduce) {
@@ -3004,6 +3004,7 @@ a.section-header__link:focus-visible {
 }
 
 .demo-page-h1 {
+  font-family: var(--typography-font-family-serif);
   font-size: 22px;
   font-weight: 700;
   color: var(--color-text-neutral-darker);
@@ -3011,6 +3012,7 @@ a.section-header__link:focus-visible {
 }
 
 .demo-section-title {
+  font-family: var(--typography-font-family-serif);
   font-size: 18px;
   font-weight: 600;
   letter-spacing: 0;
@@ -3424,13 +3426,13 @@ a.section-header__link:focus-visible {
 
 .demo-nav__strapline {
   display: block;
+  font-family: var(--typography-font-family-serif);
   margin-top: var(--spacing-6);
   font-size: var(--typography-font-size-label-sm);
   font-weight: var(--typography-font-weight-bold);
   line-height: var(--typography-line-height-narrow);
   letter-spacing: var(--typography-letter-spacing-wide);
   color: var(--color-text-neutral-darker);
-  text-transform: uppercase;
 }
 
 .demo-nav__group {
@@ -3479,7 +3481,7 @@ a.section-header__link:focus-visible {
 }
 
 .demo-nav__link--sub {
-  padding-left: var(--spacing-24);
+  padding-left: var(--spacing-16);
   font-weight: 400;
   color: var(--color-text-neutral-grey-dark);
 }
@@ -3488,6 +3490,7 @@ a.section-header__link:focus-visible {
 }
 
 .demo-index__group {
+  font-family: var(--typography-font-family-serif);
   margin: var(--spacing-32) 0 var(--spacing-12);
   font-size: 11px;
   font-weight: 700;
@@ -3513,6 +3516,7 @@ a.section-header__link:focus-visible {
 }
 
 .demo-index__name {
+  font-family: var(--typography-font-family-serif);
   font-size: 15px;
   font-weight: 600;
   color: var(--color-text-neutral-darker);
@@ -3531,6 +3535,7 @@ a.section-header__link:focus-visible {
 }
 
 .demo-index__sub {
+  font-family: var(--typography-font-family-serif);
   font-size: 13px;
   color: var(--color-text-interaction-primary-default);
   text-decoration: none;
@@ -3792,6 +3797,7 @@ a.section-header__link:focus-visible {
 }
 
 .demo-page-intro {
+  font-family: var(--typography-font-family-serif);
   max-width: 720px;
   margin-top: calc(var(--spacing-48) * -1 + var(--spacing-12));
   margin-bottom: var(--spacing-48);

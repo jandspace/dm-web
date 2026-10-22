@@ -66,7 +66,7 @@
     const a = link('', '', 'demo-nav__logo');
     a.append(
       el('img', { src: new URL('assets/images/logo-dailymail.svg', root).href, alt: 'Daily Mail', width: '140', height: '29' }),
-      el('span', { class: 'demo-nav__strapline', text: 'Web UI Kit V2' }),
+      el('span', { class: 'demo-nav__strapline', text: 'Design Library for Web (v2)' }),
     );
     return a;
   };

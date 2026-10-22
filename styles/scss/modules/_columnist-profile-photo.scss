@@ -80,6 +80,9 @@ a.columnist-photo:focus-visible {
 
 // ── Live dot ──────────────────────────────────────────────────────────────────
 // Green disc with a surface-coloured ring so it reads against the photo.
+// The blink fades the green fill towards the ring colour (color-mix) instead of
+// fading the whole dot's opacity — the dot stays opaque, so the photo never
+// shows through it while it fades.
 
 .columnist-photo--live::after {
   content: '';
@@ -98,10 +101,15 @@ a.columnist-photo:focus-visible {
 @keyframes columnist-live-blink {
   0%,
   100% {
-    opacity: 1;
+    background-color: var(--color-icon-interaction-positive-default);
   }
   50% {
-    opacity: 0.35;
+    // = the green at 35% over the ring colour, without transparency
+    background-color: color-mix(
+      in srgb,
+      var(--color-icon-interaction-positive-default) 35%,
+      var(--color-border-neutral-lightest)
+    );
   }
 }
 

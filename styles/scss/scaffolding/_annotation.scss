@@ -16,6 +16,7 @@
 // ── Demo page h1 ─────────────────────────────────────────────────────────────
 
 .demo-page-h1 {
+  font-family: var(--typography-font-family-serif); // library chrome in Lora
   font-size: 22px;
   font-weight: 700;
   color: var(--color-text-neutral-darker);
@@ -25,6 +26,7 @@
 // ── Section title (button demo sections) ─────────────────────────────────────
 
 .demo-section-title {
+  font-family: var(--typography-font-family-serif); // library chrome in Lora
   font-size: 18px;
   font-weight: 600;
   letter-spacing: 0;
