@@ -1523,6 +1523,9 @@ button.video-play {
   color: var(--color-text-neutral-white);
   text-align: center;
 }
+.article-card--image-only .article-card__link {
+  text-shadow: 0 0 32px var(--color-effect-translucent-dark-solid);
+}
 
 .article-card--image-only-large .article-card__media {
   aspect-ratio: 15/16;
@@ -1549,8 +1552,8 @@ button.video-play {
   background-color: var(--color-effect-translucent-dark-thick);
   -webkit-backdrop-filter: blur(16px);
   backdrop-filter: blur(16px);
-  -webkit-mask-image: linear-gradient(to bottom, transparent, black 60%);
-  mask-image: linear-gradient(to bottom, transparent, black 60%);
+  -webkit-mask-image: linear-gradient(to bottom, transparent, black);
+  mask-image: linear-gradient(to bottom, transparent, black);
   transition: background-color 0.2s;
 }
 

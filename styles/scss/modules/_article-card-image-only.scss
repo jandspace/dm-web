@@ -32,10 +32,15 @@
     }
   }
 
-  // Headline stays white on the image, also in the card hover state
+  // Headline stays white on the image, also in the card hover state.
+  // 32px solid-black text shadow keeps it legible where the scrim fades out.
   .article-headline {
     color: var(--color-text-neutral-white);
     text-align: center;
+  }
+
+  .article-card__link {
+    text-shadow: 0 0 32px var(--color-effect-translucent-dark-solid);
   }
 }
 
@@ -65,15 +70,13 @@
 }
 
 // Scrim — translucent-dark-thick with a 16px backdrop blur, faded in from the
-// top by a gradient mask (transparent → opaque at 60%).
+// top by a gradient mask (transparent → opaque, like the Figma mask).
 .article-card__scrim {
   background-color: var(--color-effect-translucent-dark-thick);
   -webkit-backdrop-filter: blur(16px);
   backdrop-filter: blur(16px);
-  // Opaque from 60% down (Figma: 0→100%) — a long half-transparent band of
-  // backdrop blur reads as a milky haze in the browser; this keeps it short
-  -webkit-mask-image: linear-gradient(to bottom, transparent, black 60%);
-  mask-image: linear-gradient(to bottom, transparent, black 60%);
+  -webkit-mask-image: linear-gradient(to bottom, transparent, black);
+  mask-image: linear-gradient(to bottom, transparent, black);
   transition: background-color 0.2s;
 }
 
