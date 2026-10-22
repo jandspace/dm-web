@@ -1515,6 +1515,7 @@ button.video-play {
   display: grid;
   grid-template: minmax(0, 1fr)/minmax(0, 1fr);
   border-radius: var(--border-radius-8);
+  clip-path: inset(0 round var(--border-radius-8));
 }
 .article-card--image-only .article-card__media > * {
   grid-area: 1/1;
