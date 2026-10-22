@@ -135,9 +135,11 @@
   }
 }
 
-// ── Card hover (pointer anywhere in the card) ────────────────────────────────
+// ── Card hover (pointer on the article link) ─────────────────────────────────
+// Only the article link drives Read more + scrim: on channel / comments they go
+// back to default, and return as soon as the pointer is back on the card.
 
-.article-card--image-only:hover,
+.article-card--image-only:has(.article-card__link:hover),
 .article-card--image-only:has(.article-card__link:focus-visible) {
   // Read more: underline grows in (no button hover background)
   .article-card__read-more .btn__content::before {
@@ -149,7 +151,7 @@
     background-color: var(--color-effect-translucent-dark-solid);
   }
 
-  // Keep the headline white (base card hover turns headlines blue)
+  // Keep the headline white (base article hover turns headlines blue)
   .article-headline {
     color: var(--color-text-neutral-white);
   }

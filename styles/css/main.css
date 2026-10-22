@@ -1266,18 +1266,20 @@ button.video-play {
 .article-card__link::after {
   content: "";
   position: absolute;
-  inset: 0;
+  inset: var(--spacing-8);
+  z-index: 1;
 }
 .article-card__link:focus-visible {
   outline: none;
 }
 
-.article-card:hover .article-headline,
+.article-card:has(.article-card__link:hover) .article-headline,
 .article-card:has(.article-card__link:focus-visible) .article-headline {
   color: var(--color-text-interaction-primary-default);
 }
+
 @media (min-width: 768px) and (hover: hover) {
-  .article-card:hover::before,
+  .article-card:has(a:hover, button:hover)::before,
   .article-card:has(.article-card__link:focus-visible)::before {
     opacity: 0.04;
     transform: scale(1);
@@ -1293,7 +1295,7 @@ button.video-play {
 .article-card__metadata button,
 .article-card-key-updates a {
   position: relative;
-  z-index: 1;
+  z-index: 2;
 }
 
 .article-card__media {
@@ -1600,15 +1602,15 @@ button.video-play {
   transform: none;
 }
 
-.article-card--image-only:hover .article-card__read-more .btn__content::before,
+.article-card--image-only:has(.article-card__link:hover) .article-card__read-more .btn__content::before,
 .article-card--image-only:has(.article-card__link:focus-visible) .article-card__read-more .btn__content::before {
   transform: scaleX(1);
 }
-.article-card--image-only:hover .article-card__scrim,
+.article-card--image-only:has(.article-card__link:hover) .article-card__scrim,
 .article-card--image-only:has(.article-card__link:focus-visible) .article-card__scrim {
   background-color: var(--color-effect-translucent-dark-solid);
 }
-.article-card--image-only:hover .article-headline,
+.article-card--image-only:has(.article-card__link:hover) .article-headline,
 .article-card--image-only:has(.article-card__link:focus-visible) .article-headline {
   color: var(--color-text-neutral-white);
 }
@@ -2414,6 +2416,98 @@ a.columnist-photo:focus-visible {
   font-weight: var(--typography-font-weight-regular);
   color: var(--color-text-neutral-dark);
   white-space: nowrap;
+}
+
+.channel-puff {
+  position: relative;
+  padding: var(--spacing-16);
+}
+.channel-puff::after {
+  content: "";
+  position: absolute;
+  right: var(--spacing-16);
+  bottom: 0;
+  left: var(--spacing-16);
+  height: 1px;
+  background-color: var(--color-effect-translucent-dark-pale);
+}
+
+.channel-puff__inner {
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  border-radius: var(--border-radius-8);
+  background-color: var(--channel-puff-color, var(--color-background-neutral-lighter));
+}
+.channel-puff__inner .article-card {
+  background-color: transparent;
+}
+.channel-puff__inner .article-card:last-child::after {
+  display: none;
+}
+
+.channel-puff--home {
+  --channel-puff-color: var(--color-background-home-blue-subtlest);
+}
+
+.channel-puff--news {
+  --channel-puff-color: var(--color-background-news-cyan-subtlest);
+}
+
+.channel-puff--showbiz {
+  --channel-puff-color: var(--color-background-showbiz-red-subtlest);
+}
+
+.channel-puff--sport {
+  --channel-puff-color: var(--color-background-sport-green-subtlest);
+}
+
+.channel-puff--royals {
+  --channel-puff-color: var(--color-background-royals-violet-subtlest);
+}
+
+.channel-puff--money {
+  --channel-puff-color: var(--color-background-money-purple-subtlest);
+}
+
+.channel-puff--lifestyle {
+  --channel-puff-color: var(--color-background-lifestyle-azure-subtlest);
+}
+
+.channel-puff--health {
+  --channel-puff-color: var(--color-background-health-turquoise-subtlest);
+}
+
+.channel-puff--tv {
+  --channel-puff-color: var(--color-background-tv-magenta-subtlest);
+}
+
+.channel-puff--travel {
+  --channel-puff-color: var(--color-background-travel-navy-subtlest);
+}
+
+.channel-puff--shopping {
+  --channel-puff-color: var(--color-background-shopping-indigo-subtlest);
+}
+
+.channel-puff--crime {
+  --channel-puff-color: var(--color-background-crime-petrol-subtlest);
+}
+
+.channel-puff--property {
+  --channel-puff-color: var(--color-background-property-fuchsia-subtlest);
+}
+
+.channel-puff--podcasts {
+  --channel-puff-color: var(--color-background-podcasts-yellow-subtlest);
+}
+
+.channel-puff--games {
+  --channel-puff-color: var(--color-background-games-ultramarine-subtlest);
+}
+
+.channel-puff--science {
+  --channel-puff-color: var(--color-background-science-orange-subtlest);
 }
 
 .demo-grid {

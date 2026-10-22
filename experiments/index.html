@@ -308,13 +308,28 @@
       //   pages    [label, file in the folder, one-line description]
       const EXPERIMENTS = [
         {
+          id: '202610-exp-banner-slab-text',
+          date: '2026-10-22',
+          title: 'Banner Story — live slab title text',
+          status: 'In progress',
+          notes: [
+            'The Banner Story title (e.g. “TIGER MAUL VICTIM”) is currently baked into the artwork. This tests setting it as live text in DM Slab (Beton SH XBold Condensed), fitted to the banner width by script.',
+            'First draft: banner-dm-slab.html — real DM banner images paired with the same titles as live text. DM Slab loads only where the font is installed locally (no font file in the repo); Roboto Slab (Google Fonts, 800) is the secondary everywhere else.',
+          ],
+          result: '',
+          pages: [
+            ['Draft — fit text', 'banner-dm-slab.html', 'Image banners vs live uppercase slab titles, sized to fill the container width.'],
+          ],
+        },
+        {
           id: '202610-exp-preview-hover',
           date: '2026-10-21',
           title: 'Preview hover — card hover treatment',
           status: 'In progress',
           notes: [
             'Compares two hover treatments for article cards on a real section front: Figma lead block “lead-alpha” (8104:231432) with a gamma Banner Story on top, fixed at LG ≥1024 in a 1024px frame.',
-            'A is the design system as it is today. B removes the grey hover surface and underlines the headline instead — also on the Banner Story headline and on each Live Key Update.',
+            'A is the design system as it is today. B removes the grey hover surface and underlines the headline instead — also on the Banner Story headline and on each Live Key Update. The headline underline (like its colour) shows only while the pointer is on the article itself, not on channel / comments / other links in the card.',
+            'Beta now opens with a Channel Puff (Showbiz, Figma 8181:237759): Image Only + 4 SM Right Thumb cards on the channel subtlest surface, closed by one keyline under the whole block (the last card has none) — new shared module .channel-puff, same on A and B.',
           ],
           result: '',
           pages: [

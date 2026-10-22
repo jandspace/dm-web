@@ -95,9 +95,9 @@ XL 152 · LG 120 · MD / SM-XS 128px
 
 The headline sits on the image instead of below it.
 
-- **Overlay:** 228px at the bottom of the image — `color/effect/translucent-dark/thick` + 16px backdrop blur, faded in from the top with a gradient mask. Deepens to `translucent-dark/solid` on card hover.
+- **Overlay:** 228px at the bottom of the image — `color/effect/translucent-dark/thick` + 16px backdrop blur, faded in from the top with a gradient mask. Deepens to `translucent-dark/solid` on article hover (pointer on the card, not on channel / comments).
 - **Headline:** white (`color/text/neutral/white`), centred. Stays white on hover.
-- **Read more:** Quaternary XS button on dark (`.btn-quaternary-dark .btn--xs`) with a trailing arrow. Decorative — the whole card is the link. On card hover a hover line grows under it (§5-C), no button hover.
+- **Read more:** Quaternary XS button on dark (`.btn-quaternary-dark .btn--xs`) with a trailing arrow. Decorative — the whole card is the link. On article hover a hover line grows under it (§5-C), no button hover. On channel / comments both Read more and overlay go back to rest, and return when the pointer is back on the card.
 - **Badge:** signposted top-left on the image, 16px inset, always lg — never inline in the headline.
 - No preview text or Key Updates.
 
@@ -107,17 +107,21 @@ The headline sits on the image instead of below it.
 
 ### 5-A. Article Link
 
-- **One link per card**, on the headline: `<a class="article-card__link">`. Its `::after` stretches over the whole card, so the card is clickable anywhere while assistive tech hears a single link.
-- Secondary links (metadata, columnist announcement, key updates) sit above the stretched area (`position: relative; z-index: 1`) and keep their own targets.
+- **One link per card**, on the headline: `<a class="article-card__link">`. Its `::after` stretches over the card, **inset 8px** — the same area as the hover surface — so the card is clickable across the surface while assistive tech hears a single link, and the hover state starts and ends exactly at the surface edge.
+- The stretched area is `z-index: 1` (above media that follows the headline, e.g. MD Vertical). Secondary links (metadata, columnist name / photo / announcement, key updates) sit above it (`position: relative; z-index: 2`) and keep their own targets.
 
 ### 5-B. Card Hover
 
-While the pointer is **anywhere in the card** — secondary links included — the card is in its hover state:
+Two states, by what is under the pointer (inside the 8px-inset surface area):
 
-| | Rest | Hover / keyboard focus |
-|---|---|---|
-| Headline | `color/text/neutral/darker` | `color/text/interaction-primary/default` |
-| Hover surface | scale 0.4, opacity 0 | scale 1, opacity 4% |
+| | Rest | Article hover / keyboard focus | Secondary link hover |
+|---|---|---|---|
+| Headline | `color/text/neutral/darker` | `color/text/interaction-primary/default` | `color/text/neutral/darker` (rest) |
+| Hover surface | scale 0.4, opacity 0 | scale 1, opacity 4% | scale 1, opacity 4% |
+
+- **Article hover:** pointer on the card itself (the stretched article link).
+- **Secondary link hover:** pointer on channel, comments, a key update, the columnist name / photo, the announcement… The surface stays (no flicker when moving across), but the headline goes back to rest so only the link under the pointer shows a hover. Moving back onto the card returns to article hover.
+- The outer 8px ring of the card (outside the surface) is not hover and not clickable.
 
 - **Hover surface:** `color/background/neutral/black`, inset 8px (half the card padding), 8px corners, `transition: transform 0.15s, opacity 0.15s`. Only at **MD+ with a pointing device** — `(min-width: 768px) and (hover: hover)`. No hover surface on mobile / touch.
 - The headline uses the interaction-primary **default** token, not hover: the resting headline is neutral-darker, so default reads better.

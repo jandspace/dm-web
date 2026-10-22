@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Roboto+Slab:wght@100..900&display=swap');
+  
+  body {
+    text-align: center;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+  .container {
+    width: 964px;
+    margin: 0 auto;
+    max-width: 100%;
+    padding: 0 8px;
+    overflow: hidden;
+    background: #000;
+    box-sizing: border-box;
+    text-align: center;
+  }
+  .fit-text {
+    white-space: nowrap;
+    display: inline-block;
+    /* DM Slab where installed; Roboto Slab (Google Fonts, imported above) as the secondary */
+    font-family: 'DMSlabBetonSH-XBoldCond', 'Roboto Slab', serif;
+    font-weight: 800;
+    font-synthesis: none; /* DM Slab ships one weight — never fake-bold it */
+    font-optical-sizing: auto;
+    font-style: normal;
+    text-transform: uppercase;
+    line-height: 1;
+    color: #fff;
+    margin-top: 0.6%;
+    text-box: trim-both cap alphabetic;
+  }
+  img {
+    display: inline;
+  }
+  img.bp-image {
+    display: block;
+    width: 100%;
+  }
+</style>
+</head>
+<body>
+<div class="container">
+  <a class="fit-text">Daily Mail Headline</a>
+</div>
+<div class="container">
+  <a class="fit-text">Daily Mail Longer Headline</a>
+</div>
+
+<hr style="margin: 64px 0">
+
+<p>Imange banner</p>
+<img src="https://i.dailymail.com/1s/2026/08/25/07/110833419-0-image-m-1_1787638614385.jpg" style="margin-bottom: 16px">
+<p>Headline text</p>
+<div class="container">
+  <a class="fit-text">Trade Turmoil</a>
+</div>
+
+<hr style="margin: 64px 0">
+
+<p>Imange banner</p>
+<img src="https://video.dailymail.com/preview/mol/2026/10/22/728783820346049335/964x580_JPG-SINGLE_728783820346049335.jpg" style="margin-bottom: 16px">
+<p>Headline text</p>
+<div class="container">
+  <a class="fit-text">Father's Agony</a>
+</div>
+
+<hr style="margin: 64px 0">
+  
+<p>Imange banner</p>
+<img src="https://video.dailymail.com/preview/mol/2026/08/25/6200576292621601834/964x580_JPG-SINGLE_6200576292621601834.jpg" style="margin-bottom: 16px">
+
+<p>Headline text</p>
+<div class="container">
+  <a class="fit-text">Joyrider Vigil Backlash</a>
+</div>
+
+<hr style="margin: 64px 0">
+  
+<p>Imange banner</p>
+<img src="https://i.dailymail.com/1s/2026/10/15/12/111877477-0-image-m-15_1792064147089.jpg" style="margin-bottom: 16px">
+<p>Headline text</p>
+<div class="container">
+  <a class="fit-text">Monster Protected by his wife</a>
+</div>
+  
+<hr style="margin: 64px 0">
+
+<p>Imange banner</p>
+<img src="https://i.dailymail.com/1s/2026/10/15/11/111875585-0-image-a-20_1792059092351.jpg" style="margin-bottom: 16px">
+<p>Headline text</p>
+<div class="container">
+  <a class="fit-text">United Mutiny Talks</a>
+</div>
+  
+<hr style="margin: 64px 0">
+
+<p>Imange banner</p>
+<img src="https://i.dailymail.com/1s/2026/10/15/11/111875847-0-image-a-87_1792059652877.jpg" style="margin-bottom: 16px">
+<p>Headline text</p>
+<div class="container">
+  <a class="fit-text">Meghan's Royal Protection</a>
+</div>
+
+<hr style="margin: 64px 0">
+
+<p>Imange banner</p>
+<img src="https://i.dailymail.com/1s/2026/10/14/22/111866941-0-image-a-117_1792014509931.jpg" style="margin-bottom: 16px">
+<p>Headline text</p>
+<div class="container">
+  <a class="fit-text">PSG LEAVE CITY FOUR-LORN</a>
+</div>
+  
+  
+<script>
+function fitTextToWidth(el, containerWidth, { min = 10, max = 200 } = {}) {
+  const canvas = fitTextToWidth._canvas ?? (fitTextToWidth._canvas = document.createElement('canvas'));
+  const ctx = canvas.getContext('2d');
+  const style = getComputedStyle(el);
+
+  const raw = el.textContent;
+  const transform = style.textTransform;
+  const text = transform === 'uppercase' ? raw.toUpperCase()
+             : transform === 'lowercase' ? raw.toLowerCase()
+             : raw;
+
+  const measure = (fontSize) => {
+    ctx.font = `${style.fontWeight} ${fontSize}px ${style.fontFamily}`;
+    return ctx.measureText(text).width;
+  };
+
+  const baseSize = 100;
+  const baseWidth = measure(baseSize);
+  let fontSize = (containerWidth / baseWidth) * baseSize;
+  fontSize = Math.min(max, Math.max(min, fontSize));
+  el.style.fontSize = `${fontSize}px`;
+
+  const actualWidth = measure(fontSize);
+  if (actualWidth > containerWidth) {
+    fontSize *= containerWidth / actualWidth;
+    el.style.fontSize = `${fontSize}px`;
+  }
+}
+
+document.fonts.ready.then(() => {
+  document.querySelectorAll('.fit-text').forEach((el) => {
+    const container = el.parentElement;
+
+    fitTextToWidth(el, container.getBoundingClientRect().width);
+
+    const ro = new ResizeObserver(([entry]) => {
+      fitTextToWidth(el, entry.contentRect.width);
+    });
+    ro.observe(container);
+  });
+});
+</script>
+</body>
+</html>

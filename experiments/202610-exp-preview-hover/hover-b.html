@@ -124,7 +124,9 @@
         display: none;
       }
 
-      .article-card:hover .article-card__link,
+      /* Underline only while the pointer is on the article link itself — on
+         channel / comments / key updates it goes, like the headline colour */
+      .article-card:has(.article-card__link:hover) .article-card__link,
       .article-card:has(.article-card__link:focus-visible) .article-card__link,
       .article-card-banner__panel:hover .article-card-banner__link,
       .article-card-banner__panel:has(.article-card-banner__link:focus-visible) .article-card-banner__link,
@@ -350,6 +352,57 @@
 
         <!-- ── beta (332) · puffs — sidebar: no metadata except the ad ── -->
         <div class="exp-column exp-beta">
+          <!-- Channel Puff (Showbiz) — Image Only (Medium) + SM Right Thumb ×4 on the
+               channel's subtlest surface (Figma 8181:237759) -->
+          <div class="channel-puff channel-puff--showbiz">
+            <div class="channel-puff__inner">
+            <article class="article-card article-card--image-only article-card--image-only-medium">
+              <div class="article-card__media">
+                <img src="images/18-kelly-clarkson.jpg" alt="" />
+                <div class="article-card__overlay">
+                  <div class="article-card__scrim"></div>
+                  <div class="article-card__overlay-content">
+                    <h4 class="h4 article-headline"><a class="article-card__link" href="#article">Leaked security footage casts new light on Kelly Clarkson's furious feud with Brooklyn store</a></h4>
+                    <span class="btn btn-quaternary-dark btn--xs article-card__read-more" aria-hidden="true"><span class="btn__content"><span class="btn__label">Read more</span><svg width="1em" height="1em"><use href="#ico-arrow-right-light" /></svg></span></span>
+                  </div>
+                </div>
+                <div class="article-card__signpost"><span class="badge badge--lg article-headline__badge"><span class="badge__mplus"><img src="../../assets/images/mail-plus-lozenge.svg" alt="M+" /></span></span></div>
+              </div>
+            </article>
+
+            <article class="article-card article-card--sm-right">
+              <div class="article-card__media"><img src="images/19-alessandra-ambrosio.jpg" alt="" /><span class="article-card__video" aria-hidden="true"><span class="video-play"><svg><use href="#ico-media-play" /></svg></span></span></div>
+              <div class="article-card__body">
+                <h6 class="h6 article-headline"><a class="article-card__link" href="#article">Alessandra Ambrosio hints she is engaged to Buck Palmer</a></h6>
+              </div>
+            </article>
+
+            <article class="article-card article-card--sm-right">
+              <div class="article-card__media"><img src="images/20-stacey-solomon.jpg" alt="" /></div>
+              <div class="article-card__body">
+                <h6 class="h6 article-headline"><a class="article-card__link" href="#article"><span class="badge badge--xs badge--highlight article-headline__badge"><span class="badge__mplus"><img src="../../assets/images/mail-plus-lozenge.svg" alt="M+" /></span><span class="badge__label"><span class="badge__text">Exclusive</span></span></span>Glum Stacey Solomon ditches wedding ring as it emerges she's NOT legally married to Joe Swash</a></h6>
+              </div>
+            </article>
+
+            <article class="article-card article-card--sm-right">
+              <div class="article-card__media"><img src="images/21-doja-cat.jpg" alt="" /><span class="article-card__video" aria-hidden="true"><span class="video-play"><svg><use href="#ico-media-play" /></svg></span></span></div>
+              <div class="article-card__body">
+                <h6 class="h6 article-headline"><a class="article-card__link" href="#article"><span class="badge badge--xs article-headline__badge"><span class="badge__mplus"><img src="../../assets/images/mail-plus-lozenge.svg" alt="M+" /></span></span>Doja Cat BEGS fans to ignore her plastic surgery disaster</a></h6>
+              </div>
+            </article>
+
+            <article class="article-card article-card--sm-right">
+              <div class="article-card__media"><img src="images/22-honey-salve.jpg" alt="" /></div>
+              <div class="article-card__body">
+                <h6 class="h6 article-headline"><a class="article-card__link" href="#article">Thousands with eczema swear by this honey salve to quickly relieve dryness and itchiness - and it's 10% off</a></h6>
+                <div class="article-card__metadata article-card-metadata">
+                  <div class="article-card-metadata__info"><span class="article-card-metadata__label">Ad Feature</span></div>
+                </div>
+              </div>
+            </article>
+            </div>
+          </div>
+
           <!-- MD · no metadata -->
           <article class="article-card article-card--md">
             <div class="article-card__media"><img src="images/11-daisy-edgar-jones.jpg" alt="" /><span class="article-card__video" aria-hidden="true"><span class="video-play"><svg><use href="#ico-media-play" /></svg></span></span></div>

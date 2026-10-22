@@ -1,0 +1,57 @@
+// ── Channel Puff ──────────────────────────────────────────────────────────────
+// A run of article cards on the channel's colour (Figma "Puff in channel"):
+//
+//   .channel-puff         16px inset + bottom keyline (same as the card keyline:
+//                         translucent-dark-pale, inset 16px)
+//   .channel-puff__inner  surface color/background/{channel}/subtlest, 8px corners
+//
+// The cards inside keep their structure (padding, keyline, hover surface) and
+// drop their own neutral-lightest background, so the surface shows through —
+// one colour source for the whole block, gaps and keylines included. The last
+// card loses its keyline; the block's own keyline closes it instead.
+//
+//   <div class="channel-puff channel-puff--showbiz">
+//     <div class="channel-puff__inner"> …article cards… </div>
+//   </div>
+//
+// Reference: Figma Web UI Kit › Puff in channel (8181:237759)
+
+@use '../foundation/sections';
+
+.channel-puff {
+  position: relative;
+  padding: var(--spacing-16);
+
+  // Keyline — inset to match the 16px content edge
+  &::after {
+    content: '';
+    position: absolute;
+    right: var(--spacing-16);
+    bottom: 0;
+    left: var(--spacing-16);
+    height: 1px;
+    background-color: var(--color-effect-translucent-dark-pale);
+  }
+}
+
+.channel-puff__inner {
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  border-radius: var(--border-radius-8);
+  background-color: var(--channel-puff-color, var(--color-background-neutral-lighter));
+
+  .article-card {
+    background-color: transparent;
+  }
+
+  .article-card:last-child::after {
+    display: none;
+  }
+}
+
+@each $section, $colour in sections.$sections {
+  .channel-puff--#{$section} {
+    --channel-puff-color: var(--color-background-#{$colour}-subtlest);
+  }
+}

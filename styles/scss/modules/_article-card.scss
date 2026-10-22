@@ -79,21 +79,30 @@
 // ::after stretches over the whole card, so the card is clickable anywhere
 // while the markup keeps a single, readable link.
 //
-// Hover: while the pointer is anywhere in the card the headline turns
-// text/interaction-primary/default (the resting headline is neutral-darker, so
-// default reads better than hover) and the hover surface (.article-card::before)
-// zooms in at 4% (MD+, mouse only). Other links in the card (metadata,
-// announcement, key updates) sit above the stretched area and add their own
-// hover on top.
+// The stretched area is inset 8px, like the hover surface, so the hover state
+// starts and ends exactly at the grey surface's edge — not 8px outside it.
+//
+// Hover:
+//   · Pointer on the article link (anywhere on the surface): the headline turns
+//     text/interaction-primary/default (the resting headline is neutral-darker,
+//     so default reads better than hover) and the hover surface
+//     (.article-card::before) zooms in at 4% (MD+, mouse only).
+//   · Pointer on another link in the card (channel, comments, key update,
+//     columnist name / photo, announcement…): the surface stays, but the
+//     headline goes back to its resting neutral-darker — only the link under
+//     the pointer shows a hover. Those links sit above the stretched area.
 
 .article-card__link {
   color: inherit;
   text-decoration: none;
 
+  // z-index 1: above media that follows the headline (MD Vertical), below
+  // the secondary links (z-index 2)
   &::after {
     content: '';
     position: absolute;
-    inset: 0;
+    inset: var(--spacing-8);
+    z-index: 1;
   }
 
   // Focus ring goes on the whole card instead (see below)
@@ -102,15 +111,18 @@
   }
 }
 
-// Card hover state — holds for as long as the pointer is anywhere in the card,
-// secondary links included, so moving onto channel / comments never flickers
-// the headline colour or the hover surface.
-.article-card:hover,
+// Article hover — pointer on the article link itself (or keyboard focus)
+.article-card:has(.article-card__link:hover),
 .article-card:has(.article-card__link:focus-visible) {
   .article-headline {
     color: var(--color-text-interaction-primary-default);
   }
+}
 
+// Card hover surface — article link or any other link / button in the card, so
+// moving from the headline onto channel / comments never flickers the surface.
+.article-card:has(a:hover, button:hover),
+.article-card:has(.article-card__link:focus-visible) {
   @include bp.respond-to(md) {
     @media (hover: hover) {
       &::before {
@@ -131,7 +143,7 @@
 .article-card__metadata button,
 .article-card-key-updates a {
   position: relative;
-  z-index: 1;
+  z-index: 2;
 }
 
 // ── Media container ───────────────────────────────────────────────────────────
