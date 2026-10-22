@@ -1549,8 +1549,8 @@ button.video-play {
   background-color: var(--color-effect-translucent-dark-thick);
   -webkit-backdrop-filter: blur(16px);
   backdrop-filter: blur(16px);
-  -webkit-mask-image: linear-gradient(to bottom, transparent, black);
-  mask-image: linear-gradient(to bottom, transparent, black);
+  -webkit-mask-image: linear-gradient(to bottom, transparent, black 60%);
+  mask-image: linear-gradient(to bottom, transparent, black 60%);
   transition: background-color 0.2s;
 }
 

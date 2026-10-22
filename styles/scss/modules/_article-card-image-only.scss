@@ -65,13 +65,15 @@
 }
 
 // Scrim — translucent-dark-thick with a 16px backdrop blur, faded in from the
-// top by a gradient mask (transparent → opaque, like the Figma mask).
+// top by a gradient mask (transparent → opaque at 60%).
 .article-card__scrim {
   background-color: var(--color-effect-translucent-dark-thick);
   -webkit-backdrop-filter: blur(16px);
   backdrop-filter: blur(16px);
-  -webkit-mask-image: linear-gradient(to bottom, transparent, black);
-  mask-image: linear-gradient(to bottom, transparent, black);
+  // Opaque from 60% down (Figma: 0→100%) — a long half-transparent band of
+  // backdrop blur reads as a milky haze in the browser; this keeps it short
+  -webkit-mask-image: linear-gradient(to bottom, transparent, black 60%);
+  mask-image: linear-gradient(to bottom, transparent, black 60%);
   transition: background-color 0.2s;
 }
 
