@@ -147,6 +147,7 @@ a.section-header__link:focus-visible {
 // Figma "Section Header - Action": label-sm Semibold + 14px chevron, 5px gap.
 
 .section-header__action {
+  position: relative; // hover line
   display: inline-flex;
   flex-shrink: 0;
   align-items: center;
@@ -163,9 +164,35 @@ a.section-header__link:focus-visible {
     height: 14px;
   }
 
+  // Hover line — same as the Article Card Metadata channel / comments links:
+  // 1px translucent-dark-deep line under the whole link (chevron included),
+  // growing from the left
+  &::before {
+    content: '';
+    position: absolute;
+    right: 0;
+    bottom: -2px;
+    left: 0;
+    height: 1px;
+    background: var(--color-effect-translucent-dark-deep);
+    transform: scaleX(0);
+    transform-origin: left center;
+    transition: transform 0.2s;
+  }
+
   &:hover,
   &:focus-visible {
     color: var(--color-text-interaction-primary-hover);
+
+    &::before {
+      transform: scaleX(1);
+    }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    &::before {
+      transition: none;
+    }
   }
 }
 
@@ -286,8 +313,9 @@ a.section-header__link:focus-visible {
   }
 }
 
-// Horizontal Scroll Edge — 32px, header surface fading in from transparent
-// (to 40%), 14px chevron. Hidden on Mweb.
+// Horizontal Scroll Edge — 32px, header surface (lightest) fading in from
+// transparent (to 40%); on hover the surface steps down to neutral/lighter so
+// the edge reads as a button, 14px chevron in icon/neutral/grey-dark. Hidden on Mweb.
 .section-header-tabs__edge {
   position: absolute;
   top: 0;
@@ -298,7 +326,7 @@ a.section-header__link:focus-visible {
   width: 32px;
   padding: 0 var(--spacing-4);
   border: 0;
-  color: var(--color-icon-neutral-darker);
+  color: var(--color-icon-neutral-grey-dark);
   cursor: pointer;
 
   svg {
@@ -306,16 +334,28 @@ a.section-header__link:focus-visible {
     height: 14px;
   }
 
+  // Hover — interaction-primary/default, same as the headline hover
+  // Hover — chevron in interaction-primary/default (as the headline hover),
+  // surface one step darker
+  --section-header-edge-color: var(--color-background-neutral-lightest);
+
+  &:hover,
+  &:focus-visible {
+    --section-header-edge-color: var(--color-background-neutral-lighter);
+
+    color: var(--color-icon-interaction-primary-default);
+  }
+
   &--prev {
     left: 0;
     justify-content: flex-start;
-    background: linear-gradient(to left, transparent, var(--color-background-neutral-lightest) 40%);
+    background: linear-gradient(to left, transparent, var(--section-header-edge-color) 40%);
   }
 
   &--next {
     right: 0;
     justify-content: flex-end;
-    background: linear-gradient(to right, transparent, var(--color-background-neutral-lightest) 40%);
+    background: linear-gradient(to right, transparent, var(--section-header-edge-color) 40%);
   }
 }
 

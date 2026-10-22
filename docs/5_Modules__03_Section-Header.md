@@ -61,13 +61,13 @@ Sub-channels or topics in one row that scrolls sideways.
 - Item: label-sm Semibold, `color/text/neutral/dark`, 4px vertical padding, 16px apart.
 - Hover: a 1px `color/border/neutral/grey-dark` line grows from the left under the label.
 - **Mweb (<768):** swipe; the right edge fades out (16px).
-- **Dweb (≥768 with a mouse):** chevron edge buttons ("Horizontal Scroll Edge": 32px, surface gradient from transparent to 40%, 14px chevron) on the side(s) that can scroll. Each click scrolls ~80% of the row. The behaviour script sets `.is-scroll-start` / `.is-scroll-end` on `.section-header-tabs` (reference in the demo page).
+- **Dweb (≥768 with a mouse):** chevron edge buttons ("Horizontal Scroll Edge": 32px, surface gradient from transparent to 40%, 14px chevron in `color/icon/neutral/grey-dark`; on hover the chevron turns `color/icon/interaction-primary/default` and the surface steps to `color/background/neutral/lighter`) on the side(s) that can scroll. Each click scrolls ~80% of the row. The behaviour script sets `.is-scroll-start` / `.is-scroll-end` on `.section-header-tabs` (reference in the demo page).
 
 ### 1-E. Interaction
 
 - Hover / keyboard focus on the link: label and icon turn `color/text/interaction-primary/default`, the arrow shows its quaternary surface (`color/background/neutral/light`).
 - The arrow slides 8px to the right on hover (Figma Label Container: no gap at rest, 8px on hover), 0.2s; no motion with reduced motion.
-- Action: `interaction-primary/default` → `interaction-primary/hover`.
+- Action: `interaction-primary/default` → `interaction-primary/hover`, plus the hover line of the Article Card Metadata links (1px `color/effect/translucent-dark/deep`, grows from the left).
 
 ---
 

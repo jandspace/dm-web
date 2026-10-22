@@ -51,6 +51,19 @@
   color: var(--color-text-neutral-grey-dark);
 }
 
+// "Example" tag above a sample with real-looking content
+.demo-sh__example {
+  align-self: flex-start;
+  padding: 2px var(--spacing-6);
+  border-radius: var(--border-radius-4);
+  background-color: var(--color-background-semantic-warning-subtlest);
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--color-text-semantic-warning-deep);
+}
+
 // N/A cell (Small has no sub-items)
 .demo-sh__na {
   display: flex;

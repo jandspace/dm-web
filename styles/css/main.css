@@ -2622,6 +2622,7 @@ a.section-header__link:focus-visible {
 }
 
 .section-header__action {
+  position: relative;
   display: inline-flex;
   flex-shrink: 0;
   align-items: center;
@@ -2637,8 +2638,28 @@ a.section-header__link:focus-visible {
   width: 14px;
   height: 14px;
 }
+.section-header__action::before {
+  content: "";
+  position: absolute;
+  right: 0;
+  bottom: -2px;
+  left: 0;
+  height: 1px;
+  background: var(--color-effect-translucent-dark-deep);
+  transform: scaleX(0);
+  transform-origin: left center;
+  transition: transform 0.2s;
+}
 .section-header__action:hover, .section-header__action:focus-visible {
   color: var(--color-text-interaction-primary-hover);
+}
+.section-header__action:hover::before, .section-header__action:focus-visible::before {
+  transform: scaleX(1);
+}
+@media (prefers-reduced-motion: reduce) {
+  .section-header__action::before {
+    transition: none;
+  }
 }
 
 .section-header__description {
@@ -2741,22 +2762,29 @@ a.section-header__link:focus-visible {
   width: 32px;
   padding: 0 var(--spacing-4);
   border: 0;
-  color: var(--color-icon-neutral-darker);
+  color: var(--color-icon-neutral-grey-dark);
   cursor: pointer;
 }
 .section-header-tabs__edge svg {
   width: 14px;
   height: 14px;
 }
+.section-header-tabs__edge {
+  --section-header-edge-color: var(--color-background-neutral-lightest);
+}
+.section-header-tabs__edge:hover, .section-header-tabs__edge:focus-visible {
+  --section-header-edge-color: var(--color-background-neutral-lighter);
+  color: var(--color-icon-interaction-primary-default);
+}
 .section-header-tabs__edge--prev {
   left: 0;
   justify-content: flex-start;
-  background: linear-gradient(to left, transparent, var(--color-background-neutral-lightest) 40%);
+  background: linear-gradient(to left, transparent, var(--section-header-edge-color) 40%);
 }
 .section-header-tabs__edge--next {
   right: 0;
   justify-content: flex-end;
-  background: linear-gradient(to right, transparent, var(--color-background-neutral-lightest) 40%);
+  background: linear-gradient(to right, transparent, var(--section-header-edge-color) 40%);
 }
 
 @media (min-width: 768px) and (hover: hover) {
@@ -4177,6 +4205,18 @@ body:not(.demo-frame) .demo-container-start {
   font-family: monospace;
   font-size: 11px;
   color: var(--color-text-neutral-grey-dark);
+}
+
+.demo-sh__example {
+  align-self: flex-start;
+  padding: 2px var(--spacing-6);
+  border-radius: var(--border-radius-4);
+  background-color: var(--color-background-semantic-warning-subtlest);
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--color-text-semantic-warning-deep);
 }
 
 .demo-sh__na {
