@@ -1,17 +1,17 @@
 // ── Demo side panel + index — SCAFFOLDING ONLY ────────────────────────────────
 // Left panel built by scripts/scaffolding/demo-nav.js. Never ships to production.
 //
-//   ≥1920px  panel pinned open (272px); the page is pushed right
-//   <1920px  48px rail with a "+" button; hover / keyboard focus opens the
+//   ≥1640px  panel pinned open (272px); the page is pushed right
+//   <1640px  48px rail with a "+" button; hover / keyboard focus opens the
 //            panel over the page (the page is not pushed). Clicking "+" keeps
 //            it open (.demo-nav--open) until clicked again.
 //
-// 1920 is the demo-only "HD" threshold, not a product breakpoint — hence the
+// 1640 is a demo-only threshold, not a product breakpoint — hence the
 // plain media query instead of the breakpoint mixin.
 
 $demo-nav-width: 272px;
 $demo-nav-rail: 48px;
-$demo-nav-pinned: 1920px;
+$demo-nav-pinned: 1640px;
 
 // ── Page offset ───────────────────────────────────────────────────────────────
 

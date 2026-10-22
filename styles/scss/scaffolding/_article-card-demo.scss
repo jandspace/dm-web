@@ -256,26 +256,19 @@ $demo-card-gap: 24px;
 }
 
 // Sticky toolbar — stays at the top while scrolling the cards.
-// Canvas background bleeds edge to edge (box-shadow + clip-path), with a
-// hairline along the bottom.
+// Canvas background and the bottom hairline bleed edge to edge with box-shadows
+// (clip-path trims them to the bar plus 1px) — shadows add no scrollable
+// overflow, so the page never gains a horizontal scrollbar.
 .demo-vp-toolbar--sticky {
   position: sticky;
   top: 0;
   z-index: 100;
   padding-block: var(--spacing-12);
   background-color: var(--color-background-neutral-lighter);
-  box-shadow: 0 0 0 100vmax var(--color-background-neutral-lighter);
-  clip-path: inset(0 -100vmax);
-
-  &::after {
-    content: '';
-    position: absolute;
-    right: -100vmax;
-    bottom: 0;
-    left: -100vmax;
-    height: 1px;
-    background-color: var(--color-border-neutral-light);
-  }
+  box-shadow:
+    0 0 0 100vmax var(--color-background-neutral-lighter),
+    0 1px 0 100vmax var(--color-border-neutral-light);
+  clip-path: inset(0 -100vmax -1px);
 }
 
 // index.html: the toolbar lives outside .demo-card-page (so it can stick for

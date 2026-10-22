@@ -7,8 +7,8 @@
 // The root index.html loads it too and gets the same list as cards (#demo-index).
 //
 // Layout (styles: styles/scss/scaffolding/_demo-nav.scss):
-//   ≥1920px  panel pinned open, the page is pushed right
-//   <1920px  collapsed rail; hover / focus opens the panel over the page
+//   ≥1640px  panel pinned open, the page is pushed right
+//   <1640px  collapsed rail; hover / focus opens the panel over the page
 //
 // Not shown inside frames (viewport previews load pages in iframes).
 //
