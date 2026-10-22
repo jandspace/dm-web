@@ -1,0 +1,130 @@
+// ── Section Header — Branded ──────────────────────────────────────────────────
+// Section header for branded channels / verticals: a 52px banner with a
+// background image and a centred slot for the channel name (text) or logo
+// (image). The whole banner is the link.
+//
+//   .section-header-branded           lightest surface, 20px top · 8px bottom · 16px sides
+//     a.section-header-branded__banner      52px, 8px corners, 48px side padding
+//       img.section-header-branded__bg      background image (cover, 4px blur)
+//       .section-header-branded__slot       text (.section-header-branded__name) or <img> logo
+//       .section-header-branded__arrow      tertiary icon-only button on dark (34 · 14)
+//     .section-header-tabs                  optional sub-items (see _section-header.scss)
+//
+// Surface over the image: translucent-dark/pale at rest → translucent-dark/deep
+// on hover. The 4px blur goes on the image itself (filter), not as a
+// backdrop-filter on the surface — same look, and no backdrop-filter layer
+// for Chrome to leave unclipped at the rounded corners.
+//
+// Reference: Figma Web UI Kit › Section Header - Branded (6416:109910)
+
+.section-header-branded {
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-4);
+  padding: var(--spacing-20) var(--spacing-16) var(--spacing-8);
+  background-color: var(--color-background-neutral-lightest);
+  font-family: var(--typography-font-family-sans);
+}
+
+.section-header-branded__banner {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 52px;
+  padding: var(--spacing-4) var(--spacing-48);
+  overflow: hidden;
+  isolation: isolate;
+  border-radius: var(--border-radius-8);
+  background-color: var(--color-background-neutral-grey-dark); // until the image loads
+  text-decoration: none;
+
+  // Surface over the image
+  &::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    z-index: -1;
+    background-color: var(--color-effect-translucent-dark-pale);
+    transition: background-color 0.2s;
+  }
+
+  &:hover::before,
+  &:focus-visible::before {
+    background-color: var(--color-effect-translucent-dark-deep);
+  }
+
+  &:focus-visible {
+    outline: 2px solid var(--color-border-home-blue-base);
+    outline-offset: 2px;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    &::before {
+      transition: none;
+    }
+  }
+}
+
+// Background image — blurred 4px; scaled up a touch so the blur's soft edge
+// stays outside the rounded banner
+.section-header-branded__bg {
+  position: absolute;
+  inset: 0;
+  z-index: -2;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  filter: blur(4px);
+  transform: scale(1.08);
+}
+
+// Slot — channel name or logo, centred, never taller than the banner content (44px)
+.section-header-branded__slot {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  height: 100%;
+  min-width: 0;
+  overflow: hidden;
+
+  img,
+  svg {
+    display: block;
+    max-width: 100%;
+    max-height: 100%;
+  }
+}
+
+// Text name — dmw_serif/h2/Semibold, white
+.section-header-branded__name {
+  margin: 0;
+  overflow: hidden;
+  font-family: var(--typography-font-family-serif);
+  font-size: var(--typography-font-size-h2);
+  font-weight: var(--typography-font-weight-semibold);
+  line-height: var(--typography-line-height-narrow);
+  letter-spacing: var(--typography-letter-spacing-compact);
+  color: var(--color-text-neutral-white);
+  text-align: center;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+}
+
+// Arrow — .btn.btn-tertiary-dark.btn--sm.btn--icon-only (decorative), 8px from the right
+.section-header-branded__arrow {
+  position: absolute;
+  top: 50%;
+  right: var(--spacing-8);
+  transform: translateY(-50%);
+  pointer-events: none; // the banner is the link
+
+  // The icon sits straight in the button (no .btn__content), so size it here
+  // (.btn--sm keeps 12px side padding inside the 34px circle — never shrink)
+  svg {
+    flex-shrink: 0;
+    width: 14px;
+    height: 14px;
+  }
+}

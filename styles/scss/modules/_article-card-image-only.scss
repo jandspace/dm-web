@@ -26,9 +26,6 @@
     // intrinsic height — otherwise a taller image pushes the overlay out of view
     grid-template: minmax(0, 1fr) / minmax(0, 1fr);
     border-radius: var(--border-radius-8);
-    // overflow + border-radius does not clip the scrim's backdrop-filter in
-    // Chrome (square bottom corners) — clip-path does
-    clip-path: inset(0 round var(--border-radius-8));
 
     > * {
       grid-area: 1 / 1;

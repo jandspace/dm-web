@@ -1,0 +1,78 @@
+// ── Section Header demo — SCAFFOLDING ONLY ────────────────────────────────────
+// Layout for modules/section-header/. Never ships to production.
+// Two columns — Medium (Primary) | Small (Secondary) — one row per item set,
+// like the Figma functional spec. One column below MD.
+
+@use '../foundation/breakpoints' as bp;
+
+.demo-sh {
+  max-width: 1224px;
+}
+
+.demo-sh__grid {
+  display: grid;
+  gap: var(--spacing-24) var(--spacing-32);
+
+  @include bp.respond-to(md) {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+.demo-sh__col-header {
+  padding-bottom: var(--spacing-8);
+  border-bottom: 2px solid var(--color-border-neutral-darker);
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  color: var(--color-text-neutral-darker);
+
+  // One column: only the first header row reads — hide the Small header,
+  // each Small sample carries its own caption
+  &--sm {
+    display: none;
+
+    @include bp.respond-to(md) {
+      display: block;
+    }
+  }
+}
+
+.demo-sh__cell {
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-8);
+  min-width: 0;
+}
+
+.demo-sh__caption {
+  font-family: monospace;
+  font-size: 11px;
+  color: var(--color-text-neutral-grey-dark);
+}
+
+// N/A cell (Small has no sub-items)
+.demo-sh__na {
+  display: flex;
+  align-items: center;
+  min-height: 50px;
+  padding: 0 var(--spacing-16);
+  border: 1px dashed var(--color-border-neutral-light);
+  font-family: monospace;
+  font-size: 11px;
+  color: var(--color-text-neutral-grey-dark);
+}
+
+.demo-sh__branded {
+  display: grid;
+  gap: var(--spacing-24) var(--spacing-32);
+
+  @include bp.respond-to(md) {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+// Inside the viewport stage (?frame): page gutters only
+.demo-frame .demo-sh {
+  padding: 0 var(--spacing-16) var(--spacing-32);
+}

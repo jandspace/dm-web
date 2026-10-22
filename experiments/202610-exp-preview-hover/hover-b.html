@@ -146,6 +146,12 @@
       <symbol id="ico-arrow-right-light" viewBox="0 0 12 12">
         <path d="M0.333333 6.32667H9.84667L5.81 10.3633L6.48333 11.0367L11.6667 5.85333L6.48333 0.666667L5.81 1.34L9.84667 5.37667H0.333333V6.32667Z" fill="currentColor" />
       </symbol>
+      <symbol id="ico-chevron-right" viewBox="0 0 32 32">
+        <path fill-rule="evenodd" clip-rule="evenodd" d="M24.7444 16.6578L23.4733 17.9645L10.9133 30.8534C10.5666 31.2089 9.99775 31.2089 9.6422 30.8534L8.37108 29.5467C8.02442 29.1911 8.02442 28.6045 8.37108 28.2489L20.3 16.0089L8.37108 3.76892C8.02442 3.41336 8.02442 2.82669 8.37108 2.46225L9.6422 1.15558C9.98886 0.800027 10.5578 0.800027 10.9133 1.15558L23.4733 14.0445L24.7444 15.3511C25.0911 15.7067 25.0911 16.2934 24.7444 16.6489V16.6578Z" fill="currentColor" />
+      </symbol>
+      <symbol id="ico-chevron-left" viewBox="0 0 32 32">
+        <path fill-rule="evenodd" clip-rule="evenodd" d="M6.37108 15.3511L7.6422 14.0445L20.2022 1.15558C20.5489 0.800027 21.1178 0.800027 21.4733 1.15558L22.7444 2.46225C23.0911 2.8178 23.0911 3.40447 22.7444 3.76003L10.8155 16L22.7444 28.24C23.0911 28.5956 23.0911 29.1823 22.7444 29.5467L21.4733 30.8534C21.1266 31.2089 20.5578 31.2089 20.2022 30.8534L7.6422 17.9556L6.37108 16.6489C6.02442 16.2934 6.02442 15.7067 6.37108 15.3511Z" fill="currentColor" />
+      </symbol>
       <symbol id="ico-media-play" viewBox="0 0 32 32">
         <path d="M7.61864 30.7537L29.0988 18.3511C30.9036 17.3108 30.9036 14.6969 29.0988 13.6567L7.61864 1.25405C5.81381 0.213824 3.55554 1.52077 3.55554 3.60122V28.3977C3.55554 30.487 5.81381 31.785 7.61864 30.7448V30.7537Z" fill="currentColor"/>
       </symbol>
@@ -241,6 +247,29 @@
               <a class="article-card-metadata__comments" href="#comments" aria-label="785 comments"><svg class="article-card-metadata__comments-icon" aria-hidden="true"><use href="#ico-speechbubble-ellipsis" /></svg><span class="article-card-metadata__comments-count">785</span></a>
             </div>
           </article>
+
+          <!-- Section Header · MD: Midterms 2026 + topics (Figma 8219:238176).
+               "2026" digits: Figma #0063de / #fc2d2d have no token — nearest
+               home-blue-base / showbiz-red-base -->
+          <header class="section-header">
+            <div class="section-header__row">
+              <h2 class="section-header__title"><span class="section-header__link"><span class="section-header__label"><span class="section-header__icon" aria-hidden="true"><img src="images/ico-midterm2026.svg" alt="" /></span><span class="section-header__text">Midterms <span style="color: var(--color-text-home-blue-base)">2</span><span style="color: var(--color-text-showbiz-red-base)">0</span><span style="color: var(--color-text-home-blue-base)">2</span><span style="color: var(--color-text-showbiz-red-base)">6</span></span></span></span></h2>
+            </div>
+            <nav class="section-header-tabs" aria-label="Midterms 2026 topics">
+              <button type="button" class="section-header-tabs__edge section-header-tabs__edge--prev" aria-label="Scroll left" tabindex="-1"><svg aria-hidden="true"><use href="#ico-chevron-left" /></svg></button>
+              <ul class="section-header-tabs__list">
+                <li><a class="section-header-tabs__item" href="#midterms">Trending races</a></li>
+                <li><a class="section-header-tabs__item" href="#midterms">Polls</a></li>
+                <li><a class="section-header-tabs__item" href="#midterms">Latest coverage</a></li>
+                <li><a class="section-header-tabs__item" href="#midterms">Newsletter</a></li>
+                <li><a class="section-header-tabs__item" href="#midterms">The $1B gamble</a></li>
+                <li><a class="section-header-tabs__item" href="#midterms">The ‘Blue Tsunami’</a></li>
+                <li><a class="section-header-tabs__item" href="#midterms">Swing states</a></li>
+                <li><a class="section-header-tabs__item" href="#midterms">Senate map</a></li>
+              </ul>
+              <button type="button" class="section-header-tabs__edge section-header-tabs__edge--next" aria-label="Scroll right" tabindex="-1"><svg aria-hidden="true"><use href="#ico-chevron-right" /></svg></button>
+            </nav>
+          </header>
 
           <!-- column-splitter: two 332 columns -->
           <div class="exp-split">
@@ -352,6 +381,15 @@
 
         <!-- ── beta (332) · puffs — sidebar: no metadata except the ad ── -->
         <div class="exp-column exp-beta">
+          <!-- Section Header - Branded: This is Showbiz (Figma 8218:237980) -->
+          <header class="section-header-branded">
+            <a class="section-header-branded__banner" href="#showbiz" aria-label="This is Showbiz">
+              <img class="section-header-branded__bg" src="images/23-showbiz-branded-bg.jpg" alt="" />
+              <span class="section-header-branded__slot"><img src="images/this-is-showbiz.svg" alt="" width="168" height="21" /></span>
+              <span class="section-header-branded__arrow btn btn-tertiary-dark btn--sm btn--icon-only" aria-hidden="true"><svg><use href="#ico-arrow-right-light" /></svg></span>
+            </a>
+          </header>
+
           <!-- Channel Puff (Showbiz) — Image Only (Medium) + SM Right Thumb ×4 on the
                channel's subtlest surface (Figma 8181:237759) -->
           <div class="channel-puff channel-puff--showbiz">
@@ -403,6 +441,13 @@
             </div>
           </div>
 
+          <!-- Section Header · SM: More Showbiz (Figma 8218:238038) -->
+          <header class="section-header section-header--sm">
+            <div class="section-header__row">
+              <h2 class="section-header__title"><a class="section-header__link" href="#showbiz"><span class="section-header__label"><span class="section-header__icon" aria-hidden="true"><img src="images/ico-ch-uk-showbiz-color.svg" alt="" /></span><span class="section-header__text">More Showbiz</span></span><span class="section-header__arrow btn btn-quaternary-neutral btn--icon-only" aria-hidden="true"><svg><use href="#ico-arrow-right-light" /></svg></span></a></h2>
+            </div>
+          </header>
+
           <!-- MD · no metadata -->
           <article class="article-card article-card--md">
             <div class="article-card__media"><img src="images/11-daisy-edgar-jones.jpg" alt="" /><span class="article-card__video" aria-hidden="true"><span class="video-play"><svg><use href="#ico-media-play" /></svg></span></span></div>
@@ -453,6 +498,26 @@
       </div>
     </main>
 
+    <script>
+      // Section Header sub-items — edge buttons scroll the row; .is-scroll-start /
+      // .is-scroll-end hide the edge on a side that cannot scroll (same as
+      // modules/section-header/)
+      document.querySelectorAll('.section-header-tabs').forEach((tabs) => {
+        const list = tabs.querySelector('.section-header-tabs__list');
+        const update = () => {
+          tabs.classList.toggle('is-scroll-start', list.scrollLeft <= 1);
+          tabs.classList.toggle('is-scroll-end', list.scrollLeft + list.clientWidth >= list.scrollWidth - 1);
+        };
+        tabs.querySelectorAll('.section-header-tabs__edge').forEach((edge) => {
+          const dir = edge.classList.contains('section-header-tabs__edge--prev') ? -1 : 1;
+          edge.addEventListener('click', () => list.scrollBy({ left: dir * list.clientWidth * 0.8 }));
+        });
+        list.addEventListener('scroll', update, { passive: true });
+        new ResizeObserver(update).observe(list);
+        document.fonts.ready.then(update); // label widths change once the web font is in
+        update();
+      });
+    </script>
     <script>
       // Experiment scaffolding — fixed LG preview.
       // The card CSS reacts to the viewport, so the page renders itself in a

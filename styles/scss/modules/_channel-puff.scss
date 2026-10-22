@@ -22,6 +22,13 @@
   position: relative;
   padding: var(--spacing-16);
 
+  // Under a section header: no top inset — the header's 8px bottom padding
+  // is the gap
+  .section-header + &,
+  .section-header-branded + & {
+    padding-top: 0;
+  }
+
   // Keyline — inset to match the 16px content edge
   &::after {
     content: '';
@@ -37,7 +44,9 @@
 .channel-puff__inner {
   display: flex;
   flex-direction: column;
-  overflow: hidden;
+  // No overflow: hidden — nothing inside overflows, and a rounded clip here
+  // stops Chrome from rounding an Image Only card's blurred scrim (square
+  // bottom corners)
   border-radius: var(--border-radius-8);
   background-color: var(--channel-puff-color, var(--color-background-neutral-lighter));
 

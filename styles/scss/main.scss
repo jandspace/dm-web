@@ -25,6 +25,8 @@
 @use 'modules/columnist-profile-photo';
 @use 'modules/columnist-comment-announcement';
 @use 'modules/channel-puff';
+@use 'modules/section-header';
+@use 'modules/section-header-branded';
 
 // Scaffolding (prototype/demo only — never shipped to production)
 @use 'scaffolding/demo-grid';
@@ -33,4 +35,5 @@
 @use 'scaffolding/foundation-colour-demo';
 @use 'scaffolding/article-card-demo';
 @use 'scaffolding/article-card-metadata-demo';
+@use 'scaffolding/section-header-demo';
 @use 'scaffolding/video-player-controls-demo';

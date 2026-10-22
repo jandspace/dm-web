@@ -1,0 +1,393 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Section Header</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&family=Lora:wght@600&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="../../tokens/dm_tokens.css" />
+    <link rel="stylesheet" href="../../tokens/dm_typography_web_tokens.css" />
+    <link rel="stylesheet" href="../../styles/css/main.css" />
+    <script src="../../scripts/scaffolding/demo-nav.js" defer></script>
+  </head>
+  <body class="demo-page-body">
+    <svg style="display: none" aria-hidden="true">
+      <symbol id="ico-arrow-right-light" viewBox="0 0 12 12">
+        <path d="M0.333333 6.32667H9.84667L5.81 10.3633L6.48333 11.0367L11.6667 5.85333L6.48333 0.666667L5.81 1.34L9.84667 5.37667H0.333333V6.32667Z" fill="currentColor" />
+      </symbol>
+      <symbol id="ico-chevron-right" viewBox="0 0 32 32">
+        <path fill-rule="evenodd" clip-rule="evenodd" d="M24.7444 16.6578L23.4733 17.9645L10.9133 30.8534C10.5666 31.2089 9.99775 31.2089 9.6422 30.8534L8.37108 29.5467C8.02442 29.1911 8.02442 28.6045 8.37108 28.2489L20.3 16.0089L8.37108 3.76892C8.02442 3.41336 8.02442 2.82669 8.37108 2.46225L9.6422 1.15558C9.98886 0.800027 10.5578 0.800027 10.9133 1.15558L23.4733 14.0445L24.7444 15.3511C25.0911 15.7067 25.0911 16.2934 24.7444 16.6489V16.6578Z" fill="currentColor" />
+      </symbol>
+      <symbol id="ico-chevron-left" viewBox="0 0 32 32">
+        <path fill-rule="evenodd" clip-rule="evenodd" d="M6.37108 15.3511L7.6422 14.0445L20.2022 1.15558C20.5489 0.800027 21.1178 0.800027 21.4733 1.15558L22.7444 2.46225C23.0911 2.8178 23.0911 3.40447 22.7444 3.76003L10.8155 16L22.7444 28.24C23.0911 28.5956 23.0911 29.1823 22.7444 29.5467L21.4733 30.8534C21.1266 31.2089 20.5578 31.2089 20.2022 30.8534L7.6422 17.9556L6.37108 16.6489C6.02442 16.2934 6.02442 15.7067 6.37108 15.3511Z" fill="currentColor" />
+      </symbol>
+      <symbol id="ico-square-dashed" viewBox="0 0 32 32">
+        <path d="M12.7333 32H6.89333C3.09333 32 0 28.9067 0 25.1067V19.2667H3.38667V25.1067C3.38667 27.04 4.96 28.6133 6.89333 28.6133H12.7333V32Z" fill="currentColor" />
+        <path d="M32 12.7333H28.6133V6.89333C28.6133 4.96 27.04 3.38667 25.1067 3.38667H19.2667V0H25.1067C28.9067 0 32 3.09333 32 6.89333V12.7333Z" fill="currentColor" />
+        <path d="M3.38667 12.7333H0V6.89333C0 3.09333 3.09333 0 6.89333 0H12.7333V3.38667H6.89333C4.96 3.38667 3.38667 4.96 3.38667 6.89333V12.7333Z" fill="currentColor" />
+        <path d="M25.1067 32H19.2667V28.6133H25.1067C27.04 28.6133 28.6133 27.04 28.6133 25.1067V19.2667H32V25.1067C32 28.9067 28.9067 32 25.1067 32Z" fill="currentColor" />
+      </symbol>
+    </svg>
+
+    <div class="demo-sh" id="demo-sh">
+    <h1 class="demo-page-h1">Section Header</h1>
+    <p class="demo-page-intro">
+      Figma: Web UI Kit › Section Header (7648:22288) and Section Header - Branded (6416:109910);
+      item sets from DM26 App › Section Header / Title Bar redesign (34325:40868).
+      Medium is the Primary header (Mweb and Dweb), Small the Secondary. Sizes follow the breakpoint:
+      label h3 20 · 21 · 22 and icon 20 · 22 (&lt;768 · ≥768 · ≥1024). Sub-items swipe on Mweb (right edge fades) and
+      get chevron edge buttons on Dweb (≥768 with a mouse). The leading icon is a slot — the dashed square is a placeholder.
+    </p>
+
+    <div class="demo-vp-toolbar demo-vp-toolbar--sticky">
+      <div class="demo-vp-toolbar__row">
+        <span id="demo-vp-switch-label">Viewport</span>
+        <div class="demo-vp-toggle" role="group" aria-labelledby="demo-vp-switch-label" id="demo-vp-switch">
+          <button type="button" data-vp="live" aria-pressed="true">Live</button>
+          <button type="button" data-vp="lg" aria-pressed="false">Dweb LG 1024</button>
+          <button type="button" data-vp="md" aria-pressed="false">MD 768</button>
+          <button type="button" data-vp="xs" aria-pressed="false">Mweb 390</button>
+        </div>
+        <span class="demo-vp-status" id="demo-vp-status"></span>
+      </div>
+    </div>
+
+    <h2 class="demo-section-title">Section Header</h2>
+    <div class="demo-sh__grid">
+    <div class="demo-sh__col-header">Medium (default) · Primary<br /><small>h3 · arrow 40</small></div>
+
+    <div class="demo-sh__col-header demo-sh__col-header--sm">Small · Secondary<br /><small>h4 · arrow 30</small></div>
+
+    <div class="demo-sh__cell">
+      <header class="section-header">
+        <div class="section-header__row">
+          <h2 class="section-header__title"><span class="section-header__link"><span class="section-header__label"><span class="section-header__text">Section Header</span></span></span></h2>
+        </div>
+      </header>
+      <span class="demo-sh__caption">MD — Label only</span>
+    </div>
+
+    <div class="demo-sh__cell">
+      <header class="section-header section-header--sm">
+        <div class="section-header__row">
+          <h2 class="section-header__title"><span class="section-header__link"><span class="section-header__label"><span class="section-header__text">Section Header</span></span></span></h2>
+        </div>
+      </header>
+      <span class="demo-sh__caption">SM — Label only</span>
+    </div>
+
+    <div class="demo-sh__cell">
+      <header class="section-header">
+        <div class="section-header__row">
+          <h2 class="section-header__title"><a class="section-header__link" href="#section"><span class="section-header__label"><span class="section-header__text">Section Header</span></span><span class="section-header__arrow btn btn-quaternary-neutral btn--icon-only" aria-hidden="true"><svg><use href="#ico-arrow-right-light" /></svg></span></a></h2>
+        </div>
+      </header>
+      <span class="demo-sh__caption">MD — Label, Link arrow</span>
+    </div>
+
+    <div class="demo-sh__cell">
+      <header class="section-header section-header--sm">
+        <div class="section-header__row">
+          <h2 class="section-header__title"><a class="section-header__link" href="#section"><span class="section-header__label"><span class="section-header__text">Section Header</span></span><span class="section-header__arrow btn btn-quaternary-neutral btn--icon-only" aria-hidden="true"><svg><use href="#ico-arrow-right-light" /></svg></span></a></h2>
+        </div>
+      </header>
+      <span class="demo-sh__caption">SM — Label, Link arrow</span>
+    </div>
+
+    <div class="demo-sh__cell">
+      <header class="section-header">
+        <div class="section-header__row">
+          <h2 class="section-header__title"><span class="section-header__link"><span class="section-header__label"><span class="section-header__icon" aria-hidden="true"><svg><use href="#ico-square-dashed" /></svg></span><span class="section-header__text">Section Header</span></span></span></h2>
+        </div>
+      </header>
+      <span class="demo-sh__caption">MD — Icon, Label</span>
+    </div>
+
+    <div class="demo-sh__cell">
+      <header class="section-header section-header--sm">
+        <div class="section-header__row">
+          <h2 class="section-header__title"><span class="section-header__link"><span class="section-header__label"><span class="section-header__icon" aria-hidden="true"><svg><use href="#ico-square-dashed" /></svg></span><span class="section-header__text">Section Header</span></span></span></h2>
+        </div>
+      </header>
+      <span class="demo-sh__caption">SM — Icon, Label</span>
+    </div>
+
+    <div class="demo-sh__cell">
+      <header class="section-header">
+        <div class="section-header__row">
+          <h2 class="section-header__title"><a class="section-header__link" href="#section"><span class="section-header__label"><span class="section-header__icon" aria-hidden="true"><svg><use href="#ico-square-dashed" /></svg></span><span class="section-header__text">Section Header</span></span><span class="section-header__arrow btn btn-quaternary-neutral btn--icon-only" aria-hidden="true"><svg><use href="#ico-arrow-right-light" /></svg></span></a></h2>
+        </div>
+      </header>
+      <span class="demo-sh__caption">MD — Icon, Label, Link arrow</span>
+    </div>
+
+    <div class="demo-sh__cell">
+      <header class="section-header section-header--sm">
+        <div class="section-header__row">
+          <h2 class="section-header__title"><a class="section-header__link" href="#section"><span class="section-header__label"><span class="section-header__icon" aria-hidden="true"><svg><use href="#ico-square-dashed" /></svg></span><span class="section-header__text">Section Header</span></span><span class="section-header__arrow btn btn-quaternary-neutral btn--icon-only" aria-hidden="true"><svg><use href="#ico-arrow-right-light" /></svg></span></a></h2>
+        </div>
+      </header>
+      <span class="demo-sh__caption">SM — Icon, Label, Link arrow</span>
+    </div>
+
+    <div class="demo-sh__cell">
+      <header class="section-header">
+        <div class="section-header__row">
+          <h2 class="section-header__title"><a class="section-header__link" href="#section"><span class="section-header__label"><span class="section-header__icon" aria-hidden="true"><svg><use href="#ico-square-dashed" /></svg></span><span class="section-header__text">Section Header</span></span><span class="section-header__arrow btn btn-quaternary-neutral btn--icon-only" aria-hidden="true"><svg><use href="#ico-arrow-right-light" /></svg></span></a></h2>
+        </div>
+        <p class="section-header__description">Preview Text, Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quisque quis massa sit amet ex con sectetur fermentum.</p>
+      </header>
+      <span class="demo-sh__caption">MD — Icon, Label, Link arrow, Description (Preview)</span>
+    </div>
+
+    <div class="demo-sh__cell">
+      <header class="section-header section-header--sm">
+        <div class="section-header__row">
+          <h2 class="section-header__title"><a class="section-header__link" href="#section"><span class="section-header__label"><span class="section-header__icon" aria-hidden="true"><svg><use href="#ico-square-dashed" /></svg></span><span class="section-header__text">Section Header</span></span><span class="section-header__arrow btn btn-quaternary-neutral btn--icon-only" aria-hidden="true"><svg><use href="#ico-arrow-right-light" /></svg></span></a></h2>
+        </div>
+        <p class="section-header__description">Preview Text, Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quisque quis massa sit amet ex con sectetur fermentum.</p>
+      </header>
+      <span class="demo-sh__caption">SM — Icon, Label, Link arrow, Description (Preview)</span>
+    </div>
+
+    <div class="demo-sh__cell">
+      <header class="section-header">
+        <div class="section-header__row">
+          <h2 class="section-header__title"><a class="section-header__link" href="#section"><span class="section-header__label"><span class="section-header__icon" aria-hidden="true"><svg><use href="#ico-square-dashed" /></svg></span><span class="section-header__text">Section Header</span></span><span class="section-header__arrow btn btn-quaternary-neutral btn--icon-only" aria-hidden="true"><svg><use href="#ico-arrow-right-light" /></svg></span></a></h2>
+          <a class="section-header__action" href="#action">Action Here<svg aria-hidden="true"><use href="#ico-chevron-right" /></svg></a>
+        </div>
+      </header>
+      <span class="demo-sh__caption">MD — Icon, Label, Link arrow, Action</span>
+    </div>
+
+    <div class="demo-sh__cell">
+      <header class="section-header section-header--sm">
+        <div class="section-header__row">
+          <h2 class="section-header__title"><a class="section-header__link" href="#section"><span class="section-header__label"><span class="section-header__icon" aria-hidden="true"><svg><use href="#ico-square-dashed" /></svg></span><span class="section-header__text">Section Header</span></span><span class="section-header__arrow btn btn-quaternary-neutral btn--icon-only" aria-hidden="true"><svg><use href="#ico-arrow-right-light" /></svg></span></a></h2>
+          <a class="section-header__action" href="#action">Action Here<svg aria-hidden="true"><use href="#ico-chevron-right" /></svg></a>
+        </div>
+      </header>
+      <span class="demo-sh__caption">SM — Icon, Label, Link arrow, Action</span>
+    </div>
+
+    <div class="demo-sh__cell">
+      <header class="section-header">
+        <div class="section-header__row">
+          <h2 class="section-header__title"><a class="section-header__link" href="#section"><span class="section-header__label"><span class="section-header__icon" aria-hidden="true"><svg><use href="#ico-square-dashed" /></svg></span><span class="section-header__text">Lifestyle</span></span><span class="section-header__arrow btn btn-quaternary-neutral btn--icon-only" aria-hidden="true"><svg><use href="#ico-arrow-right-light" /></svg></span></a></h2>
+        </div>
+        <nav class="section-header-tabs" aria-label="Sub-channels">
+          <button type="button" class="section-header-tabs__edge section-header-tabs__edge--prev" aria-label="Scroll left" tabindex="-1"><svg aria-hidden="true"><use href="#ico-chevron-left" /></svg></button>
+          <ul class="section-header-tabs__list">
+            <li><a class="section-header-tabs__item" href="#sub">Sub-item 1</a></li>
+            <li><a class="section-header-tabs__item" href="#sub">Sub-item 2</a></li>
+            <li><a class="section-header-tabs__item" href="#sub">Sub-item 3</a></li>
+            <li><a class="section-header-tabs__item" href="#sub">Sub-item 4</a></li>
+            <li><a class="section-header-tabs__item" href="#sub">Sub-item 5</a></li>
+            <li><a class="section-header-tabs__item" href="#sub">Sub-item 6</a></li>
+            <li><a class="section-header-tabs__item" href="#sub">Sub-item 7</a></li>
+            <li><a class="section-header-tabs__item" href="#sub">Sub-item 8</a></li>
+            <li><a class="section-header-tabs__item" href="#sub">Sub-item 9</a></li>
+            <li><a class="section-header-tabs__item" href="#sub">Sub-item 10</a></li>
+            <li><a class="section-header-tabs__item" href="#sub">Sub-item 11</a></li>
+            <li><a class="section-header-tabs__item" href="#sub">Sub-item 12</a></li>
+          </ul>
+          <button type="button" class="section-header-tabs__edge section-header-tabs__edge--next" aria-label="Scroll right" tabindex="-1"><svg aria-hidden="true"><use href="#ico-chevron-right" /></svg></button>
+        </nav>
+      </header>
+      <span class="demo-sh__caption">MD — Icon, Label, Link arrow, Sub-items (Subchannels or Topics)</span>
+    </div>
+
+    <div class="demo-sh__cell">
+      <div class="demo-sh__na">N/A — Small has no sub-items</div>
+    </div>
+
+    <div class="demo-sh__cell">
+      <header class="section-header">
+        <div class="section-header__row">
+          <h2 class="section-header__title"><span class="section-header__link"><span class="section-header__label"><span class="section-header__text">War in the Middle East</span></span></span></h2>
+        </div>
+        <nav class="section-header-tabs" aria-label="Sub-channels">
+          <button type="button" class="section-header-tabs__edge section-header-tabs__edge--prev" aria-label="Scroll left" tabindex="-1"><svg aria-hidden="true"><use href="#ico-chevron-left" /></svg></button>
+          <ul class="section-header-tabs__list">
+            <li><a class="section-header-tabs__item" href="#sub">Trump's Options for Iran</a></li>
+            <li><a class="section-header-tabs__item" href="#sub">Strait of Hormuz</a></li>
+            <li><a class="section-header-tabs__item" href="#sub">U.S. Cost of War</a></li>
+            <li><a class="section-header-tabs__item" href="#sub">Iranian Retaliation</a></li>
+            <li><a class="section-header-tabs__item" href="#sub">Gaza Strip</a></li>
+            <li><a class="section-header-tabs__item" href="#sub">Oil Prices</a></li>
+            <li><a class="section-header-tabs__item" href="#sub">Israel Air Defence</a></li>
+            <li><a class="section-header-tabs__item" href="#sub">UN Security Council</a></li>
+          </ul>
+          <button type="button" class="section-header-tabs__edge section-header-tabs__edge--next" aria-label="Scroll right" tabindex="-1"><svg aria-hidden="true"><use href="#ico-chevron-right" /></svg></button>
+        </nav>
+      </header>
+      <span class="demo-sh__caption">MD — Label, Sub-items (Subchannels or Topics)</span>
+    </div>
+
+    <div class="demo-sh__cell">
+      <div class="demo-sh__na">N/A — Small has no sub-items</div>
+    </div>
+    </div>
+
+    <h2 class="demo-section-title">Section Header — Branded</h2>
+    <div class="demo-sh__branded">
+    <div class="demo-sh__cell">
+      <header class="section-header-branded">
+        <a class="section-header-branded__banner" href="#channel" aria-label="Place Your Logo">
+          <img class="section-header-branded__bg" src="../../assets/images/section-header-branded-placeholder.jpg" alt="" />
+          <span class="section-header-branded__slot"><span class="section-header-branded__name">Place Your Logo</span></span>
+          <span class="section-header-branded__arrow btn btn-tertiary-dark btn--sm btn--icon-only" aria-hidden="true"><svg><use href="#ico-arrow-right-light" /></svg></span>
+        </a>
+      </header>
+      <span class="demo-sh__caption">Slot: text — dmw_serif/h2/Semibold, white</span>
+    </div>
+
+    <div class="demo-sh__cell">
+      <header class="section-header-branded">
+        <a class="section-header-branded__banner" href="#channel" aria-label="Daily Mail">
+          <img class="section-header-branded__bg" src="../../assets/images/section-header-branded-placeholder.jpg" alt="" />
+          <span class="section-header-branded__slot"><img src="../../assets/images/logo-dailymail-white.svg" alt="Daily Mail" height="26" /></span>
+          <span class="section-header-branded__arrow btn btn-tertiary-dark btn--sm btn--icon-only" aria-hidden="true"><svg><use href="#ico-arrow-right-light" /></svg></span>
+        </a>
+      </header>
+      <span class="demo-sh__caption">Slot: logo image (max 44px tall)</span>
+    </div>
+
+    <div class="demo-sh__cell">
+      <header class="section-header-branded">
+        <a class="section-header-branded__banner" href="#channel" aria-label="Showbiz">
+          <img class="section-header-branded__bg" src="../../assets/images/section-header-branded-placeholder.jpg" alt="" />
+          <span class="section-header-branded__slot"><span class="section-header-branded__name">Showbiz</span></span>
+          <span class="section-header-branded__arrow btn btn-tertiary-dark btn--sm btn--icon-only" aria-hidden="true"><svg><use href="#ico-arrow-right-light" /></svg></span>
+        </a>
+        <nav class="section-header-tabs" aria-label="Sub-channels">
+          <button type="button" class="section-header-tabs__edge section-header-tabs__edge--prev" aria-label="Scroll left" tabindex="-1"><svg aria-hidden="true"><use href="#ico-chevron-left" /></svg></button>
+          <ul class="section-header-tabs__list">
+            <li><a class="section-header-tabs__item" href="#sub">Sub-item 1</a></li>
+            <li><a class="section-header-tabs__item" href="#sub">Sub-item 2</a></li>
+            <li><a class="section-header-tabs__item" href="#sub">Sub-item 3</a></li>
+            <li><a class="section-header-tabs__item" href="#sub">Sub-item 4</a></li>
+            <li><a class="section-header-tabs__item" href="#sub">Sub-item 5</a></li>
+            <li><a class="section-header-tabs__item" href="#sub">Sub-item 6</a></li>
+            <li><a class="section-header-tabs__item" href="#sub">Sub-item 7</a></li>
+            <li><a class="section-header-tabs__item" href="#sub">Sub-item 8</a></li>
+            <li><a class="section-header-tabs__item" href="#sub">Sub-item 9</a></li>
+            <li><a class="section-header-tabs__item" href="#sub">Sub-item 10</a></li>
+            <li><a class="section-header-tabs__item" href="#sub">Sub-item 11</a></li>
+            <li><a class="section-header-tabs__item" href="#sub">Sub-item 12</a></li>
+          </ul>
+          <button type="button" class="section-header-tabs__edge section-header-tabs__edge--next" aria-label="Scroll right" tabindex="-1"><svg aria-hidden="true"><use href="#ico-chevron-right" /></svg></button>
+        </nav>
+      </header>
+      <span class="demo-sh__caption">Text + Sub-items</span>
+    </div>
+    </div>
+    </div>
+
+    <!-- Fixed-viewport preview: this page rendered in an iframe at the chosen width -->
+    <div class="demo-vp-stage" id="demo-vp-stage" hidden></div>
+
+    <script>
+      // Sub-items behaviour (reference for the build): the edge buttons scroll the
+      // row by ~80% of its width; .is-scroll-start / .is-scroll-end hide the edge
+      // on a side that cannot scroll (CSS shows edges only at MD+ with a mouse).
+      document.querySelectorAll('.section-header-tabs').forEach((tabs) => {
+        const list = tabs.querySelector('.section-header-tabs__list');
+        const update = () => {
+          tabs.classList.toggle('is-scroll-start', list.scrollLeft <= 1);
+          tabs.classList.toggle('is-scroll-end', list.scrollLeft + list.clientWidth >= list.scrollWidth - 1);
+        };
+        tabs.querySelectorAll('.section-header-tabs__edge').forEach((edge) => {
+          const dir = edge.classList.contains('section-header-tabs__edge--prev') ? -1 : 1;
+          edge.addEventListener('click', () => list.scrollBy({ left: dir * list.clientWidth * 0.8 }));
+        });
+        list.addEventListener('scroll', update, { passive: true });
+        new ResizeObserver(update).observe(list);
+        document.fonts.ready.then(update); // label widths change once the web font is in
+        update();
+      });
+    </script>
+
+    <script>
+      // Scaffolding only — viewport preview.
+      //   ?frame              page without chrome (rendered inside the viewport stage)
+      //   ?vp=lg|md|xs        preview at a fixed viewport width
+      (() => {
+        const params = new URLSearchParams(location.search);
+        if (params.has('frame')) {
+          document.body.classList.add('demo-frame');
+          document.querySelectorAll('.demo-page-h1, .demo-page-intro, .demo-vp-toolbar').forEach((el) => el.remove());
+          return;
+        }
+
+        const VIEWPORTS = {
+          lg: { label: 'LG ≥1024', width: 1024 },
+          md: { label: 'MD ≥768', width: 768 },
+          xs: { label: 'SM-XS <768', width: 390 },
+        };
+
+        const toggle = document.getElementById('demo-vp-switch');
+        const status = document.getElementById('demo-vp-status');
+        const content = [...document.querySelectorAll('.demo-section-title, .demo-sh__grid, .demo-sh__branded')];
+        const stage = document.getElementById('demo-vp-stage');
+        let iframe = null;
+        let width = 0;
+
+        const fit = () => {
+          if (!iframe || !iframe.contentDocument) return;
+          const scale = Math.min(1, (stage.parentElement.clientWidth - 80) / width);
+          const height = iframe.contentDocument.documentElement.scrollHeight;
+          iframe.height = height;
+          iframe.style.transform = `scale(${scale})`;
+          stage.style.width = `${width * scale}px`;
+          stage.style.height = `${height * scale}px`;
+          status.textContent = `${width}px viewport · ${Math.round(scale * 100)}%`;
+        };
+
+        const select = (key) => {
+          const vp = VIEWPORTS[key];
+          toggle.querySelectorAll('button').forEach((b) => {
+            b.setAttribute('aria-pressed', String(b.dataset.vp === (vp ? key : 'live')));
+          });
+          const url = new URL(location.href);
+          if (vp) url.searchParams.set('vp', key);
+          else url.searchParams.delete('vp');
+          history.replaceState(null, '', url);
+
+          if (!vp) {
+            stage.hidden = true;
+            stage.replaceChildren();
+            iframe = null;
+            content.forEach((el) => (el.hidden = false));
+            status.textContent = '';
+            return;
+          }
+
+          width = vp.width;
+          content.forEach((el) => (el.hidden = true));
+          stage.hidden = false;
+          status.textContent = 'Loading…';
+          iframe = document.createElement('iframe');
+          iframe.src = 'index.html?frame';
+          iframe.width = width;
+          iframe.title = `Section Header at ${vp.label}`;
+          iframe.addEventListener('load', async () => {
+            await iframe.contentDocument.fonts.ready;
+            fit();
+          });
+          stage.replaceChildren(iframe);
+        };
+
+        toggle.addEventListener('click', (event) => {
+          const button = event.target.closest('button[data-vp]');
+          if (button) select(button.dataset.vp);
+        });
+        window.addEventListener('resize', fit);
+        select(params.get('vp') || 'live');
+      })();
+    </script>
+  </body>
+</html>
+
