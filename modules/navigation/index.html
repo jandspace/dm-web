@@ -51,6 +51,7 @@
     </svg>
 
     <!-- ── Nav Sheet (Mweb) — opened by the burger ──────────────────────────── -->
+    <div class="masthead-sheet-backdrop" id="masthead-sheet-backdrop" hidden></div>
     <div class="masthead-sheet" id="masthead-sheet" role="dialog" aria-modal="true" aria-label="Menu" hidden>
       <div class="masthead-sheet__bar">
         <button type="button" class="masthead-sheet__close" aria-label="Close menu"><svg aria-hidden="true"><use href="#ico-xmark-light" /></svg></button>
@@ -71,120 +72,229 @@
           <li><a class="masthead-sheet__playlist" href="#deep-dive"><span class="masthead-sheet__playlist-icon"><img src="../../assets/icons/ico-arrow-down-waves.svg" alt="" /></span>Deep-Dive</a></li>
         </ul>
         <ul class="masthead-sheet__channels">
-          <li class="masthead-sheet__channel">
+          <li class="masthead-sheet__channel masthead-sheet__channel--home">
             <div class="masthead-sheet__channel-row">
-              <a class="masthead-sheet__channel-link" href="#"><img src="../../assets/icons/ico-ch-news.svg" alt="" />News</a><button type="button" class="masthead-sheet__expand" aria-expanded="false" aria-controls="sheet-sub-news" aria-label="Show News sections"><svg aria-hidden="true"><use href="#ico-chevron-down" /></svg></button>
+              <a class="masthead-sheet__channel-link" href="#"><span class="masthead-sheet__channel-icons"><img class="masthead-sheet__channel-icon" src="../../assets/icons/ico-ch-home.svg" alt="" /><img class="masthead-sheet__channel-icon masthead-sheet__channel-icon--color" src="../../assets/icons/ico-ch-home-color.svg" alt="" /></span><span class="masthead-sheet__channel-label">Home</span></a><button type="button" class="masthead-sheet__expand" aria-expanded="false" aria-controls="sheet-sub-home" aria-label="Show Home sections"><svg aria-hidden="true"><use href="#ico-chevron-down" /></svg></button>
             </div>
-            <ul class="masthead-sheet__subchannels" id="sheet-sub-news" hidden>
-              <li><a href="#">Latest Headlines</a></li>
-              <li><a href="#">Science</a></li>
-              <li><a href="#">Australia</a></li>
-              <li><a href="#">Scotland</a></li>
-              <li><a href="#">Voting Intention</a></li>
-              <li><a href="#">World News</a></li>
-              <li><a href="#">Debate</a></li>
-              <li><a href="#">Weather</a></li>
-              <li><a href="#">The Harry Trial</a></li>
-            </ul>
-          </li>
-          <li class="masthead-sheet__channel">
-            <div class="masthead-sheet__channel-row">
-              <a class="masthead-sheet__channel-link" href="#comment"><img src="../../assets/icons/ico-ch-columnist.svg" alt="" />Comment</a>
+            <div class="masthead-sheet__panel" id="sheet-sub-home">
+              <div class="masthead-sheet__panel-inner">
+                <ul class="masthead-sheet__subchannels">
+                  <li><a href="#">Latest Headlines</a></li>
+                  <li><a href="#">Deep Dive</a></li>
+                  <li><a href="#">Video</a></li>
+                  <li><a href="#">Podcasts</a></li>
+                  <li><a href="#">Columnists</a></li>
+                  <li><a href="#">University Guide</a></li>
+                  <li><a href="#">Kim Kardashian</a></li>
+                </ul>
+              </div>
             </div>
           </li>
-          <li class="masthead-sheet__channel">
+          <li class="masthead-sheet__channel masthead-sheet__channel--mplus">
             <div class="masthead-sheet__channel-row">
-              <a class="masthead-sheet__channel-link" href="#"><img src="../../assets/icons/ico-ch-uk-showbiz.svg" alt="" />Showbiz</a><button type="button" class="masthead-sheet__expand" aria-expanded="false" aria-controls="sheet-sub-showbiz" aria-label="Show Showbiz sections"><svg aria-hidden="true"><use href="#ico-chevron-down" /></svg></button>
+              <a class="masthead-sheet__channel-link" href="#"><img class="masthead-sheet__mplus-logo" src="../../assets/images/logo-dailymail-plus.svg" alt="Daily Mail+" /></a>
             </div>
-            <ul class="masthead-sheet__subchannels" id="sheet-sub-showbiz" hidden>
-              <li><a href="#">Headlines</a></li>
-              <li><a href="#">Showbiz</a></li>
-              <li><a href="#">Newsletter</a></li>
-              <li><a href="#">TV Guide</a></li>
-              <li><a href="#">Best Shows</a></li>
-            </ul>
           </li>
-          <li class="masthead-sheet__channel">
+          <li class="masthead-sheet__channel masthead-sheet__channel--news">
             <div class="masthead-sheet__channel-row">
-              <a class="masthead-sheet__channel-link" href="#"><img src="../../assets/icons/ico-ch-lifestyle.svg" alt="" />Lifestyle</a><button type="button" class="masthead-sheet__expand" aria-expanded="false" aria-controls="sheet-sub-lifestyle" aria-label="Show Lifestyle sections"><svg aria-hidden="true"><use href="#ico-chevron-down" /></svg></button>
+              <a class="masthead-sheet__channel-link" href="#"><span class="masthead-sheet__channel-icons"><img class="masthead-sheet__channel-icon" src="../../assets/icons/ico-ch-news.svg" alt="" /><img class="masthead-sheet__channel-icon masthead-sheet__channel-icon--color" src="../../assets/icons/ico-ch-news-color.svg" alt="" /></span><span class="masthead-sheet__channel-label">News</span></a><button type="button" class="masthead-sheet__expand" aria-expanded="false" aria-controls="sheet-sub-news" aria-label="Show News sections"><svg aria-hidden="true"><use href="#ico-chevron-down" /></svg></button>
             </div>
-            <ul class="masthead-sheet__subchannels" id="sheet-sub-lifestyle" hidden>
-              <li><a href="#">You Mag</a></li>
-              <li><a href="#">Femail</a></li>
-              <li><a href="#">Health</a></li>
-              <li><a href="#">Food &amp; Drink</a></li>
-              <li><a href="#">Horoscopes</a></li>
-              <li><a href="#">Gardening</a></li>
-              <li><a href="#">Fitness &amp; Wellbeing</a></li>
-              <li><a href="#">Homes</a></li>
-              <li><a href="#">Fashion</a></li>
-              <li><a href="#">Beauty</a></li>
-              <li><a href="#">Love &amp; Sex</a></li>
-              <li><a href="#">Books</a></li>
-              <li><a href="#">Cars</a></li>
-              <li><a href="#">Mail Shop</a></li>
-            </ul>
+            <div class="masthead-sheet__panel" id="sheet-sub-news">
+              <div class="masthead-sheet__panel-inner">
+                <ul class="masthead-sheet__subchannels">
+                  <li class="masthead-sheet__subchannel-home"><a href="#">News Home</a></li>
+                  <li><a href="#">Latest Headlines</a></li>
+                  <li><a href="#">Science</a></li>
+                  <li><a href="#">Australia</a></li>
+                  <li><a href="#">Scotland</a></li>
+                  <li><a href="#">Voting Intention</a></li>
+                  <li><a href="#">World News</a></li>
+                  <li><a href="#">Debate</a></li>
+                  <li><a href="#">Weather</a></li>
+                  <li><a href="#">The Harry Trial</a></li>
+                </ul>
+              </div>
+            </div>
           </li>
-          <li class="masthead-sheet__channel">
+          <li class="masthead-sheet__channel masthead-sheet__channel--royals">
             <div class="masthead-sheet__channel-row">
-              <a class="masthead-sheet__channel-link" href="#"><img src="../../assets/icons/ico-ch-sport.svg" alt="" />Sport</a><button type="button" class="masthead-sheet__expand" aria-expanded="false" aria-controls="sheet-sub-sport" aria-label="Show Sport sections"><svg aria-hidden="true"><use href="#ico-chevron-down" /></svg></button>
+              <a class="masthead-sheet__channel-link" href="#"><span class="masthead-sheet__channel-icons"><img class="masthead-sheet__channel-icon" src="../../assets/icons/ico-ch-royals.svg" alt="" /><img class="masthead-sheet__channel-icon masthead-sheet__channel-icon--color" src="../../assets/icons/ico-ch-royals-color.svg" alt="" /></span><span class="masthead-sheet__channel-label">Royals</span></a><button type="button" class="masthead-sheet__expand" aria-expanded="false" aria-controls="sheet-sub-royals" aria-label="Show Royals sections"><svg aria-hidden="true"><use href="#ico-chevron-down" /></svg></button>
             </div>
-            <ul class="masthead-sheet__subchannels" id="sheet-sub-sport" hidden>
-              <li><a href="#">Football</a></li>
-              <li><a href="#">Premier League</a></li>
-              <li><a href="#">Transfer News</a></li>
-              <li><a href="#">M+ Sport</a></li>
-              <li><a href="#">Racing</a></li>
-              <li><a href="#">Golf</a></li>
-              <li><a href="#">F1</a></li>
-              <li><a href="#">Tennis</a></li>
-              <li><a href="#">Boxing</a></li>
-              <li><a href="#">Cricket</a></li>
-              <li><a href="#">Rugby</a></li>
-              <li><a href="#">US Sports</a></li>
-              <li><a href="#">More</a></li>
-            </ul>
+            <div class="masthead-sheet__panel" id="sheet-sub-royals">
+              <div class="masthead-sheet__panel-inner">
+                <ul class="masthead-sheet__subchannels">
+                  <li class="masthead-sheet__subchannel-home"><a href="#">Royals Home</a></li>
+                  <li><a href="#">King Charles III</a></li>
+                  <li><a href="#">Prince William</a></li>
+                  <li><a href="#">Kate Middleton</a></li>
+                  <li><a href="#">Prince Harry</a></li>
+                  <li><a href="#">Meghan Markle</a></li>
+                  <li><a href="#">Newsletter</a></li>
+                </ul>
+              </div>
+            </div>
           </li>
-          <li class="masthead-sheet__channel">
+          <li class="masthead-sheet__channel masthead-sheet__channel--home">
             <div class="masthead-sheet__channel-row">
-              <a class="masthead-sheet__channel-link" href="#"><img src="../../assets/icons/ico-ch-money.svg" alt="" />Money</a><button type="button" class="masthead-sheet__expand" aria-expanded="false" aria-controls="sheet-sub-money" aria-label="Show Money sections"><svg aria-hidden="true"><use href="#ico-chevron-down" /></svg></button>
+              <a class="masthead-sheet__channel-link" href="#"><span class="masthead-sheet__channel-icons"><img class="masthead-sheet__channel-icon" src="../../assets/icons/ico-ch-us-flag.svg" alt="" /><img class="masthead-sheet__channel-icon masthead-sheet__channel-icon--color" src="../../assets/icons/ico-ch-us-flag-color.svg" alt="" /></span><span class="masthead-sheet__channel-label">US</span></a><button type="button" class="masthead-sheet__expand" aria-expanded="false" aria-controls="sheet-sub-us" aria-label="Show US sections"><svg aria-hidden="true"><use href="#ico-chevron-down" /></svg></button>
             </div>
-            <ul class="masthead-sheet__subchannels" id="sheet-sub-money" hidden>
-              <li><a href="#">Money</a></li>
-              <li><a href="#">Business</a></li>
-              <li><a href="#">Saving &amp; banking</a></li>
-              <li><a href="#">Investing</a></li>
-              <li><a href="#">Bills</a></li>
-              <li><a href="#">Cars</a></li>
-              <li><a href="#">Cards &amp; loans</a></li>
-              <li><a href="#">Pensions</a></li>
-              <li><a href="#">Mortgages</a></li>
-              <li><a href="#">Buy-to-let</a></li>
-            </ul>
+            <div class="masthead-sheet__panel" id="sheet-sub-us">
+              <div class="masthead-sheet__panel-inner">
+                <ul class="masthead-sheet__subchannels">
+                  <li class="masthead-sheet__subchannel-home"><a href="#">US Home</a></li>
+                  <li><a href="#">Latest Headlines</a></li>
+                  <li><a href="#">Podcasts</a></li>
+                  <li><a href="#">Video</a></li>
+                </ul>
+              </div>
+            </div>
           </li>
-          <li class="masthead-sheet__channel">
+          <li class="masthead-sheet__channel masthead-sheet__channel--sport">
             <div class="masthead-sheet__channel-row">
-              <a class="masthead-sheet__channel-link" href="#"><img src="../../assets/icons/ico-ch-royals.svg" alt="" />Royals</a><button type="button" class="masthead-sheet__expand" aria-expanded="false" aria-controls="sheet-sub-royals" aria-label="Show Royals sections"><svg aria-hidden="true"><use href="#ico-chevron-down" /></svg></button>
+              <a class="masthead-sheet__channel-link" href="#"><span class="masthead-sheet__channel-icons"><img class="masthead-sheet__channel-icon" src="../../assets/icons/ico-ch-sport.svg" alt="" /><img class="masthead-sheet__channel-icon masthead-sheet__channel-icon--color" src="../../assets/icons/ico-ch-sport-color.svg" alt="" /></span><span class="masthead-sheet__channel-label">Sport</span></a><button type="button" class="masthead-sheet__expand" aria-expanded="false" aria-controls="sheet-sub-sport" aria-label="Show Sport sections"><svg aria-hidden="true"><use href="#ico-chevron-down" /></svg></button>
             </div>
-            <ul class="masthead-sheet__subchannels" id="sheet-sub-royals" hidden>
-              <li><a href="#">King Charles III</a></li>
-              <li><a href="#">Prince William</a></li>
-              <li><a href="#">Kate Middleton</a></li>
-              <li><a href="#">Prince Harry</a></li>
-              <li><a href="#">Meghan Markle</a></li>
-              <li><a href="#">Newsletter</a></li>
-            </ul>
+            <div class="masthead-sheet__panel" id="sheet-sub-sport">
+              <div class="masthead-sheet__panel-inner">
+                <ul class="masthead-sheet__subchannels">
+                  <li class="masthead-sheet__subchannel-home"><a href="#">Sport Home</a></li>
+                  <li><a href="#">Football</a></li>
+                  <li><a href="#">Premier League</a></li>
+                  <li><a href="#">Transfer News</a></li>
+                  <li><a href="#">M+ Sport</a></li>
+                  <li><a href="#">Racing</a></li>
+                  <li><a href="#">Golf</a></li>
+                  <li><a href="#">F1</a></li>
+                  <li><a href="#">Tennis</a></li>
+                  <li><a href="#">Boxing</a></li>
+                  <li><a href="#">Cricket</a></li>
+                  <li><a href="#">Rugby</a></li>
+                  <li><a href="#">US Sports</a></li>
+                  <li><a href="#">More</a></li>
+                </ul>
+              </div>
+            </div>
           </li>
-          <li class="masthead-sheet__channel">
+          <li class="masthead-sheet__channel masthead-sheet__channel--showbiz">
             <div class="masthead-sheet__channel-row">
-              <a class="masthead-sheet__channel-link" href="#"><img src="../../assets/icons/ico-ch-shopping.svg" alt="" />Buyline</a><button type="button" class="masthead-sheet__expand" aria-expanded="false" aria-controls="sheet-sub-buyline" aria-label="Show Buyline sections"><svg aria-hidden="true"><use href="#ico-chevron-down" /></svg></button>
+              <a class="masthead-sheet__channel-link" href="#"><span class="masthead-sheet__channel-icons"><img class="masthead-sheet__channel-icon" src="../../assets/icons/ico-ch-uk-showbiz.svg" alt="" /><img class="masthead-sheet__channel-icon masthead-sheet__channel-icon--color" src="../../assets/icons/ico-ch-uk-showbiz-color.svg" alt="" /></span><span class="masthead-sheet__channel-label">Showbiz</span></a><button type="button" class="masthead-sheet__expand" aria-expanded="false" aria-controls="sheet-sub-showbiz" aria-label="Show Showbiz sections"><svg aria-hidden="true"><use href="#ico-chevron-down" /></svg></button>
             </div>
-            <ul class="masthead-sheet__subchannels" id="sheet-sub-buyline" hidden>
-              <li><a href="#">Beauty</a></li>
-              <li><a href="#">Fashion</a></li>
-              <li><a href="#">Home and Garden</a></li>
-              <li><a href="#">Amazon Prime Day</a></li>
-            </ul>
+            <div class="masthead-sheet__panel" id="sheet-sub-showbiz">
+              <div class="masthead-sheet__panel-inner">
+                <ul class="masthead-sheet__subchannels">
+                  <li class="masthead-sheet__subchannel-home"><a href="#">Showbiz Home</a></li>
+                  <li><a href="#">Headlines</a></li>
+                  <li><a href="#">Showbiz</a></li>
+                  <li><a href="#">Newsletter</a></li>
+                  <li><a href="#">TV Guide</a></li>
+                  <li><a href="#">Best Shows</a></li>
+                </ul>
+              </div>
+            </div>
+          </li>
+          <li class="masthead-sheet__channel masthead-sheet__channel--lifestyle">
+            <div class="masthead-sheet__channel-row">
+              <a class="masthead-sheet__channel-link" href="#"><span class="masthead-sheet__channel-icons"><img class="masthead-sheet__channel-icon" src="../../assets/icons/ico-ch-lifestyle.svg" alt="" /><img class="masthead-sheet__channel-icon masthead-sheet__channel-icon--color" src="../../assets/icons/ico-ch-lifestyle-color.svg" alt="" /></span><span class="masthead-sheet__channel-label">Lifestyle</span></a><button type="button" class="masthead-sheet__expand" aria-expanded="false" aria-controls="sheet-sub-lifestyle" aria-label="Show Lifestyle sections"><svg aria-hidden="true"><use href="#ico-chevron-down" /></svg></button>
+            </div>
+            <div class="masthead-sheet__panel" id="sheet-sub-lifestyle">
+              <div class="masthead-sheet__panel-inner">
+                <ul class="masthead-sheet__subchannels">
+                  <li class="masthead-sheet__subchannel-home"><a href="#">Lifestyle Home</a></li>
+                  <li><a href="#">You Mag</a></li>
+                  <li><a href="#">Femail</a></li>
+                  <li><a href="#">Health</a></li>
+                  <li><a href="#">Food &amp; Drink</a></li>
+                  <li><a href="#">Horoscopes</a></li>
+                  <li><a href="#">Gardening</a></li>
+                  <li><a href="#">Fitness &amp; Wellbeing</a></li>
+                  <li><a href="#">Homes</a></li>
+                  <li><a href="#">Fashion</a></li>
+                  <li><a href="#">Beauty</a></li>
+                  <li><a href="#">Love &amp; Sex</a></li>
+                  <li><a href="#">Books</a></li>
+                  <li><a href="#">Cars</a></li>
+                  <li><a href="#">Mail Shop</a></li>
+                </ul>
+              </div>
+            </div>
+          </li>
+          <li class="masthead-sheet__channel masthead-sheet__channel--money">
+            <div class="masthead-sheet__channel-row">
+              <a class="masthead-sheet__channel-link" href="#"><span class="masthead-sheet__channel-icons"><img class="masthead-sheet__channel-icon" src="../../assets/icons/ico-ch-money.svg" alt="" /><img class="masthead-sheet__channel-icon masthead-sheet__channel-icon--color" src="../../assets/icons/ico-ch-money-color.svg" alt="" /></span><span class="masthead-sheet__channel-label">Money</span></a><button type="button" class="masthead-sheet__expand" aria-expanded="false" aria-controls="sheet-sub-money" aria-label="Show Money sections"><svg aria-hidden="true"><use href="#ico-chevron-down" /></svg></button>
+            </div>
+            <div class="masthead-sheet__panel" id="sheet-sub-money">
+              <div class="masthead-sheet__panel-inner">
+                <ul class="masthead-sheet__subchannels">
+                  <li class="masthead-sheet__subchannel-home"><a href="#">Money Home</a></li>
+                  <li><a href="#">Money</a></li>
+                  <li><a href="#">Business</a></li>
+                  <li><a href="#">Saving &amp; banking</a></li>
+                  <li><a href="#">Investing</a></li>
+                  <li><a href="#">Bills</a></li>
+                  <li><a href="#">Cars</a></li>
+                  <li><a href="#">Cards &amp; loans</a></li>
+                  <li><a href="#">Pensions</a></li>
+                  <li><a href="#">Mortgages</a></li>
+                  <li><a href="#">Buy-to-let</a></li>
+                </ul>
+              </div>
+            </div>
+          </li>
+          <li class="masthead-sheet__channel masthead-sheet__channel--crime">
+            <div class="masthead-sheet__channel-row">
+              <a class="masthead-sheet__channel-link" href="#"><span class="masthead-sheet__channel-icons"><img class="masthead-sheet__channel-icon" src="../../assets/icons/ico-ch-crime.svg" alt="" /></span><span class="masthead-sheet__channel-label">Crime Desk</span></a>
+            </div>
+          </li>
+          <li class="masthead-sheet__channel masthead-sheet__channel--games">
+            <div class="masthead-sheet__channel-row">
+              <a class="masthead-sheet__channel-link" href="#"><span class="masthead-sheet__channel-icons"><img class="masthead-sheet__channel-icon" src="../../assets/icons/ico-ch-game.svg" alt="" /><img class="masthead-sheet__channel-icon masthead-sheet__channel-icon--color" src="../../assets/icons/ico-ch-game-color.svg" alt="" /></span><span class="masthead-sheet__channel-label">Games</span></a><button type="button" class="masthead-sheet__expand" aria-expanded="false" aria-controls="sheet-sub-games" aria-label="Show Games sections"><svg aria-hidden="true"><use href="#ico-chevron-down" /></svg></button>
+            </div>
+            <div class="masthead-sheet__panel" id="sheet-sub-games">
+              <div class="masthead-sheet__panel-inner">
+                <ul class="masthead-sheet__subchannels">
+                  <li class="masthead-sheet__subchannel-home"><a href="#">Games Home</a></li>
+                  <li><a href="#">Arcade Games</a></li>
+                </ul>
+              </div>
+            </div>
+          </li>
+          <li class="masthead-sheet__channel masthead-sheet__channel--travel">
+            <div class="masthead-sheet__channel-row">
+              <a class="masthead-sheet__channel-link" href="#"><span class="masthead-sheet__channel-icons"><img class="masthead-sheet__channel-icon" src="../../assets/icons/ico-ch-travel.svg" alt="" /><img class="masthead-sheet__channel-icon masthead-sheet__channel-icon--color" src="../../assets/icons/ico-ch-travel-color.svg" alt="" /></span><span class="masthead-sheet__channel-label">Travel</span></a><button type="button" class="masthead-sheet__expand" aria-expanded="false" aria-controls="sheet-sub-travel" aria-label="Show Travel sections"><svg aria-hidden="true"><use href="#ico-chevron-down" /></svg></button>
+            </div>
+            <div class="masthead-sheet__panel" id="sheet-sub-travel">
+              <div class="masthead-sheet__panel-inner">
+                <ul class="masthead-sheet__subchannels">
+                  <li class="masthead-sheet__subchannel-home"><a href="#">Travel Home</a></li>
+                  <li><a href="#">Latest Headlines</a></li>
+                  <li><a href="#">Escape</a></li>
+                  <li><a href="#">Destinations</a></li>
+                  <li><a href="#">Holiday Types</a></li>
+                  <li><a href="#">Holidays</a></li>
+                  <li><a href="#">Expert Reviews</a></li>
+                </ul>
+              </div>
+            </div>
+          </li>
+          <li class="masthead-sheet__channel masthead-sheet__channel--shopping">
+            <div class="masthead-sheet__channel-row">
+              <a class="masthead-sheet__channel-link" href="#"><span class="masthead-sheet__channel-icons"><img class="masthead-sheet__channel-icon" src="../../assets/icons/ico-ch-shopping.svg" alt="" /><img class="masthead-sheet__channel-icon masthead-sheet__channel-icon--color" src="../../assets/icons/ico-ch-shopping-color.svg" alt="" /></span><span class="masthead-sheet__channel-label">Buyline</span></a><button type="button" class="masthead-sheet__expand" aria-expanded="false" aria-controls="sheet-sub-buyline" aria-label="Show Buyline sections"><svg aria-hidden="true"><use href="#ico-chevron-down" /></svg></button>
+            </div>
+            <div class="masthead-sheet__panel" id="sheet-sub-buyline">
+              <div class="masthead-sheet__panel-inner">
+                <ul class="masthead-sheet__subchannels">
+                  <li class="masthead-sheet__subchannel-home"><a href="#">Buyline Home</a></li>
+                  <li><a href="#">Beauty</a></li>
+                  <li><a href="#">Fashion</a></li>
+                  <li><a href="#">Home and Garden</a></li>
+                  <li><a href="#">Amazon Prime Day</a></li>
+                </ul>
+              </div>
+            </div>
+          </li>
+          <li class="masthead-sheet__channel masthead-sheet__channel--home">
+            <div class="masthead-sheet__channel-row">
+              <a class="masthead-sheet__channel-link" href="#"><span class="masthead-sheet__channel-icons"><img class="masthead-sheet__channel-icon" src="../../assets/icons/ico-ch-columnist.svg" alt="" /></span><span class="masthead-sheet__channel-label">Comment</span></a>
+            </div>
           </li>
         </ul>
       </div>
@@ -475,9 +585,10 @@
 
     <script>
       // Masthead behaviour (reference for the build):
-      //   · burger opens the Nav Sheet; close button / Escape closes it
+      //   · burger slides the Nav Sheet in from the left (≥640: 390px + blurred backdrop);
+      //     close button, backdrop click or Escape slides it out
       //   · Edition button toggles its menu (click outside closes)
-      //   · Nav Sheet expand buttons show / hide a channel's subchannels
+      //   · Nav Sheet channels open as an accordion (one at a time)
       //   · the current channel is scrolled into view when the row scrolls
       //   · LG+ with a mouse: dropdown panels open after 150ms on an item and
       //     close 300ms after the pointer leaves (hover intent) — passing over
@@ -491,15 +602,47 @@
       };
       (() => {
         const sheet = document.getElementById('masthead-sheet');
+        const backdrop = document.getElementById('masthead-sheet-backdrop');
         const trigger = document.querySelector('.masthead-nav__trigger');
+        // Slide in from the left: show, then add .is-open on the next frame so
+        // the transform transitions; on close, hide once the slide has ended
+        const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)');
         const setSheet = (open) => {
-          sheet.hidden = !open;
           trigger.setAttribute('aria-expanded', String(open));
           document.documentElement.classList.toggle('masthead-sheet-open', open);
-          if (open) sheet.querySelector('.masthead-sheet__close').focus();
-          else trigger.focus();
+          if (open) {
+            sheet.hidden = false;
+            backdrop.hidden = false;
+            requestAnimationFrame(() =>
+              requestAnimationFrame(() => {
+                sheet.classList.add('is-open');
+                backdrop.classList.add('is-open');
+              }),
+            );
+            sheet.querySelector('.masthead-sheet__close').focus();
+          } else {
+            sheet.classList.remove('is-open');
+            backdrop.classList.remove('is-open');
+            let done = false;
+            const hide = () => {
+              if (done || sheet.classList.contains('is-open')) return;
+              done = true;
+              sheet.hidden = true;
+              backdrop.hidden = true;
+              sheet.removeEventListener('transitionend', onEnd);
+            };
+            // only the sheet's own slide counts (children transition too)
+            const onEnd = (e) => e.target === sheet && e.propertyName === 'transform' && hide();
+            if (reduceMotion.matches) hide();
+            else {
+              sheet.addEventListener('transitionend', onEnd);
+              setTimeout(hide, 400); // fallback if transitionend never fires
+            }
+            trigger.focus();
+          }
         };
         trigger.addEventListener('click', () => setSheet(true));
+        backdrop.addEventListener('click', () => setSheet(false));
         sheet.querySelector('.masthead-sheet__close').addEventListener('click', () => setSheet(false));
 
         const edition = document.querySelector('.masthead-edition');
@@ -555,11 +698,15 @@
         });
         document.addEventListener('keydown', (e) => e.key === 'Escape' && closePanel());
 
-        sheet.querySelectorAll('.masthead-sheet__expand').forEach((btn) => {
+        // Accordion: one channel open at a time
+        const expands = [...sheet.querySelectorAll('.masthead-sheet__expand')];
+        expands.forEach((btn) => {
           btn.addEventListener('click', () => {
             const open = btn.getAttribute('aria-expanded') !== 'true';
-            btn.setAttribute('aria-expanded', String(open));
-            document.getElementById(btn.getAttribute('aria-controls')).hidden = !open;
+            expands.forEach((other) => {
+              other.setAttribute('aria-expanded', String(other === btn && open));
+              other.setAttribute('aria-label', `${other === btn && open ? 'Hide' : 'Show'} ${other.closest('.masthead-sheet__channel').querySelector('.masthead-sheet__channel-label').textContent} sections`);
+            });
           });
         });
       })();
@@ -594,10 +741,10 @@
         select.value = params.get('channel') || 'Home';
 
         const VIEWPORTS = {
-          xl: { label: 'XL ≥1376', width: 1440 },
-          lg: { label: 'LG ≥1024', width: 1024 },
-          md: { label: 'MD ≥768', width: 768 },
-          xs: { label: 'SM-XS <768', width: 390 },
+          xl: { label: 'XL ≥1376', width: 1440, height: 810 }, // 16:9
+          lg: { label: 'LG ≥1024', width: 1024, height: 576 }, // 16:9
+          md: { label: 'MD ≥768', width: 768, height: 1024 }, // tablet: a full portrait screen
+          xs: { label: 'SM-XS <768', width: 390, height: 800 }, // mobile: a full phone screen (room for the Nav Sheet)
         };
         const toggle = document.getElementById('demo-vp-switch');
         const status = document.getElementById('demo-vp-status');
@@ -609,7 +756,7 @@
         const fit = () => {
           if (!iframe || !iframe.contentDocument) return;
           const scale = Math.min(1, (stage.parentElement.clientWidth - 40) / width);
-          const height = Math.max(iframe.contentDocument.documentElement.scrollHeight, 420);
+          const height = VIEWPORTS[vpKey].height || Math.max(iframe.contentDocument.documentElement.scrollHeight, 420);
           iframe.height = height;
           iframe.style.transform = `scale(${scale})`;
           stage.style.width = `${width * scale}px`;

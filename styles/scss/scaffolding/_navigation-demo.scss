@@ -6,10 +6,11 @@
   margin-bottom: var(--spacing-48);
 }
 
-// Inside the viewport stage (?frame): the masthead only, edge to edge
+// Inside the viewport stage (?frame): the masthead only, edge to edge, on the
+// page surface (lightest) as on the site
 .demo-frame.demo-nav-page {
   padding: 0;
-  background-color: var(--color-background-neutral-lighter);
+  background-color: var(--color-background-neutral-lightest);
 
   .demo-page-h1,
   .demo-page-intro,

@@ -506,7 +506,7 @@
         <figure class="demo-anatomy__item demo-anatomy__item--wide">
           <div class="demo-anatomy__specimen">
             <div class="demo-anatomy__context demo-anatomy__context--sheet">
-              <ul class="masthead-sheet__channels"><li class="masthead-sheet__channel"><div class="masthead-sheet__channel-row"><a class="masthead-sheet__channel-link" href="#news"><img src="../../assets/icons/ico-ch-news.svg" alt="" />News</a><button type="button" class="masthead-sheet__expand" aria-expanded="false" aria-label="Show News sections"><svg aria-hidden="true"><use href="#ico-chevron-down" /></svg></button></div></li></ul>
+              <ul class="masthead-sheet__channels"><li class="masthead-sheet__channel masthead-sheet__channel--news"><div class="masthead-sheet__channel-row"><a class="masthead-sheet__channel-link" href="#news"><span class="masthead-sheet__channel-icons"><img class="masthead-sheet__channel-icon" src="../../assets/icons/ico-ch-news.svg" alt="" /><img class="masthead-sheet__channel-icon masthead-sheet__channel-icon--color" src="../../assets/icons/ico-ch-news-color.svg" alt="" /></span><span class="masthead-sheet__channel-label">News</span></a><button type="button" class="masthead-sheet__expand" aria-expanded="false" aria-label="Show News sections"><svg aria-hidden="true"><use href="#ico-chevron-down" /></svg></button></div></li></ul>
             </div>
           </div>
           <figcaption><span class="demo-anatomy__name">Channel row</span><code class="demo-anatomy__class">.masthead-sheet__channel</code></figcaption>
@@ -514,10 +514,18 @@
         <figure class="demo-anatomy__item demo-anatomy__item--wide">
           <div class="demo-anatomy__specimen">
             <div class="demo-anatomy__context demo-anatomy__context--sheet">
-              <ul class="masthead-sheet__channels"><li class="masthead-sheet__channel"><div class="masthead-sheet__channel-row"><a class="masthead-sheet__channel-link" href="#news"><img src="../../assets/icons/ico-ch-news.svg" alt="" />News</a><button type="button" class="masthead-sheet__expand" aria-expanded="true" aria-label="Hide News sections"><svg aria-hidden="true"><use href="#ico-chevron-down" /></svg></button></div><ul class="masthead-sheet__subchannels"><li><a href="#">UK News</a></li><li><a href="#">World News</a></li><li><a href="#">Politics</a></li><li><a href="#">Science</a></li></ul></li></ul>
+              <ul class="masthead-sheet__channels"><li class="masthead-sheet__channel masthead-sheet__channel--news"><div class="masthead-sheet__channel-row"><a class="masthead-sheet__channel-link" href="#news"><span class="masthead-sheet__channel-icons"><img class="masthead-sheet__channel-icon" src="../../assets/icons/ico-ch-news.svg" alt="" /><img class="masthead-sheet__channel-icon masthead-sheet__channel-icon--color" src="../../assets/icons/ico-ch-news-color.svg" alt="" /></span><span class="masthead-sheet__channel-label">News</span></a><button type="button" class="masthead-sheet__expand" aria-expanded="true" aria-label="Hide News sections"><svg aria-hidden="true"><use href="#ico-chevron-down" /></svg></button></div><div class="masthead-sheet__panel"><div class="masthead-sheet__panel-inner"><ul class="masthead-sheet__subchannels"><li class="masthead-sheet__subchannel-home"><a href="#">News Home</a></li><li><a href="#">Latest Headlines</a></li><li><a href="#">Science</a></li><li><a href="#">Australia</a></li><li><a href="#">Scotland</a></li><li><a href="#">World News</a></li><li><a href="#">Weather</a></li></ul></div></div></li></ul></li></ul>
             </div>
           </div>
           <figcaption><span class="demo-anatomy__name">Channel row — Open</span><code class="demo-anatomy__class">[aria-expanded="true"]</code></figcaption>
+        </figure>
+        <figure class="demo-anatomy__item demo-anatomy__item--wide">
+          <div class="demo-anatomy__specimen">
+            <div class="demo-anatomy__context demo-anatomy__context--sheet">
+              <ul class="masthead-sheet__channels"><li class="masthead-sheet__channel masthead-sheet__channel--mplus"><div class="masthead-sheet__channel-row"><a class="masthead-sheet__channel-link" href="#"><img class="masthead-sheet__mplus-logo" src="../../assets/images/logo-dailymail-plus.svg" alt="Daily Mail+" /></a></div></li></ul>
+            </div>
+          </div>
+          <figcaption><span class="demo-anatomy__name">Daily Mail+ row (full logo, no submenu)</span><code class="demo-anatomy__class">.masthead-sheet__mplus-logo</code></figcaption>
         </figure>
       </div>
     </section>

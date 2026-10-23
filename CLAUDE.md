@@ -301,6 +301,7 @@ iOS and Android use the same four steps (`typography-ios/letter-spacing/*`, `typ
 - Mobile landscape handled with `orientation: landscape`, not px breakpoints.
 - Typography does not change on mobile landscape — layout and padding only.
 - **Images:** photos are JPEG (quality ~82). PNG only when real transparency is needed (e.g. columnist cut-out photos). Figma often exports opaque photos as RGBA PNG — check the alpha before keeping PNG. Icons are SVG.
+- **Icons come from `assets/icons/`.** Unless told otherwise, load the icon file from `assets/icons/` (e.g. `<img src="../../assets/icons/ico-ch-uk-showbiz-color.svg" alt="" />`) — don't draw new SVGs or re-export icons from Figma into a page or experiment folder. If an icon isn't in `assets/icons/`, add it there first (Figma original, `ico-*.svg`), then use it. Only when an icon must change colour with state (hover, theme) may its path be inlined as an SVG `<symbol>` with `currentColor` — copied from the `assets/icons/` file, not redrawn.
 - British English for UI copy and documentation.
 - American English for token names, CSS variable names, and code.
 
@@ -383,6 +384,7 @@ One-off tests and A/B variants live in `experiments/YYYYMM-exp-<name>/` (e.g. `2
 - **B (variant)** — same links, plus an inline `<style>` that overrides only the changed parts. Shared SCSS/CSS/JS is never edited for a variant, so A is unaffected.
 - **Fixed breakpoint:** when a test targets one breakpoint, the page frames itself in an iframe of that width (e.g. 1024px for LG) instead of being responsive.
 - Images go in the experiment's own `images/` folder.
+- **Experiments home button:** every experiment page loads `<script src="../../scripts/scaffolding/experiments-home.js" defer></script>` in `<head>` — a round bulb button bottom-left ("Experiments" on hover) back to `experiments/`.
 - **Experiment notes — always:** whenever you create or change files in `experiments/`, add or update that experiment's entry in `experiments/index.html` (the `EXPERIMENTS` list, newest first) in the same turn, without being asked: `id` (folder), `date` (start date), `title`, `status` (In progress / Decided / Archived), `notes` (what is tested and why — short), `result` (once decided), `pages` (label, file, one-line description for each test page). The year filter (All / YYYY) is built from `date`.
 - **After the test:** move the winning change into `styles/scss/components/` or `modules/` and `docs/`; keep or delete the folder.
 

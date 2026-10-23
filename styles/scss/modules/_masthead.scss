@@ -23,6 +23,18 @@
 @use '../foundation/breakpoints' as bp;
 @use '../foundation/sections';
 
+// Hover only where the pointer can really hover (mouse, trackpad) — touch
+// screens never get a hover state, so a tapped item can't stay "hovered".
+// Keyboard focus (:focus-visible) and the static .is-hover helper stay on
+// everywhere.
+@mixin pointer-hover($suffix: '') {
+  @media (hover: hover) {
+    &:hover#{$suffix} {
+      @content;
+    }
+  }
+}
+
 // ── Channel colours ───────────────────────────────────────────────────────────
 
 .masthead {
@@ -122,10 +134,13 @@
     transition: opacity 0.15s;
   }
 
-  &:hover::before,
   &:focus-visible::before,
   &[aria-expanded='true']::before,
   &.is-hover::before {
+    opacity: 1;
+  }
+
+  @include pointer-hover('::before') {
     opacity: 1;
   }
 
@@ -270,8 +285,11 @@
     color: var(--color-icon-interaction-primary-default);
   }
 
-  &:hover,
   &:focus-visible {
+    background-color: var(--color-background-neutral-lighter);
+  }
+
+  @include pointer-hover {
     background-color: var(--color-background-neutral-lighter);
   }
 }
@@ -309,9 +327,12 @@
     transition: opacity 0.15s;
   }
 
-  &:hover img,
   &:focus-visible img,
   &.is-hover img {
+    opacity: 0.72;
+  }
+
+  @include pointer-hover(' img') {
     opacity: 0.72;
   }
 
@@ -396,9 +417,13 @@
   }
 
   // Hover — same as the primary (brand) button: interaction-primary/hover
-  &:hover,
   &:focus-visible,
   &.is-hover {
+    background-image: none;
+    background-color: var(--color-background-interaction-primary-hover);
+  }
+
+  @include pointer-hover {
     background-image: none;
     background-color: var(--color-background-interaction-primary-hover);
   }
@@ -531,8 +556,9 @@
     display: none;
   }
 
+  // MD (tablet, scrolling row): 8px between items
   @include bp.respond-to(md) {
-    gap: 0;
+    gap: var(--spacing-8);
     padding: 0 var(--spacing-16);
     -webkit-mask-image: none;
     mask-image: none;
@@ -542,6 +568,7 @@
   // dropdown panels can leave the row
   @include bp.respond-to(lg) {
     justify-content: space-between;
+    gap: 0;
     padding: 0;
     overflow: visible;
   }
@@ -638,9 +665,16 @@
       }
     }
 
-    &:hover,
     &:focus-visible,
     &.is-hover {
+      color: var(--color-text-neutral-darker);
+
+      &::after {
+        transform: none;
+      }
+    }
+
+    @include pointer-hover {
       color: var(--color-text-neutral-darker);
 
       &::after {
@@ -783,9 +817,12 @@
     transition: opacity 0.15s;
   }
 
-  &:hover::before,
   &:focus-visible::before,
   &.is-hover::before {
+    opacity: 1;
+  }
+
+  @include pointer-hover('::before') {
     opacity: 1;
   }
 }
@@ -824,9 +861,12 @@
     transition: transform 0.2s;
   }
 
-  &:hover::after,
   &:focus-visible::after,
   &.is-hover::after {
+    transform: scaleX(1);
+  }
+
+  @include pointer-hover('::after') {
     transform: scaleX(1);
   }
 }

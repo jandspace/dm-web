@@ -1,5 +1,6 @@
 // ── Masthead — Nav Sheet (Mweb) ───────────────────────────────────────────────
-// Full-screen navigation the burger opens on Mweb (<768).
+// Navigation sheet the burger opens — full screen below 640, a 390px panel
+// with a blurred backdrop from 640 up (planned for every viewport).
 //
 //   .masthead-sheet[hidden]              lightest, fixed, covers the viewport
 //     .masthead-sheet__bar               close (44 · icon 16)
@@ -9,10 +10,14 @@
 //       .masthead-sheet__playlists       Live · Today's Pick · Podcasts · Deep-Dive
 //       .masthead-sheet__channels        channel rows (icon 20 · label-md) + expand
 //
-// The behaviour script toggles [hidden] on the sheet and aria-expanded on each
-// channel's expand button (its subchannel list follows).
+// The behaviour script toggles [hidden] on the sheet and aria-expanded on the
+// channel expand buttons — an accordion, one open at a time; CSS animates the
+// panel, label and icon from that state.
 //
-// Reference: Figma Web UI Kit › Nav Sheet (332:8626)
+// Reference: Figma Web UI Kit › Nav Sheet (332:8626) · open row (332:8791)
+
+@use '../foundation/breakpoints' as bp;
+@use '../foundation/sections';
 
 .masthead-sheet {
   position: fixed;
@@ -22,9 +27,57 @@
   flex-direction: column;
   background-color: var(--color-background-neutral-lightest);
   font-family: var(--typography-font-family-sans);
+  // Slides in from the left: the script removes [hidden], then adds .is-open
+  // on the next frame; on close it drops .is-open and sets [hidden] once the
+  // slide has finished
+  transform: translateX(-100%);
+  transition: transform 0.3s ease;
+
+  &.is-open {
+    transform: none;
+  }
 
   &[hidden] {
     display: none;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    transition: none;
+  }
+}
+
+// SM+ (≥640): the sheet is 390px wide on the left; the rest of the screen is
+// the backdrop (Figma "Close Area") — clicking it closes the sheet
+@include bp.respond-to(sm) {
+  .masthead-sheet {
+    right: auto;
+    width: 390px;
+  }
+}
+
+// Backdrop — Figma: translucent-dark/moderate at 40% fill opacity + 8px
+// background blur; fades with the sheet (the script toggles [hidden] / .is-open
+// on both)
+.masthead-sheet-backdrop {
+  position: fixed;
+  inset: 0;
+  z-index: 1099; // just under the sheet
+  background-color: color-mix(in srgb, var(--color-effect-translucent-dark-moderate) 40%, transparent);
+  -webkit-backdrop-filter: blur(8px);
+  backdrop-filter: blur(8px);
+  opacity: 0;
+  transition: opacity 0.3s ease;
+
+  &.is-open {
+    opacity: 1;
+  }
+
+  &[hidden] {
+    display: none;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    transition: none;
   }
 }
 
@@ -268,14 +321,32 @@
 }
 
 .masthead-sheet__channel {
+  --masthead-sheet-channel: var(--color-text-neutral-darker);
+
   padding-block: var(--spacing-2);
   border-bottom: 1px solid var(--color-border-neutral-light);
+}
+
+// Channel colour of the open row's label (.masthead-sheet__channel--{section})
+@each $section, $colour in sections.$sections {
+  .masthead-sheet__channel--#{$section} {
+    --masthead-sheet-channel: var(--color-text-#{$colour}-base);
+  }
 }
 
 .masthead-sheet__channel-row {
   display: flex;
   align-items: center;
   height: 50px;
+  transition: background-color 0.2s ease;
+}
+
+// Row hover — neutral/lighter highlight (pointer devices); the expand button
+// on it takes translucent-dark/pale so it still reads as a button
+@media (hover: hover) {
+  .masthead-sheet__channel-row:hover {
+    background-color: var(--color-background-neutral-lighter);
+  }
 }
 
 .masthead-sheet__channel-link {
@@ -290,14 +361,37 @@
   line-height: var(--typography-line-height-narrow);
   color: var(--color-text-neutral-darker);
   text-decoration: none;
+  transition: color 0.25s ease;
+}
 
-  img {
-    width: 20px;
-    height: 20px;
+// Icon: mono at rest, the channel's colour icon when open — stacked, crossfade
+.masthead-sheet__channel-icons {
+  position: relative;
+  flex-shrink: 0;
+  width: 20px;
+  height: 20px;
+}
+
+.masthead-sheet__channel-icon {
+  position: absolute;
+  inset: 0;
+  width: 20px;
+  height: 20px;
+  transition: opacity 0.25s ease;
+
+  &--color {
+    opacity: 0;
   }
 }
 
-// Expand — borderless 40px rectangular icon button, chevron 16 (turns when open)
+// Daily Mail+ — the full wordmark (Figma 8272:10172), a plain link, no submenu
+.masthead-sheet__mplus-logo {
+  display: block;
+  width: 114px;
+  height: 20px;
+}
+
+// Expand — borderless 40px icon button, chevron 16 (turns when open)
 .masthead-sheet__expand {
   display: flex;
   flex-shrink: 0;
@@ -308,51 +402,151 @@
   margin: var(--spacing-4);
   padding: 0;
   border: 0;
-  border-radius: 6px;
-  background: none;
+  border-radius: var(--border-radius-full);
+  background-color: transparent;
   color: var(--color-icon-neutral-darker);
   cursor: pointer;
+  transition: background-color 0.25s ease;
 
   svg {
     width: 16px;
     height: 16px;
-    transition: transform 0.2s;
+    transition: transform 0.25s ease;
   }
 
-  &:hover,
   &.is-hover {
-    background-color: var(--color-background-neutral-lighter);
+    background-color: var(--color-effect-translucent-dark-pale);
+  }
+
+  // Hover only with a real pointer (touch never sticks in a hover state)
+  @media (hover: hover) {
+    &:hover {
+      background-color: var(--color-effect-translucent-dark-pale);
+    }
   }
 
   &[aria-expanded='true'] svg {
     transform: rotate(180deg);
   }
+}
 
-  @media (prefers-reduced-motion: reduce) {
-    svg {
-      transition: none;
+// ── Open row (Figma Nav Sheet · Status=News) ──────────────────────────────────
+// label-md Bold in the channel colour, colour icon fades in, the expand button
+// becomes a lighter circle and the subchannel panel slides open. Accordion:
+// the behaviour script keeps one row open at a time.
+.masthead-sheet__channel:has(.masthead-sheet__expand[aria-expanded='true']) {
+  .masthead-sheet__channel-link {
+    font-weight: var(--typography-font-weight-bold);
+    color: var(--masthead-sheet-channel);
+  }
+
+  .masthead-sheet__channel-icon {
+    opacity: 0;
+  }
+
+  .masthead-sheet__channel-icon--color {
+    opacity: 1;
+  }
+
+  .masthead-sheet__expand {
+    background-color: var(--color-background-neutral-lighter);
+
+    @media (hover: hover) {
+      &:hover {
+        background-color: var(--color-effect-translucent-dark-pale);
+      }
+    }
+  }
+
+  .masthead-sheet__panel {
+    grid-template-rows: 1fr;
+    visibility: visible;
+    transition:
+      grid-template-rows 0.3s ease,
+      visibility 0s;
+  }
+}
+
+// Panel — collapses to 0 height (grid 0fr → 1fr animates the real height);
+// hidden from assistive tech once closed
+.masthead-sheet__panel {
+  display: grid;
+  grid-template-rows: 0fr;
+  visibility: hidden;
+  transition:
+    grid-template-rows 0.3s ease,
+    visibility 0s 0.3s;
+}
+
+.masthead-sheet__panel-inner {
+  min-height: 0;
+  overflow: hidden;
+}
+
+// Subchannels — lighter box, 12px corners and padding; "{Channel} Home" on
+// its own line, then two columns 8px apart. Item: label-sm Semibold,
+// neutral/dark, 8px vertical padding.
+.masthead-sheet__subchannels {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: var(--spacing-8);
+  margin: 0 0 var(--spacing-16);
+  padding: var(--spacing-12);
+  border-radius: var(--border-radius-12);
+  background-color: var(--color-background-neutral-lighter);
+  list-style: none;
+
+  // Subchannel — same hover as the dropdown's subchannels: a 1px grey-dark
+  // line grows from the left, 4px under the label (the link hugs its label)
+  a {
+    position: relative;
+    display: inline-block;
+    padding-block: var(--spacing-8);
+    font-size: var(--typography-font-size-label-sm);
+    font-weight: var(--typography-font-weight-semibold);
+    line-height: var(--typography-line-height-narrow);
+    color: var(--color-text-neutral-dark);
+    text-decoration: none;
+
+    &::after {
+      content: '';
+      position: absolute;
+      right: 0;
+      bottom: var(--spacing-4);
+      left: 0;
+      height: 1px;
+      background-color: var(--color-border-neutral-grey-dark);
+      transform: scaleX(0);
+      transform-origin: left center;
+      transition: transform 0.2s;
+    }
+
+    &:focus-visible::after,
+    &.is-hover::after {
+      transform: scaleX(1);
+    }
+
+    @media (hover: hover) {
+      &:hover::after {
+        transform: scaleX(1);
+      }
     }
   }
 }
 
-.masthead-sheet__subchannels {
-  display: grid;
-  grid-template-columns: repeat(2, minmax(0, 1fr));
-  gap: var(--spacing-12);
-  margin: 0;
-  padding: var(--spacing-4) var(--spacing-8) var(--spacing-16) 40px; // under the label (8 + 20 icon + 12 gap)
-  list-style: none;
+.masthead-sheet__subchannel-home {
+  grid-column: 1 / -1;
+}
 
-  &[hidden] {
-    display: none;
-  }
-
-  a {
-    font-size: var(--typography-font-size-label-sm);
-    font-weight: var(--typography-font-weight-regular);
-    line-height: var(--typography-line-height-narrow);
-    color: var(--color-text-neutral-darker);
-    text-decoration: none;
+@media (prefers-reduced-motion: reduce) {
+  .masthead-sheet__channel-link,
+  .masthead-sheet__channel-icon,
+  .masthead-sheet__expand,
+  .masthead-sheet__expand svg,
+  .masthead-sheet__panel,
+  .masthead-sheet__subchannels a::after,
+  .masthead-sheet__channel:has(.masthead-sheet__expand[aria-expanded='true']) .masthead-sheet__panel {
+    transition: none;
   }
 }
 

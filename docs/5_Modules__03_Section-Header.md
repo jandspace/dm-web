@@ -21,7 +21,7 @@ Code: `styles/scss/modules/_section-header.scss`, `_section-header-branded.scss`
 | Title | `h2.section-header__title` | Holds the link (or a plain span when the header does not link) |
 | Link | `a.section-header__link` | Icon + label + arrow — **one link** |
 | Leading icon | `.section-header__icon` | Optional slot. SVG uses `currentColor` (follows the label on hover); image icons keep their colours |
-| Arrow | `.section-header__arrow` | `.btn.btn-quaternary-neutral.btn--icon-only`, decorative (`aria-hidden`) |
+| Arrow | `.section-header__arrow` | `.btn.btn-quaternary-neutral.btn--icon-only`, decorative (`aria-hidden`). Sits **inside** `.section-header__text`, right after the last word |
 | Action | `a.section-header__action` | Optional, right — label + chevron, its own link |
 | Description | `.section-header__description` | Optional preview text — text-sm Regular, line-height normal, `color/text/neutral/grey-dark` |
 | Sub-items | `.section-header-tabs` | Optional — MD only (see 1-D) |
@@ -66,6 +66,7 @@ Sub-channels or topics in one row that scrolls sideways.
 ### 1-E. Interaction
 
 - Hover / keyboard focus on the link: label and icon turn `color/text/interaction-primary/default`, the arrow shows its quaternary surface (`color/background/neutral/light`).
+- **Long labels wrap — no truncation.** The arrow follows the last word onto whichever line it ends on; a leading icon stays on the first line and the wrapped lines run on under the text.
 - The arrow slides 8px to the right on hover (Figma Label Container: no gap at rest, 8px on hover), 0.2s; no motion with reduced motion.
 - Action: `interaction-primary/default` → `interaction-primary/hover`, plus the hover line of the Article Card Metadata links (1px `color/effect/translucent-dark/deep`, grows from the left).
 

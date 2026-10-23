@@ -308,6 +308,20 @@
       //   pages    [label, file in the folder, one-line description]
       const EXPERIMENTS = [
         {
+          id: '202610-exp-section-header-long-title',
+          date: '2026-10-23',
+          title: 'Section header — long title',
+          status: 'In progress',
+          notes: [
+            'Copy of Preview hover A (shared CSS, LG ≥1024 in a 1024px frame). In beta, the SM “More Showbiz” header and the cards under it are duplicated with a long-title header.',
+            'Checks the Section Header without truncation: the long title wraps, the arrow follows the last word, the leading icon stays on the first line.',
+            'Gamma (Banner Story) removed; alpha is greyed out (grayscale, 40% opacity) so beta stands out. Beta: More Showbiz → Daisy → 2 SM cards, then the long-title header (“This is a section header with a long title”) → Daisy → 5 SM cards.',
+            'Section header icons load from assets/icons (shared icon set), not from the experiment folder.',
+          ],
+          result: '',
+          pages: [['Page', 'index.html', 'Preview hover A with the duplicated long-title section header in beta.']],
+        },
+        {
           id: '202610-exp-banner-slab-text',
           date: '2026-10-22',
           title: 'Banner Story — live slab title text',

@@ -7,7 +7,8 @@
 //         a.section-header__link    icon + label + arrow — one link
 //           .section-header__icon   optional leading icon (slot)
 //           .section-header__label
-//           .section-header__arrow  quaternary icon-only button (decorative)
+//             .section-header__text
+//               .section-header__arrow  quaternary icon-only button (decorative), after the last word
 //       a.section-header__action    optional — "Action Here ›"
 //     .section-header__description  optional preview text
 //     .section-header-tabs          optional sub-items (sub-channels / topics)
@@ -57,7 +58,9 @@
   color: var(--color-text-neutral-darker);
 }
 
-// The link (or a plain span when the header does not link) — icon + label + arrow
+// The link (or a plain span when the header does not link) — icon + label.
+// Long labels wrap (no truncation); the arrow sits inside the text, so it
+// follows the last word onto whichever line that ends up on.
 .section-header__link {
   display: inline-flex;
   align-items: center;
@@ -78,18 +81,17 @@
 }
 
 .section-header__text {
-  overflow: hidden;
-  white-space: nowrap;
-  text-overflow: ellipsis;
+  min-width: 0;
 }
 
-// Leading icon — sized to the label line, vertically centred on it. SVG icons
-// use currentColor (follow the label on hover); image icons keep their colours.
+// Leading icon — one label line tall, centred on the first line (a wrapped
+// label runs on under the text, not under the icon). SVG icons use
+// currentColor (follow the label on hover); image icons keep their colours.
 .section-header__icon {
   display: inline-flex;
   flex-shrink: 0;
   align-items: center;
-  align-self: stretch;
+  height: calc(var(--typography-line-height-narrow) * 1em);
 
   svg,
   img {
@@ -105,11 +107,12 @@
 }
 
 // Arrow — quaternary icon-only button (.btn.btn-quaternary-neutral.btn--icon-only),
-// decorative inside the link. 40px circle on a ~26px line: negative block
-// margins keep the row at the label's height.
+// decorative, inline at the end of .section-header__text. 40px circle on a
+// ~26px line: negative block margins keep the line at the label's height.
 .section-header__arrow {
   flex-shrink: 0;
-  margin-block: calc(var(--spacing-8) * -1);
+  margin-block: -9px; // 22px in the flow: stays inside the 24–26px line
+  vertical-align: middle;
   pointer-events: none; // hover comes from the link
   transition:
     margin-left 0.2s ease,
@@ -231,7 +234,7 @@ a.section-header__link:focus-visible {
   .section-header__arrow {
     width: 30px;
     height: 30px;
-    margin-block: -4px;
+    margin-block: -5px; // 20px in the flow: stays inside the 21.6px line
 
     svg {
       width: 14px;
