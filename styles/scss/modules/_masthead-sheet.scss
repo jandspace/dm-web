@@ -55,25 +55,19 @@
   }
 }
 
-// Backdrop — Figma: translucent-dark/moderate at 40% fill opacity + 8px
-// background blur; fades with the sheet (the script toggles [hidden] / .is-open
-// on both)
+// Backdrop — translucent-dark/moderate + 8px background blur; fades with the
+// sheet (the script toggles [hidden] / .is-open on both)
 .masthead-sheet-backdrop {
   position: fixed;
   inset: 0;
   z-index: 1099; // just under the sheet
-  background-color: color-mix(in srgb, var(--color-effect-translucent-dark-moderate) 40%, transparent);
-  -webkit-backdrop-filter: blur(8px);
+  background-color: var(--color-effect-translucent-dark-moderate);
   backdrop-filter: blur(8px);
   opacity: 0;
   transition: opacity 0.3s ease;
 
   &.is-open {
     opacity: 1;
-  }
-
-  &[hidden] {
-    display: none;
   }
 
   @media (prefers-reduced-motion: reduce) {
@@ -341,8 +335,7 @@
   transition: background-color 0.2s ease;
 }
 
-// Row hover — neutral/lighter highlight (pointer devices); the expand button
-// on it takes translucent-dark/pale so it still reads as a button
+// Row hover — neutral/lighter highlight (pointer devices)
 @media (hover: hover) {
   .masthead-sheet__channel-row:hover {
     background-color: var(--color-background-neutral-lighter);
@@ -521,8 +514,7 @@
       transition: transform 0.2s;
     }
 
-    &:focus-visible::after,
-    &.is-hover::after {
+    &:focus-visible::after {
       transform: scaleX(1);
     }
 
@@ -539,14 +531,9 @@
 }
 
 @media (prefers-reduced-motion: reduce) {
-  .masthead-sheet__channel-link,
-  .masthead-sheet__channel-icon,
-  .masthead-sheet__expand,
-  .masthead-sheet__expand svg,
-  .masthead-sheet__panel,
-  .masthead-sheet__subchannels a::after,
-  .masthead-sheet__channel:has(.masthead-sheet__expand[aria-expanded='true']) .masthead-sheet__panel {
-    transition: none;
+  .masthead-sheet *,
+  .masthead-sheet *::after {
+    transition: none !important; // beats the open-row rules' specificity
   }
 }
 

@@ -14,13 +14,34 @@
 
   .demo-page-h1,
   .demo-page-intro,
-  .demo-vp-toolbar {
+  .demo-vp-toolbar,
+  .demo-nav-sheet {
     display: none;
+  }
+}
+
+// Nav Sheet preview under the masthead: a frame at the chosen viewport (the
+// script sizes and scales it)
+.demo-nav-sheet {
+  margin-bottom: var(--spacing-48);
+
+  .demo-section-title {
+    margin-top: 0;
   }
 }
 
 .demo-nav-stage {
   margin-left: 0;
+}
+
+// Viewport preview of the masthead: same gap below it as the live masthead
+.demo-nav-content > .demo-nav-stage {
+  margin-bottom: var(--spacing-48);
+}
+
+// Nav Sheet frame (?frame&sheet): the sheet only — no masthead behind it
+.demo-sheet-frame .masthead {
+  visibility: hidden;
 }
 
 // ── Anatomy (anatomy.html) ────────────────────────────────────────────────────

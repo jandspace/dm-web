@@ -581,6 +581,12 @@
 
       <!-- Fixed-viewport preview: this page rendered in an iframe at the chosen width -->
       <div class="demo-vp-stage demo-nav-stage" id="demo-vp-stage" hidden></div>
+
+      <!-- Nav Sheet — this page at 390px with the sheet open (?frame&sheet) -->
+      <section class="demo-nav-sheet">
+        <h2 class="demo-section-title">Nav Sheet</h2>
+        <div class="demo-vp-stage demo-nav-stage" id="demo-sheet-stage"></div>
+      </section>
     </div>
 
     <script>
@@ -607,7 +613,11 @@
         // Slide in from the left: show, then add .is-open on the next frame so
         // the transform transitions; on close, hide once the slide has ended
         const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)');
+        // ?sheet (the Nav Sheet preview frame): open from the start, no slide,
+        // and it stays open — close / backdrop / Escape do nothing
+        const pinned = new URLSearchParams(location.search).has('sheet');
         const setSheet = (open) => {
+          if (pinned && !open) return;
           trigger.setAttribute('aria-expanded', String(open));
           document.documentElement.classList.toggle('masthead-sheet-open', open);
           if (open) {
@@ -642,6 +652,12 @@
           }
         };
         trigger.addEventListener('click', () => setSheet(true));
+        if (pinned) {
+          sheet.hidden = backdrop.hidden = false;
+          sheet.classList.add('is-open');
+          backdrop.classList.add('is-open');
+          trigger.setAttribute('aria-expanded', 'true');
+        }
         backdrop.addEventListener('click', () => setSheet(false));
         sheet.querySelector('.masthead-sheet__close').addEventListener('click', () => setSheet(false));
 
@@ -716,6 +732,7 @@
       // Scaffolding only — channel switch + viewport preview.
       //   ?channel=News       current channel (colour, topbar name, current item)
       //   ?frame              masthead only (rendered inside the viewport stage)
+      //   ?frame&sheet        same, with the Nav Sheet open (the Nav Sheet preview)
       //   ?vp=xl|lg|md|xs     preview at a fixed viewport width
       (() => {
         const params = new URLSearchParams(location.search);
@@ -734,11 +751,13 @@
 
         if (params.has('frame')) {
           document.body.classList.add('demo-frame');
+          if (params.has('sheet')) document.body.classList.add('demo-sheet-frame');
           return;
         }
 
         const select = document.getElementById('demo-channel');
         select.value = params.get('channel') || 'Home';
+
 
         const VIEWPORTS = {
           xl: { label: 'XL ≥1376', width: 1440, height: 810 }, // 16:9
@@ -764,6 +783,34 @@
           status.textContent = `${width}px viewport · ${Math.round(scale * 100)}%`;
         };
 
+        // Nav Sheet preview — the page open on the sheet at the chosen viewport
+        // (Live: the browser window's size), scaled to fit. Added by script, not
+        // in the markup, so the frames (which load this same page) don't load it.
+        const sheetStage = document.getElementById('demo-sheet-stage');
+        let sheetFrame = null;
+        const sheetSize = () => {
+          const vp = VIEWPORTS[vpKey];
+          return vp ? [vp.width, vp.height] : [window.innerWidth, window.innerHeight];
+        };
+        const fitSheet = () => {
+          if (!sheetFrame) return;
+          const [w, h] = sheetSize();
+          const scale = Math.min(1, sheetStage.parentElement.clientWidth / w);
+          sheetFrame.width = w;
+          sheetFrame.height = h;
+          sheetFrame.style.transform = `scale(${scale})`;
+          sheetStage.style.width = `${w * scale}px`;
+          sheetStage.style.height = `${h * scale}px`;
+        };
+        const showSheet = () => {
+          const [w] = sheetSize();
+          sheetFrame = document.createElement('iframe');
+          sheetFrame.src = `index.html?frame&sheet&channel=${encodeURIComponent(select.value)}`;
+          sheetFrame.title = `Nav Sheet at ${w}px`;
+          sheetStage.replaceChildren(sheetFrame);
+          fitSheet();
+        };
+
         const syncUrl = () => {
           const url = new URL(location.href);
           vpKey === 'live' ? url.searchParams.delete('vp') : url.searchParams.set('vp', vpKey);
@@ -776,6 +823,7 @@
           toggle.querySelectorAll('button').forEach((b) => b.setAttribute('aria-pressed', String(b.dataset.vp === vpKey)));
           syncUrl();
           const vp = VIEWPORTS[vpKey];
+          showSheet();
           masthead.hidden = Boolean(vp);
           if (!vp) {
             stage.hidden = true;
@@ -807,7 +855,10 @@
           window.mastheadRevealCurrent();
           show(vpKey); // reload the preview with the new channel
         });
-        window.addEventListener('resize', fit);
+        window.addEventListener('resize', () => {
+          fit();
+          if (vpKey === 'live') fitSheet();
+        });
         show(params.get('vp') || 'live');
       })();
     </script>

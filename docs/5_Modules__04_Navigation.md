@@ -55,7 +55,7 @@ Code: `styles/scss/modules/_masthead.scss`, `_masthead-sheet.scss` · demo `modu
 ## 6. Nav Sheet (Mweb)
 
 - **Open / close:** the burger slides the sheet in from the left (translateX −100% → 0, 0.3s ease); close / backdrop click / Escape slides it back out. No motion with reduced motion. The sheet is planned for every viewport, not only Mweb.
-- **Size** (Figma 328:29645 — Small <640 · Medium ≥640 · Large ≥1012): full screen below 640. From 640 up the sheet is 390px wide on the left and the rest is the **backdrop** (Figma "Close Area"): `color/effect/translucent-dark/moderate` at 40% fill opacity plus an 8px background blur. It fades in and out with the sheet (0.3s). The ad slot in the Close Area is hidden in Figma and not built.
+- **Size** (Figma 328:29645 — Small <640 · Medium ≥640 · Large ≥1012): full screen below 640. From 640 up the sheet is 390px wide on the left and the rest is the **backdrop** (Figma "Close Area"): `color/effect/translucent-dark/moderate` plus an 8px background blur. It fades in and out with the sheet (0.3s). The ad slot in the Close Area is hidden in Figma and not built.
 - **Row hover** (pointer devices, `.masthead-sheet__channel-row:hover` — the row only, not its open subchannel box): the row turns `color/background/neutral/lighter`; the expand button on it takes `color/effect/translucent-dark/pale`.
 - **Bar:** close button 44×44, xmark-light 16.
 - **Top:** Home (home colour icon 20 + label-md Semibold) + edition pill (tertiary XS: `neutral/lighter`, flag 12, label-xxsm, chevron 12) … Login (secondary SM: 33px, `border/neutral/grey-light`, person 14 + label-sm).
@@ -75,7 +75,7 @@ Code: `styles/scss/modules/_masthead.scss`, `_masthead-sheet.scss` · demo `modu
 
 ## 8. Behaviour (script)
 
-The demo page holds the reference script: burger opens / closes the sheet (Escape closes), Edition toggles its menu (outside click / Escape closes), sheet expand buttons show / hide subchannels, and the current channel is scrolled into view when the row scrolls.
+Under the masthead the demo page shows the Nav Sheet open in a frame at the chosen viewport — Live uses the browser window's size (`index.html?frame&sheet`: open from the start, accordion works, close does nothing). The demo page holds the reference script: burger opens / closes the sheet (Escape closes), Edition toggles its menu (outside click / Escape closes), sheet expand buttons show / hide subchannels, and the current channel is scrolled into view when the row scrolls.
 
 ## 9. Static states
 

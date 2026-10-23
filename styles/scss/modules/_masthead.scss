@@ -79,18 +79,15 @@
   width: 100%;
   margin-inline: auto;
 
+  // Desktop: keyline under the navbar
   @include bp.respond-to(md) {
     max-width: 960px;
     padding-inline: var(--spacing-16);
+    border-bottom: 1px solid var(--color-border-neutral-light);
   }
 
   @include bp.respond-to(lg) { max-width: 996px; }
   @include bp.respond-to(xl) { max-width: 1224px; }
-
-  // Keyline under the navbar (desktop)
-  @include bp.respond-to(md) {
-    border-bottom: 1px solid var(--color-border-neutral-light);
-  }
 }
 
 // Shared: label-sm Semibold item with an optional 14px icon
@@ -323,10 +320,6 @@
   min-width: 0;
 
   // Hover — logo lighter (72% opacity over the masthead surface)
-  img {
-    transition: opacity 0.15s;
-  }
-
   &:focus-visible img,
   &.is-hover img {
     opacity: 0.72;
@@ -350,6 +343,7 @@
     display: block;
     width: 127px;
     height: 26px;
+    transition: opacity 0.15s;
 
     @include bp.respond-to(md) {
       width: 267px;
@@ -459,7 +453,7 @@
   svg {
     width: 26px;
     height: 14px;
-    margin-inline: -6px -6px; // 26px artwork on a 14px icon slot, as in Figma
+    margin-inline: -6px; // 26px artwork on a 14px icon slot, as in Figma
   }
 }
 
@@ -549,7 +543,6 @@
   overflow-x: auto;
   list-style: none;
   scrollbar-width: none;
-  -webkit-mask-image: linear-gradient(to left, transparent, black 28px);
   mask-image: linear-gradient(to left, transparent, black 28px);
 
   &::-webkit-scrollbar {
@@ -560,7 +553,6 @@
   @include bp.respond-to(md) {
     gap: var(--spacing-8);
     padding: 0 var(--spacing-16);
-    -webkit-mask-image: none;
     mask-image: none;
   }
 
@@ -715,10 +707,6 @@
 // top corners; the panel (Elevation Lv-4, 24px padding, 8px bottom corners)
 // lists the channel link and its subchannels in two 160px columns.
 
-.masthead-nav__panel {
-  display: none;
-}
-
 @mixin masthead-panel-open {
   .masthead-nav__link {
     border-radius: var(--border-radius-8) var(--border-radius-8) 0 0;
@@ -740,19 +728,16 @@
   // it (.masthead-nav--intent) the script opens / closes it through .is-open
   // with a short delay (hover intent), so a diagonal move across other tabs
   // does not swap panels. Keyboard focus always opens it at once.
+  //
+  // Items with a dropdown: hover darkens the label only — no channel bar. The
+  // bar would show during the hover-intent delay and then give way to the
+  // tab, which reads as a flicker. The current channel keeps its bar.
   @media (hover: hover) {
     .masthead-nav:not(.masthead-nav--intent) .masthead-nav__item--has-panel:hover,
     .masthead-nav__item--has-panel:focus-within {
       @include masthead-panel-open;
     }
-  }
-}
 
-// Items with a dropdown (LG+, mouse): hover darkens the label only — no channel
-// bar. The bar would show during the hover-intent delay and then give way to
-// the tab, which reads as a flicker. The current channel keeps its bar.
-@include bp.respond-to(lg) {
-  @media (hover: hover) {
     .masthead-nav__item--has-panel .masthead-nav__link:not([aria-current='page']):is(:hover, :focus-visible, .is-hover)::after {
       transform: translateY(100%);
     }
@@ -767,6 +752,7 @@
 }
 
 .masthead-nav__panel {
+  display: none;
   position: absolute;
   top: 100%;
   left: calc(var(--spacing-16) * -1); // 16px out past the tab's left edge
