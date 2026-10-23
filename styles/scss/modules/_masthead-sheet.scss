@@ -454,21 +454,19 @@
   .masthead-sheet__panel {
     grid-template-rows: 1fr;
     visibility: visible;
-    transition:
-      grid-template-rows 0.3s ease,
-      visibility 0s;
   }
 }
 
 // Panel — collapses to 0 height (grid 0fr → 1fr animates the real height);
-// hidden from assistive tech once closed
+// hidden from assistive tech once closed. Visibility stays visible for the
+// whole transition, so it shows at once on open and hides when closing ends.
 .masthead-sheet__panel {
   display: grid;
   grid-template-rows: 0fr;
   visibility: hidden;
   transition:
     grid-template-rows 0.3s ease,
-    visibility 0s 0.3s;
+    visibility 0.3s;
 }
 
 .masthead-sheet__panel-inner {
@@ -530,10 +528,16 @@
   grid-column: 1 / -1;
 }
 
+// Same selectors as the rules above, so these win by source order
 @media (prefers-reduced-motion: reduce) {
-  .masthead-sheet *,
-  .masthead-sheet *::after {
-    transition: none !important; // beats the open-row rules' specificity
+  .masthead-sheet__channel-row,
+  .masthead-sheet__channel-link,
+  .masthead-sheet__channel-icon,
+  .masthead-sheet__expand,
+  .masthead-sheet__expand svg,
+  .masthead-sheet__panel,
+  .masthead-sheet__subchannels a::after {
+    transition: none;
   }
 }
 

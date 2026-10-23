@@ -297,6 +297,8 @@ iOS and Android use the same four steps (`typography-ios/letter-spacing/*`, `typ
 
 - **Never use raw hex values.** Always use semantic colour tokens via CSS custom properties.
 - **Never use px for line-height on web.** Use unitless multipliers only.
+- **Avoid `!important`.** These are the base module styles — an `!important` here invites more `!important` to override it later. Win by matching the selector's specificity and source order (e.g. a `prefers-reduced-motion` block at the end of the file repeating the same selectors), or restructure so no override is needed. Use it only when there is truly no other way, and say why in a comment.
+- **Keep the code simple.** Pick the plainest way that meets the design — use tokens as they are, no extra wrappers or tricks.
 - Mobile-first CSS: SM as `:root` base, scale up with `min-width` breakpoints.
 - Mobile landscape handled with `orientation: landscape`, not px breakpoints.
 - Typography does not change on mobile landscape — layout and padding only.
