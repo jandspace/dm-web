@@ -1,15 +1,21 @@
 // ── Article Card — Banner Story ───────────────────────────────────────────────
-// Full-width top banner: editorial image, headline and comments on a black
-// panel. Built as a block that later layouts attach related stories to, so it
-// is its own component rather than an .article-card type.
+// Full-width top banner: the Lead Story (editorial image, headline and comments
+// on a black panel), optionally followed by Secondary Stories — follow-ups and
+// related stories — on the same black: 1, 4 or 7 stories in all.
 //
-//   .article-card-banner                 white surface, bottom keyline (border/neutral/light)
+//   .article-card-banner                 white surface, bottom keyline
 //     .article-card-banner__story        16px white inset from MD up (16px below at SM / XS)
-//       .article-card-banner__panel      background/neutral/black, inner keyline
+//       .article-card-banner__panel      Lead Story — background/neutral/black; inner
+//                                        keyline when Secondary Stories follow
 //         .article-card-banner__media    <picture> — artwork per breakpoint
 //         .article-card-banner__content
 //           .article-card-banner__headline > a.article-card-banner__link
 //           .article-card-banner__metadata   comments (Article Card Metadata)
+//       ul.article-card-banner__related  Secondary Stories (3 or 6) — 1 column (XS),
+//                                        3 columns (SM+); 4:3 thumbnail optional
+//         li.article-card-banner__related-item
+//           img.article-card-banner__related-media
+//           h3.article-card-banner__related-headline > a.article-card-banner__related-link
 //
 // The banner title ("BANNER STORY") is part of the artwork, not live text, so
 // the image is art-directed per breakpoint (<picture>):
@@ -62,8 +68,8 @@
   flex-direction: column;
   background-color: var(--color-background-neutral-black);
 
-  // Inner keyline (separates related stories when they follow)
-  &::after {
+  // Inner keyline — only when Secondary Stories follow
+  &:not(:last-child)::after {
     content: '';
     position: absolute;
     right: var(--spacing-16);
@@ -205,8 +211,150 @@
   outline-offset: -2px;
 }
 
+// ── Secondary Stories ─────────────────────────────────────────────────────────
+// Follow-ups / related stories under the Lead Story, on the same black. XS: one
+// column; SM+: three columns. Story: 16px inset, H5 Semibold lightest, 12px
+// from an optional 4:3 thumbnail (XS 102 · SM–LG 96 · XL 120). Keyline (inset
+// 16, translucent-light/subtle) between rows — none on the last row.
+
+.article-card-banner__related {
+  display: grid;
+  margin: 0;
+  padding: 0;
+  background-color: var(--color-background-neutral-black);
+  list-style: none;
+
+  @include bp.respond-to(sm) {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+}
+
+// XL / LG / XS: thumbnail beside a text column. SM / MD (narrow columns): the
+// thumbnail floats left and the headline wraps around it, then runs full width.
+.article-card-banner__related-item {
+  position: relative; // containing block of the stretched link and keyline
+  isolation: isolate; // the hover surface sits behind the content
+  display: flex;
+  align-items: flex-start;
+  gap: var(--spacing-12);
+  padding: var(--spacing-16);
+
+  @include bp.respond-to(sm) {
+    display: flow-root;
+  }
+
+  @include bp.respond-to(lg) {
+    display: flex;
+  }
+
+  // Keyline — XS: under every story but the last; SM+: under the first row only
+  &:not(:last-child)::after {
+    content: '';
+    position: absolute;
+    right: var(--spacing-16);
+    bottom: 0;
+    left: var(--spacing-16);
+    height: 1px;
+    background-color: var(--color-border-translucent-light-subtle);
+  }
+
+  @include bp.respond-to(sm) {
+    &:nth-last-child(-n + 3)::after {
+      content: none;
+    }
+  }
+}
+
+.article-card-banner__related-media {
+  display: block;
+  flex-shrink: 0;
+  width: 102px;
+  aspect-ratio: 4 / 3;
+  border-radius: var(--border-radius-4);
+  object-fit: cover;
+
+  @include bp.respond-to(sm) {
+    float: left;
+    width: 96px;
+    margin: 0 var(--spacing-12) var(--spacing-4) 0;
+  }
+
+  @include bp.respond-to(lg) {
+    float: none;
+    margin: 0;
+  }
+
+  @include bp.respond-to(xl) {
+    width: 120px;
+  }
+}
+
+.article-card-banner__related-headline {
+  flex: 1 1 0;
+  min-width: 0;
+  margin: 0;
+  font-family: var(--typography-font-family-sans);
+  font-size: var(--typography-font-size-h5);
+  font-weight: var(--typography-font-weight-semibold);
+  line-height: var(--typography-line-height-compact);
+  color: var(--color-text-neutral-lightest);
+}
+
+// One link per story, stretched over the whole story
+.article-card-banner__related-link {
+  color: inherit;
+  text-decoration: none;
+
+  &::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+  }
+
+  &:focus-visible {
+    outline: none;
+  }
+}
+
+// Hover (MD+, pointer): a translucent-light/pale surface zooms in behind the
+// story, inset 8px, 8px corners — the Article Card hover on a dark surface
+.article-card-banner__related-item::before {
+  content: '';
+  position: absolute;
+  inset: var(--spacing-8);
+  z-index: -1;
+  border-radius: var(--border-radius-8);
+  background-color: var(--color-effect-translucent-light-pale);
+  opacity: 0;
+  transform: scale(0.4);
+  pointer-events: none;
+
+  @include bp.respond-to(md) {
+    @media (hover: hover) {
+      transition:
+        transform 0.15s,
+        opacity 0.15s;
+    }
+  }
+}
+
+@include bp.respond-to(md) {
+  @media (hover: hover) {
+    .article-card-banner__related-item:hover::before {
+      opacity: 1;
+      transform: none;
+    }
+  }
+}
+
+.article-card-banner__related-item:has(.article-card-banner__related-link:focus-visible) {
+  outline: 2px solid var(--color-border-home-blue-base);
+  outline-offset: -2px;
+}
+
 @media (prefers-reduced-motion: reduce) {
-  .article-card-banner__media::after {
+  .article-card-banner__media::after,
+  .article-card-banner__related-item::before {
     transition: none;
   }
 }

@@ -24,6 +24,7 @@
         Full-width top banner. Figma: Web UI Kit › Article Card - Banner (8138:232841).
         SM ≥640 (phone landscape) and XS &lt;640 (phone portrait) are separate layouts;
         the banner title is part of the artwork, swapped per breakpoint.
+        Stories: the Lead Story alone (default), or with 3 or 6 Secondary Stories (follow-ups and related stories).
         Open <a href="viewports.html">all breakpoints side by side</a>.
       </p>
     </div>
@@ -39,6 +40,13 @@
           <button type="button" data-vp="sm" aria-pressed="false">SM ≥640</button>
           <button type="button" data-vp="xs" aria-pressed="false">XS &lt;640</button>
         </div>
+        <span class="demo-vp-toolbar__divider"></span>
+        <span id="demo-stories-label">Stories</span>
+        <div class="demo-vp-toggle" role="group" aria-labelledby="demo-stories-label" id="demo-stories">
+          <button type="button" data-stories="1" aria-pressed="true">1</button>
+          <button type="button" data-stories="4" aria-pressed="false">4</button>
+          <button type="button" data-stories="7" aria-pressed="false">7</button>
+        </div>
         <span class="demo-vp-status" id="demo-vp-status"></span>
       </div>
     </div>
@@ -52,7 +60,9 @@
                                                   (the banner title is part of the image)
                  .article-card-banner__content
                    h2.article-card-banner__headline > a.article-card-banner__link
-                   .article-card-banner__metadata  Article Card Metadata — comments -->
+                   .article-card-banner__metadata  Article Card Metadata — comments
+               ul.article-card-banner__related   Secondary Stories (3 or 6) under the Lead Story
+                 li.article-card-banner__related-item  [img thumbnail] + h3 > a (stretched) -->
     <main class="container demo-container-start" id="demo-banner">
       <article class="article-card-banner">
         <div class="article-card-banner__story">
@@ -73,6 +83,27 @@
               </div>
             </div>
           </div>
+          <!-- Secondary Stories — follow-ups / related stories (3 or 6; the demo trims them to the Stories filter) -->
+          <ul class="article-card-banner__related" aria-label="Related stories">
+            <li class="article-card-banner__related-item">
+              <img class="article-card-banner__related-media" src="../../assets/images/article-card-placeholder.jpg" alt="" /><h3 class="article-card-banner__related-headline"><a class="article-card-banner__related-link" href="#related-1">Met Police did NOT launch child sex probe into Thomas Markle as force hunts for 'disturbing' 2018 letter</a></h3>
+            </li>
+            <li class="article-card-banner__related-item">
+              <img class="article-card-banner__related-media" src="../../assets/images/article-card-placeholder.jpg" alt="" /><h3 class="article-card-banner__related-headline"><a class="article-card-banner__related-link" href="#related-2">'I had to protect my children': Meghan reveals she cut off contact with Thomas Markle</a></h3>
+            </li>
+            <li class="article-card-banner__related-item">
+              <img class="article-card-banner__related-media" src="../../assets/images/article-card-placeholder.jpg" alt="" /><h3 class="article-card-banner__related-headline"><a class="article-card-banner__related-link" href="#related-3">'Distressed' Meghan was told of 'disturbing' allegations against father months after wedding</a></h3>
+            </li>
+            <li class="article-card-banner__related-item">
+              <h3 class="article-card-banner__related-headline"><a class="article-card-banner__related-link" href="#related-4">Thomas Markle under investigation by child sex abuse task force in Philippines</a></h3>
+            </li>
+            <li class="article-card-banner__related-item">
+              <h3 class="article-card-banner__related-headline"><a class="article-card-banner__related-link" href="#related-5">Inside the Markle family feud: a timeline of the rift with Meghan's father</a></h3>
+            </li>
+            <li class="article-card-banner__related-item">
+              <h3 class="article-card-banner__related-headline"><a class="article-card-banner__related-link" href="#related-6">What happens next: the FBI 'considers next steps' in the Philippines probe</a></h3>
+            </li>
+          </ul>
         </div>
       </article>
     </main>
@@ -81,11 +112,20 @@
     <div class="demo-vp-stage" id="demo-vp-stage" hidden></div>
 
     <script>
-      // Scaffolding only — viewport preview.
+      // Scaffolding only — viewport preview + story count.
       //   ?frame          page without chrome (rendered inside the viewport stage)
       //   ?vp=xl|lg|md|sm|xs  preview at a fixed viewport width
+      //   ?stories=1|4|7  Lead Story alone (default), or with 3 / 6 Secondary Stories
       (() => {
         const params = new URLSearchParams(location.search);
+
+        // Story count: keep the first n − 1 Secondary Stories (removed, not
+        // hidden, so the last-row keyline rules see the real list)
+        const stories = ['1', '4', '7'].includes(params.get('stories')) ? Number(params.get('stories')) : 1;
+        const related = document.querySelector('.article-card-banner__related');
+        if (stories === 1) related.remove();
+        else [...related.children].slice(stories - 1).forEach((li) => li.remove());
+
         if (params.has('frame')) {
           document.body.classList.add('demo-frame');
           return;
@@ -125,6 +165,8 @@
           const url = new URL(location.href);
           if (vp) url.searchParams.set('vp', key);
           else url.searchParams.delete('vp');
+          if (stories === 1) url.searchParams.delete('stories');
+          else url.searchParams.set('stories', stories);
           history.replaceState(null, '', url);
 
           if (!vp) {
@@ -141,7 +183,7 @@
           stage.hidden = false;
           status.textContent = 'Loading…';
           iframe = document.createElement('iframe');
-          iframe.src = 'index.html?frame';
+          iframe.src = `index.html?frame&stories=${stories}`;
           iframe.width = width;
           iframe.title = `Banner Story at ${vp.label}`;
           iframe.addEventListener('load', async () => {
@@ -156,6 +198,17 @@
           const button = event.target.closest('button[data-vp]');
           if (button) select(button.dataset.vp);
         });
+        // Stories filter: reload with the new count (the list is trimmed on load)
+        const storyToggle = document.getElementById('demo-stories');
+        storyToggle.querySelectorAll('button').forEach((b) => b.setAttribute('aria-pressed', String(Number(b.dataset.stories) === stories)));
+        storyToggle.addEventListener('click', (event) => {
+          const button = event.target.closest('button[data-stories]');
+          if (!button) return;
+          const url = new URL(location.href);
+          url.searchParams.set('stories', button.dataset.stories);
+          location.href = url;
+        });
+
         window.addEventListener('resize', fit);
         select(params.get('vp') || 'live');
       })();

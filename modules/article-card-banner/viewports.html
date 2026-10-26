@@ -15,7 +15,7 @@
   <body class="demo-page-body">
     <h1 class="demo-page-h1">Article Card — Banner Story — Viewports</h1>
     <p class="demo-page-intro">
-      Every layout at every breakpoint. Each cell is <a href="index.html">index.html</a> rendered in a frame at that
+      Every story count (rows: 1 · 4 · 7) at every breakpoint (columns). Each cell is <a href="index.html">index.html</a> rendered in a frame at that
       viewport width, cropped to the banner and scaled by the same factor, so sizes compare like the Figma sheet.
       Under each banner: its width in px (the page container) — height is auto (hugs the content).
       SM ≥640 and XS &lt;640 are separate layouts.
@@ -36,9 +36,13 @@
 
     <script>
       (() => {
-        // Layouts — 1-Col only for now. Add a row per layout as it is built
-        // (2-Col, 2-Col Latest, 2-Col Columnists); `query` picks it in index.html.
-        const LAYOUTS = [['1-col', '1-Col', '']];
+        // Rows — one per story count: the Lead Story alone, or with 3 / 6
+        // Secondary Stories. [key, label, query for index.html]
+        const LAYOUTS = [
+          ['1-story', '1 story', ''],
+          ['4-stories', '4 stories', '&stories=4'],
+          ['7-stories', '7 stories', '&stories=7'],
+        ];
 
         // Viewport widths match the Figma frames; maxCard = banner width in that column.
         const VIEWPORTS = [
