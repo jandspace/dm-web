@@ -150,7 +150,7 @@
         // Column headers (first cell is the sticky corner above the row labels)
         sheet.append(el('div', 'demo-vp-corner'));
         VIEWPORTS.forEach((vp) => {
-          sheet.append(el('div', 'demo-vp-col-header', `${vp.label}<small>${vp.width}px viewport</small>`));
+          sheet.append(el('div', 'demo-vp-col-header', `${vp.label}<small>${vp.width}px preview</small>`));
         });
 
         // Rows

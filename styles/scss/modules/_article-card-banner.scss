@@ -39,7 +39,12 @@
     bottom: 0;
     left: var(--spacing-16);
     height: 1px;
-    background-color: var(--color-border-neutral-light);
+    background-color: var(--color-effect-translucent-dark-pale);
+  }
+
+  // The last block of its column has none
+  &:last-child::after {
+    display: none;
   }
 }
 

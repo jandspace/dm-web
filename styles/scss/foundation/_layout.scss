@@ -1,0 +1,132 @@
+// ── Layout ────────────────────────────────────────────────────────────────────
+// Page layout inside .container (_spacing.scss). Names follow the Figma page
+// frames (Fullwidth · Alpha · Beta · Row · Col 1-n).
+//
+//   section.layout-full                 Fullwidth — one section, keyline below
+//     .layout-split                     Alpha 2/3 + Beta 1/3 (LG+); stacked below LG
+//       .layout-alpha                   main column
+//         .layout-row                   Row — keyline below
+//       .layout-beta                    right rail — keyline on its left (LG+)
+//     .layout-row                       columns of equal width (Col 1-2 · 1-3 · 1-4) from MD;
+//                                       stacked below MD
+//       .layout-col                     a column: cards stacked vertically
+//   .layout-inset                       a box with its own background (e.g. a
+//                                       tinted box in Beta): 16px inset + keyline
+//
+// No gaps and no padding: every card / block carries its own 16px inset, so
+// neighbours sit 32px apart (Foundation > Layout & Grid > 4).
+//
+// Keylines: 1px translucent-dark/pale, 16px in from each end (Beta's vertical
+// keyline too). A section, a
+// row and a card each draw their own; the last child of its parent has none.
+//
+// Reference: Figma Web UI Kit › Layout & Grid (400:6871) · Homepage (8281:97719)
+
+@use 'breakpoints' as bp;
+
+// Bottom keyline, 16px in from each side
+@mixin keyline {
+  position: relative;
+
+  &:not(:last-child)::after {
+    content: '';
+    position: absolute;
+    right: var(--spacing-16);
+    bottom: 0;
+    left: var(--spacing-16);
+    height: 1px;
+    background-color: var(--color-effect-translucent-dark-pale);
+  }
+}
+
+.layout-full {
+  @include keyline;
+}
+
+// Row: columns side by side from MD; below MD (SM-XS) they stack, one under
+// the other, full width
+.layout-row {
+  @include keyline;
+
+  @include bp.respond-to(md) {
+    display: flex;
+  }
+}
+
+.layout-col {
+  @include keyline; // stacked: keyline between columns
+
+  @include bp.respond-to(md) {
+    flex: 1 1 0;
+    min-width: 0; // long headlines / images never push the column wider
+
+    &:not(:last-child)::after {
+      content: none; // side by side: no keyline between columns
+    }
+  }
+}
+
+// Alpha + Beta: stacked below LG (Beta under Alpha, both full width); 2/3 + 1/3
+// from LG, with a keyline on Beta's left
+.layout-split {
+  @include bp.respond-to(lg) {
+    display: flex;
+  }
+}
+
+.layout-alpha {
+  @include keyline; // stacked: keyline between Alpha and Beta
+
+  @include bp.respond-to(lg) {
+    flex: 2 1 0;
+    min-width: 0;
+
+    &:not(:last-child)::after {
+      content: none; // side by side: Beta's left keyline takes over
+    }
+  }
+}
+
+.layout-beta {
+  position: relative;
+
+  @include bp.respond-to(lg) {
+    flex: 1 1 0;
+    min-width: 0;
+
+    // Left keyline, 16px in from the top and bottom (as the bottom keylines
+    // are from the sides)
+    &::before {
+      content: '';
+      position: absolute;
+      top: var(--spacing-16);
+      bottom: var(--spacing-16);
+      left: 0;
+      width: 1px;
+      background-color: var(--color-effect-translucent-dark-pale);
+    }
+  }
+}
+
+// One channel block split 2:1 (e.g. Showbiz) — no keyline between the columns
+.layout-split--joined {
+  .layout-alpha:not(:last-child)::after,
+  .layout-beta::before {
+    content: none;
+  }
+}
+
+// A box with its own background (e.g. a tinted box in Beta) — one content
+// block like a card: 16px inset all round and the card keyline below
+.layout-inset {
+  @include keyline;
+
+  padding: var(--spacing-16);
+
+  // Under a section header: no top inset — the header's 8px bottom padding
+  // is the gap (as Channel Puff)
+  .section-header + &,
+  .section-header-branded + & {
+    padding-top: 0;
+  }
+}

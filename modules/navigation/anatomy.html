@@ -60,14 +60,15 @@
     <section class="demo-anatomy" id="demo-anatomy-desktop">
       <h2 class="demo-section-title">Desktop</h2>
       <h3 class="demo-anatomy__group">1. Topbar</h3>
-      <p class="demo-anatomy__note">Desktop only (≥768). 32px row with a light keyline. Channel id (3px channel-colour bar) and Last updated (LG+) on the left; Edition · Login · Search on the right, each with a 1px keyline on its left.</p>
+      <p class="demo-anatomy__note">Desktop only (≥768). 32px row with a light keyline. Channel id (3px channel-colour bar) and Last updated (LG+) on the left; Mail+ Subscribe · Edition · Login · Search on the right, each with a 1px keyline on its left. Subscribe sits here on channel pages; on Home and Daily Mail+ home (<code>.masthead--landing</code>) it moves to the Branding slot.</p>
       <div class="demo-anatomy__row">
         <figure class="demo-anatomy__item demo-anatomy__item--wide">
           <div class="demo-anatomy__specimen">
-            <div class="masthead masthead--home demo-anatomy__context">
+            <div class="masthead masthead--news demo-anatomy__context">
               <div class="masthead-topbar">
-                <p class="masthead-topbar__id"><span class="masthead-topbar__channel">Home</span><span class="masthead-topbar__updated">Last updated: <time>16:14 BST, 22 October 2026</time></span></p>
+                <p class="masthead-topbar__id"><span class="masthead-topbar__channel">News</span><span class="masthead-topbar__updated">Last updated: <time>16:14 BST, 22 October 2026</time></span></p>
                 <div class="masthead-topbar__actions">
+                  <div class="masthead-topbar__action masthead-topbar__subscribe"><a class="masthead-topbar-subscribe" href="#subscribe"><svg aria-label="Daily Mail+"><use href="#logo-mplus-wordmark" /></svg>Subscribe</a></div>
                   <div class="masthead-topbar__action"><button type="button" class="masthead-action masthead-edition" aria-expanded="false"><img src="../../assets/icons/ico-flag-united-kingdom.svg" alt="" /><span>UK Edition</span><svg class="masthead-edition__chevron" aria-hidden="true"><use href="#ico-chevron-down" /></svg></button></div>
                   <div class="masthead-topbar__action"><a class="masthead-action" href="#login"><svg aria-hidden="true"><use href="#ico-person-outline" /></svg><span>Login</span></a></div>
                   <div class="masthead-topbar__action"><button type="button" class="masthead-action"><svg aria-hidden="true"><use href="#ico-magnifier" /></svg><span>Search</span></button></div>
@@ -102,6 +103,22 @@
             </div>
           </div>
           <figcaption><span class="demo-anatomy__name">Updated Time (LG+)</span><code class="demo-anatomy__class">.masthead-topbar__updated</code></figcaption>
+        </figure>
+        <figure class="demo-anatomy__item">
+          <div class="demo-anatomy__specimen">
+            <div class="masthead masthead--news demo-anatomy__context">
+              <a class="masthead-topbar-subscribe" href="#subscribe"><svg aria-label="Daily Mail+"><use href="#logo-mplus-wordmark" /></svg>Subscribe</a>
+            </div>
+          </div>
+          <figcaption><span class="demo-anatomy__name">Topbar Subscribe — Default</span><code class="demo-anatomy__class">.masthead-topbar-subscribe</code></figcaption>
+        </figure>
+        <figure class="demo-anatomy__item">
+          <div class="demo-anatomy__specimen">
+            <div class="masthead masthead--news demo-anatomy__context">
+              <a class="masthead-topbar-subscribe is-hover" href="#subscribe"><svg aria-label="Daily Mail+"><use href="#logo-mplus-wordmark" /></svg>Subscribe</a>
+            </div>
+          </div>
+          <figcaption><span class="demo-anatomy__name">Topbar Subscribe — Hover</span><code class="demo-anatomy__class">.is-hover</code></figcaption>
         </figure>
       </div>
       <div class="demo-anatomy__row">

@@ -2,7 +2,7 @@
 
 The site header: **Topbar › Branding › Navbar L1**, plus the **Nav Sheet** on Mweb.
 
-Figma: Web UI Kit › Masthead (71:2568) · Topbar (2839:29038) · Branding (2841:11471) · Navbar - L1 (2839:29304) · Nav Sheet (332:8626) · Nav Sheet sizes (328:29645).
+Figma: Web UI Kit › Masthead (71:2568) · Topbar (2839:29038, Large 2841:9111) · Branding (2841:11471) · Navbar - L1 (2839:29304) · Nav Sheet (332:8626) · Nav Sheet sizes (328:29645).
 Code: `styles/scss/modules/_masthead.scss`, `_masthead-sheet.scss` · demo `modules/navigation/` (live masthead) and `modules/navigation/anatomy.html` (every part on its own, with its class).
 
 ---
@@ -27,15 +27,17 @@ Code: `styles/scss/modules/_masthead.scss`, `_masthead-sheet.scss` · demo `modu
 
 ## 3. Topbar
 
-- **Left:** channel id — 3px `color/border/{channel}/base` bar, 8px gap, label-xsm Bold `neutral/darker` — then *Last updated: …* (label-xsm Regular `neutral/dark`, **LG+ only**).
-- **Right:** Edition · Login · Search. Each item 16px inset with a 1px `color/border/neutral/light` keyline on its left. Item: 14px icon + label-sm Semibold `neutral/darker`, 6px gap (Edition: flag 14 · label · chevron 12, 4px gap).
+- **Left:** channel id — 3px `color/border/{channel}/base` left border + 4px padding (label 7px in; Figma Topbar - Channel Id 66:2166, strokes included in layout), label-xsm Bold `neutral/darker` — then *Last updated: …* (label-xsm Regular `neutral/dark`, **LG+ only**).
+- **Right:** Mail+ Subscribe (channel pages only) · Edition · Login · Search. Each item 16px inset on both sides — Search too, so its label ends 16px before the row's end — with a 1px `color/border/neutral/light` keyline on its left.
+- **Topbar Subscribe** (Figma "Topbar - Subscribe Button", `.masthead-topbar-subscribe`): Mail+ gradient pill (165°, `mplus-dark-blue` 4% → `mplus-solid-blue` 65%), 4px / 12px padding, 4px gap; Daily Mail+ wordmark 80×14 (2px top offset) + "Subscribe" label-sm Semibold white. Hover as the Branding Subscribe. Item: 14px icon + label-sm Semibold `neutral/darker`, 6px gap (Edition: flag 14 · label · chevron 12, 4px gap).
 - **Hover:** `color/background/neutral/light` pill, 4px / 8px outside the content.
 - **Edition menu:** *Select Edition* — UK / US / AU / IE, tick on the current one. Elevation Lv-4 panel (0 4 20 `translucent-dark/subtle`), 8px corners. *Not in Figma yet* — content taken from the current production markup (`pageEditionDropdown`), styling from the system tokens.
 
 ## 4. Branding
 
 - **Logo:** Daily Mail — 331×68 (LG+) · 267×55 (MD) · 127×26 white (Mweb). Hover: 72% opacity. The link hugs the logo.
-- **Slot (desktop):** right column, max 480px, content right-aligned. Default: **Mail+ Subscribe** — 48px pill, Mail+ gradient (`miscellaneous/mailplus/mplus-dark-blue` → `mplus-solid-blue`), Daily Mail+ wordmark 114×20 + "Subscribe" label-xl Semibold white. Hover: `color/background/interaction-primary/hover`, as the primary (brand) button. Other branding elements can replace it.
+- **Mail+ Subscribe — one place per page.** Home and Daily Mail+ home (`.masthead--landing`): the large Subscribe in the Branding slot, none in the Topbar. Every other channel page: the Topbar Subscribe, and the Branding slot stays empty. (Mweb keeps its Subscribe pill on every page.)
+- **Slot (desktop):** right column, max 480px, content right-aligned. Landing pages: **Mail+ Subscribe** — 48px pill, Mail+ gradient (`miscellaneous/mailplus/mplus-dark-blue` → `mplus-solid-blue`), Daily Mail+ wordmark 114×20 + "Subscribe" label-xl Semibold white. Hover: `color/background/interaction-primary/hover`, as the primary (brand) button. Other branding elements can replace it.
 - **Mweb:** Subscribe pill (34px, lightest, M+ icon + label-sm Semibold) and a round login (44px target, 34px circle with a `translucent-light/moderate` border, person icon 14).
 
 ## 5. Navbar L1
@@ -73,14 +75,41 @@ Code: `styles/scss/modules/_masthead.scss`, `_masthead-sheet.scss` · demo `modu
 - Keyboard focus (`:focus-visible`) shows the same states everywhere.
 - The dropdown panels stay LG+ only: below 1024 the channel row scrolls and would clip them.
 
-## 8. Behaviour (script)
+## 8. On scroll — Sticky Navbar (MD+) and Mweb sticky masthead
+
+Figma: Sticky Navbar (2844:3780) · parts (2858:9061) · right side (2891:31679) · login states (2841:15824) · Mweb (2917:31019). Code: `_masthead-sticky.scss`, Mweb part in `_masthead.scss`.
+
+### 8-A. Sticky Navbar (MD+)
+
+- **When:** hidden at first; once the whole masthead has scrolled above the screen it slides down from the top (translateY −100% → 0, 0.3s), and slides back up when the masthead returns. No motion with reduced motion.
+- **Bar:** fixed, full width, 48px, Elevation Lv-1 (0 1 4 `translucent-dark/pale`). Background `color/background/{channel}/base`; **Daily Mail+ pages: horizontal Mail+ gradient** (`mplus-dark-blue` → `mplus-solid-blue`, `.masthead-sticky--mplus`).
+- **Left (256px, or less):** Daily Mail logo 107×22, white, 20px from the edge (12 + 8). When the channels don't fit beside two 256px columns, the left column shrinks first — down to the logo's width (hug) — before the centre starts to scroll. The right column stays 256px. Daily Mail+ pages: Daily Mail+ logo 125×22. Hover: `translucent-light/pale` pill.
+- **Center (the rest):** L1 channels — label-sm Semibold `neutral/lightest`, 38px tall, 10px side padding, 1px apart, 20px row padding; 4px white indicator at the bottom (current: 100%, hover: 40%); Daily Mail+ item: M+ lozenge 28×12. **Centred while they fit; when they don't, left-aligned and scrollable** with 32px chevron edges (fading from the bar colour) on the side(s) that can scroll; a click scrolls ~80%. Only L1 for now — L2 / topic / headline content later.
+- **Right (256px):** 34px buttons, right-aligned; the page renders only those it needs.
+
+| Page | Buttons | Spacing |
+|---|---|---|
+| Channel page (default) | Subscribe · Edition · Login | 12px apart, 14px from the edge |
+| Article | Share · *999 comments* | 8px apart, 16px from the edge |
+| Daily Mail+ article, reader not subscribed | Subscribe · *999* (comment count) — comments stay open, Subscribe invites them to join | 8px apart, 16px from the edge |
+
+- **Buttons:** Subscribe / Comments — `neutral/lightest` pill, `neutral/darker` label-sm Semibold, 14px icon, 5px gap (Subscribe: M+ mark, 10px gap, 16px left padding); hover `neutral/light`. Share — 1px `translucent-light/moderate` outline, lightest label and icon; hover `translucent-light/pale`.
+- **Edition / Login (circles, 34px, 1px `translucent-light/moderate`):** Edition — flag 18 + chevron 8, 4px gap, 8px padding. Login by user: logged out — person icon 14; logged in — initials (label-xxsm Semibold); Mail+ subscriber — initials on the Mail+ gradient (hover `home-blue/deep`). Others hover `translucent-light/pale`. Mail+ subscribers get no Subscribe button.
+
+### 8-B. Mweb (<768) — sticky masthead
+
+- The masthead sticks with only its nav row (burger + channels) in view: its top sits `--masthead-collapse` (the height above the nav row, set by the script) above the screen, so the logo block scrolls away and the nav row stays.
+- **Scrolling up** (past the logo block) adds `.is-revealed` — `top: 0`, the logo block slides back down (0.3s). **Scrolling down** removes it again. At the very top it is simply in place.
+- The nav row is the existing Mweb L1 row. The other Mweb row contents in Figma (L2 tabs, topic header, article share / comments) come later.
+
+## 9. Behaviour (script)
 
 Under the masthead the demo page shows the Nav Sheet open in a frame at the chosen viewport — Live uses the browser window's size (`index.html?frame&sheet`: open from the start, accordion works, close does nothing). The demo page holds the reference script: burger opens / closes the sheet (Escape closes), Edition toggles its menu (outside click / Escape closes), sheet expand buttons show / hide subchannels, and the current channel is scrolled into view when the row scrolls.
 
-## 9. Static states
+## 10. Static states
 
 For the Anatomy page (like the Button's helpers): `.is-hover` on Topbar actions, Subscribe, L1 links, panel links and the sheet's expand button; `.is-open` on an L1 item shows its tab and panel (MD+).
 
-## 10. Not yet
+## 11. Not yet
 
-- Sticky navbar (condensed bar that appears on scroll).
+- Sticky Navbar centre content other than L1 (L2 subchannels, topic package, article headline) and the Mweb row variants.

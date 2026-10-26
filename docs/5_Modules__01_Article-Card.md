@@ -17,7 +17,7 @@ The full-width top story is a separate block — see [Article Card — Banner St
 | **Preview text** *(optional)* | CMS-controlled summary under the headline |
 | **Live Key Updates** *(optional)* | Live articles only — replaces the preview text slot |
 | **Metadata** | Article Card Metadata row — info on the left, comment counter on the right |
-| **Keyline** | 1px bottom line, inset 16px — `color/effect/translucent-dark/pale`. Removed on the last card of a column (`.article-card--no-keyline`) |
+| **Keyline** | 1px bottom line, inset 16px — `color/effect/translucent-dark/pale`. None on the last card of its column (`:last-child`, automatic); `.article-card--no-keyline` removes it anywhere else |
 
 The card carries its own 16px inset; the column grid carries none (Foundation › Layout & Grid).
 

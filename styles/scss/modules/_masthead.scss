@@ -61,17 +61,34 @@
 
 // ── Shell ─────────────────────────────────────────────────────────────────────
 
+// Mweb sticky: the masthead sticks with only its nav row in view — its top
+// sits --masthead-collapse (the height above the nav row, set by the script)
+// above the screen, so the logo block scrolls away and the burger + channels
+// stay. Scrolling up adds .is-revealed: top 0, the logo block slides back down.
+// MD+: a plain block (the Sticky Navbar takes over, _masthead-sticky.scss).
 .masthead {
-  position: relative;
+  position: sticky;
+  top: calc(var(--masthead-collapse, 0px) * -1);
   z-index: 50; // dropdown panels above the page
   width: 100%;
   padding-top: var(--spacing-4);
   background-color: var(--masthead-color);
   font-family: var(--typography-font-family-sans);
+  transition: top 0.3s ease;
+
+  &.is-revealed {
+    top: 0;
+  }
 
   @include bp.respond-to(md) {
+    position: relative;
+    top: auto;
     padding-top: 0;
     background-color: var(--color-background-neutral-lightest);
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    transition: none;
   }
 }
 
@@ -181,8 +198,10 @@
   line-height: var(--typography-line-height-narrow);
 }
 
+// Channel bar: 3px border + 4px padding — the label starts 7px in (Figma
+// strokes included in layout)
 .masthead-topbar__channel {
-  padding-left: var(--spacing-8);
+  padding-left: var(--spacing-4);
   border-left: 3px solid var(--masthead-keyline);
   font-weight: var(--typography-font-weight-bold);
   color: var(--color-text-neutral-darker);
@@ -213,10 +232,53 @@
   min-height: 22px;
   padding-inline: var(--spacing-16);
   border-left: 1px solid var(--color-border-neutral-light);
+}
 
-  &:last-child {
-    padding-right: 0;
+// Topbar Subscribe (Figma "Topbar - Subscribe Button", Type=DailyMail+ Subs):
+// Mail+ gradient pill, Daily Mail+ wordmark 80×14 + "Subscribe" label-sm
+// Semibold white, 4px gap, 4px / 12px padding. Hover as the Branding one.
+.masthead-topbar-subscribe {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--spacing-4);
+  padding: var(--spacing-4) var(--spacing-12);
+  border-radius: var(--border-radius-full);
+  background-image: linear-gradient(
+    165deg,
+    var(--color-miscellaneous-mailplus-mplus-dark-blue) 4%,
+    var(--color-miscellaneous-mailplus-mplus-solid-blue) 65%
+  );
+  font-size: var(--typography-font-size-label-sm);
+  font-weight: var(--typography-font-weight-semibold);
+  line-height: var(--typography-line-height-narrow);
+  color: var(--color-text-neutral-white);
+  white-space: nowrap;
+  text-decoration: none;
+
+  svg {
+    width: 80px;
+    height: 14px;
+    margin-top: 2px;
   }
+
+  &:focus-visible,
+  &.is-hover {
+    background-image: none;
+    background-color: var(--color-background-interaction-primary-hover);
+  }
+
+  @include pointer-hover {
+    background-image: none;
+    background-color: var(--color-background-interaction-primary-hover);
+  }
+}
+
+// Mail+ Subscribe sits in one place per page: the Branding slot on Home and
+// Daily Mail+ home (.masthead--landing), the Topbar everywhere else (the slot
+// stays empty)
+.masthead--landing .masthead-topbar__subscribe,
+.masthead:not(.masthead--landing) .masthead-branding__slot .masthead-subscribe {
+  display: none;
 }
 
 // Edition: flag 14 · label · chevron 12, 4px apart

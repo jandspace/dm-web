@@ -40,6 +40,11 @@
     height: 1px;
     background-color: var(--color-effect-translucent-dark-pale);
   }
+
+  // The last block of its column has none
+  &:last-child::after {
+    display: none;
+  }
 }
 
 .channel-puff__inner {
@@ -53,10 +58,6 @@
 
   .article-card {
     background-color: transparent;
-  }
-
-  .article-card:last-child::after {
-    display: none;
   }
 
   // Article hover on the channel surface: no interaction blue — the headline

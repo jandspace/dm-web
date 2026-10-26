@@ -39,6 +39,16 @@
   margin-bottom: var(--spacing-48);
 }
 
+// Page placeholder under the masthead — preview frames only (room to scroll
+// for the sticky behaviour); the live page scrolls on its own content
+.demo-nav-filler {
+  display: none;
+}
+
+.demo-frame .demo-nav-filler {
+  display: block;
+}
+
 // Nav Sheet frame (?frame&sheet): the sheet only — no masthead behind it
 .demo-sheet-frame .masthead {
   visibility: hidden;
@@ -121,6 +131,7 @@
 
 // Masthead context around a part
 .demo-anatomy__context.masthead {
+  position: relative; // not the Mweb sticky masthead
   width: auto;
   padding: var(--spacing-12) var(--spacing-20);
   border-radius: var(--border-radius-8);

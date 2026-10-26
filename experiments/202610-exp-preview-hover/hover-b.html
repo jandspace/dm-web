@@ -120,29 +120,17 @@
            · Live Key Updates — underline on the hovered update (colour change kept)
     ════════════════════════════════════════════════════ -->
     <style>
-      .article-card::before {
-        display: none;
+      /* B: the same grey hover surface as A, but no interaction blue — on
+         hover the headline keeps its resting neutral/darker (as cards in the
+         Channel Puff already do), and Live Key Updates keep neutral/dark.
+         Image Only and the Banner Story stay as they are (white text, no blue). */
+      .article-card:not(.article-card--image-only):has(.article-card__link:hover, .article-card__link:focus-visible) .article-headline {
+        color: var(--color-text-neutral-darker);
       }
 
-      /* Underline only while the pointer is on the article link itself — on
-         channel / comments / key updates it goes, like the headline colour */
-      .article-card:has(.article-card__link:hover) .article-card__link,
-      .article-card:has(.article-card__link:focus-visible) .article-card__link,
-      .article-card-banner__panel:hover .article-card-banner__link,
-      .article-card-banner__panel:has(.article-card-banner__link:focus-visible) .article-card-banner__link,
       .article-card-key-updates__text:hover,
       .article-card-key-updates__text:focus-visible {
-        text-decoration: underline;
-        text-decoration-thickness: 1px;
-        text-underline-offset: 0.15em;
-      }
-
-      /* Section header link (More Showbiz): label underlined on hover, like the headlines */
-      a.section-header__link:hover .section-header__text,
-      a.section-header__link:focus-visible .section-header__text {
-        text-decoration: underline;
-        text-decoration-thickness: 1px;
-        text-underline-offset: 0.15em;
+        color: var(--color-text-neutral-dark);
       }
     </style>
     <script src="../../scripts/scaffolding/experiments-home.js" defer></script>
@@ -171,7 +159,7 @@
       <header class="exp-shell__header">
         <h1 class="exp-shell__title">Preview hover · B (variant)</h1>
         <p class="exp-shell__meta">
-          Variant — shared CSS plus inline overrides: no hover surface, headline underline on card hover.
+          Variant — shared CSS plus one inline override: the same grey hover surface as A, but no blue — the headline keeps its colour on hover.
           Gamma (Banner Story) + lead block “lead-alpha”, rendered at LG ≥1024 in a 1024px frame. Hover the cards to compare with A.
         </p>
       </header>

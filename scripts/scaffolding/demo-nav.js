@@ -19,7 +19,10 @@
   const NAV = [
     {
       group: 'Foundation',
-      items: [{ name: 'Colour', path: 'foundation/colour/' }],
+      items: [
+        { name: 'Colour', path: 'foundation/colour/' },
+        { name: 'Layout & Grid', path: 'foundation/layout/' },
+      ],
     },
     {
       group: 'Components',

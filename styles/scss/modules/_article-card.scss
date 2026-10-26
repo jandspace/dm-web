@@ -69,6 +69,9 @@
     background-color: var(--color-effect-translucent-dark-pale);
   }
 
+  // The last card of its column has none (Layout > keylines); --no-keyline
+  // removes it anywhere else
+  &:last-child::after,
   &--no-keyline::after {
     display: none;
   }

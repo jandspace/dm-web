@@ -1,0 +1,211 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Layout &amp; Grid</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&family=Lora:ital,wght@0,400;0,500;0,600;0,700;1,400&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="../../tokens/dm_tokens.css" />
+    <link rel="stylesheet" href="../../tokens/dm_typography_web_tokens.css" />
+    <link rel="stylesheet" href="../../styles/css/main.css" />
+    <script src="../../scripts/scaffolding/demo-nav.js" defer></script>
+  </head>
+  <body class="demo-page-body demo-layout-page">
+    <h1 class="demo-page-h1">Layout &amp; Grid</h1>
+    <p class="demo-page-intro">
+      Page layout classes inside <code>.container</code> (Figma Web UI Kit › Layout &amp; Grid 400:6871, Homepage 8281:97719):
+      <code>layout-full</code> (Fullwidth) · <code>layout-split</code> with <code>layout-alpha</code> 2/3 + <code>layout-beta</code> 1/3
+      (LG+; stacked below LG) · <code>layout-row</code> of <code>layout-col</code> (equal widths — Col 1-2, 1-3, 1-4) ·
+      <code>layout-inset</code> for a tinted box. No gaps: cards carry their own 16px inset. Keylines are 16px in from each
+      side and the last child of its parent has none. Grey blocks are placeholder cards. Turn on Guides to see each region.
+    </p>
+
+    <div class="demo-vp-toolbar">
+      <div class="demo-vp-toolbar__row">
+        <span id="demo-vp-switch-label">Viewport</span>
+        <div class="demo-vp-toggle" role="group" aria-labelledby="demo-vp-switch-label" id="demo-vp-switch">
+          <button type="button" data-vp="live" aria-pressed="true">Live</button>
+          <button type="button" data-vp="xl" aria-pressed="false">XL ≥1376</button>
+          <button type="button" data-vp="lg" aria-pressed="false">LG ≥1024</button>
+          <button type="button" data-vp="md" aria-pressed="false">MD ≥768</button>
+          <button type="button" data-vp="xs" aria-pressed="false">SM-XS &lt;768</button>
+        </div>
+        <span class="demo-vp-toolbar__divider"></span>
+        <div class="demo-vp-toggle" role="group" aria-label="Guides" id="demo-guides">
+          <button type="button" data-guides="off" aria-pressed="true">Guides off</button>
+          <button type="button" data-guides="on" aria-pressed="false">Guides on</button>
+        </div>
+        <span class="demo-vp-status" id="demo-vp-status"></span>
+      </div>
+    </div>
+
+    <div class="demo-layout-wrap">
+      <div class="demo-layout-main">
+    <main class="container demo-layout-sample" id="demo-layout-sample">
+        <!-- Guides: the column grid over the whole sample (12 from LG · 6 below) -->
+        <div class="demo-layout-columns" aria-hidden="true"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></div>
+        <!-- Fullwidth — one module (Top Banner) -->
+        <section class="layout-full"><span class="demo-layout-tag">layout-full</span><div class="demo-layout-card"><div class="demo-layout-card__media demo-layout-card__media--banner"></div><p class="h1"><span class="demo-layout-text">PM declares war on Brexit: Starmer uses Trump&#x27;s abuse to signal he&#x27;ll move UK closer to EU as President hurls fresh insults</span></p></div></section>
+
+        <!-- Fullwidth — header + Row (Col 1-3 ×3) -->
+        <section class="layout-full"><span class="demo-layout-tag">layout-full</span><h2 class="demo-layout-heading"><span class="demo-layout-text demo-layout-text--strong">Section Header</span></h2><div class="layout-row"><span class="demo-layout-tag">layout-row</span><div class="layout-col"><span class="demo-layout-tag">Col 1-3</span><div class="demo-layout-card demo-layout-card--featured"><div class="demo-layout-card__media"></div><p class="h5"><span class="demo-layout-text">Our Newsletters: explore our curated newsletters for the latest news</span></p></div></div><div class="layout-col"><span class="demo-layout-tag">Col 1-3</span><div class="demo-layout-card demo-layout-card--featured"><div class="demo-layout-card__media"></div><p class="h5"><span class="demo-layout-text">Games: Sudoku, Word Wheel, Guess Word and more</span></p></div></div><div class="layout-col"><span class="demo-layout-tag">Col 1-3</span><div class="demo-layout-card demo-layout-card--featured"><div class="demo-layout-card__media"></div><p class="h5"><span class="demo-layout-text">The Crime Desk: exclusive true crime stories, video and podcasts</span></p></div></div></div></section>
+
+        <!-- Fullwidth — Split: header in Alpha, Beta led by a small header + tinted box -->
+        <section class="layout-full"><span class="demo-layout-tag">layout-full</span><div class="layout-split"><div class="layout-alpha"><span class="demo-layout-tag">layout-alpha</span><h2 class="demo-layout-heading"><span class="demo-layout-text demo-layout-text--strong">Section Header</span></h2><div class="layout-row"><span class="demo-layout-tag">layout-row</span><div class="layout-col"><span class="demo-layout-tag">Col 1-1</span><div class="demo-layout-card"><div class="demo-layout-card__media"></div><p class="h2"><span class="demo-layout-text">Trump has wanted to leave Nato for 40 years... but Marco Rubio&#x27;s swingeing intervention may stop him</span></p></div></div></div><div class="layout-row"><span class="demo-layout-tag">layout-row</span><div class="layout-col"><span class="demo-layout-tag">Col 1-2</span><div class="demo-layout-card demo-layout-card--sm-left"><div class="demo-layout-card__media"></div><p class="h5"><span class="demo-layout-text">Pete Hegseth claims &#x27;Iran begged for this ceasefire&#x27;: Live updates</span></p></div><div class="demo-layout-card demo-layout-card--sm-left"><div class="demo-layout-card__media"></div><p class="h5"><span class="demo-layout-text">White House publishes 10-point ceasefire plan not one received by US, says Iran</span></p></div><div class="demo-layout-card demo-layout-card--sm-left"><div class="demo-layout-card__media"></div><p class="h5"><span class="demo-layout-text">Iran &#x27;could WITHDRAW from ceasefire&#x27; as Israel is accused of violating terms of the deal</span></p></div><div class="demo-layout-card demo-layout-card--sm-left"><div class="demo-layout-card__media"></div><p class="h5"><span class="demo-layout-text">Desperate Iranian mullahs launch army recruitment campaign &#x27;to defend country&#x27;s soil&#x27;</span></p></div></div><div class="layout-col"><span class="demo-layout-tag">Col 1-2</span><div class="demo-layout-card demo-layout-card--sm-left"><div class="demo-layout-card__media"></div><p class="h5"><span class="demo-layout-text">We never asked Trump for a ceasefire, Iran says as it blasts claims of deal as &#x27;ridiculous&#x27;</span></p></div><div class="demo-layout-card demo-layout-card--sm-left"><div class="demo-layout-card__media"></div><p class="h5"><span class="demo-layout-text">BORIS JOHNSON: Tony Blair is right. We may not like the war with Iran but it&#x27;s not our war</span></p></div><div class="demo-layout-card demo-layout-card--sm-left"><div class="demo-layout-card__media"></div><p class="h5"><span class="demo-layout-text">Iraq: Israel&#x27;s Lebanon strikes &#x27;evidence&#x27; of plan to sabotage truce</span></p></div></div></div></div><aside class="layout-beta"><span class="demo-layout-tag">layout-beta</span><header class="section-header section-header--sm"><div class="section-header__row"><h2 class="section-header__title"><span class="section-header__link"><span class="section-header__label"><span class="section-header__text"><span class="demo-layout-text demo-layout-text--strong">Section Header</span></span></span></span></h2></div></header><div class="layout-inset"><span class="demo-layout-tag">layout-inset</span><div class="demo-layout-box"><div class="demo-layout-card demo-layout-card--sm-right"><div class="demo-layout-card__media"></div><p class="h6"><span class="demo-layout-text">Princess Andre takes subtle swipe at mum Katie Price as she reveals line</span></p></div><div class="demo-layout-card demo-layout-card--sm-right"><div class="demo-layout-card__media"></div><p class="h6"><span class="demo-layout-text">Jessica Alba, 47, strips down to a skimpy bikini on holiday after divorce agreement</span></p></div></div></div><div class="demo-layout-card demo-layout-card--sm-right"><div class="demo-layout-card__media"></div><p class="h6"><span class="demo-layout-text">Love yourself first: take time to prioritise your health this summer with these top 10 brands</span></p></div><div class="demo-layout-card demo-layout-card--sm-right"><div class="demo-layout-card__media"></div><p class="h6"><span class="demo-layout-text">The brand behind the self-tan that sells every 20 seconds drops glow-boosting SPF</span></p></div><div class="demo-layout-mpu">MPU 300 × 250</div></aside></div></section>
+
+        <!-- Fullwidth — Split --joined (one channel block) -->
+        <section class="layout-full"><span class="demo-layout-tag">layout-full</span><h2 class="demo-layout-heading"><span class="demo-layout-text demo-layout-text--strong">Section Header</span></h2><div class="layout-split layout-split--joined"><div class="layout-alpha"><span class="demo-layout-tag">layout-alpha</span><div class="demo-layout-card"><div class="demo-layout-card__media"></div><p class="h2"><span class="demo-layout-text">Prince George and Princess Charlotte dash out to grab hats as the 29C sun beams down on Centre Court</span></p></div></div><aside class="layout-beta"><span class="demo-layout-tag">layout-beta</span><div class="demo-layout-card demo-layout-card--sm-right"><div class="demo-layout-card__media"></div><p class="h6"><span class="demo-layout-text">Sydney Sweeney is under attack again. This is the point that the jealous sisterhood is missing</span></p></div><div class="demo-layout-card demo-layout-card--sm-right"><div class="demo-layout-card__media"></div><p class="h6"><span class="demo-layout-text">Kylie Jenner was left &#x27;weeping&#x27; after revealing to daughter why the Kardashians are famous</span></p></div><div class="demo-layout-card demo-layout-card--sm-right"><div class="demo-layout-card__media"></div><p class="h6"><span class="demo-layout-text">Carol Kirkwood&#x27;s colleagues take a dig during her final moments on BBC</span></p></div><div class="demo-layout-card demo-layout-card--sm-right"><div class="demo-layout-card__media"></div><p class="h6"><span class="demo-layout-text">Pictured: The plastic surgery disaster that left a reality star unrecognisable</span></p></div></aside></div></section>
+
+        <!-- Fullwidth — Row of three channel columns -->
+        <section class="layout-full"><span class="demo-layout-tag">layout-full</span><div class="layout-row"><span class="demo-layout-tag">layout-row</span><div class="layout-col"><span class="demo-layout-tag">Col 1-3</span><h2 class="demo-layout-heading"><span class="demo-layout-text demo-layout-text--strong">Section Header</span></h2><div class="demo-layout-card"><div class="demo-layout-card__media"></div><p class="h4"><span class="demo-layout-text">Warn women in their 30s about alcohol and breast cancer link, urge scientists</span></p></div><div class="demo-layout-card demo-layout-card--sm-left"><div class="demo-layout-card__media"></div><p class="h5"><span class="demo-layout-text">The five-minute habit that could add years to your life, according to experts</span></p></div><div class="demo-layout-card demo-layout-card--sm-left"><div class="demo-layout-card__media"></div><p class="h5"><span class="demo-layout-text">Why you should never skip breakfast if you are over 50</span></p></div><div class="demo-layout-card demo-layout-card--sm-left"><div class="demo-layout-card__media"></div><p class="h5"><span class="demo-layout-text">GPs to offer weight-loss jabs on the NHS from next spring</span></p></div></div><div class="layout-col"><span class="demo-layout-tag">Col 1-3</span><h2 class="demo-layout-heading"><span class="demo-layout-text demo-layout-text--strong">Section Header</span></h2><div class="demo-layout-card"><div class="demo-layout-card__media"></div><p class="h4"><span class="demo-layout-text">The secret Greek island that&#x27;s half the price of Santorini</span></p></div><div class="demo-layout-card demo-layout-card--sm-left"><div class="demo-layout-card__media"></div><p class="h5"><span class="demo-layout-text">Inside the luxury train that crosses Europe in 48 hours</span></p></div><div class="demo-layout-card demo-layout-card--sm-left"><div class="demo-layout-card__media"></div><p class="h5"><span class="demo-layout-text">Holiday hotspot slaps new tourist tax on day-trippers</span></p></div><div class="demo-layout-card demo-layout-card--sm-left"><div class="demo-layout-card__media"></div><p class="h5"><span class="demo-layout-text">The best beaches in Britain, as voted by readers</span></p></div></div><div class="layout-col"><span class="demo-layout-tag">Col 1-3</span><h2 class="demo-layout-heading"><span class="demo-layout-text demo-layout-text--strong">Section Header</span></h2><div class="demo-layout-card"><div class="demo-layout-card__media"></div><p class="h4"><span class="demo-layout-text">Met Police did NOT launch child sex probe as force hunts for &#x27;disturbing&#x27; 2018 letter</span></p></div><div class="demo-layout-card demo-layout-card--sm-left"><div class="demo-layout-card__media"></div><p class="h5"><span class="demo-layout-text">Detectives reopen cold case after new DNA breakthrough</span></p></div><div class="demo-layout-card demo-layout-card--sm-left"><div class="demo-layout-card__media"></div><p class="h5"><span class="demo-layout-text">Inside the gang that stole £10m of luxury watches</span></p></div><div class="demo-layout-card demo-layout-card--sm-left"><div class="demo-layout-card__media"></div><p class="h5"><span class="demo-layout-text">Jury sent out in trial of man accused of killing his neighbour</span></p></div></div></div></section>
+
+        <!-- Fullwidth — Row of four (1/4) -->
+        <section class="layout-full"><span class="demo-layout-tag">layout-full</span><h2 class="demo-layout-heading"><span class="demo-layout-text demo-layout-text--strong">Section Header</span></h2><div class="layout-row"><span class="demo-layout-tag">layout-row</span><div class="layout-col"><span class="demo-layout-tag">Col 1-4</span><div class="demo-layout-card"><div class="demo-layout-card__media"></div><p class="h4"><span class="demo-layout-text">Farage faces calls to sack Reform&#x27;s housing spokesman over Grenfell Tower comments</span></p></div></div><div class="layout-col"><span class="demo-layout-tag">Col 1-4</span><div class="demo-layout-card"><div class="demo-layout-card__media"></div><p class="h4"><span class="demo-layout-text">BoE warns of interest rates pain to come as inflation spikes in Labour&#x27;s &#x27;winter of discontent&#x27;</span></p></div></div><div class="layout-col"><span class="demo-layout-tag">Col 1-4</span><div class="demo-layout-card"><div class="demo-layout-card__media"></div><p class="h4"><span class="demo-layout-text">Amanda Platell: Sydney Sweeney is under attack again</span></p></div></div><div class="layout-col"><span class="demo-layout-tag">Col 1-4</span><div class="demo-layout-card"><div class="demo-layout-card__media"></div><p class="h4"><span class="demo-layout-text">Stunning DAZN presenters refuse to bow to colleague&#x27;s &#x27;vulgarity&#x27; dig</span></p></div></div></div></section>
+    </main>
+
+    <!-- Fixed-viewport preview: this page rendered in an iframe at the chosen width -->
+    <div class="demo-vp-stage demo-layout-stage" id="demo-vp-stage" hidden></div>
+      </div>
+
+      <aside class="demo-layout-ref" aria-label="Layout classes">
+        <h2>Structure</h2>
+<pre>&lt;div class="<b class="demo-layout-code demo-layout-code--container">container</b>"&gt;
+  &lt;section class="<b class="demo-layout-code demo-layout-code--layout-full">layout-full</b>"&gt;
+    section header (optional)
+    &lt;div class="<b class="demo-layout-code demo-layout-code--layout-split">layout-split</b>"&gt;
+      &lt;div class="<b class="demo-layout-code demo-layout-code--layout-alpha">layout-alpha</b>"&gt;
+        &lt;div class="<b class="demo-layout-code demo-layout-code--layout-row">layout-row</b>"&gt;
+          &lt;div class="<b class="demo-layout-code demo-layout-code--layout-col">layout-col</b>"&gt;cards&lt;/div&gt;
+          &lt;div class="<b class="demo-layout-code demo-layout-code--layout-col">layout-col</b>"&gt;cards&lt;/div&gt;
+        &lt;/div&gt;
+      &lt;/div&gt;
+      &lt;aside class="<b class="demo-layout-code demo-layout-code--layout-beta">layout-beta</b>"&gt;
+        cards
+        &lt;div class="<b class="demo-layout-code demo-layout-code--layout-inset">layout-inset</b>"&gt;tinted box&lt;/div&gt;
+      &lt;/aside&gt;
+    &lt;/div&gt;
+  &lt;/section&gt;
+
+  &lt;section class="<b class="demo-layout-code demo-layout-code--layout-full">layout-full</b>"&gt;
+    &lt;div class="<b class="demo-layout-code demo-layout-code--layout-row">layout-row</b>"&gt;
+      &lt;div class="<b class="demo-layout-code demo-layout-code--layout-col">layout-col</b>"&gt;…&lt;/div&gt; × 2–4
+    &lt;/div&gt;
+  &lt;/section&gt;
+&lt;/div&gt;</pre>
+
+        <h2>Classes</h2>
+        <dl>
+          <dt class="demo-layout-code demo-layout-code--container">.container</dt>
+          <dd>Page width: fluid below LG (max 720 · 960), fixed 996 at LG and 1224 at XL. No padding.</dd>
+          <dt class="demo-layout-code demo-layout-code--layout-full">.layout-full</dt>
+          <dd>Figma “Fullwidth”. One section across the container: a single module, a split or a row, with an optional section header on top. Keyline below.</dd>
+          <dt class="demo-layout-code demo-layout-code--layout-split">.layout-split</dt>
+          <dd>Puts Alpha and Beta side by side from LG (2/3 + 1/3). Below LG they stack, Beta under Alpha.</dd>
+          <dt class="demo-layout-code demo-layout-code--layout-split">.layout-split--joined</dt>
+          <dd>One channel block split 2:1 (e.g. Showbiz): no keyline between Alpha and Beta.</dd>
+          <dt class="demo-layout-code demo-layout-code--layout-alpha">.layout-alpha</dt>
+          <dd>Figma “Alpha”. The main column: 664 at LG, 816 at XL. Holds cards or rows.</dd>
+          <dt class="demo-layout-code demo-layout-code--layout-beta">.layout-beta</dt>
+          <dd>Figma “Beta”. The right rail: 332 at LG (the narrowest that fits an MPU), 408 at XL. No padding of its own. Keyline on its left.</dd>
+          <dt class="demo-layout-code demo-layout-code--layout-row">.layout-row</dt>
+          <dd>Figma “Row”. Columns of equal width from MD — two children make Col 1-2, three Col 1-3, four 1/4. Below MD (SM-XS) the columns stack, with a keyline between them. Keyline below.</dd>
+          <dt class="demo-layout-code demo-layout-code--layout-col">.layout-col</dt>
+          <dd>Figma “Col 1-n”. One column; its cards stack and it keeps its own height. Put cards straight in — no wrapper per card.</dd>
+          <dt class="demo-layout-code demo-layout-code--layout-inset">.layout-inset</dt>
+          <dd>Wraps a box with its own background (e.g. a tinted box in Beta) so it does not run edge to edge. One content block, like a card: 16px inset and a keyline below.</dd>
+        </dl>
+
+        <h2>Rules</h2>
+        <ul>
+          <li>No gaps or padding on layout classes — every card carries its own 16px inset, so neighbours sit 32px apart.</li>
+          <li>Keylines: 1px <code>translucent-dark/pale</code>, 16px in from each end. Sections, rows and cards draw their own; the last child of its parent has none.</li>
+          <li>SM cards: Left Thumb in Alpha and other main columns, Right Thumb in Beta.</li>
+          <li>Hiding or reordering a block at a breakpoint is a page decision, not a layout class.</li>
+        </ul>
+      </aside>
+    </div>
+
+    <script>
+      // Scaffolding only — viewport preview + guides.
+      //   ?frame          the sample only (rendered inside the viewport stage)
+      //   ?guides         region outlines and names on
+      //   ?vp=xl|lg|md|xs preview at a fixed viewport width (the buttons name the breakpoint)
+      (() => {
+        const params = new URLSearchParams(location.search);
+        document.body.classList.toggle('demo-layout-guides', params.has('guides'));
+        if (params.has('frame')) {
+          document.body.classList.add('demo-frame');
+          return;
+        }
+
+        const VIEWPORTS = {
+          xl: { width: 1440 },
+          lg: { width: 1024 },
+          md: { width: 768 },
+          xs: { width: 390 },
+        };
+        const sample = document.getElementById('demo-layout-sample');
+        const stage = document.getElementById('demo-vp-stage');
+        const status = document.getElementById('demo-vp-status');
+        let vpKey = params.get('vp') in VIEWPORTS ? params.get('vp') : 'live';
+        let guides = params.has('guides');
+        let iframe = null;
+
+        const fit = () => {
+          if (!iframe || !iframe.contentDocument) return;
+          const width = VIEWPORTS[vpKey].width;
+          const height = iframe.contentDocument.documentElement.scrollHeight;
+          const scale = Math.min(1, stage.parentElement.clientWidth / width);
+          iframe.width = width;
+          iframe.height = height;
+          iframe.style.transform = `scale(${scale})`;
+          stage.style.width = `${width * scale}px`;
+          stage.style.height = `${height * scale}px`;
+          status.textContent = `${width}px preview · ${Math.round(scale * 100)}%`;
+        };
+
+        const render = () => {
+          document.querySelectorAll('#demo-vp-switch button').forEach((b) => b.setAttribute('aria-pressed', String(b.dataset.vp === vpKey)));
+          document.querySelectorAll('#demo-guides button').forEach((b) => b.setAttribute('aria-pressed', String((b.dataset.guides === 'on') === guides)));
+          document.body.classList.toggle('demo-layout-guides', guides);
+          const url = new URL(location.href);
+          vpKey === 'live' ? url.searchParams.delete('vp') : url.searchParams.set('vp', vpKey);
+          guides ? url.searchParams.set('guides', '') : url.searchParams.delete('guides');
+          history.replaceState(null, '', url);
+
+          const fixed = vpKey !== 'live';
+          sample.hidden = fixed;
+          stage.hidden = !fixed;
+          if (!fixed) {
+            stage.replaceChildren();
+            iframe = null;
+            status.textContent = '';
+            return;
+          }
+          status.textContent = 'Loading…';
+          iframe = document.createElement('iframe');
+          iframe.src = `index.html?frame${guides ? '&guides' : ''}`;
+          iframe.title = `Layout at ${VIEWPORTS[vpKey].width}px`;
+          iframe.addEventListener('load', async () => {
+            await iframe.contentDocument.fonts.ready;
+            fit();
+          });
+          stage.replaceChildren(iframe);
+        };
+
+        document.getElementById('demo-vp-switch').addEventListener('click', (e) => {
+          const b = e.target.closest('button[data-vp]');
+          if (b) { vpKey = b.dataset.vp; render(); }
+        });
+        document.getElementById('demo-guides').addEventListener('click', (e) => {
+          const b = e.target.closest('button[data-guides]');
+          if (b) { guides = b.dataset.guides === 'on'; render(); }
+        });
+        window.addEventListener('resize', fit);
+        render();
+      })();
+    </script>
+  </body>
+</html>

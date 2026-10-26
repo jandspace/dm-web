@@ -384,3 +384,58 @@ Hero banners, full-bleed images, and background modules may intentionally extend
 #### Carousel and horizontal scroll gaps
 
 Within carousel and horizontally scrollable components, the gap between items is defined independently of the standard 32px column gutter. A 32px gap between adjacent cards in a horizontal scroll context is visually excessive. Gap values for carousel components are specified at the component level — refer to the relevant component documentation for exact values.
+
+---
+
+## **5. Layout Classes (code)**
+
+The column grid above is the unit. Pages are built from a small set of named layout classes on top of it — the same names as the Figma page frames (Homepage 8281:97719). Code: `styles/scss/foundation/_layout.scss` · demo `foundation/layout/`.
+
+### **5-A. Classes**
+
+| Class | Figma frame | What it does |
+| :---- | :---- | :---- |
+| `.layout-full` | Fullwidth | One section, full container width. Holds one module, a `layout-split` or a `layout-row` (a section header may sit above them) |
+| `.layout-split` | — | Alpha + Beta side by side from **LG** (2/3 + 1/3 = 8 + 4 columns). **Below LG they stack**: Beta under Alpha, both full width |
+| `.layout-alpha` | Alpha | Main column (664 at LG · 816 at XL) |
+| `.layout-beta` | Beta | Right rail (332 at LG · 408 at XL). No padding of its own |
+| `.layout-split--joined` | — | One channel block split 2:1 (e.g. Showbiz, Lifestyle): no keyline between Alpha and Beta |
+| `.layout-row` | Row | Columns of equal width from **MD** — 2 children = Col 1-2, 3 = Col 1-3, 4 = 1/4. **Below MD (SM-XS) the columns stack**, full width, with a keyline between them |
+| `.layout-col` | Col 1-n | One column; its cards stack vertically and each column keeps its own height |
+| `.layout-inset` | inner container | Wraps a box with its own background (e.g. a tinted box in Beta) — without it the box would run edge to edge. Counts as one content block, like a card: 16px inset all round and the bottom keyline (none when last) |
+
+Three items across the page are one `layout-row` with three `layout-col` children — no nested splitter (`alpha > column-splitter > column-split` on the current site).
+
+```html
+<section class="layout-full">
+  <div class="section-header">…</div>
+  <div class="layout-split">
+    <div class="layout-alpha">
+      <div class="layout-row">
+        <div class="layout-col">cards…</div>
+        <div class="layout-col">cards…</div>
+      </div>
+    </div>
+    <aside class="layout-beta">cards… MPU…</aside>
+  </div>
+</section>
+```
+
+### **5-B. Spacing**
+
+No gaps and no padding on any layout class. Every card and block carries its own 16px side inset, so neighbours sit 32px apart (Section 4-A). The Beta width at LG (332) is the narrowest that fits an MPU (300 + 2 × 16) — one reason Alpha/Beta stack below LG.
+
+### **5-C. Keylines**
+
+- 1px `color/effect/translucent-dark/pale`, 16px in from each side, so neighbouring keylines never touch.
+- A section (`layout-full`), a row (`layout-row`) and every card or content block (incl. `layout-inset`) draw their own bottom keyline.
+- **The last child of its parent has none.** Each part removes its own with `:last-child` — so cards in a column sit directly in `layout-col`, never one wrapper per card (each card would then be a last child and lose its keyline).
+- Beta has a vertical keyline on its left from LG (none with `--joined`), 16px in from the top and bottom — the same rule as the horizontal keylines. Stacked below LG, Alpha gets a bottom keyline instead.
+
+### **5-D. Card choice by column**
+
+SM cards take their thumbnail side from where they sit: **Left Thumb** (`article-card--sm-left`) in Alpha and other main columns, **Right Thumb** (`article-card--sm-right`) in Beta.
+
+### **5-E. Page-level changes**
+
+Hiding a block or changing the order at a breakpoint (e.g. Beta first on MD) is a page decision — add it in that page's styles, not in the layout classes.

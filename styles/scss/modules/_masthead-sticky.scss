@@ -1,0 +1,429 @@
+// ── Masthead — Sticky Navbar (MD+) ────────────────────────────────────────────
+// A slim bar that slides down from the top once the masthead has scrolled out
+// of view, and slides back up when the masthead returns. MD and up only — on
+// Mweb the masthead itself sticks (_masthead.scss › Mweb sticky).
+//
+//   .masthead-sticky.masthead--{section}   48px, channel colour (--masthead-color);
+//                                           .masthead-sticky--mplus: Mail+ gradient
+//     __left     256px, down to the logo's width when the channels need the room —
+//                Daily Mail logo 107×22 (Mail+: Daily Mail+ logo 125×22)
+//     __center   L1 channels — centred when they fit; otherwise left-aligned and
+//                scrollable, with chevron edges on the side(s) that can scroll
+//     __right    256px — right-aligned buttons; which ones depends on the page
+//                and the user (the page renders only those it needs)
+//
+// The behaviour script adds .is-visible (slide down) and toggles [hidden] on
+// the chevron edges.
+//
+// Reference: Figma Web UI Kit › Sticky Navbar (2844:3780) · parts (2858:9061)
+
+@use '../foundation/breakpoints' as bp;
+
+.masthead-sticky {
+  // Edge fades blend into the bar: one colour, or the gradient's two ends
+  --masthead-sticky-start: var(--masthead-color);
+  --masthead-sticky-end: var(--masthead-color);
+
+  display: none;
+
+  @include bp.respond-to(md) {
+    position: fixed;
+    top: 0;
+    right: 0;
+    left: 0;
+    z-index: 60; // above the page and the masthead, under the Nav Sheet
+    display: flex;
+    align-items: center;
+    height: 48px;
+    background-color: var(--masthead-color);
+    box-shadow: 0 1px 4px var(--color-effect-translucent-dark-pale); // Elevation Lv-1
+    font-family: var(--typography-font-family-sans);
+    transform: translateY(-100%);
+    visibility: hidden;
+    transition:
+      transform 0.3s ease,
+      visibility 0.3s;
+
+    &.is-visible {
+      transform: none;
+      visibility: visible;
+    }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    transition: none;
+  }
+}
+
+// Mail+ pages: horizontal Mail+ gradient
+.masthead-sticky--mplus {
+  --masthead-sticky-start: var(--color-miscellaneous-mailplus-mplus-dark-blue);
+  --masthead-sticky-end: var(--color-miscellaneous-mailplus-mplus-solid-blue);
+
+  background-image: linear-gradient(to right, var(--masthead-sticky-start), var(--masthead-sticky-end));
+}
+
+// ── Left: logo ────────────────────────────────────────────────────────────────
+
+// 256px; when the channels don't fit beside 256px columns it gives way first
+// (the large shrink factor), down to the logo's own width — then the centre
+// starts to scroll
+.masthead-sticky__left {
+  display: flex;
+  flex: 0 1000 256px;
+  align-items: center;
+  padding-left: var(--spacing-12);
+}
+
+// 32px tall, 8px side padding; hover: translucent-light/pale pill
+.masthead-sticky__logo {
+  display: flex;
+  align-items: center;
+  height: 32px;
+  padding-inline: var(--spacing-8);
+  border-radius: var(--border-radius-full);
+  color: var(--color-background-neutral-white);
+  transition: background-color 0.15s;
+
+  img {
+    display: block;
+    width: 107px;
+    height: 22px;
+  }
+
+  svg {
+    display: none;
+    width: 125px;
+    height: 22px;
+  }
+
+  &:focus-visible,
+  &.is-hover {
+    background-color: var(--color-effect-translucent-light-pale);
+  }
+
+  @media (hover: hover) {
+    &:hover {
+      background-color: var(--color-effect-translucent-light-pale);
+    }
+  }
+}
+
+.masthead-sticky--mplus .masthead-sticky__logo {
+  img {
+    display: none;
+  }
+
+  svg {
+    display: block;
+  }
+}
+
+// ── Center: L1 channels ───────────────────────────────────────────────────────
+
+// Sized from its channels (flex-basis auto), so the left column shrinks before it
+.masthead-sticky__center {
+  position: relative;
+  flex: 1 1 auto;
+  align-self: stretch;
+  min-width: 0;
+}
+
+// Auto margins on the ends centre the row while it fits; once it overflows they
+// fall to 0, so the row starts at the left and scrolls
+.masthead-sticky__list {
+  display: flex;
+  gap: 1px;
+  height: 100%;
+  margin: 0;
+  padding: 0 var(--spacing-20);
+  overflow-x: auto;
+  list-style: none;
+  scrollbar-width: none;
+
+  &::-webkit-scrollbar {
+    display: none;
+  }
+
+  li {
+    display: flex;
+    flex-shrink: 0;
+    align-items: center;
+  }
+
+  li:first-child {
+    margin-left: auto;
+  }
+
+  li:last-child {
+    margin-right: auto;
+  }
+}
+
+// Item: label-sm Semibold, lightest, 38px tall, 10px side padding; 4px white
+// indicator at the bottom — current: full, hover: 40%
+.masthead-sticky__link {
+  position: relative;
+  display: flex;
+  align-items: center;
+  height: 38px;
+  padding-inline: var(--spacing-10);
+  font-size: var(--typography-font-size-label-sm);
+  font-weight: var(--typography-font-weight-semibold);
+  line-height: var(--typography-line-height-narrow);
+  color: var(--color-text-neutral-lightest);
+  white-space: nowrap;
+  text-decoration: none;
+
+  &::after {
+    content: '';
+    position: absolute;
+    right: var(--spacing-10);
+    bottom: 0;
+    left: var(--spacing-10);
+    height: 4px;
+    border-radius: var(--border-radius-full);
+    background-color: var(--color-background-neutral-white);
+    opacity: 0;
+    transition: opacity 0.15s;
+  }
+
+  &:focus-visible::after,
+  &.is-hover::after {
+    opacity: 0.4;
+  }
+
+  @media (hover: hover) {
+    &:hover::after {
+      opacity: 0.4;
+    }
+  }
+
+  &[aria-current='page']::after {
+    opacity: 1;
+  }
+}
+
+// Daily Mail+ item — M+ lozenge 28×12
+.masthead-sticky__mplus {
+  width: 28px;
+  height: 12px;
+}
+
+// Chevron edges: 32px, fading in from the bar colour; only on a side that can
+// scroll (the script toggles [hidden])
+.masthead-sticky__edge {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  z-index: 1;
+  display: flex;
+  align-items: center;
+  width: 32px;
+  padding: 0 var(--spacing-8);
+  border: 0;
+  color: var(--color-icon-neutral-lightest);
+  cursor: pointer;
+
+  svg {
+    width: 14px;
+    height: 14px;
+  }
+
+  &--prev {
+    left: 0;
+    justify-content: flex-start;
+    background: linear-gradient(to left, transparent, var(--masthead-sticky-start) 40%);
+  }
+
+  &--next {
+    right: 0;
+    justify-content: flex-end;
+    background: linear-gradient(to right, transparent, var(--masthead-sticky-end) 40%);
+  }
+
+  &[hidden] {
+    display: none;
+  }
+}
+
+// ── Right: buttons ────────────────────────────────────────────────────────────
+// 34px pills and circles. Default page (Subscribe · Edition · Login): 12px
+// apart, 14px from the edge; article pages (Share · Comments, or Subscribe ·
+// Comment count): 8px apart, 16px from the edge.
+
+.masthead-sticky__right {
+  display: flex;
+  flex-shrink: 0;
+  align-items: center;
+  justify-content: flex-end;
+  gap: var(--spacing-12);
+  width: 256px;
+  padding-right: 14px;
+
+  &--actions {
+    gap: var(--spacing-8);
+    padding-right: var(--spacing-16);
+  }
+
+  [hidden] {
+    display: none;
+  }
+}
+
+// Pill: label-sm Semibold, 14px icon, 5px gap, 12px side padding
+.masthead-sticky__btn {
+  display: inline-flex;
+  flex-shrink: 0;
+  align-items: center;
+  gap: 5px;
+  height: 34px;
+  padding-inline: var(--spacing-12);
+  border-radius: var(--border-radius-full);
+  font-size: var(--typography-font-size-label-sm);
+  font-weight: var(--typography-font-weight-semibold);
+  line-height: var(--typography-line-height-narrow);
+  white-space: nowrap;
+  text-decoration: none;
+  transition: background-color 0.15s;
+
+  svg {
+    flex-shrink: 0;
+    width: 14px;
+    height: 14px;
+  }
+
+  // Light (Subscribe, Comments): lightest surface, darker text; hover: light
+  &--light {
+    background-color: var(--color-background-neutral-lightest);
+    color: var(--color-text-neutral-darker);
+
+    &:focus-visible,
+    &.is-hover {
+      background-color: var(--color-background-neutral-light);
+    }
+
+    @media (hover: hover) {
+      &:hover {
+        background-color: var(--color-background-neutral-light);
+      }
+    }
+  }
+
+  // Outline (Share): translucent-light/moderate border, lightest text; hover:
+  // translucent-light/pale
+  &--outline {
+    border: 1px solid var(--color-border-translucent-light-moderate);
+    color: var(--color-text-neutral-lightest);
+
+    &:focus-visible,
+    &.is-hover {
+      background-color: var(--color-effect-translucent-light-pale);
+    }
+
+    @media (hover: hover) {
+      &:hover {
+        background-color: var(--color-effect-translucent-light-pale);
+      }
+    }
+  }
+}
+
+// Subscribe: M+ mark (26px artwork on a 14px icon slot, as in Figma), 10px
+// before the label, 16px from the left edge
+.masthead-sticky__btn--subscribe {
+  gap: var(--spacing-10);
+  padding-left: var(--spacing-16);
+
+  svg {
+    width: 26px;
+    margin-left: -6px;
+  }
+}
+
+// Circle / round pill (Edition, Login, initials): 34px, translucent-light/
+// moderate border, lightest content; hover: translucent-light/pale
+.masthead-sticky__round {
+  display: inline-flex;
+  flex-shrink: 0;
+  align-items: center;
+  justify-content: center;
+  width: 34px;
+  height: 34px;
+  padding: 0;
+  border: 1px solid var(--color-border-translucent-light-moderate);
+  border-radius: var(--border-radius-full);
+  background-color: transparent;
+  font: inherit;
+  font-size: var(--typography-font-size-label-xxsm);
+  font-weight: var(--typography-font-weight-semibold);
+  line-height: 1;
+  color: var(--color-text-neutral-lightest);
+  text-decoration: none;
+  cursor: pointer;
+  transition: background-color 0.15s;
+
+  svg {
+    width: 14px;
+    height: 14px;
+  }
+
+  &:focus-visible,
+  &.is-hover {
+    background-color: var(--color-effect-translucent-light-pale);
+  }
+
+  @media (hover: hover) {
+    &:hover {
+      background-color: var(--color-effect-translucent-light-pale);
+    }
+  }
+}
+
+// Edition: flag 18 + chevron 8, 4px apart, 8px side padding
+.masthead-sticky__edition {
+  gap: var(--spacing-4);
+  width: auto;
+  padding-inline: var(--spacing-8);
+
+  img {
+    width: 18px;
+    height: 18px;
+  }
+
+  svg {
+    width: 8px;
+    height: 8px;
+  }
+}
+
+// Mail+ subscriber initials: Mail+ gradient; hover: home-blue/deep
+.masthead-sticky__round--mplus {
+  background-image: linear-gradient(
+    118deg,
+    var(--color-miscellaneous-mailplus-mplus-dark-blue) 4%,
+    var(--color-miscellaneous-mailplus-mplus-solid-blue) 65%
+  );
+
+  &:focus-visible,
+  &.is-hover {
+    background-image: none;
+    background-color: var(--color-background-home-blue-deep);
+  }
+
+  @media (hover: hover) {
+    &:hover {
+      background-image: none;
+      background-color: var(--color-background-home-blue-deep);
+    }
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .masthead-sticky__logo,
+  .masthead-sticky__link::after,
+  .masthead-sticky__btn,
+  .masthead-sticky__round {
+    transition: none;
+  }
+}

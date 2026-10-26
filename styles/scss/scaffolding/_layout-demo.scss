@@ -1,0 +1,418 @@
+// ── Layout & Grid demo — SCAFFOLDING ONLY ─────────────────────────────────────
+// foundation/layout/: placeholder cards in the real layout classes, plus a
+// Guides switch that outlines and names each region. Never ships to production.
+
+@use '../foundation/breakpoints' as bp;
+
+// Inside the viewport stage (?frame): the sample only, on the page surface
+.demo-frame.demo-layout-page {
+  padding: 0;
+  background-color: var(--color-background-neutral-lightest);
+
+  .demo-page-h1,
+  .demo-page-intro,
+  .demo-vp-toolbar,
+  .demo-layout-ref {
+    display: none;
+  }
+
+  .demo-layout-wrap {
+    display: block;
+  }
+}
+
+.demo-layout-sample {
+  background-color: var(--color-background-neutral-lightest);
+}
+
+.demo-layout-stage {
+  margin-left: 0;
+}
+
+// ── Page: sample + class reference ───────────────────────────────────────────
+// XL viewport: reference on the right (sticky); narrower: under the sample.
+// In Live mode the sample's container takes the width left beside the panel —
+// the viewport buttons show the exact breakpoint widths.
+
+.demo-layout-wrap {
+  @include bp.respond-to(xl) {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) 400px;
+    align-items: start;
+    gap: 40px;
+  }
+}
+
+.demo-layout-main {
+  min-width: 0;
+}
+
+.demo-layout-ref {
+  margin-top: var(--spacing-48);
+  padding: var(--spacing-20);
+  border-radius: var(--border-radius-8);
+  background-color: var(--color-background-neutral-lightest);
+  font-family: var(--typography-font-family-serif); // library chrome in Lora
+  font-size: 13px;
+  line-height: 1.5;
+  color: var(--color-text-neutral-dark);
+
+  @include bp.respond-to(xl) {
+    position: sticky;
+    top: var(--spacing-16);
+    max-height: calc(100vh - 32px);
+    margin-top: 0;
+    overflow-y: auto;
+  }
+
+  h2 {
+    margin: 0 0 var(--spacing-8);
+    font-family: inherit;
+    font-size: 16px;
+    font-weight: 600;
+    color: var(--color-text-neutral-darker);
+  }
+
+  h2:not(:first-child) {
+    margin-top: var(--spacing-24);
+  }
+
+  pre {
+    margin: 0;
+    padding: var(--spacing-12);
+    overflow-x: auto;
+    border-radius: var(--border-radius-4);
+    background-color: var(--color-background-neutral-lighter);
+    font-family: monospace;
+    font-size: 11px;
+    line-height: 1.6;
+    color: var(--color-text-neutral-darker);
+  }
+
+  dl {
+    margin: 0;
+  }
+
+  dt {
+    margin-top: var(--spacing-12);
+    font-family: monospace;
+    font-size: 12px;
+    font-weight: 600;
+    color: var(--color-text-neutral-darker);
+  }
+
+  dd {
+    margin: 2px 0 0;
+  }
+
+  ul {
+    margin: 0;
+    padding-left: 18px;
+  }
+
+  code {
+    font-size: 11px;
+  }
+}
+
+// Class names in the reference: bold; with Guides on, in their guide colour
+.demo-layout-code {
+  font-weight: 700;
+}
+
+.demo-layout-guides {
+  .demo-layout-code--layout-full { color: var(--color-text-neutral-grey-dark); }
+  .demo-layout-code--layout-alpha { color: var(--color-text-science-orange-base); }
+  .demo-layout-code--layout-beta { color: var(--color-text-science-orange-base); }
+  .demo-layout-code--layout-row { color: var(--color-text-home-blue-base); }
+  .demo-layout-code--layout-col { color: var(--color-text-sport-green-base); }
+  .demo-layout-code--layout-inset { color: var(--color-text-showbiz-red-base); }
+}
+
+// Section title placeholder (the Section Header module in production)
+.demo-layout-heading {
+  margin: 0;
+  padding: var(--spacing-20) var(--spacing-16) var(--spacing-8);
+  font-family: var(--typography-font-family-sans);
+  font-size: var(--typography-font-size-h3);
+  font-weight: var(--typography-font-weight-bold);
+  line-height: var(--typography-line-height-narrow);
+  color: var(--color-text-neutral-darker);
+}
+
+// Placeholder card, after the Article Card spec: 16px inset, keyline (none
+// when last), media 358:215 (SM: 4:3 thumbnail — 128 · LG 120 · XL 152) and
+// the headline level per type (.h1–.h6 on the <p>: XL → H2 · MD → H4 ·
+// SM Left → H5 · SM Right → H6). SM Left in Alpha / main columns, SM Right in
+// Beta. The headline is a real one, drawn as grey text blocks so it wraps like
+// the real thing.
+.demo-layout-card {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-12);
+  padding: var(--spacing-16);
+
+  &::after {
+    content: '';
+    position: absolute;
+    right: var(--spacing-16);
+    bottom: 0;
+    left: var(--spacing-16);
+    height: 1px;
+    background-color: var(--color-effect-translucent-dark-pale);
+  }
+
+  &:last-child::after {
+    display: none;
+  }
+
+  p {
+    margin: 0;
+  }
+}
+
+// One grey bar per line, 70% of the line box, so the lines stay apart
+.demo-layout-text {
+  color: transparent;
+  background: linear-gradient(var(--color-background-neutral-light), var(--color-background-neutral-light)) center / 100% 70% no-repeat;
+  box-decoration-break: clone;
+  -webkit-box-decoration-break: clone;
+}
+
+// Section headers: one step darker, so they still read as headers
+.demo-layout-text--strong {
+  background-image: linear-gradient(var(--color-background-neutral-grey-light), var(--color-background-neutral-grey-light));
+}
+
+.demo-layout-card__media {
+  flex-shrink: 0;
+  aspect-ratio: 358 / 215;
+  border-radius: var(--border-radius-4);
+  background-color: var(--color-background-neutral-lighter);
+
+  &--banner {
+    aspect-ratio: 16 / 9;
+  }
+}
+
+.demo-layout-card--sm-left,
+.demo-layout-card--sm-right {
+  flex-direction: row;
+  align-items: flex-start;
+
+  p {
+    flex: 1 1 0;
+    min-width: 0; // narrow columns: a long word breaks instead of overflowing
+    overflow-wrap: break-word;
+  }
+
+  .demo-layout-card__media {
+    width: 128px;
+    aspect-ratio: 4 / 3;
+
+    @include bp.respond-to(lg) {
+      width: 120px;
+    }
+
+    @include bp.respond-to(xl) {
+      width: 152px;
+    }
+  }
+}
+
+// Featured Link Card: 64 × 64 image on the left, title 3 lines
+.demo-layout-card--featured {
+  flex-direction: row;
+  align-items: flex-start;
+
+  .demo-layout-card__media {
+    width: 64px;
+    aspect-ratio: 1;
+  }
+
+  p {
+    flex: 1 1 0;
+    display: -webkit-box;
+    overflow: hidden;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 3;
+  }
+}
+
+// Right Thumb: thumbnail on the right from LG (sidebar context)
+.demo-layout-card--sm-right .demo-layout-card__media {
+  @include bp.respond-to(lg) {
+    order: 1;
+  }
+}
+
+// Tinted box in Beta — sits in a .layout-inset
+.demo-layout-box {
+  border-radius: var(--border-radius-8);
+  background-color: var(--color-background-showbiz-red-subtlest);
+}
+
+// MPU ad slot — 300 × 250
+.demo-layout-mpu {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 250px;
+  margin: var(--spacing-16) auto;
+  max-width: 300px;
+  background-color: var(--color-background-neutral-lighter);
+  font-family: monospace;
+  font-size: 11px;
+  color: var(--color-text-neutral-grey-dark);
+}
+
+// ── Guides ────────────────────────────────────────────────────────────────────
+// Region names are real elements (.demo-layout-tag), not pseudo-elements —
+// the layout classes use ::before / ::after for keylines.
+
+.demo-layout-tag {
+  display: none;
+}
+
+// Column grid over the whole sample (Figma Layout & Grid overlay): 12 columns
+// from LG, 6 below, no gutters — dashed column edges and a see-through news
+// cyan bar 16px in from each edge (the content area of each column). Guides only.
+.demo-layout-columns {
+  display: none;
+}
+
+.demo-layout-guides {
+  .demo-layout-sample {
+    position: relative;
+  }
+
+  .demo-layout-columns {
+    position: absolute;
+    inset: 0;
+    z-index: 2;
+    display: grid;
+    grid-template-columns: repeat(6, 1fr);
+    opacity: 0.6; // subtle — the content stays readable through it
+    pointer-events: none;
+
+    @include bp.respond-to(lg) {
+      grid-template-columns: repeat(12, 1fr);
+    }
+  }
+
+  .demo-layout-columns span {
+    position: relative;
+    border-left: 1px dashed var(--color-effect-translucent-dark-pale);
+
+    // Column content area: news cyan, see-through
+    &::before {
+      content: '';
+      position: absolute;
+      inset: 0 var(--spacing-16);
+      background-color: var(--color-background-news-cyan-base);
+      opacity: 0.1;
+    }
+
+    &:last-child {
+      border-right: 1px dashed var(--color-effect-translucent-dark-pale);
+    }
+
+    // Below LG only the first six
+    &:nth-child(n + 7) {
+      display: none;
+
+      @include bp.respond-to(lg) {
+        display: block;
+      }
+    }
+  }
+}
+
+// One colour per level: Fullwidth grey · Alpha and Beta orange (solid and
+// lightly tinted, so the split stands out) · Row blue · Col green · Inset red
+.demo-layout-guides {
+  .layout-full,
+  .layout-alpha,
+  .layout-beta,
+  .layout-row,
+  .layout-col,
+  .layout-inset {
+    position: relative;
+    outline: 1px dashed var(--guide-line);
+    outline-offset: -1px;
+  }
+
+  .layout-full {
+    --guide-line: var(--color-border-neutral-grey-dark);
+    --guide-tag: var(--color-background-neutral-grey-dark);
+  }
+
+  .layout-alpha {
+    --guide-line: var(--color-border-science-orange-base);
+    --guide-tag: var(--color-background-science-orange-base);
+
+    outline-style: solid;
+    background-color: var(--color-background-science-orange-subtlest);
+  }
+
+  .layout-beta {
+    --guide-line: var(--color-border-science-orange-base);
+    --guide-tag: var(--color-background-science-orange-base);
+
+    outline-style: solid;
+    background-color: var(--color-background-science-orange-subtlest);
+  }
+
+  .layout-row {
+    --guide-line: var(--color-border-home-blue-base);
+    --guide-tag: var(--color-background-home-blue-base);
+  }
+
+  .layout-col {
+    --guide-line: var(--color-border-sport-green-base);
+    --guide-tag: var(--color-background-sport-green-base);
+  }
+
+  .layout-inset {
+    --guide-line: var(--color-border-showbiz-red-base);
+    --guide-tag: var(--color-background-showbiz-red-base);
+  }
+
+  .demo-layout-tag {
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: 1;
+    display: block;
+    padding: 1px 4px;
+    background-color: var(--guide-tag);
+    font-family: monospace;
+    font-size: 10px;
+    color: var(--color-text-neutral-white);
+  }
+
+  // Nested regions share corners — each level names itself in its own corner
+  .layout-full > .demo-layout-tag {
+    right: 0;
+    left: auto;
+  }
+
+  .layout-row > .demo-layout-tag {
+    top: auto;
+    bottom: 0;
+  }
+
+  // Alpha / Beta: top right, so the split reads at a glance
+  :is(.layout-alpha, .layout-beta) > .demo-layout-tag {
+    right: 0;
+    left: auto;
+  }
+
+  .layout-inset > .demo-layout-tag {
+    top: auto;
+    right: 0;
+    bottom: 0;
+    left: auto;
+  }
+}

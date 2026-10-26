@@ -8,6 +8,7 @@
 @use 'foundation/typography';
 @use 'foundation/spacing';
 @use 'foundation/border-radius';
+@use 'foundation/layout';
 
 // Components — base UI elements (Figma "DM Web ::: Components")
 @use 'components/button';
@@ -29,12 +30,14 @@
 @use 'modules/section-header-branded';
 @use 'modules/masthead';
 @use 'modules/masthead-sheet';
+@use 'modules/masthead-sticky';
 
 // Scaffolding (prototype/demo only — never shipped to production)
 @use 'scaffolding/demo-grid';
 @use 'scaffolding/annotation';
 @use 'scaffolding/demo-nav';
 @use 'scaffolding/foundation-colour-demo';
+@use 'scaffolding/layout-demo';
 @use 'scaffolding/article-card-demo';
 @use 'scaffolding/article-card-metadata-demo';
 @use 'scaffolding/section-header-demo';

@@ -19,7 +19,7 @@ Design system documentation is stored in `docs/` and must be read before any com
 tokens/           — Design token source files (JSON + CSS)
 styles/           — SCSS source (styles/scss/) and compiled CSS (styles/css/main.css)
 index.html        — Demo index (Components / Modules), same list as the demo side panel
-foundation/       — Foundation: token reference pages (Colour…), values read live from tokens/
+foundation/       — Foundation: reference pages (Colour — read live from tokens/; Layout & Grid)
 components/       — Components: base UI elements (Button, Input, Tabs…) — one demo folder each
 modules/          — Modules: editorial / product blocks built from components (Article Card, Video Player Controls…)
 scripts/          — Demo-only JS (scripts/scaffolding/: side panel + index)
@@ -163,6 +163,29 @@ Source of truth: `styles/scss/foundation/_breakpoints.scss` — use `@include bp
 
 > A responsive (unified) build is not currently planned. Update this section if that changes.
 
+### Demo viewport switches
+
+Viewport buttons on demo pages name the **breakpoint**, never a device width — `XL ≥1376 · LG ≥1024 · MD ≥768 · SM-XS <768` (or `SM ≥640 · XS <640` when they differ), the Figma variant names. The preview width (e.g. 1440) shows only in the status text as `1440px preview`, so nobody reads it as a breakpoint.
+
+---
+
+## Layout
+
+Page layout uses named classes on the column grid (12 columns from LG, 6 below, no gutters) — `styles/scss/foundation/_layout.scss`, demo `foundation/layout/`, doc `docs/3_Foundation__05_Layout-and-Grid.md` § 5. Names match the Figma page frames:
+
+| Class | Figma | Role |
+| ----- | ----- | ---- |
+| `.layout-full` | Fullwidth | One section (a module, a split or a row; optional section header on top) |
+| `.layout-split` (+ `--joined`) | — | Alpha 2/3 + Beta 1/3 from LG; **stacked below LG** (Beta under Alpha). `--joined`: one channel block, no keyline between |
+| `.layout-alpha` / `.layout-beta` | Alpha / Beta | Main column / right rail (332 at LG — fits an MPU). Beta has no padding |
+| `.layout-row` > `.layout-col` | Row / Col 1-n | Equal-width columns from MD (2 → 1/2, 3 → 1/3, 4 → 1/4); **stacked below MD** (SM-XS: cards run in one column). Cards stack in each column. Replaces the old nested `column-splitter` |
+| `.layout-inset` | inner container | Wraps a box with its own background (e.g. a tinted box in Beta): one content block — 16px inset and a keyline |
+
+- **No gaps or padding on layout classes** — every card / block carries its own 16px inset (neighbours sit 32px apart).
+- **Keylines** (`translucent-dark/pale`, 1px) sit 16px in from each end — horizontal and Beta's vertical one. Sections, rows and cards each draw their own; **the last child of its parent has none** (`:last-child`, no override classes). So put cards straight into `.layout-col` — never one wrapper per card.
+- **SM cards:** Left Thumb in Alpha and other main columns, Right Thumb in Beta.
+- Hiding or reordering a block at a breakpoint is a page decision, not a layout class.
+
 ---
 
 ## Typography
@@ -298,6 +321,8 @@ iOS and Android use the same four steps (`typography-ios/letter-spacing/*`, `typ
 - **Never use raw hex values.** Always use semantic colour tokens via CSS custom properties.
 - **Never use px for line-height on web.** Use unitless multipliers only.
 - **Avoid `!important`.** These are the base module styles — an `!important` here invites more `!important` to override it later. Win by matching the selector's specificity and source order (e.g. a `prefers-reduced-motion` block at the end of the file repeating the same selectors), or restructure so no override is needed. Use it only when there is truly no other way, and say why in a comment.
+- **Content keylines:** `--color-effect-translucent-dark-pale` is the default for keylines between content cards and blocks — it is translucent, so it still reads on tinted surfaces (e.g. a pink box). Only on dark surfaces use a light keyline. Figma sometimes carries the App keyline (`border/neutral/light`) into Web frames — treat that as a mistake.
+- **Figma strokes and padding.** In an auto-layout frame, check *Strokes* under Advanced layout settings (`strokesIncludedInLayout`). **Included in layout** (preferred — it behaves like CSS): use a plain `border` + the Figma padding. **Excluded** (Figma's default): the stroke takes no space but a CSS `border` would, so draw it as `box-shadow: inset …` and keep the padding — or ask the designer to switch it to Included.
 - **Keep the code simple.** Pick the plainest way that meets the design — use tokens as they are, no extra wrappers or tricks.
 - Mobile-first CSS: SM as `:root` base, scale up with `min-width` breakpoints.
 - Mobile landscape handled with `orientation: landscape`, not px breakpoints.
@@ -355,7 +380,7 @@ All token files share the same version string (currently `1.0.4`). Update the `v
 
 ### SCSS Structure
 
-- `foundation/` — reset, breakpoints, typography utilities, spacing
+- `foundation/` — reset, breakpoints, typography utilities, spacing, layout
 - `components/` — **PRODUCT** styles for Components, one file per component (`_button.scss`) — these would ship to the real DM site
 - `modules/` — **PRODUCT** styles for Modules, one file per module or module part (`_article-card.scss`, `_editorial-badge.scss`, …) — these would ship too
 - `scaffolding/` — **PROTOTYPE-ONLY** styles for demo pages: grid layout, section headers, side panel, token tooltips. Never shipped to production. Clearly separated from `components/` and `modules/` so the real CSS can be handed off cleanly to developers.
@@ -404,4 +429,5 @@ One-off tests and A/B variants live in `experiments/YYYYMM-exp-<name>/` (e.g. `2
 - Before starting any task, read all `.md` files in the `docs/` folder
 - Apply DM Design System rules and conventions from `docs/` throughout all work
 - When working on a specific component, read its doc first. Docs are named `docs/<section>_<Group>__<NN>_<Name>.md` (e.g. `docs/4_Components__01_Button.md`, `docs/5_Modules__01_Article-Card.md`)
+- **Figma is not perfect.** Designers rarely work in the codebase, so layer names, stray widths or copied App values (e.g. keylines) can be human error. Read Figma for intent, cross-check it against the docs and the rest of the file, and flag what looks wrong instead of copying it.
 - Figma MCP: the desktop server only reads the file open in the active Figma tab ("node not found" otherwise); the remote server works from the fileKey in the URL

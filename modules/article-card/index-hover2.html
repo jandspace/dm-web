@@ -64,10 +64,10 @@
       <span id="demo-vp-switch-label">Viewport</span>
       <div class="demo-vp-toggle" role="group" aria-labelledby="demo-vp-switch-label" id="demo-vp-switch">
         <button type="button" data-vp="live" aria-pressed="true">Live</button>
-        <button type="button" data-vp="xl" aria-pressed="false">XL 1440</button>
-        <button type="button" data-vp="lg" aria-pressed="false">LG 1024</button>
-        <button type="button" data-vp="md" aria-pressed="false">MD 768</button>
-        <button type="button" data-vp="sm" aria-pressed="false">SM-XS 390</button>
+        <button type="button" data-vp="xl" aria-pressed="false">XL ≥1376</button>
+        <button type="button" data-vp="lg" aria-pressed="false">LG ≥1024</button>
+        <button type="button" data-vp="md" aria-pressed="false">MD ≥768</button>
+        <button type="button" data-vp="sm" aria-pressed="false">SM-XS &lt;768</button>
       </div>
       <span class="demo-vp-toolbar__divider" aria-hidden="true"></span>
       <label for="demo-badge-select">Badge</label>
@@ -577,7 +577,7 @@
           iframe.style.transform = `scale(${scale})`;
           stage.style.width = `${width * scale}px`;
           stage.style.height = `${height * scale}px`;
-          status.textContent = `${width}px viewport · ${Math.round(scale * 100)}%`;
+          status.textContent = `${width}px preview · ${Math.round(scale * 100)}%`;
         };
 
         const select = (key) => {
