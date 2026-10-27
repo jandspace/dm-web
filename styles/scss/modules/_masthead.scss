@@ -234,6 +234,16 @@
   border-left: 1px solid var(--color-border-neutral-light);
 }
 
+// Profile (logged in): filled person icon — neutral/grey-dark; Mail+ subscriber:
+// Mail+ blue (Figma "Topbar - Login items", 1651:55213)
+.masthead-profile svg {
+  color: var(--color-icon-neutral-grey-dark);
+}
+
+.masthead-profile--mplus svg {
+  color: var(--color-miscellaneous-mailplus-mplus-solid-blue);
+}
+
 // Topbar Subscribe (Figma "Topbar - Subscribe Button", Type=DailyMail+ Subs):
 // Mail+ gradient pill, Daily Mail+ wordmark 80×14 + "Subscribe" label-sm
 // Semibold white, 4px gap, 4px / 12px padding. Hover as the Branding one.
@@ -382,17 +392,17 @@
   min-width: 0;
 
   // Hover — logo lighter (72% opacity over the masthead surface)
-  &:focus-visible img,
-  &.is-hover img {
+  &:focus-visible > *,
+  &.is-hover > * {
     opacity: 0.72;
   }
 
-  @include pointer-hover(' img') {
+  @include pointer-hover(' > *') {
     opacity: 0.72;
   }
 
   @media (prefers-reduced-motion: reduce) {
-    img {
+    > * {
       transition: none;
     }
   }
@@ -425,6 +435,50 @@
   @include bp.respond-to(md) {
     .masthead-branding__logo-light { display: none; }
     .masthead-branding__logo-dark { display: block; }
+  }
+
+  // Daily Mail+ logo (Daily Mail+ pages) — 148×26 white (Mweb) · 312×55 · 387×68,
+  // black from MD (Figma Branding 2841:11459 · M_ Branding Id 2902:28145)
+  .masthead-branding__logo-mplus {
+    display: none;
+    width: 148px;
+    height: 26px;
+    color: var(--color-icon-neutral-white);
+    transition: opacity 0.15s;
+
+    @include bp.respond-to(md) {
+      width: 312px;
+      height: 55px;
+      color: var(--color-icon-neutral-black);
+    }
+
+    @include bp.respond-to(lg) {
+      width: 387px;
+      height: 68px;
+    }
+  }
+}
+
+// Daily Mail+ landing: the Daily Mail+ logo, and on Mweb the masthead takes the
+// horizontal Mail+ gradient instead of the channel colour. (Daily Mail+ articles
+// use the general article template — Daily Mail logo, channel colour.)
+.masthead--mplus {
+  background-image: linear-gradient(
+    to right,
+    var(--color-miscellaneous-mailplus-mplus-dark-blue),
+    var(--color-miscellaneous-mailplus-mplus-solid-blue)
+  );
+
+  @include bp.respond-to(md) {
+    background-image: none;
+  }
+
+  .masthead-branding__logo img {
+    display: none;
+  }
+
+  .masthead-branding__logo .masthead-branding__logo-mplus {
+    display: block;
   }
 }
 

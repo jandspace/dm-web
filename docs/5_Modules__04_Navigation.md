@@ -28,7 +28,8 @@ Code: `styles/scss/modules/_masthead.scss`, `_masthead-sheet.scss` · demo `modu
 ## 3. Topbar
 
 - **Left:** channel id — 3px `color/border/{channel}/base` left border + 4px padding (label 7px in; Figma Topbar - Channel Id 66:2166, strokes included in layout), label-xsm Bold `neutral/darker` — then *Last updated: …* (label-xsm Regular `neutral/dark`, **LG+ only**).
-- **Right:** Mail+ Subscribe (channel pages only) · Edition · Login · Search. Each item 16px inset on both sides — Search too, so its label ends 16px before the row's end — with a 1px `color/border/neutral/light` keyline on its left.
+- **Right:** Mail+ Subscribe (channel pages only; never for Mail+ subscribers) · Edition · Login / Profile · Search. Each item 16px inset on both sides — Search too, so its label ends 16px before the row's end — with a 1px `color/border/neutral/light` keyline on its left.
+- **Login item by user** (Figma Topbar - Login items 1651:55213): logged out — *Login*, person outline icon; logged in — *Profile*, filled person icon `color/icon/neutral/grey-dark`; Mail+ subscriber — *Profile*, filled person icon in Mail+ blue (`mplus-solid-blue`; Figma uses the Mail+ gradient), and no Subscribe.
 - **Topbar Subscribe** (Figma "Topbar - Subscribe Button", `.masthead-topbar-subscribe`): Mail+ gradient pill (165°, `mplus-dark-blue` 4% → `mplus-solid-blue` 65%), 4px / 12px padding, 4px gap; Daily Mail+ wordmark 80×14 (2px top offset) + "Subscribe" label-sm Semibold white. Hover as the Branding Subscribe. Item: 14px icon + label-sm Semibold `neutral/darker`, 6px gap (Edition: flag 14 · label · chevron 12, 4px gap).
 - **Hover:** `color/background/neutral/light` pill, 4px / 8px outside the content.
 - **Edition menu:** *Select Edition* — UK / US / AU / IE, tick on the current one. Elevation Lv-4 panel (0 4 20 `translucent-dark/subtle`), 8px corners. *Not in Figma yet* — content taken from the current production markup (`pageEditionDropdown`), styling from the system tokens.
@@ -36,6 +37,7 @@ Code: `styles/scss/modules/_masthead.scss`, `_masthead-sheet.scss` · demo `modu
 ## 4. Branding
 
 - **Logo:** Daily Mail — 331×68 (LG+) · 267×55 (MD) · 127×26 white (Mweb). Hover: 72% opacity. The link hugs the logo.
+- **Daily Mail+ landing** (`.masthead--mplus`): the Daily Mail+ logo instead — 387×68 (LG+) · 312×55 (MD) · 148×26 white (Mweb) (Figma Branding 2841:11459, M_ Branding Id 2902:28145) — and on Mweb the masthead background is the horizontal Mail+ gradient (`mplus-dark-blue` → `mplus-solid-blue`) instead of the channel colour. A Daily Mail+ article uses the general article template (Daily Mail logo, channel colour) — only the Sticky Navbar's right side differs.
 - **Mail+ Subscribe — one place per page.** Home and Daily Mail+ home (`.masthead--landing`): the large Subscribe in the Branding slot, none in the Topbar. Every other channel page: the Topbar Subscribe, and the Branding slot stays empty. (Mweb keeps its Subscribe pill on every page.)
 - **Slot (desktop):** right column, max 480px, content right-aligned. Landing pages: **Mail+ Subscribe** — 48px pill, Mail+ gradient (`miscellaneous/mailplus/mplus-dark-blue` → `mplus-solid-blue`), Daily Mail+ wordmark 114×20 + "Subscribe" label-xl Semibold white. Hover: `color/background/interaction-primary/hover`, as the primary (brand) button. Other branding elements can replace it.
 - **Mweb:** Subscribe pill (34px, lightest, M+ icon + label-sm Semibold) and a round login (44px target, 34px circle with a `translucent-light/moderate` border, person icon 14).
@@ -94,13 +96,19 @@ Figma: Sticky Navbar (2844:3780) · parts (2858:9061) · right side (2891:31679)
 | Daily Mail+ article, reader not subscribed | Subscribe · *999* (comment count) — comments stay open, Subscribe invites them to join | 8px apart, 16px from the edge |
 
 - **Buttons:** Subscribe / Comments — `neutral/lightest` pill, `neutral/darker` label-sm Semibold, 14px icon, 5px gap (Subscribe: M+ mark, 10px gap, 16px left padding); hover `neutral/light`. Share — 1px `translucent-light/moderate` outline, lightest label and icon; hover `translucent-light/pale`.
-- **Edition / Login (circles, 34px, 1px `translucent-light/moderate`):** Edition — flag 18 + chevron 8, 4px gap, 8px padding. Login by user: logged out — person icon 14; logged in — initials (label-xxsm Semibold); Mail+ subscriber — initials on the Mail+ gradient (hover `home-blue/deep`). Others hover `translucent-light/pale`. Mail+ subscribers get no Subscribe button.
+- **Edition / Login (circles, 34px, 1px `translucent-light/moderate`):** Edition — flag 18 + chevron 8, 4px gap, 8px padding; it opens the same Edition menu as the Topbar, under it on the right. Login by user: logged out — person icon 14; logged in — initials (label-xxsm Semibold); Mail+ subscriber — initials on the Mail+ gradient (hover `home-blue/deep`). Others hover `translucent-light/pale`. Mail+ subscribers get no Subscribe button.
 
 ### 8-B. Mweb (<768) — sticky masthead
 
 - The masthead sticks with only its nav row (burger + channels) in view: its top sits `--masthead-collapse` (the height above the nav row, set by the script) above the screen, so the logo block scrolls away and the nav row stays.
 - **Scrolling up** (past the logo block) adds `.is-revealed` — `top: 0`, the logo block slides back down (0.3s). **Scrolling down** removes it again. At the very top it is simply in place.
 - The nav row is the existing Mweb L1 row. The other Mweb row contents in Figma (L2 tabs, topic header, article share / comments) come later.
+
+### 8-C. Demo
+
+- One toolbar drives everything (masthead, Sticky Navbar preview, Nav Sheet): **Location** (Home · Channel landing · Daily Mail+ landing · Article (General) · Article (Daily Mail+)) and **User type** (Non-logged-in user · Logged-in user · M+ subscriber). **Channel** appears beside Location for Channel landing and both article locations; Home and Daily Mail+ landing set their own channel.
+- **Sticky Navbar preview** under the masthead: the bar in place at the chosen viewport. Right side — Home / Channel landing / Daily Mail+ landing: Subscribe · Edition · Login; Article (General), or Article (Daily Mail+) for an M+ subscriber: Share · Comments; Article (Daily Mail+) for anyone else: Subscribe · comment count. The Daily Mail+ landing uses the Mail+ bar and logo; Article (Daily Mail+) looks like Article (General) apart from the right side.
+- The demo page itself never slides the Sticky Navbar in at the top of the browser (Live); the viewport previews of the masthead still do when you scroll inside them. SM-XS has no Sticky Navbar.
 
 ## 9. Behaviour (script)
 

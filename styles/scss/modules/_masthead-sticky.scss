@@ -380,6 +380,12 @@
   }
 }
 
+// Edition: the flag opens the Edition menu (as the Topbar's), under it on the right
+.masthead-sticky__edition-wrap {
+  position: relative;
+  display: flex;
+}
+
 // Edition: flag 18 + chevron 8, 4px apart, 8px side padding
 .masthead-sticky__edition {
   gap: var(--spacing-4);

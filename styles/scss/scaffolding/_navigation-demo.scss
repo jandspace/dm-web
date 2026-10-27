@@ -15,7 +15,52 @@
   .demo-page-h1,
   .demo-page-intro,
   .demo-vp-toolbar,
+  .demo-nav-sticky,
   .demo-nav-sheet {
+    display: none;
+  }
+}
+
+// The demo page itself (Live) never slides the Sticky Navbar in at the top of the
+// browser — it is shown in place under the masthead (Sticky Navbar preview)
+.demo-nav-page:not(.demo-frame) .masthead-sticky {
+  display: none;
+}
+
+// Sticky Navbar preview (?frame&sticky): the bar alone, in place, with room
+// below for the Edition menu
+.demo-frame.demo-sticky-frame {
+  .masthead,
+  .demo-nav-filler {
+    display: none;
+  }
+
+  .masthead-sticky {
+    position: relative;
+    transform: none;
+    visibility: visible;
+  }
+}
+
+// Switched-off variants (user type, Subscribe for Mail+ subscribers)
+.demo-nav-page .masthead [hidden] {
+  display: none;
+}
+
+.demo-nav-sticky {
+  margin-bottom: var(--spacing-48);
+
+  .demo-section-title {
+    margin-top: 0;
+  }
+}
+
+// Toolbar: the Channel switch (Channel landing only) sits in the row like the
+// other switches
+.demo-nav-channel {
+  display: contents;
+
+  &[hidden] {
     display: none;
   }
 }
