@@ -19,7 +19,7 @@ Design system documentation is stored in `docs/` and must be read before any com
 tokens/           — Design token source files (JSON + CSS)
 styles/           — SCSS source (styles/scss/) and compiled CSS (styles/css/main.css)
 index.html        — Demo index (Components / Modules), same list as the demo side panel
-foundation/       — Foundation: reference pages (Colour — read live from tokens/; Layout & Grid)
+foundation/       — Foundation: reference pages (Colour, Typography, Spacing, Border Radius — read live from tokens/; Elevation; Layout & Grid)
 components/       — Components: base UI elements (Button, Input, Tabs…) — one demo folder each
 modules/          — Modules: editorial / product blocks built from components (Article Card, Video Player Controls…)
 scripts/          — Demo-only JS (scripts/scaffolding/: side panel + index)
@@ -71,7 +71,26 @@ Folders follow the Figma UI Kit and design system taxonomy: **Foundation › Com
 
 `dm_tokens.css` is **generated** from `dm_tokens.json` — never edit it by hand. After a Figma export, run `python3 tools/token-build/build_dm_tokens.py > tokens/dm_tokens.css` (groups tokens by path: category › context › variant, in the Colour Tokens doc order). Typography (font family, weights, sizes) lives only in `dm_typography_web_tokens.css`.
 
-SCSS aliases: use `--spacing-N` and `--border-radius-N` in component files — they map to `--number-spacing-N` / `--number-border-radius-N` (`styles/scss/foundation/_spacing.scss`, `_border-radius.scss`).
+SCSS aliases: use `--spacing-N` and `--border-radius-N` in component files — they map to `--number-spacing-N` / `--number-border-radius-N` (`styles/scss/foundation/_spacing.scss`, `_border-radius.scss`). Shadows: `var(--elevation-1)` … `--elevation-5` (`_elevation.scss`, from the Figma effect styles Elevation Lv-1…5) — never a raw `rgba()` shadow. Pick the level by role, not by eye (doc `docs/3_Foundation__06_Elevation.md` § 2):
+
+| Level | Role | Examples |
+| ----- | ---- | -------- |
+| 0 (none) | Page — scrolls with it, split by keylines | Page, Article Card |
+| 1 | Sticky — stuck to an edge | Sticky Navbar |
+| 2 | Floating control | Carousel arrows, back-to-top |
+| 3 | Floating panel — stays while reading | Mini video player |
+| 4 | Temporary — closes on outside click or by itself | Dropdown, Nav Panel, Tooltip, Toast |
+| 5 | Modal — blocks the page, over a scrim | Modal |
+
+Border radius — everyday steps are **0, 4, 8, 16 and Full**; every other step is rarely used, so reach for one of these first:
+
+| Token | Use |
+| ----- | --- |
+| `--border-radius-0` | Sharp corners, full-bleed modules |
+| `--border-radius-4` | Thumbnails |
+| `--border-radius-8` | Image-based cards (Image Only, image carousel items) |
+| `--border-radius-16` | Modals |
+| `--border-radius-full` | Pill buttons, avatars (token value 999px) |
 
 ---
 
@@ -380,7 +399,7 @@ All token files share the same version string (currently `1.0.4`). Update the `v
 
 ### SCSS Structure
 
-- `foundation/` — reset, breakpoints, typography utilities, spacing, layout
+- `foundation/` — reset, breakpoints, typography utilities, spacing, border radius, elevation, layout
 - `components/` — **PRODUCT** styles for Components, one file per component (`_button.scss`) — these would ship to the real DM site
 - `modules/` — **PRODUCT** styles for Modules, one file per module or module part (`_article-card.scss`, `_editorial-badge.scss`, …) — these would ship too
 - `scaffolding/` — **PROTOTYPE-ONLY** styles for demo pages: grid layout, section headers, side panel, token tooltips. Never shipped to production. Clearly separated from `components/` and `modules/` so the real CSS can be handed off cleanly to developers.

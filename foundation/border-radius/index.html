@@ -1,0 +1,116 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Border Radius</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&family=Lora:wght@400;600;700&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="../../tokens/dm_tokens.css" />
+    <link rel="stylesheet" href="../../tokens/dm_typography_web_tokens.css" />
+    <link rel="stylesheet" href="../../styles/css/main.css" />
+    <script src="../../scripts/scaffolding/demo-nav.js" defer></script>
+  </head>
+  <body class="demo-page-body">
+    <h1 class="demo-page-h1">Border Radius</h1>
+    <p class="demo-page-intro">
+      Corner radius on the same 4-point steps as spacing. Each token is read live from <code>tokens/dm_tokens.css</code>
+      (<code>--number-border-radius-N</code>); use the short alias <code>var(--border-radius-N)</code> from
+      <code>styles/scss/foundation/_border-radius.scss</code>. The name is the value in px. Figma: variables
+      <code>number/border-radius/…</code>.
+    </p>
+
+    <main class="demo-scale">
+      <h2 class="demo-scale__set">Scale</h2>
+      <p class="demo-scale__note">
+        Everyday steps: 0 · 4 · 8 · 16 and Full. The rest (shown lighter) are rarely used — reach for an everyday step
+        first. Nested corners: inner radius = outer radius − the padding between them (a card with
+        <code>--border-radius-16</code> and 12px padding holds a <code>--border-radius-4</code> button).
+      </p>
+      <div class="demo-scale__scroll">
+        <table class="demo-scale__table">
+          <thead>
+            <tr>
+              <th>Token</th>
+              <th>Multiplier</th>
+              <th>px</th>
+              <th>rem</th>
+              <th>Example</th>
+              <th>Use</th>
+            </tr>
+          </thead>
+          <tbody id="demo-radius"></tbody>
+        </table>
+      </div>
+    </main>
+
+    <script>
+      // Scaffolding only — token names from the token file, values as the browser resolves them.
+      (async () => {
+        const css = await fetch('../../tokens/dm_tokens.css').then((r) => r.text());
+        const names = [...css.matchAll(/--number-border-radius-(\w+):/g)].map((m) => m[1]);
+        const root = getComputedStyle(document.documentElement);
+
+        // Application column of docs/2_Token__03_Spatial-Tokens.md — the everyday
+        // steps; any other token is rarely used
+        const USE = {
+          0: 'Sharp corners, full-bleed modules',
+          4: 'Thumbnails',
+          8: 'Image-based cards (e.g. Image Only, image carousel items)',
+          16: 'Modals',
+          full: 'Pill buttons, avatars',
+        };
+
+        const el = (tag, className, text) => {
+          const node = document.createElement(tag);
+          if (className) node.className = className;
+          if (text != null) node.textContent = text;
+          return node;
+        };
+
+        // Example after the App UI Kit (Foundation › Border Radius): the box grows
+        // with the radius, the corner arc is drawn in blue. Above 32 it widens
+        // gently (48 → 288, 64 → 320) so the big steps stay compact. Full: 352 × 128.
+        const example = (n, token, px) => {
+          const full = n === 'full';
+          const box = el('div', 'demo-scale__radius');
+          box.style.width = `${full ? 352 : px > 32 ? 256 + 2 * (px - 32) : Math.max(32 + 4 * px, 8 * px)}px`;
+          box.style.height = `${full ? 128 : Math.max(24, 3 * px)}px`;
+          box.style.borderRadius = `var(${token})`;
+          const corners = full ? ['start', 'end'] : [null];
+          corners.forEach((side) => {
+            const corner = el('span', side ? `demo-scale__corner demo-scale__corner--${side}` : 'demo-scale__corner');
+            if (side) {
+              corner.style.width = '64px';
+              corner.style.borderRadius = `var(${token}) 0 0 var(${token})`;
+            } else {
+              corner.style.width = corner.style.height = `${px}px`;
+              corner.style.borderTopLeftRadius = `var(${token})`;
+            }
+            box.append(corner);
+          });
+          const cell = el('td');
+          cell.append(box);
+          return cell;
+        };
+
+        const body = document.getElementById('demo-radius');
+        names.forEach((n) => {
+          const token = `--border-radius-${n}`;
+          const px = parseFloat(root.getPropertyValue(token));
+          const row = el('tr', USE[n] ? null : 'demo-scale__row--minor');
+          row.append(
+            el('td', 'demo-scale__code', token),
+            el('td', null, n === 'full' ? '∞' : `${px / 4}x`),
+            el('td', null, `${px}px`),
+            el('td', null, n === 'full' ? '—' : `${px / 16}rem`),
+            example(n, token, px),
+            el('td', 'demo-scale__use', USE[n] || 'Rarely used'),
+          );
+          body.append(row);
+        });
+      })();
+    </script>
+  </body>
+</html>

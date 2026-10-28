@@ -23,6 +23,9 @@
         { name: 'Colour', path: 'foundation/colour/' },
         { name: 'Typography', path: 'foundation/typography/' },
         { name: 'Layout & Grid', path: 'foundation/layout/' },
+        { name: 'Spacing', path: 'foundation/spacing/' },
+        { name: 'Border Radius', path: 'foundation/border-radius/' },
+        { name: 'Elevation', path: 'foundation/elevation/' },
       ],
     },
     {

@@ -1,0 +1,330 @@
+// ── Foundation › Spacing · Border Radius · Elevation demo — SCAFFOLDING ONLY ──
+// Layout for foundation/spacing/, foundation/border-radius/ and
+// foundation/elevation/. Never ships to production. Token names come from
+// tokens/dm_tokens.css at load time; each sample uses the real token.
+
+.demo-scale {
+  max-width: 1224px;
+}
+
+.demo-scale__set {
+  margin: var(--spacing-48) 0 var(--spacing-8);
+  font-family: var(--typography-font-family-serif); // library chrome in Lora
+  font-size: 18px;
+  font-weight: 600;
+  color: var(--color-text-neutral-darker);
+}
+
+.demo-scale__note {
+  max-width: 760px;
+  margin: 0 0 var(--spacing-16);
+  font-family: var(--typography-font-family-serif);
+  font-size: 13px;
+  line-height: 1.5;
+  color: var(--color-text-neutral-grey-dark);
+}
+
+.demo-scale__code {
+  font-family: monospace;
+  font-size: 12px;
+  font-weight: 600;
+  color: var(--color-text-neutral-darker);
+}
+
+.demo-scale__use {
+  color: var(--color-text-neutral-grey-dark);
+}
+
+// ── Spacing: one row per token ────────────────────────────────────────────────
+
+.demo-scale__scroll {
+  overflow-x: auto;
+  border-radius: var(--border-radius-8);
+  background-color: var(--color-background-neutral-lightest);
+}
+
+.demo-scale__table {
+  width: 100%;
+  border-collapse: collapse;
+  font-family: var(--typography-font-family-sans);
+  font-size: 13px;
+  color: var(--color-text-neutral-dark);
+
+  th,
+  td {
+    padding: var(--spacing-12) var(--spacing-16);
+    border-bottom: 1px solid var(--color-effect-translucent-dark-pale);
+    text-align: left;
+    vertical-align: top;
+    white-space: nowrap;
+  }
+
+  tr:last-child td {
+    border-bottom: 0;
+  }
+
+  thead th {
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+    color: var(--color-text-neutral-grey-dark);
+  }
+
+  .demo-scale__use {
+    width: 100%;
+    min-width: 200px;
+    white-space: normal;
+  }
+}
+
+// Sub-atomic steps (1 · 2 · 6 · 10): precision only, shown lighter
+.demo-scale__row--minor .demo-scale__code {
+  color: var(--color-text-neutral-grey-dark);
+}
+
+// The value drawn three ways (Figma: horizontal · vertical · square)
+.demo-scale__bar {
+  display: block;
+  background-color: var(--color-background-home-blue-base);
+
+  &--h {
+    height: 16px;
+  }
+
+  &--v {
+    width: 16px;
+  }
+}
+
+// ── Border radius: one row per token (after the App UI Kit table) ────────────
+// The example grows with the radius; the corner arc itself is drawn in blue.
+
+.demo-scale__radius {
+  position: relative;
+  border: 2px solid var(--color-border-neutral-light);
+  background-color: var(--color-background-home-blue-subtlest);
+}
+
+// The corner: a square of the radius's size, its rounded edge in blue
+.demo-scale__corner {
+  position: absolute;
+  top: -2px;
+  left: -2px;
+  border: 2px solid var(--color-border-home-blue-base);
+  border-right: 0;
+  border-bottom: 0;
+
+  // Full: both round ends, top to bottom
+  &--start,
+  &--end {
+    top: -2px;
+    bottom: -2px;
+    border-bottom: 2px solid var(--color-border-home-blue-base);
+  }
+
+  &--end {
+    right: -2px;
+    left: auto;
+    transform: scaleX(-1);
+  }
+}
+
+// ── Elevation: Levels 0–5 on a light and a dark surface ───────────────────────
+
+.demo-scale__surfaces {
+  display: grid;
+  gap: var(--spacing-16);
+
+  @media (min-width: 1100px) {
+    grid-template-columns: 1fr 1fr;
+  }
+}
+
+.demo-scale__surface {
+  padding: var(--spacing-24);
+  border-radius: var(--border-radius-8);
+  background-color: var(--color-background-neutral-lighter);
+  font-family: var(--typography-font-family-sans);
+  font-size: 12px;
+  color: var(--color-text-neutral-dark);
+
+  // The light page surface needs an edge to read against the page
+  &:not([data-theme='dark']) {
+    box-shadow: inset 0 0 0 1px var(--color-effect-translucent-dark-pale);
+  }
+}
+
+.demo-scale__surface-name {
+  margin: 0 0 var(--spacing-20);
+  font-family: var(--typography-font-family-serif);
+  font-size: 15px;
+  font-weight: 600;
+  color: var(--color-text-neutral-darker);
+}
+
+.demo-scale__levels {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(104px, 1fr));
+  gap: var(--spacing-32) var(--spacing-24);
+}
+
+.demo-scale__level {
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-4);
+}
+
+.demo-scale__card {
+  aspect-ratio: 1;
+  margin-bottom: var(--spacing-8);
+  border-radius: var(--border-radius-8);
+  background-color: var(--color-background-neutral-lightest);
+}
+
+// ── Elevation: one page with every level in place ─────────────────────────────
+// A wireframe page: the sticky bar, an arrow on a carousel image, a dropdown, a
+// toast, a mini player and (Modal on) a modal over a scrim — each with its level.
+
+.demo-scale__scene {
+  position: relative;
+  height: 440px;
+  overflow: hidden;
+  border-radius: var(--border-radius-8);
+  background-color: var(--color-background-neutral-lightest);
+  box-shadow: inset 0 0 0 1px var(--color-effect-translucent-dark-pale);
+  font-family: var(--typography-font-family-sans);
+}
+
+// Level name on each layer
+.demo-scale__tag {
+  position: absolute;
+  top: var(--spacing-8);
+  left: var(--spacing-8);
+  padding: 2px 6px;
+  border-radius: var(--border-radius-4);
+  background-color: var(--color-background-neutral-darker);
+  font-family: monospace;
+  font-size: 11px;
+  white-space: nowrap;
+  color: var(--color-text-neutral-white);
+}
+
+// Every floating layer: a white surface with a corner radius
+.demo-scale__scene-bar,
+.demo-scale__scene-arrow,
+.demo-scale__scene-dropdown,
+.demo-scale__scene-toast,
+.demo-scale__scene-player,
+.demo-scale__scene-modal {
+  position: absolute;
+  background-color: var(--color-background-neutral-lightest);
+}
+
+// 1 · Sticky Navbar — across the top
+.demo-scale__scene-bar {
+  inset: 0 0 auto;
+  z-index: 1;
+  height: 48px;
+  box-shadow: var(--elevation-1);
+}
+
+// 0 · Page — placeholder blocks under the bar
+.demo-scale__scene-page {
+  display: grid;
+  gap: var(--spacing-16);
+  max-width: 560px;
+  padding: calc(48px + var(--spacing-24)) var(--spacing-24) var(--spacing-24);
+}
+
+.demo-scale__scene-media {
+  position: relative;
+  aspect-ratio: 16 / 7;
+  border-radius: var(--border-radius-8);
+  background-color: var(--color-background-neutral-light);
+}
+
+.demo-scale__scene-block {
+  height: 16px;
+  border-radius: var(--border-radius-4);
+  background-color: var(--color-background-neutral-light);
+
+  &--short {
+    width: 60%;
+  }
+}
+
+// 2 · Carousel arrow — on the image
+.demo-scale__scene-arrow {
+  top: 50%;
+  right: var(--spacing-12);
+  width: 40px;
+  height: 40px;
+  margin-top: -20px;
+  border-radius: var(--border-radius-full);
+  box-shadow: var(--elevation-2);
+
+  .demo-scale__tag {
+    top: auto;
+    bottom: calc(100% + var(--spacing-4));
+    left: 50%;
+    transform: translateX(-50%);
+  }
+}
+
+// 4 · Dropdown — hangs from the bar
+.demo-scale__scene-dropdown {
+  top: 40px;
+  right: var(--spacing-24);
+  z-index: 2;
+  width: 200px;
+  height: 160px;
+  border-radius: var(--border-radius-8);
+  box-shadow: var(--elevation-4);
+}
+
+// 4 · Toast — bottom centre
+.demo-scale__scene-toast {
+  bottom: var(--spacing-24);
+  left: 50%;
+  z-index: 2;
+  width: 240px;
+  height: 48px;
+  border-radius: var(--border-radius-8);
+  box-shadow: var(--elevation-4);
+  transform: translateX(-50%);
+}
+
+// 3 · Mini player — bottom right
+.demo-scale__scene-player {
+  right: var(--spacing-24);
+  bottom: var(--spacing-24);
+  z-index: 1;
+  width: 200px;
+  height: 112px;
+  border-radius: var(--border-radius-8);
+  box-shadow: var(--elevation-3);
+}
+
+// 5 · Modal — over a scrim, only with Modal on
+.demo-scale__scene-scrim {
+  position: absolute;
+  inset: 0;
+  z-index: 3;
+  display: none;
+  align-items: center;
+  justify-content: center;
+  background-color: var(--color-background-shade-moderate);
+}
+
+.demo-scale__scene--modal .demo-scale__scene-scrim {
+  display: flex;
+}
+
+.demo-scale__scene-modal {
+  position: relative;
+  width: 320px;
+  height: 200px;
+  border-radius: var(--border-radius-16);
+  box-shadow: var(--elevation-5);
+}

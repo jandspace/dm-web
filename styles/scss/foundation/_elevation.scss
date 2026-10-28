@@ -1,0 +1,17 @@
+// ── Elevation ─────────────────────────────────────────────────────────────────
+// Drop shadows for Levels 1–5, from the Figma effect styles "Elevation Lv-1…5"
+// (Web UI Kit › Foundation › Elevation). Level 0 is flat — no shadow.
+// The shadow colours are the translucent-dark effect tokens the styles bind to.
+// Use: box-shadow: var(--elevation-2);
+//
+// Also set on [data-theme] so a themed block re-reads its own effect colours
+// (a custom property's var() resolves where it is declared).
+
+:root,
+[data-theme] {
+  --elevation-1: 0 1px 4px var(--color-effect-translucent-dark-pale);
+  --elevation-2: 0 2px 8px var(--color-effect-translucent-dark-pale);
+  --elevation-3: 0 3px 12px var(--color-effect-translucent-dark-subtle);
+  --elevation-4: 0 4px 20px var(--color-effect-translucent-dark-subtle);
+  --elevation-5: 0 5px 28px var(--color-effect-translucent-dark-moderate);
+}

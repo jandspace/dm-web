@@ -1,0 +1,179 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Elevation</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&family=Lora:wght@400;600;700&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="../../tokens/dm_tokens.css" />
+    <link rel="stylesheet" href="../../tokens/dm_typography_web_tokens.css" />
+    <link rel="stylesheet" href="../../styles/css/main.css" />
+    <script src="../../scripts/scaffolding/demo-nav.js" defer></script>
+  </head>
+  <body class="demo-page-body">
+    <h1 class="demo-page-h1">Elevation</h1>
+    <p class="demo-page-intro">
+      Drop shadows that lift a surface above the page — a visual cue that it sits higher in priority or hierarchy.
+      Five levels, <code>var(--elevation-1)</code> … <code>var(--elevation-5)</code> in
+      <code>styles/scss/foundation/_elevation.scss</code>, from the Figma effect styles <code>Elevation Lv-1…5</code>
+      (Web UI Kit › Elevation, page 63:9380). Level 0 is flat. Each level is a role — pick the role first, and the
+      role gives the shadow.
+    </p>
+
+    <main class="demo-scale">
+      <!-- 1. The logic: one question picks the level -->
+      <h2 class="demo-scale__set">Which level?</h2>
+      <p class="demo-scale__note">
+        Ask one question: <strong>how far does it sit from the page, and how much does it stop the reader?</strong>
+        The further it floats and the more it interrupts, the higher the level. Never pick a shadow by eye — pick the
+        role, and the role gives the level.
+      </p>
+      <div class="demo-scale__scroll">
+        <table class="demo-scale__table">
+          <thead>
+            <tr>
+              <th>Level</th>
+              <th>Role</th>
+              <th>The test</th>
+              <th>DM examples</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td class="demo-scale__code">0 · none</td>
+              <td>Page</td>
+              <td class="demo-scale__use">Scrolls with the page. Content is split by keylines, not shadows.</td>
+              <td>Page, Article Card, sections, Beta boxes</td>
+            </tr>
+            <tr>
+              <td class="demo-scale__code">1 · --elevation-1</td>
+              <td>Sticky</td>
+              <td class="demo-scale__use">Stuck to an edge of the page; content scrolls underneath.</td>
+              <td>Sticky Navbar</td>
+            </tr>
+            <tr>
+              <td class="demo-scale__code">2 · --elevation-2</td>
+              <td>Floating control</td>
+              <td class="demo-scale__use">A small control resting on top of content.</td>
+              <td>Carousel arrows, back-to-top button</td>
+            </tr>
+            <tr>
+              <td class="demo-scale__code">3 · --elevation-3</td>
+              <td>Floating panel</td>
+              <td class="demo-scale__use">A panel that floats over the page and stays while the reader carries on.</td>
+              <td>Mini video player</td>
+            </tr>
+            <tr>
+              <td class="demo-scale__code">4 · --elevation-4</td>
+              <td>Temporary</td>
+              <td class="demo-scale__use">Appears for a moment — opened by the reader or by the system — and closes on an outside click or by itself.</td>
+              <td>Dropdown, Nav Panel, Tooltip, Toast</td>
+            </tr>
+            <tr>
+              <td class="demo-scale__code">5 · --elevation-5</td>
+              <td>Modal</td>
+              <td class="demo-scale__use">Blocks the page until it is dealt with; always over a scrim. The top layer.</td>
+              <td>Modal</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <h2 class="demo-scale__set">Levels</h2>
+      <div class="demo-scale__surfaces">
+        <section class="demo-scale__surface">
+          <p class="demo-scale__surface-name">Light</p>
+          <div class="demo-scale__levels"></div>
+        </section>
+        <section class="demo-scale__surface" data-theme="dark">
+          <p class="demo-scale__surface-name">Dark</p>
+          <div class="demo-scale__levels"></div>
+        </section>
+      </div>
+
+      <h2 class="demo-scale__set">Values</h2>
+      <div class="demo-scale__scroll">
+        <table class="demo-scale__table">
+          <thead>
+            <tr>
+              <th>Token</th>
+              <th>Figma style</th>
+              <th>Shadow</th>
+            </tr>
+          </thead>
+          <tbody id="demo-elevation"></tbody>
+        </table>
+      </div>
+
+      <!-- Example: every level in one page -->
+      <h2 class="demo-scale__set">In a page</h2>
+      <div class="demo-vp-toolbar">
+        <span id="demo-elev-modal-label">Modal</span>
+        <div class="demo-vp-toggle" role="group" aria-labelledby="demo-elev-modal-label" id="demo-elev-modal">
+          <button type="button" data-modal="off" aria-pressed="true">Off</button>
+          <button type="button" data-modal="on" aria-pressed="false">On</button>
+        </div>
+      </div>
+      <div class="demo-scale__scene" id="demo-elev-scene">
+        <div class="demo-scale__scene-bar"><span class="demo-scale__tag">1 · Sticky Navbar</span></div>
+        <div class="demo-scale__scene-page">
+          <div class="demo-scale__scene-media">
+            <span class="demo-scale__tag">0 · Page</span>
+            <span class="demo-scale__scene-arrow"><span class="demo-scale__tag">2 · Arrow</span></span>
+          </div>
+          <div class="demo-scale__scene-block"></div>
+          <div class="demo-scale__scene-block demo-scale__scene-block--short"></div>
+        </div>
+        <div class="demo-scale__scene-dropdown"><span class="demo-scale__tag">4 · Dropdown</span></div>
+        <div class="demo-scale__scene-toast"><span class="demo-scale__tag">4 · Toast</span></div>
+        <div class="demo-scale__scene-player"><span class="demo-scale__tag">3 · Mini player</span></div>
+        <div class="demo-scale__scene-scrim">
+          <div class="demo-scale__scene-modal"><span class="demo-scale__tag">5 · Modal</span></div>
+        </div>
+      </div>
+    </main>
+
+    <script>
+      // Scaffolding only — the samples use the real tokens; the table shows their declared value.
+      (async () => {
+        const css = await fetch('../../styles/css/main.css').then((r) => r.text());
+        const levels = [...new Map([...css.matchAll(/--elevation-(\d):\s*([^;]+);/g)].map((m) => [m[1], m[2].trim()]))];
+
+        const el = (tag, className, text) => {
+          const node = document.createElement(tag);
+          if (className) node.className = className;
+          if (text != null) node.textContent = text;
+          return node;
+        };
+
+        document.querySelectorAll('.demo-scale__levels').forEach((box) => {
+          [['0', null], ...levels].forEach(([n]) => {
+            const level = el('div', 'demo-scale__level');
+            const card = el('div', 'demo-scale__card');
+            if (n !== '0') card.style.boxShadow = `var(--elevation-${n})`;
+            level.append(card, el('span', 'demo-scale__code', `Level ${n}`), el('span', 'demo-scale__use', n === '0' ? 'none' : `--elevation-${n}`));
+            box.append(level);
+          });
+        });
+
+        // Modal on / off in the page scene
+        const scene = document.getElementById('demo-elev-scene');
+        document.querySelectorAll('#demo-elev-modal button').forEach((button, _, all) => {
+          button.addEventListener('click', () => {
+            all.forEach((b) => b.setAttribute('aria-pressed', String(b === button)));
+            scene.classList.toggle('demo-scale__scene--modal', button.dataset.modal === 'on');
+          });
+        });
+
+        const body = document.getElementById('demo-elevation');
+        levels.forEach(([n, value]) => {
+          const row = el('tr');
+          row.append(el('td', 'demo-scale__code', `--elevation-${n}`), el('td', null, `Elevation Lv-${n}`), el('td', 'demo-scale__use', value));
+          body.append(row);
+        });
+      })();
+    </script>
+  </body>
+</html>

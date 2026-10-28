@@ -1,0 +1,117 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Spacing</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&family=Lora:wght@400;600;700&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="../../tokens/dm_tokens.css" />
+    <link rel="stylesheet" href="../../tokens/dm_typography_web_tokens.css" />
+    <link rel="stylesheet" href="../../styles/css/main.css" />
+    <script src="../../scripts/scaffolding/demo-nav.js" defer></script>
+  </head>
+  <body class="demo-page-body">
+    <h1 class="demo-page-h1">Spacing</h1>
+    <p class="demo-page-intro">
+      A 4-point scale for padding, margin and gap. Each token is read live from <code>tokens/dm_tokens.css</code>
+      (<code>--number-spacing-N</code>); use the short alias <code>var(--spacing-N)</code> from
+      <code>styles/scss/foundation/_spacing.scss</code>. The name is the value in px. Figma: Web UI Kit › Spacing
+      (page 214:6479), variables <code>number/spacing/…</code>.
+    </p>
+
+    <main class="demo-scale">
+      <h2 class="demo-scale__set">Scale</h2>
+      <p class="demo-scale__note">
+        Sub-atomic steps (1 · 2 · 6 · 10, shown lighter) are for precision only — when in doubt, take the next 4-point
+        step. Never use a value outside the scale.
+      </p>
+      <div class="demo-scale__scroll">
+        <table class="demo-scale__table">
+          <thead>
+            <tr>
+              <th>Token</th>
+              <th>Multiplier</th>
+              <th>px</th>
+              <th>rem</th>
+              <th>Horizontal</th>
+              <th>Vertical</th>
+              <th>Square</th>
+              <th>Use</th>
+            </tr>
+          </thead>
+          <tbody id="demo-spacing"></tbody>
+        </table>
+      </div>
+
+      <h2 class="demo-scale__set">Layout spacing</h2>
+      <p class="demo-scale__note">
+        Columns carry no padding — every card or block holds its own 16px inset (<code>--spacing-16</code>), so
+        neighbours sit 32px apart. See Layout &amp; Grid and <code>docs/3_Foundation__04_Spacing.md</code>.
+      </p>
+    </main>
+
+    <script>
+      // Scaffolding only — token names from the token file, values as the browser resolves them.
+      (async () => {
+        const css = await fetch('../../tokens/dm_tokens.css').then((r) => r.text());
+        const names = [...css.matchAll(/--number-spacing-(\w+):/g)].map((m) => m[1]);
+        const root = getComputedStyle(document.documentElement);
+
+        // Logic column of docs/2_Token__03_Spatial-Tokens.md
+        const USE = {
+          0: 'No space',
+          1: 'Sub-atomic: hairlines',
+          2: 'Sub-atomic: micro-adjustments',
+          4: 'The 4-point base unit',
+          6: 'Sub-atomic: optical balancing',
+          8: 'Standard grouping',
+          10: 'Sub-atomic: strategic intermediate',
+          12: 'Intermediate grouping',
+          16: 'Standard component padding — on each card or block, not the column',
+          20: 'Refined structural gap',
+          24: 'Sectional rhythm',
+          28: 'Structural gap',
+          32: 'Large structural gap',
+          48: 'Major section separation',
+          64: 'Large structural separation',
+        };
+        const MINOR = ['1', '2', '6', '10'];
+
+        const el = (tag, className, text) => {
+          const node = document.createElement(tag);
+          if (className) node.className = className;
+          if (text != null) node.textContent = text;
+          return node;
+        };
+        const bar = (modifier, token) => {
+          const cell = el('td');
+          const shape = el('span', `demo-scale__bar demo-scale__bar--${modifier}`);
+          if (modifier !== 'v') shape.style.width = `var(${token})`;
+          if (modifier !== 'h') shape.style.height = `var(${token})`;
+          cell.append(shape);
+          return cell;
+        };
+
+        const body = document.getElementById('demo-spacing');
+        names.forEach((n) => {
+          const token = `--spacing-${n}`;
+          const px = parseFloat(root.getPropertyValue(token));
+          const row = el('tr', MINOR.includes(n) ? 'demo-scale__row--minor' : null);
+          row.append(
+            el('td', 'demo-scale__code', token),
+            el('td', null, `${px / 4}x`),
+            el('td', null, `${px}px`),
+            el('td', null, `${px / 16}rem`),
+            bar('h', token),
+            bar('v', token),
+            bar('sq', token),
+            el('td', 'demo-scale__use', USE[n] || ''),
+          );
+          body.append(row);
+        });
+      })();
+    </script>
+  </body>
+</html>

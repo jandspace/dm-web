@@ -108,16 +108,16 @@ Similar to spacing, border-radius tokens follow a numerical naming convention. T
 - **Logic:** The token name corresponds to the corner radius value (e.g., `number-border-radius-8` equals an 8pt radius).
 - **Consistency:** All radius values are anchored to the 4-point system to ensure visual cohesion with the layout grid.
 
+Everyday steps are **0, 4, 8, 16 and Full**. Every other step (2, 6, 10, 12, 20, 24, 28, 32, 48, 64) is rarely used — reach for an everyday step first.
+
 | Token Name | Primitive Mapping | Application Example |
 |---|---|---|
 | `border-radius-0` | 0 (0pt) | Sharp corners, full-bleed modules |
-| `border-radius-2` | 50 (2pt) | Micro-elements (e.g., Checkboxes) |
-| `border-radius-4` | 100 (4pt) | Small image thumbnail, small input fields |
-| `border-radius-8` | 200 (8pt) | Medium image thumbnail, secondary cards |
-| `border-radius-12` | 300 (12pt) | Actionable modules, primary cards |
-| `border-radius-16` | 400 (16pt) | Modals (Sheet), Overlays |
-| ... | ... | ... |
-| `border-radius-full` | 9999 (Full) | Primary pill buttons, Avatars, FABs |
+| `border-radius-4` | 100 (4pt) | Thumbnails |
+| `border-radius-8` | 200 (8pt) | Image-based cards (e.g. Image Only, image carousel items) |
+| `border-radius-16` | 400 (16pt) | Modals |
+| `border-radius-full` | full (999pt) | Pill buttons, Avatars |
+| Others | — | Rarely used |
 
 ---
 

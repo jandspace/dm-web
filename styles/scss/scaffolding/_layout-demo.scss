@@ -59,8 +59,8 @@
 
   @include bp.respond-to(xl) {
     position: sticky;
-    top: var(--spacing-16);
-    max-height: calc(100vh - 32px);
+    top: 80px; // under the sticky toolbar
+    max-height: calc(100vh - 96px);
     margin-top: 0;
     overflow-y: auto;
   }
@@ -121,12 +121,13 @@
 }
 
 .demo-layout-guides {
-  .demo-layout-code--layout-full { color: var(--color-text-neutral-grey-dark); }
+  .demo-layout-code--layout-full { color: var(--color-text-neutral-black); }
+  .demo-layout-code--layout-split { color: var(--color-text-tv-magenta-base); }
   .demo-layout-code--layout-alpha { color: var(--color-text-science-orange-base); }
   .demo-layout-code--layout-beta { color: var(--color-text-science-orange-base); }
   .demo-layout-code--layout-row { color: var(--color-text-home-blue-base); }
   .demo-layout-code--layout-col { color: var(--color-text-sport-green-base); }
-  .demo-layout-code--layout-inset { color: var(--color-text-showbiz-red-base); }
+  .demo-layout-code--layout-inset { color: var(--color-text-news-cyan-base); }
 }
 
 // Section title placeholder (the Section Header module in production)
@@ -174,22 +175,24 @@
 
 // One grey bar per line, 70% of the line box, so the lines stay apart
 .demo-layout-text {
+  --demo-text-block: var(--color-background-neutral-light); // as the images
+
   color: transparent;
-  background: linear-gradient(var(--color-background-neutral-light), var(--color-background-neutral-light)) center / 100% 70% no-repeat;
+  background: linear-gradient(var(--demo-text-block), var(--demo-text-block)) center / 100% 70% no-repeat;
   box-decoration-break: clone;
   -webkit-box-decoration-break: clone;
 }
 
 // Section headers: one step darker, so they still read as headers
 .demo-layout-text--strong {
-  background-image: linear-gradient(var(--color-background-neutral-grey-light), var(--color-background-neutral-grey-light));
+  --demo-text-block: var(--color-background-neutral-grey-light);
 }
 
 .demo-layout-card__media {
   flex-shrink: 0;
   aspect-ratio: 358 / 215;
   border-radius: var(--border-radius-4);
-  background-color: var(--color-background-neutral-lighter);
+  background-color: var(--color-background-neutral-light);
 
   &--banner {
     aspect-ratio: 16 / 9;
@@ -275,6 +278,18 @@
   display: none;
 }
 
+// Guides on: the content fades to 40% so the regions, keylines and columns read
+// first. Leaf content only — cards in the tinted box fade with the box, once.
+.demo-layout-guides {
+  .demo-layout-heading,
+  .section-header,
+  .demo-layout-mpu,
+  .demo-layout-box,
+  .demo-layout-card:not(.demo-layout-box .demo-layout-card) {
+    opacity: 0.4;
+  }
+}
+
 // Column grid over the whole sample (Figma Layout & Grid overlay): 12 columns
 // from LG, 6 below, no gutters — dashed column edges and a see-through news
 // cyan bar 16px in from each edge (the content area of each column). Guides only.
@@ -329,39 +344,46 @@
   }
 }
 
-// One colour per level: Fullwidth grey · Alpha and Beta orange (solid and
-// lightly tinted, so the split stands out) · Row blue · Col green · Inset red
+// One colour per level: Fullwidth black · Split magenta · Alpha and Beta orange ·
+// Row blue · Col green · Inset cyan.
+// Each outline sits one line + 1px further in than the region around it (the
+// real nesting depth, not a fixed step per class), and its name tag sits on
+// the line — so where regions share an edge every line still shows.
+$guide-regions: '.layout-full, .layout-split, .layout-alpha, .layout-beta, .layout-row, .layout-col, .layout-inset';
+
 .demo-layout-guides {
-  .layout-full,
-  .layout-alpha,
-  .layout-beta,
-  .layout-row,
-  .layout-col,
-  .layout-inset {
+  :is(#{$guide-regions}) {
+    --guide-inset: 1px;
+
     position: relative;
     outline: 1px dashed var(--guide-line);
-    outline-offset: -1px;
+    outline-offset: calc(var(--guide-inset) * -1);
+  }
+
+  // Depth 1–5: one more outlined region around it → 2px further in
+  $chain: ':is(#{$guide-regions})';
+  @for $depth from 1 through 5 {
+    $chain: '#{$chain} :is(#{$guide-regions})';
+
+    #{$chain} {
+      --guide-inset: #{1 + 2 * $depth}px;
+    }
   }
 
   .layout-full {
-    --guide-line: var(--color-border-neutral-grey-dark);
-    --guide-tag: var(--color-background-neutral-grey-dark);
+    --guide-line: var(--color-border-neutral-black);
+    --guide-tag: var(--color-background-neutral-black);
   }
 
-  .layout-alpha {
-    --guide-line: var(--color-border-science-orange-base);
-    --guide-tag: var(--color-background-science-orange-base);
-
-    outline-style: solid;
-    background-color: var(--color-background-science-orange-subtlest);
+  .layout-split {
+    --guide-line: var(--color-border-tv-magenta-base);
+    --guide-tag: var(--color-background-tv-magenta-base);
   }
 
+  .layout-alpha,
   .layout-beta {
     --guide-line: var(--color-border-science-orange-base);
     --guide-tag: var(--color-background-science-orange-base);
-
-    outline-style: solid;
-    background-color: var(--color-background-science-orange-subtlest);
   }
 
   .layout-row {
@@ -375,14 +397,17 @@
   }
 
   .layout-inset {
-    --guide-line: var(--color-border-showbiz-red-base);
-    --guide-tag: var(--color-background-showbiz-red-base);
+    --guide-line: var(--color-border-news-cyan-base);
+    --guide-tag: var(--color-background-news-cyan-base);
   }
 
+  // On the region's own line: inset minus the 1px line
   .demo-layout-tag {
+    --guide-edge: calc(var(--guide-inset) - 1px);
+
     position: absolute;
-    top: 0;
-    left: 0;
+    top: var(--guide-edge);
+    left: var(--guide-edge);
     z-index: 1;
     display: block;
     padding: 1px 4px;
@@ -393,26 +418,23 @@
   }
 
   // Nested regions share corners — each level names itself in its own corner
+  // Fullwidth — the root of every section: top centre, clear of the corner tags
   .layout-full > .demo-layout-tag {
-    right: 0;
-    left: auto;
+    left: 50%;
+    transform: translateX(-50%);
   }
 
-  .layout-row > .demo-layout-tag {
-    top: auto;
-    bottom: 0;
-  }
-
-  // Alpha / Beta: top right, so the split reads at a glance
-  :is(.layout-alpha, .layout-beta) > .demo-layout-tag {
-    right: 0;
+  // Split / Row (the dividers): top left. Alpha / Beta / Col (the columns they
+  // divide into): top right, so each column reads at a glance
+  :is(.layout-alpha, .layout-beta, .layout-col) > .demo-layout-tag {
+    right: var(--guide-edge);
     left: auto;
   }
 
   .layout-inset > .demo-layout-tag {
     top: auto;
-    right: 0;
-    bottom: 0;
+    right: var(--guide-edge);
+    bottom: var(--guide-edge);
     left: auto;
   }
 }
