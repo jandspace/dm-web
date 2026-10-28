@@ -1,0 +1,63 @@
+// ── Components › Dropdown Menu demo — SCAFFOLDING ONLY ────────────────────────
+// Layout for components/dropdown-menu/. Never ships to production.
+
+.demo-dropdown {
+  max-width: 1224px;
+}
+
+.demo-dropdown__set {
+  margin: var(--spacing-48) 0 var(--spacing-8);
+  font-family: var(--typography-font-family-serif); // library chrome in Lora
+  font-size: 18px;
+  font-weight: 600;
+  color: var(--color-text-neutral-darker);
+}
+
+.demo-dropdown__note {
+  max-width: 760px;
+  margin: 0 0 var(--spacing-16);
+  font-family: var(--typography-font-family-serif);
+  font-size: 13px;
+  line-height: 1.5;
+  color: var(--color-text-neutral-grey-dark);
+}
+
+// Boxes side by side, top-aligned, at the Figma width
+.demo-dropdown__row {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: flex-start;
+  gap: var(--spacing-32);
+
+  .dropdown-menu {
+    width: 277px;
+  }
+}
+
+// States: one item per row with its name on the left
+.demo-dropdown__states {
+  display: grid;
+  grid-template-columns: max-content 320px;
+  align-items: center;
+  gap: var(--spacing-8) var(--spacing-24);
+  padding: var(--spacing-16);
+  border-radius: var(--border-radius-8);
+  background-color: var(--color-background-neutral-white);
+
+  > span {
+    font-family: monospace;
+    font-size: 12px;
+    color: var(--color-text-neutral-grey-dark);
+  }
+
+  > ul {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+  }
+}
+
+// Capped box: the list scrolls
+.demo-dropdown__capped {
+  max-height: 333px;
+}

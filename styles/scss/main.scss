@@ -13,6 +13,9 @@
 
 // Components — base UI elements (Figma "DM Web ::: Components")
 @use 'components/button';
+@use 'components/divider';
+@use 'components/dropdown-menu';
+@use 'components/media';
 
 // Modules — editorial / product blocks built from components (Figma "DM Web ::: Modules")
 @use 'modules/editorial-badge';
@@ -40,7 +43,11 @@
 @use 'scaffolding/foundation-colour-demo';
 @use 'scaffolding/foundation-typography-demo';
 @use 'scaffolding/foundation-scale-demo';
+@use 'scaffolding/foundation-iconography-demo';
 @use 'scaffolding/layout-demo';
+@use 'scaffolding/divider-demo';
+@use 'scaffolding/dropdown-menu-demo';
+@use 'scaffolding/media-demo';
 @use 'scaffolding/article-card-demo';
 @use 'scaffolding/article-card-metadata-demo';
 @use 'scaffolding/section-header-demo';

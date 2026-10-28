@@ -1,0 +1,86 @@
+// ── Components › Media demo — SCAFFOLDING ONLY ────────────────────────────────
+// Layout for components/media/. Never ships to production. Each sample is a real
+// .media box shown at its Figma feed size (capped to the page width).
+
+.demo-media {
+  max-width: 1224px;
+}
+
+.demo-media__set {
+  margin: var(--spacing-48) 0 var(--spacing-8);
+  font-family: var(--typography-font-family-serif); // library chrome in Lora
+  font-size: 18px;
+  font-weight: 600;
+  color: var(--color-text-neutral-darker);
+}
+
+.demo-media__note {
+  max-width: 760px;
+  margin: 0 0 var(--spacing-16);
+  font-family: var(--typography-font-family-serif);
+  font-size: 13px;
+  line-height: 1.5;
+  color: var(--color-text-neutral-grey-dark);
+}
+
+// Table: crop, CMS field, feed size, ratio, where it is used
+.demo-media__scroll {
+  overflow-x: auto;
+}
+
+.demo-media__table {
+  width: 100%;
+  border-collapse: collapse;
+  font-family: var(--typography-font-family-sans);
+  font-size: 13px;
+  line-height: 1.5;
+  color: var(--color-text-neutral-dark);
+
+  th {
+    padding: var(--spacing-8) var(--spacing-12);
+    border-bottom: 1px solid var(--color-border-neutral-light);
+    font-weight: 600;
+    text-align: left;
+    white-space: nowrap;
+    color: var(--color-text-neutral-darker);
+  }
+
+  td {
+    padding: var(--spacing-8) var(--spacing-12);
+    border-bottom: 1px solid var(--color-effect-translucent-dark-pale);
+    vertical-align: top;
+  }
+
+  code {
+    font-family: monospace;
+    font-size: 12px;
+    white-space: nowrap;
+  }
+}
+
+// Samples: one figure per crop, feed size as max width
+.demo-media__samples {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: flex-start;
+  gap: var(--spacing-32);
+}
+
+.demo-media__sample {
+  max-width: 100%;
+  margin: 0;
+
+  figcaption {
+    margin-top: var(--spacing-8);
+    font-family: var(--typography-font-family-sans);
+    font-size: 12px;
+    line-height: 1.4;
+    color: var(--color-text-neutral-grey-dark);
+  }
+
+  code {
+    font-family: monospace;
+    font-weight: 600;
+    color: var(--color-text-neutral-darker);
+  }
+}

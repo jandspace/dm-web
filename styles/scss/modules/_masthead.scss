@@ -306,61 +306,14 @@
   }
 }
 
-// Edition menu — Elevation Lv-4 panel under the button
+// Edition menu — a Dropdown Menu (components/_dropdown-menu.scss) placed
+// under the button, right-aligned
 .masthead-edition-menu {
   position: absolute;
   top: calc(100% + var(--spacing-8));
   right: 0;
   z-index: 10;
   min-width: 200px;
-  padding: var(--spacing-8) 0;
-  border-radius: var(--border-radius-8);
-  background-color: var(--color-background-neutral-lightest);
-  box-shadow: 0 4px 20px var(--color-effect-translucent-dark-subtle);
-
-  &[hidden] {
-    display: none;
-  }
-}
-
-.masthead-edition-menu__title {
-  margin: 0;
-  padding: var(--spacing-8) var(--spacing-16);
-  font-size: var(--typography-font-size-label-xsm);
-  font-weight: var(--typography-font-weight-bold);
-  color: var(--color-text-neutral-grey-dark);
-}
-
-.masthead-edition-menu__option {
-  display: flex;
-  align-items: center;
-  gap: var(--spacing-8);
-  padding: var(--spacing-8) var(--spacing-16);
-  font-size: var(--typography-font-size-label-sm);
-  font-weight: var(--typography-font-weight-semibold);
-  color: var(--color-text-neutral-darker);
-  text-decoration: none;
-
-  img {
-    width: 16px;
-    height: 16px;
-  }
-
-  // Tick on the current edition
-  svg {
-    width: 14px;
-    height: 14px;
-    margin-left: auto;
-    color: var(--color-icon-interaction-primary-default);
-  }
-
-  &:focus-visible {
-    background-color: var(--color-background-neutral-lighter);
-  }
-
-  @include pointer-hover {
-    background-color: var(--color-background-neutral-lighter);
-  }
 }
 
 // ── 2. Branding ───────────────────────────────────────────────────────────────

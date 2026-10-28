@@ -32,7 +32,7 @@ Code: `styles/scss/modules/_masthead.scss`, `_masthead-sheet.scss` · demo `modu
 - **Login item by user** (Figma Topbar - Login items 1651:55213): logged out — *Login*, person outline icon; logged in — *Profile*, filled person icon `color/icon/neutral/grey-dark`; Mail+ subscriber — *Profile*, filled person icon in Mail+ blue (`mplus-solid-blue`; Figma uses the Mail+ gradient), and no Subscribe.
 - **Topbar Subscribe** (Figma "Topbar - Subscribe Button", `.masthead-topbar-subscribe`): Mail+ gradient pill (165°, `mplus-dark-blue` 4% → `mplus-solid-blue` 65%), 4px / 12px padding, 4px gap; Daily Mail+ wordmark 80×14 (2px top offset) + "Subscribe" label-sm Semibold white. Hover as the Branding Subscribe. Item: 14px icon + label-sm Semibold `neutral/darker`, 6px gap (Edition: flag 14 · label · chevron 12, 4px gap).
 - **Hover:** `color/background/neutral/light` pill, 4px / 8px outside the content.
-- **Edition menu:** *Select Edition* — UK / US / AU / IE, tick on the current one. Elevation Lv-4 panel (0 4 20 `translucent-dark/subtle`), 8px corners. *Not in Figma yet* — content taken from the current production markup (`pageEditionDropdown`), styling from the system tokens.
+- **Edition menu:** a **Dropdown Menu** (`.dropdown-menu.masthead-edition-menu`, see `docs/4_Components__03_Dropdown-Menu.md`) under the Edition button, right-aligned, min 200px wide. Group Title *Select Edition*, then UK / US / AU / IE as link items (flag icon); the current edition is Selected via `aria-current="true"`. Only the position lives in `_masthead.scss` — the panel, items and states come from the component. Content taken from the current production markup (`pageEditionDropdown`).
 
 ## 4. Branding
 

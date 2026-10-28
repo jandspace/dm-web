@@ -1,0 +1,240 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Iconography</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&family=Lora:wght@400;600;700&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="../../tokens/dm_tokens.css" />
+    <link rel="stylesheet" href="../../tokens/dm_typography_web_tokens.css" />
+    <link rel="stylesheet" href="../../styles/css/main.css" />
+    <script src="../../scripts/scaffolding/demo-nav.js" defer></script>
+  </head>
+  <body class="demo-page-body">
+    <h1 class="demo-page-h1">Iconography</h1>
+    <p class="demo-page-intro">
+      Every icon in the DM icon library, loaded from <code>assets/icons/</code> — SVG files exported from the Figma
+      library (DailyMail Icons › Icon, 24:2253) with visible layers only, grouped as in Figma. Click an icon to copy its
+      path.
+    </p>
+
+    <main class="demo-icon">
+      <h2 class="demo-icon__set">Rules</h2>
+      <ul class="demo-icon__rules">
+        <li><strong>Web uses SVG only</strong> — no icon fonts, no PNG. Load the file from <code>assets/icons/</code>; never redraw an icon or re-export it into a page.</li>
+        <li><strong>One grid:</strong> every icon is drawn on 32 × 32 and scales down (24, 20, 16). Keep it square.</li>
+        <li><strong>Colour:</strong> icons are single colour (black). When an icon must follow a colour or a state (hover, theme), inline its path as an SVG <code>&lt;symbol&gt;</code> with <code>fill="currentColor"</code> and set the colour with a <code>color/icon/*</code> token. <code>-color</code> channel icons and flags keep their own colours.</li>
+        <li><strong>Names:</strong> <code>ico-{name}</code> plus a style suffix — <code>-outline</code>, <code>-circle</code>, <code>-square</code>, <code>-color</code>. Channels are <code>ico-ch-*</code>, social <code>ico-sn-*</code>, flags <code>ico-flag-*</code>.</li>
+        <li><strong>Accessibility:</strong> a decorative icon gets <code>alt=""</code> or <code>aria-hidden="true"</code>; an icon-only button carries its label (<code>aria-label</code>).</li>
+      </ul>
+
+      <div class="demo-vp-toolbar demo-vp-toolbar--sticky">
+        <label for="demo-icon-search">Search</label>
+        <input class="demo-icon__search" id="demo-icon-search" type="search" placeholder="e.g. arrow, bell, sn-" autocomplete="off" />
+        <span class="demo-vp-toolbar__divider" aria-hidden="true"></span>
+        <span id="demo-icon-size-label">Size</span>
+        <div class="demo-vp-toggle" role="group" aria-labelledby="demo-icon-size-label" id="demo-icon-size">
+          <button type="button" data-size="16" aria-pressed="false">16</button>
+          <button type="button" data-size="20" aria-pressed="false">20</button>
+          <button type="button" data-size="24" aria-pressed="true">24</button>
+          <button type="button" data-size="32" aria-pressed="false">32</button>
+        </div>
+        <span class="demo-vp-status" id="demo-icon-status"></span>
+      </div>
+
+      <!-- Built by the script below -->
+      <div id="demo-icon-sets"></div>
+    </main>
+
+    <script>
+      // Scaffolding only — the Figma library in its order (DailyMail Icons › Icon). Files in
+      // assets/icons/ that are not in this list show under Legacy (read from the local
+      // server's directory listing, when there is one).
+      (async () => {
+        const GROUPS = [
+          ['Channel Identity', [
+            'ico-ch-home', 'ico-ch-home-color', 'ico-ch-news', 'ico-ch-news-color', 'ico-ch-uk', 'ico-ch-uk-color',
+            'ico-ch-uk-flag', 'ico-ch-uk-flag-color', 'ico-ch-uk-showbiz', 'ico-ch-uk-showbiz-color', 'ico-ch-sport', 'ico-ch-sport-color',
+            'ico-ch-usa', 'ico-ch-usa-color', 'ico-ch-us-flag', 'ico-ch-us-flag-color', 'ico-ch-us-showbiz', 'ico-ch-us-showbiz-color',
+            'ico-ch-us-sport', 'ico-ch-us-sport-color', 'ico-ch-australia', 'ico-ch-australia-color', 'ico-ch-au-flag', 'ico-ch-au-flag-color',
+            'ico-ch-au-showbiz', 'ico-ch-au-showbiz-color', 'ico-ch-royals', 'ico-ch-royals-color', 'ico-ch-tv', 'ico-ch-tv-color',
+            'ico-ch-lifestyle', 'ico-ch-lifestyle-color', 'ico-ch-health', 'ico-ch-health-color', 'ico-ch-money', 'ico-ch-money-color',
+            'ico-ch-sci-tech', 'ico-ch-sci-tech-color', 'ico-ch-travel', 'ico-ch-travel-color', 'ico-ch-world-news', 'ico-ch-world-news-color',
+            'ico-ch-game', 'ico-ch-game-color', 'ico-ch-shopping', 'ico-ch-shopping-color', 'ico-ch-podcast', 'ico-ch-podcast-color',
+            'ico-ch-property', 'ico-ch-property-color', 'ico-ch-car', 'ico-ch-car-color', 'ico-ch-comment', 'ico-ch-comment-color',
+            'ico-ch-politics', 'ico-ch-politics-color', 'ico-ch-wellness', 'ico-ch-wellness-color', 'ico-ch-you', 'ico-ch-you-color',
+            'ico-ch-crime', 'ico-ch-crime-color', 'ico-ch-deep-dive', 'ico-ch-deep-dive-color', 'ico-ch-columnist', 'ico-ch-columnist-color',
+            'ico-ch-arcade', 'ico-ch-arcade-color', 'ico-ch-mailplus', 'ico-ch-mailplus-color', 'ico-topic', 'ico-topic-color',
+          ]],
+          ['Navigation', [
+            'ico-chevron-left', 'ico-chevron-right', 'ico-chevron-up', 'ico-chevron-down', 'ico-chevron-double-left',
+            'ico-chevron-double-right', 'ico-chevron-double-up', 'ico-chevron-double-down', 'ico-arrow-left-light',
+            'ico-arrow-right-light', 'ico-arrow-up-light', 'ico-arrow-down-light', 'ico-arrow-up-right',
+            'ico-arrow-bottom-right', 'ico-arrow-bottom-left', 'ico-arrow-up-left', 'ico-arrow-left',
+            'ico-arrow-right', 'ico-arrow-up', 'ico-arrow-down', 'ico-arrow-left-outline', 'ico-arrow-right-outline',
+            'ico-arrow-up-outline', 'ico-arrow-down-outline', 'ico-triangle-left', 'ico-triangle-right',
+            'ico-triangle-up', 'ico-triangle-down', 'ico-add-light', 'ico-xmark-light', 'ico-xmark-keyline',
+            'ico-plus-round-circle', 'ico-xmark-round-circle', 'ico-minus-round-circle', 'ico-slash-circle',
+          ]],
+          ['Interface', [
+            'ico-mailplus', 'ico-at-sign', 'ico-person', 'ico-person-outline', 'ico-person-plus', 'ico-person-tick',
+            'ico-person-gear', 'ico-people-two', 'ico-person-circle-outline', 'ico-tick', 'ico-tick-circle',
+            'ico-tick-circle-outline', 'ico-plus', 'ico-plus-circle', 'ico-plus-circle-outline', 'ico-xmark',
+            'ico-xmark-circle', 'ico-xmark-circle-outline', 'ico-info', 'ico-info-circle', 'ico-info-circle-outline',
+            'ico-exclamation-mark', 'ico-exclamation-mark-triangle', 'ico-exclamation-mark-triangle-outline',
+            'ico-question-mark-circle', 'ico-question-mark-outline', 'ico-key-outline', 'ico-padlock',
+            'ico-padlock-outline', 'ico-padlock-open', 'ico-padlock-open-outline', 'ico-speechbubble',
+            'ico-speechbubble-outline', 'ico-speechbubble-ellipsis', 'ico-speechbubble-ellipsis-outline',
+            'ico-speechbubble-empty', 'ico-speechbubble-empty-outline', 'ico-activity-share',
+            'ico-two-arrows-vertical', 'ico-two-arrows-horizontal', 'ico-thumbup-solid', 'ico-thumbdown-solid',
+            'ico-thumbup-outline', 'ico-thumbdown-outline', 'ico-pin', 'ico-dm-app-alert', 'ico-loading',
+            'ico-rectangle-arrow-outline', 'ico-notification-push-mobile', 'ico-phone-check',
+            'ico-notification-in-app', 'ico-notification-in-desktop', 'ico-clock', 'ico-clock-timeover',
+            'ico-clock-error', 'ico-bell', 'ico-bell-outline', 'ico-bell-mute-outline', 'ico-notification-settings',
+            'ico-bell-ringing', 'ico-activity-reply', 'ico-play-outline', 'ico-Shopping-bag-outline',
+            'ico-arrow-curved-upward', 'ico-arrow-graph-upward', 'ico-arrows-circle-horizontal',
+            'ico-arrows-circle-vertical', 'ico-checkbox-off', 'ico-checkbox-on', 'ico-radio-off', 'ico-radio-on',
+            'ico-compass', 'ico-three-lines', 'ico-three-lines-magnifier', 'ico-menu-list', 'ico-paragraph',
+            'ico-equalizer', 'ico-funnel', 'ico-sort', 'ico-sort-latest', 'ico-dots-horizontal', 'ico-dots-vertical',
+            'ico-dots-two-rows', 'ico-exit', 'ico-squares-plus', 'ico-shorts-list', 'ico-video-play-square',
+            'ico-video-play-rectangular', 'ico-heart-document', 'ico-bookmark-document', 'ico-clock-document',
+            'ico-heart', 'ico-heart-outline', 'ico-calendar', 'ico-two-cards', 'ico-text-size', 'ico-page-edit',
+            'ico-speaker-on', 'ico-speaker-off', 'ico-chains', 'ico-printer', 'ico-pencil', 'ico-screen-full',
+            'ico-camera', 'ico-eye-open', 'ico-eye-close', 'ico-reload', 'ico-screen-expand', 'ico-arrows-expand',
+            'ico-arrows-collapse', 'ico-magnifier', 'ico-bookmark-outline', 'ico-bookmark',
+            'ico-bookmark-solid-slash', 'ico-bookmark-list', 'ico-desktop-screen', 'ico-bin-outline', 'ico-gear',
+            'ico-star-plus-circle-outline', 'ico-paper-plane-outline', 'ico-envelop-outline',
+            'ico-envelop-dot-outline', 'ico-sharing-general', 'ico-sharing-android', 'ico-sharing-ios',
+            'ico-media-play', 'ico-media-pause', 'ico-media-play-error', 'ico-media-skip-rewind-10',
+            'ico-media-skip-forward-10', 'ico-media-play-back', 'ico-media-play-next', 'ico-star', 'ico-star-angled',
+            'ico-square-arrow-up-bar', 'ico-square-arrow-down-bar', 'ico-arrow-turn-up-left',
+            'ico-arrow-turn-up-right', 'ico-square-arrow-up-right', 'ico-square-pen', 'ico-photo', 'ico-photos-three',
+            'ico-two-rectangles', 'ico-squares-stack-plus', 'ico-square-dashed',
+          ]],
+          ['Pictogram', [
+            'ico-dm-app', 'ico-hand-point-up', 'ico-stars-document', 'ico-cookie', 'ico-megaphone', 'ico-morning',
+            'ico-morning-coffee', 'ico-lunch', 'ico-evening', 'ico-day-night', 'ico-star-hand',
+            'ico-photos-two-outline', 'ico-discount-tag-outline', 'ico-speechbubbles-ellipsis-outline',
+            'ico-property', 'ico-newsletter-subscription', 'ico-arrow-down-waves', 'ico-bulb-on', 'ico-gift',
+            'ico-quote-speechbubble', 'ico-parabolic-antenna', 'ico-robot', 'ico-sqaure-play',
+            'ico-rectangle-multiple-play', 'ico-rectange-multiple-stars', 'ico-sqaure-play-headphone', 'ico-thunder',
+            'ico-fire-flame', 'ico-bar-star', 'ico-spotlight', 'ico-picking-rectangle-check', 'ico-video-camera',
+            'ico-microphone', 'ico-headphones', 'ico-headphone-audiowave', 'ico-audiowave', 'ico-book-closed',
+            'ico-arrow-quote-left', 'ico-arrow-quote-right', 'ico-newsletter', 'ico-paper-box', 'ico-puzzle',
+          ]],
+          ['Social Media', [
+            'ico-sn-facebook', 'ico-sn-facebook-square', 'ico-sn-facebook-circle', 'ico-sn-instagram',
+            'ico-sn-instagram-square', 'ico-sn-instagram-circle', 'ico-sn-tiktok', 'ico-sn-tiktok-square',
+            'ico-sn-tiktok-circle', 'ico-sn-whatsapp', 'ico-sn-whatsapp-square', 'ico-sn-whatsapp-circle',
+            'ico-sn-youtube', 'ico-sn-youtube-square', 'ico-sn-youtube-circle', 'ico-sn-linkedin',
+            'ico-sn-linkedin-square', 'ico-sn-linkedin-circle', 'ico-sn-x', 'ico-sn-x-square', 'ico-sn-x-circle',
+            'ico-sn-snapchat', 'ico-sn-snapchat-square', 'ico-sn-snapchat-circle', 'ico-sn-facebook-messenger',
+            'ico-sn-facebook-messenger-square', 'ico-sn-facebook-messenger-circle', 'ico-sn-reddit',
+            'ico-sn-reddit-square', 'ico-sn-reddit-circle', 'ico-sn-flipboard', 'ico-sn-flipboard-square',
+            'ico-sn-flipboard-circle', 'ico-sn-pinterest', 'ico-sn-pinterest-circle', 'ico-sn-pinterest-square',
+            'ico-sn-link', 'ico-sn-link-square', 'ico-sn-link-circle', 'ico-sn-share-ios', 'ico-sn-share-ios-square',
+            'ico-sn-share-ios-circle', 'ico-sn-share-android', 'ico-sn-share-android-square',
+            'ico-sn-share-android-circle', 'ico-sn-email-arrow', 'ico-sn-email-arrow-square',
+            'ico-sn-email-arrow-circle', 'ico-sn-print', 'ico-sn-print-square', 'ico-sn-print-circle',
+            'ico-sn-code-embed', 'ico-sn-code-embed-square', 'ico-sn-code-embed-circle', 'ico-apple-ios',
+            'ico-google-android',
+          ]],
+          ['National Flag', [
+            'ico-flag-australia', 'ico-flag-united-kingdom', 'ico-flag-united-states', 'ico-flag-ireland',
+          ]],
+        ];
+        const root = document.getElementById('demo-icon-sets');
+        const search = document.getElementById('demo-icon-search');
+        const status = document.getElementById('demo-icon-status');
+        const known = new Set(GROUPS.flatMap(([, names]) => names));
+
+        const el = (tag, className, text) => {
+          const node = document.createElement(tag);
+          if (className) node.className = className;
+          if (text != null) node.textContent = text;
+          return node;
+        };
+
+        // Tile: the real file, click to copy its path
+        const tile = (name) => {
+          const b = el('button', 'demo-icon__tile');
+          b.type = 'button';
+          b.dataset.name = name;
+          const img = el('img');
+          img.src = `../../assets/icons/${name}.svg`;
+          img.alt = '';
+          img.loading = 'lazy';
+          b.append(img, el('span', 'demo-icon__name', name));
+          b.addEventListener('click', async () => {
+            try {
+              await navigator.clipboard.writeText(`assets/icons/${name}.svg`);
+            } catch (e) {
+              /* clipboard may be unavailable */
+            }
+            b.dataset.copied = '';
+            setTimeout(() => delete b.dataset.copied, 1200);
+          });
+          return b;
+        };
+
+        const set = (title, names, note, modifier) => {
+          const section = el('section');
+          const heading = el('h2', 'demo-icon__set', title);
+          heading.append(el('span', null, String(names.length)));
+          section.append(heading);
+          if (note) section.append(el('p', 'demo-icon__note', note));
+          const grid = el('div', modifier ? `demo-icon__grid demo-icon__grid--${modifier}` : 'demo-icon__grid');
+          names.forEach((n) => grid.append(tile(n)));
+          section.append(grid);
+          root.append(section);
+        };
+
+        GROUPS.forEach(([title, names]) => set(title, names));
+
+        // Legacy: files the Figma library no longer has
+        try {
+          const listing = await fetch('../../assets/icons/').then((r) => r.text());
+          const legacy = [...listing.matchAll(/href="([^"/]+)\.svg"/g)]
+            .map((m) => decodeURIComponent(m[1]))
+            .filter((n) => !known.has(n))
+            .sort();
+          if (legacy.length) {
+            set('Legacy', legacy, 'In assets/icons/ but not in the Figma library — older names or one-off exports. Use the library icon instead; delete a file once nothing uses it.', 'legacy');
+          }
+        } catch (e) {
+          /* no directory listing — skip */
+        }
+
+        // Search
+        const total = root.querySelectorAll('.demo-icon__tile').length;
+        const filter = () => {
+          const q = search.value.trim().toLowerCase();
+          let shown = 0;
+          root.querySelectorAll('section').forEach((section) => {
+            let count = 0;
+            section.querySelectorAll('.demo-icon__tile').forEach((t) => {
+              const hit = !q || t.dataset.name.toLowerCase().includes(q);
+              t.hidden = !hit;
+              count += hit;
+            });
+            section.hidden = !count;
+            shown += count;
+          });
+          status.textContent = `${shown} of ${total} icons`;
+        };
+        search.addEventListener('input', filter);
+        filter();
+
+        // Size
+        document.querySelectorAll('#demo-icon-size button').forEach((button, _, all) => {
+          button.addEventListener('click', () => {
+            all.forEach((b) => b.setAttribute('aria-pressed', String(b === button)));
+            root.style.setProperty('--demo-icon-size', `${button.dataset.size}px`);
+          });
+        });
+      })();
+    </script>
+  </body>
+</html>

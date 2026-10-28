@@ -1,0 +1,206 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Dropdown Menu</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&family=Lora:wght@400;600;700&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="../../tokens/dm_tokens.css" />
+    <link rel="stylesheet" href="../../tokens/dm_typography_web_tokens.css" />
+    <link rel="stylesheet" href="../../styles/css/main.css" />
+    <script src="../../scripts/scaffolding/demo-nav.js" defer></script>
+  </head>
+  <body class="demo-page-body">
+    <!-- Tick: inlined so it takes the home-blue icon colour (copied from assets/icons/ico-tick.svg) -->
+    <svg style="display: none" aria-hidden="true">
+      <symbol id="ico-tick" viewBox="0 0 32 32">
+        <path d="M27.8621 3.21463C27.7304 3.07805 27.5516 3 27.3728 3C27.194 3 27.0058 3.07805 26.8835 3.21463L11.2916 19.1951L5.11887 12.8732C4.98714 12.7366 4.80835 12.6585 4.62957 12.6585C4.45078 12.6585 4.26259 12.7366 4.14026 12.8732L0.207013 16.9024C0.0752775 17.039 0 17.2146 0 17.4098C0 17.5951 0.0564581 17.7805 0.178784 17.9171L10.7741 28.7951C10.9058 28.9317 11.0846 29 11.2634 29C11.4516 29 11.6304 28.922 11.7527 28.7951L31.7953 8.23902C32.0682 7.96585 32.0682 7.51707 31.7953 7.23415L27.8621 3.21463Z" fill="currentColor" />
+      </symbol>
+    </svg>
+
+    <h1 class="demo-page-h1">Dropdown Menu</h1>
+    <p class="demo-page-intro">
+      The panel that drops down from a trigger: an optional title, then a list of items to pick from or act on. Elevation
+      4 — it closes on an outside click. Click an item to select it. Figma: Web UI Kit › Dropdowns
+      (<code>175:5715</code>). Doc: <code>docs/4_Components__03_Dropdown-Menu.md</code>.
+    </p>
+
+    <main class="demo-dropdown">
+      <h2 class="demo-dropdown__set">Examples</h2>
+      <p class="demo-dropdown__note">As in Figma. Country is capped at 333px, so its list scrolls.</p>
+
+      <div class="demo-dropdown__row">
+        <!-- Title + groups -->
+        <div class="dropdown-menu">
+          <div class="dropdown-menu__title">
+            <img src="../../assets/icons/ico-gear.svg" alt="" />
+            <p class="dropdown-menu__heading">
+              Dropdown Title
+              <span class="dropdown-menu__description">Lorem ipsum dolor sit amet, consectetur adipiscing elit.</span>
+            </p>
+          </div>
+          <ul class="dropdown-menu__list" role="listbox" aria-label="Dropdown Title">
+            <li class="dropdown-menu__group" role="presentation">First Menus</li>
+            <li role="none">
+              <button class="dropdown-menu__item" type="button" role="option" aria-selected="true">
+                <img src="../../assets/icons/ico-compass.svg" alt="" />
+                <span class="dropdown-menu__label">Menu Label</span>
+                <svg class="dropdown-menu__tick" aria-hidden="true"><use href="#ico-tick" /></svg>
+              </button>
+            </li>
+            <li role="none">
+              <button class="dropdown-menu__item" type="button" role="option" aria-selected="false">
+                <img src="../../assets/icons/ico-compass.svg" alt="" />
+                <span class="dropdown-menu__label">Menu Label</span>
+                <svg class="dropdown-menu__tick" aria-hidden="true"><use href="#ico-tick" /></svg>
+              </button>
+            </li>
+            <li role="none">
+              <button class="dropdown-menu__item" type="button" role="option" aria-selected="false">
+                <img src="../../assets/icons/ico-compass.svg" alt="" />
+                <span class="dropdown-menu__label">Menu Label</span>
+                <svg class="dropdown-menu__tick" aria-hidden="true"><use href="#ico-tick" /></svg>
+              </button>
+            </li>
+            <li role="none">
+              <button class="dropdown-menu__item" type="button" role="option" aria-selected="false" disabled>
+                <img src="../../assets/icons/ico-compass.svg" alt="" />
+                <span class="dropdown-menu__label">Menu Label</span>
+                <svg class="dropdown-menu__tick" aria-hidden="true"><use href="#ico-tick" /></svg>
+              </button>
+            </li>
+            <li class="dropdown-menu__space" role="presentation"></li>
+            <li class="dropdown-menu__group" role="presentation">Second Menus</li>
+            <li role="none">
+              <button class="dropdown-menu__item" type="button" role="option" aria-selected="false">
+                <img src="../../assets/icons/ico-compass.svg" alt="" />
+                <span class="dropdown-menu__label">Menu Label</span>
+                <svg class="dropdown-menu__tick" aria-hidden="true"><use href="#ico-tick" /></svg>
+              </button>
+            </li>
+            <li role="none">
+              <button class="dropdown-menu__item" type="button" role="option" aria-selected="false">
+                <img src="../../assets/icons/ico-compass.svg" alt="" />
+                <span class="dropdown-menu__label">Menu Label</span>
+                <svg class="dropdown-menu__tick" aria-hidden="true"><use href="#ico-tick" /></svg>
+              </button>
+            </li>
+            <li role="none">
+              <button class="dropdown-menu__item" type="button" role="option" aria-selected="false">
+                <img src="../../assets/icons/ico-compass.svg" alt="" />
+                <span class="dropdown-menu__label">Menu Label</span>
+                <svg class="dropdown-menu__tick" aria-hidden="true"><use href="#ico-tick" /></svg>
+              </button>
+            </li>
+          </ul>
+        </div>
+
+        <!-- Group + icons, no title -->
+        <div class="dropdown-menu">
+          <ul class="dropdown-menu__list" role="listbox" aria-label="Fruits">
+            <li class="dropdown-menu__group" role="presentation">Fruits</li>
+            <li role="none">
+              <button class="dropdown-menu__item" type="button" role="option" aria-selected="false">
+                <img src="../../assets/icons/ico-compass.svg" alt="" />
+                <span class="dropdown-menu__label">Apple</span>
+                <svg class="dropdown-menu__tick" aria-hidden="true"><use href="#ico-tick" /></svg>
+              </button>
+            </li>
+            <li role="none">
+              <button class="dropdown-menu__item" type="button" role="option" aria-selected="false">
+                <img src="../../assets/icons/ico-compass.svg" alt="" />
+                <span class="dropdown-menu__label">Banana</span>
+                <svg class="dropdown-menu__tick" aria-hidden="true"><use href="#ico-tick" /></svg>
+              </button>
+            </li>
+            <li role="none">
+              <button class="dropdown-menu__item" type="button" role="option" aria-selected="false">
+                <img src="../../assets/icons/ico-compass.svg" alt="" />
+                <span class="dropdown-menu__label">Cherry</span>
+                <svg class="dropdown-menu__tick" aria-hidden="true"><use href="#ico-tick" /></svg>
+              </button>
+            </li>
+          </ul>
+        </div>
+
+        <!-- Title without icon, labels only, capped height -->
+        <div class="dropdown-menu demo-dropdown__capped">
+          <div class="dropdown-menu__title">
+            <p class="dropdown-menu__heading">
+              Country
+              <span class="dropdown-menu__description">Select country where you live now</span>
+            </p>
+          </div>
+          <ul class="dropdown-menu__list" role="listbox" aria-label="Country">
+            <li role="none"><button class="dropdown-menu__item" type="button" role="option" aria-selected="false"><span class="dropdown-menu__label">United Kingdom</span><svg class="dropdown-menu__tick" aria-hidden="true"><use href="#ico-tick" /></svg></button></li>
+            <li role="none"><button class="dropdown-menu__item" type="button" role="option" aria-selected="false"><span class="dropdown-menu__label">United States</span><svg class="dropdown-menu__tick" aria-hidden="true"><use href="#ico-tick" /></svg></button></li>
+            <li role="none"><button class="dropdown-menu__item" type="button" role="option" aria-selected="false"><span class="dropdown-menu__label">Australia</span><svg class="dropdown-menu__tick" aria-hidden="true"><use href="#ico-tick" /></svg></button></li>
+            <li role="none"><button class="dropdown-menu__item" type="button" role="option" aria-selected="false"><span class="dropdown-menu__label">Spain</span><svg class="dropdown-menu__tick" aria-hidden="true"><use href="#ico-tick" /></svg></button></li>
+            <li role="none"><button class="dropdown-menu__item" type="button" role="option" aria-selected="false" disabled><span class="dropdown-menu__label">Palestine</span><svg class="dropdown-menu__tick" aria-hidden="true"><use href="#ico-tick" /></svg></button></li>
+            <li role="none"><button class="dropdown-menu__item" type="button" role="option" aria-selected="false"><span class="dropdown-menu__label">France</span><svg class="dropdown-menu__tick" aria-hidden="true"><use href="#ico-tick" /></svg></button></li>
+            <li role="none"><button class="dropdown-menu__item" type="button" role="option" aria-selected="false"><span class="dropdown-menu__label">Ireland</span><svg class="dropdown-menu__tick" aria-hidden="true"><use href="#ico-tick" /></svg></button></li>
+            <li role="none"><button class="dropdown-menu__item" type="button" role="option" aria-selected="false"><span class="dropdown-menu__label">Germany</span><svg class="dropdown-menu__tick" aria-hidden="true"><use href="#ico-tick" /></svg></button></li>
+          </ul>
+        </div>
+
+        <!-- Title with icon, two groups -->
+        <div class="dropdown-menu">
+          <div class="dropdown-menu__title">
+            <img src="../../assets/icons/ico-property.svg" alt="" />
+            <p class="dropdown-menu__heading">
+              City
+              <span class="dropdown-menu__description">Select city where you live now</span>
+            </p>
+          </div>
+          <ul class="dropdown-menu__list" role="listbox" aria-label="City">
+            <li class="dropdown-menu__group" role="presentation">United Kingdom</li>
+            <li role="none"><button class="dropdown-menu__item" type="button" role="option" aria-selected="false"><span class="dropdown-menu__label">London</span><svg class="dropdown-menu__tick" aria-hidden="true"><use href="#ico-tick" /></svg></button></li>
+            <li role="none"><button class="dropdown-menu__item" type="button" role="option" aria-selected="false"><span class="dropdown-menu__label">Manchester</span><svg class="dropdown-menu__tick" aria-hidden="true"><use href="#ico-tick" /></svg></button></li>
+            <li role="none"><button class="dropdown-menu__item" type="button" role="option" aria-selected="false"><span class="dropdown-menu__label">Birmingham</span><svg class="dropdown-menu__tick" aria-hidden="true"><use href="#ico-tick" /></svg></button></li>
+            <li class="dropdown-menu__separator" role="separator"></li>
+            <li class="dropdown-menu__group" role="presentation">Spain</li>
+            <li role="none"><button class="dropdown-menu__item" type="button" role="option" aria-selected="false"><span class="dropdown-menu__label">Madrid</span><svg class="dropdown-menu__tick" aria-hidden="true"><use href="#ico-tick" /></svg></button></li>
+            <li role="none"><button class="dropdown-menu__item" type="button" role="option" aria-selected="false"><span class="dropdown-menu__label">Barcelona</span><svg class="dropdown-menu__tick" aria-hidden="true"><use href="#ico-tick" /></svg></button></li>
+            <li role="none"><button class="dropdown-menu__item" type="button" role="option" aria-selected="false"><span class="dropdown-menu__label">Valencia</span><svg class="dropdown-menu__tick" aria-hidden="true"><use href="#ico-tick" /></svg></button></li>
+            <li role="none"><button class="dropdown-menu__item" type="button" role="option" aria-selected="false"><span class="dropdown-menu__label">Seville</span><svg class="dropdown-menu__tick" aria-hidden="true"><use href="#ico-tick" /></svg></button></li>
+          </ul>
+        </div>
+      </div>
+
+      <h2 class="demo-dropdown__set">Item states</h2>
+      <p class="demo-dropdown__note">
+        Figma "Dropdown Item" › Status. Hover follows Button Quaternary Neutral (<code>neutral/light</code>). Tab to an
+        item to see focus.
+      </p>
+      <div class="demo-dropdown__states">
+        <span>Default</span>
+        <ul><li><button class="dropdown-menu__item" type="button"><img src="../../assets/icons/ico-compass.svg" alt="" /><span class="dropdown-menu__label">Menu Label</span></button></li></ul>
+        <span>Hover</span>
+        <ul><li><button class="dropdown-menu__item is-hover" type="button"><img src="../../assets/icons/ico-compass.svg" alt="" /><span class="dropdown-menu__label">Menu Label</span></button></li></ul>
+        <span>Selected</span>
+        <ul><li><button class="dropdown-menu__item" type="button" aria-selected="true"><img src="../../assets/icons/ico-compass.svg" alt="" /><span class="dropdown-menu__label">Menu Label</span><svg class="dropdown-menu__tick" aria-hidden="true"><use href="#ico-tick" /></svg></button></li></ul>
+        <span>Disabled</span>
+        <ul><li><button class="dropdown-menu__item" type="button" disabled><img src="../../assets/icons/ico-compass.svg" alt="" /><span class="dropdown-menu__label">Menu Label</span></button></li></ul>
+        <span>Group Title</span>
+        <ul><li class="dropdown-menu__group">Menu Label</li></ul>
+        <span>Space (Keyline)</span>
+        <ul><li class="dropdown-menu__separator"></li></ul>
+        <span>Space (Empty)</span>
+        <ul><li class="dropdown-menu__space"></li></ul>
+      </div>
+    </main>
+
+    <script>
+      // Scaffolding only — click an option to select it (one per list)
+      document.querySelectorAll('.demo-dropdown__row [role="listbox"]').forEach((list) => {
+        list.addEventListener('click', (event) => {
+          const option = event.target.closest('[role="option"]:not(:disabled)');
+          if (!option) return;
+          list.querySelectorAll('[role="option"]').forEach((o) => o.setAttribute('aria-selected', String(o === option)));
+        });
+      });
+    </script>
+  </body>
+</html>

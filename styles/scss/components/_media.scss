@@ -1,0 +1,75 @@
+// ── Media ─────────────────────────────────────────────────────────────────────
+// An image or video filling a fixed-ratio box. The ratio comes from the CMS crop
+// (Image) or is 16:9 (Video); the box takes its width from the parent.
+//
+//   .media.media--large
+//     img | video          object-fit: cover
+//
+// No corner radius here — the card or module sets it (thumbnails 4px,
+// image-based cards 8px; see Foundation › Border Radius).
+//
+// Crops (Figma feed size → ratio):
+//   --banner           Banner Preview          964 × 544
+//   --portrait-banner  Mobile Portrait Banner  750 × 700
+//   --large            Large Preview           308 × 185  (box: Article Card XL, 358:215 — 816 × 490 at XL)
+//   --puff             Puff Image              154 × 115  (4:3)
+//   --small            Small Preview            87 × 84
+//   --302              302 Preview             302 × 322  (set in another CMS part)
+//   --video            Video                    16:9      (any width — no size per breakpoint)
+//   --vertical         Vertical                400 × 600  (2:3, Article Card MD Vertical Media; set in another CMS part)
+//   --shorts           Shorts (video only)       9:16
+//
+// Ratios are not tied to the file type: a video can sit in --302 (Image Only
+// Medium) and a photo in --vertical.
+//
+// Reference: Figma Web UI Kit › Media (108:3533)
+
+.media {
+  position: relative;
+  overflow: hidden;
+  background-color: var(--color-background-neutral-light); // shows while loading
+
+  > img,
+  > video {
+    display: block;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+}
+
+.media--banner {
+  aspect-ratio: 964 / 544;
+}
+
+.media--portrait-banner {
+  aspect-ratio: 750 / 700;
+}
+
+.media--large {
+  aspect-ratio: 358 / 215; // Article Card XL — same ratio as the 308 × 185 crop
+}
+
+.media--puff {
+  aspect-ratio: 154 / 115;
+}
+
+.media--small {
+  aspect-ratio: 87 / 84;
+}
+
+.media--302 {
+  aspect-ratio: 302 / 322;
+}
+
+.media--video {
+  aspect-ratio: 16 / 9;
+}
+
+.media--vertical {
+  aspect-ratio: 2 / 3;
+}
+
+.media--shorts {
+  aspect-ratio: 9 / 16; // video only
+}

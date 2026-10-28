@@ -1,0 +1,156 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Media</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&family=Lora:wght@400;600;700&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="../../tokens/dm_tokens.css" />
+    <link rel="stylesheet" href="../../tokens/dm_typography_web_tokens.css" />
+    <link rel="stylesheet" href="../../styles/css/main.css" />
+    <script src="../../scripts/scaffolding/demo-nav.js" defer></script>
+  </head>
+  <body class="demo-page-body">
+    <h1 class="demo-page-h1">Media</h1>
+    <p class="demo-page-intro">
+      An image or video filling a fixed-ratio box: <code>.media</code> plus one ratio modifier, with the
+      <code>img</code> or <code>video</code> set to <code>object-fit: cover</code>. The box takes its width from the
+      parent; the card or module sets the corner radius. Figma: Web UI Kit › Media (<code>108:3533</code>). Doc:
+      <code>docs/4_Components__06_Media.md</code>.
+    </p>
+
+    <main class="demo-media">
+      <h2 class="demo-media__set">Image crops</h2>
+      <p class="demo-media__note">
+        Editors crop each image in the CMS (Article › Images). Every crop has its own field, so one photo can be framed
+        differently per size. The 302 Preview and the vertical 2:3 image are set in another part of the CMS, not in the article page.
+      </p>
+      <div class="demo-media__scroll">
+        <table class="demo-media__table">
+          <thead>
+            <tr>
+              <th>Class</th>
+              <th>CMS crop</th>
+              <th>Feed size</th>
+              <th>Ratio</th>
+              <th>Used in</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><code>.media--banner</code></td>
+              <td>Banner Preview (optional)</td>
+              <td>964 × 544</td>
+              <td>≈ 16:9</td>
+              <td>Article Card Banner, MD and up</td>
+            </tr>
+            <tr>
+              <td><code>.media--portrait-banner</code></td>
+              <td>Mobile portrait banner (optional)</td>
+              <td>750 × 700</td>
+              <td>15:14</td>
+              <td>Article Card Banner, SM-XS</td>
+            </tr>
+            <tr>
+              <td><code>.media--large</code></td>
+              <td>Large Preview</td>
+              <td>308 × 185</td>
+              <td>358:215 (≈ 5:3)</td>
+              <td>Article Card XL (816 × 490 at XL), also MD</td>
+            </tr>
+            <tr>
+              <td><code>.media--puff</code></td>
+              <td>Puff Image</td>
+              <td>154 × 115</td>
+              <td>4:3</td>
+              <td>Article Card SM thumbs (Left / Right Thumb)</td>
+            </tr>
+            <tr>
+              <td><code>.media--small</code></td>
+              <td>Small Preview</td>
+              <td>87 × 84</td>
+              <td>≈ 1:1</td>
+              <td>Other areas, not Article Card (to be confirmed)</td>
+            </tr>
+            <tr>
+              <td><code>.media--302</code></td>
+              <td>302 Preview (another CMS part)</td>
+              <td>302 × 322</td>
+              <td>15:16</td>
+              <td>Article Card Image Only</td>
+            </tr>
+            <tr>
+              <td><code>.media--vertical</code></td>
+              <td>Vertical (another CMS part)</td>
+              <td>400 × 600</td>
+              <td>2:3</td>
+              <td>Article Card MD (Vertical Media)</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <h2 class="demo-media__set">Image samples</h2>
+      <p class="demo-media__note">Each box at its feed size. The same photo is cropped by the box here; on the site each crop is its own file.</p>
+      <div class="demo-media__samples">
+        <figure class="demo-media__sample" style="width: 964px">
+          <div class="media media--banner"><img src="../../assets/images/article-card-banner-wide.jpg" alt="" /></div>
+          <figcaption><code>.media--banner</code> Banner Preview · 964 × 544</figcaption>
+        </figure>
+        <figure class="demo-media__sample" style="width: 750px">
+          <div class="media media--portrait-banner"><img src="../../assets/images/article-card-banner-xs.jpg" alt="" /></div>
+          <figcaption><code>.media--portrait-banner</code> Mobile Portrait Banner · 750 × 700</figcaption>
+        </figure>
+        <figure class="demo-media__sample" style="width: 816px">
+          <div class="media media--large"><img src="../../assets/images/article-card-placeholder.jpg" alt="" /></div>
+          <figcaption><code>.media--large</code> Large Preview · Article Card XL at XL, 816 × 490 (crop 308 × 185)</figcaption>
+        </figure>
+        <figure class="demo-media__sample" style="width: 154px">
+          <div class="media media--puff"><img src="../../assets/images/article-card-placeholder-portrait.jpg" alt="" /></div>
+          <figcaption><code>.media--puff</code><br />Puff Image · 154 × 115</figcaption>
+        </figure>
+        <figure class="demo-media__sample" style="width: 87px">
+          <div class="media media--small"><img src="../../assets/images/article-card-placeholder-portrait.jpg" alt="" /></div>
+          <figcaption><code>.media--small</code><br />87 × 84</figcaption>
+        </figure>
+        <figure class="demo-media__sample" style="width: 302px">
+          <div class="media media--302"><img src="../../assets/images/article-card-placeholder-portrait.jpg" alt="" /></div>
+          <figcaption><code>.media--302</code> 302 Preview · 302 × 322</figcaption>
+        </figure>
+        <figure class="demo-media__sample" style="width: 400px">
+          <div class="media media--vertical"><img src="../../assets/images/article-card-placeholder-portrait.jpg" alt="" /></div>
+          <figcaption><code>.media--vertical</code> 400 × 600 · 2:3</figcaption>
+        </figure>
+      </div>
+
+      <h2 class="demo-media__set">Video</h2>
+      <p class="demo-media__note">
+        Footage is 16:9 by default (<code>.media--video</code>); the column sets the width. When an Article Card varies its media
+        area, the video takes the card's ratio instead: <code>--vertical</code> (2:3, MD Vertical Media) or
+        <code>--302</code> (15:16, Image Only Medium), cropped to fill. Controls come from Video Player Controls
+        (<code>modules/video-player-controls/</code>). Vertical footage such as Shorts uses <code>--shorts</code> (9:16) —
+        video only, never a photo.
+      </p>
+      <div class="demo-media__samples">
+        <figure class="demo-media__sample" style="width: 664px">
+          <div class="media media--video"><video src="../../assets/images/video-sample.mp4" autoplay muted loop playsinline></video></div>
+          <figcaption><code>.media--video</code> 16:9</figcaption>
+        </figure>
+        <figure class="demo-media__sample" style="width: 400px">
+          <div class="media media--vertical"><video src="../../assets/images/video-sample.mp4" autoplay muted loop playsinline></video></div>
+          <figcaption><code>.media--vertical</code> 400 × 600 · 2:3</figcaption>
+        </figure>
+        <figure class="demo-media__sample" style="width: 302px">
+          <div class="media media--302"><video src="../../assets/images/video-sample.mp4" autoplay muted loop playsinline></video></div>
+          <figcaption><code>.media--302</code> 302 × 322 · 15:16</figcaption>
+        </figure>
+        <figure class="demo-media__sample" style="width: 302px">
+          <div class="media media--shorts"><video src="../../assets/images/video-sample.mp4" autoplay muted loop playsinline></video></div>
+          <figcaption><code>.media--shorts</code> 9:16 · video only</figcaption>
+        </figure>
+      </div>
+    </main>
+  </body>
+</html>

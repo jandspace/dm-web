@@ -1,0 +1,204 @@
+// ── Dropdown Menu ─────────────────────────────────────────────────────────────
+// The panel that drops down from a trigger: an optional title, then a list of
+// items (pick one, or run an action). The trigger is not part of it.
+//
+//   .dropdown-menu                         Box — white, 8px corners, Elevation 4
+//     .dropdown-menu__title                optional: icon 32 + heading, keyline below
+//       img
+//       .dropdown-menu__heading            label-md Semibold
+//       .dropdown-menu__description        label-xxsm, grey
+//     ul.dropdown-menu__list               8px inset, scrolls when the box is capped
+//       li.dropdown-menu__group            Group Title — 8px further out than items
+//       li > button.dropdown-menu__item    icon 18 (optional) + label + tick
+//         img
+//         span.dropdown-menu__label
+//         svg.dropdown-menu__tick          shown when selected
+//       li.dropdown-menu__separator        Space (Keyline)
+//       li.dropdown-menu__space            Space (Empty)
+//
+// Item states (Figma "Dropdown Item" › Status):
+//   Hover     neutral/light, as Button Quaternary Neutral
+//   Selected  home-blue/subtlest + home-blue tick  — [aria-selected="true"]
+//                                                   (links: [aria-current="true"])
+//   Disabled  25% opacity                         — :disabled / [aria-disabled="true"]
+//   Focus     2px home-blue outline, inside the item (the list clips outside it)
+//
+// The box takes its width from the page (Figma 277; items never under 176).
+// Cap its height with max-height and the list scrolls.
+//
+// Reference: Figma Web UI Kit › Dropdowns (175:5715)
+
+@use 'divider';
+
+.dropdown-menu {
+  display: flex;
+  flex-direction: column;
+  min-width: 176px;
+  overflow: hidden;
+  border-radius: var(--border-radius-8);
+  background-color: var(--color-background-neutral-white);
+  box-shadow: var(--elevation-4);
+  font-family: var(--typography-font-family-sans);
+
+  &[hidden] {
+    display: none; // closed — display: flex above would win over [hidden]
+  }
+}
+
+// ── Title ─────────────────────────────────────────────────────────────────────
+
+.dropdown-menu__title {
+  position: relative;
+  display: flex;
+  flex-shrink: 0;
+  align-items: flex-start;
+  gap: var(--spacing-12);
+  padding: var(--spacing-12) var(--spacing-8) var(--spacing-16);
+
+  > img {
+    flex-shrink: 0;
+    width: 32px;
+    height: 32px;
+  }
+
+  &::after {
+    @include divider.divider(horizontal, false);
+  }
+}
+
+.dropdown-menu__heading {
+  display: flex;
+  flex: 1 1 0;
+  flex-direction: column;
+  gap: var(--spacing-4);
+  min-width: 0;
+  margin: 0;
+  font-size: var(--typography-font-size-label-md);
+  font-weight: var(--typography-font-weight-semibold);
+  line-height: var(--typography-line-height-narrow);
+  color: var(--color-text-neutral-darker);
+}
+
+.dropdown-menu__description {
+  font-size: var(--typography-font-size-label-xxsm);
+  font-weight: var(--typography-font-weight-regular);
+  color: var(--color-text-neutral-grey-dark);
+}
+
+// ── List ──────────────────────────────────────────────────────────────────────
+
+.dropdown-menu__list {
+  flex: 1 1 auto;
+  min-height: 0;
+  margin: 0;
+  padding: var(--spacing-8);
+  overflow-y: auto;
+  list-style: none;
+  scrollbar-width: thin;
+  scrollbar-color: var(--color-background-neutral-grey-light) transparent;
+}
+
+// Group Title — a heading for the items under it, so it sits 8px further out
+.dropdown-menu__group {
+  padding: var(--spacing-8) 0;
+  font-size: var(--typography-font-size-label-sm);
+  font-weight: var(--typography-font-weight-semibold);
+  line-height: var(--typography-line-height-narrow);
+  color: var(--color-text-neutral-grey-dark);
+}
+
+// Space (Keyline): 6px · line · 6px
+.dropdown-menu__separator {
+  position: relative;
+  height: 7px;
+  margin-bottom: var(--spacing-6);
+
+  &::after {
+    @include divider.divider(horizontal, false);
+  }
+}
+
+// Space (Empty)
+.dropdown-menu__space {
+  height: 12px;
+}
+
+// ── Item ──────────────────────────────────────────────────────────────────────
+
+.dropdown-menu__item {
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-8);
+  width: 100%;
+  padding: var(--spacing-12) var(--spacing-8);
+  border: 0;
+  border-radius: var(--border-radius-4);
+  background-color: var(--color-effect-translucent-dark-clear);
+  font: inherit;
+  font-size: var(--typography-font-size-label-sm);
+  font-weight: var(--typography-font-weight-semibold);
+  line-height: var(--typography-line-height-narrow);
+  text-align: left;
+  text-decoration: none; // also used on <a>
+  color: var(--color-text-neutral-darker);
+  cursor: pointer;
+  transition: background-color 80ms ease;
+
+  > img {
+    flex-shrink: 0;
+    width: 18px;
+    height: 18px;
+  }
+
+  &:hover,
+  &.is-hover {
+    background-color: var(--color-background-neutral-light);
+  }
+
+  &[aria-selected='true'],
+  &[aria-current='true'] {
+    background-color: var(--color-background-home-blue-subtlest);
+  }
+
+  &:disabled,
+  &[aria-disabled='true'] {
+    background-color: var(--color-effect-translucent-dark-clear);
+    opacity: 0.25;
+    cursor: default;
+  }
+
+  // Inside the item: the list's overflow would clip an outer ring
+  &:focus-visible {
+    outline: 2px solid var(--color-border-home-blue-base);
+    outline-offset: -2px;
+  }
+
+  &.is-hover {
+    pointer-events: none; // demo state
+  }
+}
+
+.dropdown-menu__label {
+  flex: 1 1 0;
+  min-width: 0;
+  overflow-wrap: anywhere;
+}
+
+.dropdown-menu__tick {
+  display: none;
+  flex-shrink: 0;
+  width: 18px;
+  height: 18px;
+  color: var(--color-icon-home-blue-base);
+
+  [aria-selected='true'] > &,
+  [aria-current='true'] > & {
+    display: block;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .dropdown-menu__item {
+    transition: none;
+  }
+}

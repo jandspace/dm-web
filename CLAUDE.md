@@ -19,7 +19,7 @@ Design system documentation is stored in `docs/` and must be read before any com
 tokens/           — Design token source files (JSON + CSS)
 styles/           — SCSS source (styles/scss/) and compiled CSS (styles/css/main.css)
 index.html        — Demo index (Components / Modules), same list as the demo side panel
-foundation/       — Foundation: reference pages (Colour, Typography, Spacing, Border Radius — read live from tokens/; Elevation; Layout & Grid)
+foundation/       — Foundation: reference pages (Colour, Typography, Spacing, Border Radius — read live from tokens/; Elevation; Layout & Grid; Iconography — every file in assets/icons/)
 components/       — Components: base UI elements (Button, Input, Tabs…) — one demo folder each
 modules/          — Modules: editorial / product blocks built from components (Article Card, Video Player Controls…)
 scripts/          — Demo-only JS (scripts/scaffolding/: side panel + index)
@@ -52,7 +52,7 @@ projects/
 
 Folders follow the Figma UI Kit and design system taxonomy: **Foundation › Components › Modules**. The demo folders (`components/`, `modules/`) and the SCSS folders (`styles/scss/components/`, `styles/scss/modules/`) mirror each other.
 
-- **Component** — a base UI element listed under Figma "DM Web ::: Components" (Button, Divider, Dropdowns, Input, Modal, Tabs, Toast, Toggle, Tooltip…).
+- **Component** — a base UI element listed under Figma "DM Web ::: Components" (Button, Divider, Dropdown Menu, Input, Modal, Tabs, Toast, Toggle, Tooltip…).
 - **Module** — a block listed under Figma "DM Web ::: Modules" (Article Card, Article Editorial Badge, Breadcrumbs, Carousel, Navigation, Video Player Controls…). Parts of a module (e.g. Article Card Metadata, Columnist Profile Photo) live in `modules/` too.
 - When unsure, check which Figma page the frame lives on.
 - `projects/` → project-specific screens and flows, split by platform
@@ -79,7 +79,7 @@ SCSS aliases: use `--spacing-N` and `--border-radius-N` in component files — t
 | 1 | Sticky — stuck to an edge | Sticky Navbar |
 | 2 | Floating control | Carousel arrows, back-to-top |
 | 3 | Floating panel — stays while reading | Mini video player |
-| 4 | Temporary — closes on outside click or by itself | Dropdown, Nav Panel, Tooltip, Toast |
+| 4 | Temporary — closes on outside click or by itself | Dropdown Menu, Nav Panel, Tooltip, Toast |
 | 5 | Modal — blocks the page, over a scrim | Modal |
 
 Border radius — everyday steps are **0, 4, 8, 16 and Full**; every other step is rarely used, so reach for one of these first:
@@ -340,14 +340,14 @@ iOS and Android use the same four steps (`typography-ios/letter-spacing/*`, `typ
 - **Never use raw hex values.** Always use semantic colour tokens via CSS custom properties.
 - **Never use px for line-height on web.** Use unitless multipliers only.
 - **Avoid `!important`.** These are the base module styles — an `!important` here invites more `!important` to override it later. Win by matching the selector's specificity and source order (e.g. a `prefers-reduced-motion` block at the end of the file repeating the same selectors), or restructure so no override is needed. Use it only when there is truly no other way, and say why in a comment.
-- **Content keylines:** `--color-effect-translucent-dark-pale` is the default for keylines between content cards and blocks — it is translucent, so it still reads on tinted surfaces (e.g. a pink box). Only on dark surfaces use a light keyline. Figma sometimes carries the App keyline (`border/neutral/light`) into Web frames — treat that as a mistake.
+- **Content keylines:** drawn by the block itself as a pseudo-element with the Divider mixin (`@include divider.divider` — `styles/scss/components/_divider.scss`; args `vertical`, `$inset: false`), never an `<hr>`. `--color-effect-translucent-dark-pale` is the default for keylines between content cards and blocks — it is translucent, so it still reads on tinted surfaces (e.g. a pink box). Only on dark surfaces use a light keyline. Figma sometimes carries the App keyline (`border/neutral/light`) into Web frames — treat that as a mistake.
 - **Figma strokes and padding.** In an auto-layout frame, check *Strokes* under Advanced layout settings (`strokesIncludedInLayout`). **Included in layout** (preferred — it behaves like CSS): use a plain `border` + the Figma padding. **Excluded** (Figma's default): the stroke takes no space but a CSS `border` would, so draw it as `box-shadow: inset …` and keep the padding — or ask the designer to switch it to Included.
 - **Keep the code simple.** Pick the plainest way that meets the design — use tokens as they are, no extra wrappers or tricks.
 - Mobile-first CSS: XS as the base (no media query), scale up with `min-width` breakpoints.
 - Mobile landscape handled with `orientation: landscape`, not px breakpoints.
 - Typography does not change on mobile landscape — layout and padding only.
-- **Images:** photos are JPEG (quality ~82). PNG only when real transparency is needed (e.g. columnist cut-out photos). Figma often exports opaque photos as RGBA PNG — check the alpha before keeping PNG. Icons are SVG.
-- **Icons come from `assets/icons/`.** Unless told otherwise, load the icon file from `assets/icons/` (e.g. `<img src="../../assets/icons/ico-ch-uk-showbiz-color.svg" alt="" />`) — don't draw new SVGs or re-export icons from Figma into a page or experiment folder. If an icon isn't in `assets/icons/`, add it there first (Figma original, `ico-*.svg`), then use it. Only when an icon must change colour with state (hover, theme) may its path be inlined as an SVG `<symbol>` with `currentColor` — copied from the `assets/icons/` file, not redrawn.
+- **Images:** photos are JPEG (quality ~82). PNG only when real transparency is needed (e.g. columnist cut-out photos). Figma often exports opaque photos as RGBA PNG — check the alpha before keeping PNG. Icons are SVG. Image and video boxes use Media (`.media` + a CMS crop ratio: `--banner`, `--portrait-banner`, `--large`, `--puff`, `--small`, `--302`, `--video` 16:9, `--vertical` 2:3, `--shorts` 9:16 (video only) — photo or video in the other ratios — doc `docs/4_Components__06_Media.md`); the card sets the corner radius.
+- **Icons come from `assets/icons/`** — SVG only on Web, exported from the Figma icon library (DailyMail Icons, file `171vKuCduz2EW3XrK12IQT`, frame 24:2253) with visible layers only, 32 × 32, black. Browse them at `foundation/iconography/` (Legacy there = files no longer in Figma). Unless told otherwise, load the icon file from `assets/icons/` (e.g. `<img src="../../assets/icons/ico-ch-uk-showbiz-color.svg" alt="" />`) — don't draw new SVGs or re-export icons from Figma into a page or experiment folder. If an icon isn't in `assets/icons/`, add it there first (Figma original, `ico-*.svg`), then use it. Only when an icon must change colour with state (hover, theme) may its path be inlined as an SVG `<symbol>` with `currentColor` — copied from the `assets/icons/` file, not redrawn.
 - British English for UI copy and documentation.
 - American English for token names, CSS variable names, and code.
 

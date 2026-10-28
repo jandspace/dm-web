@@ -32,14 +32,14 @@ Ask one question: **how far does it sit from the page, and how much does it stop
 | 1 | Sticky | Stuck to an edge of the page; content scrolls underneath. | Sticky Navbar |
 | 2 | Floating control | A small control resting on top of content. | Carousel arrows, back-to-top button |
 | 3 | Floating panel | A panel that floats over the page and stays while the reader carries on. | Mini video player |
-| 4 | Temporary | Appears for a moment — opened by the reader or by the system — and closes on an outside click or by itself. | Dropdown, Nav Panel, Tooltip, Toast |
+| 4 | Temporary | Appears for a moment — opened by the reader or by the system — and closes on an outside click or by itself. | Dropdown Menu, Nav Panel, Tooltip, Toast |
 | 5 | Modal | Blocks the page until it is dealt with; always over a scrim (`color/background/shade/moderate`). The top layer. | Modal |
 
 Stacking order follows the level: a higher level always sits above a lower one.
 
 ### 2-A. Figma audit (2026-10-28)
 
-- Already on the right level: Sticky Navbar (Lv-1), Dropdown Box and Nav Panel (Lv-4), Modal (Lv-5).
+- Already on the right level: Sticky Navbar (Lv-1), Dropdown Menu and Nav Panel (Lv-4), Modal (Lv-5).
 - **Toast** uses raw shadows (`0 4 32 40%`, `0 0 16 20%`) instead of a style — should be `Elevation Lv-4`.
 - **Tooltip** variants use a separate style named `Elevation Level-5` (another library) — should be `Elevation Lv-4`, like the Tooltip component itself.
 - Levels 2 and 3 have no component yet; the roles above are the rule for new ones.

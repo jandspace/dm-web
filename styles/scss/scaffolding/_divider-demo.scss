@@ -1,0 +1,86 @@
+// ── Components › Divider demo — SCAFFOLDING ONLY ──────────────────────────────
+// Layout for components/divider/. Never ships to production. Each sample is a
+// stack (or row) of stand-in cards; every card but the last draws its own
+// keyline with the Divider mixin, as Article Card and Layout do.
+
+@use '../foundation/breakpoints' as bp;
+@use '../components/divider';
+
+// Two per row from MD: Horizontal (16pt · None) on top, Vertical below
+.demo-divider {
+  display: grid;
+  gap: var(--spacing-24);
+  max-width: 808px;
+
+  @include bp.respond-to(md) {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+.demo-divider__card {
+  margin: 0;
+
+  figcaption {
+    margin-top: var(--spacing-8);
+    font-family: var(--typography-font-family-sans);
+    font-size: 12px;
+    line-height: 1.4;
+    color: var(--color-text-neutral-grey-dark);
+  }
+
+  code {
+    font-family: monospace;
+    font-weight: 600;
+    color: var(--color-text-neutral-darker);
+  }
+}
+
+// White surface the cards sit on
+.demo-divider__surface {
+  display: flex;
+  flex-direction: column;
+  background-color: var(--color-background-neutral-lightest);
+
+  &--row {
+    flex-direction: row;
+
+    // Vertical samples: cards at the 302 ratio (Media --302), so the line has length
+    > .demo-divider__item::before {
+      height: auto;
+      aspect-ratio: 302 / 322;
+    }
+  }
+}
+
+// Stand-in card: 16px inset, grey fill inside
+.demo-divider__item {
+  position: relative;
+  flex: 1 1 0;
+  padding: var(--spacing-16);
+
+  &::before {
+    content: '';
+    display: block;
+    height: 56px;
+    border-radius: var(--border-radius-4);
+    background-color: var(--color-background-neutral-lighter);
+  }
+}
+
+// One modifier per Figma variant
+.demo-divider__surface--h-inset > .demo-divider__item:not(:last-child)::after {
+  @include divider.divider;
+}
+
+.demo-divider__surface--h-none > .demo-divider__item:not(:last-child)::after {
+  @include divider.divider(horizontal, false);
+}
+
+// Vertical: each card after the first draws the line on its left
+.demo-divider__surface--v-inset > .demo-divider__item + .demo-divider__item::after {
+  @include divider.divider(vertical);
+}
+
+.demo-divider__surface--v-none > .demo-divider__item + .demo-divider__item::after {
+  @include divider.divider(vertical, false);
+}

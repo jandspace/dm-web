@@ -26,11 +26,17 @@
         { name: 'Spacing', path: 'foundation/spacing/' },
         { name: 'Border Radius', path: 'foundation/border-radius/' },
         { name: 'Elevation', path: 'foundation/elevation/' },
+        { name: 'Iconography', path: 'foundation/iconography/' },
       ],
     },
     {
       group: 'Components',
-      items: [{ name: 'Button', path: 'components/button/', pages: [['Generator', 'button-gen.html']] }],
+      items: [
+        { name: 'Button', path: 'components/button/', pages: [['Generator', 'button-gen.html']] },
+        { name: 'Divider (Keyline)', path: 'components/divider/' },
+        { name: 'Dropdown Menu', path: 'components/dropdown-menu/' },
+        { name: 'Media', path: 'components/media/' },
+      ],
     },
     {
       group: 'Modules',

@@ -1,0 +1,60 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Divider (Keyline)</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&family=Lora:wght@400;600;700&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="../../tokens/dm_tokens.css" />
+    <link rel="stylesheet" href="../../tokens/dm_typography_web_tokens.css" />
+    <link rel="stylesheet" href="../../styles/css/main.css" />
+    <script src="../../scripts/scaffolding/demo-nav.js" defer></script>
+  </head>
+  <body class="demo-page-body">
+    <h1 class="demo-page-h1">Divider (Keyline)</h1>
+    <p class="demo-page-intro">
+      A 1px <code>color/effect/translucent-dark/pale</code> line between content blocks, horizontal or vertical, with
+      or without a 16px inset at both ends. Each block draws its own keyline as a pseudo-element with the
+      <code>divider</code> mixin, and the last block has none. Grey boxes stand in for cards. Figma: Web UI Kit ›
+      Divider (Keyline) (<code>92:860</code>). Doc: <code>docs/4_Components__02_Divider.md</code>.
+    </p>
+
+    <main class="demo-divider">
+      <figure class="demo-divider__card">
+        <div class="demo-divider__surface demo-divider__surface--h-inset">
+          <div class="demo-divider__item"></div>
+          <div class="demo-divider__item"></div>
+          <div class="demo-divider__item"></div>
+        </div>
+        <figcaption><code>divider.divider</code> Horizontal · 16pt — default between cards</figcaption>
+      </figure>
+
+      <figure class="demo-divider__card">
+        <div class="demo-divider__surface demo-divider__surface--h-none">
+          <div class="demo-divider__item"></div>
+          <div class="demo-divider__item"></div>
+          <div class="demo-divider__item"></div>
+        </div>
+        <figcaption><code>divider.divider(horizontal, false)</code> Horizontal · no space</figcaption>
+      </figure>
+
+      <figure class="demo-divider__card">
+        <div class="demo-divider__surface demo-divider__surface--row demo-divider__surface--v-inset">
+          <div class="demo-divider__item"></div>
+          <div class="demo-divider__item"></div>
+        </div>
+        <figcaption><code>divider.divider(vertical)</code> Vertical · 16pt (Beta's left keyline)</figcaption>
+      </figure>
+
+      <figure class="demo-divider__card">
+        <div class="demo-divider__surface demo-divider__surface--row demo-divider__surface--v-none">
+          <div class="demo-divider__item"></div>
+          <div class="demo-divider__item"></div>
+        </div>
+        <figcaption><code>divider.divider(vertical, false)</code> Vertical · no space</figcaption>
+      </figure>
+    </main>
+  </body>
+</html>

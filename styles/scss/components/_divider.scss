@@ -1,0 +1,40 @@
+// ── Divider (Keyline) ─────────────────────────────────────────────────────────
+// A 1px line between content blocks — translucent-dark/pale, so it still reads
+// on tinted surfaces. Always drawn by the block itself as a pseudo-element,
+// never as a separate element, so the last block drops it with :last-child.
+//
+//   .card { position: relative; }
+//   .card:not(:last-child)::after  { @include divider.divider; }                    bottom, 16px in
+//   .beta::before                  { @include divider.divider(vertical); }          left, 16px in
+//   …                                @include divider.divider(horizontal, false);   end to end
+//
+// Figma variants: Direction (Horizontal · Vertical) × Padding (16pt · None).
+// The block needs position: relative.
+//
+// Reference: Figma Web UI Kit › Divider (Keyline) (92:860)
+
+// Horizontal: along the bottom edge. Vertical: along the left edge.
+// $inset: 16px in from both ends (Padding=16pt); false = end to end (None).
+@mixin divider($direction: horizontal, $inset: true) {
+  $gap: 0;
+
+  @if $inset {
+    $gap: var(--spacing-16);
+  }
+
+  content: '';
+  position: absolute;
+  background-color: var(--color-effect-translucent-dark-pale);
+
+  @if $direction == vertical {
+    top: $gap;
+    bottom: $gap;
+    left: 0;
+    width: 1px;
+  } @else {
+    right: $gap;
+    bottom: 0;
+    left: $gap;
+    height: 1px;
+  }
+}

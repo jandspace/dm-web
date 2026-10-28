@@ -23,19 +23,14 @@
 // Reference: Figma Web UI Kit › Layout & Grid (400:6871) · Homepage (8281:97719)
 
 @use 'breakpoints' as bp;
+@use '../components/divider';
 
-// Bottom keyline, 16px in from each side
+// Bottom keyline, 16px in from each side — none on the last child
 @mixin keyline {
   position: relative;
 
   &:not(:last-child)::after {
-    content: '';
-    position: absolute;
-    right: var(--spacing-16);
-    bottom: 0;
-    left: var(--spacing-16);
-    height: 1px;
-    background-color: var(--color-effect-translucent-dark-pale);
+    @include divider.divider;
   }
 }
 
@@ -97,13 +92,7 @@
     // Left keyline, 16px in from the top and bottom (as the bottom keylines
     // are from the sides)
     &::before {
-      content: '';
-      position: absolute;
-      top: var(--spacing-16);
-      bottom: var(--spacing-16);
-      left: 0;
-      width: 1px;
-      background-color: var(--color-effect-translucent-dark-pale);
+      @include divider.divider(vertical);
     }
   }
 }
