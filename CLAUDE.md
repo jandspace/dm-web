@@ -219,13 +219,13 @@ e.g. `--typography-font-size-h1`, `--typography-font-weight-bold`
 | Semibold | 600   | Default emphasis — headings, buttons, labels        |
 | Bold     | 700   | Display only, or H1–H2 where extra impact is needed |
 
-Italic variants are for editorial inline use only. Never apply italic to buttons or functional UI. Exception (per Figma): the commercial labels in Article Card Metadata — Ad Feature, Sponsored, Affiliate.
+Italic variants are for editorial inline use only. The italic weight tokens (`--typography-font-weight-*-italic`) set the weight only — add `font-style: italic` alongside, or the text stays upright. Never apply italic to buttons or functional UI. Exception (per Figma): the commercial labels in Article Card Metadata — Ad Feature, Sponsored, Affiliate.
 
 ### Responsive Font Sizes (Web only)
 
-Mobile-first. SM is `:root` base.
+Mobile-first. The `:root` value is the SM-XS one (<768px — XS <640 and SM 640–767 share it).
 
-| Style      | SM (<768px) | MD (≥768px) | LG (≥1024px) |
+| Style      | SM-XS (<768px) | MD (≥768px) | LG (≥1024px) |
 | ---------- | ----------- | ----------- | ------------ |
 | display-lg | 42px        | 54px        | 64px         |
 | display-md | 38px        | 48px        | 56px         |
@@ -237,7 +237,7 @@ Mobile-first. SM is `:root` base.
 | h5         | 16px        | 16px        | 16px         |
 | h6         | 14px        | 14px        | 14px         |
 
-Text and Label are fixed across all breakpoints (except label-xl: SM/MD 19px, LG 20px).
+Text and Label are fixed across all breakpoints (except label-xl: SM-XS/MD 19px, LG 20px).
 
 > Confirmed against three independent sources (Figma variables, `tokens/dm_typography_web_tokens.css`, and Zeroheight docs) as of 2026-06-24. An earlier version of the docs/ markdown had incorrect SM values for h1 (28→26), h2 (24→22), display-lg (40→42), and display-md (36→38) — corrected here.
 
@@ -307,10 +307,10 @@ M3 role names with DM's own values (override the M3 defaults). Font size and lin
 
 | Token   | Value  | Applied To           |
 | ------- | ------ | -------------------- |
-| narrow  | -0.5%  | Display              |
-| compact | -0.2%  | H1–H4                |
-| normal  | 0      | Body, Label          |
-| wide    | +0.25% | Small text, metadata |
+| narrow  | -0.5%  | Display, H1          |
+| compact | -0.2%  | H2–H3                |
+| normal  | 0      | H4–H5, text-lg–md, Label |
+| wide    | +0.25% | H6, text-sm–xxsm, small metadata |
 
 iOS and Android use the same four steps (`typography-ios/letter-spacing/*`, `typography-android/letter-spacing/*`: -0.5 / -0.2 / 0 / 0.25 — percent of the font size, as in Figma).
 
@@ -324,7 +324,7 @@ iOS and Android use the same four steps (`typography-ios/letter-spacing/*`, `typ
 - **Content keylines:** `--color-effect-translucent-dark-pale` is the default for keylines between content cards and blocks — it is translucent, so it still reads on tinted surfaces (e.g. a pink box). Only on dark surfaces use a light keyline. Figma sometimes carries the App keyline (`border/neutral/light`) into Web frames — treat that as a mistake.
 - **Figma strokes and padding.** In an auto-layout frame, check *Strokes* under Advanced layout settings (`strokesIncludedInLayout`). **Included in layout** (preferred — it behaves like CSS): use a plain `border` + the Figma padding. **Excluded** (Figma's default): the stroke takes no space but a CSS `border` would, so draw it as `box-shadow: inset …` and keep the padding — or ask the designer to switch it to Included.
 - **Keep the code simple.** Pick the plainest way that meets the design — use tokens as they are, no extra wrappers or tricks.
-- Mobile-first CSS: SM as `:root` base, scale up with `min-width` breakpoints.
+- Mobile-first CSS: XS as the base (no media query), scale up with `min-width` breakpoints.
 - Mobile landscape handled with `orientation: landscape`, not px breakpoints.
 - Typography does not change on mobile landscape — layout and padding only.
 - **Images:** photos are JPEG (quality ~82). PNG only when real transparency is needed (e.g. columnist cut-out photos). Figma often exports opaque photos as RGBA PNG — check the alpha before keeping PNG. Icons are SVG.

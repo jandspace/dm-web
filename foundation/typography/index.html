@@ -1,0 +1,209 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Typography</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Inter:ital,wght@0,400;0,600;0,700;1,400;1,600;1,700&family=Lora:ital,wght@0,400;0,600;0,700;1,400;1,600;1,700&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="../../tokens/dm_tokens.css" />
+    <link rel="stylesheet" href="../../tokens/dm_typography_web_tokens.css" />
+    <link rel="stylesheet" href="../../styles/css/main.css" />
+    <script src="../../scripts/scaffolding/demo-nav.js" defer></script>
+  </head>
+  <body class="demo-page-body">
+    <h1 class="demo-page-h1">Typography</h1>
+    <p class="demo-page-intro">
+      Web type system: two typefaces, four roles (Display · Heading · Text · Label) and a size suffix per role. Every
+      value on this page is read live — sizes from <code>tokens/dm_typography_web_tokens.css</code>, and weight, line
+      height and letter spacing from the utility classes in <code>styles/scss/foundation/_typography.scss</code> — so it
+      shows what the code does. Figma: Web UI Kit › Typography (page 12:3), text styles <code>dmw_sans/…</code> and
+      <code>dmw_serif/…</code>.
+    </p>
+
+    <main class="demo-type">
+      <!-- 1. Typefaces -->
+      <h2 class="demo-type__set">Typefaces</h2>
+      <div class="demo-type__faces">
+        <section class="demo-type__face">
+          <p class="demo-type__face-name">Inter</p>
+          <p class="demo-type__face-role">Sans · <code>--typography-font-family-sans</code> · default — UI, body, labels and article headlines on Web</p>
+          <p class="demo-type__glyphs">Aa Bb Cc 0123</p>
+          <div class="demo-type__weights" data-family="sans"></div>
+        </section>
+        <section class="demo-type__face demo-type__face--serif">
+          <p class="demo-type__face-name">Lora</p>
+          <p class="demo-type__face-role">Serif · <code>--typography-font-family-serif</code> · editorial — featured content, quotes (Web article headlines use Inter)</p>
+          <p class="demo-type__glyphs">Aa Bb Cc 0123</p>
+          <div class="demo-type__weights" data-family="serif"></div>
+        </section>
+      </div>
+
+      <!-- 2. Type scale (built by the script) -->
+      <h2 class="demo-type__set">Type scale</h2>
+      <p class="demo-type__note">
+        Role + level: the class is the code side of the Figma style (<code>.h2</code> = <code>dmw_sans/h2/Semibold</code>).
+        The sample renders at this window's breakpoint (<strong id="demo-type-bp"></strong>); the size columns show all three.
+        Only Display, H1–H3 and label-xl change with the breakpoint.
+      </p>
+      <div class="demo-type__scroll">
+        <table class="demo-type__table" id="demo-type-scale">
+          <thead>
+            <tr>
+              <th>Class</th>
+              <th>Sample</th>
+              <th>SM-XS &lt;768</th>
+              <th>MD ≥768</th>
+              <th>LG ≥1024</th>
+              <th>Weight</th>
+              <th>Line height</th>
+              <th>Letter spacing</th>
+            </tr>
+          </thead>
+        </table>
+      </div>
+
+      <!-- 3. Primitives (built by the script) -->
+      <h2 class="demo-type__set">Line height · letter spacing · weight</h2>
+      <p class="demo-type__note">
+        Line height is a unitless multiplier — never px on Web. Letter spacing is a percentage of the font size.
+      </p>
+      <div class="demo-type__primitives">
+        <table class="demo-type__table demo-type__table--compact" id="demo-type-line-height">
+          <caption>Line height</caption>
+        </table>
+        <table class="demo-type__table demo-type__table--compact" id="demo-type-letter-spacing">
+          <caption>Letter spacing</caption>
+        </table>
+        <table class="demo-type__table demo-type__table--compact" id="demo-type-weight">
+          <caption>Font weight</caption>
+        </table>
+      </div>
+    </main>
+
+    <script>
+      // Scaffolding only — builds the tables from the token file and the live classes.
+      (async () => {
+        const css = await fetch('../../tokens/dm_typography_web_tokens.css').then((r) => r.text());
+
+        // Custom properties per breakpoint: base :root (SM), then the 768 and 1024 blocks
+        const block = (source) => Object.fromEntries([...source.matchAll(/--(typography-[\w-]+):\s*([^;]+);/g)].map((m) => [m[1], m[2].trim()]));
+        const at = (min) => {
+          const i = css.indexOf(`@media (min-width: ${min}px)`);
+          return i < 0 ? {} : block(css.slice(i, css.indexOf('}\n}', i)));
+        };
+        const sm = block(css.slice(0, css.indexOf('@media')));
+        const md = { ...sm, ...at(768) };
+        const lg = { ...md, ...at(1024) };
+
+        const ROLES = [
+          ['Display', ['display-lg', 'display-md', 'display-sm']],
+          ['Heading', ['h1', 'h2', 'h3', 'h4', 'h5', 'h6']],
+          ['Text', ['text-lg', 'text-md', 'text-sm', 'text-xsm', 'text-xxsm']],
+          ['Label', ['label-xl', 'label-lg', 'label-md', 'label-sm', 'label-xsm', 'label-xxsm']],
+        ];
+        const SAMPLE = {
+          Display: 'Seriously popular',
+          Heading: 'Prince George and Princess Charlotte dash out to grab hats',
+          Text: 'The Met Police said it was trying to confirm whether a letter was sent to Meghan about allegations against her father.',
+          Label: 'Subscribe · 2.1k comments',
+        };
+        const el = (tag, className, text) => {
+          const node = document.createElement(tag);
+          if (className) node.className = className;
+          if (text != null) node.textContent = text;
+          return node;
+        };
+
+        // Type scale
+        const scale = document.getElementById('demo-type-scale');
+        ROLES.forEach(([role, styles]) => {
+          const body = el('tbody');
+          const head = el('tr', 'demo-type__role');
+          head.append(el('th', null, role));
+          head.firstChild.colSpan = 8;
+          body.append(head);
+          styles.forEach((name) => {
+            const row = el('tr');
+            const sample = el('p', name, SAMPLE[role]);
+            const key = `typography-font-size-${name}`;
+            const cell = (value, changed) => el('td', changed ? 'demo-type__changed' : null, value);
+            row.append(el('td', 'demo-type__class', `.${name}`));
+            const sampleCell = el('td', 'demo-type__sample');
+            sampleCell.append(sample);
+            row.append(sampleCell);
+            row.append(cell(sm[key]), cell(md[key], md[key] !== sm[key]), cell(lg[key], lg[key] !== md[key]));
+            body.append(row);
+            scale.append(body);
+            // Weight / line height / letter spacing as the class renders them
+            const cs = getComputedStyle(sample);
+            const ratio = (parseFloat(cs.lineHeight) / parseFloat(cs.fontSize)).toFixed(2).replace(/0$/, '');
+            row.append(el('td', null, cs.fontWeight), el('td', null, ratio), el('td', null, cs.letterSpacing === 'normal' ? '0' : cs.letterSpacing));
+          });
+        });
+
+        // Primitive tables
+        const fill = (id, prefix, rows) => {
+          const table = document.getElementById(id);
+          const body = el('tbody');
+          Object.entries(sm)
+            .filter(([k]) => k.startsWith(prefix))
+            .forEach(([k, v]) => {
+              const row = el('tr');
+              row.append(el('td', 'demo-type__class', `--${k}`), el('td', null, v), el('td', 'demo-type__use', rows[k.slice(prefix.length)] || ''));
+              body.append(row);
+            });
+          table.append(body);
+        };
+        fill('demo-type-line-height', 'typography-line-height-', {
+          narrower: 'Display',
+          narrow: 'H1–H4, Label',
+          compact: 'H5–H6',
+          normal: 'Text',
+          wide: 'Special editorial only',
+        });
+        fill('demo-type-letter-spacing', 'typography-letter-spacing-', {
+          narrow: 'Display, H1',
+          compact: 'H2–H3',
+          normal: 'H4–H5, Text lg–md, Label',
+          wide: 'H6, Text sm–xxsm, small metadata',
+        });
+        fill('demo-type-weight', 'typography-font-weight-', {
+          regular: 'Text, secondary metadata',
+          semibold: 'Heading, Label — the default emphasis',
+          bold: 'Display; H1–H2 where extra impact is needed',
+          'regular-italic': 'Editorial inline only',
+          'semibold-italic': 'Editorial inline only',
+          'bold-italic': 'Editorial inline only',
+        });
+
+        // Weight swatches per typeface
+        document.querySelectorAll('.demo-type__weights').forEach((box) => {
+          [
+            ['Regular', 400, 'normal'],
+            ['Semibold', 600, 'normal'],
+            ['Bold', 700, 'normal'],
+            ['Regular Italic', 400, 'italic'],
+            ['Semibold Italic', 600, 'italic'],
+            ['Bold Italic', 700, 'italic'],
+          ].forEach(([name, weight, style]) => {
+            const swatch = el('div', 'demo-type__weight');
+            const glyph = el('span', 'demo-type__weight-glyph', 'Aa');
+            glyph.style.fontWeight = weight;
+            glyph.style.fontStyle = style;
+            swatch.append(glyph, el('span', 'demo-type__weight-name', `${name} ${weight}`));
+            box.append(swatch);
+          });
+        });
+
+        // Current breakpoint label
+        const bp = () =>
+          (document.getElementById('demo-type-bp').textContent =
+            innerWidth >= 1024 ? 'LG ≥1024' : innerWidth >= 768 ? 'MD ≥768' : 'SM-XS <768');
+        bp();
+        window.addEventListener('resize', bp);
+      })();
+    </script>
+  </body>
+</html>

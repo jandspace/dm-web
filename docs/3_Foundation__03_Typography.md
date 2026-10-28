@@ -209,7 +209,7 @@ Our Design System uses a deliberately constrained weight range. Three weights co
 
 ### 5-B. Italic Variants
 
-Each weight has a corresponding italic variant for editorial use. Italics are editorial tools, not UI tools. Do not apply italic weights to buttons, labels, navigation, or any functional UI component.
+Each weight has a corresponding italic variant for editorial use. The italic weight tokens (`--typography-font-weight-*-italic`) set the weight only — add `font-style: italic` alongside, or the text stays upright. Italics are editorial tools, not UI tools. Do not apply italic weights to buttons, labels, navigation, or any functional UI component.
 
 Italic may be applied to inline text elements such as hyperlinks, where it serves a clear editorial or semantic purpose — distinguishing linked content within a body of text.
 
@@ -329,10 +329,12 @@ All values are defined as percentages and applied on web only. iOS and Android f
 
 | Token | Value | Applied To |
 |---|---|---|
-| `narrow` | -0.5% | Display — tight tracking reinforces visual impact at large scale |
-| `compact` | -0.2% | Heading (H1–H4) — slight tightening improves headline density |
-| `normal` | 0 | Body, Label — default; no adjustment |
-| `wide` | +0.25% | Small text, metadata — opens up tracking at smaller sizes for legibility |
+| `narrow` | -0.5% | Display, H1 — tight tracking reinforces visual impact at large scale |
+| `compact` | -0.2% | H2–H3 — slight tightening improves headline density |
+| `normal` | 0 | H4–H5, Text lg–md, Label — default; no adjustment |
+| `wide` | +0.25% | H6, Text sm–xxsm, small metadata — opens up tracking at smaller sizes for legibility |
+
+Tracking steps down with the size: the larger the text, the tighter.
 
 Sufficient line height and paragraph spacing allow the eye to move through content without effort. Each paragraph feels distinct, reducing cognitive load across longer reading sessions.
 
@@ -360,19 +362,21 @@ On web, font sizes respond to three viewport breakpoints. The system does not sc
 |---|---|---|
 | LG | ≥ 1024px | Desktop — full editorial layout |
 | MD | ≥ 768px | Tablet / large mobile — transitional layout |
-| SM | < 768px | Mobile — single column layout |
+| SM-XS | < 768px | Mobile — single column layout |
+
+Type sizes switch at 768 and 1024 only, so XS (<640) and SM (640–767) share one value — written **SM-XS** (the Figma variant name). On its own, SM always means 640–767 (Layout & Grid › Breakpoints).
 
 ### 7-B. Responsive Scale
 
 **Display & Heading (H1-H6)**
 
-| Style | LG (≥1024px) | MD (≥768px) | SM (<768px) |
+| Style | LG (≥1024px) | MD (≥768px) | SM-XS (<768px) |
 |---|---|---|---|
 | `display-lg` | 64 | 54 | 42 |
 | `display-md` | 56 | 48 | 38 |
 | `display-sm` | 48 | 42 | 34 |
-| `h1` | 36 | 30 | 28 |
-| `h2` | 28 | 25 | 24 |
+| `h1` | 36 | 30 | 26 |
+| `h2` | 28 | 24 | 22 |
 | `h3` | 22 | 21 | 20 |
 | `h4` | 18 | 18 | 18 |
 | `h5` | 16 | 16 | 16 |
@@ -382,7 +386,7 @@ On web, font sizes respond to three viewport breakpoints. The system does not sc
 
 Fixed across all breakpoints (except label-xl)
 
-| Style | LG (≥1024px) | MD (≥768px) | SM (<768px) |
+| Style | LG (≥1024px) | MD (≥768px) | SM-XS (<768px) |
 |---|---|---|---|
 | `text-lg` | 18 | 18 | 18 |
 | `text-md` | 16 | 16 | 16 |
@@ -409,7 +413,24 @@ Body copy and UI text require consistent sizing for reading comfort and componen
 ### 7-D. Implementation
 
 Responsive font sizes are implemented using CSS custom properties scoped to breakpoints. Line height tokens follow the same values as defined in 6. Line Height & Letter Spacing — they do not change with breakpoints.
+```css
+:root { --typography-font-size-display-lg: 42px; }                              /* SM */
+@media (min-width: 768px)  { :root { --typography-font-size-display-lg: 54px; } } /* MD */
+@media (min-width: 1024px) { :root { --typography-font-size-display-lg: 64px; } } /* LG */
 ```
---font-size-display-lg: 40px; /* SM */
---font-size-display-lg: 52px; /* MD */
-```
+
+Source: `tokens/dm_typography_web_tokens.css`. Utility classes (`.h1`–`.h6`, `.display-*`, `.text-*`, `.label-*`, `.serif`) in `styles/scss/foundation/_typography.scss` bundle size, weight, line height and letter spacing — the code side of the Figma styles. Live reference: `foundation/typography/`.
+
+---
+
+## 8. Figma alignment — notes
+
+Checked against the Figma text styles (`dmw_sans/…`, `dmw_serif/…`, Web UI Kit › Typography) and the token styles in `dm_typography_web_tokens.json` on 2026-10-27. Sizes, line heights, letter spacing and font families match. Notes:
+
+Letter spacing per style now follows the token styles (resolved 2026-10-27: H1 narrow, H4 normal, H6 and Text sm–xxsm wide).
+
+- In Figma only font size and font family are bound to variables; line height and letter spacing are raw values in each style, so they can drift from the tokens.
+- `dmw_sans/text-xxsm/Bold` is bound to `label-xxsm` (same 12px today) — should be `text-xxsm`.
+- Every Figma style comes in Regular / Semibold / Bold; the code classes carry the role's default weight only (Display Bold, Heading and Label Semibold, Text Regular).
+- `dmw_DMSlabBetonSH/Headline` (DM Slab, 72px) exists in Figma but has no token — banner artwork only.
+- CSS `letter-spacing` in `%` (as the tokens are written) is newer CSS (CSS Text 4); browsers without it ignore the value. `em` (e.g. −0.005em for −0.5%) is the widely supported equivalent.

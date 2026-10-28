@@ -13,7 +13,7 @@ The Daily Mail Typography System is more than just a collection of fonts; it is 
 | **Legibility Above All** | The primary function of our typography is to be read. We prioritise clear character recognition and optimal spacing. No matter how "creative" a layout may be, if it compromises the reader's ability to digest a headline or a story, it fails our user-centred standard. |
 | **Accessibility by Default** | We design for everyone. Our typography system is built to meet WCAG 2.1 AA standards from the start. This includes maintaining high colour contrast, ensuring scalable font sizes (up to 200%), and defining generous leading (line-height) to support readers with visual impairments or dyslexia. |
 | **Intentional Hierarchy** | In a fast-paced news environment, we guide the reader's eye through clear information scaffolding. By utilising distinct weights, sizes, and the strategic contrast between our Sans and Serif families, we help users instantly distinguish between editorial headlines, functional UI titles, and core article body copy. This ensures that even in a content-heavy layout, the most critical information is consumed first. |
-| **Spatial Rhythm & Consistency** | Our typography is an extension of our 4pt Spatial Grid. Every font size and line-height is calculated to maintain a vertical rhythm that feels stable and professional. This consistency reduces cognitive load and reinforces Daily Mail's authority as a trusted news source. |
+| **Spatial Rhythm & Consistency** | Line heights are set as ratios of the font size, so vertical rhythm stays stable and professional at every size. This consistency reduces cognitive load and reinforces Daily Mail's authority as a trusted news source. |
 
 ---
 
@@ -42,7 +42,7 @@ While we utilise numerical values (400, 600, 700) for technical precision, we us
 
 - **Regular (400):** Standard reading weight for body copy and paragraphs.
 - **Semibold (600):** Used for standard user actions (Buttons, Links) and general headings. This provides clear emphasis without the visual heaviness of a full bold.
-- **Bold (700):** Strictly reserved for high-level headlines, critical alerts, and primary calls to action.
+- **Bold (700):** Strictly reserved for Display and high-level headlines (H1–H2) where extra impact is needed. Buttons and other calls to action use Semibold.
 
 #### Line Height (Leading)
 
@@ -70,7 +70,7 @@ Every text element is assigned a role that dictates its semantic meaning and vis
 |---|---|---|
 | **Primary Purpose** | Long-form Reading & Narrative | Scanning & Actionable Information |
 | **Usage Context** | Article body paragraphs, lead-ins, summaries, and descriptions. | Buttons, form labels, tags, badges, navigation items, and metadata. |
-| **Design Logic** | Optimised for Legibility. Features generous line-height (150%) to reduce eye strain. | Optimised for Visibility and space efficiency. Features tighter line-height and letter-spacing. |
+| **Design Logic** | Optimised for Legibility. Features generous line-height (150%) to reduce eye strain. | Optimised for Visibility and space efficiency. Features a tighter line-height (120%). |
 | **Typical Elements** | `<p>`, `<li>`, `<blockquote>` | `<button>`, `<label>`, `<span>`, `<nav>`, `<a>` |
 
 ### 2-C. Semantic Scaling (The Hierarchy of Size)
@@ -114,7 +114,7 @@ To maintain a clear visual hierarchy, we define six specific weights, including 
 
 - **Regular:** Standard weight for body copy.
 - **Semibold:** For emphasis and secondary headings.
-- **Bold:** For primary headings and critical UI actions.
+- **Bold:** For Display and primary headings (H1–H2). Buttons stay Semibold.
 - **Regular Italic, Semibold Italic, Bold Italic:** Approved slanted variants to prevent faux-italic distortion.
 
 ---
@@ -135,7 +135,7 @@ Semantic Styles, such as `dmw_sans-label-md-Semibold`, are the high-level identi
 A Semantic Style is a curated combination of typographic attributes. This system ensures that core brand identity remains consistent while providing the technical flexibility needed for a modern news platform.
 
 - **Bundled Logic:** Each package automatically includes a specific font-size, line-height, and letter-spacing mapped to the current viewport.
-- **Responsive Intelligence:** When you apply a style like `h1`, the system adjusts the underlying token values based on the viewport, scaling from 36px on Desktop down to 28px on Mobile.
+- **Responsive Intelligence:** When you apply a style like `h1`, the system adjusts the underlying token values based on the viewport, scaling from 36px on Desktop down to 26px on Mobile.
 - **Systemic Consistency:** Using these packages removes the guesswork and ensures that 'Clarity at Scale' is maintained across every digital touchpoint without manual input.
 
 ---
@@ -162,12 +162,14 @@ The following table outlines the core Semantic Tokens available for Web.
 | `typography-font-weight-semibold-italic` | 600 | italic |
 | `typography-font-weight-bold-italic` | 700 | italic |
 
+> The italic tokens (`--typography-font-weight-*-italic`) set the weight only — add `font-style: italic` alongside, or the text stays upright.
+
 **Font size (px)**
 
-| Category | Token Name | Value (LG: ≥1024px) | Value (MD: ≥768px) | Value (SM: <768px) |
+| Category | Token Name | Value (LG: ≥1024px) | Value (MD: ≥768px) | Value (SM-XS: <768px) |
 |---|---|---|---|---|
-| Heading | `h1` | 36 | 30 | 28 |
-| | `h2` | 28 | 25 | 24 |
+| Heading | `h1` | 36 | 30 | 26 |
+| | `h2` | 28 | 24 | 22 |
 | | `h3` | 22 | 21 | 20 |
 | | `h4` | 18 | 18 | 18 |
 | | `h5` | 16 | 16 | 16 |

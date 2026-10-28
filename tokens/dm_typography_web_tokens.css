@@ -5,7 +5,6 @@
    Structure:
    1. Primitive Typography (Font Family, Weight, Line Height, Letter Spacing)
    2. Semantic Font Size Tokens — Responsive (Desktop / Tablet / Mobile)
-   3. Elevation (Box Shadow)
 
    Responsive Implementation (Mobile First):
    Default styles apply to Mobile (<768px).

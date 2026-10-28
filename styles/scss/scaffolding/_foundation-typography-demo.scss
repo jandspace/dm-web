@@ -1,0 +1,187 @@
+// ── Foundation › Typography demo — SCAFFOLDING ONLY ───────────────────────────
+// Layout for foundation/typography/. Never ships to production.
+// Sizes come from tokens/dm_typography_web_tokens.css at load time; samples use
+// the real utility classes (.h1, .text-md, …).
+
+.demo-type {
+  max-width: 1224px;
+}
+
+.demo-type__set {
+  margin: var(--spacing-48) 0 var(--spacing-8);
+  font-family: var(--typography-font-family-serif); // library chrome in Lora
+  font-size: 18px;
+  font-weight: 600;
+  color: var(--color-text-neutral-darker);
+}
+
+.demo-type__note {
+  max-width: 760px;
+  margin: 0 0 var(--spacing-16);
+  font-family: var(--typography-font-family-serif);
+  font-size: 13px;
+  line-height: 1.5;
+  color: var(--color-text-neutral-grey-dark);
+}
+
+// ── Typefaces ─────────────────────────────────────────────────────────────────
+
+.demo-type__faces {
+  display: grid;
+  gap: var(--spacing-16);
+
+  @media (min-width: 900px) {
+    grid-template-columns: 1fr 1fr;
+  }
+}
+
+.demo-type__face {
+  padding: var(--spacing-24);
+  border-radius: var(--border-radius-8);
+  background-color: var(--color-background-neutral-lightest);
+  font-family: var(--typography-font-family-sans);
+  color: var(--color-text-neutral-darker);
+
+  &--serif .demo-type__face-name,
+  &--serif .demo-type__glyphs,
+  &--serif .demo-type__weight-glyph {
+    font-family: var(--typography-font-family-serif);
+  }
+}
+
+.demo-type__face-name {
+  margin: 0;
+  font-size: 40px;
+  font-weight: 700;
+  line-height: 1.1;
+}
+
+.demo-type__face-role {
+  margin: var(--spacing-4) 0 0;
+  font-size: 13px;
+  color: var(--color-text-neutral-grey-dark);
+}
+
+.demo-type__glyphs {
+  margin: var(--spacing-16) 0 0;
+  font-size: 28px;
+  line-height: 1.2;
+}
+
+.demo-type__weights {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: var(--spacing-12) var(--spacing-16);
+  margin-top: var(--spacing-20);
+}
+
+.demo-type__weight {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.demo-type__weight-glyph {
+  font-size: 32px;
+  line-height: 1.1;
+}
+
+.demo-type__weight-name {
+  font-size: 12px;
+  color: var(--color-text-neutral-grey-dark);
+}
+
+// ── Tables ────────────────────────────────────────────────────────────────────
+
+.demo-type__scroll {
+  overflow-x: auto;
+  border-radius: var(--border-radius-8);
+  background-color: var(--color-background-neutral-lightest);
+}
+
+.demo-type__table {
+  width: 100%;
+  border-collapse: collapse;
+  font-family: var(--typography-font-family-sans);
+  font-size: 13px;
+  color: var(--color-text-neutral-dark);
+
+  caption {
+    padding: var(--spacing-12) var(--spacing-16) var(--spacing-4);
+    font-family: var(--typography-font-family-serif);
+    font-size: 15px;
+    font-weight: 600;
+    text-align: left;
+    color: var(--color-text-neutral-darker);
+  }
+
+  th,
+  td {
+    padding: var(--spacing-12) var(--spacing-16);
+    border-bottom: 1px solid var(--color-effect-translucent-dark-pale);
+    text-align: left;
+    vertical-align: middle;
+    white-space: nowrap;
+  }
+
+  thead th {
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+    color: var(--color-text-neutral-grey-dark);
+  }
+}
+
+// Role group row (Display · Heading · Text · Label)
+.demo-type__role th {
+  padding-top: var(--spacing-24);
+  font-family: var(--typography-font-family-serif);
+  font-size: 15px;
+  font-weight: 600;
+  color: var(--color-text-neutral-darker);
+}
+
+.demo-type__class {
+  font-family: monospace;
+  font-size: 12px;
+  font-weight: 600;
+  color: var(--color-text-neutral-darker);
+}
+
+// Sample: wraps, so long headlines stay in the column
+.demo-type__table .demo-type__sample {
+  width: 100%;
+  min-width: 280px;
+  white-space: normal;
+  color: var(--color-text-neutral-darker);
+
+  p {
+    margin: 0;
+  }
+}
+
+// A size that changes at this breakpoint
+.demo-type__changed {
+  font-weight: 700;
+  color: var(--color-text-home-blue-base);
+}
+
+.demo-type__table .demo-type__use {
+  white-space: normal;
+  color: var(--color-text-neutral-grey-dark);
+}
+
+.demo-type__primitives {
+  display: grid;
+  gap: var(--spacing-16);
+
+  @media (min-width: 1100px) {
+    grid-template-columns: repeat(3, 1fr);
+  }
+
+  .demo-type__table {
+    border-radius: var(--border-radius-8);
+    background-color: var(--color-background-neutral-lightest);
+  }
+}

@@ -21,6 +21,7 @@
       group: 'Foundation',
       items: [
         { name: 'Colour', path: 'foundation/colour/' },
+        { name: 'Typography', path: 'foundation/typography/' },
         { name: 'Layout & Grid', path: 'foundation/layout/' },
       ],
     },
