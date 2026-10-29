@@ -11,7 +11,7 @@ Figma: Web UI Kit › Dropdowns (`175:5715`) — Dropdown Box, Dropdown Title, D
 | Element | Class | Description |
 |---|---|---|
 | **Box** | `.dropdown-menu` | `color/background/neutral/white`, 8px corners, **Elevation 4** (`--elevation-4`). Width from the page (Figma 277px); items never narrower than 176px |
-| **Title** *(optional)* | `__title` | Icon 32 *(optional)* + heading (label-md Semibold) and description (label-xxsm Regular, `text/neutral/grey-dark`), 4px apart. Padding 12 top · 8 sides · 16 bottom; a keyline below, end to end (Divider, Padding None) |
+| **Title** *(optional)* | `__title` | Figma "Dropdown Title" (`175:6629`). Icon 32 *(optional)* + heading (label-md Semibold) and description *(optional;* label-xxsm Regular, `text/neutral/grey-dark`), 4px apart. Padding 12 top · 8 sides · 16 bottom; a keyline below, end to end (Divider, Padding None). The text is centred on the icon when it is shorter (no description); a longer text keeps the icon at the top. Leave it out when the list needs no introduction and start the list with a Group Title instead |
 | **List** | `__list` | 8px inset. Scrolls when the box is capped with `max-height`; thin scrollbar in `background/neutral/grey-light` |
 | **Item** | `__item` | Icon 18 *(optional)* + label (label-sm Semibold, `text/neutral/darker`) + tick when selected. Padding 12 × 8, 8px gap, 4px corners |
 | **Group Title** | `__group` | Heading for the items below it — label-sm Semibold, `text/neutral/grey-dark`, 8px top and bottom. No side padding, so it sits 8px further out than the items: it heads a block, it is not an item |
@@ -39,6 +39,7 @@ Figma: Web UI Kit › Dropdowns (`175:5715`) — Dropdown Box, Dropdown Title, D
 
 - **Pick one** (Country, City, sort order): `role="listbox"` on the list, `role="option"` + `aria-selected` on each item. One item selected at a time.
 - **Act** (Share, Report, Save): `role="menu"` on the list, `role="menuitem"` on each item; no selected state.
+- **Title or not:** use the Dropdown Title when the menu needs a heading with an icon or a line of explanation (e.g. choosing a city or a team). For a short, self-explanatory list (e.g. Sort by) leave it out and open the list with a Group Title.
 - Group long lists with Group Titles; split groups with Space (Keyline), or Space (Empty) when the groups already read as separate.
 - Icons are optional but all-or-nothing within a list — don't mix items with and without icons.
 - Disabled items stay in the list (so the reader sees the option exists) but cannot be chosen.

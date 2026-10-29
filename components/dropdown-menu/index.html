@@ -18,6 +18,10 @@
       <symbol id="ico-tick" viewBox="0 0 32 32">
         <path d="M27.8621 3.21463C27.7304 3.07805 27.5516 3 27.3728 3C27.194 3 27.0058 3.07805 26.8835 3.21463L11.2916 19.1951L5.11887 12.8732C4.98714 12.7366 4.80835 12.6585 4.62957 12.6585C4.45078 12.6585 4.26259 12.7366 4.14026 12.8732L0.207013 16.9024C0.0752775 17.039 0 17.2146 0 17.4098C0 17.5951 0.0564581 17.7805 0.178784 17.9171L10.7741 28.7951C10.9058 28.9317 11.0846 29 11.2634 29C11.4516 29 11.6304 28.922 11.7527 28.7951L31.7953 8.23902C32.0682 7.96585 32.0682 7.51707 31.7953 7.23415L27.8621 3.21463Z" fill="currentColor" />
       </symbol>
+      <!-- Chevron: inlined so it takes the button text colour (copied from assets/icons/ico-chevron-down.svg) -->
+      <symbol id="ico-chevron-down" viewBox="0 0 32 32">
+        <path d="M29.5378 8.37108C29.1822 8.02442 28.5956 8.02442 28.2311 8.37108L15.9911 20.3L3.76003 8.37108C3.40447 8.02442 2.8178 8.02442 2.46225 8.37108L1.15558 9.6422C0.800027 9.98886 0.800027 10.5578 1.15558 10.9133L14.0445 23.4733L15.3511 24.7444C15.7067 25.0911 16.2934 25.0911 16.6489 24.7444L17.9556 23.4733L30.8445 10.9133C31.2 10.5666 31.2 9.99775 30.8445 9.6422L29.5378 8.37108Z" fill="currentColor" />
+      </symbol>
     </svg>
 
     <h1 class="demo-page-h1">Dropdown Menu</h1>
@@ -28,6 +32,89 @@
     </p>
 
     <main class="demo-dropdown">
+      <h2 class="demo-dropdown__set">Try it</h2>
+      <p class="demo-dropdown__note">
+        A Button opens the menu below it. Pick an item to change the button label; an outside click or Esc closes it.
+        The Dropdown Title is optional: Sort by goes without it (a Group Title heads the list), Your team uses it. Your team is capped at 333px, so its list scrolls under the title.
+      </p>
+
+      <div class="demo-dropdown__triggers">
+        <!-- No title: a Group Title heads the list -->
+        <div class="demo-dropdown__trigger">
+          <button class="btn btn-secondary-neutral" type="button" aria-haspopup="listbox" aria-expanded="false" aria-controls="demo-sort-menu">
+            <span class="btn__content">
+              <span class="btn__label">Most read</span>
+              <svg aria-hidden="true"><use href="#ico-chevron-down" /></svg>
+            </span>
+          </button>
+          <div class="dropdown-menu" id="demo-sort-menu" hidden>
+            <ul class="dropdown-menu__list" role="listbox" aria-label="Sort by">
+              <li class="dropdown-menu__group" role="presentation">Sort by</li>
+              <li role="none">
+                <button class="dropdown-menu__item" type="button" role="option" aria-selected="true">
+                  <span class="dropdown-menu__label">Most read</span>
+                  <svg class="dropdown-menu__tick" aria-hidden="true"><use href="#ico-tick" /></svg>
+                </button>
+              </li>
+              <li role="none">
+                <button class="dropdown-menu__item" type="button" role="option" aria-selected="false">
+                  <span class="dropdown-menu__label">Most commented</span>
+                  <svg class="dropdown-menu__tick" aria-hidden="true"><use href="#ico-tick" /></svg>
+                </button>
+              </li>
+              <li role="none">
+                <button class="dropdown-menu__item" type="button" role="option" aria-selected="false">
+                  <span class="dropdown-menu__label">Newest</span>
+                  <svg class="dropdown-menu__tick" aria-hidden="true"><use href="#ico-tick" /></svg>
+                </button>
+              </li>
+              <li role="none">
+                <button class="dropdown-menu__item" type="button" role="option" aria-selected="false">
+                  <span class="dropdown-menu__label">Oldest</span>
+                  <svg class="dropdown-menu__tick" aria-hidden="true"><use href="#ico-tick" /></svg>
+                </button>
+              </li>
+            </ul>
+          </div>
+        </div>
+
+        <!-- With the Dropdown Title (icon + heading + description), as City -->
+        <div class="demo-dropdown__trigger">
+          <button class="btn btn-secondary-neutral" type="button" aria-haspopup="listbox" aria-expanded="false" aria-controls="demo-team-menu">
+            <span class="btn__content">
+              <span class="btn__label">Your team</span>
+              <svg aria-hidden="true"><use href="#ico-chevron-down" /></svg>
+            </span>
+          </button>
+          <div class="dropdown-menu demo-dropdown__capped" id="demo-team-menu" hidden>
+            <div class="dropdown-menu__title">
+              <img src="../../assets/icons/ico-ch-sport.svg" alt="" />
+              <p class="dropdown-menu__heading">
+                Your team
+                <span class="dropdown-menu__description">Follow a club for its news, scores and fixtures.</span>
+              </p>
+            </div>
+            <ul class="dropdown-menu__list" role="listbox" aria-label="Your team">
+              <li class="dropdown-menu__group" role="presentation">Premier League</li>
+              <li role="none"><button class="dropdown-menu__item" type="button" role="option" aria-selected="false"><span class="dropdown-menu__label">Arsenal</span><svg class="dropdown-menu__tick" aria-hidden="true"><use href="#ico-tick" /></svg></button></li>
+              <li role="none"><button class="dropdown-menu__item" type="button" role="option" aria-selected="false"><span class="dropdown-menu__label">Chelsea</span><svg class="dropdown-menu__tick" aria-hidden="true"><use href="#ico-tick" /></svg></button></li>
+              <li role="none"><button class="dropdown-menu__item" type="button" role="option" aria-selected="false"><span class="dropdown-menu__label">Liverpool</span><svg class="dropdown-menu__tick" aria-hidden="true"><use href="#ico-tick" /></svg></button></li>
+              <li role="none"><button class="dropdown-menu__item" type="button" role="option" aria-selected="false"><span class="dropdown-menu__label">Manchester United</span><svg class="dropdown-menu__tick" aria-hidden="true"><use href="#ico-tick" /></svg></button></li>
+              <li class="dropdown-menu__separator" role="separator"></li>
+              <li class="dropdown-menu__group" role="presentation">La Liga</li>
+                <li role="none"><button class="dropdown-menu__item" type="button" role="option" aria-selected="false"><span class="dropdown-menu__label">Real Madrid</span><svg class="dropdown-menu__tick" aria-hidden="true"><use href="#ico-tick" /></svg></button></li>
+                <li role="none"><button class="dropdown-menu__item" type="button" role="option" aria-selected="false"><span class="dropdown-menu__label">Barcelona</span><svg class="dropdown-menu__tick" aria-hidden="true"><use href="#ico-tick" /></svg></button></li>
+                <li role="none"><button class="dropdown-menu__item" type="button" role="option" aria-selected="false"><span class="dropdown-menu__label">Atlético Madrid</span><svg class="dropdown-menu__tick" aria-hidden="true"><use href="#ico-tick" /></svg></button></li>
+                <li role="none"><button class="dropdown-menu__item" type="button" role="option" aria-selected="false"><span class="dropdown-menu__label">Athletic Club</span><svg class="dropdown-menu__tick" aria-hidden="true"><use href="#ico-tick" /></svg></button></li>
+              <li class="dropdown-menu__separator" role="separator"></li>
+              <li class="dropdown-menu__group" role="presentation">Scottish Premiership</li>
+              <li role="none"><button class="dropdown-menu__item" type="button" role="option" aria-selected="false"><span class="dropdown-menu__label">Celtic</span><svg class="dropdown-menu__tick" aria-hidden="true"><use href="#ico-tick" /></svg></button></li>
+              <li role="none"><button class="dropdown-menu__item" type="button" role="option" aria-selected="false"><span class="dropdown-menu__label">Rangers</span><svg class="dropdown-menu__tick" aria-hidden="true"><use href="#ico-tick" /></svg></button></li>
+            </ul>
+          </div>
+        </div>
+      </div>
+
       <h2 class="demo-dropdown__set">Examples</h2>
       <p class="demo-dropdown__note">As in Figma. Country is capped at 333px, so its list scrolls.</p>
 
@@ -190,6 +277,41 @@
         <span>Space (Empty)</span>
         <ul><li class="dropdown-menu__space"></li></ul>
       </div>
+      <h2 class="demo-dropdown__set">Dropdown Title</h2>
+      <p class="demo-dropdown__note">
+        Figma "Dropdown Title" (<code>175:6629</code>) — optional. Icon and description can each be left out. Without a
+        title, start the list with a Group Title instead.
+      </p>
+      <div class="demo-dropdown__states demo-dropdown__states--title">
+        <span>Icon + description</span>
+        <div class="dropdown-menu__title">
+          <img src="../../assets/icons/ico-compass.svg" alt="" />
+          <p class="dropdown-menu__heading">
+            Dropdown Title
+            <span class="dropdown-menu__description">Lorem ipsum dolor sit amet, consectetur adipiscing elit.</span>
+          </p>
+        </div>
+        <span>No icon</span>
+        <div class="dropdown-menu__title">
+          <p class="dropdown-menu__heading">
+            Dropdown Title
+            <span class="dropdown-menu__description">Lorem ipsum dolor sit amet, consectetur adipiscing elit.</span>
+          </p>
+        </div>
+        <span>No description</span>
+        <div class="dropdown-menu__title">
+          <img src="../../assets/icons/ico-compass.svg" alt="" />
+          <p class="dropdown-menu__heading">
+            Dropdown Title
+          </p>
+        </div>
+        <span>Label only</span>
+        <div class="dropdown-menu__title">
+          <p class="dropdown-menu__heading">
+            Dropdown Title
+          </p>
+        </div>
+      </div>
     </main>
 
     <script>
@@ -199,6 +321,36 @@
           const option = event.target.closest('[role="option"]:not(:disabled)');
           if (!option) return;
           list.querySelectorAll('[role="option"]').forEach((o) => o.setAttribute('aria-selected', String(o === option)));
+        });
+      });
+
+      // Scaffolding only — the trigger opens and closes the menu (the job of the component using it)
+      document.querySelectorAll('.demo-dropdown__trigger').forEach((wrap) => {
+        const button = wrap.querySelector('.btn');
+        const menu = wrap.querySelector('.dropdown-menu');
+        const label = button.querySelector('.btn__label');
+        const toggle = (open) => {
+          menu.hidden = !open;
+          button.setAttribute('aria-expanded', String(open));
+        };
+
+        button.addEventListener('click', () => toggle(menu.hidden));
+        menu.addEventListener('click', (event) => {
+          const option = event.target.closest('[role="option"]:not(:disabled)');
+          if (!option) return;
+          menu.querySelectorAll('[role="option"]').forEach((o) => o.setAttribute('aria-selected', String(o === option)));
+          label.textContent = option.textContent.trim();
+          toggle(false);
+          button.focus();
+        });
+        document.addEventListener('click', (event) => {
+          if (!wrap.contains(event.target)) toggle(false);
+        });
+        document.addEventListener('keydown', (event) => {
+          if (event.key === 'Escape' && !menu.hidden) {
+            toggle(false);
+            button.focus();
+          }
         });
       });
     </script>

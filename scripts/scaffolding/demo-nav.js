@@ -36,6 +36,7 @@
         { name: 'Divider (Keyline)', path: 'components/divider/' },
         { name: 'Dropdown Menu', path: 'components/dropdown-menu/' },
         { name: 'Media', path: 'components/media/' },
+        { name: 'Modal', path: 'components/modal/' },
       ],
     },
     {

@@ -16,6 +16,7 @@
 @use 'components/divider';
 @use 'components/dropdown-menu';
 @use 'components/media';
+@use 'components/modal';
 
 // Modules — editorial / product blocks built from components (Figma "DM Web ::: Modules")
 @use 'modules/editorial-badge';
@@ -48,6 +49,7 @@
 @use 'scaffolding/divider-demo';
 @use 'scaffolding/dropdown-menu-demo';
 @use 'scaffolding/media-demo';
+@use 'scaffolding/modal-demo';
 @use 'scaffolding/article-card-demo';
 @use 'scaffolding/article-card-metadata-demo';
 @use 'scaffolding/section-header-demo';

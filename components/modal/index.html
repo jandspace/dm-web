@@ -1,0 +1,270 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Modal</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&family=Lora:wght@400;600;700&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="../../tokens/dm_tokens.css" />
+    <link rel="stylesheet" href="../../tokens/dm_typography_web_tokens.css" />
+    <link rel="stylesheet" href="../../styles/css/main.css" />
+    <script src="../../scripts/scaffolding/demo-nav.js" defer></script>
+    <script>
+      // ?frame — this page inside a viewport preview: page placeholder + the modal open
+      if (new URLSearchParams(location.search).has('frame')) document.documentElement.classList.add('demo-modal-frame');
+    </script>
+  </head>
+  <body class="demo-page-body">
+    <h1 class="demo-page-h1">Modal</h1>
+    <p class="demo-page-intro">
+      Focused content or a required action above the page, over a scrim. Elevation 5. Three sizes — Default, Large and
+      Fullwidth (a bottom sheet) — across SM-XS, MD and LG. Built on the native <code>&lt;dialog&gt;</code>; the concept
+      follows Bootstrap's modal. Figma: Web UI Kit › Modal (<code>3358:62</code>). Doc:
+      <code>docs/4_Components__07_Modal.md</code>.
+    </p>
+
+    <main class="demo-modal">
+      <h2 class="demo-modal__set">Try it</h2>
+      <p class="demo-modal__note">
+        Each Button opens the modal below. Close it with the close button, a footer button, Esc or a click on the scrim.
+        Resize the window to see the breakpoints: from MD the modal sits at the top, on SM-XS in the middle.
+      </p>
+
+      <div class="demo-modal__triggers">
+        <button class="btn btn-secondary-neutral" type="button" data-type="default" data-modal="">Default</button>
+        <button class="btn btn-secondary-neutral" type="button" data-type="middle" data-modal="modal--middle">Middle</button>
+        <button class="btn btn-secondary-neutral" type="button" data-type="bottom" data-modal="modal--bottom">Bottom</button>
+        <button class="btn btn-secondary-neutral" type="button" data-type="large" data-modal="modal--large">Large</button>
+        <button class="btn btn-secondary-neutral" type="button" data-type="fullwidth" data-modal="modal--fullwidth">Fullwidth (bottom sheet)</button>
+        <button class="btn btn-secondary-neutral" type="button" data-type="long" data-modal="" data-long>Long content (inner scroll)</button>
+        <button class="btn btn-secondary-neutral" type="button" data-type="no-title" data-modal="" data-long data-no-title>No title</button>
+        <button class="btn btn-secondary-neutral" type="button" data-type="no-footer" data-modal="modal--middle" data-no-footer>No footer</button>
+      </div>
+
+      <!-- Page placeholder (preview frames only) — content under the scrim -->
+      <div class="demo-modal__filler" aria-hidden="true">
+        <div></div>
+        <div></div>
+        <div></div>
+        <div></div>
+      </div>
+
+      <section class="demo-modal__viewports">
+        <h2 class="demo-modal__set">Viewports</h2>
+        <p class="demo-modal__note">
+          The modal open in a page at each breakpoint — size, position and the Fullwidth height cap (50% from MD, 80% on
+          SM-XS) follow the preview, not the window. Use the buttons inside the preview to open it again.
+        </p>
+        <div class="demo-vp-toolbar demo-vp-toolbar--sticky">
+          <div class="demo-vp-toolbar__row">
+            <span id="demo-vp-switch-label">Viewport</span>
+            <div class="demo-vp-toggle" role="group" aria-labelledby="demo-vp-switch-label" id="demo-vp-switch">
+              <button type="button" data-vp="xl" aria-pressed="false">XL ≥1376</button>
+              <button type="button" data-vp="lg" aria-pressed="true">LG ≥1024</button>
+              <button type="button" data-vp="md" aria-pressed="false">MD ≥768</button>
+              <button type="button" data-vp="xs" aria-pressed="false">SM-XS &lt;768</button>
+            </div>
+            <span class="demo-vp-toolbar__divider"></span>
+            <label for="demo-vp-type">Modal</label>
+            <select class="demo-vp-select" id="demo-vp-type">
+              <option value="default">Default</option>
+              <option value="middle">Middle</option>
+              <option value="bottom">Bottom</option>
+              <option value="large">Large</option>
+              <option value="fullwidth">Fullwidth (bottom sheet)</option>
+              <option value="long">Long content (inner scroll)</option>
+              <option value="no-title">No title</option>
+              <option value="no-footer">No footer</option>
+            </select>
+            <span class="demo-vp-status" id="demo-vp-status"></span>
+          </div>
+        </div>
+        <div class="demo-vp-stage demo-modal__stage-vp" id="demo-vp-stage"></div>
+      </section>
+
+      <section class="demo-modal__anatomy">
+      <h2 class="demo-modal__set">Anatomy</h2>
+      <p class="demo-modal__note">
+        The box open on a scrim. Header (title + close, keyline below), body, footer (keyline above, buttons on the
+        right). Without a title there is no header: the close button stays in the corner over the body, and the body starts at the top. The footer is optional.
+      </p>
+
+      <div class="demo-modal__stage">
+        <div class="modal__content">
+          <div class="modal__header">
+            <h2 class="modal__title h4">Modal Content Title</h2>
+            <button class="modal__close btn btn-tertiary-dark btn--icon-only" type="button" aria-label="Close">
+              <img src="../../assets/icons/ico-xmark-light.svg" alt="" />
+            </button>
+          </div>
+          <div class="modal__body demo-modal__copy">
+            <h3 class="h4">Article page heading, Lorem ipsum dolor sit amet, consectetur adipiscing elit</h3>
+            <p class="text-md">
+              Article page default paragraph in Body 16px, Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+              Vivamus faucibus metus nisl, eget accumsan nibh semper sit amet. <a href="#">Hyperlink</a>.
+            </p>
+          </div>
+          <div class="modal__footer">
+            <button class="btn btn-secondary-brand" type="button">Secondary</button>
+            <button class="btn btn-brand" type="button">Primary Action</button>
+          </div>
+        </div>
+
+        <div class="modal__content">
+          <button class="modal__close btn btn-tertiary-dark btn--icon-only" type="button" aria-label="Close">
+            <img src="../../assets/icons/ico-xmark-light.svg" alt="" />
+          </button>
+          <div class="modal__body demo-modal__copy">
+            <h3 class="h4">No modal title — no header, the close button stays in the corner</h3>
+            <p class="text-md">Nam lacinia placerat porta. Sed rutrum nunc at nulla bibendum rutrum.</p>
+          </div>
+        </div>
+      </div>
+      </section>
+    </main>
+
+    <!-- One dialog; the Try it buttons set its size / position and which parts show -->
+    <dialog class="modal" id="demo-modal" aria-labelledby="demo-modal-title" tabindex="-1">
+      <div class="modal__content">
+        <div class="modal__header">
+          <h2 class="modal__title h4" id="demo-modal-title">Modal Content Title</h2>
+          <button class="modal__close btn btn-tertiary-dark btn--icon-only" type="button" aria-label="Close" data-close>
+            <img src="../../assets/icons/ico-xmark-light.svg" alt="" />
+          </button>
+        </div>
+        <div class="modal__body demo-modal__copy">
+          <h3 class="h4">Article page heading, Lorem ipsum dolor sit amet, consectetur adipiscing elit</h3>
+          <p class="text-md">
+            Article page default paragraph in Body 16px, Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+            Vivamus faucibus metus nisl, eget accumsan nibh semper sit amet. <a href="#">Hyperlink</a>.
+          </p>
+          <p class="text-md">
+            Nam lacinia placerat porta. Sed rutrum nunc at nulla bibendum rutrum. Cras consequat facilisis aliquam.
+            Curabitur aliquet nisi id maximus tincidunt.
+          </p>
+          <div data-long-copy hidden>
+            <p class="text-md">
+              Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Integer
+              posuere erat a ante venenatis dapibus posuere velit aliquet. Donec ullamcorper nulla non metus auctor
+              fringilla. Maecenas sed diam eget risus varius blandit sit amet non magna.
+            </p>
+            <p class="text-md">
+              Cras mattis consectetur purus sit amet fermentum. Aenean lacinia bibendum nulla sed consectetur. Duis
+              mollis, est non commodo luctus, nisi erat porttitor ligula, eget lacinia odio sem nec elit. Nullam quis
+              risus eget urna mollis ornare vel eu leo.
+            </p>
+            <p class="text-md">
+              Vestibulum id ligula porta felis euismod semper. Morbi leo risus, porta ac consectetur ac, vestibulum at
+              eros. Curabitur blandit tempus porttitor. Etiam porta sem malesuada magna mollis euismod. Sed posuere
+              consectetur est at lobortis.
+            </p>
+            <p class="text-md">
+              Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet
+              risus. Donec sed odio dui. Praesent commodo cursus magna, vel scelerisque nisl consectetur et. Vivamus
+              sagittis lacus vel augue laoreet rutrum faucibus dolor auctor.
+            </p>
+            <p class="text-md">
+              Aenean eu leo quam. Pellentesque ornare sem lacinia quam venenatis vestibulum. Nulla vitae elit libero, a
+              pharetra augue. Maecenas faucibus mollis interdum. Etiam porta sem malesuada magna mollis euismod.
+            </p>
+          </div>
+        </div>
+        <div class="modal__footer">
+          <button class="btn btn-secondary-brand" type="button" data-close>Secondary</button>
+          <button class="btn btn-brand" type="button" data-close>Primary Action</button>
+        </div>
+      </div>
+    </dialog>
+
+    <script>
+      // Scaffolding only — open the dialog in the chosen setup; close on [data-close] or a scrim click.
+      // (Esc closes a showModal() dialog on its own.)
+      const modal = document.getElementById('demo-modal');
+      const content = modal.querySelector('.modal__content');
+      const header = modal.querySelector('.modal__header');
+      const close = modal.querySelector('.modal__close');
+      const title = modal.querySelector('.modal__title');
+      const footer = modal.querySelector('.modal__footer');
+      const longCopy = modal.querySelector('[data-long-copy]');
+
+      document.querySelectorAll('[data-modal]').forEach((button) => {
+        button.addEventListener('click', () => {
+          modal.className = ['modal', button.dataset.modal].filter(Boolean).join(' ');
+          // No title: no header, the close button goes straight in the box (as in real markup)
+          if ('noTitle' in button.dataset) {
+            content.prepend(close);
+            header.remove();
+          } else {
+            header.replaceChildren(title, close);
+            content.prepend(header);
+          }
+          footer.hidden = 'noFooter' in button.dataset;
+          longCopy.hidden = !('long' in button.dataset);
+          if (!title.isConnected) modal.setAttribute('aria-label', 'Modal');
+          else modal.removeAttribute('aria-label');
+          modal.showModal();
+          modal.focus(); // focus the dialog, not the close button — no focus ring on open
+          modal.querySelector('.modal__body').scrollTop = 0;
+        });
+      });
+
+      modal.addEventListener('click', (event) => {
+        if (event.target === modal || event.target.closest('[data-close]')) modal.close();
+      });
+
+      const params = new URLSearchParams(location.search);
+      if (params.has('frame')) {
+        // In a preview: open the chosen modal straight away
+        document.querySelector(`[data-type="${params.get('type') || 'default'}"]`)?.click();
+      } else {
+        // Viewport previews: this page in an iframe at the breakpoint's width, scaled to fit
+        const VIEWPORTS = {
+          xl: { label: 'XL ≥1376', width: 1440, height: 810 }, // 16:9
+          lg: { label: 'LG ≥1024', width: 1024, height: 576 }, // 16:9
+          md: { label: 'MD ≥768', width: 768, height: 1024 }, // tablet portrait
+          xs: { label: 'SM-XS <768', width: 390, height: 800 }, // phone
+        };
+        const toggle = document.getElementById('demo-vp-switch');
+        const typeSelect = document.getElementById('demo-vp-type');
+        const status = document.getElementById('demo-vp-status');
+        const stage = document.getElementById('demo-vp-stage');
+        let vpKey = 'lg';
+        let iframe = null;
+
+        const fit = () => {
+          if (!iframe) return;
+          const { width, height } = VIEWPORTS[vpKey];
+          const scale = Math.min(1, stage.parentElement.clientWidth / width);
+          iframe.style.transform = `scale(${scale})`;
+          stage.style.width = `${width * scale}px`;
+          stage.style.height = `${height * scale}px`;
+          status.textContent = `${width}px preview · ${Math.round(scale * 100)}%`;
+        };
+
+        const show = () => {
+          const vp = VIEWPORTS[vpKey];
+          toggle.querySelectorAll('button').forEach((b) => b.setAttribute('aria-pressed', String(b.dataset.vp === vpKey)));
+          iframe = document.createElement('iframe');
+          iframe.src = `index.html?frame&type=${typeSelect.value}`;
+          iframe.width = vp.width;
+          iframe.height = vp.height;
+          iframe.title = `Modal at ${vp.label}`;
+          stage.replaceChildren(iframe);
+          fit();
+        };
+
+        toggle.addEventListener('click', (event) => {
+          const button = event.target.closest('[data-vp]');
+          if (!button) return;
+          vpKey = button.dataset.vp;
+          show();
+        });
+        typeSelect.addEventListener('change', show);
+        new ResizeObserver(fit).observe(stage.parentElement);
+        show();
+      }
+    </script>
+  </body>
+</html>

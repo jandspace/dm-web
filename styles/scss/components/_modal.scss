@@ -1,0 +1,266 @@
+// ── Modal ─────────────────────────────────────────────────────────────────────
+// Focused content or a required action above the page, over a scrim. Built on
+// the native <dialog> (showModal): Esc, focus trap and ::backdrop come with it.
+// Concept as Bootstrap's modal — header / body / footer, sizes, inner scroll.
+//
+//   dialog.modal                        Full-viewport frame: scrim + backdrop padding
+//     .modal__content                   Box — lightest, 16px corners, Elevation 5
+//       .modal__header                  optional — title + close
+//         h2.modal__title.h4            keyline below (16px inset)
+//         button.modal__close           Button Tertiary Dark, icon only, top right
+//       (no title: no header — button.modal__close straight in the box)
+//       .modal__body                    16px padding; scrolls when the box is capped
+//       .modal__footer                  optional — keyline above, buttons on the right
+//
+// Sizes (max width of the box)       SM-XS   MD    LG
+//   Default                          480     480   640
+//   .modal--large                    640     800   960
+//   .modal--fullwidth                full width, bottom, top corners only;
+//                                    content 960 max; height 80% (SM-XS) / 50%
+//
+// Position: top from MD, middle on SM-XS (Default, Large).
+//   .modal--middle / .modal--bottom   any breakpoint
+//
+// The box hugs its content up to the viewport (minus backdrop padding); taller
+// content scrolls in the body, header and footer stay (Figma "Fill (Inner Scroll)").
+//
+// Reference: Figma Web UI Kit › Modal (3358:62)
+
+@use '../foundation/breakpoints' as bp;
+@use 'divider';
+
+.modal {
+  // Reset the UA dialog box: the dialog is the frame, the box is .modal__content
+  width: 100%;
+  max-width: none;
+  height: 100%;
+  max-height: none;
+  margin: 0;
+  padding: var(--spacing-32);
+  border: 0;
+  background: none;
+  overflow: hidden;
+  outline: none; // focused itself on open (tabindex="-1" + focus()) — no ring around the frame
+
+  &[open] {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center; // SM-XS: middle
+  }
+
+  &::backdrop {
+    background-color: var(--color-background-shade-moderate);
+  }
+
+  @include bp.respond-to(md) {
+    &[open] {
+      justify-content: flex-start; // top
+    }
+  }
+}
+
+// Page under an open modal does not scroll
+html:has(.modal[open]) {
+  overflow: hidden;
+}
+
+.modal__content {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  max-width: 480px;
+  max-height: 100%;
+  overflow: hidden;
+  border-radius: var(--border-radius-16);
+  background-color: var(--color-background-neutral-lightest);
+  box-shadow: var(--elevation-5);
+  font-family: var(--typography-font-family-sans);
+  color: var(--color-text-neutral-darker);
+
+  @include bp.respond-to(lg) {
+    max-width: 640px;
+  }
+}
+
+// ── Header ────────────────────────────────────────────────────────────────────
+
+.modal__header {
+  position: relative;
+  flex-shrink: 0;
+}
+
+.modal__title {
+  position: relative;
+  margin: 0;
+  padding: var(--spacing-16) var(--spacing-48) var(--spacing-16) var(--spacing-16); // right: room for close
+  color: var(--color-text-neutral-darker);
+
+  &::after {
+    @include divider.divider;
+  }
+}
+
+// In the header, or straight in the box when there is no title (no header):
+// same corner either way, over the body
+.modal__close {
+  position: absolute;
+  top: var(--spacing-6);
+  right: var(--spacing-6);
+  z-index: 1;
+
+  > img {
+    width: 16px;
+    height: 16px;
+  }
+}
+
+// ── Body ──────────────────────────────────────────────────────────────────────
+
+.modal__body {
+  flex: 1 1 auto;
+  min-height: 0;
+  padding: var(--spacing-16);
+  overflow-y: auto;
+  overscroll-behavior: contain;
+  scrollbar-width: thin;
+  scrollbar-color: var(--color-background-neutral-grey-light) transparent;
+}
+
+// ── Footer ────────────────────────────────────────────────────────────────────
+
+.modal__footer {
+  position: relative;
+  display: flex;
+  flex-shrink: 0;
+  flex-wrap: wrap;
+  justify-content: flex-end;
+  gap: var(--spacing-12);
+  padding: var(--spacing-16);
+
+  &[hidden] {
+    display: none; // display: flex above would win over [hidden]
+  }
+
+  &::after {
+    @include divider.divider;
+    top: 0;
+    bottom: auto; // keyline above
+  }
+}
+
+// ── Sizes ─────────────────────────────────────────────────────────────────────
+
+.modal--large {
+  padding: var(--spacing-16);
+
+  .modal__content {
+    max-width: 640px;
+  }
+
+  @include bp.respond-to(md) {
+    padding: var(--spacing-32);
+
+    .modal__content {
+      max-width: 800px;
+    }
+  }
+
+  @include bp.respond-to(lg) {
+    .modal__content {
+      max-width: 960px;
+    }
+  }
+}
+
+// Bottom sheet: full width at the bottom; header, body and footer 960 max, centred
+.modal--fullwidth {
+  padding: var(--spacing-32) 0 0;
+
+  &[open] {
+    justify-content: flex-end;
+  }
+
+  .modal__content {
+    align-items: center;
+    max-width: none;
+    max-height: 80vh;
+    max-height: 80dvh; // mobile: follows the address bar
+    border-radius: var(--border-radius-16) var(--border-radius-16) 0 0;
+
+    @include bp.respond-to(md) {
+      max-height: 50vh;
+      max-height: 50dvh;
+    }
+  }
+
+  .modal__header,
+  .modal__body,
+  .modal__footer {
+    width: 100%;
+    max-width: 960px;
+  }
+}
+
+// ── Position ──────────────────────────────────────────────────────────────────
+// After the sizes so they win at every breakpoint
+
+.modal--middle[open] {
+  justify-content: center;
+}
+
+.modal--bottom[open] {
+  justify-content: flex-end;
+}
+
+// ── Motion ────────────────────────────────────────────────────────────────────
+
+@keyframes modal-in {
+  from {
+    opacity: 0;
+    transform: translateY(-16px);
+  }
+}
+
+@keyframes modal-sheet-in {
+  from {
+    transform: translateY(100%);
+  }
+}
+
+@keyframes modal-backdrop-in {
+  from {
+    opacity: 0;
+  }
+}
+
+.modal[open] {
+  .modal__content {
+    animation: modal-in 200ms ease-out;
+  }
+
+  &::backdrop {
+    animation: modal-backdrop-in 200ms ease-out;
+  }
+}
+
+.modal--fullwidth[open] .modal__content {
+  animation-name: modal-sheet-in;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .modal[open] {
+    .modal__content {
+      animation: none;
+    }
+
+    &::backdrop {
+      animation: none;
+    }
+  }
+
+  .modal--fullwidth[open] .modal__content {
+    animation: none;
+  }
+}

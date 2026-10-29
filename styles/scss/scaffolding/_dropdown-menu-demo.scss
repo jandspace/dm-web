@@ -34,6 +34,27 @@
   }
 }
 
+// Try it: trigger Buttons side by side
+.demo-dropdown__triggers {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--spacing-16);
+}
+
+// Try it: the menu drops 8px below its Button, left-aligned
+.demo-dropdown__trigger {
+  position: relative;
+  display: inline-block;
+
+  .dropdown-menu {
+    position: absolute;
+    top: calc(100% + var(--spacing-8));
+    left: 0;
+    z-index: 10;
+    width: 277px;
+  }
+}
+
 // States: one item per row with its name on the left
 .demo-dropdown__states {
   display: grid;
@@ -55,6 +76,11 @@
     padding: 0;
     list-style: none;
   }
+}
+
+// Dropdown Title variants at the Figma width
+.demo-dropdown__states--title {
+  grid-template-columns: max-content 320px;
 }
 
 // Capped box: the list scrolls
