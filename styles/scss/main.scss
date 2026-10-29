@@ -15,6 +15,7 @@
 @use 'components/button';
 @use 'components/divider';
 @use 'components/dropdown-menu';
+@use 'components/loading';
 @use 'components/media';
 @use 'components/modal';
 
@@ -48,6 +49,7 @@
 @use 'scaffolding/layout-demo';
 @use 'scaffolding/divider-demo';
 @use 'scaffolding/dropdown-menu-demo';
+@use 'scaffolding/loading-demo';
 @use 'scaffolding/media-demo';
 @use 'scaffolding/modal-demo';
 @use 'scaffolding/article-card-demo';

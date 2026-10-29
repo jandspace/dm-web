@@ -68,6 +68,8 @@ All buttons utilise dedicated **Interaction Tokens** to provide consistent feedb
 
 Primarily utilise **Daily Mail Blue** or semantic interaction tokens (**Positive** / **Negative**). These tokens ensure that the button's intent and importance remain clear during interaction state changes such as Hover, Pressed, or Loading.
 
+**Loading:** `.btn--loading` hides the label and shows the Loading component's Three-Quarters Circle in the middle — XS 16 · SM 20 · MD 24 · LG 28 · XL 32px (`docs/4_Components__04_Loading.md`).
+
 Where buttons include both text and mono icons, the same colour token should be applied to both elements to ensure consistent visual feedback across interaction states.
 
 ///// IMAGE /////

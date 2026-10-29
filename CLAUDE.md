@@ -52,7 +52,7 @@ projects/
 
 Folders follow the Figma UI Kit and design system taxonomy: **Foundation › Components › Modules**. The demo folders (`components/`, `modules/`) and the SCSS folders (`styles/scss/components/`, `styles/scss/modules/`) mirror each other.
 
-- **Component** — a base UI element listed under Figma "DM Web ::: Components" (Button, Divider, Dropdown Menu, Input, Modal, Tabs, Toast, Toggle, Tooltip…).
+- **Component** — a base UI element listed under Figma "DM Web ::: Components" (Button, Divider, Dropdown Menu, Input, Loading, Modal, Tabs, Toast, Toggle, Tooltip…).
 - **Module** — a block listed under Figma "DM Web ::: Modules" (Article Card, Article Editorial Badge, Breadcrumbs, Carousel, Navigation, Video Player Controls…). Parts of a module (e.g. Article Card Metadata, Columnist Profile Photo) live in `modules/` too.
 - When unsure, check which Figma page the frame lives on.
 - `projects/` → project-specific screens and flows, split by platform
@@ -346,7 +346,7 @@ iOS and Android use the same four steps (`typography-ios/letter-spacing/*`, `typ
 - Mobile-first CSS: XS as the base (no media query), scale up with `min-width` breakpoints.
 - Mobile landscape handled with `orientation: landscape`, not px breakpoints.
 - Typography does not change on mobile landscape — layout and padding only.
-- **Images:** photos are JPEG (quality ~82). PNG only when real transparency is needed (e.g. columnist cut-out photos). Figma often exports opaque photos as RGBA PNG — check the alpha before keeping PNG. Icons are SVG. Image and video boxes use Media (`.media` + a CMS crop ratio: `--banner`, `--portrait-banner`, `--large`, `--puff`, `--small`, `--302`, `--video` 16:9, `--vertical` 2:3, `--shorts` 9:16 (video only) — photo or video in the other ratios — doc `docs/4_Components__06_Media.md`); the card sets the corner radius.
+- **Images:** photos are JPEG (quality ~82). PNG only when real transparency is needed (e.g. columnist cut-out photos). Figma often exports opaque photos as RGBA PNG — check the alpha before keeping PNG. Icons are SVG. Image and video boxes use Media (`.media` + a CMS crop ratio: `--banner`, `--portrait-banner`, `--large`, `--puff`, `--small`, `--302`, `--video` 16:9, `--vertical` 2:3, `--shorts` 9:16 (video only) — photo or video in the other ratios — doc `docs/4_Components__05_Media.md`); the card sets the corner radius.
 - **Icons come from `assets/icons/`** — SVG only on Web, exported from the Figma icon library (DailyMail Icons, file `171vKuCduz2EW3XrK12IQT`, frame 24:2253) with visible layers only, 32 × 32, black. Browse them at `foundation/iconography/` (Legacy there = files no longer in Figma). Unless told otherwise, load the icon file from `assets/icons/` (e.g. `<img src="../../assets/icons/ico-ch-uk-showbiz-color.svg" alt="" />`) — don't draw new SVGs or re-export icons from Figma into a page or experiment folder. If an icon isn't in `assets/icons/`, add it there first (Figma original, `ico-*.svg`), then use it. Only when an icon must change colour with state (hover, theme) may its path be inlined as an SVG `<symbol>` with `currentColor` — copied from the `assets/icons/` file, not redrawn.
 - British English for UI copy and documentation.
 - American English for token names, CSS variable names, and code.

@@ -2,6 +2,8 @@
 // All button variants, sizes, states, and loading behaviour.
 // Reference: DM Design System — Button component
 
+@use 'loading';
+
 // ── Base ──────────────────────────────────────────────────────────────────────
 
 .btn {
@@ -47,12 +49,7 @@
 }
 
 // ── Loading ───────────────────────────────────────────────────────────────────
-
-@keyframes btn-spin {
-  to {
-    transform: rotate(360deg);
-  }
-}
+// The spinner is the Loading component's Three-Quarters Circle (loading.ring)
 
 .btn svg.btn-spinner {
   display: none;
@@ -76,8 +73,7 @@
     height: 24px;
     margin-top: -12px;
     margin-left: -12px;
-    opacity: 0.4;
-    animation: btn-spin 1.2s linear infinite;
+    @include loading.ring;
   }
 }
 

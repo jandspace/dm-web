@@ -1,0 +1,76 @@
+// ── Components › Loading demo — SCAFFOLDING ONLY ──────────────────────────────
+// Layout for components/loading/. Never ships to production.
+
+.demo-loading {
+  max-width: 1224px;
+}
+
+.demo-loading__set {
+  margin: var(--spacing-48) 0 var(--spacing-8);
+  font-family: var(--typography-font-family-serif); // library chrome in Lora
+  font-size: 18px;
+  font-weight: 600;
+  color: var(--color-text-neutral-darker);
+}
+
+.demo-loading__note {
+  max-width: 760px;
+  margin: 0 0 var(--spacing-16);
+  font-family: var(--typography-font-family-serif);
+  font-size: 13px;
+  line-height: 1.5;
+  color: var(--color-text-neutral-grey-dark);
+}
+
+// A white box standing in for a page or a module
+.demo-loading__box {
+  position: relative;
+  max-width: 640px;
+  overflow: hidden;
+  border-radius: var(--border-radius-8);
+  background-color: var(--color-background-neutral-lightest);
+}
+
+// Page loading preview: the cover kept inside the box instead of the viewport
+.demo-loading__box .loading-page {
+  position: absolute;
+}
+
+.demo-loading__box--page {
+  height: 360px;
+  padding: var(--spacing-16);
+}
+
+// Grey blocks standing in for content
+.demo-loading__filler {
+  display: grid;
+  gap: var(--spacing-16);
+
+  > span {
+    height: 72px;
+    border-radius: var(--border-radius-4);
+    background-color: var(--color-background-neutral-light);
+  }
+}
+
+// One item per row with its name on the left (rings, buttons)
+.demo-loading__rows {
+  display: grid;
+  grid-template-columns: max-content max-content max-content;
+  align-items: center;
+  gap: var(--spacing-16) var(--spacing-32);
+  padding: var(--spacing-24);
+  border-radius: var(--border-radius-8);
+  background-color: var(--color-background-neutral-lightest);
+  color: var(--color-text-neutral-darker);
+
+  > span {
+    font-family: monospace;
+    font-size: 12px;
+    color: var(--color-text-neutral-grey-dark);
+  }
+}
+
+.demo-loading__actions {
+  margin-top: var(--spacing-16);
+}

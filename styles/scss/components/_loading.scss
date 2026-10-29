@@ -1,0 +1,167 @@
+// ── Loading ───────────────────────────────────────────────────────────────────
+// Three loaders, one per job:
+//
+//   .loading-page                  Page loading — Spinning Wheel over a 60% white
+//     .loading-wheel               cover; the page under it can't be used.
+//                                  Put it straight in <body>.
+//   .loading-dots                  Content loading — Ellipsis: 3 dots, a block
+//   .loading-ring                  Loading on action — Three-Quarters Circle
+//                                  (ico-loading). Button uses the ring() mixin.
+//   .loading__text                 "Loading…" for screen readers (visually hidden)
+//
+// Motion (Figma prototypes): ring 1.2s a turn · wheel 12 steps a turn · dots
+// 0.3s a step. Reduced motion slows them down rather than stopping them — a
+// loader that stands still reads as stuck (as Bootstrap).
+//
+// Reference: Figma Web UI Kit › Loading (214:6737)
+
+@keyframes loading-spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+// Three-Quarters Circle on any element showing ico-loading (fill: currentColor).
+// The caller sets the size — Button: 16 / 20 / 24 / 28 / 32 for XS–XL.
+@mixin ring {
+  opacity: 0.4;
+  animation: loading-spin 1.2s linear infinite;
+
+  @media (prefers-reduced-motion: reduce) {
+    animation-duration: 2.4s;
+  }
+}
+
+// ── Loading on action — Three-Quarters Circle ─────────────────────────────────
+
+.loading-ring {
+  @include ring;
+  display: inline-block;
+  flex-shrink: 0;
+  width: 24px;
+  height: 24px;
+  vertical-align: middle;
+}
+
+.loading-ring--16 { width: 16px; height: 16px; }
+.loading-ring--20 { width: 20px; height: 20px; }
+.loading-ring--28 { width: 28px; height: 28px; }
+.loading-ring--32 { width: 32px; height: 32px; }
+
+// ── Page loading — Spinning Wheel ─────────────────────────────────────────────
+
+.loading-page {
+  position: fixed;
+  inset: 0;
+  z-index: 1000;
+  display: grid;
+  place-items: center;
+
+  // Cover: neutral/white at 60% (flips with the theme)
+  &::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background-color: var(--color-background-neutral-white);
+    opacity: 0.6;
+  }
+
+  &[hidden] {
+    display: none; // display: grid above would win over [hidden]
+  }
+}
+
+// The page under the cover does not scroll — the cover sits straight in <body>
+html:has(body > .loading-page:not([hidden])) {
+  overflow: hidden;
+}
+
+// 64px wheel, 12 bars (6 × 16) — the top bar leads, the trail fades behind it.
+// Turns in 12 steps, one bar at a time.
+.loading-wheel {
+  position: relative;
+  width: 64px;
+  height: 64px;
+  animation: loading-spin 1s steps(12) infinite;
+
+  > span {
+    position: absolute;
+    top: 0;
+    left: 29px;
+    width: 6px;
+    height: 16px;
+    border-radius: var(--border-radius-full);
+    background-color: var(--color-background-neutral-black);
+    opacity: 0.16;
+    transform-origin: 3px 32px; // the wheel's centre
+
+    @for $i from 1 through 12 {
+      &:nth-child(#{$i}) {
+        transform: rotate(#{($i - 1) * 30}deg);
+      }
+    }
+
+    &:nth-child(1) { opacity: 0.4; }
+    &:nth-child(8) { opacity: 0.2; }
+    &:nth-child(9) { opacity: 0.24; }
+    &:nth-child(10) { opacity: 0.28; }
+    &:nth-child(11) { opacity: 0.32; }
+    &:nth-child(12) { opacity: 0.36; }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    animation-duration: 2s;
+  }
+}
+
+// ── Content loading — Ellipsis ────────────────────────────────────────────────
+
+@keyframes loading-dot {
+  0%,
+  66.67%,
+  100% {
+    opacity: 0.2;
+  }
+
+  33.33% {
+    opacity: 1;
+  }
+}
+
+// A block where content is still coming: 3 × 18px dots, 8px apart, 32 / 16 padding.
+// The lit dot moves one step every 0.3s.
+.loading-dots {
+  --loading-step: 0.3s;
+  display: flex;
+  justify-content: center;
+  gap: var(--spacing-8);
+  padding: var(--spacing-32) var(--spacing-16);
+
+  > span {
+    width: 18px;
+    height: 18px;
+    border-radius: var(--border-radius-full);
+    background-color: var(--color-icon-neutral-black);
+    opacity: 0.2;
+    animation: loading-dot calc(var(--loading-step) * 3) linear infinite;
+
+    // Starts on the first dot lit (Figma Order=1)
+    &:nth-child(1) { animation-delay: calc(var(--loading-step) * -1); }
+    &:nth-child(3) { animation-delay: var(--loading-step); }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    --loading-step: 0.6s;
+  }
+}
+
+// ── Screen reader text ────────────────────────────────────────────────────────
+
+.loading__text {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+  clip-path: inset(50%);
+  white-space: nowrap;
+}
