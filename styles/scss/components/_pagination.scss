@@ -1,0 +1,174 @@
+// ── Pagination ────────────────────────────────────────────────────────────────
+// Moves between the pages of a long list. Two patterns, one per experience:
+//
+//   nav.pagination
+//     ul.pagination__pages              LG+: numbered — « ‹ 1 … 4 5 6 … 999 › »
+//       li > a.pagination__item         40px, 12px corners
+//         [aria-current="page"]         current page — neutral/dark, Semibold
+//       li > a.pagination__item--arrow  « ‹ › » — neutral/light, ico-chevron-* 14
+//       li > span.pagination__ellipsis  gap in the numbers, not a link
+//     .pagination__compact              below LG: ‹ [ 2 ⌄ ] of 999 ›
+//       a.pagination__item--arrow       44px square
+//       .pagination__select > select    native picker (Input look)
+//       .pagination__total              "of 999"
+//
+// Numbers: always 7 slots — first and last always shown, the current page in the
+// middle with its neighbours, an ellipsis where pages are skipped:
+//   1 2 3 4 5 … 999  ·  1 … 4 5 6 … 999  ·  1 … 995 996 997 998 999
+// Arrows only where there is somewhere to go: ‹ › from the second / up to the
+// second-last page, « » only when they go further than ‹ ›.
+//
+// Hover follows Button: background only, no shadow.
+//
+// Reference: Figma Web UI Kit › Pagination (214:7642)
+
+@use '../foundation/breakpoints' as bp;
+
+.pagination {
+  display: flex;
+  justify-content: center;
+  font-family: var(--typography-font-family-sans);
+}
+
+// ── Numbered (LG+) ────────────────────────────────────────────────────────────
+
+.pagination__pages {
+  display: none;
+  align-items: center;
+  gap: var(--spacing-4);
+  margin: 0;
+  padding: 0;
+  list-style: none;
+
+  @include bp.respond-to(lg) {
+    display: flex;
+  }
+}
+
+.pagination__item {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 40px;
+  height: 40px;
+  padding: var(--spacing-4) var(--spacing-12);
+  border: 1px solid var(--color-border-neutral-light);
+  border-radius: var(--border-radius-12);
+  background-color: var(--color-background-neutral-lightest);
+  font-size: var(--typography-font-size-label-sm);
+  font-weight: var(--typography-font-weight-regular);
+  line-height: var(--typography-line-height-narrow);
+  text-decoration: none;
+  white-space: nowrap;
+  color: var(--color-text-neutral-darker);
+  transition: background-color 80ms ease;
+
+  > img {
+    width: 14px;
+    height: 14px;
+  }
+
+  &:hover,
+  &.is-hover {
+    background-color: var(--color-background-neutral-grey-light);
+  }
+
+  &[aria-current='page'] {
+    border-color: transparent;
+    background-color: var(--color-background-neutral-dark);
+    font-weight: var(--typography-font-weight-semibold);
+    color: var(--color-text-neutral-lightest);
+  }
+
+  &.is-hover {
+    pointer-events: none; // demo state
+  }
+}
+
+.pagination__item--arrow {
+  background-color: var(--color-background-neutral-light);
+}
+
+.pagination__ellipsis {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 40px;
+  height: 40px;
+
+  > img {
+    width: 14px;
+    height: 14px;
+  }
+}
+
+// ── Compact (below LG) ────────────────────────────────────────────────────────
+
+.pagination__compact {
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-12);
+
+  .pagination__item {
+    width: 44px;
+    height: 44px;
+  }
+
+  @include bp.respond-to(lg) {
+    display: none;
+  }
+}
+
+// Page picker + "of 999", 8px apart
+.pagination__picker {
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-8);
+  font-size: var(--typography-font-size-text-md);
+  line-height: var(--typography-line-height-normal);
+}
+
+// Native <select> in the Input look: white, keyline border, 8px corners, 44px.
+// The chevron is an <img> over it (the select can't hold one).
+.pagination__select {
+  position: relative;
+
+  > select {
+    min-width: 32px;
+    min-height: 44px;
+    padding: var(--spacing-8) calc(var(--spacing-16) + 14px + var(--spacing-4)) var(--spacing-8) var(--spacing-16);
+    border: 1px solid var(--color-border-neutral-light);
+    border-radius: var(--border-radius-8);
+    background-color: var(--color-background-neutral-white);
+    font: inherit;
+    text-align: center;
+    color: var(--color-text-neutral-darker);
+    appearance: none;
+    cursor: pointer;
+  }
+
+  > img {
+    position: absolute;
+    top: 50%;
+    right: var(--spacing-16);
+    width: 14px;
+    height: 14px;
+    margin-top: -7px;
+    pointer-events: none;
+  }
+}
+
+.pagination__total {
+  white-space: nowrap;
+  color: var(--color-text-neutral-grey-dark);
+
+  > span {
+    color: var(--color-text-neutral-dark);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .pagination__item {
+    transition: none;
+  }
+}

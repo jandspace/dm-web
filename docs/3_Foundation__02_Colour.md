@@ -138,7 +138,38 @@ We categorise translucency based on the surface luminance to ensure visual harmo
 
 ---
 
-## 8. Explore the Token Library
+## 8. Surface (Figma layer → tokens)
+
+In Figma, **Surface** (Web UI Kit › Surface, `1096:10382`) is a layer component for backgrounds: stack several Surface layers in a frame and swap each one's colour by variant — handy when a design needs more than one background (a colour, a translucent shade over it, an image under it). Like the Materials layers in the iOS UI Kit, it is a **designer tool**.
+
+**In code there is no Surface component.** Each Surface variant is one background token, so use the token directly. Several backgrounds stack natively in CSS — one `background` with several layers, or a `::before` / `::after` over the block (as the Loading cover).
+
+| Figma Surface | Token |
+|---|---|
+| Style = channel colour · Strength Default / Subtle / Subtlest | `--color-background-{channel}-base` / `-subtle` / `-subtlest` (e.g. `--color-background-home-blue-subtlest`) |
+| Style = Black · Darker · Dark · Light · Lighter · Lightest · White | `--color-background-neutral-black` … `-white` |
+| Style = Translucent-Black · Opacity Pale 10 … Thick 80 | `--color-effect-translucent-dark-pale` · `-subtle` · `-moderate` · `-deep` · `-thick` |
+| Style = Translucent-White · Opacity Pale 10 … Thick 80 | `--color-effect-translucent-light-pale` … `-thick` |
+| Style = DailyMail+ | `linear-gradient(…, var(--color-miscellaneous-mailplus-mplus-dark-blue) 0%, var(--color-miscellaneous-mailplus-mplus-solid-blue) 66%)` |
+| Style = No Fill | no background |
+| **Surface to darker** · channel colour | `--color-background-{channel}-base-darker` |
+| Surface to darker · neutrals | as Surface (`--color-background-neutral-*`) |
+
+```css
+/* Two layers: a 60% shade over a photo, on a channel colour while it loads */
+.promo {
+  background:
+    linear-gradient(var(--color-effect-translucent-dark-deep), var(--color-effect-translucent-dark-deep)),
+    url(promo.jpg) center / cover,
+    var(--color-background-showbiz-red-base);
+}
+```
+
+Why no component: on the web a background is one CSS property, and a `.surface--blue-subtlest` class would only copy the token's name (two places to keep in step). Most web design systems do the same — Atlassian, Polaris and Primer pass background tokens to a `Box`; Material Web uses its `surface` colour roles as tokens. A component earns its place only where a surface changes what sits on it (Carbon's `Layer`, Material Compose's `Surface` setting the content colour). If dark or channel-colour surfaces start needing their text, keylines and icons switched together, that is the time for a context class — not before.
+
+---
+
+## 9. Explore the Token Library
 
 The colour principles outlined above are precisely mapped to our technical standards - the 'Colour Tokens'. For specific Hex values and their corresponding CSS, Swift, or Figma variable names tailored to your project requirements, please refer to the complete technical reference below:
 
@@ -151,7 +182,7 @@ The colour principles outlined above are precisely mapped to our technical stand
 | Background (The Lowest level default) | `color-background-neutral-lightest` |
 | Top Navigation Bar Background (Home) | `color-background-home-blue-base-darker` |
 | Headlines and Body copy | `color-text-neutral-darker` |
-| Divider (Keyline) | `color-border-neutral-light` |
+| Divider (Keyline) | `color-border-translucent-dark-pale` |
 | Primary Button Background | `color-background-interaction-primary-default` |
 | Headline Badge (e.g. Breaking, Exclusive,...) | `color-editorial-highlight-base` |
 | Icon (Default) | `color-icon-neutral-darker` |
@@ -160,11 +191,11 @@ The colour principles outlined above are precisely mapped to our technical stand
 
 ---
 
-## 9. Color Accessibility Standards (WCAG 2.1 AA)
+## 10. Color Accessibility Standards (WCAG 2.1 AA)
 
 Our colour system is engineered to meet the WCAG 2.1 Level AA standards, ensuring that our journalism is accessible to everyone, including readers with visual impairments or colour vision deficiencies.
 
-### 9-A. Contrast Ratios
+### 10-A. Contrast Ratios
 
 To maintain optimal legibility across all platforms, we strictly adhere to the following contrast minimums:
 
@@ -172,7 +203,7 @@ To maintain optimal legibility across all platforms, we strictly adhere to the f
 - **Large Text & Graphical Elements:** A minimum contrast ratio of **3:1** for large-scale text (18pt+ or bold 14pt+) and essential interface components (e.g. button borders, icons).
 - **Incidental Elements:** Decorative elements or inactive/disabled UI states are exempt from these strict ratios but must still maintain visual clarity.
 
-### 9-B. Beyond Colour Alone
+### 10-B. Beyond Colour Alone
 
 Accessibility at Daily Mail is not limited to contrast ratios. We ensure that colour is never the sole provider of information:
 
@@ -193,11 +224,11 @@ image required
 
 ---
 
-## 10. Core Visual Principles
+## 11. Core Visual Principles
 
 Our colour system is governed by two fundamental principles: Visual Comfort for our readers and Editorial Authority for our content. Every colour decision must support these pillars to maintain the standard of a world-class news institution.
 
-### 10-A. Prioritising Reading Endurance
+### 11-A. Prioritising Reading Endurance
 
 We design for the long-form reader. In a high-density news environment, excessive contrast can cause visual vibration and lead to eye strain.
 
@@ -237,7 +268,7 @@ Avoid using unadjusted light-mode elements or harsh borders that create jarring 
 image required
 = = = = = = = = = = = = = = = = = = = = = = = = = = = = = =
 
-### 10-B. Maintaining Editorial Authority
+### 11-B. Maintaining Editorial Authority
 
 A predictable and unified interface is the foundation of our editorial authority. By applying standardised colours, we signal to our readers that every piece of content, from breaking news to lifestyle, meets the Daily Mail's professional standards.
 

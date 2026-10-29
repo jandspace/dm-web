@@ -427,7 +427,7 @@ No gaps and no padding on any layout class. Every card and block carries its own
 
 ### **5-C. Keylines**
 
-- 1px `color/effect/translucent-dark/pale`, 16px in from each side, so neighbouring keylines never touch.
+- 1px `color/border/translucent-dark/pale`, 16px in from each side, so neighbouring keylines never touch.
 - A section (`layout-full`), a row (`layout-row`) and every card or content block (incl. `layout-inset`) draw their own bottom keyline.
 - **The last child of its parent has none.** Each part removes its own with `:last-child` — so cards in a column sit directly in `layout-col`, never one wrapper per card (each card would then be a last child and lose its keyline).
 - Beta has a vertical keyline on its left from LG (none with `--joined`), 16px in from the top and bottom — the same rule as the horizontal keylines. Stacked below LG, Alpha gets a bottom keyline instead.

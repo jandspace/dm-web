@@ -52,7 +52,7 @@ projects/
 
 Folders follow the Figma UI Kit and design system taxonomy: **Foundation › Components › Modules**. The demo folders (`components/`, `modules/`) and the SCSS folders (`styles/scss/components/`, `styles/scss/modules/`) mirror each other.
 
-- **Component** — a base UI element listed under Figma "DM Web ::: Components" (Button, Divider, Dropdown Menu, Input, Loading, Modal, Tabs, Toast, Toggle, Tooltip…).
+- **Component** — a base UI element listed under Figma "DM Web ::: Components" (Button, Divider, Dropdown Menu, Input, Loading, Modal, Pagination, Tabs, Toast, Toggle, Tooltip…).
 - **Module** — a block listed under Figma "DM Web ::: Modules" (Article Card, Article Editorial Badge, Breadcrumbs, Carousel, Navigation, Video Player Controls…). Parts of a module (e.g. Article Card Metadata, Columnist Profile Photo) live in `modules/` too.
 - When unsure, check which Figma page the frame lives on.
 - `projects/` → project-specific screens and flows, split by platform
@@ -201,7 +201,7 @@ Page layout uses named classes on the column grid (12 columns from LG, 6 below, 
 | `.layout-inset` | inner container | Wraps a box with its own background (e.g. a tinted box in Beta): one content block — 16px inset and a keyline |
 
 - **No gaps or padding on layout classes** — every card / block carries its own 16px inset (neighbours sit 32px apart).
-- **Keylines** (`translucent-dark/pale`, 1px) sit 16px in from each end — horizontal and Beta's vertical one. Sections, rows and cards each draw their own; **the last child of its parent has none** (`:last-child`, no override classes). So put cards straight into `.layout-col` — never one wrapper per card.
+- **Keylines** (`border/translucent-dark/pale`, 1px) sit 16px in from each end — horizontal and Beta's vertical one. Sections, rows and cards each draw their own; **the last child of its parent has none** (`:last-child`, no override classes). So put cards straight into `.layout-col` — never one wrapper per card.
 - **SM cards:** Left Thumb in Alpha and other main columns, Right Thumb in Beta.
 - Hiding or reordering a block at a breakpoint is a page decision, not a layout class.
 
@@ -340,7 +340,8 @@ iOS and Android use the same four steps (`typography-ios/letter-spacing/*`, `typ
 - **Never use raw hex values.** Always use semantic colour tokens via CSS custom properties.
 - **Never use px for line-height on web.** Use unitless multipliers only.
 - **Avoid `!important`.** These are the base module styles — an `!important` here invites more `!important` to override it later. Win by matching the selector's specificity and source order (e.g. a `prefers-reduced-motion` block at the end of the file repeating the same selectors), or restructure so no override is needed. Use it only when there is truly no other way, and say why in a comment.
-- **Content keylines:** drawn by the block itself as a pseudo-element with the Divider mixin (`@include divider.divider` — `styles/scss/components/_divider.scss`; args `vertical`, `$inset: false`), never an `<hr>`. `--color-effect-translucent-dark-pale` is the default for keylines between content cards and blocks — it is translucent, so it still reads on tinted surfaces (e.g. a pink box). Only on dark surfaces use a light keyline. Figma sometimes carries the App keyline (`border/neutral/light`) into Web frames — treat that as a mistake.
+- **Content keylines:** drawn by the block itself as a pseudo-element with the Divider mixin (`@include divider.divider` — `styles/scss/components/_divider.scss`; args `vertical`, `$inset: false`), never an `<hr>`. `--color-border-translucent-dark-pale` is the default for keylines (a border token — not `effect/translucent-dark/pale`, which is for fills and shadows) between content cards and blocks — it is translucent, so it still reads on tinted surfaces (e.g. a pink box). Only on dark surfaces use a light keyline. Figma sometimes carries the App keyline (`border/neutral/light`) into Web frames — treat that as a mistake.
+- **Backgrounds:** use the background tokens directly — Figma's Surface layers (and Surface to darker) map 1:1 to tokens, so there is no Surface component in code. Stack several backgrounds with one CSS `background` or a pseudo-element. Map: `docs/3_Foundation__02_Colour.md` § 8.
 - **Figma strokes and padding.** In an auto-layout frame, check *Strokes* under Advanced layout settings (`strokesIncludedInLayout`). **Included in layout** (preferred — it behaves like CSS): use a plain `border` + the Figma padding. **Excluded** (Figma's default): the stroke takes no space but a CSS `border` would, so draw it as `box-shadow: inset …` and keep the padding — or ask the designer to switch it to Included.
 - **Keep the code simple.** Pick the plainest way that meets the design — use tokens as they are, no extra wrappers or tricks.
 - Mobile-first CSS: XS as the base (no media query), scale up with `min-width` breakpoints.

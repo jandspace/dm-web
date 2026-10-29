@@ -1,0 +1,187 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Tabs</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&family=Lora:wght@400;600;700&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="../../tokens/dm_tokens.css" />
+    <link rel="stylesheet" href="../../tokens/dm_typography_web_tokens.css" />
+    <link rel="stylesheet" href="../../styles/css/main.css" />
+    <script src="../../scripts/scaffolding/demo-nav.js" defer></script>
+  </head>
+  <body class="demo-page-body">
+    <!-- Icons inlined so they take the tab's text colour (copied from assets/icons/) -->
+    <svg style="display: none" aria-hidden="true">
+      <symbol id="ico-ch-home" viewBox="0 0 32 32"><path d="M31.3768 15.1423L17.4719 0.551655C16.6511 -0.219171 15.3497 -0.219171 14.4687 0.601708L0.658934 15.1172C0.0332642 15.6979 -0.161945 16.5738 0.138377 17.3496C0.448709 18.1655 1.23956 18.6811 2.13051 18.6811H3.63712V29.6528C3.63712 30.9492 4.69325 32.0153 5.99965 32.0153H12.7068V24.6324C12.7068 22.8756 14.0883 21.444 15.8202 21.3489C15.8602 21.3489 15.9053 21.3439 15.9453 21.3439C15.9653 21.3439 15.9803 21.3439 16.0004 21.3439C17.8173 21.3439 19.2939 22.8205 19.2939 24.6374V32.0203H25.981L25.9961 32.0103C27.2924 32.0103 28.3586 30.9542 28.3586 29.6478V18.6761H29.8652C30.7562 18.6761 31.537 18.1555 31.8573 17.3446C32.1627 16.5838 31.9675 15.7279 31.3718 15.1473L31.3768 15.1423Z" fill="currentColor"/></symbol>
+      <symbol id="ico-ch-news" viewBox="0 0 32 32"><path d="M29.0036 4.67133V26.3247C29.0036 26.7322 28.6691 27.0814 28.2473 27.0814C27.8255 27.0814 27.4909 26.7467 27.4909 26.3247V4.07469C27.4909 4.07469 27.4764 4.07469 27.4618 4.07469V2.6486C27.4618 1.17884 26.2691 0.000131702 24.8145 0.000131702H2.64727C1.19273 -0.0144203 0 1.17884 0 2.63405V27.4452C0 29.9627 2.03636 32 4.55273 32H28.3491C30.3709 32 32 30.3702 32 28.3474V9.72087C32 7.53807 30.7782 5.66086 29.0036 4.67133ZM11.7382 23.327H5.14909C4.50909 23.327 3.98545 22.8031 3.98545 22.1628V13.7372C3.98545 13.0969 4.50909 12.5731 5.14909 12.5731H11.7236C12.3636 12.5731 12.8873 13.0969 12.8873 13.7372V22.1628C12.8873 22.8031 12.3636 23.327 11.7236 23.327H11.7382ZM21.6873 19.3398H16.2327C15.68 19.3398 15.2291 18.8886 15.2291 18.3357C15.2291 17.7827 15.68 17.3316 16.2327 17.3316H21.6873C22.24 17.3316 22.6909 17.7827 22.6909 18.3357C22.6909 18.8886 22.24 19.3398 21.6873 19.3398ZM21.6873 14.9159H16.2327C15.68 14.9159 15.2291 14.4648 15.2291 13.9119C15.2291 13.3589 15.68 12.9078 16.2327 12.9078H21.6873C22.24 12.9078 22.6909 13.3589 22.6909 13.9119C22.6909 14.4648 22.24 14.9159 21.6873 14.9159ZM21.6873 8.26567H4.98909C4.43636 8.26567 3.98545 7.81456 3.98545 7.26158C3.98545 6.70861 4.43636 6.2575 4.98909 6.2575H21.6727C22.2255 6.2575 22.6764 6.70861 22.6764 7.26158C22.6764 7.81456 22.2255 8.26567 21.6727 8.26567H21.6873Z" fill="currentColor"/></symbol>
+      <symbol id="ico-ch-royals" viewBox="0 0 32 32"><path d="M16.0067 5.00916C17.3905 5.00916 18.5123 3.88782 18.5123 2.50458C18.5123 1.12134 17.3905 0 16.0067 0C14.6228 0 13.501 1.12134 13.501 2.50458C13.501 3.88782 14.6228 5.00916 16.0067 5.00916Z" fill="currentColor"/><path d="M32 18.8776V15.0674C32 10.9376 28.6414 7.56703 24.4965 7.56703H22.8838C21.4711 7.56703 20.1783 8.13988 19.2453 9.05912V8.95254C19.2453 7.52706 18.0858 6.3547 16.6464 6.3547H15.3536C14.0208 6.3547 12.9279 7.36719 12.7947 8.67277C12.0217 7.99334 11.0221 7.58035 9.90254 7.58035H7.65015C3.43857 7.58035 0 11.0042 0 15.2273V18.7444C0 21.3289 1.31945 23.5937 3.31862 24.9392C2.79883 25.2856 2.46564 25.8585 2.46564 26.5246V27.5237H2.10579C1.6793 27.5237 1.31945 27.8701 1.31945 28.3097C1.31945 28.7494 1.66597 29.0958 2.10579 29.0958H2.46564V30.0949C2.46564 31.1474 3.31862 32 4.37151 32H27.6152C28.6681 32 29.521 31.1474 29.521 30.0949V29.0958H29.8809C30.3074 29.0958 30.6672 28.7494 30.6672 28.3097C30.6672 27.8701 30.3207 27.5237 29.8809 27.5237H29.521V26.5246C29.521 25.8851 29.2012 25.3256 28.708 24.9792C30.6805 23.6736 31.9867 21.4355 31.9867 18.9042L32 18.8776ZM14.3274 8.93922C14.3274 8.36636 14.7938 7.91341 15.3536 7.91341H16.6464C17.2062 7.91341 17.6726 8.37968 17.6726 8.93922V24.5928H14.3274V8.93922ZM2.8788 22.408C2.06581 21.3955 1.57268 20.1166 1.57268 18.7311V15.214C1.57268 11.8568 4.30487 9.13905 7.65015 9.13905H9.90254C11.302 9.13905 12.4748 10.1649 12.7147 11.4971C12.3549 11.3239 11.955 11.2173 11.5152 11.2173H8.78301C5.30446 11.2173 2.47897 14.0416 2.47897 17.5187V20.2898C2.47897 21.0358 2.62557 21.7419 2.8788 22.3947V22.408ZM27.9617 27.5104H25.8159C25.3894 27.5104 25.0296 27.8568 25.0296 28.2964C25.0296 28.7361 25.3761 29.0824 25.8159 29.0824H27.9617V30.0816C27.9617 30.2681 27.8151 30.4147 27.6285 30.4147H4.38484C4.19825 30.4147 4.05164 30.2681 4.05164 30.0816V29.0824H6.19742C6.62391 29.0824 6.98376 28.7361 6.98376 28.2964C6.98376 27.8568 6.63723 27.5104 6.19742 27.5104H4.05164V26.5112C4.05164 26.3247 4.19825 26.1782 4.38484 26.1782H27.6285C27.8151 26.1782 27.9617 26.3247 27.9617 26.5112V27.5104ZM23.217 11.2173H20.4848C20.1383 11.2173 19.8184 11.2839 19.5119 11.4038C20.0583 10.0716 21.3644 9.13905 22.8838 9.13905H24.4965C27.7618 9.13905 30.4273 11.8035 30.4273 15.0674V18.8776C30.4273 20.2898 29.9075 21.582 29.0679 22.5812C29.3611 21.8751 29.521 21.1157 29.521 20.3031V17.5321C29.521 14.055 26.6955 11.2306 23.217 11.2306V11.2173Z" fill="currentColor"/><path d="M18.0325 27.5104H13.9675C13.541 27.5104 13.1812 27.8568 13.1812 28.2964C13.1812 28.7361 13.5277 29.0824 13.9675 29.0824H18.0325C18.459 29.0824 18.8188 28.7361 18.8188 28.2964C18.8188 27.8568 18.4723 27.5104 18.0325 27.5104Z" fill="currentColor"/></symbol>
+      <symbol id="ico-ch-uk-showbiz" viewBox="0 0 32 32"><path d="M4.23979 25.8688L3.1701 31.2486C3.07013 31.7686 3.61997 32.1786 4.08983 31.9186L8.86843 29.2387L13.647 31.9186C14.1169 32.1786 14.6767 31.7786 14.5668 31.2486L13.4971 25.8688L17.5159 22.149C17.9058 21.789 17.6958 21.129 17.166 21.0691L11.7276 20.4191L9.42827 15.4393C9.20833 14.9493 8.51854 14.9493 8.2886 15.4393L5.98928 20.4191L0.550871 21.0691C0.0210267 21.129 -0.188912 21.789 0.200974 22.149L4.21979 25.8688H4.23979Z" fill="currentColor"/><path d="M18.4856 23.179C19.0754 22.639 19.2854 21.829 19.0355 21.0691C18.7855 20.3091 18.1457 19.7791 17.3459 19.6791L12.6773 19.1291L10.7079 14.8593C10.378 14.1294 9.6682 13.6794 8.86843 13.6794C8.06867 13.6794 7.35888 14.1294 7.02897 14.8593L6.96899 14.9893L3.29007 11.5895C2.65026 10.9895 3.00015 9.91955 3.8699 9.80956L12.7873 8.74961L16.5462 0.599973C16.9161 -0.199991 18.0457 -0.199991 18.4156 0.599973L22.1745 8.75961L31.0919 9.80956C31.9617 9.90955 32.3116 10.9895 31.6718 11.5895L25.0737 17.6892L26.8232 26.4988C26.9931 27.3588 26.0834 28.0287 25.3136 27.5988L18.0757 23.5489L18.4756 23.179H18.4856Z" fill="currentColor"/><path d="M26.9831 0.939958C26.5433 1.47993 24.9637 4.3498 25.5136 4.77978C26.0634 5.20977 28.5127 3.06986 28.9525 2.51989C29.3924 1.96991 29.3024 1.17995 28.7626 0.739967C28.2228 0.299987 27.423 0.389982 26.9831 0.929958V0.939958Z" fill="currentColor"/><path d="M7.9687 0.939958C8.40857 1.47993 9.98811 4.3498 9.43827 4.77978C8.88843 5.20977 6.43915 3.06986 5.99927 2.51989C5.5594 1.96991 5.64938 1.17995 6.18922 0.739967C6.72906 0.299987 7.52882 0.389982 7.9687 0.929958V0.939958Z" fill="currentColor"/></symbol>
+      <symbol id="ico-ch-sport" viewBox="0 0 32 32"><path d="M25.3528 3.01916C18.1901 -2.14372 8.16625 -0.522819 3.01429 6.64118C-2.13768 13.8052 -0.527066 23.8208 6.63567 28.9837C13.7984 34.1466 23.8222 32.5156 28.9842 25.3616C34.1462 18.1976 32.5156 8.17204 25.3628 3.00916L25.3528 3.01916ZM23.142 7.83185L27.7737 8.44219C29.0842 10.4933 29.8445 12.8447 29.9746 15.276L27.1135 18.9881L23.082 17.7874L20.8611 10.9936L23.142 7.82185V7.83185ZM19.4806 2.44884L21.5214 6.6612L19.2305 9.83297L12.0878 9.87299L10.4271 6.78126L12.2978 2.50888C14.6287 1.86852 17.0997 1.84851 19.4806 2.44884ZM2.0039 15.6662C2.05392 13.3549 2.67416 11.0537 3.89462 8.95248L8.7965 7.95192L10.4171 10.9836L8.43636 17.7074L4.94502 18.6579L1.9939 15.6762L2.0039 15.6662ZM10.9773 29.0637C9.87691 28.6435 8.8065 28.0832 7.80612 27.3628C6.59565 26.4923 5.57526 25.4517 4.72494 24.3111L5.48523 20.579L9.03659 19.6084L14.7688 23.7407L14.9989 27.783L10.9673 29.0437L10.9773 29.0637ZM16.9996 27.703L16.7695 23.7107L22.5417 19.7285L26.4933 20.9192V25.2616C25.1127 26.8325 23.4321 28.0131 21.6014 28.8136L16.9896 27.703H16.9996Z" fill="currentColor"/></symbol>
+      <symbol id="ico-ch-lifestyle" viewBox="0 0 32 32"><path d="M29.1725 28.9867V28.3644C29.1725 27.4667 29.5282 26.6489 30.115 26.0533C30.3729 25.7867 30.1773 25.3511 29.8127 25.3511H3.32537C1.49375 25.3511 0 26.8356 0 28.6756C0 30.5067 1.48486 32 3.32537 32H29.8127C30.1773 32 30.3729 31.5556 30.115 31.2978C29.5371 30.7022 29.1725 29.8933 29.1725 28.9867Z" fill="currentColor"/><path d="M4.31231 21.4222V20.9778C4.31231 20.3378 4.05446 19.7511 3.63657 19.3333C3.44985 19.1467 3.59211 18.8267 3.84996 18.8267H29.626C30.933 18.8267 32 19.8933 32 21.2C32 22.5067 30.933 23.5733 29.626 23.5733H3.85885C3.601 23.5733 3.45874 23.2622 3.64546 23.0667C4.06335 22.64 4.3212 22.0622 4.3212 21.4222H4.31231Z" fill="currentColor"/><path d="M24.0867 5.68889H7.37983C7.01528 5.68889 6.72187 5.98222 6.72187 6.34667V9.80444C6.72187 12.8533 8.41123 15.5378 10.9453 17.0578H20.5124C23.0464 15.5378 24.7358 12.8622 24.7358 9.80444V6.34667C24.7358 5.98222 24.4423 5.68889 24.0778 5.68889H24.0867Z" fill="currentColor"/><path d="M26.0517 6.87111V8.21333C26.9052 8.44444 27.5365 9.23556 27.5365 10.16C27.5365 11.1911 26.7541 12.0444 25.7583 12.16C25.6427 12.6133 25.4915 13.0578 25.3137 13.4844H25.5271C27.3587 13.4844 28.8525 11.9911 28.8525 10.16C28.8525 8.50667 27.6432 7.13778 26.0606 6.88L26.0517 6.87111Z" fill="currentColor"/><path d="M11.4876 0C10.9986 0 10.5985 0.4 10.5985 0.888889V3.62667C10.5985 4.11556 10.9986 4.51556 11.4876 4.51556C11.9767 4.51556 12.3768 4.11556 12.3768 3.62667V0.888889C12.3768 0.4 11.9767 0 11.4876 0Z" fill="currentColor"/><path d="M16.0044 0.488889C15.5154 0.488889 15.1153 0.888889 15.1153 1.37778V3.62667C15.1153 4.11556 15.5154 4.51556 16.0044 4.51556C16.4935 4.51556 16.8936 4.11556 16.8936 3.62667V1.37778C16.8936 0.888889 16.4935 0.488889 16.0044 0.488889Z" fill="currentColor"/><path d="M20.5213 1.37778C20.0322 1.37778 19.6321 1.77778 19.6321 2.26667V3.62667C19.6321 4.11556 20.0322 4.51556 20.5213 4.51556C21.0103 4.51556 21.4104 4.11556 21.4104 3.62667V2.26667C21.4104 1.77778 21.0103 1.37778 20.5213 1.37778Z" fill="currentColor"/></symbol>
+      <symbol id="ico-ch-money" viewBox="0 0 32 32"><path d="M29.149 15.1537C28.4296 13.3811 27.2173 11.8751 25.6986 10.7555V6.10412C25.6986 5.78426 25.4321 5.5177 25.1124 5.55768C23.1141 5.77093 21.4355 7.0504 20.6495 8.82299C20.3164 8.79634 19.9833 8.76968 19.637 8.76968H12.0833C8.4463 8.76968 5.26228 10.6622 3.43714 13.501C2.74438 13.3145 2.22481 12.7147 2.22481 11.955C2.22481 11.0621 2.95754 10.329 3.85013 10.329C4.46295 10.329 4.95587 9.8359 4.95587 9.22282C4.95587 8.60975 4.46295 8.11662 3.85013 8.11662C1.73189 8.11662 0 9.84923 0 11.9683C0 13.5943 1.01249 14.9804 2.43797 15.5402C2.0383 16.6331 1.81182 17.8192 1.81182 19.0587C1.81182 22.524 3.53039 25.3494 6.15487 27.2153V29.2145C6.15487 30.7472 7.39384 32 8.93922 32C10.4846 32 11.7236 30.7605 11.7236 29.2145V29.0945C11.8435 29.0945 11.9767 29.1079 12.0966 29.1079H19.6503C19.7169 29.1079 19.7968 29.1079 19.8634 29.1079V29.2145C19.8634 30.7472 21.1024 32 22.6478 32C24.1932 32 25.4321 30.7605 25.4321 29.2145V27.3353C26.9376 26.309 28.1499 24.8963 28.9359 23.2303H29.5754C30.9076 23.2303 32 22.284 32 21.1112V17.2728C32 16.1 30.9209 15.1537 29.5754 15.1537H29.149ZM25.9517 15.9C25.9517 16.3265 25.6053 16.6731 25.179 16.6731C24.7527 16.6731 24.4063 16.3265 24.4063 15.9V14.9804C24.4063 14.5539 24.7527 14.2074 25.179 14.2074C25.6053 14.2074 25.9517 14.5539 25.9517 14.9804V15.9Z" fill="currentColor"/><path d="M10.8976 7.5302H18.7843C18.7843 5.35777 17.0258 3.58517 14.841 3.58517C12.6561 3.58517 10.8976 5.34444 10.8976 7.5302Z" fill="currentColor"/><path d="M9.73855 6.26406C10.2048 4.35818 11.7102 2.86547 13.6153 2.41233C13.2689 1.02624 12.03 0 10.5379 0C8.77935 0 7.35387 1.42607 7.35387 3.18534C7.35387 4.66472 8.37968 5.90421 9.75187 6.26406H9.73855Z" fill="currentColor"/></symbol>
+      <symbol id="ico-ch-travel" viewBox="0 0 32 32"><path d="M30.0176 20.2967C29.5642 19.8436 28.7641 19.8969 28.1507 20.39L27.6439 18.0445C27.7373 17.9779 27.8306 17.9113 27.9106 17.818L29.5242 16.2055C30.1509 15.5791 30.2576 14.6729 29.7642 14.1798C29.2708 13.6868 28.364 13.7934 27.7373 14.4197L27.0172 15.1393L26.2304 11.5279L29.6842 8.0763C31.2978 6.41049 33.1247 2.98558 31.1111 0.906645C30.431 0.20034 29.4308 -0.119496 28.4574 0.0404222C26.7238 0.306952 25.1636 1.10654 23.9234 2.33258L20.4696 5.78414L16.869 4.99788L17.5891 4.27825C18.2159 3.6519 18.3226 2.7457 17.8292 2.25262C17.3358 1.75954 16.429 1.86615 15.8022 2.4925L14.1887 4.105C14.1086 4.18496 14.0286 4.27825 13.962 4.37153L11.615 3.86513C12.1084 3.25211 12.1617 2.46584 11.7083 2.01274C11.2149 1.51966 10.3081 1.62628 9.68134 2.25262L8.69453 3.23878L3.94719 2.21264C3.38711 2.0927 2.80035 2.26595 2.4003 2.66574L1.33348 3.73186C0.960091 4.09168 0.773397 4.62474 0.853409 5.17112C0.93342 5.71751 1.25347 6.18394 1.70686 6.41049L13.7219 13.0338L7.89442 19.4038L1.65352 19.737C1.54684 19.737 1.44016 19.7903 1.37348 19.8569L0.386675 20.8431C0.0666289 21.1496 -0.0667235 21.6027 0.0266232 22.0558C0.0799642 22.3223 0.213317 22.5489 0.386675 22.7221C0.520027 22.8554 0.666715 22.9487 0.840073 23.0153L4.96067 24.5878C4.62728 25.494 4.66729 26.3336 5.17403 26.84C5.68077 27.3464 6.52089 27.3864 7.42769 27.0532L8.98791 31.1445C9.1346 31.5576 9.49465 31.8774 9.94805 31.9707C10.4014 32.064 10.8548 31.9307 11.1616 31.6242L12.1484 30.6381C12.2284 30.5581 12.2684 30.4648 12.2684 30.3582L12.6018 24.1214L18.9893 18.2977L25.617 30.2782C25.857 30.7447 26.3237 31.0645 26.8571 31.1445C27.4039 31.2244 27.9373 31.0379 28.3107 30.6514C28.4574 30.4915 28.6174 30.3316 28.7908 30.1716C29.3508 29.6519 30.0443 29.0122 29.8176 28.0527L28.7908 23.3218L29.7776 22.3357C30.4043 21.7093 30.511 20.8031 30.0176 20.31V20.2967Z" fill="currentColor"/></symbol>
+      <symbol id="ico-chevron-left" viewBox="0 0 32 32"><path fill-rule="evenodd" clip-rule="evenodd" d="M6.37108 15.3511L7.6422 14.0445L20.2022 1.15558C20.5489 0.800027 21.1178 0.800027 21.4733 1.15558L22.7444 2.46225C23.0911 2.8178 23.0911 3.40447 22.7444 3.76003L10.8155 16L22.7444 28.24C23.0911 28.5956 23.0911 29.1823 22.7444 29.5467L21.4733 30.8534C21.1266 31.2089 20.5578 31.2089 20.2022 30.8534L7.6422 17.9556L6.37108 16.6489C6.02442 16.2934 6.02442 15.7067 6.37108 15.3511Z" fill="currentColor"/></symbol>
+      <symbol id="ico-chevron-right" viewBox="0 0 32 32"><path fill-rule="evenodd" clip-rule="evenodd" d="M24.7444 16.6578L23.4733 17.9645L10.9133 30.8534C10.5666 31.2089 9.99775 31.2089 9.6422 30.8534L8.37108 29.5467C8.02442 29.1911 8.02442 28.6045 8.37108 28.2489L20.3 16.0089L8.37108 3.76892C8.02442 3.41336 8.02442 2.82669 8.37108 2.46225L9.6422 1.15558C9.98886 0.800027 10.5578 0.800027 10.9133 1.15558L23.4733 14.0445L24.7444 15.3511C25.0911 15.7067 25.0911 16.2934 24.7444 16.6489V16.6578Z" fill="currentColor"/></symbol>
+    </svg>
+
+    <h1 class="demo-page-h1">Tabs</h1>
+    <p class="demo-page-intro">
+      A row of options, one selected — as a filter (switches what shows below) or as navigation (links to pages). Two
+      looks: Underline and Button. Selected in <code>neutral/darker</code>; Button tabs take the channel's base colour inside a channel. Figma: Web UI Kit › Tabs (<code>1488:57719</code>). Doc: <code>docs/4_Components__09_Tabs.md</code>.
+    </p>
+
+    <main class="demo-tabs">
+      <h2 class="demo-tabs__set">Button</h2>
+      <p class="demo-tabs__note">
+        label-sm Semibold pills, 4px apart; selected: <code>neutral/darker</code> fill. Inside a channel the selected fill
+        takes the channel's base colour (<code>.tabs--sport</code> …) — Button only. Keyline under the row
+        (<code>border/translucent-dark/pale</code>) — optional, <code>.tabs--no-keyline</code>. 2–3 tabs can share the full
+        width: <code>.tabs--fill</code>.
+      </p>
+      <div class="demo-tabs__controls">
+        <label for="demo-channel">Channel</label>
+        <select class="demo-vp-select" id="demo-channel"><option value="">Default (neutral/darker)</option><option value="home">Home</option><option value="news">News</option><option value="showbiz">Showbiz</option><option value="sport">Sport</option><option value="royals">Royals</option><option value="money">Money</option><option value="lifestyle">Lifestyle</option><option value="health">Health</option><option value="tv">TV</option><option value="travel">Travel</option><option value="shopping">Shopping</option><option value="crime">Crime</option><option value="property">Property</option><option value="podcasts">Podcasts</option><option value="games">Games</option><option value="science">Science</option></select>
+      </div>
+      <div class="demo-tabs__panel">
+        <span>No icon</span><div class="tabs tabs--button"><div class="tabs__list" role="tablist" aria-label="Filter"><button class="tabs__tab" type="button" role="tab" aria-selected="true"><span>Home</span></button><button class="tabs__tab" type="button" role="tab" aria-selected="false"><span>News</span></button><button class="tabs__tab" type="button" role="tab" aria-selected="false"><span>Royals</span></button><button class="tabs__tab" type="button" role="tab" aria-selected="false"><span>Showbiz</span></button><button class="tabs__tab" type="button" role="tab" aria-selected="false"><span>Sport</span></button></div><button class="tabs__edge tabs__edge--prev" type="button" aria-label="Scroll tabs left" tabindex="-1" hidden><svg aria-hidden="true"><use href="#ico-chevron-left" /></svg></button><button class="tabs__edge tabs__edge--next" type="button" aria-label="Scroll tabs right" tabindex="-1" hidden><svg aria-hidden="true"><use href="#ico-chevron-right" /></svg></button></div>
+        <span>With icon</span><div class="tabs tabs--button"><div class="tabs__list" role="tablist" aria-label="Filter"><button class="tabs__tab" type="button" role="tab" aria-selected="true"><svg class="tabs__icon" aria-hidden="true"><use href="#ico-ch-home" /></svg><span>Home</span></button><button class="tabs__tab" type="button" role="tab" aria-selected="false"><svg class="tabs__icon" aria-hidden="true"><use href="#ico-ch-news" /></svg><span>News</span></button><button class="tabs__tab" type="button" role="tab" aria-selected="false"><svg class="tabs__icon" aria-hidden="true"><use href="#ico-ch-royals" /></svg><span>Royals</span></button><button class="tabs__tab" type="button" role="tab" aria-selected="false"><svg class="tabs__icon" aria-hidden="true"><use href="#ico-ch-uk-showbiz" /></svg><span>Showbiz</span></button><button class="tabs__tab" type="button" role="tab" aria-selected="false"><svg class="tabs__icon" aria-hidden="true"><use href="#ico-ch-sport" /></svg><span>Sport</span></button></div><button class="tabs__edge tabs__edge--prev" type="button" aria-label="Scroll tabs left" tabindex="-1" hidden><svg aria-hidden="true"><use href="#ico-chevron-left" /></svg></button><button class="tabs__edge tabs__edge--next" type="button" aria-label="Scroll tabs right" tabindex="-1" hidden><svg aria-hidden="true"><use href="#ico-chevron-right" /></svg></button></div>
+        <span>No keyline</span><div class="tabs tabs--button tabs--no-keyline"><div class="tabs__list" role="tablist" aria-label="Filter"><button class="tabs__tab" type="button" role="tab" aria-selected="true"><span>Home</span></button><button class="tabs__tab" type="button" role="tab" aria-selected="false"><span>News</span></button><button class="tabs__tab" type="button" role="tab" aria-selected="false"><span>Royals</span></button><button class="tabs__tab" type="button" role="tab" aria-selected="false"><span>Showbiz</span></button><button class="tabs__tab" type="button" role="tab" aria-selected="false"><span>Sport</span></button></div><button class="tabs__edge tabs__edge--prev" type="button" aria-label="Scroll tabs left" tabindex="-1" hidden><svg aria-hidden="true"><use href="#ico-chevron-left" /></svg></button><button class="tabs__edge tabs__edge--next" type="button" aria-label="Scroll tabs right" tabindex="-1" hidden><svg aria-hidden="true"><use href="#ico-chevron-right" /></svg></button></div>
+        <span>Fill (2–3 tabs)</span><div class="tabs tabs--button tabs--fill"><div class="tabs__list" role="tablist" aria-label="Filter"><button class="tabs__tab" type="button" role="tab" aria-selected="true"><span>Home</span></button><button class="tabs__tab" type="button" role="tab" aria-selected="false"><span>News</span></button><button class="tabs__tab" type="button" role="tab" aria-selected="false"><span>Royals</span></button></div><button class="tabs__edge tabs__edge--prev" type="button" aria-label="Scroll tabs left" tabindex="-1" hidden><svg aria-hidden="true"><use href="#ico-chevron-left" /></svg></button><button class="tabs__edge tabs__edge--next" type="button" aria-label="Scroll tabs right" tabindex="-1" hidden><svg aria-hidden="true"><use href="#ico-chevron-right" /></svg></button></div>
+      </div>
+
+      <h2 class="demo-tabs__set">Underline</h2>
+      <p class="demo-tabs__note">
+        label-md Semibold; selected: <code>text/neutral/darker</code> and a 4px <code>neutral/darker</code> indicator (no channel colour); hover shows it in <code>grey-light</code>. Base line
+        <code>border/translucent-dark/subtle</code>. Tabs 16px apart. With only 2–3 tabs they can share the full
+        width: <code>.tabs--fill</code>.
+      </p>
+      <div class="demo-tabs__panel">
+        <span>No icon</span><div class="tabs"><div class="tabs__list" role="tablist" aria-label="Filter"><button class="tabs__tab" type="button" role="tab" aria-selected="true"><span>Home</span></button><button class="tabs__tab" type="button" role="tab" aria-selected="false"><span>News</span></button><button class="tabs__tab" type="button" role="tab" aria-selected="false"><span>Royals</span></button><button class="tabs__tab" type="button" role="tab" aria-selected="false"><span>Showbiz</span></button><button class="tabs__tab" type="button" role="tab" aria-selected="false"><span>Sport</span></button></div><button class="tabs__edge tabs__edge--prev" type="button" aria-label="Scroll tabs left" tabindex="-1" hidden><svg aria-hidden="true"><use href="#ico-chevron-left" /></svg></button><button class="tabs__edge tabs__edge--next" type="button" aria-label="Scroll tabs right" tabindex="-1" hidden><svg aria-hidden="true"><use href="#ico-chevron-right" /></svg></button></div>
+        <span>Leading icon</span><div class="tabs"><div class="tabs__list" role="tablist" aria-label="Filter"><button class="tabs__tab" type="button" role="tab" aria-selected="true"><svg class="tabs__icon" aria-hidden="true"><use href="#ico-ch-home" /></svg><span>Home</span></button><button class="tabs__tab" type="button" role="tab" aria-selected="false"><svg class="tabs__icon" aria-hidden="true"><use href="#ico-ch-news" /></svg><span>News</span></button><button class="tabs__tab" type="button" role="tab" aria-selected="false"><svg class="tabs__icon" aria-hidden="true"><use href="#ico-ch-royals" /></svg><span>Royals</span></button><button class="tabs__tab" type="button" role="tab" aria-selected="false"><svg class="tabs__icon" aria-hidden="true"><use href="#ico-ch-uk-showbiz" /></svg><span>Showbiz</span></button><button class="tabs__tab" type="button" role="tab" aria-selected="false"><svg class="tabs__icon" aria-hidden="true"><use href="#ico-ch-sport" /></svg><span>Sport</span></button></div><button class="tabs__edge tabs__edge--prev" type="button" aria-label="Scroll tabs left" tabindex="-1" hidden><svg aria-hidden="true"><use href="#ico-chevron-left" /></svg></button><button class="tabs__edge tabs__edge--next" type="button" aria-label="Scroll tabs right" tabindex="-1" hidden><svg aria-hidden="true"><use href="#ico-chevron-right" /></svg></button></div>
+        <span>Top icon</span><div class="tabs tabs--icon-top"><div class="tabs__list" role="tablist" aria-label="Filter"><button class="tabs__tab" type="button" role="tab" aria-selected="true"><svg class="tabs__icon" aria-hidden="true"><use href="#ico-ch-home" /></svg><span>Home</span></button><button class="tabs__tab" type="button" role="tab" aria-selected="false"><svg class="tabs__icon" aria-hidden="true"><use href="#ico-ch-news" /></svg><span>News</span></button><button class="tabs__tab" type="button" role="tab" aria-selected="false"><svg class="tabs__icon" aria-hidden="true"><use href="#ico-ch-royals" /></svg><span>Royals</span></button><button class="tabs__tab" type="button" role="tab" aria-selected="false"><svg class="tabs__icon" aria-hidden="true"><use href="#ico-ch-uk-showbiz" /></svg><span>Showbiz</span></button><button class="tabs__tab" type="button" role="tab" aria-selected="false"><svg class="tabs__icon" aria-hidden="true"><use href="#ico-ch-sport" /></svg><span>Sport</span></button></div><button class="tabs__edge tabs__edge--prev" type="button" aria-label="Scroll tabs left" tabindex="-1" hidden><svg aria-hidden="true"><use href="#ico-chevron-left" /></svg></button><button class="tabs__edge tabs__edge--next" type="button" aria-label="Scroll tabs right" tabindex="-1" hidden><svg aria-hidden="true"><use href="#ico-chevron-right" /></svg></button></div>
+        <span>Fill (2–3 tabs)</span><div class="tabs tabs--fill"><div class="tabs__list" role="tablist" aria-label="Filter"><button class="tabs__tab" type="button" role="tab" aria-selected="true"><svg class="tabs__icon" aria-hidden="true"><use href="#ico-ch-home" /></svg><span>Home</span></button><button class="tabs__tab" type="button" role="tab" aria-selected="false"><svg class="tabs__icon" aria-hidden="true"><use href="#ico-ch-news" /></svg><span>News</span></button><button class="tabs__tab" type="button" role="tab" aria-selected="false"><svg class="tabs__icon" aria-hidden="true"><use href="#ico-ch-royals" /></svg><span>Royals</span></button></div><button class="tabs__edge tabs__edge--prev" type="button" aria-label="Scroll tabs left" tabindex="-1" hidden><svg aria-hidden="true"><use href="#ico-chevron-left" /></svg></button><button class="tabs__edge tabs__edge--next" type="button" aria-label="Scroll tabs right" tabindex="-1" hidden><svg aria-hidden="true"><use href="#ico-chevron-right" /></svg></button></div>
+      </div>
+
+      <h2 class="demo-tabs__set">Filter — switches the panel below</h2>
+      <p class="demo-tabs__note"><code>role="tablist"</code>: click a tab, or use ← → (Home / End) to move between them.</p>
+      <div class="demo-tabs__panel demo-tabs__panel--block">
+        <div class="tabs">
+          <div class="tabs__list" role="tablist" aria-label="Stories">
+            <button class="tabs__tab" type="button" role="tab" id="tab-latest" aria-controls="panel-latest" aria-selected="true">Latest</button>
+            <button class="tabs__tab" type="button" role="tab" id="tab-popular" aria-controls="panel-popular" aria-selected="false">Most read</button>
+            <button class="tabs__tab" type="button" role="tab" id="tab-video" aria-controls="panel-video" aria-selected="false">Video</button>
+          </div>
+          <button class="tabs__edge tabs__edge--prev" type="button" aria-label="Scroll tabs left" tabindex="-1" hidden><svg aria-hidden="true"><use href="#ico-chevron-left" /></svg></button><button class="tabs__edge tabs__edge--next" type="button" aria-label="Scroll tabs right" tabindex="-1" hidden><svg aria-hidden="true"><use href="#ico-chevron-right" /></svg></button>
+        </div>
+        <div class="demo-tabs__content" role="tabpanel" id="panel-latest" aria-labelledby="tab-latest">Latest stories…</div>
+        <div class="demo-tabs__content" role="tabpanel" id="panel-popular" aria-labelledby="tab-popular" hidden>Most read stories…</div>
+        <div class="demo-tabs__content" role="tabpanel" id="panel-video" aria-labelledby="tab-video" hidden>Video…</div>
+      </div>
+
+      <h2 class="demo-tabs__set">Navigation — links, scrolls when it doesn't fit</h2>
+      <p class="demo-tabs__note">
+        <code>nav</code> with links, <code>aria-current="page"</code>. In a narrow box the row scrolls: below MD the right
+        edge fades out (swipe); from MD with a mouse, chevrons appear on the side(s) that can scroll — touch screens keep the fade.
+        Switch Input to compare (Mouse shows chevrons only from MD). The current tab is scrolled into view.
+      </p>
+      <div class="demo-tabs__controls">
+        <span id="demo-input-label">Input</span>
+        <div class="demo-vp-toggle" role="group" aria-labelledby="demo-input-label" id="demo-input">
+          <button type="button" data-input="mouse" aria-pressed="true">Mouse — chevrons</button>
+          <button type="button" data-input="touch" aria-pressed="false">Touch — swipe, fade</button>
+        </div>
+      </div>
+      <div class="demo-tabs__panel demo-tabs__panel--block" id="demo-nav-panel">
+        <div class="demo-tabs__narrow"><nav class="tabs" aria-label="Sections"><ul class="tabs__list"><li><a class="tabs__tab" href="#"><span>Home</span></a></li><li><a class="tabs__tab" href="#"><span>News</span></a></li><li><a class="tabs__tab" href="#"><span>Royals</span></a></li><li><a class="tabs__tab" href="#"><span>Showbiz</span></a></li><li><a class="tabs__tab" href="#"><span>Sport</span></a></li><li><a class="tabs__tab" href="#" aria-current="page"><span>Lifestyle</span></a></li><li><a class="tabs__tab" href="#"><span>Money</span></a></li><li><a class="tabs__tab" href="#"><span>Travel</span></a></li></ul><button class="tabs__edge tabs__edge--prev" type="button" aria-label="Scroll tabs left" tabindex="-1" hidden><svg aria-hidden="true"><use href="#ico-chevron-left" /></svg></button><button class="tabs__edge tabs__edge--next" type="button" aria-label="Scroll tabs right" tabindex="-1" hidden><svg aria-hidden="true"><use href="#ico-chevron-right" /></svg></button></nav></div>
+        <div class="demo-tabs__narrow"><nav class="tabs tabs--button" aria-label="Sections"><ul class="tabs__list"><li><a class="tabs__tab" href="#"><svg class="tabs__icon" aria-hidden="true"><use href="#ico-ch-home" /></svg><span>Home</span></a></li><li><a class="tabs__tab" href="#"><svg class="tabs__icon" aria-hidden="true"><use href="#ico-ch-news" /></svg><span>News</span></a></li><li><a class="tabs__tab" href="#"><svg class="tabs__icon" aria-hidden="true"><use href="#ico-ch-royals" /></svg><span>Royals</span></a></li><li><a class="tabs__tab" href="#"><svg class="tabs__icon" aria-hidden="true"><use href="#ico-ch-uk-showbiz" /></svg><span>Showbiz</span></a></li><li><a class="tabs__tab" href="#"><svg class="tabs__icon" aria-hidden="true"><use href="#ico-ch-sport" /></svg><span>Sport</span></a></li><li><a class="tabs__tab" href="#" aria-current="page"><svg class="tabs__icon" aria-hidden="true"><use href="#ico-ch-lifestyle" /></svg><span>Lifestyle</span></a></li><li><a class="tabs__tab" href="#"><svg class="tabs__icon" aria-hidden="true"><use href="#ico-ch-money" /></svg><span>Money</span></a></li><li><a class="tabs__tab" href="#"><svg class="tabs__icon" aria-hidden="true"><use href="#ico-ch-travel" /></svg><span>Travel</span></a></li></ul><button class="tabs__edge tabs__edge--prev" type="button" aria-label="Scroll tabs left" tabindex="-1" hidden><svg aria-hidden="true"><use href="#ico-chevron-left" /></svg></button><button class="tabs__edge tabs__edge--next" type="button" aria-label="Scroll tabs right" tabindex="-1" hidden><svg aria-hidden="true"><use href="#ico-chevron-right" /></svg></button></nav></div>
+      </div>
+    </main>
+
+    <script>
+      // Scaffolding only — what the page that uses Tabs does.
+      const CHANNELS = /\s?tabs--(home|news|showbiz|sport|royals|money|lifestyle|health|tv|travel|shopping|crime|property|podcasts|games|science)\b/g;
+      const tabsAll = [...document.querySelectorAll('.tabs')];
+
+      // Channel switch (Button only): .tabs--{channel}
+      document.getElementById('demo-channel').addEventListener('change', (event) => {
+        document.querySelectorAll('.tabs--button').forEach((tabs) => {
+          tabs.className = tabs.className.replace(CHANNELS, '');
+          if (event.target.value) tabs.classList.add(`tabs--${event.target.value}`);
+        });
+      });
+
+      // Input switch: Touch forces the swipe / fade look (scaffolding override)
+      document.getElementById('demo-input').addEventListener('click', (event) => {
+        const button = event.target.closest('[data-input]');
+        if (!button) return;
+        event.currentTarget.querySelectorAll('button').forEach((b) => b.setAttribute('aria-pressed', String(b === button)));
+        document.getElementById('demo-nav-panel').classList.toggle('demo-tabs--touch', button.dataset.input === 'touch');
+      });
+
+      tabsAll.forEach((tabs) => {
+        const list = tabs.querySelector('.tabs__list');
+        const prev = tabs.querySelector('.tabs__edge--prev');
+        const next = tabs.querySelector('.tabs__edge--next');
+
+        // Chevrons only on a side that can scroll (shown from MD by the CSS)
+        const updateEdges = () => {
+          prev.hidden = list.scrollLeft <= 1;
+          next.hidden = list.scrollLeft + list.clientWidth >= list.scrollWidth - 1;
+        };
+        const page = (dir) => list.scrollBy({ left: dir * list.clientWidth * 0.8, behavior: 'smooth' });
+        prev.addEventListener('click', () => page(-1));
+        next.addEventListener('click', () => page(1));
+        list.addEventListener('scroll', updateEdges, { passive: true });
+        new ResizeObserver(updateEdges).observe(list);
+
+        // The selected / current tab in view
+        const current = list.querySelector('[aria-selected="true"], [aria-current]');
+        if (current && list.scrollWidth > list.clientWidth) {
+          list.scrollLeft = current.offsetLeft - (list.clientWidth - current.offsetWidth) / 2;
+        }
+        updateEdges();
+
+        const tabEls = [...list.querySelectorAll('[role="tab"]')];
+
+        // Navigation: a real page loads the link; the demo just moves aria-current
+        if (!tabEls.length) {
+          list.addEventListener('click', (event) => {
+            const link = event.target.closest('a');
+            if (!link) return;
+            event.preventDefault();
+            list.querySelectorAll('a').forEach((a) => (a === link ? a.setAttribute('aria-current', 'page') : a.removeAttribute('aria-current')));
+          });
+          return;
+        }
+
+        // Filter: select on click; ← → Home End move the selection (roving tabindex)
+        const select = (tab) => {
+          tabEls.forEach((t) => {
+            const on = t === tab;
+            t.setAttribute('aria-selected', String(on));
+            t.tabIndex = on ? 0 : -1;
+            const panel = t.getAttribute('aria-controls');
+            if (panel) document.getElementById(panel).hidden = !on;
+          });
+          tab.focus();
+          tab.scrollIntoView({ block: 'nearest', inline: 'nearest' });
+        };
+        tabEls.forEach((t) => (t.tabIndex = t.getAttribute('aria-selected') === 'true' ? 0 : -1));
+        list.addEventListener('click', (event) => {
+          const tab = event.target.closest('[role="tab"]');
+          if (tab) select(tab);
+        });
+        list.addEventListener('keydown', (event) => {
+          const i = tabEls.indexOf(document.activeElement);
+          const to = { ArrowRight: i + 1, ArrowLeft: i - 1, Home: 0, End: tabEls.length - 1 }[event.key];
+          if (i < 0 || to === undefined) return;
+          event.preventDefault();
+          select(tabEls[(to + tabEls.length) % tabEls.length]);
+        });
+      });
+    </script>
+  </body>
+</html>

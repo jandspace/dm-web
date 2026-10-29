@@ -10,7 +10,7 @@ Figma: Web UI Kit › Article Card - Banner (`8138:232841`)
 
 | Element | Description |
 |---|---|
-| **Shell** (`.article-card-banner`) | `color/background/neutral/lightest` surface with a 1px bottom keyline, inset 16px — `color/effect/translucent-dark/pale` |
+| **Shell** (`.article-card-banner`) | `color/background/neutral/lightest` surface with a 1px bottom keyline, inset 16px — `color/border/translucent-dark/pale` (Divider) |
 | **Story** (`__story`) | 16px white inset from MD up; 16px below the panel at SM / XS |
 | **Panel** (`__panel`) | The Lead Story — `color/background/neutral/black`. Inner bottom keyline, inset 16px — `color/border/translucent-light/subtle`, **only when Secondary Stories follow** |
 | **Media** (`__media`) | `<picture>` — editorial artwork, art-directed per breakpoint (§3) |

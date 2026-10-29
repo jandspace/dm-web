@@ -1,0 +1,83 @@
+// ── Components › Tabs demo — SCAFFOLDING ONLY ─────────────────────────────────
+// Layout for components/tabs/. Never ships to production.
+
+.demo-tabs {
+  max-width: 1224px;
+}
+
+.demo-tabs__set {
+  margin: var(--spacing-48) 0 var(--spacing-8);
+  font-family: var(--typography-font-family-serif); // library chrome in Lora
+  font-size: 18px;
+  font-weight: 600;
+  color: var(--color-text-neutral-darker);
+}
+
+.demo-tabs__note {
+  max-width: 760px;
+  margin: 0 0 var(--spacing-16);
+  font-family: var(--typography-font-family-serif);
+  font-size: 13px;
+  line-height: 1.5;
+  color: var(--color-text-neutral-grey-dark);
+}
+
+.demo-tabs__controls {
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-8);
+  margin-bottom: var(--spacing-16);
+  font-size: 12px;
+  color: var(--color-text-neutral-grey-dark);
+}
+
+// White panel; rows with their name on the left
+.demo-tabs__panel {
+  display: grid;
+  grid-template-columns: max-content minmax(0, 1fr);
+  align-items: center;
+  gap: var(--spacing-24) var(--spacing-32);
+  padding: var(--spacing-24);
+  border-radius: var(--border-radius-8);
+  background-color: var(--color-background-neutral-lightest);
+
+  > span {
+    font-family: monospace;
+    font-size: 12px;
+    color: var(--color-text-neutral-grey-dark);
+  }
+}
+
+.demo-tabs__panel--block {
+  display: block;
+
+  > * + * {
+    margin-top: var(--spacing-24);
+  }
+}
+
+.demo-tabs__content {
+  padding: var(--spacing-24) var(--spacing-16);
+  font-family: var(--typography-font-family-sans);
+  color: var(--color-text-neutral-dark);
+}
+
+// A box narrower than the row, so it scrolls
+.demo-tabs__narrow {
+  max-width: 420px;
+  outline: 1px dashed var(--color-border-neutral-light);
+}
+
+// Input switch — Touch: the swipe look at any width (no chevrons, right edge fades),
+// whatever device the demo runs on
+.demo-tabs--touch .tabs {
+  .tabs__edge--prev,
+  .tabs__edge--next {
+    display: none;
+  }
+
+  .tabs__list {
+    padding-right: var(--spacing-28);
+    mask-image: linear-gradient(to left, transparent, black 28px);
+  }
+}

@@ -11,7 +11,7 @@ Figma: Web UI Kit › Divider (Keyline) (`92:860`)
 | Property | Value |
 |---|---|
 | **Thickness** | 1px |
-| **Colour** | `color/effect/translucent-dark/pale` — translucent, so it still reads on tinted surfaces (e.g. a pink box) |
+| **Colour** | `color/border/translucent-dark/pale` — translucent, so it still reads on tinted surfaces (e.g. a pink box) |
 | **Direction** | Horizontal or Vertical |
 | **Padding** | 16px at both ends, or none |
 
@@ -72,4 +72,4 @@ Layout & Grid uses it through the `keyline` mixin in `styles/scss/foundation/_la
 
 ## 5. Notes
 
-- `docs/3_Foundation__02_Colour.md` lists Divider (Keyline) as `color-border-neutral-light`; Web uses `color/effect/translucent-dark/pale` (Figma Divider component, CLAUDE.md › Content keylines).
+- **Token:** the keyline is `color/border/translucent-dark/pale` — a border token. `color/effect/translucent-dark/pale` has the same value but is for fills and shadows; earlier code used it by mistake. Never the App keyline `border/neutral/light`.

@@ -27,6 +27,7 @@
 // DM26 App › Section Header / Title Bar redesign (34325:40868)
 
 @use '../foundation/breakpoints' as bp;
+@use '../components/scroll-row';
 
 .section-header {
   display: flex;
@@ -260,17 +261,10 @@ a.section-header__link:focus-visible {
   gap: var(--spacing-16);
   margin: 0;
   padding: 0;
-  overflow-x: auto;
   list-style: none;
-  scrollbar-width: none;
   scroll-behavior: smooth;
-  // Mweb: fade the right edge
-  -webkit-mask-image: linear-gradient(to left, transparent, black 16px);
-  mask-image: linear-gradient(to left, transparent, black 16px);
-
-  &::-webkit-scrollbar {
-    display: none;
-  }
+  @include scroll-row.row;
+  @include scroll-row.fade-end(16px); // Mweb: fade the right edge
 
   @media (prefers-reduced-motion: reduce) {
     scroll-behavior: auto;
@@ -320,22 +314,7 @@ a.section-header__link:focus-visible {
 // transparent (to 40%); on hover the surface steps down to neutral/lighter so
 // the edge reads as a button, 14px chevron in icon/neutral/grey-dark. Hidden on Mweb.
 .section-header-tabs__edge {
-  position: absolute;
-  top: 0;
-  bottom: 0;
-  z-index: 1; // above the list (the prev edge comes before it in the markup)
-  display: none;
-  align-items: center;
-  width: 32px;
-  padding: 0 var(--spacing-4);
-  border: 0;
   color: var(--color-icon-neutral-grey-dark);
-  cursor: pointer;
-
-  svg {
-    width: 14px;
-    height: 14px;
-  }
 
   // Hover — chevron in interaction-primary/default (as the headline hover),
   // surface one step darker
@@ -348,16 +327,17 @@ a.section-header__link:focus-visible {
     color: var(--color-icon-interaction-primary-default);
   }
 
+  // Scroll Row edge, 4px inset; shown from MD with a mouse (below)
   &--prev {
-    left: 0;
-    justify-content: flex-start;
-    background: linear-gradient(to left, transparent, var(--section-header-edge-color) 40%);
+    @include scroll-row.edge(prev, var(--section-header-edge-color));
+    display: none;
+    padding: 0 var(--spacing-4);
   }
 
   &--next {
-    right: 0;
-    justify-content: flex-end;
-    background: linear-gradient(to right, transparent, var(--section-header-edge-color) 40%);
+    @include scroll-row.edge(next, var(--section-header-edge-color));
+    display: none;
+    padding: 0 var(--spacing-4);
   }
 }
 
@@ -365,7 +345,6 @@ a.section-header__link:focus-visible {
   @media (hover: hover) {
     // Dweb: edges replace the fade
     .section-header-tabs__list {
-      -webkit-mask-image: none;
       mask-image: none;
     }
 

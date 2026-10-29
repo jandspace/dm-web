@@ -38,6 +38,8 @@
         { name: 'Loading', path: 'components/loading/' },
         { name: 'Media', path: 'components/media/' },
         { name: 'Modal', path: 'components/modal/' },
+        { name: 'Pagination', path: 'components/pagination/' },
+        { name: 'Tabs', path: 'components/tabs/' },
       ],
     },
     {

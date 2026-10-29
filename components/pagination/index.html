@@ -1,0 +1,153 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Pagination</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&family=Lora:wght@400;600;700&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="../../tokens/dm_tokens.css" />
+    <link rel="stylesheet" href="../../tokens/dm_typography_web_tokens.css" />
+    <link rel="stylesheet" href="../../styles/css/main.css" />
+    <script src="../../scripts/scaffolding/demo-nav.js" defer></script>
+  </head>
+  <body class="demo-page-body">
+    <h1 class="demo-page-h1">Pagination</h1>
+    <p class="demo-page-intro">
+      Moves between the pages of a long list. Two patterns: numbered from LG (scan and jump), a page picker below LG
+      (<code>‹ [ 2 ] of 999 ›</code> — the phone's own picker, big touch targets). Figma: Web UI Kit › Pagination
+      (<code>214:7642</code>). Doc: <code>docs/4_Components__07_Pagination.md</code>.
+    </p>
+
+    <main class="demo-pagination">
+      <h2 class="demo-pagination__set">Try it</h2>
+      <p class="demo-pagination__note">
+        Click a page or an arrow, or pick a page below LG. Resize the window to switch pattern at LG (1024).
+      </p>
+      <div class="demo-pagination__controls">
+        <label for="demo-total">Pages</label>
+        <select class="demo-vp-select" id="demo-total">
+          <option value="999">999</option>
+          <option value="50">50</option>
+          <option value="7">7</option>
+          <option value="3">3</option>
+        </select>
+      </div>
+      <div class="demo-pagination__panel demo-pagination__panel--live" id="demo-live"></div>
+
+      <h2 class="demo-pagination__set">Numbered — LG ≥1024</h2>
+      <p class="demo-pagination__note">
+        Always 7 number slots: first and last, the current page with its neighbours, an ellipsis where pages are
+        skipped. ‹ › only where there is a page to go to; « » only when they go further than ‹ ›.
+      </p>
+      <div class="demo-pagination__panel demo-pagination--pages" data-examples="1 2 5 500 996 999"></div>
+
+      <h2 class="demo-pagination__set">Page picker — MD and SM-XS &lt;1024</h2>
+      <p class="demo-pagination__note">
+        A native <code>&lt;select&gt;</code> in the Input look — on phones it opens the system picker. 44px arrows.
+      </p>
+      <div class="demo-pagination__panel demo-pagination--compact" data-examples="1 2 999"></div>
+
+      <h2 class="demo-pagination__set">Items</h2>
+      <p class="demo-pagination__note">
+        Figma "pagination-item". Hover follows Button: background only, no shadow. The ellipsis is not a link.
+      </p>
+      <div class="demo-pagination__panel demo-pagination__panel--live">
+        <ul class="demo-pagination__states">
+          <li><a class="pagination__item" href="#">2</a>Default</li>
+          <li><a class="pagination__item is-hover" href="#">2</a>Hover</li>
+          <li><a class="pagination__item" href="#" aria-current="page">2</a>Current</li>
+          <li><a class="pagination__item pagination__item--arrow" href="#" aria-label="Next page"><img src="../../assets/icons/ico-chevron-right.svg" alt="" /></a>Arrow</li>
+          <li><a class="pagination__item pagination__item--arrow is-hover" href="#" aria-label="Next page"><img src="../../assets/icons/ico-chevron-right.svg" alt="" /></a>Arrow hover</li>
+          <li><span class="pagination__ellipsis"><img src="../../assets/icons/ico-dots-horizontal.svg" alt="" /></span>Ellipsis</li>
+        </ul>
+      </div>
+    </main>
+
+    <script>
+      // Scaffolding only — builds the pagination markup for a page and a total.
+      // A real page renders the same markup on the server, one link per page.
+      const ICONS = '../../assets/icons/';
+
+      // Number slots: always 7 (fewer when there are fewer pages); null = ellipsis
+      const slots = (current, total) => {
+        const range = (from, to) => Array.from({ length: to - from + 1 }, (_, i) => from + i);
+        if (total <= 7) return range(1, total);
+        if (current <= 4) return [...range(1, 5), null, total];
+        if (current >= total - 3) return [1, null, ...range(total - 4, total)];
+        return [1, null, current - 1, current, current + 1, null, total];
+      };
+
+      const arrow = (page, icon, label, extra = '') =>
+        `<a class="pagination__item pagination__item--arrow" href="?page=${page}" data-page="${page}" aria-label="${label}"${extra}>` +
+        `<img src="${ICONS}${icon}.svg" alt="" /></a>`;
+
+      const render = (current, total) => {
+        const li = (html) => `<li>${html}</li>`;
+        const pages = [];
+        if (current > 2) pages.push(li(arrow(1, 'ico-chevron-double-left', 'First page')));
+        if (current > 1) pages.push(li(arrow(current - 1, 'ico-chevron-left', 'Previous page')));
+        slots(current, total).forEach((n) => {
+          pages.push(
+            li(
+              n === null
+                ? `<span class="pagination__ellipsis"><img src="${ICONS}ico-dots-horizontal.svg" alt="" /></span>`
+                : `<a class="pagination__item" href="?page=${n}" data-page="${n}"${n === current ? ' aria-current="page"' : ''}>${n}</a>`,
+            ),
+          );
+        });
+        if (current < total) pages.push(li(arrow(current + 1, 'ico-chevron-right', 'Next page')));
+        if (current < total - 1) pages.push(li(arrow(total, 'ico-chevron-double-right', 'Last page')));
+
+        const options = Array.from({ length: total }, (_, i) => `<option${i + 1 === current ? ' selected' : ''}>${i + 1}</option>`).join('');
+        const compact =
+          (current > 1 ? arrow(current - 1, 'ico-chevron-left', 'Previous page') : '') +
+          `<div class="pagination__picker">` +
+          `<label class="pagination__select"><select aria-label="Page">${options}</select><img src="${ICONS}ico-chevron-down.svg" alt="" /></label>` +
+          `<span class="pagination__total">of <span>${total}</span></span>` +
+          `</div>` +
+          (current < total ? arrow(current + 1, 'ico-chevron-right', 'Next page') : '');
+
+        return (
+          `<nav class="pagination" aria-label="Pagination">` +
+          `<ul class="pagination__pages">${pages.join('')}</ul>` +
+          `<div class="pagination__compact">${compact}</div>` +
+          `</nav>`
+        );
+      };
+
+      // Fixed examples, one row per current page
+      document.querySelectorAll('[data-examples]').forEach((panel) => {
+        panel.innerHTML = panel.dataset.examples
+          .split(' ')
+          .map((n) => `<span>Page ${n} of 999</span>${render(Number(n), 999)}`)
+          .join('');
+        panel.addEventListener('click', (event) => event.target.closest('a') && event.preventDefault());
+      });
+
+      // Try it: a live one
+      const live = document.getElementById('demo-live');
+      const totalSelect = document.getElementById('demo-total');
+      let current = 1;
+      const draw = () => (live.innerHTML = render(current, Number(totalSelect.value)));
+      live.addEventListener('click', (event) => {
+        const link = event.target.closest('[data-page]');
+        if (!link) return;
+        event.preventDefault();
+        current = Number(link.dataset.page);
+        draw();
+      });
+      live.addEventListener('change', (event) => {
+        current = Number(event.target.value);
+        draw();
+        live.querySelector('.pagination__compact select').focus();
+      });
+      totalSelect.addEventListener('change', () => {
+        current = Math.min(current, Number(totalSelect.value));
+        draw();
+      });
+      draw();
+    </script>
+  </body>
+</html>

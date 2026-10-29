@@ -87,5 +87,5 @@ Opening and closing (trigger, outside click, Esc, arrow keys) is the job of the 
 
 - **Name:** the Figma page is "Dropdowns"; the component is called Dropdown Menu in code and docs (the panel only — "Dropdown" alone would include the trigger).
 - **Title weight:** was label-md **Bold**; changed to **Semibold** in Figma (`dmw_sans/label-md/Semibold`) — Semibold is the label emphasis, Bold is kept for Display and H1–H2.
-- **Title keyline:** the Dropdown Title used the App keyline (`border/neutral/light`) — a wrong component instance. Code uses the Web keyline (`effect/translucent-dark/pale`).
+- **Title keyline:** the Dropdown Title used the App keyline (`border/neutral/light`) — a wrong component instance. Code uses the Web keyline (`border/translucent-dark/pale`).
 - **Hover:** Figma uses `effect/translucent-dark/pale`; code follows Button Quaternary Neutral (`background/neutral/light`).

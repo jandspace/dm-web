@@ -30,6 +30,7 @@
 // Reference: Figma Web UI Kit › Article Card - Banner (8138:232841)
 
 @use '../foundation/breakpoints' as bp;
+@use '../components/divider';
 
 // ── Shell ─────────────────────────────────────────────────────────────────────
 
@@ -39,13 +40,7 @@
 
   // Bottom keyline, 16px inset
   &::after {
-    content: '';
-    position: absolute;
-    right: var(--spacing-16);
-    bottom: 0;
-    left: var(--spacing-16);
-    height: 1px;
-    background-color: var(--color-effect-translucent-dark-pale);
+    @include divider.divider; // Divider — 16px inset
   }
 
   // The last block of its column has none

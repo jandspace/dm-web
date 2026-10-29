@@ -1,0 +1,101 @@
+// ── Components › Pagination demo — SCAFFOLDING ONLY ───────────────────────────
+// Layout for components/pagination/. Never ships to production.
+
+.demo-pagination {
+  max-width: 1224px;
+}
+
+.demo-pagination__set {
+  margin: var(--spacing-48) 0 var(--spacing-8);
+  font-family: var(--typography-font-family-serif); // library chrome in Lora
+  font-size: 18px;
+  font-weight: 600;
+  color: var(--color-text-neutral-darker);
+}
+
+.demo-pagination__note {
+  max-width: 760px;
+  margin: 0 0 var(--spacing-16);
+  font-family: var(--typography-font-family-serif);
+  font-size: 13px;
+  line-height: 1.5;
+  color: var(--color-text-neutral-grey-dark);
+}
+
+.demo-pagination__controls {
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-8);
+  margin-bottom: var(--spacing-16);
+  font-size: 12px;
+  color: var(--color-text-neutral-grey-dark);
+}
+
+// White panel; rows with their name on the left
+.demo-pagination__panel {
+  display: grid;
+  grid-template-columns: max-content 1fr;
+  align-items: center;
+  gap: var(--spacing-16) var(--spacing-32);
+  padding: var(--spacing-24);
+  overflow-x: auto;
+  border-radius: var(--border-radius-8);
+  background-color: var(--color-background-neutral-lightest);
+
+  > span {
+    font-family: monospace;
+    font-size: 12px;
+    color: var(--color-text-neutral-grey-dark);
+  }
+
+  .pagination {
+    justify-content: flex-start;
+  }
+}
+
+.demo-pagination__panel--live {
+  display: block;
+
+  .pagination {
+    justify-content: center;
+  }
+}
+
+// Show one pattern whatever the window width
+.demo-pagination--pages {
+  .pagination__pages {
+    display: flex;
+  }
+
+  .pagination__compact {
+    display: none;
+  }
+}
+
+.demo-pagination--compact {
+  .pagination__pages {
+    display: none;
+  }
+
+  .pagination__compact {
+    display: flex;
+  }
+}
+
+.demo-pagination__states {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--spacing-24);
+  margin: 0;
+  padding: 0;
+  list-style: none;
+
+  > li {
+    display: grid;
+    justify-items: center;
+    gap: var(--spacing-8);
+    font-family: monospace;
+    font-size: 12px;
+    color: var(--color-text-neutral-grey-dark);
+  }
+}

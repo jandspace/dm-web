@@ -18,6 +18,7 @@
 // Reference: Figma Web UI Kit › Sticky Navbar (2844:3780) · parts (2858:9061)
 
 @use '../foundation/breakpoints' as bp;
+@use '../components/scroll-row';
 
 .masthead-sticky {
   // Edge fades blend into the bar: one colour, or the gradient's two ends
@@ -137,13 +138,8 @@
   height: 100%;
   margin: 0;
   padding: 0 var(--spacing-20);
-  overflow-x: auto;
   list-style: none;
-  scrollbar-width: none;
-
-  &::-webkit-scrollbar {
-    display: none;
-  }
+  @include scroll-row.row;
 
   li {
     display: flex;
@@ -213,37 +209,14 @@
 // Chevron edges: 32px, fading in from the bar colour; only on a side that can
 // scroll (the script toggles [hidden])
 .masthead-sticky__edge {
-  position: absolute;
-  top: 0;
-  bottom: 0;
-  z-index: 1;
-  display: flex;
-  align-items: center;
-  width: 32px;
-  padding: 0 var(--spacing-8);
-  border: 0;
   color: var(--color-icon-neutral-lightest);
-  cursor: pointer;
-
-  svg {
-    width: 14px;
-    height: 14px;
-  }
 
   &--prev {
-    left: 0;
-    justify-content: flex-start;
-    background: linear-gradient(to left, transparent, var(--masthead-sticky-start) 40%);
+    @include scroll-row.edge(prev, var(--masthead-sticky-start));
   }
 
   &--next {
-    right: 0;
-    justify-content: flex-end;
-    background: linear-gradient(to right, transparent, var(--masthead-sticky-end) 40%);
-  }
-
-  &[hidden] {
-    display: none;
+    @include scroll-row.edge(next, var(--masthead-sticky-end));
   }
 }
 

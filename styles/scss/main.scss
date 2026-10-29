@@ -18,6 +18,9 @@
 @use 'components/loading';
 @use 'components/media';
 @use 'components/modal';
+@use 'components/pagination';
+@use 'components/scroll-row';
+@use 'components/tabs';
 
 // Modules — editorial / product blocks built from components (Figma "DM Web ::: Modules")
 @use 'modules/editorial-badge';
@@ -52,6 +55,8 @@
 @use 'scaffolding/loading-demo';
 @use 'scaffolding/media-demo';
 @use 'scaffolding/modal-demo';
+@use 'scaffolding/pagination-demo';
+@use 'scaffolding/tabs-demo';
 @use 'scaffolding/article-card-demo';
 @use 'scaffolding/article-card-metadata-demo';
 @use 'scaffolding/section-header-demo';

@@ -1,0 +1,240 @@
+// ── Tabs ──────────────────────────────────────────────────────────────────────
+// A row of options, one selected. Two looks, two jobs:
+//
+//   .tabs                         Underline (default) — label-md, 4px indicator
+//   .tabs--button                 Button — label-sm pills on neutral/light, 4px apart
+//
+//   Filter / switch panels:  div.tabs > div.tabs__list[role=tablist] >
+//                            button.tabs__tab[role=tab][aria-selected]
+//   Navigation (links):      nav.tabs > ul.tabs__list > li > a.tabs__tab[aria-current]
+//
+//     svg.tabs__icon          optional, 16px, takes the text colour (inline <use>)
+//     span                    label
+//   button.tabs__edge--prev / --next   MD+ with a mouse: chevrons where the row can scroll
+//
+// Selected: neutral/darker. Button only: in a channel, the channel's base colour
+// (.tabs--button.tabs--sport …). Hover: Underline shows a grey-light indicator,
+// Button darkens its background.
+// Too many to fit: the row scrolls sideways (Scroll Row) — touch / below MD: the
+// right edge fades out (swipe); MD+ with a mouse: chevron edges page through it.
+// .tabs--fill: 2–3 tabs sharing the full width.
+//
+// Reference: Figma Web UI Kit › Tabs (1488:57719) — Tab, Tab - Button
+
+@use '../foundation/breakpoints' as bp;
+@use '../foundation/sections';
+@use 'divider';
+@use 'scroll-row';
+
+.tabs {
+  --tabs-accent: var(--color-background-neutral-darker); // Button's selected fill
+  --tabs-surface: var(--color-background-neutral-lightest); // what the chevron edges fade from
+  position: relative;
+  font-family: var(--typography-font-family-sans);
+
+  // Underline: the base line under the row (drawn first, so the indicator sits on it)
+  &::before {
+    content: '';
+    position: absolute;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    height: 1px;
+    background-color: var(--color-border-translucent-dark-subtle);
+  }
+}
+
+// Channel (Button only): selected in the channel's base colour
+@each $section, $colour in sections.$sections {
+  .tabs--button.tabs--#{$section} {
+    --tabs-accent: var(--color-background-#{$colour}-base);
+  }
+}
+
+.tabs__list {
+  display: flex;
+  gap: var(--spacing-16);
+  margin: 0;
+  padding: 0 var(--spacing-28) 0 var(--spacing-16); // right: room to scroll clear of the fade
+  list-style: none;
+  @include scroll-row.row;
+  @include scroll-row.fade-end(28px);
+
+  > li {
+    display: flex;
+    flex-shrink: 0;
+  }
+
+  // Mouse (MD+ with hover): chevron edges instead of the fade. Touch screens keep
+  // the fade at any width — they swipe.
+  @include bp.respond-to(md) {
+    @media (hover: hover) {
+      padding-right: var(--spacing-16);
+      mask-image: none;
+    }
+  }
+}
+
+// ── Tab (underline) ───────────────────────────────────────────────────────────
+
+.tabs__tab {
+  position: relative;
+  display: flex;
+  flex-shrink: 0;
+  align-items: center;
+  justify-content: center;
+  gap: var(--spacing-8);
+  padding: var(--spacing-16) var(--spacing-8);
+  border: 0;
+  background-color: var(--color-effect-translucent-dark-clear);
+  font: inherit;
+  font-size: var(--typography-font-size-label-md);
+  font-weight: var(--typography-font-weight-semibold);
+  line-height: var(--typography-line-height-narrow);
+  white-space: nowrap;
+  text-decoration: none;
+  color: var(--color-text-neutral-grey-dark);
+  cursor: pointer;
+  transition: background-color 80ms ease;
+
+  // Indicator — 4px, the tab's full width; neutral/darker (never a channel colour)
+  &::after {
+    content: '';
+    position: absolute;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    height: 4px;
+    background-color: var(--color-background-neutral-darker);
+    opacity: 0;
+    transition: opacity 80ms ease;
+  }
+
+  // Hover: no background — the indicator shows in grey-light
+  &:hover::after,
+  &.is-hover::after {
+    background-color: var(--color-background-neutral-grey-light);
+    opacity: 1;
+  }
+
+  &[aria-selected='true'],
+  &[aria-current] {
+    color: var(--color-text-neutral-darker);
+
+    &::after {
+      background-color: var(--color-background-neutral-darker);
+      opacity: 1;
+    }
+  }
+
+  &:focus-visible {
+    outline: 2px solid var(--color-border-home-blue-base);
+    outline-offset: -2px; // inside: the scrolling row clips outside it
+  }
+
+  &.is-hover {
+    pointer-events: none; // demo state
+  }
+}
+
+.tabs__icon {
+  flex-shrink: 0;
+  width: 16px;
+  height: 16px;
+}
+
+// Top icon: icon above the label
+.tabs--icon-top .tabs__tab {
+  flex-direction: column;
+  gap: var(--spacing-6);
+  padding-block: var(--spacing-12);
+}
+
+// Fill: a few tabs (2–3) share the full width — no scrolling, so no fade
+.tabs--fill .tabs__list {
+  padding-right: var(--spacing-16);
+  mask-image: none;
+
+  > li,
+  > .tabs__tab {
+    flex: 1 1 0;
+  }
+
+  > li > .tabs__tab {
+    width: 100%;
+  }
+}
+
+// ── Button ────────────────────────────────────────────────────────────────────
+
+.tabs--button {
+  // Keyline under the row — end to end, optional (.tabs--no-keyline)
+  &::before {
+    @include divider.divider(horizontal, false);
+  }
+
+  .tabs__list {
+    gap: var(--spacing-4);
+    padding-block: var(--spacing-8);
+  }
+
+  .tabs__tab {
+    gap: var(--spacing-6);
+    padding: var(--spacing-8) var(--spacing-12);
+    border-radius: var(--border-radius-8);
+    background-color: var(--color-background-neutral-light);
+    font-size: var(--typography-font-size-label-sm);
+    color: var(--color-text-neutral-dark);
+
+    &::after {
+      content: none;
+    }
+
+    &:hover,
+    &.is-hover {
+      background-color: var(--color-background-neutral-grey-light);
+    }
+
+    &[aria-selected='true'],
+    &[aria-current] {
+      background-color: var(--tabs-accent);
+      color: var(--color-text-neutral-lightest);
+    }
+  }
+}
+
+.tabs--no-keyline::before {
+  content: none;
+}
+
+// ── Chevron edges (MD+, mouse only) ───────────────────────────────────────────
+// The page script toggles [hidden] by scroll position
+
+.tabs__edge {
+  display: none;
+}
+
+@include bp.respond-to(md) {
+  @media (hover: hover) {
+    .tabs__edge {
+      color: var(--color-icon-neutral-darker);
+
+      &--prev {
+        @include scroll-row.edge(prev, var(--tabs-surface));
+        bottom: 1px; // the base line / keyline shows under the edge
+      }
+
+      &--next {
+        @include scroll-row.edge(next, var(--tabs-surface));
+        bottom: 1px;
+      }
+    }
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .tabs__tab,
+  .tabs__tab::after {
+    transition: none;
+  }
+}

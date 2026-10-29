@@ -24,7 +24,7 @@
 
   content: '';
   position: absolute;
-  background-color: var(--color-effect-translucent-dark-pale);
+  background-color: var(--color-border-translucent-dark-pale);
 
   @if $direction == vertical {
     top: $gap;

@@ -18,6 +18,7 @@
 // Reference: Figma Web UI Kit › Puff in channel (8181:237759)
 
 @use '../foundation/sections';
+@use '../components/divider';
 
 .channel-puff {
   position: relative;
@@ -32,13 +33,7 @@
 
   // Keyline — inset to match the 16px content edge
   &::after {
-    content: '';
-    position: absolute;
-    right: var(--spacing-16);
-    bottom: 0;
-    left: var(--spacing-16);
-    height: 1px;
-    background-color: var(--color-effect-translucent-dark-pale);
+    @include divider.divider; // Divider — 16px inset
   }
 
   // The last block of its column has none

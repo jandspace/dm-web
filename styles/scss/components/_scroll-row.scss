@@ -1,0 +1,57 @@
+// ── Scroll Row ────────────────────────────────────────────────────────────────
+// A row that scrolls sideways when its items don't fit (no wrapping). Mixins only
+// — the block that scrolls includes them. Used by Navigation (L1 row, Sticky
+// Navbar), Section Header (Channel Tabs) and Tabs, so the scroll behaviour stays
+// one piece.
+//
+//   row                 overflow-x, no scrollbar
+//   fade-end($width)    mobile: the trailing edge fades out (mask) — pad the row
+//                       by the same width so the last item can scroll clear
+//   edge($side, $from)  desktop: a 32px chevron button on a side that can scroll,
+//                       fading in from the surface colour $from. The page script
+//                       toggles [hidden] by scroll position.
+
+@mixin row {
+  overflow-x: auto;
+  scrollbar-width: none;
+
+  &::-webkit-scrollbar {
+    display: none;
+  }
+}
+
+@mixin fade-end($width: 28px) {
+  mask-image: linear-gradient(to left, transparent, black $width);
+}
+
+@mixin edge($side, $from) {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  z-index: 1;
+  display: flex;
+  align-items: center;
+  width: 32px;
+  padding: 0 var(--spacing-8);
+  border: 0;
+  cursor: pointer;
+
+  svg {
+    width: 14px;
+    height: 14px;
+  }
+
+  @if $side == prev {
+    left: 0;
+    justify-content: flex-start;
+    background: linear-gradient(to left, transparent, $from 40%);
+  } @else {
+    right: 0;
+    justify-content: flex-end;
+    background: linear-gradient(to right, transparent, $from 40%);
+  }
+
+  &[hidden] {
+    display: none;
+  }
+}

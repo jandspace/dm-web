@@ -22,6 +22,7 @@
 
 @use '../foundation/breakpoints' as bp;
 @use '../foundation/sections';
+@use '../components/scroll-row';
 
 // Hover only where the pointer can really hover (mouse, trackpad) — touch
 // screens never get a hover state, so a tapped item can't stay "hovered".
@@ -609,14 +610,9 @@
   gap: 1px;
   margin: 0;
   padding: 0 var(--spacing-28) 0 var(--spacing-2);
-  overflow-x: auto;
   list-style: none;
-  scrollbar-width: none;
-  mask-image: linear-gradient(to left, transparent, black 28px);
-
-  &::-webkit-scrollbar {
-    display: none;
-  }
+  @include scroll-row.row;
+  @include scroll-row.fade-end(28px);
 
   // MD (tablet, scrolling row): 8px between items
   @include bp.respond-to(md) {
