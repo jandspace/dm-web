@@ -1258,6 +1258,7 @@ html:has(.modal[open]) {
   position: relative;
   margin: 0;
   padding: var(--spacing-16) var(--spacing-48) var(--spacing-16) var(--spacing-16);
+  font-weight: var(--typography-font-weight-bold);
   color: var(--color-text-neutral-darker);
 }
 .modal__title::after {

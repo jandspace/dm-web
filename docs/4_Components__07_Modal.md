@@ -15,12 +15,12 @@ Figma: Web UI Kit › Modal (`3358:62`) — Modal (`3361:11214`), Modal Header (
 | **Frame** | `dialog.modal` | Full viewport. Scrim `color/background/shade/moderate`; backdrop padding 32px (Large on SM-XS 16px, Fullwidth 32px top only) |
 | **Box** | `__content` | `color/background/neutral/lightest`, 16px corners, **Elevation 5** (`--elevation-5`). Hugs its content up to the viewport height |
 | **Header** *(with a title)* | `__header` | Holds the title and the close button |
-| **Title** *(optional)* | `h2.__title.h4` | H4 Semibold. Padding 16 · 48 right (room for close) · 16 · 16; keyline below, 16px inset (Divider). Without a title (Figma "No Modal Title") leave the header out: the close button goes straight in the box, in the same corner over the body, and the body starts at the top with its own 16px padding |
+| **Title** *(optional)* | `h2.__title.h4` | H4 Bold (`dmw_sans/h4/Bold`). Padding 16 · 48 right (room for close) · 16 · 16; keyline below, 16px inset (Divider). Without a title (Figma "No Modal Title") leave the header out: the close button goes straight in the box, in the same corner over the body, and the body starts at the top with its own 16px padding |
 | **Close** | `__close` | Button Tertiary Dark, icon only (40px) with `ico-xmark-light` 16px; 6px from the top and right |
 | **Body** | `__body` | 16px padding. Scrolls when the box reaches its maximum height; header and footer stay (Figma "Fill (Inner Scroll)") |
 | **Footer** *(optional)* | `__footer` | 16px padding, buttons on the right, 12px apart: Secondary (`btn-secondary-brand`) then Primary (`btn-brand`). Keyline above, 16px inset |
 
-The title is an `<h2>` — it heads the dialog — styled with the `.h4` utility class.
+The title is an `<h2>` — it heads the dialog — sized with the `.h4` utility class and set in Bold, the weight kept for H1–H2 where extra impact is needed.
 
 ---
 
@@ -104,7 +104,5 @@ modal.addEventListener('click', (e) => {             // scrim click
 
 ## 6. Figma notes
 
-- **Title weight:** Modal Header uses `dmw_sans/h4/Bold`; code uses H4 Semibold (`.h4`) — Bold is kept for Display and H1–H2.
-- **App text style:** in the MD Default variant (`4811:21124`) the second paragraph carries the iOS style `+ Inter +/Body (17-22)/Regular` — should be `dmw_sans/text-md/Regular`.
 - **Header and footer** are absolute in Figma, with 54 / 72px padding on the box to make room; code stacks them (flex column) for the same result.
 - **Scroll Bar:** Figma draws its own 10px bar; code uses the thin browser scrollbar (as Dropdown Menu).

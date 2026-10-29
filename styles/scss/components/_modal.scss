@@ -6,7 +6,7 @@
 //   dialog.modal                        Full-viewport frame: scrim + backdrop padding
 //     .modal__content                   Box — lightest, 16px corners, Elevation 5
 //       .modal__header                  optional — title + close
-//         h2.modal__title.h4            keyline below (16px inset)
+//         h2.modal__title.h4            H4 size, Bold; keyline below (16px inset)
 //         button.modal__close           Button Tertiary Dark, icon only, top right
 //       (no title: no header — button.modal__close straight in the box)
 //       .modal__body                    16px padding; scrolls when the box is capped
@@ -95,6 +95,7 @@ html:has(.modal[open]) {
   position: relative;
   margin: 0;
   padding: var(--spacing-16) var(--spacing-48) var(--spacing-16) var(--spacing-16); // right: room for close
+  font-weight: var(--typography-font-weight-bold); // h4 size, Bold: it heads the dialog (an h2) — wins over .h4 Semibold by source order
   color: var(--color-text-neutral-darker);
 
   &::after {
