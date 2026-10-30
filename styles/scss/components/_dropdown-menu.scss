@@ -4,15 +4,15 @@
 //
 //   .dropdown-menu                         Box — white, 8px corners, Elevation 4
 //     .dropdown-menu__title                optional: icon 32 + heading, keyline below
-//       img
+//       .icon | img                    icon 32 (img: colour icons)
 //       .dropdown-menu__heading            label-md Semibold
 //       .dropdown-menu__description        label-xxsm, grey
 //     ul.dropdown-menu__list               8px inset, scrolls when the box is capped
 //       li.dropdown-menu__group            Group Title — 8px further out than items
 //       li > button.dropdown-menu__item    icon 18 (optional) + label + tick
-//         img
+//         .icon | img                  icon 18 (img: colour icons)
 //         span.dropdown-menu__label
-//         svg.dropdown-menu__tick          shown when selected
+//         .icon.dropdown-menu__tick        shown when selected
 //       li.dropdown-menu__separator        Space (Keyline)
 //       li.dropdown-menu__space            Space (Empty)
 //
@@ -55,6 +55,7 @@
   gap: var(--spacing-12);
   padding: var(--spacing-12) var(--spacing-8) var(--spacing-16);
 
+  > .icon,
   > img {
     flex-shrink: 0;
     width: 32px;
@@ -145,6 +146,7 @@
   cursor: pointer;
   transition: background-color 80ms ease;
 
+  > .icon,
   > img {
     flex-shrink: 0;
     width: 18px;
@@ -190,7 +192,7 @@
   flex-shrink: 0;
   width: 18px;
   height: 18px;
-  color: var(--color-icon-home-blue-base);
+  --icon-color: var(--color-icon-home-blue-base);
 
   [aria-selected='true'] > &,
   [aria-current='true'] > & {

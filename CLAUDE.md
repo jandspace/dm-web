@@ -19,7 +19,7 @@ Design system documentation is stored in `docs/` and must be read before any com
 tokens/           — Design token source files (JSON + CSS)
 styles/           — SCSS source (styles/scss/) and compiled CSS (styles/css/main.css)
 index.html        — Demo index (Components / Modules), same list as the demo side panel
-foundation/       — Foundation: reference pages (Colour, Typography, Spacing, Border Radius — read live from tokens/; Elevation; Layout & Grid; Iconography — every file in assets/icons/)
+foundation/       — Foundation: reference pages (Colour, Typography, Spacing, Border Radius — read live from tokens/; Elevation; Layout & Grid; Iconography — every file in assets/icons/, single-colour ones as .icon)
 components/       — Components: base UI elements (Button, Input, Tabs…) — one demo folder each
 modules/          — Modules: editorial / product blocks built from components (Article Card, Video Player Controls…)
 scripts/          — Demo-only JS (scripts/scaffolding/: side panel + index)
@@ -27,7 +27,7 @@ projects/         — Project-specific prototypes, organised by project > platfo
 experiments/      — A/B tests and one-off experiments (self-contained, never imported elsewhere)
 assets/           — Icons (Figma SVG originals) and images
 docs/             — Design system documentation (read before component work)
-tools/            — Generators: demo pages (tools/demo-generators/), token CSS (tools/token-build/)
+tools/            — Generators: demo pages (tools/demo-generators/), token CSS (tools/token-build/), icon list (tools/icon-build/)
 CLAUDE.md         — This file
 ```
 
@@ -348,7 +348,7 @@ iOS and Android use the same four steps (`typography-ios/letter-spacing/*`, `typ
 - Mobile landscape handled with `orientation: landscape`, not px breakpoints.
 - Typography does not change on mobile landscape — layout and padding only.
 - **Images:** photos are JPEG (quality ~82). PNG only when real transparency is needed (e.g. columnist cut-out photos). Figma often exports opaque photos as RGBA PNG — check the alpha before keeping PNG. Icons are SVG. Image and video boxes use Media (`.media` + a CMS crop ratio: `--banner`, `--portrait-banner`, `--large`, `--puff`, `--small`, `--302`, `--video` 16:9, `--vertical` 2:3, `--shorts` 9:16 (video only) — photo or video in the other ratios — doc `docs/4_Components__05_Media.md`); the card sets the corner radius.
-- **Icons come from `assets/icons/`** — SVG only on Web, exported from the Figma icon library (DailyMail Icons, file `171vKuCduz2EW3XrK12IQT`, frame 24:2253) with visible layers only, 32 × 32, black. Browse them at `foundation/iconography/` (Legacy there = files no longer in Figma). Unless told otherwise, load the icon file from `assets/icons/` (e.g. `<img src="../../assets/icons/ico-ch-uk-showbiz-color.svg" alt="" />`) — don't draw new SVGs or re-export icons from Figma into a page or experiment folder. If an icon isn't in `assets/icons/`, add it there first (Figma original, `ico-*.svg`), then use it. Only when an icon must change colour with state (hover, theme) may its path be inlined as an SVG `<symbol>` with `currentColor` — copied from the `assets/icons/` file, not redrawn.
+- **Icons come from `assets/icons/`** — SVG only on Web, exported from the Figma icon library (DailyMail Icons, file `171vKuCduz2EW3XrK12IQT`, frame 24:2253) with visible layers only, 32 × 32, black. Browse them at `foundation/iconography/` (Legacy there = files no longer in Figma); doc `docs/3_Foundation__07_Iconography.md`. Don't draw new SVGs or re-export icons from Figma into a page or experiment folder — if an icon isn't in `assets/icons/`, add it there first (Figma original, `ico-*.svg`), run `python3 tools/icon-build/build_icon_list.py > styles/scss/foundation/_icon-list.scss`, then build. **Single-colour icons use `.icon`**: `<span class="icon icon--{name} [icon--16|20|32]" aria-hidden="true"></span>` (the file as a CSS mask, `styles/scss/foundation/_icon.scss`) — colour with `--icon-color: var(--color-icon-…)` (default `icon/neutral/black`; dark mode flips it). Never pass the file in from inline style (`style="--icon: url(…)"`) — browsers resolve that path differently. Channel colour icons (`*-color`) and national flags (`ico-flag-*`) keep their colours: `<img src="../../assets/icons/ico-ch-uk-showbiz-color.svg" alt="" />`.
 - British English for UI copy and documentation.
 - American English for token names, CSS variable names, and code.
 
@@ -400,7 +400,7 @@ All token files share the same version string (currently `1.0.4`). Update the `v
 
 ### SCSS Structure
 
-- `foundation/` — reset, breakpoints, typography utilities, spacing, border radius, elevation, layout
+- `foundation/` — reset, breakpoints, typography utilities, spacing, border radius, elevation, icon, layout
 - `components/` — **PRODUCT** styles for Components, one file per component (`_button.scss`) — these would ship to the real DM site
 - `modules/` — **PRODUCT** styles for Modules, one file per module or module part (`_article-card.scss`, `_editorial-badge.scss`, …) — these would ship too
 - `scaffolding/` — **PROTOTYPE-ONLY** styles for demo pages: grid layout, section headers, side panel, token tooltips. Never shipped to production. Clearly separated from `components/` and `modules/` so the real CSS can be handed off cleanly to developers.

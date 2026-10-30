@@ -13,17 +13,6 @@
     <script src="../../scripts/scaffolding/demo-nav.js" defer></script>
   </head>
   <body class="demo-page-body">
-    <!-- Tick: inlined so it takes the home-blue icon colour (copied from assets/icons/ico-tick.svg) -->
-    <svg style="display: none" aria-hidden="true">
-      <symbol id="ico-tick" viewBox="0 0 32 32">
-        <path d="M27.8621 3.21463C27.7304 3.07805 27.5516 3 27.3728 3C27.194 3 27.0058 3.07805 26.8835 3.21463L11.2916 19.1951L5.11887 12.8732C4.98714 12.7366 4.80835 12.6585 4.62957 12.6585C4.45078 12.6585 4.26259 12.7366 4.14026 12.8732L0.207013 16.9024C0.0752775 17.039 0 17.2146 0 17.4098C0 17.5951 0.0564581 17.7805 0.178784 17.9171L10.7741 28.7951C10.9058 28.9317 11.0846 29 11.2634 29C11.4516 29 11.6304 28.922 11.7527 28.7951L31.7953 8.23902C32.0682 7.96585 32.0682 7.51707 31.7953 7.23415L27.8621 3.21463Z" fill="currentColor" />
-      </symbol>
-      <!-- Chevron: inlined so it takes the button text colour (copied from assets/icons/ico-chevron-down.svg) -->
-      <symbol id="ico-chevron-down" viewBox="0 0 32 32">
-        <path d="M29.5378 8.37108C29.1822 8.02442 28.5956 8.02442 28.2311 8.37108L15.9911 20.3L3.76003 8.37108C3.40447 8.02442 2.8178 8.02442 2.46225 8.37108L1.15558 9.6422C0.800027 9.98886 0.800027 10.5578 1.15558 10.9133L14.0445 23.4733L15.3511 24.7444C15.7067 25.0911 16.2934 25.0911 16.6489 24.7444L17.9556 23.4733L30.8445 10.9133C31.2 10.5666 31.2 9.99775 30.8445 9.6422L29.5378 8.37108Z" fill="currentColor" />
-      </symbol>
-    </svg>
-
     <h1 class="demo-page-h1">Dropdown Menu</h1>
     <p class="demo-page-intro">
       The panel that drops down from a trigger: an optional title, then a list of items to pick from or act on. Elevation
@@ -44,7 +33,7 @@
           <button class="btn btn-secondary-neutral" type="button" aria-haspopup="listbox" aria-expanded="false" aria-controls="demo-sort-menu">
             <span class="btn__content">
               <span class="btn__label">Most read</span>
-              <svg aria-hidden="true"><use href="#ico-chevron-down" /></svg>
+              <span class="icon icon--chevron-down" aria-hidden="true"></span>
             </span>
           </button>
           <div class="dropdown-menu" id="demo-sort-menu" hidden>
@@ -53,25 +42,25 @@
               <li role="none">
                 <button class="dropdown-menu__item" type="button" role="option" aria-selected="true">
                   <span class="dropdown-menu__label">Most read</span>
-                  <svg class="dropdown-menu__tick" aria-hidden="true"><use href="#ico-tick" /></svg>
+                  <span class="icon icon--tick dropdown-menu__tick" aria-hidden="true"></span>
                 </button>
               </li>
               <li role="none">
                 <button class="dropdown-menu__item" type="button" role="option" aria-selected="false">
                   <span class="dropdown-menu__label">Most commented</span>
-                  <svg class="dropdown-menu__tick" aria-hidden="true"><use href="#ico-tick" /></svg>
+                  <span class="icon icon--tick dropdown-menu__tick" aria-hidden="true"></span>
                 </button>
               </li>
               <li role="none">
                 <button class="dropdown-menu__item" type="button" role="option" aria-selected="false">
                   <span class="dropdown-menu__label">Newest</span>
-                  <svg class="dropdown-menu__tick" aria-hidden="true"><use href="#ico-tick" /></svg>
+                  <span class="icon icon--tick dropdown-menu__tick" aria-hidden="true"></span>
                 </button>
               </li>
               <li role="none">
                 <button class="dropdown-menu__item" type="button" role="option" aria-selected="false">
                   <span class="dropdown-menu__label">Oldest</span>
-                  <svg class="dropdown-menu__tick" aria-hidden="true"><use href="#ico-tick" /></svg>
+                  <span class="icon icon--tick dropdown-menu__tick" aria-hidden="true"></span>
                 </button>
               </li>
             </ul>
@@ -83,12 +72,12 @@
           <button class="btn btn-secondary-neutral" type="button" aria-haspopup="listbox" aria-expanded="false" aria-controls="demo-team-menu">
             <span class="btn__content">
               <span class="btn__label">Your team</span>
-              <svg aria-hidden="true"><use href="#ico-chevron-down" /></svg>
+              <span class="icon icon--chevron-down" aria-hidden="true"></span>
             </span>
           </button>
           <div class="dropdown-menu demo-dropdown__capped" id="demo-team-menu" hidden>
             <div class="dropdown-menu__title">
-              <img src="../../assets/icons/ico-ch-sport.svg" alt="" />
+              <span class="icon icon--ch-sport" aria-hidden="true"></span>
               <p class="dropdown-menu__heading">
                 Your team
                 <span class="dropdown-menu__description">Follow a club for its news, scores and fixtures.</span>
@@ -96,20 +85,20 @@
             </div>
             <ul class="dropdown-menu__list" role="listbox" aria-label="Your team">
               <li class="dropdown-menu__group" role="presentation">Premier League</li>
-              <li role="none"><button class="dropdown-menu__item" type="button" role="option" aria-selected="false"><span class="dropdown-menu__label">Arsenal</span><svg class="dropdown-menu__tick" aria-hidden="true"><use href="#ico-tick" /></svg></button></li>
-              <li role="none"><button class="dropdown-menu__item" type="button" role="option" aria-selected="false"><span class="dropdown-menu__label">Chelsea</span><svg class="dropdown-menu__tick" aria-hidden="true"><use href="#ico-tick" /></svg></button></li>
-              <li role="none"><button class="dropdown-menu__item" type="button" role="option" aria-selected="false"><span class="dropdown-menu__label">Liverpool</span><svg class="dropdown-menu__tick" aria-hidden="true"><use href="#ico-tick" /></svg></button></li>
-              <li role="none"><button class="dropdown-menu__item" type="button" role="option" aria-selected="false"><span class="dropdown-menu__label">Manchester United</span><svg class="dropdown-menu__tick" aria-hidden="true"><use href="#ico-tick" /></svg></button></li>
+              <li role="none"><button class="dropdown-menu__item" type="button" role="option" aria-selected="false"><span class="dropdown-menu__label">Arsenal</span><span class="icon icon--tick dropdown-menu__tick" aria-hidden="true"></span></button></li>
+              <li role="none"><button class="dropdown-menu__item" type="button" role="option" aria-selected="false"><span class="dropdown-menu__label">Chelsea</span><span class="icon icon--tick dropdown-menu__tick" aria-hidden="true"></span></button></li>
+              <li role="none"><button class="dropdown-menu__item" type="button" role="option" aria-selected="false"><span class="dropdown-menu__label">Liverpool</span><span class="icon icon--tick dropdown-menu__tick" aria-hidden="true"></span></button></li>
+              <li role="none"><button class="dropdown-menu__item" type="button" role="option" aria-selected="false"><span class="dropdown-menu__label">Manchester United</span><span class="icon icon--tick dropdown-menu__tick" aria-hidden="true"></span></button></li>
               <li class="dropdown-menu__separator" role="separator"></li>
               <li class="dropdown-menu__group" role="presentation">La Liga</li>
-                <li role="none"><button class="dropdown-menu__item" type="button" role="option" aria-selected="false"><span class="dropdown-menu__label">Real Madrid</span><svg class="dropdown-menu__tick" aria-hidden="true"><use href="#ico-tick" /></svg></button></li>
-                <li role="none"><button class="dropdown-menu__item" type="button" role="option" aria-selected="false"><span class="dropdown-menu__label">Barcelona</span><svg class="dropdown-menu__tick" aria-hidden="true"><use href="#ico-tick" /></svg></button></li>
-                <li role="none"><button class="dropdown-menu__item" type="button" role="option" aria-selected="false"><span class="dropdown-menu__label">Atlético Madrid</span><svg class="dropdown-menu__tick" aria-hidden="true"><use href="#ico-tick" /></svg></button></li>
-                <li role="none"><button class="dropdown-menu__item" type="button" role="option" aria-selected="false"><span class="dropdown-menu__label">Athletic Club</span><svg class="dropdown-menu__tick" aria-hidden="true"><use href="#ico-tick" /></svg></button></li>
+                <li role="none"><button class="dropdown-menu__item" type="button" role="option" aria-selected="false"><span class="dropdown-menu__label">Real Madrid</span><span class="icon icon--tick dropdown-menu__tick" aria-hidden="true"></span></button></li>
+                <li role="none"><button class="dropdown-menu__item" type="button" role="option" aria-selected="false"><span class="dropdown-menu__label">Barcelona</span><span class="icon icon--tick dropdown-menu__tick" aria-hidden="true"></span></button></li>
+                <li role="none"><button class="dropdown-menu__item" type="button" role="option" aria-selected="false"><span class="dropdown-menu__label">Atlético Madrid</span><span class="icon icon--tick dropdown-menu__tick" aria-hidden="true"></span></button></li>
+                <li role="none"><button class="dropdown-menu__item" type="button" role="option" aria-selected="false"><span class="dropdown-menu__label">Athletic Club</span><span class="icon icon--tick dropdown-menu__tick" aria-hidden="true"></span></button></li>
               <li class="dropdown-menu__separator" role="separator"></li>
               <li class="dropdown-menu__group" role="presentation">Scottish Premiership</li>
-              <li role="none"><button class="dropdown-menu__item" type="button" role="option" aria-selected="false"><span class="dropdown-menu__label">Celtic</span><svg class="dropdown-menu__tick" aria-hidden="true"><use href="#ico-tick" /></svg></button></li>
-              <li role="none"><button class="dropdown-menu__item" type="button" role="option" aria-selected="false"><span class="dropdown-menu__label">Rangers</span><svg class="dropdown-menu__tick" aria-hidden="true"><use href="#ico-tick" /></svg></button></li>
+              <li role="none"><button class="dropdown-menu__item" type="button" role="option" aria-selected="false"><span class="dropdown-menu__label">Celtic</span><span class="icon icon--tick dropdown-menu__tick" aria-hidden="true"></span></button></li>
+              <li role="none"><button class="dropdown-menu__item" type="button" role="option" aria-selected="false"><span class="dropdown-menu__label">Rangers</span><span class="icon icon--tick dropdown-menu__tick" aria-hidden="true"></span></button></li>
             </ul>
           </div>
         </div>
@@ -122,7 +111,7 @@
         <!-- Title + groups -->
         <div class="dropdown-menu">
           <div class="dropdown-menu__title">
-            <img src="../../assets/icons/ico-gear.svg" alt="" />
+            <span class="icon icon--gear" aria-hidden="true"></span>
             <p class="dropdown-menu__heading">
               Dropdown Title
               <span class="dropdown-menu__description">Lorem ipsum dolor sit amet, consectetur adipiscing elit.</span>
@@ -132,53 +121,53 @@
             <li class="dropdown-menu__group" role="presentation">First Menus</li>
             <li role="none">
               <button class="dropdown-menu__item" type="button" role="option" aria-selected="true">
-                <img src="../../assets/icons/ico-compass.svg" alt="" />
+                <span class="icon icon--compass" aria-hidden="true"></span>
                 <span class="dropdown-menu__label">Menu Label</span>
-                <svg class="dropdown-menu__tick" aria-hidden="true"><use href="#ico-tick" /></svg>
+                <span class="icon icon--tick dropdown-menu__tick" aria-hidden="true"></span>
               </button>
             </li>
             <li role="none">
               <button class="dropdown-menu__item" type="button" role="option" aria-selected="false">
-                <img src="../../assets/icons/ico-compass.svg" alt="" />
+                <span class="icon icon--compass" aria-hidden="true"></span>
                 <span class="dropdown-menu__label">Menu Label</span>
-                <svg class="dropdown-menu__tick" aria-hidden="true"><use href="#ico-tick" /></svg>
+                <span class="icon icon--tick dropdown-menu__tick" aria-hidden="true"></span>
               </button>
             </li>
             <li role="none">
               <button class="dropdown-menu__item" type="button" role="option" aria-selected="false">
-                <img src="../../assets/icons/ico-compass.svg" alt="" />
+                <span class="icon icon--compass" aria-hidden="true"></span>
                 <span class="dropdown-menu__label">Menu Label</span>
-                <svg class="dropdown-menu__tick" aria-hidden="true"><use href="#ico-tick" /></svg>
+                <span class="icon icon--tick dropdown-menu__tick" aria-hidden="true"></span>
               </button>
             </li>
             <li role="none">
               <button class="dropdown-menu__item" type="button" role="option" aria-selected="false" disabled>
-                <img src="../../assets/icons/ico-compass.svg" alt="" />
+                <span class="icon icon--compass" aria-hidden="true"></span>
                 <span class="dropdown-menu__label">Menu Label</span>
-                <svg class="dropdown-menu__tick" aria-hidden="true"><use href="#ico-tick" /></svg>
+                <span class="icon icon--tick dropdown-menu__tick" aria-hidden="true"></span>
               </button>
             </li>
             <li class="dropdown-menu__space" role="presentation"></li>
             <li class="dropdown-menu__group" role="presentation">Second Menus</li>
             <li role="none">
               <button class="dropdown-menu__item" type="button" role="option" aria-selected="false">
-                <img src="../../assets/icons/ico-compass.svg" alt="" />
+                <span class="icon icon--compass" aria-hidden="true"></span>
                 <span class="dropdown-menu__label">Menu Label</span>
-                <svg class="dropdown-menu__tick" aria-hidden="true"><use href="#ico-tick" /></svg>
+                <span class="icon icon--tick dropdown-menu__tick" aria-hidden="true"></span>
               </button>
             </li>
             <li role="none">
               <button class="dropdown-menu__item" type="button" role="option" aria-selected="false">
-                <img src="../../assets/icons/ico-compass.svg" alt="" />
+                <span class="icon icon--compass" aria-hidden="true"></span>
                 <span class="dropdown-menu__label">Menu Label</span>
-                <svg class="dropdown-menu__tick" aria-hidden="true"><use href="#ico-tick" /></svg>
+                <span class="icon icon--tick dropdown-menu__tick" aria-hidden="true"></span>
               </button>
             </li>
             <li role="none">
               <button class="dropdown-menu__item" type="button" role="option" aria-selected="false">
-                <img src="../../assets/icons/ico-compass.svg" alt="" />
+                <span class="icon icon--compass" aria-hidden="true"></span>
                 <span class="dropdown-menu__label">Menu Label</span>
-                <svg class="dropdown-menu__tick" aria-hidden="true"><use href="#ico-tick" /></svg>
+                <span class="icon icon--tick dropdown-menu__tick" aria-hidden="true"></span>
               </button>
             </li>
           </ul>
@@ -190,23 +179,23 @@
             <li class="dropdown-menu__group" role="presentation">Fruits</li>
             <li role="none">
               <button class="dropdown-menu__item" type="button" role="option" aria-selected="false">
-                <img src="../../assets/icons/ico-compass.svg" alt="" />
+                <span class="icon icon--compass" aria-hidden="true"></span>
                 <span class="dropdown-menu__label">Apple</span>
-                <svg class="dropdown-menu__tick" aria-hidden="true"><use href="#ico-tick" /></svg>
+                <span class="icon icon--tick dropdown-menu__tick" aria-hidden="true"></span>
               </button>
             </li>
             <li role="none">
               <button class="dropdown-menu__item" type="button" role="option" aria-selected="false">
-                <img src="../../assets/icons/ico-compass.svg" alt="" />
+                <span class="icon icon--compass" aria-hidden="true"></span>
                 <span class="dropdown-menu__label">Banana</span>
-                <svg class="dropdown-menu__tick" aria-hidden="true"><use href="#ico-tick" /></svg>
+                <span class="icon icon--tick dropdown-menu__tick" aria-hidden="true"></span>
               </button>
             </li>
             <li role="none">
               <button class="dropdown-menu__item" type="button" role="option" aria-selected="false">
-                <img src="../../assets/icons/ico-compass.svg" alt="" />
+                <span class="icon icon--compass" aria-hidden="true"></span>
                 <span class="dropdown-menu__label">Cherry</span>
-                <svg class="dropdown-menu__tick" aria-hidden="true"><use href="#ico-tick" /></svg>
+                <span class="icon icon--tick dropdown-menu__tick" aria-hidden="true"></span>
               </button>
             </li>
           </ul>
@@ -221,21 +210,21 @@
             </p>
           </div>
           <ul class="dropdown-menu__list" role="listbox" aria-label="Country">
-            <li role="none"><button class="dropdown-menu__item" type="button" role="option" aria-selected="false"><span class="dropdown-menu__label">United Kingdom</span><svg class="dropdown-menu__tick" aria-hidden="true"><use href="#ico-tick" /></svg></button></li>
-            <li role="none"><button class="dropdown-menu__item" type="button" role="option" aria-selected="false"><span class="dropdown-menu__label">United States</span><svg class="dropdown-menu__tick" aria-hidden="true"><use href="#ico-tick" /></svg></button></li>
-            <li role="none"><button class="dropdown-menu__item" type="button" role="option" aria-selected="false"><span class="dropdown-menu__label">Australia</span><svg class="dropdown-menu__tick" aria-hidden="true"><use href="#ico-tick" /></svg></button></li>
-            <li role="none"><button class="dropdown-menu__item" type="button" role="option" aria-selected="false"><span class="dropdown-menu__label">Spain</span><svg class="dropdown-menu__tick" aria-hidden="true"><use href="#ico-tick" /></svg></button></li>
-            <li role="none"><button class="dropdown-menu__item" type="button" role="option" aria-selected="false" disabled><span class="dropdown-menu__label">Palestine</span><svg class="dropdown-menu__tick" aria-hidden="true"><use href="#ico-tick" /></svg></button></li>
-            <li role="none"><button class="dropdown-menu__item" type="button" role="option" aria-selected="false"><span class="dropdown-menu__label">France</span><svg class="dropdown-menu__tick" aria-hidden="true"><use href="#ico-tick" /></svg></button></li>
-            <li role="none"><button class="dropdown-menu__item" type="button" role="option" aria-selected="false"><span class="dropdown-menu__label">Ireland</span><svg class="dropdown-menu__tick" aria-hidden="true"><use href="#ico-tick" /></svg></button></li>
-            <li role="none"><button class="dropdown-menu__item" type="button" role="option" aria-selected="false"><span class="dropdown-menu__label">Germany</span><svg class="dropdown-menu__tick" aria-hidden="true"><use href="#ico-tick" /></svg></button></li>
+            <li role="none"><button class="dropdown-menu__item" type="button" role="option" aria-selected="false"><span class="dropdown-menu__label">United Kingdom</span><span class="icon icon--tick dropdown-menu__tick" aria-hidden="true"></span></button></li>
+            <li role="none"><button class="dropdown-menu__item" type="button" role="option" aria-selected="false"><span class="dropdown-menu__label">United States</span><span class="icon icon--tick dropdown-menu__tick" aria-hidden="true"></span></button></li>
+            <li role="none"><button class="dropdown-menu__item" type="button" role="option" aria-selected="false"><span class="dropdown-menu__label">Australia</span><span class="icon icon--tick dropdown-menu__tick" aria-hidden="true"></span></button></li>
+            <li role="none"><button class="dropdown-menu__item" type="button" role="option" aria-selected="false"><span class="dropdown-menu__label">Spain</span><span class="icon icon--tick dropdown-menu__tick" aria-hidden="true"></span></button></li>
+            <li role="none"><button class="dropdown-menu__item" type="button" role="option" aria-selected="false" disabled><span class="dropdown-menu__label">Palestine</span><span class="icon icon--tick dropdown-menu__tick" aria-hidden="true"></span></button></li>
+            <li role="none"><button class="dropdown-menu__item" type="button" role="option" aria-selected="false"><span class="dropdown-menu__label">France</span><span class="icon icon--tick dropdown-menu__tick" aria-hidden="true"></span></button></li>
+            <li role="none"><button class="dropdown-menu__item" type="button" role="option" aria-selected="false"><span class="dropdown-menu__label">Ireland</span><span class="icon icon--tick dropdown-menu__tick" aria-hidden="true"></span></button></li>
+            <li role="none"><button class="dropdown-menu__item" type="button" role="option" aria-selected="false"><span class="dropdown-menu__label">Germany</span><span class="icon icon--tick dropdown-menu__tick" aria-hidden="true"></span></button></li>
           </ul>
         </div>
 
         <!-- Title with icon, two groups -->
         <div class="dropdown-menu">
           <div class="dropdown-menu__title">
-            <img src="../../assets/icons/ico-property.svg" alt="" />
+            <span class="icon icon--property" aria-hidden="true"></span>
             <p class="dropdown-menu__heading">
               City
               <span class="dropdown-menu__description">Select city where you live now</span>
@@ -243,15 +232,15 @@
           </div>
           <ul class="dropdown-menu__list" role="listbox" aria-label="City">
             <li class="dropdown-menu__group" role="presentation">United Kingdom</li>
-            <li role="none"><button class="dropdown-menu__item" type="button" role="option" aria-selected="false"><span class="dropdown-menu__label">London</span><svg class="dropdown-menu__tick" aria-hidden="true"><use href="#ico-tick" /></svg></button></li>
-            <li role="none"><button class="dropdown-menu__item" type="button" role="option" aria-selected="false"><span class="dropdown-menu__label">Manchester</span><svg class="dropdown-menu__tick" aria-hidden="true"><use href="#ico-tick" /></svg></button></li>
-            <li role="none"><button class="dropdown-menu__item" type="button" role="option" aria-selected="false"><span class="dropdown-menu__label">Birmingham</span><svg class="dropdown-menu__tick" aria-hidden="true"><use href="#ico-tick" /></svg></button></li>
+            <li role="none"><button class="dropdown-menu__item" type="button" role="option" aria-selected="false"><span class="dropdown-menu__label">London</span><span class="icon icon--tick dropdown-menu__tick" aria-hidden="true"></span></button></li>
+            <li role="none"><button class="dropdown-menu__item" type="button" role="option" aria-selected="false"><span class="dropdown-menu__label">Manchester</span><span class="icon icon--tick dropdown-menu__tick" aria-hidden="true"></span></button></li>
+            <li role="none"><button class="dropdown-menu__item" type="button" role="option" aria-selected="false"><span class="dropdown-menu__label">Birmingham</span><span class="icon icon--tick dropdown-menu__tick" aria-hidden="true"></span></button></li>
             <li class="dropdown-menu__separator" role="separator"></li>
             <li class="dropdown-menu__group" role="presentation">Spain</li>
-            <li role="none"><button class="dropdown-menu__item" type="button" role="option" aria-selected="false"><span class="dropdown-menu__label">Madrid</span><svg class="dropdown-menu__tick" aria-hidden="true"><use href="#ico-tick" /></svg></button></li>
-            <li role="none"><button class="dropdown-menu__item" type="button" role="option" aria-selected="false"><span class="dropdown-menu__label">Barcelona</span><svg class="dropdown-menu__tick" aria-hidden="true"><use href="#ico-tick" /></svg></button></li>
-            <li role="none"><button class="dropdown-menu__item" type="button" role="option" aria-selected="false"><span class="dropdown-menu__label">Valencia</span><svg class="dropdown-menu__tick" aria-hidden="true"><use href="#ico-tick" /></svg></button></li>
-            <li role="none"><button class="dropdown-menu__item" type="button" role="option" aria-selected="false"><span class="dropdown-menu__label">Seville</span><svg class="dropdown-menu__tick" aria-hidden="true"><use href="#ico-tick" /></svg></button></li>
+            <li role="none"><button class="dropdown-menu__item" type="button" role="option" aria-selected="false"><span class="dropdown-menu__label">Madrid</span><span class="icon icon--tick dropdown-menu__tick" aria-hidden="true"></span></button></li>
+            <li role="none"><button class="dropdown-menu__item" type="button" role="option" aria-selected="false"><span class="dropdown-menu__label">Barcelona</span><span class="icon icon--tick dropdown-menu__tick" aria-hidden="true"></span></button></li>
+            <li role="none"><button class="dropdown-menu__item" type="button" role="option" aria-selected="false"><span class="dropdown-menu__label">Valencia</span><span class="icon icon--tick dropdown-menu__tick" aria-hidden="true"></span></button></li>
+            <li role="none"><button class="dropdown-menu__item" type="button" role="option" aria-selected="false"><span class="dropdown-menu__label">Seville</span><span class="icon icon--tick dropdown-menu__tick" aria-hidden="true"></span></button></li>
           </ul>
         </div>
       </div>
@@ -263,13 +252,13 @@
       </p>
       <div class="demo-dropdown__states">
         <span>Default</span>
-        <ul><li><button class="dropdown-menu__item" type="button"><img src="../../assets/icons/ico-compass.svg" alt="" /><span class="dropdown-menu__label">Menu Label</span></button></li></ul>
+        <ul><li><button class="dropdown-menu__item" type="button"><span class="icon icon--compass" aria-hidden="true"></span><span class="dropdown-menu__label">Menu Label</span></button></li></ul>
         <span>Hover</span>
-        <ul><li><button class="dropdown-menu__item is-hover" type="button"><img src="../../assets/icons/ico-compass.svg" alt="" /><span class="dropdown-menu__label">Menu Label</span></button></li></ul>
+        <ul><li><button class="dropdown-menu__item is-hover" type="button"><span class="icon icon--compass" aria-hidden="true"></span><span class="dropdown-menu__label">Menu Label</span></button></li></ul>
         <span>Selected</span>
-        <ul><li><button class="dropdown-menu__item" type="button" aria-selected="true"><img src="../../assets/icons/ico-compass.svg" alt="" /><span class="dropdown-menu__label">Menu Label</span><svg class="dropdown-menu__tick" aria-hidden="true"><use href="#ico-tick" /></svg></button></li></ul>
+        <ul><li><button class="dropdown-menu__item" type="button" aria-selected="true"><span class="icon icon--compass" aria-hidden="true"></span><span class="dropdown-menu__label">Menu Label</span><span class="icon icon--tick dropdown-menu__tick" aria-hidden="true"></span></button></li></ul>
         <span>Disabled</span>
-        <ul><li><button class="dropdown-menu__item" type="button" disabled><img src="../../assets/icons/ico-compass.svg" alt="" /><span class="dropdown-menu__label">Menu Label</span></button></li></ul>
+        <ul><li><button class="dropdown-menu__item" type="button" disabled><span class="icon icon--compass" aria-hidden="true"></span><span class="dropdown-menu__label">Menu Label</span></button></li></ul>
         <span>Group Title</span>
         <ul><li class="dropdown-menu__group">Menu Label</li></ul>
         <span>Space (Keyline)</span>
@@ -285,7 +274,7 @@
       <div class="demo-dropdown__states demo-dropdown__states--title">
         <span>Icon + description</span>
         <div class="dropdown-menu__title">
-          <img src="../../assets/icons/ico-compass.svg" alt="" />
+          <span class="icon icon--compass" aria-hidden="true"></span>
           <p class="dropdown-menu__heading">
             Dropdown Title
             <span class="dropdown-menu__description">Lorem ipsum dolor sit amet, consectetur adipiscing elit.</span>
@@ -300,7 +289,7 @@
         </div>
         <span>No description</span>
         <div class="dropdown-menu__title">
-          <img src="../../assets/icons/ico-compass.svg" alt="" />
+          <span class="icon icon--compass" aria-hidden="true"></span>
           <p class="dropdown-menu__heading">
             Dropdown Title
           </p>

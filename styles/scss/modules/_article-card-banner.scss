@@ -188,7 +188,7 @@
 
   .article-card-metadata__comments-icon,
   .article-card-metadata__comments:hover .article-card-metadata__comments-icon {
-    color: var(--color-icon-neutral-lightest);
+    --icon-color: var(--color-icon-neutral-lightest);
   }
 }
 

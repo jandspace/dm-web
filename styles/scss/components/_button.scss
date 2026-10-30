@@ -34,11 +34,15 @@
   align-items: center;
   gap: var(--spacing-6);
 
-  svg {
+  .icon {
     width: 1em;
     height: 1em;
-    flex-shrink: 0;
   }
+}
+
+// Icons take the label colour, in every variant and state
+.btn .icon {
+  --icon-color: currentColor;
 }
 
 // ── Static state helpers (for demo display) ───────────────────────────────────
@@ -98,11 +102,11 @@
   }
   &:active {
     background-color: var(--color-background-interaction-primary-pressed);
-    box-shadow: inset 0 1px 1px 0 rgba(0, 0, 0, 0.4);
+    box-shadow: inset 0 1px 1px 0 var(--color-effect-translucent-dark-moderate);
   }
   &.is-pressed {
     background-color: var(--color-background-interaction-primary-pressed);
-    box-shadow: inset 0 1px 1px 0 rgba(0, 0, 0, 0.4);
+    box-shadow: inset 0 1px 1px 0 var(--color-effect-translucent-dark-moderate);
   }
   &.btn--loading {
     background-color: var(--color-background-interaction-primary-pressed);
@@ -123,11 +127,11 @@
   }
   &:active {
     background-color: var(--color-background-neutral-grey-dark);
-    box-shadow: inset 0 1px 1px 0 rgba(0, 0, 0, 0.4);
+    box-shadow: inset 0 1px 1px 0 var(--color-effect-translucent-dark-moderate);
   }
   &.is-pressed {
     background-color: var(--color-background-neutral-grey-dark);
-    box-shadow: inset 0 1px 1px 0 rgba(0, 0, 0, 0.4);
+    box-shadow: inset 0 1px 1px 0 var(--color-effect-translucent-dark-moderate);
   }
   &.btn--loading {
     background-color: var(--color-background-neutral-grey-dark);
@@ -148,11 +152,11 @@
   }
   &:active {
     background-color: var(--color-background-neutral-lighter);
-    box-shadow: inset 0 1px 1px 0 rgba(0, 0, 0, 0.4);
+    box-shadow: inset 0 1px 1px 0 var(--color-effect-translucent-dark-moderate);
   }
   &.is-pressed {
     background-color: var(--color-background-neutral-lighter);
-    box-shadow: inset 0 1px 1px 0 rgba(0, 0, 0, 0.4);
+    box-shadow: inset 0 1px 1px 0 var(--color-effect-translucent-dark-moderate);
   }
   &.btn--loading {
     background-color: var(--color-background-neutral-lighter);
@@ -184,7 +188,7 @@
   &:active,
   &.is-pressed {
     background-color: var(--color-effect-translucent-dark-pale);
-    box-shadow: inset 0 1px 1px 0 rgba(0, 0, 0, 0.4);
+    box-shadow: inset 0 1px 1px 0 var(--color-effect-translucent-dark-moderate);
     -webkit-backdrop-filter: blur(8px);
     backdrop-filter: blur(8px);
   }
@@ -209,7 +213,7 @@
   &:active,
   &.is-pressed {
     background-color: var(--color-effect-translucent-dark-pale);
-    box-shadow: inset 0 1px 1px 0 rgba(0, 0, 0, 0.4);
+    box-shadow: inset 0 1px 1px 0 var(--color-effect-translucent-dark-moderate);
     -webkit-backdrop-filter: blur(8px);
     backdrop-filter: blur(8px);
   }
@@ -234,7 +238,7 @@
   &:active,
   &.is-pressed {
     background-color: var(--color-effect-translucent-dark-pale);
-    box-shadow: inset 0 1px 1px 0 rgba(0, 0, 0, 0.4);
+    box-shadow: inset 0 1px 1px 0 var(--color-effect-translucent-dark-moderate);
     -webkit-backdrop-filter: blur(8px);
     backdrop-filter: blur(8px);
   }
@@ -259,7 +263,7 @@
   &:active,
   &.is-pressed {
     background-color: var(--color-effect-translucent-dark-pale);
-    box-shadow: inset 0 1px 1px 0 rgba(0, 0, 0, 0.4);
+    box-shadow: inset 0 1px 1px 0 var(--color-effect-translucent-dark-moderate);
     -webkit-backdrop-filter: blur(8px);
     backdrop-filter: blur(8px);
   }
@@ -284,7 +288,7 @@
   &:active,
   &.is-pressed {
     background-color: var(--color-effect-translucent-light-pale);
-    box-shadow: inset 0 1px 1px 0 rgba(0, 0, 0, 0.4);
+    box-shadow: inset 0 1px 1px 0 var(--color-effect-translucent-dark-moderate);
     -webkit-backdrop-filter: blur(8px);
     backdrop-filter: blur(8px);
   }
@@ -309,11 +313,11 @@
   }
   &:active {
     background-color: var(--color-background-neutral-light);
-    box-shadow: inset 0 1px 1px 0 rgba(0, 0, 0, 0.4);
+    box-shadow: inset 0 1px 1px 0 var(--color-effect-translucent-dark-moderate);
   }
   &.is-pressed {
     background-color: var(--color-background-neutral-light);
-    box-shadow: inset 0 1px 1px 0 rgba(0, 0, 0, 0.4);
+    box-shadow: inset 0 1px 1px 0 var(--color-effect-translucent-dark-moderate);
   }
   &.btn--loading {
     background-color: var(--color-background-neutral-light);
@@ -335,11 +339,11 @@
   }
   &:active {
     background-color: var(--color-effect-translucent-dark-pale);
-    box-shadow: inset 0 1px 1px 0 rgba(0, 0, 0, 0.4);
+    box-shadow: inset 0 1px 1px 0 var(--color-effect-translucent-dark-moderate);
   }
   &.is-pressed {
     background-color: var(--color-effect-translucent-dark-pale);
-    box-shadow: inset 0 1px 1px 0 rgba(0, 0, 0, 0.4);
+    box-shadow: inset 0 1px 1px 0 var(--color-effect-translucent-dark-moderate);
   }
   &.btn--loading {
     background-color: var(--color-effect-translucent-dark-pale);
@@ -358,11 +362,11 @@
   }
   &:active {
     background-color: var(--color-background-neutral-light);
-    box-shadow: inset 0 1px 1px 0 rgba(0, 0, 0, 0.4);
+    box-shadow: inset 0 1px 1px 0 var(--color-effect-translucent-dark-moderate);
   }
   &.is-pressed {
     background-color: var(--color-background-neutral-light);
-    box-shadow: inset 0 1px 1px 0 rgba(0, 0, 0, 0.4);
+    box-shadow: inset 0 1px 1px 0 var(--color-effect-translucent-dark-moderate);
   }
   &.btn--loading {
     background-color: var(--color-background-neutral-light);
@@ -383,11 +387,11 @@
   }
   &:active {
     background-color: var(--color-effect-translucent-dark-deep);
-    box-shadow: inset 0 1px 1px 0 rgba(0, 0, 0, 0.4);
+    box-shadow: inset 0 1px 1px 0 var(--color-effect-translucent-dark-moderate);
   }
   &.is-pressed {
     background-color: var(--color-effect-translucent-dark-deep);
-    box-shadow: inset 0 1px 1px 0 rgba(0, 0, 0, 0.4);
+    box-shadow: inset 0 1px 1px 0 var(--color-effect-translucent-dark-moderate);
   }
   &.btn--loading {
     background-color: var(--color-effect-translucent-dark-deep);
@@ -408,11 +412,11 @@
   }
   &:active {
     background-color: var(--color-effect-translucent-light-thick);
-    box-shadow: inset 0 1px 1px 0 rgba(0, 0, 0, 0.4);
+    box-shadow: inset 0 1px 1px 0 var(--color-effect-translucent-dark-moderate);
   }
   &.is-pressed {
     background-color: var(--color-effect-translucent-light-thick);
-    box-shadow: inset 0 1px 1px 0 rgba(0, 0, 0, 0.4);
+    box-shadow: inset 0 1px 1px 0 var(--color-effect-translucent-dark-moderate);
   }
   &.btn--loading {
     background-color: var(--color-effect-translucent-light-thick);
@@ -433,11 +437,11 @@
   }
   &:active {
     background-color: var(--color-background-neutral-light);
-    box-shadow: inset 0 1px 1px 0 rgba(0, 0, 0, 0.4);
+    box-shadow: inset 0 1px 1px 0 var(--color-effect-translucent-dark-moderate);
   }
   &.is-pressed {
     background-color: var(--color-background-neutral-light);
-    box-shadow: inset 0 1px 1px 0 rgba(0, 0, 0, 0.4);
+    box-shadow: inset 0 1px 1px 0 var(--color-effect-translucent-dark-moderate);
   }
   &.btn--loading {
     background-color: var(--color-background-neutral-light);
@@ -456,11 +460,11 @@
   }
   &:active {
     background-color: var(--color-background-neutral-light);
-    box-shadow: inset 0 1px 1px 0 rgba(0, 0, 0, 0.4);
+    box-shadow: inset 0 1px 1px 0 var(--color-effect-translucent-dark-moderate);
   }
   &.is-pressed {
     background-color: var(--color-background-neutral-light);
-    box-shadow: inset 0 1px 1px 0 rgba(0, 0, 0, 0.4);
+    box-shadow: inset 0 1px 1px 0 var(--color-effect-translucent-dark-moderate);
   }
   &.btn--loading {
     background-color: var(--color-background-neutral-light);
@@ -480,7 +484,7 @@
   &:active,
   &.is-pressed {
     background-color: var(--color-effect-translucent-dark-subtle);
-    box-shadow: inset 0 1px 1px 0 rgba(0, 0, 0, 0.4);
+    box-shadow: inset 0 1px 1px 0 var(--color-effect-translucent-dark-moderate);
     -webkit-backdrop-filter: blur(8px);
     backdrop-filter: blur(8px);
   }
@@ -504,7 +508,7 @@
   &:active,
   &.is-pressed {
     background-color: var(--color-effect-translucent-light-subtle);
-    box-shadow: inset 0 1px 1px 0 rgba(0, 0, 0, 0.4);
+    box-shadow: inset 0 1px 1px 0 var(--color-effect-translucent-dark-moderate);
     -webkit-backdrop-filter: blur(8px);
     backdrop-filter: blur(8px);
   }
@@ -529,11 +533,11 @@
   }
   &:active {
     background-color: var(--color-background-interaction-negative-pressed);
-    box-shadow: inset 0 1px 1px 0 rgba(0, 0, 0, 0.4);
+    box-shadow: inset 0 1px 1px 0 var(--color-effect-translucent-dark-moderate);
   }
   &.is-pressed {
     background-color: var(--color-background-interaction-negative-pressed);
-    box-shadow: inset 0 1px 1px 0 rgba(0, 0, 0, 0.4);
+    box-shadow: inset 0 1px 1px 0 var(--color-effect-translucent-dark-moderate);
   }
   &.btn--loading {
     background-color: var(--color-background-interaction-negative-pressed);
@@ -556,7 +560,7 @@
   &.is-pressed {
     background-color: var(--color-effect-translucent-dark-pale);
     border-color: var(--color-border-translucent-dark-subtle);
-    box-shadow: inset 0 1px 1px 0 rgba(0, 0, 0, 0.4);
+    box-shadow: inset 0 1px 1px 0 var(--color-effect-translucent-dark-moderate);
     -webkit-backdrop-filter: blur(8px);
     backdrop-filter: blur(8px);
   }
@@ -582,11 +586,11 @@
   }
   &:active {
     background-color: var(--color-background-interaction-positive-pressed);
-    box-shadow: inset 0 1px 1px 0 rgba(0, 0, 0, 0.4);
+    box-shadow: inset 0 1px 1px 0 var(--color-effect-translucent-dark-moderate);
   }
   &.is-pressed {
     background-color: var(--color-background-interaction-positive-pressed);
-    box-shadow: inset 0 1px 1px 0 rgba(0, 0, 0, 0.4);
+    box-shadow: inset 0 1px 1px 0 var(--color-effect-translucent-dark-moderate);
   }
   &.btn--loading {
     background-color: var(--color-background-interaction-positive-pressed);
@@ -609,7 +613,7 @@
   &.is-pressed {
     background-color: var(--color-effect-translucent-dark-pale);
     border-color: var(--color-border-translucent-dark-subtle);
-    box-shadow: inset 0 1px 1px 0 rgba(0, 0, 0, 0.4);
+    box-shadow: inset 0 1px 1px 0 var(--color-effect-translucent-dark-moderate);
     -webkit-backdrop-filter: blur(8px);
     backdrop-filter: blur(8px);
   }

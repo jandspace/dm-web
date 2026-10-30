@@ -8,7 +8,7 @@
 //                            button.tabs__tab[role=tab][aria-selected]
 //   Navigation (links):      nav.tabs > ul.tabs__list > li > a.tabs__tab[aria-current]
 //
-//     svg.tabs__icon          optional, 16px, takes the text colour (inline <use>)
+//     .icon.tabs__icon        optional, 16px, takes the text colour
 //     span                    label
 //   button.tabs__edge--prev / --next   MD+ with a mouse: chevrons where the row can scroll
 //
@@ -138,6 +138,8 @@
 }
 
 .tabs__icon {
+  --icon-color: currentColor;
+
   flex-shrink: 0;
   width: 16px;
   height: 16px;

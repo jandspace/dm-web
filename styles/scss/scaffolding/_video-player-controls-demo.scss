@@ -41,14 +41,14 @@
   font-weight: 600;
   letter-spacing: 0.04em;
   text-transform: uppercase;
-  color: #505050;
+  color: var(--color-text-neutral-dark);
 
   small {
     margin-left: var(--spacing-8);
     font-weight: 400;
     letter-spacing: 0.03em;
     text-transform: none;
-    color: #999;
+    color: var(--color-text-neutral-grey-dark);
   }
 }
 

@@ -126,8 +126,10 @@
   text-decoration: none;
   cursor: pointer;
 
-  svg,
+  .icon,
   img {
+    --icon-color: currentColor;
+
     position: relative;
     flex-shrink: 0;
     width: 14px;
@@ -237,12 +239,12 @@
 
 // Profile (logged in): filled person icon — neutral/grey-dark; Mail+ subscriber:
 // Mail+ blue (Figma "Topbar - Login items", 1651:55213)
-.masthead-profile svg {
-  color: var(--color-icon-neutral-grey-dark);
+.masthead-profile .icon {
+  --icon-color: var(--color-icon-neutral-grey-dark);
 }
 
-.masthead-profile--mplus svg {
-  color: var(--color-miscellaneous-mailplus-mplus-solid-blue);
+.masthead-profile--mplus .icon {
+  --icon-color: var(--color-miscellaneous-mailplus-mplus-solid-blue);
 }
 
 // Topbar Subscribe (Figma "Topbar - Subscribe Button", Type=DailyMail+ Subs):
@@ -520,7 +522,9 @@
   color: var(--color-text-neutral-darker);
   text-decoration: none;
 
-  svg {
+  .icon {
+    --icon-color: currentColor;
+
     width: 26px;
     height: 14px;
     margin-inline: -6px; // 26px artwork on a 14px icon slot, as in Figma
@@ -545,7 +549,9 @@
     border-radius: var(--border-radius-full);
   }
 
-  svg {
+  .icon {
+    --icon-color: currentColor;
+
     width: 14px;
     height: 14px;
   }
@@ -579,7 +585,9 @@
   color: var(--color-icon-neutral-lightest);
   cursor: pointer;
 
-  svg {
+  .icon {
+    --icon-color: currentColor;
+
     width: 20px;
     height: 20px;
   }
@@ -848,7 +856,9 @@
   white-space: nowrap;
   text-decoration: none;
 
-  svg {
+  .icon {
+    --icon-color: currentColor;
+
     position: relative;
     width: 14px;
     height: 14px;

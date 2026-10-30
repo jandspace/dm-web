@@ -494,7 +494,7 @@ The pressed state provides immediate feedback when a user activates the button. 
 
 Typical visual cues include: Surface opacity change, Subtle tonal shift, Depth or contrast change
 
-*Apply `box-shadow: inset 0 1px 1px 0 rgba(0, 0, 0, .4);`*
+*Apply `box-shadow: inset 0 1px 1px 0 var(--color-effect-translucent-dark-moderate);`*
 
 ### 6-D. Button Tokens by States
 
@@ -504,13 +504,13 @@ Typical visual cues include: Surface opacity change, Subtle tonal shift, Depth o
 |---|---|
 | **Primary Brand (Default)** | **Default** `background-interaction-primary-default` \| `text-neutral-white` |
 | | **Hover** `background-interaction-primary-hover` \| `text-neutral-white` |
-| | **Pressed** `background-interaction-primary-pressed` \| `text-neutral-white` ✢ `box-shadow: inset 0 1px 1px 0 rgba(0, 0, 0, .4);` |
+| | **Pressed** `background-interaction-primary-pressed` \| `text-neutral-white` ✢ `box-shadow: inset 0 1px 1px 0 var(--color-effect-translucent-dark-moderate);` |
 | **Primary Neutral** | **Default** `background-neutral-darker` \| `text-neutral-lightest` |
 | | **Hover** `background-neutral-dark` \| `text-neutral-lightest` |
-| | **Pressed** `background-neutral-grey-dark` \| `text-neutral-lightest` ✢ `box-shadow: inset 0 1px 1px 0 rgba(0, 0, 0, .4);` |
+| | **Pressed** `background-neutral-grey-dark` \| `text-neutral-lightest` ✢ `box-shadow: inset 0 1px 1px 0 var(--color-effect-translucent-dark-moderate);` |
 | **Primary Neutral Inverse** | **Default** `background-neutral-light` \| `text-neutral-darker` |
 | | **Hover** `background-neutral-white` \| `text-neutral-darker` |
-| | **Pressed** `background-neutral-lighter` \| `text-neutral-darker` ✢ `box-shadow: inset 0 1px 1px 0 rgba(0, 0, 0, .4);` |
+| | **Pressed** `background-neutral-lighter` \| `text-neutral-darker` ✢ `box-shadow: inset 0 1px 1px 0 var(--color-effect-translucent-dark-moderate);` |
 
 #### Secondary Button Tokens
 
@@ -518,19 +518,19 @@ Typical visual cues include: Surface opacity change, Subtle tonal shift, Depth o
 |---|---|
 | **Secondary Brand (Default)** | **Default** `effect-translucent-dark-clear` \| `border-neutral-grey-light` \| `text-interaction-primary-default` |
 | | **Hover** `effect-translucent-dark-pale` \| `border-neutral-grey-light` \| `text-interaction-primary-default` |
-| | **Pressed** `effect-translucent-dark-pale` \| `border-neutral-grey-light` \| `text-interaction-primary-default` ✢ `box-shadow: inset 0 1px 1px 0 rgba(0, 0, 0, .4);` |
+| | **Pressed** `effect-translucent-dark-pale` \| `border-neutral-grey-light` \| `text-interaction-primary-default` ✢ `box-shadow: inset 0 1px 1px 0 var(--color-effect-translucent-dark-moderate);` |
 | **Secondary Visible** | **Default** `effect-translucent-dark-clear` \| `border-translucent-dark-subtle` \| `text-interaction-primary-default` |
 | | **Hover** `effect-translucent-dark-pale` \| `border-translucent-dark-subtle` \| `text-interaction-primary-default` |
-| | **Pressed** `effect-translucent-dark-pale` \| `border-translucent-dark-subtle` \| `text-interaction-primary-default` ✢ `box-shadow: inset 0 1px 1px 0 rgba(0, 0, 0, .4);` |
+| | **Pressed** `effect-translucent-dark-pale` \| `border-translucent-dark-subtle` \| `text-interaction-primary-default` ✢ `box-shadow: inset 0 1px 1px 0 var(--color-effect-translucent-dark-moderate);` |
 | **Secondary Neutral** | **Default** `effect-translucent-dark-clear` \| `border-neutral-grey-light` \| `text-neutral-darker` |
 | | **Hover** `effect-translucent-dark-pale` \| `border-neutral-grey-light` \| `text-neutral-darker` |
-| | **Pressed** `effect-translucent-dark-pale` \| `border-neutral-grey-light` \| `text-neutral-darker` ✢ `box-shadow: inset 0 1px 1px 0 rgba(0, 0, 0, .4);` |
+| | **Pressed** `effect-translucent-dark-pale` \| `border-neutral-grey-light` \| `text-neutral-darker` ✢ `box-shadow: inset 0 1px 1px 0 var(--color-effect-translucent-dark-moderate);` |
 | **Secondary Light Surface** | **Default** `effect-translucent-dark-clear` \| `border-translucent-dark-subtle` \| `text-neutral-darker` |
 | | **Hover** `effect-translucent-dark-pale` \| `border-translucent-dark-subtle` \| `text-neutral-darker` |
-| | **Pressed** `effect-translucent-dark-pale` \| `border-translucent-dark-subtle` \| `text-neutral-darker` ✢ `box-shadow: inset 0 1px 1px 0 rgba(0, 0, 0, .4);` |
+| | **Pressed** `effect-translucent-dark-pale` \| `border-translucent-dark-subtle` \| `text-neutral-darker` ✢ `box-shadow: inset 0 1px 1px 0 var(--color-effect-translucent-dark-moderate);` |
 | **Secondary Dark Surface** | **Default** `effect-translucent-light-clear` \| `border-translucent-light-moderate` \| `text-neutral-lightest` |
 | | **Hover** `effect-translucent-light-pale` \| `border-translucent-light-moderate` \| `text-neutral-lightest` |
-| | **Pressed** `effect-translucent-light-pale` \| `border-translucent-light-moderate` \| `text-neutral-lightest` ✢ `box-shadow: inset 0 1px 1px 0 rgba(0, 0, 0, .4);` |
+| | **Pressed** `effect-translucent-light-pale` \| `border-translucent-light-moderate` \| `text-neutral-lightest` ✢ `box-shadow: inset 0 1px 1px 0 var(--color-effect-translucent-dark-moderate);` |
 
 #### Tertiary Button Tokens
 
@@ -538,19 +538,19 @@ Typical visual cues include: Surface opacity change, Subtle tonal shift, Depth o
 |---|---|
 | **Tertiary Brand (Default)** | **Default** `background-neutral-lighter` \| `text-interaction-primary-default` |
 | | **Hover** `background-neutral-light` \| `text-interaction-primary-default` |
-| | **Pressed** `background-neutral-light` \| `text-interaction-primary-default` ✢ `box-shadow: inset 0 1px 1px 0 rgba(0, 0, 0, .4);` |
+| | **Pressed** `background-neutral-light` \| `text-interaction-primary-default` ✢ `box-shadow: inset 0 1px 1px 0 var(--color-effect-translucent-dark-moderate);` |
 | **Tertiary Visible** | **Default** `effect-translucent-dark-pale` \| `text-interaction-primary-default` |
 | | **Hover** `effect-translucent-dark-subtle` \| `text-interaction-primary-default` |
-| | **Pressed** `effect-translucent-dark-pale` \| `text-interaction-primary-default` ✢ `box-shadow: inset 0 1px 1px 0 rgba(0, 0, 0, .4);` |
+| | **Pressed** `effect-translucent-dark-pale` \| `text-interaction-primary-default` ✢ `box-shadow: inset 0 1px 1px 0 var(--color-effect-translucent-dark-moderate);` |
 | **Tertiary Neutral** | **Default** `background-neutral-lighter` \| `text-neutral-darker` |
 | | **Hover** `background-neutral-light` \| `text-neutral-darker` |
-| | **Pressed** `background-neutral-light` \| `text-neutral-darker` ✢ `box-shadow: inset 0 1px 1px 0 rgba(0, 0, 0, .4);` |
+| | **Pressed** `background-neutral-light` \| `text-neutral-darker` ✢ `box-shadow: inset 0 1px 1px 0 var(--color-effect-translucent-dark-moderate);` |
 | **Tertiary Light Surface** | **Default** `effect-translucent-dark-moderate` \| `text-neutral-lightest` |
 | | **Hover** `effect-translucent-dark-deep` \| `text-neutral-lightest` |
-| | **Pressed** `effect-translucent-dark-deep` \| `text-neutral-lightest` ✢ `box-shadow: inset 0 1px 1px 0 rgba(0, 0, 0, .4);` |
+| | **Pressed** `effect-translucent-dark-deep` \| `text-neutral-lightest` ✢ `box-shadow: inset 0 1px 1px 0 var(--color-effect-translucent-dark-moderate);` |
 | **Tertiary Dark Surface** | **Default** `effect-translucent-light-deep` \| `text-neutral-darker` |
 | | **Hover** `effect-translucent-light-thick` \| `text-neutral-darker` |
-| | **Pressed** `effect-translucent-light-thick` \| `text-neutral-darker` ✢ `box-shadow: inset 0 1px 1px 0 rgba(0, 0, 0, .4);` |
+| | **Pressed** `effect-translucent-light-thick` \| `text-neutral-darker` ✢ `box-shadow: inset 0 1px 1px 0 var(--color-effect-translucent-dark-moderate);` |
 
 #### Quaternary Button Tokens
 
@@ -558,16 +558,16 @@ Typical visual cues include: Surface opacity change, Subtle tonal shift, Depth o
 |---|---|
 | **Quaternary Brand (Default)** | **Default** `effect-translucent-dark-clear` \| `text-interaction-primary-default` |
 | | **Hover** `background-neutral-light` \| `text-interaction-primary-default` |
-| | **Pressed** `background-neutral-light` \| `text-interaction-primary-default` ✢ `box-shadow: inset 0 1px 1px 0 rgba(0, 0, 0, .4);` |
+| | **Pressed** `background-neutral-light` \| `text-interaction-primary-default` ✢ `box-shadow: inset 0 1px 1px 0 var(--color-effect-translucent-dark-moderate);` |
 | **Quaternary Neutral** | **Default** `effect-translucent-dark-clear` \| `text-neutral-darker` |
 | | **Hover** `background-neutral-light` \| `text-neutral-darker` |
-| | **Pressed** `background-neutral-light` \| `text-neutral-darker` ✢ `box-shadow: inset 0 1px 1px 0 rgba(0, 0, 0, .4);` |
+| | **Pressed** `background-neutral-light` \| `text-neutral-darker` ✢ `box-shadow: inset 0 1px 1px 0 var(--color-effect-translucent-dark-moderate);` |
 | **Quaternary Light Surface** | **Default** `effect-translucent-dark-clear` \| `text-neutral-darker` |
 | | **Hover** `effect-translucent-dark-subtle` \| `text-neutral-darker` |
-| | **Pressed** `effect-translucent-dark-subtle` \| `text-neutral-darker` ✢ `box-shadow: inset 0 1px 1px 0 rgba(0, 0, 0, .4);` |
+| | **Pressed** `effect-translucent-dark-subtle` \| `text-neutral-darker` ✢ `box-shadow: inset 0 1px 1px 0 var(--color-effect-translucent-dark-moderate);` |
 | **Quaternary Dark Surface** | **Default** `effect-translucent-light-clear` \| `text-neutral-lightest` |
 | | **Hover** `effect-translucent-light-subtle` \| `text-neutral-lightest` |
-| | **Pressed** `effect-translucent-light-subtle` \| `text-neutral-lightest` ✢ `box-shadow: inset 0 1px 1px 0 rgba(0, 0, 0, .4);` |
+| | **Pressed** `effect-translucent-light-subtle` \| `text-neutral-lightest` ✢ `box-shadow: inset 0 1px 1px 0 var(--color-effect-translucent-dark-moderate);` |
 
 #### Negative & Positive Button Tokens
 
@@ -575,16 +575,16 @@ Typical visual cues include: Surface opacity change, Subtle tonal shift, Depth o
 |---|---|
 | **Negative Solid** | **Default** `background-interaction-negative-default` \| `text-neutral-white` |
 | | **Hover** `background-interaction-negative-hover` \| `text-neutral-white` |
-| | **Pressed** `background-interaction-negative-pressed` \| `text-neutral-white` ✢ `box-shadow: inset 0 1px 1px 0 rgba(0, 0, 0, .4);` |
+| | **Pressed** `background-interaction-negative-pressed` \| `text-neutral-white` ✢ `box-shadow: inset 0 1px 1px 0 var(--color-effect-translucent-dark-moderate);` |
 | **Negative Outline** | **Default** `effect-translucent-dark-clear` \| `border-neutral-grey-light` \| `text-interaction-negative-default` |
 | | **Hover** `effect-translucent-dark-pale` \| `border-translucent-dark-subtle` \| `text-interaction-negative-default` |
-| | **Pressed** `effect-translucent-dark-pale` \| `border-translucent-dark-subtle` \| `text-interaction-negative-default` ✢ `box-shadow: inset 0 1px 1px 0 rgba(0, 0, 0, .4);` |
+| | **Pressed** `effect-translucent-dark-pale` \| `border-translucent-dark-subtle` \| `text-interaction-negative-default` ✢ `box-shadow: inset 0 1px 1px 0 var(--color-effect-translucent-dark-moderate);` |
 | **Positive Solid** | **Default** `background-interaction-positive-default` \| `text-neutral-white` |
 | | **Hover** `background-interaction-positive-hover` \| `text-neutral-white` |
-| | **Pressed** `background-interaction-positive-pressed` \| `text-neutral-white` ✢ `box-shadow: inset 0 1px 1px 0 rgba(0, 0, 0, .4);` |
+| | **Pressed** `background-interaction-positive-pressed` \| `text-neutral-white` ✢ `box-shadow: inset 0 1px 1px 0 var(--color-effect-translucent-dark-moderate);` |
 | **Positive Outline** | **Default** `effect-translucent-dark-clear` \| `border-neutral-grey-light` \| `text-interaction-positive-default` |
 | | **Hover** `effect-translucent-dark-pale` \| `border-translucent-dark-subtle` \| `text-interaction-positive-default` |
-| | **Pressed** `effect-translucent-dark-pale` \| `border-translucent-dark-subtle` \| `text-interaction-positive-default` ✢ `box-shadow: inset 0 1px 1px 0 rgba(0, 0, 0, .4);` |
+| | **Pressed** `effect-translucent-dark-pale` \| `border-translucent-dark-subtle` \| `text-interaction-positive-default` ✢ `box-shadow: inset 0 1px 1px 0 var(--color-effect-translucent-dark-moderate);` |
 
 ///// IMAGE /////
 

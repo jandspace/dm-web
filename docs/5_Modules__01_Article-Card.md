@@ -178,7 +178,7 @@ The disc behind the columnist photo is **editor-controlled per channel**, from t
 - **Grid stacking, not `position: absolute`,** for layers inside the media (Image Only image, scrim, overlay, badge). An absolutely positioned ancestor would trap the stretched link inside it.
 - **Line-clamped blocks space with `margin`, not `padding`.** Overflow clips at the padding edge, so bottom padding lets the next line show through.
 - **Truncating links** keep the ellipsis on an inner span (`__channel-text`, `__affiliate-text`) so the hover line on the link is not clipped.
-- **Icons:** Figma originals are stored in `assets/icons/`; pages use an inline SVG sprite (`<symbol>` with `fill="currentColor"`) so colour comes from tokens.
+- **Icons:** Figma originals are stored in `assets/icons/`; single-colour icons use `.icon` (the file as a CSS mask, coloured by a `color/icon/*` token — Foundation › Iconography).
 
 ---
 

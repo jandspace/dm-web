@@ -31,7 +31,7 @@ Figma: Web UI Kit › Dropdowns (`175:5715`) — Dropdown Box, Dropdown Title, D
 | **Focus** | 2px `border/home-blue/base` outline, inside the item | `:focus-visible` |
 
 - Focus is not in Figma. The outline sits inside the item (`outline-offset: -2px`) because the scrolling list would clip a ring outside it.
-- The tick is the only coloured icon, so it is inlined as an SVG `<symbol>` with `currentColor` (copied from `assets/icons/ico-tick.svg`). Item and title icons load from `assets/icons/` as `<img>`.
+- Icons are `.icon` (Foundation › Iconography): the tick in `icon/home-blue/base` (`--icon-color`), item and title icons in the default black. A channel colour icon stays `<img>`.
 
 ---
 
@@ -53,7 +53,7 @@ Figma: Web UI Kit › Dropdowns (`175:5715`) — Dropdown Box, Dropdown Title, D
 ```html
 <div class="dropdown-menu">
   <div class="dropdown-menu__title">
-    <img src="…/ico-gear.svg" alt="" />
+    <span class="icon icon--32 icon--gear" aria-hidden="true"></span>
     <p class="dropdown-menu__heading">
       Dropdown Title
       <span class="dropdown-menu__description">Description</span>
@@ -63,9 +63,9 @@ Figma: Web UI Kit › Dropdowns (`175:5715`) — Dropdown Box, Dropdown Title, D
     <li class="dropdown-menu__group" role="presentation">First Menus</li>
     <li role="none">
       <button class="dropdown-menu__item" type="button" role="option" aria-selected="true">
-        <img src="…/ico-compass.svg" alt="" />
+        <span class="icon icon--compass" aria-hidden="true"></span>
         <span class="dropdown-menu__label">Menu Label</span>
-        <svg class="dropdown-menu__tick" aria-hidden="true"><use href="#ico-tick" /></svg>
+        <span class="icon icon--tick dropdown-menu__tick" aria-hidden="true"></span>
       </button>
     </li>
     <li class="dropdown-menu__separator" role="separator"></li>

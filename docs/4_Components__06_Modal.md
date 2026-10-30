@@ -71,7 +71,7 @@ These follow common practice — iOS sheets (medium detent ≈ half the screen) 
     <div class="modal__header">
       <h2 class="modal__title h4" id="my-modal-title">Modal Content Title</h2>
       <button class="modal__close btn btn-tertiary-dark btn--icon-only" type="button" aria-label="Close">
-        <img src="…/ico-xmark-light.svg" alt="" />
+        <span class="icon icon--xmark-light" aria-hidden="true"></span>
       </button>
     </div>
     <div class="modal__body">…</div>

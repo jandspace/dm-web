@@ -76,24 +76,24 @@ The page picker shows ‹ and › by the same rule, never « ».
 ```html
 <nav class="pagination" aria-label="Pagination">
   <ul class="pagination__pages">
-    <li><a class="pagination__item pagination__item--arrow" href="?page=1" aria-label="First page"><img src="…/ico-chevron-double-left.svg" alt="" /></a></li>
-    <li><a class="pagination__item pagination__item--arrow" href="?page=4" aria-label="Previous page"><img src="…/ico-chevron-left.svg" alt="" /></a></li>
+    <li><a class="pagination__item pagination__item--arrow" href="?page=1" aria-label="First page"><span class="icon icon--chevron-double-left" aria-hidden="true"></span></a></li>
+    <li><a class="pagination__item pagination__item--arrow" href="?page=4" aria-label="Previous page"><span class="icon icon--chevron-left" aria-hidden="true"></span></a></li>
     <li><a class="pagination__item" href="?page=1">1</a></li>
-    <li><span class="pagination__ellipsis"><img src="…/ico-dots-horizontal.svg" alt="" /></span></li>
+    <li><span class="pagination__ellipsis"><span class="icon icon--dots-horizontal" aria-hidden="true"></span></span></li>
     <li><a class="pagination__item" href="?page=4">4</a></li>
     <li><a class="pagination__item" href="?page=5" aria-current="page">5</a></li>
     …
   </ul>
   <div class="pagination__compact">
-    <a class="pagination__item pagination__item--arrow" href="?page=4" aria-label="Previous page"><img src="…/ico-chevron-left.svg" alt="" /></a>
+    <a class="pagination__item pagination__item--arrow" href="?page=4" aria-label="Previous page"><span class="icon icon--chevron-left" aria-hidden="true"></span></a>
     <div class="pagination__picker">
       <label class="pagination__select">
         <select aria-label="Page">…</select>
-        <img src="…/ico-chevron-down.svg" alt="" />
+        <span class="icon icon--chevron-down" aria-hidden="true"></span>
       </label>
       <span class="pagination__total">of <span>999</span></span>
     </div>
-    <a class="pagination__item pagination__item--arrow" href="?page=6" aria-label="Next page"><img src="…/ico-chevron-right.svg" alt="" /></a>
+    <a class="pagination__item pagination__item--arrow" href="?page=6" aria-label="Next page"><span class="icon icon--chevron-right" aria-hidden="true"></span></a>
   </div>
 </nav>
 ```

@@ -72,7 +72,7 @@ One size only — it is a block, not an inline indicator.
 </div>
 
 <!-- Action -->
-<svg class="loading-ring" viewBox="0 0 32 32" aria-hidden="true"><use href="#ico-loading" /></svg>
+<span class="icon icon--loading loading-ring" aria-hidden="true"></span>
 ```
 
 ```scss

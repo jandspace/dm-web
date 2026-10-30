@@ -21,7 +21,8 @@
   }
 }
 
-// Three-Quarters Circle on any element showing ico-loading (fill: currentColor).
+// Three-Quarters Circle on any element showing ico-loading (.icon.icon--loading
+// or an inline svg with fill: currentColor).
 // The caller sets the size — Button: 16 / 20 / 24 / 28 / 32 for XS–XL.
 @mixin ring {
   opacity: 0.4;
@@ -35,6 +36,8 @@
 // ── Loading on action — Three-Quarters Circle ─────────────────────────────────
 
 .loading-ring {
+  --icon-color: currentColor;
+
   @include ring;
   display: inline-block;
   flex-shrink: 0;

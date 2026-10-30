@@ -64,7 +64,7 @@
   background-color: var(--color-background-neutral-lightest);
   color: var(--color-text-neutral-darker);
 
-  > span {
+  > span:not(.icon) {
     font-family: monospace;
     font-size: 12px;
     color: var(--color-text-neutral-grey-dark);

@@ -18,7 +18,7 @@ META = ('<div class="article-card__metadata article-card-metadata">'
         '<a class="article-card-metadata__channel" href="#channel"><span class="article-card-metadata__channel-text">Channel</span></a>'
         '</div>'
         '<a class="article-card-metadata__comments" href="#comments" aria-label="9.9k comments">'
-        '<svg class="article-card-metadata__comments-icon" aria-hidden="true"><use href="#ico-speechbubble-ellipsis" /></svg>'
+        '<span class="icon icon--speechbubble-ellipsis article-card-metadata__comments-icon" aria-hidden="true"></span>'
         '<span class="article-card-metadata__comments-count">9.9k</span></a>'
         '</div>')
 
@@ -55,7 +55,7 @@ def image_only(scale, level, span=""):
         f'            <h{level} class="h{level} article-headline"><a class="article-card__link" href="#article">{IMAGE_ONLY_HEADLINE}</a></h{level}>',
         '            <span class="btn btn-quaternary-dark btn--xs article-card__read-more" aria-hidden="true"',
         '              ><span class="btn__content"><span class="btn__label">Read more</span',
-        '                ><svg width="1em" height="1em"><use href="#ico-arrow-right-light" /></svg></span',
+        '                ><span class="icon icon--arrow-right-light" aria-hidden="true"></span></span',
         '            ></span>',
         '          </div>',
         '        </div>',

@@ -50,7 +50,7 @@
   font-weight: 600;
   letter-spacing: 0.06em;
   text-transform: uppercase;
-  color: #666;
+  color: var(--color-text-neutral-grey-dark);
   padding: 0 var(--spacing-20) var(--spacing-16);
 
   &:first-child {
@@ -63,7 +63,7 @@
     font-weight: 400;
     letter-spacing: 0.03em;
     text-transform: none;
-    color: #999;
+    color: var(--color-text-neutral-grey-dark);
     margin-top: 3px;
   }
 }
@@ -81,7 +81,7 @@
   font-weight: 600;
   letter-spacing: 0.04em;
   text-transform: uppercase;
-  color: #505050;
+  color: var(--color-text-neutral-dark);
   display: flex;
   align-items: center;
   padding: var(--spacing-20) var(--spacing-16) var(--spacing-20) 0;
@@ -112,19 +112,19 @@
 // ── Row backgrounds ───────────────────────────────────────────────────────────
 
 .demo-row-label.demo-row--dark {
-  color: #ccc;
-  border-color: #2a2a2a;
+  color: var(--color-text-neutral-grey-light);
+  border-color: var(--color-border-neutral-dark);
   background: var(--color-background-neutral-darker);
 }
 
 .demo-cell.demo-row--dark,
 .demo-row--dark .demo-cell {
   background: var(--color-background-neutral-darker);
-  border-color: #2a2a2a;
+  border-color: var(--color-border-neutral-dark);
 }
 
 .demo-row--dark .demo-row-label {
-  border-color: #2a2a2a;
+  border-color: var(--color-border-neutral-dark);
 }
 
 .demo-row-label.demo-row--visible,
@@ -156,5 +156,5 @@
   font-weight: 700;
   letter-spacing: 0.12em;
   text-transform: uppercase;
-  color: #bbb;
+  color: var(--color-text-neutral-grey-light);
 }

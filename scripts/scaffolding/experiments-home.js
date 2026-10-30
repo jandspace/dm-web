@@ -3,6 +3,8 @@
 //   <script src="../../scripts/scaffolding/experiments-home.js" defer></script>
 // It adds a round button bottom-left (ico-bulb-on); on hover it widens to show
 // "Experiments"; it links to the experiments index (experiments/).
+// It also adds the copyright / contact footer at the bottom of the page
+// (same line as the library pages, scripts/scaffolding/demo-nav.js).
 //
 // Self-contained: some experiment pages don't load main.css, so the script
 // brings the colour tokens and its own few rules (all prefixed .exp-home).
@@ -55,6 +57,15 @@
     .exp-home:hover span, .exp-home:focus-visible span { max-width: 120px; opacity: 1; }
     .exp-home:focus-visible { outline: 2px solid var(--color-border-home-blue-base); outline-offset: 2px; }
     @media (prefers-reduced-motion: reduce) { .exp-home, .exp-home span { transition: none; } }
+    .exp-footer {
+      max-width: 1024px;
+      margin: 64px auto 0;
+      padding: 16px 16px 32px;
+      font: 400 12px/1.2 Inter, system-ui, sans-serif;
+      text-align: center;
+      color: var(--color-text-neutral-grey-dark);
+    }
+    .exp-footer a { color: inherit; }
   `;
   document.head.append(style);
 
@@ -64,4 +75,9 @@
   link.setAttribute('aria-label', 'Experiments');
   link.innerHTML = `<img src="${new URL('assets/icons/ico-bulb-on.svg', root).href}" alt="" /><span>Experiments</span>`;
   document.body.append(link);
+
+  const footer = document.createElement('footer');
+  footer.className = 'exp-footer';
+  footer.innerHTML = `© ${new Date().getFullYear()} Joungmin Shin · Contact: <a href="mailto:joungmin.shin@dmgmedia.co.uk">joungmin.shin@dmgmedia.co.uk</a>`;
+  document.body.append(footer);
 })();

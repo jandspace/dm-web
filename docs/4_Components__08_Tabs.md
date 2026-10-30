@@ -26,7 +26,7 @@ The row has no fill of its own — it takes the surface it sits on.
 
 **Fill** (`.tabs--fill`, both looks): with only 2–3 tabs, they can share the full width equally. Don't use it with more — the labels get squeezed and the row can't scroll.
 
-**Icons** take the text colour (grey → darker, white on a selected button), so they are inlined: `<svg class="tabs__icon"><use href="#ico-…" /></svg>` with the `<symbol>` copied from `assets/icons/`.
+**Icons** take the text colour (grey → darker, white on a selected button), so they use `.icon` with `--icon-color: currentColor`: `<span class="icon icon--ch-news tabs__icon" aria-hidden="true"></span>`.
 
 ---
 

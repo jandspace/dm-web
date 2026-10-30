@@ -260,7 +260,9 @@
   text-decoration: none;
   transition: background-color 0.15s;
 
-  svg {
+  .icon {
+    --icon-color: currentColor;
+
     flex-shrink: 0;
     width: 14px;
     height: 14px;
@@ -308,7 +310,7 @@
   gap: var(--spacing-10);
   padding-left: var(--spacing-16);
 
-  svg {
+  .icon {
     width: 26px;
     margin-left: -6px;
   }
@@ -336,7 +338,9 @@
   cursor: pointer;
   transition: background-color 0.15s;
 
-  svg {
+  .icon {
+    --icon-color: currentColor;
+
     width: 14px;
     height: 14px;
   }
@@ -370,7 +374,9 @@
     height: 18px;
   }
 
-  svg {
+  .icon {
+    --icon-color: currentColor;
+
     width: 8px;
     height: 8px;
   }

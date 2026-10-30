@@ -36,7 +36,9 @@
   border: 0;
   cursor: pointer;
 
-  svg {
+  .icon {
+    --icon-color: currentColor;
+
     width: 14px;
     height: 14px;
   }

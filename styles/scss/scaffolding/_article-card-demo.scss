@@ -45,7 +45,7 @@ $demo-card-gap: 24px;
 .demo-vp-status {
   font-family: monospace;
   font-size: 11px;
-  color: #999;
+  color: var(--color-text-neutral-grey-dark);
 }
 
 .demo-vp-stage {
@@ -103,7 +103,7 @@ $demo-card-gap: 24px;
   margin-bottom: var(--spacing-48);
   font-size: 13px;
   line-height: 1.5;
-  color: #666;
+  color: var(--color-text-neutral-grey-dark);
 }
 
 // ── Section header ────────────────────────────────────────────────────────────
@@ -121,14 +121,14 @@ $demo-card-gap: 24px;
   font-weight: 700;
   letter-spacing: 0.12em;
   text-transform: uppercase;
-  color: #999;
+  color: var(--color-text-neutral-grey-dark);
 }
 
 .demo-card-section__note {
   margin-top: var(--spacing-4);
   font-size: 12px;
   line-height: 1.5;
-  color: #777;
+  color: var(--color-text-neutral-grey-dark);
 }
 
 // ── Column grid ───────────────────────────────────────────────────────────────
@@ -168,10 +168,10 @@ $demo-card-gap: 24px;
 
 .demo-slot {
   padding-inline: var(--spacing-6);
-  outline: 1px dashed #c4c4c4;
+  outline: 1px dashed var(--color-border-neutral-grey-light);
   outline-offset: -1px;
   border-radius: var(--border-radius-2);
-  color: #999;
+  color: var(--color-text-neutral-grey-dark);
 }
 
 // ── Active breakpoint indicator ───────────────────────────────────────────────
@@ -183,8 +183,8 @@ $demo-card-gap: 24px;
   z-index: 9999;
   padding: var(--spacing-4) var(--spacing-8);
   border-radius: var(--border-radius-4);
-  background: #1a1a1a;
-  color: #fff;
+  background: var(--color-background-neutral-darker);
+  color: var(--color-text-neutral-white);
   font-family: monospace;
   font-size: 11px;
 
@@ -241,7 +241,7 @@ $demo-card-gap: 24px;
   gap: var(--spacing-8);
   margin-bottom: var(--spacing-32);
   font-size: 12px;
-  color: #666;
+  color: var(--color-text-neutral-grey-dark);
 }
 
 // Two rows: Viewport (+ status) on top, the content filters in one line below.
@@ -328,13 +328,13 @@ body:not(.demo-frame) .demo-container-start {
     background: transparent;
     font: inherit;
     font-weight: 600;
-    color: #666;
+    color: var(--color-text-neutral-grey-dark);
     cursor: pointer;
 
     &[aria-pressed='true'] {
       background-color: var(--color-background-neutral-lightest);
       color: var(--color-text-neutral-darker);
-      box-shadow: 0 1px 2px rgba(0, 0, 0, 0.12);
+      box-shadow: var(--elevation-1);
     }
   }
 }
@@ -354,7 +354,7 @@ body:not(.demo-frame) .demo-container-start {
   font-weight: 600;
   letter-spacing: 0.06em;
   text-transform: uppercase;
-  color: #666;
+  color: var(--color-text-neutral-grey-dark);
 
   small {
     display: block;
@@ -363,7 +363,7 @@ body:not(.demo-frame) .demo-container-start {
     font-weight: 400;
     letter-spacing: 0.03em;
     text-transform: none;
-    color: #999;
+    color: var(--color-text-neutral-grey-dark);
   }
 }
 
@@ -372,7 +372,7 @@ body:not(.demo-frame) .demo-container-start {
   font-weight: 600;
   letter-spacing: 0.04em;
   text-transform: uppercase;
-  color: #505050;
+  color: var(--color-text-neutral-dark);
 }
 
 // Sticky label column — stays put while the sheet scrolls horizontally (100%).
@@ -412,5 +412,5 @@ body:not(.demo-frame) .demo-container-start {
 .demo-vp-size {
   font-family: monospace;
   font-size: 10px;
-  color: #999;
+  color: var(--color-text-neutral-grey-dark);
 }

@@ -12,7 +12,7 @@ Figma: Web UI Kit › Toast (`3265:1886`) — Breakpoint SM-XS / MD, Context Suc
 |---|---|---|
 | **Region** | `section.toast-region[popover="manual"]` | One per page, straight in `<body>`. Top centre, 16px from the edge; `--bottom` for bottom centre. `calc(100% − 32px)` wide, **738px max** |
 | **Toast** | `.toast.toast--{context}[data-theme="light"]` | 12px corners, **Elevation 4**. Padding 12 · 32 right (room for close) · 12 · 16; 12px between icon and body |
-| **Icon** *(optional)* | `.toast__icon > svg` | 48px circle in the context's deep colour, 22px icon in `icon/neutral/lightest` (inlined `<use>`). Sits at the top of the row: beside a one-line text it reads as centred; with longer text it stays at the top |
+| **Icon** *(optional)* | `.toast__icon > .icon` | 48px circle in the context's deep colour, 22px icon in `icon/neutral/lightest` (`--icon-color`). Sits at the top of the row: beside a one-line text it reads as centred; with longer text it stays at the top |
 | **Title** *(optional)* | `p.toast__title` | H5 size, Semibold, line height compact; one line, ellipsis |
 | **Description** *(optional)* | `p.toast__description` | text-sm Regular, line height normal |
 | **Buttons** *(optional)* | `.toast__actions` | Button SM: Quaternary Neutral, then the primary — Neutral Inverse (white), or Brand on a Neutral toast. 8px apart |
@@ -63,7 +63,7 @@ The page script sets `--toast-index`, `--toast-offset` (the spread-out position)
 ```html
 <section class="toast-region" id="toast-region" popover="manual" aria-label="Notifications" aria-live="polite">
   <div class="toast toast--success" data-theme="light" role="status">
-    <span class="toast__icon"><svg aria-hidden="true"><use href="#ico-tick" /></svg></span>
+    <span class="toast__icon"><span class="icon icon--tick" aria-hidden="true"></span></span>
     <div class="toast__body">
       <div class="toast__text">
         <p class="toast__title">Article saved</p>
@@ -71,7 +71,7 @@ The page script sets `--toast-index`, `--toast-offset` (the spread-out position)
       </div>
     </div>
     <button class="toast__close btn btn-quaternary-neutral btn--icon-only" type="button" aria-label="Dismiss">
-      <img src="…/ico-xmark-light.svg" alt="" />
+      <span class="icon icon--xmark-light" aria-hidden="true"></span>
     </button>
   </div>
 </section>

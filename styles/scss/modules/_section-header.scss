@@ -94,8 +94,10 @@
   align-items: center;
   height: calc(var(--typography-line-height-narrow) * 1em);
 
-  svg,
+  .icon,
   img {
+    --icon-color: currentColor;
+
     display: block;
     width: 20px;
     height: 20px;
@@ -123,7 +125,9 @@
     transition: none;
   }
 
-  svg {
+  .icon {
+    --icon-color: currentColor;
+
     width: 16px;
     height: 16px;
   }
@@ -163,7 +167,9 @@ a.section-header__link:focus-visible {
   white-space: nowrap;
   text-decoration: none;
 
-  svg {
+  .icon {
+    --icon-color: currentColor;
+
     width: 14px;
     height: 14px;
   }
@@ -224,7 +230,7 @@ a.section-header__link:focus-visible {
   }
 
   .section-header__icon {
-    svg,
+    .icon,
     img {
       width: 18px;
       height: 18px;
@@ -237,7 +243,7 @@ a.section-header__link:focus-visible {
     height: 30px;
     margin-block: -5px; // 20px in the flow: stays inside the 21.6px line
 
-    svg {
+    .icon {
       width: 14px;
       height: 14px;
     }

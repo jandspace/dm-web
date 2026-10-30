@@ -17,7 +17,9 @@
     <p class="demo-page-intro">
       Every icon in the DM icon library, loaded from <code>assets/icons/</code> — SVG files exported from the Figma
       library (DailyMail Icons › Icon, 24:2253) with visible layers only, grouped as in Figma. Click an icon to copy its
-      path.
+      classes (or its path).
+      Single-colour icons are drawn with <code>.icon</code> (the file as a mask, coloured by a token), so they follow the
+      Colour switch and dark mode; channel colour icons and flags stay <code>&lt;img&gt;</code>.
     </p>
 
     <main class="demo-icon">
@@ -25,7 +27,9 @@
       <ul class="demo-icon__rules">
         <li><strong>Web uses SVG only</strong> — no icon fonts, no PNG. Load the file from <code>assets/icons/</code>; never redraw an icon or re-export it into a page.</li>
         <li><strong>One grid:</strong> every icon is drawn on 32 × 32 and scales down (24, 20, 16). Keep it square.</li>
-        <li><strong>Colour:</strong> icons are single colour (black). When an icon must follow a colour or a state (hover, theme), inline its path as an SVG <code>&lt;symbol&gt;</code> with <code>fill="currentColor"</code> and set the colour with a <code>color/icon/*</code> token. <code>-color</code> channel icons and flags keep their own colours.</li>
+        <li><strong>Colour:</strong> single-colour icons use <code>&lt;span class="icon icon--{name}" aria-hidden="true"&gt;</code> — the file is a CSS mask, the colour a <code>color/icon/*</code> token (default <code>icon/neutral/black</code>; set <code>--icon-color</code> on the icon or a parent, e.g. for hover). Dark mode flips the token by itself. <code>-color</code> channel icons and flags keep their own colours: <code>&lt;img&gt;</code>.</li>
+        <li><strong>Size:</strong> 24 by default, <code>.icon--16</code>, <code>.icon--20</code>, <code>.icon--32</code>.</li>
+        <li><strong>New icon:</strong> add the Figma file to <code>assets/icons/</code>, run <code>python3 tools/icon-build/build_icon_list.py &gt; styles/scss/foundation/_icon-list.scss</code>, then <code>npm run build</code>.</li>
         <li><strong>Names:</strong> <code>ico-{name}</code> plus a style suffix — <code>-outline</code>, <code>-circle</code>, <code>-square</code>, <code>-color</code>. Channels are <code>ico-ch-*</code>, social <code>ico-sn-*</code>, flags <code>ico-flag-*</code>.</li>
         <li><strong>Accessibility:</strong> a decorative icon gets <code>alt=""</code> or <code>aria-hidden="true"</code>; an icon-only button carries its label (<code>aria-label</code>).</li>
       </ul>
@@ -40,6 +44,14 @@
           <button type="button" data-size="20" aria-pressed="false">20</button>
           <button type="button" data-size="24" aria-pressed="true">24</button>
           <button type="button" data-size="32" aria-pressed="false">32</button>
+        </div>
+        <span class="demo-vp-toolbar__divider" aria-hidden="true"></span>
+        <span id="demo-icon-colour-label">Colour</span>
+        <div class="demo-vp-toggle" role="group" aria-labelledby="demo-icon-colour-label" id="demo-icon-colour">
+          <button type="button" data-colour="" aria-pressed="true">neutral/black</button>
+          <button type="button" data-colour="--color-icon-neutral-grey-dark" aria-pressed="false">neutral/grey-dark</button>
+          <button type="button" data-colour="--color-icon-interaction-primary-default" aria-pressed="false">interaction-primary</button>
+          <button type="button" data-colour="--color-icon-semantic-error-base" aria-pressed="false">semantic/error</button>
         </div>
         <span class="demo-vp-status" id="demo-icon-status"></span>
       </div>
@@ -157,19 +169,28 @@
           return node;
         };
 
-        // Tile: the real file, click to copy its path
+        // Tile: single colour → .icon (copies its classes); colour icons and
+        // flags → the file as <img> (copies its path)
         const tile = (name) => {
           const b = el('button', 'demo-icon__tile');
           b.type = 'button';
           b.dataset.name = name;
-          const img = el('img');
-          img.src = `../../assets/icons/${name}.svg`;
-          img.alt = '';
-          img.loading = 'lazy';
-          b.append(img, el('span', 'demo-icon__name', name));
+          const mono = !name.includes('-color') && !name.startsWith('ico-flag-');
+          let icon;
+          if (mono) {
+            icon = el('span', `icon icon--${name.replace(/^ico-/, '')}`);
+            icon.setAttribute('aria-hidden', 'true');
+          } else {
+            icon = el('img');
+            icon.src = `../../assets/icons/${name}.svg`;
+            icon.alt = '';
+            icon.loading = 'lazy';
+          }
+          const copy = mono ? `icon icon--${name.replace(/^ico-/, '')}` : `assets/icons/${name}.svg`;
+          b.append(icon, el('span', 'demo-icon__name', name));
           b.addEventListener('click', async () => {
             try {
-              await navigator.clipboard.writeText(`assets/icons/${name}.svg`);
+              await navigator.clipboard.writeText(copy);
             } catch (e) {
               /* clipboard may be unavailable */
             }
@@ -226,6 +247,15 @@
         };
         search.addEventListener('input', filter);
         filter();
+
+        // Colour (single-colour icons only)
+        document.querySelectorAll('#demo-icon-colour button').forEach((button, _, all) => {
+          button.addEventListener('click', () => {
+            all.forEach((b) => b.setAttribute('aria-pressed', String(b === button)));
+            if (button.dataset.colour) root.style.setProperty('--icon-color', `var(${button.dataset.colour})`);
+            else root.style.removeProperty('--icon-color');
+          });
+        });
 
         // Size
         document.querySelectorAll('#demo-icon-size button').forEach((button, _, all) => {

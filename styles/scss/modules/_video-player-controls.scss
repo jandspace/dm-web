@@ -50,7 +50,9 @@ $play-sizes: (
   background-color: var(--color-effect-translucent-light-thick);
   color: var(--color-icon-neutral-black);
 
-  svg {
+  .icon {
+    --icon-color: currentColor;
+
     display: block;
     width: var(--video-play-icon);
     height: var(--video-play-icon);
@@ -115,7 +117,9 @@ button.video-play {
   color: var(--color-icon-neutral-white);
   cursor: pointer;
 
-  svg {
+  .icon {
+    --icon-color: currentColor;
+
     display: block;
     width: var(--video-controller-icon);
     height: var(--video-controller-icon);

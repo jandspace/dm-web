@@ -122,7 +122,9 @@
 
   // The icon sits straight in the button (no .btn__content), so size it here
   // (.btn--sm keeps 12px side padding inside the 34px circle — never shrink)
-  svg {
+  .icon {
+    --icon-color: currentColor;
+
     flex-shrink: 0;
     width: 14px;
     height: 14px;

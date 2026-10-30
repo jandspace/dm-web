@@ -63,7 +63,7 @@
   color: var(--color-text-neutral-darker);
   transition: background-color 80ms ease;
 
-  > img {
+  > .icon {
     width: 14px;
     height: 14px;
   }
@@ -96,7 +96,7 @@
   width: 40px;
   height: 40px;
 
-  > img {
+  > .icon {
     width: 14px;
     height: 14px;
   }
@@ -129,7 +129,7 @@
 }
 
 // Native <select> in the Input look: white, keyline border, 8px corners, 44px.
-// The chevron is an <img> over it (the select can't hold one).
+// The chevron is an .icon over it (the select can't hold one).
 .pagination__select {
   position: relative;
 
@@ -147,7 +147,7 @@
     cursor: pointer;
   }
 
-  > img {
+  > .icon {
     position: absolute;
     top: 50%;
     right: var(--spacing-16);

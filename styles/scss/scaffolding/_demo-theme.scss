@@ -1,0 +1,85 @@
+// ── Demo theme menu + footer — SCAFFOLDING ONLY ───────────────────────────────
+// Built by scripts/scaffolding/demo-nav.js on every library page. Never ships
+// to production.
+//
+// Theme menu (top right): a round button with the current theme's glyph; hover
+// (or click) opens a Dropdown Menu (components/_dropdown-menu.scss) with Light and
+// Dark. The choice sets <html data-theme="dark"> and is kept per browser
+// (localStorage), also in viewport preview frames. Sun / moon glyphs are inline
+// SVGs for this menu only — not part of the icon library.
+//
+// Footer: copyright and contact line at the bottom of every page.
+
+.demo-theme {
+  position: fixed;
+  top: var(--spacing-16);
+  right: var(--spacing-16);
+  z-index: 1001; // above the side panel (1000)
+  font-family: var(--typography-font-family-sans);
+}
+
+.demo-theme__trigger {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 40px;
+  height: 40px;
+  padding: 0;
+  border: 1px solid var(--color-border-neutral-light);
+  border-radius: var(--border-radius-full);
+  background-color: var(--color-background-neutral-lightest);
+  box-shadow: var(--elevation-2);
+  color: var(--color-icon-neutral-darker);
+  cursor: pointer;
+
+  &:hover {
+    background-color: var(--color-background-neutral-light);
+  }
+
+  &:focus-visible {
+    outline: 2px solid var(--color-border-home-blue-base);
+    outline-offset: 2px;
+  }
+}
+
+// Sun / moon — 16 in the button, 18 in the menu (as Dropdown item icons)
+.demo-theme__glyph {
+  flex-shrink: 0;
+  width: 16px;
+  height: 16px;
+  fill: currentColor;
+
+  .dropdown-menu__item > & {
+    width: 18px;
+    height: 18px;
+  }
+}
+
+.demo-theme__menu {
+  position: absolute;
+  top: calc(100% + var(--spacing-8));
+  right: 0;
+}
+
+// ── Footer ────────────────────────────────────────────────────────────────────
+
+.demo-footer {
+  margin-top: var(--spacing-64);
+  padding-top: var(--spacing-16);
+  border-top: 1px solid var(--color-border-translucent-dark-pale);
+  font-family: var(--typography-font-family-sans);
+  font-size: var(--typography-font-size-label-xxsm);
+  line-height: var(--typography-line-height-narrow);
+  text-align: center;
+  color: var(--color-text-neutral-grey-dark);
+
+  a {
+    color: inherit;
+  }
+}
+
+// ── Dark mode: black artwork files (logo) turn white ─────────────────────────
+
+[data-theme='dark'] .demo-nav__logo img {
+  filter: invert(1);
+}

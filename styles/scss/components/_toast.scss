@@ -3,7 +3,7 @@
 //
 //   section.toast-region[popover="manual"]   top centre (default) · --bottom
 //     .toast.toast--{context}[data-theme="light"]
-//       span.toast__icon > svg                 48px circle, 22px icon
+//       span.toast__icon > .icon               48px circle, 22px icon
 //       .toast__body
 //         .toast__text > p.toast__title + p.toast__description
 //         .toast__actions                      Button SM ×1–2
@@ -177,9 +177,9 @@ $contexts: (
   width: 48px;
   height: 48px;
   border-radius: var(--border-radius-full);
-  color: var(--color-icon-neutral-lightest);
+  --icon-color: var(--color-icon-neutral-lightest);
 
-  > svg {
+  > .icon {
     width: 22px;
     height: 22px;
   }
@@ -243,7 +243,7 @@ $contexts: (
     box-shadow: none;
   }
 
-  > img {
+  > .icon {
     width: 16px;
     height: 16px;
   }

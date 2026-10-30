@@ -9,6 +9,7 @@
 @use 'foundation/spacing';
 @use 'foundation/border-radius';
 @use 'foundation/elevation';
+@use 'foundation/icon';
 @use 'foundation/layout';
 
 // Components — base UI elements (Figma "DM Web ::: Components")
@@ -46,6 +47,7 @@
 @use 'scaffolding/demo-grid';
 @use 'scaffolding/annotation';
 @use 'scaffolding/demo-nav';
+@use 'scaffolding/demo-theme';
 @use 'scaffolding/foundation-colour-demo';
 @use 'scaffolding/foundation-typography-demo';
 @use 'scaffolding/foundation-scale-demo';

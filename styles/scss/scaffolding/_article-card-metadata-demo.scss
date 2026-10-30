@@ -25,7 +25,7 @@
 .demo-metadata-note {
   font-size: 12px;
   line-height: 1.5;
-  color: #888;
+  color: var(--color-text-neutral-grey-dark);
 }
 
 // ── Columnist Profile Photo strip ─────────────────────────────────────────────
@@ -55,7 +55,7 @@
 .demo-photo__size {
   font-family: monospace;
   font-size: 10px;
-  color: #999;
+  color: var(--color-text-neutral-grey-dark);
   white-space: nowrap;
 }
 

@@ -58,9 +58,9 @@
           <li><a class="pagination__item" href="#">2</a>Default</li>
           <li><a class="pagination__item is-hover" href="#">2</a>Hover</li>
           <li><a class="pagination__item" href="#" aria-current="page">2</a>Current</li>
-          <li><a class="pagination__item pagination__item--arrow" href="#" aria-label="Next page"><img src="../../assets/icons/ico-chevron-right.svg" alt="" /></a>Arrow</li>
-          <li><a class="pagination__item pagination__item--arrow is-hover" href="#" aria-label="Next page"><img src="../../assets/icons/ico-chevron-right.svg" alt="" /></a>Arrow hover</li>
-          <li><span class="pagination__ellipsis"><img src="../../assets/icons/ico-dots-horizontal.svg" alt="" /></span>Ellipsis</li>
+          <li><a class="pagination__item pagination__item--arrow" href="#" aria-label="Next page"><span class="icon icon--chevron-right" aria-hidden="true"></span></a>Arrow</li>
+          <li><a class="pagination__item pagination__item--arrow is-hover" href="#" aria-label="Next page"><span class="icon icon--chevron-right" aria-hidden="true"></span></a>Arrow hover</li>
+          <li><span class="pagination__ellipsis"><span class="icon icon--dots-horizontal" aria-hidden="true"></span></span>Ellipsis</li>
         </ul>
       </div>
     </main>
@@ -68,7 +68,6 @@
     <script>
       // Scaffolding only — builds the pagination markup for a page and a total.
       // A real page renders the same markup on the server, one link per page.
-      const ICONS = '../../assets/icons/';
 
       // Number slots: always 7 (fewer when there are fewer pages); null = ellipsis
       const slots = (current, total) => {
@@ -81,33 +80,33 @@
 
       const arrow = (page, icon, label, extra = '') =>
         `<a class="pagination__item pagination__item--arrow" href="?page=${page}" data-page="${page}" aria-label="${label}"${extra}>` +
-        `<img src="${ICONS}${icon}.svg" alt="" /></a>`;
+        `<span class="icon icon--${icon}" aria-hidden="true"></span></a>`;
 
       const render = (current, total) => {
         const li = (html) => `<li>${html}</li>`;
         const pages = [];
-        if (current > 2) pages.push(li(arrow(1, 'ico-chevron-double-left', 'First page')));
-        if (current > 1) pages.push(li(arrow(current - 1, 'ico-chevron-left', 'Previous page')));
+        if (current > 2) pages.push(li(arrow(1, 'chevron-double-left', 'First page')));
+        if (current > 1) pages.push(li(arrow(current - 1, 'chevron-left', 'Previous page')));
         slots(current, total).forEach((n) => {
           pages.push(
             li(
               n === null
-                ? `<span class="pagination__ellipsis"><img src="${ICONS}ico-dots-horizontal.svg" alt="" /></span>`
+                ? `<span class="pagination__ellipsis"><span class="icon icon--dots-horizontal" aria-hidden="true"></span></span>`
                 : `<a class="pagination__item" href="?page=${n}" data-page="${n}"${n === current ? ' aria-current="page"' : ''}>${n}</a>`,
             ),
           );
         });
-        if (current < total) pages.push(li(arrow(current + 1, 'ico-chevron-right', 'Next page')));
-        if (current < total - 1) pages.push(li(arrow(total, 'ico-chevron-double-right', 'Last page')));
+        if (current < total) pages.push(li(arrow(current + 1, 'chevron-right', 'Next page')));
+        if (current < total - 1) pages.push(li(arrow(total, 'chevron-double-right', 'Last page')));
 
         const options = Array.from({ length: total }, (_, i) => `<option${i + 1 === current ? ' selected' : ''}>${i + 1}</option>`).join('');
         const compact =
-          (current > 1 ? arrow(current - 1, 'ico-chevron-left', 'Previous page') : '') +
+          (current > 1 ? arrow(current - 1, 'chevron-left', 'Previous page') : '') +
           `<div class="pagination__picker">` +
-          `<label class="pagination__select"><select aria-label="Page">${options}</select><img src="${ICONS}ico-chevron-down.svg" alt="" /></label>` +
+          `<label class="pagination__select"><select aria-label="Page">${options}</select><span class="icon icon--chevron-down" aria-hidden="true"></span></label>` +
           `<span class="pagination__total">of <span>${total}</span></span>` +
           `</div>` +
-          (current < total ? arrow(current + 1, 'ico-chevron-right', 'Next page') : '');
+          (current < total ? arrow(current + 1, 'chevron-right', 'Next page') : '');
 
         return (
           `<nav class="pagination" aria-label="Pagination">` +

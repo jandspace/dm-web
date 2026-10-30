@@ -92,7 +92,9 @@
   color: var(--color-icon-neutral-darker);
   cursor: pointer;
 
-  svg {
+  .icon {
+    --icon-color: currentColor;
+
     width: 16px;
     height: 16px;
   }
@@ -149,7 +151,9 @@
   cursor: pointer;
 
   img,
-  svg {
+  .icon {
+    --icon-color: currentColor;
+
     width: 12px;
     height: 12px;
   }
@@ -171,7 +175,9 @@
   color: var(--color-text-neutral-darker);
   text-decoration: none;
 
-  svg {
+  .icon {
+    --icon-color: currentColor;
+
     width: 14px;
     height: 14px;
   }
@@ -200,7 +206,9 @@
   background-color: var(--color-background-neutral-lighter);
   color: var(--color-icon-neutral-darker);
 
-  svg {
+  .icon {
+    --icon-color: currentColor;
+
     flex-shrink: 0;
     width: 16px;
     height: 16px;
@@ -264,7 +272,7 @@
   border-radius: var(--border-radius-8);
   background-color: var(--color-background-neutral-lighter);
 
-  img {
+  .icon {
     width: 28px;
     height: 28px;
   }
@@ -401,7 +409,9 @@
   cursor: pointer;
   transition: background-color 0.25s ease;
 
-  svg {
+  .icon {
+    --icon-color: currentColor;
+
     width: 16px;
     height: 16px;
     transition: transform 0.25s ease;
@@ -418,7 +428,7 @@
     }
   }
 
-  &[aria-expanded='true'] svg {
+  &[aria-expanded='true'] .icon {
     transform: rotate(180deg);
   }
 }
@@ -534,7 +544,7 @@
   .masthead-sheet__channel-link,
   .masthead-sheet__channel-icon,
   .masthead-sheet__expand,
-  .masthead-sheet__expand svg,
+  .masthead-sheet__expand .icon,
   .masthead-sheet__panel,
   .masthead-sheet__subchannels a::after {
     transition: none;
