@@ -250,10 +250,14 @@
   }
 }
 
-// Tinted box in Beta — sits in a .layout-inset
+// Tinted box (Beta: showbiz, Alpha: sport) — sits in a .layout-inset
 .demo-layout-box {
   border-radius: var(--border-radius-8);
   background-color: var(--color-background-showbiz-red-subtlest);
+
+  &--sport {
+    background-color: var(--color-background-sport-green-subtlest);
+  }
 }
 
 // MPU ad slot — 300 × 250

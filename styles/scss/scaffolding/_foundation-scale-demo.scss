@@ -284,15 +284,19 @@
 }
 
 // 4 · Toast — bottom centre
+// Wraps the real Toast (.toast — components/toast), bottom centre; tag above it
 .demo-scale__scene-toast {
   bottom: var(--spacing-24);
   left: 50%;
   z-index: 2;
-  width: 240px;
-  height: 48px;
-  border-radius: var(--border-radius-8);
-  box-shadow: var(--elevation-4);
+  width: 280px;
+  background: none;
   transform: translateX(-50%);
+
+  > .demo-scale__tag {
+    top: calc(-1 * var(--spacing-24));
+    left: 0;
+  }
 }
 
 // 3 · Mini player — bottom right

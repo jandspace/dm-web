@@ -40,6 +40,7 @@
         { name: 'Modal', path: 'components/modal/' },
         { name: 'Pagination', path: 'components/pagination/' },
         { name: 'Tabs', path: 'components/tabs/' },
+        { name: 'Toast', path: 'components/toast/' },
       ],
     },
     {

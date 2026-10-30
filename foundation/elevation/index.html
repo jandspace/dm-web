@@ -127,7 +127,14 @@
           <div class="demo-scale__scene-block demo-scale__scene-block--short"></div>
         </div>
         <div class="demo-scale__scene-dropdown"><span class="demo-scale__tag">4 · Dropdown</span></div>
-        <div class="demo-scale__scene-toast"><span class="demo-scale__tag">4 · Toast</span></div>
+        <!-- The real Toast (components/toast) -->
+        <div class="demo-scale__scene-toast">
+          <span class="demo-scale__tag">4 · Toast</span>
+          <div class="toast toast--neutral" data-theme="light">
+            <div class="toast__body"><div class="toast__text"><p class="toast__title">Link copied</p></div></div>
+            <button class="toast__close btn btn-quaternary-neutral btn--icon-only" type="button" aria-label="Dismiss" tabindex="-1"><img src="../../assets/icons/ico-xmark-light.svg" alt="" /></button>
+          </div>
+        </div>
         <div class="demo-scale__scene-player"><span class="demo-scale__tag">3 · Mini player</span></div>
         <div class="demo-scale__scene-scrim">
           <!-- The real Modal box (components/modal) -->

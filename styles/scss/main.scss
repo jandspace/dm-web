@@ -21,6 +21,7 @@
 @use 'components/pagination';
 @use 'components/scroll-row';
 @use 'components/tabs';
+@use 'components/toast';
 
 // Modules — editorial / product blocks built from components (Figma "DM Web ::: Modules")
 @use 'modules/editorial-badge';
@@ -57,6 +58,7 @@
 @use 'scaffolding/modal-demo';
 @use 'scaffolding/pagination-demo';
 @use 'scaffolding/tabs-demo';
+@use 'scaffolding/toast-demo';
 @use 'scaffolding/article-card-demo';
 @use 'scaffolding/article-card-metadata-demo';
 @use 'scaffolding/section-header-demo';

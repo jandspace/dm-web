@@ -1,0 +1,258 @@
+// ── Toast ─────────────────────────────────────────────────────────────────────
+// Short feedback that floats over everything — modals included — then goes.
+//
+//   section.toast-region[popover="manual"]   top centre (default) · --bottom
+//     .toast.toast--{context}[data-theme="light"]
+//       span.toast__icon > svg                 48px circle, 22px icon
+//       .toast__body
+//         .toast__text > p.toast__title + p.toast__description
+//         .toast__actions                      Button SM ×1–2
+//       button.toast__close                    Button Quaternary, icon only
+//
+// Contexts: success · error · warning · info · neutral (subtle surface, deep circle).
+// Theme Pinning: data-theme="light" keeps the light look in dark mode.
+// Layout: SM-XS — buttons under the text; MD+ — one row, buttons on the right.
+//
+// Stack: the newest toast in front; each older one sits 16px further back (below
+// at the top, above at the bottom) and 5% smaller, cut to the front toast's
+// height; up to 3 show. Hover or focus spreads the stack into a list (8px apart).
+// The page script sets --toast-index, --toast-offset and --toast-front-height.
+//
+// Reference: Figma Web UI Kit › Toast (3265:1886)
+
+@use 'sass:list';
+@use '../foundation/breakpoints' as bp;
+
+$contexts: (
+  success: (var(--color-background-semantic-success-subtle), var(--color-background-semantic-success-deep)),
+  error: (var(--color-background-semantic-error-subtle), var(--color-background-semantic-error-deep)),
+  warning: (var(--color-background-semantic-warning-subtle), var(--color-background-semantic-warning-deep)),
+  info: (var(--color-background-semantic-info-subtle), var(--color-background-semantic-info-deep)),
+  neutral: (var(--color-background-neutral-lighter), var(--color-background-neutral-darker)),
+);
+
+// ── Region ────────────────────────────────────────────────────────────────────
+// A manual popover: it sits in the top layer, so it shows over an open modal too
+
+.toast-region {
+  --toast-gap: var(--spacing-16);
+  position: fixed;
+  inset: var(--toast-gap) 0 auto;
+  display: grid;
+  width: calc(100% - 2 * var(--spacing-16));
+  max-width: 738px;
+  height: auto;
+  margin: 0 auto;
+  padding: 0;
+  overflow: visible;
+  border: 0;
+  background: none;
+
+  &:not(:popover-open) {
+    display: none;
+  }
+}
+
+.toast-region--bottom {
+  inset: auto 0 var(--toast-gap);
+}
+
+// ── Toast ─────────────────────────────────────────────────────────────────────
+
+.toast {
+  position: relative;
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-12);
+  padding: var(--spacing-12) var(--spacing-32) var(--spacing-12) var(--spacing-16);
+  overflow: hidden;
+  border-radius: var(--border-radius-12);
+  box-shadow: var(--elevation-4);
+  font-family: var(--typography-font-family-sans);
+  color: var(--color-text-neutral-darker);
+
+  @each $name, $c in $contexts {
+    &--#{$name} {
+      background-color: list.nth($c, 1);
+
+      .toast__icon {
+        background-color: list.nth($c, 2);
+      }
+    }
+  }
+}
+
+// ── Stack (in the region) ─────────────────────────────────────────────────────
+
+.toast-region .toast {
+  --toast-index: 0;
+  --toast-offset: 0px;
+  z-index: calc(10 - var(--toast-index));
+  grid-area: 1 / 1;
+  align-self: start;
+  // Collapsed: older toasts step back 16px and 5% smaller
+  transform: translateY(calc(var(--toast-index) * 16px)) scale(calc(1 - var(--toast-index) * 0.05));
+  transform-origin: center bottom;
+  transition:
+    transform 300ms ease,
+    opacity 300ms ease;
+  animation: toast-in 300ms ease;
+
+  // Older toasts, behind the front one: cut to its height
+  &:not(:first-child) {
+    height: var(--toast-front-height, auto);
+  }
+
+  // Only 3 show
+  &:nth-child(n + 4) {
+    opacity: 0;
+    pointer-events: none;
+  }
+
+  &.is-leaving {
+    opacity: 0;
+    translate: 0 -16px;
+    transition:
+      opacity 200ms ease,
+      translate 200ms ease;
+  }
+}
+
+.toast-region--bottom .toast {
+  align-self: end;
+  transform: translateY(calc(var(--toast-index) * -16px)) scale(calc(1 - var(--toast-index) * 0.05));
+  transform-origin: center top;
+  animation-name: toast-in-bottom;
+
+  &.is-leaving {
+    translate: 0 16px;
+  }
+}
+
+// Hover / focus: the stack spreads into a list
+.toast-region:hover,
+.toast-region:focus-within {
+  min-height: var(--toast-stack-height, auto); // covers the gaps, so hover holds
+
+  .toast {
+    height: auto;
+    transform: translateY(var(--toast-offset));
+  }
+
+  .toast:nth-child(n + 4) {
+    opacity: 1;
+    pointer-events: auto;
+  }
+}
+
+.toast-region--bottom:hover .toast,
+.toast-region--bottom:focus-within .toast {
+  transform: translateY(calc(var(--toast-offset) * -1));
+}
+
+@keyframes toast-in {
+  from {
+    opacity: 0;
+    translate: 0 -16px;
+  }
+}
+
+@keyframes toast-in-bottom {
+  from {
+    opacity: 0;
+    translate: 0 16px;
+  }
+}
+
+// ── Parts ─────────────────────────────────────────────────────────────────────
+
+// Top of the row: beside a one-line text it reads as centred (the row is the
+// icon's 48px); with longer text it stays at the top
+.toast__icon {
+  display: flex;
+  flex-shrink: 0;
+  align-self: flex-start;
+  align-items: center;
+  justify-content: center;
+  width: 48px;
+  height: 48px;
+  border-radius: var(--border-radius-full);
+  color: var(--color-icon-neutral-lightest);
+
+  > svg {
+    width: 22px;
+    height: 22px;
+  }
+}
+
+// SM-XS: text, then the buttons on the right under it
+.toast__body {
+  display: flex;
+  flex: 1 1 0;
+  flex-direction: column;
+  gap: var(--spacing-8);
+  min-width: 0;
+
+  @include bp.respond-to(md) {
+    flex-direction: row;
+    align-items: center;
+  }
+}
+
+.toast__text {
+  display: flex;
+  flex: 1 1 auto;
+  flex-direction: column;
+  gap: var(--spacing-4);
+  min-width: 0;
+}
+
+.toast__title {
+  margin: 0;
+  overflow: hidden;
+  font-size: var(--typography-font-size-h5);
+  font-weight: var(--typography-font-weight-semibold);
+  line-height: var(--typography-line-height-compact);
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.toast__description {
+  margin: 0;
+  font-size: var(--typography-font-size-text-sm);
+  line-height: var(--typography-line-height-normal);
+  letter-spacing: var(--typography-letter-spacing-wide);
+}
+
+.toast__actions {
+  display: flex;
+  flex-shrink: 0;
+  justify-content: flex-end;
+  gap: var(--spacing-8);
+}
+
+// No hover / pressed surface — it sits on the coloured toast
+.toast__close {
+  position: absolute;
+  top: 0;
+  right: 0;
+
+  &:hover,
+  &:active {
+    background-color: var(--color-effect-translucent-dark-clear);
+    box-shadow: none;
+  }
+
+  > img {
+    width: 16px;
+    height: 16px;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .toast-region .toast,
+  .toast-region .toast.is-leaving {
+    transition: none;
+    animation: none;
+  }
+}

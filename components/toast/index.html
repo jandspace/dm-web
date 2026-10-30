@@ -1,0 +1,317 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Toast</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&family=Lora:wght@400;600;700&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="../../tokens/dm_tokens.css" />
+    <link rel="stylesheet" href="../../tokens/dm_typography_web_tokens.css" />
+    <link rel="stylesheet" href="../../styles/css/main.css" />
+    <script src="../../scripts/scaffolding/demo-nav.js" defer></script>
+    <script>
+      // ?frame — this page inside a viewport preview: a page placeholder + the toasts
+      if (new URLSearchParams(location.search).has('frame')) document.documentElement.classList.add('demo-toast-frame');
+    </script>
+  </head>
+  <body class="demo-page-body">
+    <!-- Context icons: inlined so they take the white icon colour (copied from assets/icons/) -->
+    <svg style="display: none" aria-hidden="true">
+      <symbol id="ico-tick" viewBox="0 0 32 32"><path d="M27.8621 3.21463C27.7304 3.07805 27.5516 3 27.3728 3C27.194 3 27.0058 3.07805 26.8835 3.21463L11.2916 19.1951L5.11887 12.8732C4.98714 12.7366 4.80835 12.6585 4.62957 12.6585C4.45078 12.6585 4.26259 12.7366 4.14026 12.8732L0.207013 16.9024C0.0752775 17.039 0 17.2146 0 17.4098C0 17.5951 0.0564581 17.7805 0.178784 17.9171L10.7741 28.7951C10.9058 28.9317 11.0846 29 11.2634 29C11.4516 29 11.6304 28.922 11.7527 28.7951L31.7953 8.23902C32.0682 7.96585 32.0682 7.51707 31.7953 7.23415L27.8621 3.21463Z" fill="currentColor"/></symbol>
+      <symbol id="ico-xmark" viewBox="0 0 32 32"><path d="M29.811 25.7229C30.0497 25.9616 30.0497 26.3496 29.811 26.5883L26.5783 29.821C26.3396 30.0597 25.9517 30.0597 25.713 29.821L15.9851 20.0931L6.25719 29.821C6.01847 30.0597 5.63055 30.0597 5.39183 29.821L2.17904 26.5883C1.94032 26.3496 1.94032 25.9616 2.17904 25.7229L11.9069 15.995L2.17904 6.26714C1.94032 6.02842 1.94032 5.6405 2.17904 5.40178L5.40178 2.17904C5.6405 1.94032 6.02842 1.94032 6.26714 2.17904L15.995 11.9069L25.7229 2.17904C25.9616 1.94032 26.3496 1.94032 26.5883 2.17904L29.821 5.41172C30.0597 5.65044 30.0597 6.03837 29.821 6.27709L20.0931 16.005L29.821 25.7329L29.811 25.7229Z" fill="currentColor"/></symbol>
+      <symbol id="ico-exclamation-mark-triangle" viewBox="0 0 32 32"><path d="M31.3431 23.9552L20.0345 3.27861C19.1246 1.75622 17.5648 1 16.005 1C14.4452 1 12.8854 1.75622 11.9755 3.27861L0.666928 23.9552C-1.19284 27.0597 1.05688 31 4.69642 31H27.3036C30.9431 31 33.1928 27.0697 31.3331 23.9552H31.3431ZM16.005 26.4527C14.8351 26.4527 13.8853 25.5075 13.8853 24.3433C13.8853 23.1791 14.8351 22.2338 16.005 22.2338C17.1749 22.2338 18.1247 23.1791 18.1247 24.3433C18.1247 25.5075 17.1749 26.4527 16.005 26.4527ZM17.9048 19.8856C17.8948 20.1542 17.6648 20.3731 17.3948 20.3731H14.6252C14.3552 20.3731 14.1252 20.1542 14.1152 19.8856L13.6953 10.0647C13.6853 9.77612 13.9153 9.52736 14.2052 9.52736H17.8248C18.1147 9.52736 18.3447 9.76617 18.3347 10.0647L17.9048 19.8856Z" fill="currentColor"/></symbol>
+      <symbol id="ico-info" viewBox="0 0 32 32"><path d="M18.54 11.4936H13.46C12.65 11.4936 12 12.1438 12 12.954V30.5395C12 31.3498 12.66 32 13.46 32H18.53C19.34 32 19.99 31.3498 19.99 30.5395V12.9641C19.99 12.1538 19.33 11.5036 18.53 11.5036L18.54 11.4936Z" fill="currentColor"/><path d="M16 8.0025C18.2091 8.0025 20 6.21108 20 4.00125C20 1.79142 18.2091 0 16 0C13.7909 0 12 1.79142 12 4.00125C12 6.21108 13.7909 8.0025 16 8.0025Z" fill="currentColor"/></symbol>
+      <symbol id="ico-megaphone" viewBox="0 0 32 32"><path d="M23.917 0.244602C22.805 -0.230105 21.5685 -0.00524356 20.6888 0.844232L19.5353 1.96021C17.917 3.52591 15.8008 4.38371 13.5519 4.38371H8.32365C3.73444 4.38371 0 8.1314 0 12.7452C0 16.926 3.07884 20.3988 7.08714 20.9985V28.0858C7.08714 30.2428 8.83817 32 10.9876 32C13.1369 32 14.888 30.2428 14.888 28.0858V21.215C16.6307 21.4898 18.249 22.2727 19.5353 23.5219L20.6888 24.6379C21.2614 25.1875 21.9917 25.479 22.7386 25.479C23.1286 25.479 23.5353 25.3957 23.917 25.2375C25.0373 24.7628 25.7261 23.7051 25.7261 22.4892V2.99291C25.7261 1.77699 25.029 0.719309 23.917 0.244602ZM2.48963 12.7452C2.48963 9.51388 5.11203 6.88217 8.33195 6.88217H12.3983V18.6083H8.33195C5.11203 18.6083 2.48963 15.9766 2.48963 12.7452ZM10.9876 29.5015C10.2075 29.5015 9.57676 28.8686 9.57676 28.0858V21.1067H12.3983V28.0858C12.3983 28.8686 11.7676 29.5015 10.9876 29.5015ZM23.2365 22.4892C23.2365 22.7724 23.0539 22.889 22.9461 22.9389C22.8382 22.9889 22.6224 23.0389 22.4232 22.839L21.2697 21.723C19.5104 20.0241 17.2863 18.9747 14.888 18.6915V6.79056C17.278 6.5074 19.5104 5.45805 21.2697 3.7591L22.4232 2.64312C22.6224 2.45157 22.8382 2.50154 22.9461 2.54318C23.0539 2.59315 23.2365 2.70975 23.2365 2.99291V22.4892ZM27.0207 7.34855C26.5975 6.80722 26.6971 6.01604 27.2448 5.59963L28.9212 4.2921C29.4606 3.86737 30.249 3.9673 30.6639 4.51697C31.0871 5.0583 30.9876 5.84948 30.4398 6.26589L28.7635 7.57341C28.5394 7.7483 28.2656 7.83159 28 7.83159C27.6266 7.83159 27.2614 7.66502 27.0124 7.34855H27.0207ZM30.6639 20.0241C30.4149 20.3405 30.0498 20.5071 29.6763 20.5071C29.4108 20.5071 29.1452 20.4238 28.9129 20.2489L27.2365 18.9414C26.6971 18.5167 26.5975 17.7338 27.0124 17.1925C27.4274 16.6511 28.2158 16.5512 28.7552 16.9676L30.4315 18.2751C30.971 18.6999 31.0705 19.4827 30.6556 20.0241H30.6639ZM32 12.2705C32 12.9618 31.444 13.5197 30.7552 13.5197H28.0083C27.3195 13.5197 26.7635 12.9618 26.7635 12.2705C26.7635 11.5793 27.3195 11.0213 28.0083 11.0213H30.7552C31.444 11.0213 32 11.5793 32 12.2705Z" fill="currentColor"/></symbol>
+    </svg>
+
+    <h1 class="demo-page-h1">Toast</h1>
+    <p class="demo-page-intro">
+      Short feedback that floats over everything — modals included — and goes. Five contexts: Success, Error, Warning,
+      Information, Neutral. Top centre by default (bottom centre when needed); new toasts stack in front. Theme-pinned
+      to light. Figma: Web UI Kit › Toast (<code>3265:1886</code>). Doc: <code>docs/4_Components__09_Toast.md</code>.
+    </p>
+
+    <main class="demo-toast">
+      <h2 class="demo-toast__set">Try it</h2>
+      <p class="demo-toast__note">
+        Each button shows a sample toast. Toasts without buttons go after 3 seconds (paused while the pointer or focus is
+        on them); toasts with buttons and errors stay until closed. Show a few in a row to see the stack: the older ones
+        step back 16px and shrink a little — hover to spread them out.
+      </p>
+      <div class="demo-toast__controls">
+        <span id="demo-pos-label">Position</span>
+        <div class="demo-vp-toggle" role="group" aria-labelledby="demo-pos-label" id="demo-pos">
+          <button type="button" data-pos="top" aria-pressed="true">Top centre</button>
+          <button type="button" data-pos="bottom" aria-pressed="false">Bottom centre</button>
+        </div>
+      </div>
+      <div class="demo-toast__triggers">
+        <button class="btn btn-secondary-neutral" type="button" data-sample="saved">Success — Article saved</button>
+        <button class="btn btn-secondary-neutral" type="button" data-sample="comment">Error — Comment not posted</button>
+        <button class="btn btn-secondary-neutral" type="button" data-sample="offline">Warning — You're offline</button>
+        <button class="btn btn-secondary-neutral" type="button" data-sample="new">Information — New stories</button>
+        <button class="btn btn-secondary-neutral" type="button" data-sample="copied">Neutral — Link copied</button>
+        <button class="btn btn-secondary-neutral" type="button" id="demo-open-modal">Over a modal</button>
+      </div>
+
+      <!-- Page placeholder (preview frames only) — content under the toasts -->
+      <div class="demo-toast__filler" aria-hidden="true"><div></div><div></div><div></div><div></div><div></div></div>
+
+      <section class="demo-toast__viewports">
+        <h2 class="demo-toast__set">Viewports</h2>
+        <p class="demo-toast__note">
+          The toasts in a page — Live (this window's width) or at each breakpoint — width (738px max), the one-row / stacked layout and the position
+          follow the preview, not the window. "Stack of 3" (last in the list) shows the stack; hover it to spread it out.
+        </p>
+        <div class="demo-vp-toolbar demo-vp-toolbar--sticky">
+          <div class="demo-vp-toolbar__row">
+            <span id="demo-vp-switch-label">Viewport</span>
+            <div class="demo-vp-toggle" role="group" aria-labelledby="demo-vp-switch-label" id="demo-vp-switch">
+              <button type="button" data-vp="live" aria-pressed="true">Live</button>
+              <button type="button" data-vp="xl" aria-pressed="false">XL ≥1376</button>
+              <button type="button" data-vp="lg" aria-pressed="false">LG ≥1024</button>
+              <button type="button" data-vp="md" aria-pressed="false">MD ≥768</button>
+              <button type="button" data-vp="xs" aria-pressed="false">SM-XS &lt;768</button>
+            </div>
+            <span class="demo-vp-toolbar__divider"></span>
+            <label for="demo-vp-sample">Toast</label>
+            <select class="demo-vp-select" id="demo-vp-sample">
+              <option value="saved">Success — Article saved</option>
+              <option value="comment">Error — Comment not posted</option>
+              <option value="offline">Warning — You're offline</option>
+              <option value="new">Information — New stories</option>
+              <option value="copied">Neutral — Link copied</option>
+              <option value="stack">Stack of 3</option>
+            </select>
+            <label for="demo-vp-pos">Position</label>
+            <select class="demo-vp-select" id="demo-vp-pos">
+              <option value="top">Top centre</option>
+              <option value="bottom">Bottom centre</option>
+            </select>
+            <span class="demo-vp-status" id="demo-vp-status"></span>
+          </div>
+        </div>
+        <div class="demo-vp-stage demo-toast__stage-vp" id="demo-vp-stage"></div>
+      </section>
+
+      <h2 class="demo-toast__set">MD ≥768 — one row</h2>
+      <p class="demo-toast__note">Buttons on the right of the text. 738px max wide.</p>
+      <div class="demo-toast__gallery">
+        <div class="toast toast--success" data-theme="light" role="status"><span class="toast__icon"><svg aria-hidden="true"><use href="#ico-tick" /></svg></span><div class="toast__body"><div class="toast__text"><p class="toast__title">Toast Title</p><p class="toast__description">Lorem ipsum dolor sit amet, consectetur adipiscing elit pellentesque bibendum.</p></div><div class="toast__actions"><button class="btn btn-quaternary-neutral btn--sm" type="button">Button</button><button class="btn btn-neutral-inverse btn--sm" type="button">Button</button></div></div><button class="toast__close btn btn-quaternary-neutral btn--icon-only" type="button" aria-label="Dismiss"><img src="../../assets/icons/ico-xmark-light.svg" alt="" /></button></div>
+        <div class="toast toast--error" data-theme="light" role="alert"><span class="toast__icon"><svg aria-hidden="true"><use href="#ico-xmark" /></svg></span><div class="toast__body"><div class="toast__text"><p class="toast__title">Toast Title</p><p class="toast__description">Lorem ipsum dolor sit amet, consectetur adipiscing elit pellentesque bibendum.</p></div><div class="toast__actions"><button class="btn btn-quaternary-neutral btn--sm" type="button">Button</button><button class="btn btn-neutral-inverse btn--sm" type="button">Button</button></div></div><button class="toast__close btn btn-quaternary-neutral btn--icon-only" type="button" aria-label="Dismiss"><img src="../../assets/icons/ico-xmark-light.svg" alt="" /></button></div>
+        <div class="toast toast--warning" data-theme="light" role="alert"><span class="toast__icon"><svg aria-hidden="true"><use href="#ico-exclamation-mark-triangle" /></svg></span><div class="toast__body"><div class="toast__text"><p class="toast__title">Toast Title</p><p class="toast__description">Lorem ipsum dolor sit amet, consectetur adipiscing elit pellentesque bibendum.</p></div><div class="toast__actions"><button class="btn btn-quaternary-neutral btn--sm" type="button">Button</button><button class="btn btn-neutral-inverse btn--sm" type="button">Button</button></div></div><button class="toast__close btn btn-quaternary-neutral btn--icon-only" type="button" aria-label="Dismiss"><img src="../../assets/icons/ico-xmark-light.svg" alt="" /></button></div>
+        <div class="toast toast--info" data-theme="light" role="status"><span class="toast__icon"><svg aria-hidden="true"><use href="#ico-info" /></svg></span><div class="toast__body"><div class="toast__text"><p class="toast__title">Toast Title</p><p class="toast__description">Lorem ipsum dolor sit amet, consectetur adipiscing elit pellentesque bibendum.</p></div><div class="toast__actions"><button class="btn btn-quaternary-neutral btn--sm" type="button">Button</button><button class="btn btn-neutral-inverse btn--sm" type="button">Button</button></div></div><button class="toast__close btn btn-quaternary-neutral btn--icon-only" type="button" aria-label="Dismiss"><img src="../../assets/icons/ico-xmark-light.svg" alt="" /></button></div>
+        <div class="toast toast--neutral" data-theme="light" role="status"><span class="toast__icon"><svg aria-hidden="true"><use href="#ico-megaphone" /></svg></span><div class="toast__body"><div class="toast__text"><p class="toast__title">Toast Title</p><p class="toast__description">Lorem ipsum dolor sit amet, consectetur adipiscing elit pellentesque bibendum.</p></div><div class="toast__actions"><button class="btn btn-quaternary-neutral btn--sm" type="button">Button</button><button class="btn btn-brand btn--sm" type="button">Button</button></div></div><button class="toast__close btn btn-quaternary-neutral btn--icon-only" type="button" aria-label="Dismiss"><img src="../../assets/icons/ico-xmark-light.svg" alt="" /></button></div>
+      </div>
+
+      <h2 class="demo-toast__set">SM-XS &lt;768 — stacked</h2>
+      <p class="demo-toast__note">Buttons under the text, on the right. Shown here at 358px (a 390px phone).</p>
+      <div class="demo-toast__gallery demo-toast__gallery--sm">
+        <div class="toast toast--success" data-theme="light" role="status"><span class="toast__icon"><svg aria-hidden="true"><use href="#ico-tick" /></svg></span><div class="toast__body"><div class="toast__text"><p class="toast__title">Toast Title</p><p class="toast__description">Lorem ipsum dolor sit amet, consectetur adipiscing elit pellentesque bibendum.</p></div><div class="toast__actions"><button class="btn btn-quaternary-neutral btn--sm" type="button">Button</button><button class="btn btn-neutral-inverse btn--sm" type="button">Button</button></div></div><button class="toast__close btn btn-quaternary-neutral btn--icon-only" type="button" aria-label="Dismiss"><img src="../../assets/icons/ico-xmark-light.svg" alt="" /></button></div>
+        <div class="toast toast--error" data-theme="light" role="alert"><span class="toast__icon"><svg aria-hidden="true"><use href="#ico-xmark" /></svg></span><div class="toast__body"><div class="toast__text"><p class="toast__title">Toast Title</p><p class="toast__description">Lorem ipsum dolor sit amet, consectetur adipiscing elit pellentesque bibendum.</p></div><div class="toast__actions"><button class="btn btn-quaternary-neutral btn--sm" type="button">Button</button><button class="btn btn-neutral-inverse btn--sm" type="button">Button</button></div></div><button class="toast__close btn btn-quaternary-neutral btn--icon-only" type="button" aria-label="Dismiss"><img src="../../assets/icons/ico-xmark-light.svg" alt="" /></button></div>
+        <div class="toast toast--warning" data-theme="light" role="alert"><span class="toast__icon"><svg aria-hidden="true"><use href="#ico-exclamation-mark-triangle" /></svg></span><div class="toast__body"><div class="toast__text"><p class="toast__title">Toast Title</p><p class="toast__description">Lorem ipsum dolor sit amet, consectetur adipiscing elit pellentesque bibendum.</p></div><div class="toast__actions"><button class="btn btn-quaternary-neutral btn--sm" type="button">Button</button><button class="btn btn-neutral-inverse btn--sm" type="button">Button</button></div></div><button class="toast__close btn btn-quaternary-neutral btn--icon-only" type="button" aria-label="Dismiss"><img src="../../assets/icons/ico-xmark-light.svg" alt="" /></button></div>
+        <div class="toast toast--info" data-theme="light" role="status"><span class="toast__icon"><svg aria-hidden="true"><use href="#ico-info" /></svg></span><div class="toast__body"><div class="toast__text"><p class="toast__title">Toast Title</p><p class="toast__description">Lorem ipsum dolor sit amet, consectetur adipiscing elit pellentesque bibendum.</p></div><div class="toast__actions"><button class="btn btn-quaternary-neutral btn--sm" type="button">Button</button><button class="btn btn-neutral-inverse btn--sm" type="button">Button</button></div></div><button class="toast__close btn btn-quaternary-neutral btn--icon-only" type="button" aria-label="Dismiss"><img src="../../assets/icons/ico-xmark-light.svg" alt="" /></button></div>
+        <div class="toast toast--neutral" data-theme="light" role="status"><span class="toast__icon"><svg aria-hidden="true"><use href="#ico-megaphone" /></svg></span><div class="toast__body"><div class="toast__text"><p class="toast__title">Toast Title</p><p class="toast__description">Lorem ipsum dolor sit amet, consectetur adipiscing elit pellentesque bibendum.</p></div><div class="toast__actions"><button class="btn btn-quaternary-neutral btn--sm" type="button">Button</button><button class="btn btn-brand btn--sm" type="button">Button</button></div></div><button class="toast__close btn btn-quaternary-neutral btn--icon-only" type="button" aria-label="Dismiss"><img src="../../assets/icons/ico-xmark-light.svg" alt="" /></button></div>
+      </div>
+
+      <h2 class="demo-toast__set">Parts are optional</h2>
+      <p class="demo-toast__note">Icon, title, description and buttons can each be left out.</p>
+      <div class="demo-toast__gallery">
+        <div class="toast toast--success" data-theme="light" role="status"><span class="toast__icon"><svg aria-hidden="true"><use href="#ico-tick" /></svg></span><div class="toast__body"><div class="toast__text"><p class="toast__title">Toast Title</p></div></div><button class="toast__close btn btn-quaternary-neutral btn--icon-only" type="button" aria-label="Dismiss"><img src="../../assets/icons/ico-xmark-light.svg" alt="" /></button></div>
+        <div class="toast toast--info" data-theme="light" role="status"><span class="toast__icon"><svg aria-hidden="true"><use href="#ico-info" /></svg></span><div class="toast__body"><div class="toast__text"><p class="toast__description">Lorem ipsum dolor sit amet, consectetur adipiscing elit pellentesque bibendum.</p></div></div><button class="toast__close btn btn-quaternary-neutral btn--icon-only" type="button" aria-label="Dismiss"><img src="../../assets/icons/ico-xmark-light.svg" alt="" /></button></div>
+        <div class="toast toast--neutral" data-theme="light" role="status"><div class="toast__body"><div class="toast__text"><p class="toast__title">Toast Title</p><p class="toast__description">Lorem ipsum dolor sit amet, consectetur adipiscing elit pellentesque bibendum.</p></div><div class="toast__actions"><button class="btn btn-brand btn--sm" type="button">Button</button></div></div><button class="toast__close btn btn-quaternary-neutral btn--icon-only" type="button" aria-label="Dismiss"><img src="../../assets/icons/ico-xmark-light.svg" alt="" /></button></div>
+      </div>
+    </main>
+
+    <!-- Modal for "Over a modal": its Save shows a toast above it -->
+    <dialog class="modal modal--middle" id="demo-modal" aria-labelledby="demo-modal-title" tabindex="-1">
+      <div class="modal__content">
+        <div class="modal__header">
+          <h2 class="modal__title h4" id="demo-modal-title">Newsletter preferences</h2>
+          <button class="modal__close btn btn-tertiary-dark btn--icon-only" type="button" aria-label="Close" data-close>
+            <img src="../../assets/icons/ico-xmark-light.svg" alt="" />
+          </button>
+        </div>
+        <div class="modal__body">
+          <p class="text-md">Save, and the toast shows above this modal — toasts live in the top layer.</p>
+        </div>
+        <div class="modal__footer">
+          <button class="btn btn-secondary-brand" type="button" data-close>Cancel</button>
+          <button class="btn btn-brand" type="button" id="demo-modal-save">Save</button>
+        </div>
+      </div>
+    </dialog>
+
+    <!-- Toast region: one per page, straight in <body> -->
+    <section class="toast-region" id="toast-region" popover="manual" aria-label="Notifications" aria-live="polite"></section>
+
+    <script>
+      // Scaffolding only — what the page does with toasts: build, stack, time out, close.
+      const region = document.getElementById('toast-region');
+      const ICON = { success: 'ico-tick', error: 'ico-xmark', warning: 'ico-exclamation-mark-triangle', info: 'ico-info', neutral: 'ico-megaphone' };
+      const SAMPLES = {
+        saved: { context: 'success', title: 'Article saved', description: 'Find it in your reading list.' },
+        comment: { context: 'error', title: "Couldn't post your comment", description: 'Check your connection and try again.', actions: ['Retry'] },
+        offline: { context: 'warning', title: "You're offline", description: 'Some stories may not load until you reconnect.' },
+        new: { context: 'info', title: 'New stories available', actions: ['Refresh'] },
+        copied: { context: 'neutral', title: 'Link copied' },
+        prefs: { context: 'success', title: 'Preferences saved' },
+      };
+
+      // Stack: index from the front, offset for the spread-out list, the front toast's height
+      const layout = () => {
+        const toasts = [...region.querySelectorAll('.toast:not(.is-leaving)')];
+        let offset = 0;
+        toasts.forEach((toast, i) => {
+          toast.style.setProperty('--toast-index', i);
+          toast.style.setProperty('--toast-offset', `${offset}px`);
+          offset += toast.scrollHeight + 8;
+        });
+        region.style.setProperty('--toast-front-height', toasts[0] ? `${toasts[0].offsetHeight}px` : 'auto');
+        region.style.setProperty('--toast-stack-height', `${Math.max(offset - 8, 0)}px`);
+        if (!toasts.length && region.matches(':popover-open')) region.hidePopover();
+      };
+
+      const dismiss = (toast) => {
+        if (toast.classList.contains('is-leaving')) return;
+        toast.classList.add('is-leaving');
+        layout();
+        setTimeout(() => {
+          toast.remove();
+          layout();
+        }, 200);
+      };
+
+      // Into the top layer, above everything. While a modal is open the rest of the page
+      // is inert, so the region moves into the modal (its buttons stay clickable) and back
+      // to <body> when the modal closes.
+      const place = () => {
+        const host = document.querySelector('dialog:modal') || document.body;
+        if (region.parentElement !== host) {
+          if (region.matches(':popover-open')) region.hidePopover();
+          host.append(region);
+        }
+        if (region.querySelector('.toast') && !region.matches(':popover-open')) region.showPopover();
+      };
+      document.addEventListener('close', () => setTimeout(place), true); // a dialog closed
+
+      const show = ({ context, title, description, actions = [], keep = false }) => {
+        const toast = document.createElement('div');
+        toast.className = `toast toast--${context}`;
+        toast.dataset.theme = 'light';
+        toast.setAttribute('role', context === 'error' || context === 'warning' ? 'alert' : 'status');
+        const primary = context === 'neutral' ? 'btn-brand' : 'btn-neutral-inverse';
+        toast.innerHTML =
+          `<span class="toast__icon"><svg aria-hidden="true"><use href="#${ICON[context]}" /></svg></span>` +
+          `<div class="toast__body"><div class="toast__text">` +
+          `<p class="toast__title">${title}</p>` +
+          (description ? `<p class="toast__description">${description}</p>` : '') +
+          `</div>` +
+          (actions.length
+            ? `<div class="toast__actions">${actions.map((a, i) => `<button class="btn ${i === actions.length - 1 ? primary : 'btn-quaternary-neutral'} btn--sm" type="button" data-close>${a}</button>`).join('')}</div>`
+            : '') +
+          `</div>` +
+          `<button class="toast__close btn btn-quaternary-neutral btn--icon-only" type="button" aria-label="Dismiss" data-close><img src="../../assets/icons/ico-xmark-light.svg" alt="" /></button>`;
+        region.prepend(toast);
+
+        place();
+        layout();
+
+        // Auto-dismiss: 3s, only without buttons and not for errors; waits while hovered / focused
+        if (!keep && !actions.length && context !== 'error') {
+          const tick = () => (region.matches(':hover, :focus-within') ? setTimeout(tick, 1000) : dismiss(toast));
+          setTimeout(tick, 3000);
+        }
+      };
+
+      region.addEventListener('click', (event) => {
+        if (event.target.closest('[data-close]')) dismiss(event.target.closest('.toast'));
+      });
+
+      document.querySelectorAll('[data-sample]').forEach((button) =>
+        button.addEventListener('click', () => show(SAMPLES[button.dataset.sample])),
+      );
+
+      document.getElementById('demo-pos').addEventListener('click', (event) => {
+        const button = event.target.closest('[data-pos]');
+        if (!button) return;
+        event.currentTarget.querySelectorAll('button').forEach((b) => b.setAttribute('aria-pressed', String(b === button)));
+        region.classList.toggle('toast-region--bottom', button.dataset.pos === 'bottom');
+      });
+
+      // Over a modal
+      const modal = document.getElementById('demo-modal');
+      document.getElementById('demo-open-modal').addEventListener('click', () => {
+        modal.showModal();
+        modal.focus();
+      });
+      modal.addEventListener('click', (event) => {
+        if (event.target === modal || event.target.closest('[data-close]')) modal.close();
+      });
+      document.getElementById('demo-modal-save').addEventListener('click', () => show(SAMPLES.prefs));
+
+      const params = new URLSearchParams(location.search);
+      if (params.has('frame')) {
+        // In a preview: the chosen toast(s), kept on screen (no auto-dismiss)
+        region.classList.toggle('toast-region--bottom', params.get('pos') === 'bottom');
+        const keep = (sample) => show({ ...SAMPLES[sample], keep: true });
+        const sample = params.get('sample') || 'saved';
+        (sample === 'stack' ? ['saved', 'comment', 'new'] : [sample]).forEach(keep);
+      } else {
+        // Viewport previews: this page in an iframe at the breakpoint's width, scaled to fit
+        // Live: the width of this column (follows the window), the window's height
+        const VIEWPORTS = {
+          live: { label: 'Live', get width() { return stage.parentElement.clientWidth; }, get height() { return Math.min(window.innerHeight, 800); } },
+          xl: { label: 'XL ≥1376', width: 1440, height: 810 },
+          lg: { label: 'LG ≥1024', width: 1024, height: 576 },
+          md: { label: 'MD ≥768', width: 768, height: 1024 },
+          xs: { label: 'SM-XS <768', width: 390, height: 800 },
+        };
+        const toggle = document.getElementById('demo-vp-switch');
+        const sampleSelect = document.getElementById('demo-vp-sample');
+        const posSelect = document.getElementById('demo-vp-pos');
+        const status = document.getElementById('demo-vp-status');
+        const stage = document.getElementById('demo-vp-stage');
+        let vpKey = 'live';
+        let iframe = null;
+
+        const fit = () => {
+          if (!iframe) return;
+          const { width, height } = VIEWPORTS[vpKey];
+          if (vpKey === 'live' && (iframe.width != width || iframe.height != height)) {
+            iframe.width = width;
+            iframe.height = height;
+          }
+          const scale = Math.min(1, stage.parentElement.clientWidth / width);
+          iframe.style.transform = `scale(${scale})`;
+          stage.style.width = `${width * scale}px`;
+          stage.style.height = `${height * scale}px`;
+          status.textContent = vpKey === 'live' ? `Live · ${width}px` : `${width}px preview · ${Math.round(scale * 100)}%`;
+        };
+        const draw = () => {
+          const vp = VIEWPORTS[vpKey];
+          toggle.querySelectorAll('button').forEach((b) => b.setAttribute('aria-pressed', String(b.dataset.vp === vpKey)));
+          iframe = document.createElement('iframe');
+          iframe.src = `index.html?frame&sample=${sampleSelect.value}&pos=${posSelect.value}`;
+          iframe.width = vp.width;
+          iframe.height = vp.height;
+          iframe.title = `Toast at ${vp.label}`;
+          stage.replaceChildren(iframe);
+          fit();
+        };
+        toggle.addEventListener('click', (event) => {
+          const button = event.target.closest('[data-vp]');
+          if (!button) return;
+          vpKey = button.dataset.vp;
+          draw();
+        });
+        sampleSelect.addEventListener('change', draw);
+        posSelect.addEventListener('change', draw);
+        new ResizeObserver(fit).observe(stage.parentElement);
+        draw();
+      }
+    </script>
+  </body>
+</html>

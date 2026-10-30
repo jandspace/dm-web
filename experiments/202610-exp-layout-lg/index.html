@@ -1,0 +1,154 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Experiment · Layout at LG</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet" />
+
+    <!-- A = control: shared tokens and main.css only (layout classes and the
+         Layout & Grid placeholder cards), nothing overridden. -->
+    <link rel="stylesheet" href="../../tokens/dm_tokens.css" />
+    <link rel="stylesheet" href="../../tokens/dm_typography_web_tokens.css" />
+    <link rel="stylesheet" href="../../styles/css/main.css" />
+
+    <!-- ════════════════════════════════════════════════════
+         EXPERIMENT PAGE LAYOUT ONLY — no component overrides.
+         The Layout & Grid sample in a fixed 1024px frame, so .container is
+         always the LG 996px container.
+    ════════════════════════════════════════════════════ -->
+    <style>
+      .exp-shell {
+        min-height: 100vh;
+        padding: var(--spacing-32) 0;
+        font-family: var(--typography-font-family-sans);
+      }
+
+      .exp-shell__header {
+        display: flex;
+        flex-wrap: wrap;
+        align-items: flex-end;
+        justify-content: space-between;
+        gap: var(--spacing-12);
+        max-width: 996px;
+        margin: 0 auto var(--spacing-16);
+      }
+
+      .exp-shell__title {
+        margin: 0;
+        font-size: 18px;
+        font-weight: 700;
+        color: var(--color-text-neutral-darker);
+      }
+
+      .exp-shell__meta {
+        margin: var(--spacing-4) 0 0;
+        font-size: 12px;
+        line-height: 1.5;
+        color: var(--color-text-neutral-grey-dark);
+      }
+
+      .exp-shell__guides {
+        display: flex;
+        align-items: center;
+        gap: var(--spacing-8);
+        font-size: 12px;
+        color: var(--color-text-neutral-darker);
+      }
+
+      /* The frame stays 1024px wide (LG rules) but only the 996px container
+         shows — the 14px auto margins each side are cropped */
+      .exp-shell__stage {
+        width: 996px;
+        margin: 0 auto;
+        overflow: hidden;
+      }
+
+      .exp-shell__stage iframe {
+        display: block;
+        width: 1024px;
+        margin-left: -14px;
+        border: 0;
+      }
+
+      /* Frame mode (?frame) shows the sample; window mode shows the shell */
+      .exp-frame .exp-shell,
+      body:not(.exp-frame) .exp-page {
+        display: none;
+      }
+    </style>
+    <script src="../../scripts/scaffolding/experiments-home.js" defer></script>
+  </head>
+  <body>
+    <!-- Window mode: header + 1024px LG frame (filled by the script below) -->
+    <div class="exp-shell">
+      <header class="exp-shell__header">
+        <div>
+          <h1 class="exp-shell__title">Layout · LG 996 container</h1>
+          <p class="exp-shell__meta">
+            The Layout &amp; Grid sample (foundation/layout/) in a 1024px frame: LG ≥1024, container fixed at 996px
+            (Alpha 664 + Beta 332). Shared CSS, unchanged.
+          </p>
+        </div>
+        <label class="exp-shell__guides"><input type="checkbox" id="exp-guides" /> Guides</label>
+      </header>
+      <div class="exp-shell__stage" id="exp-stage"></div>
+    </div>
+
+    <!-- ════════════════════════════════════════════════════
+         SAMPLE — copy of the Layout & Grid demo sample (placeholder cards)
+    ════════════════════════════════════════════════════ -->
+    <main class="container demo-layout-sample exp-page">
+        <!-- Guides: the column grid over the whole sample (12 from LG · 6 below) -->
+        <div class="demo-layout-columns" aria-hidden="true"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></div>
+        <!-- Fullwidth — one module (Top Banner) -->
+        <section class="layout-full"><span class="demo-layout-tag">layout-full</span><div class="demo-layout-card"><div class="demo-layout-card__media demo-layout-card__media--banner"></div><p class="h1"><span class="demo-layout-text">PM declares war on Brexit: Starmer uses Trump&#x27;s abuse to signal he&#x27;ll move UK closer to EU as President hurls fresh insults</span></p></div></section>
+
+        <!-- Fullwidth — Split: header in Alpha, Beta led by a small header + tinted box -->
+        <section class="layout-full"><span class="demo-layout-tag">layout-full</span><div class="layout-split"><span class="demo-layout-tag">layout-split</span><div class="layout-alpha"><span class="demo-layout-tag">layout-alpha</span><h2 class="demo-layout-heading"><span class="demo-layout-text demo-layout-text--strong">Section Header</span></h2><div class="layout-row"><span class="demo-layout-tag">layout-row</span><div class="layout-col"><span class="demo-layout-tag">Col 1-1</span><div class="demo-layout-card"><div class="demo-layout-card__media"></div><p class="h2"><span class="demo-layout-text">Trump has wanted to leave Nato for 40 years... but Marco Rubio&#x27;s swingeing intervention may stop him</span></p></div></div></div><div class="layout-row"><span class="demo-layout-tag">layout-row</span><div class="layout-col"><span class="demo-layout-tag">Col 1-2</span><div class="demo-layout-card demo-layout-card--sm-left"><div class="demo-layout-card__media"></div><p class="h5"><span class="demo-layout-text">Pete Hegseth claims &#x27;Iran begged for this ceasefire&#x27;: Live updates</span></p></div><div class="demo-layout-card demo-layout-card--sm-left"><div class="demo-layout-card__media"></div><p class="h5"><span class="demo-layout-text">White House publishes 10-point ceasefire plan not one received by US, says Iran</span></p></div></div><div class="layout-col"><span class="demo-layout-tag">Col 1-2</span><div class="demo-layout-card demo-layout-card--sm-left"><div class="demo-layout-card__media"></div><p class="h5"><span class="demo-layout-text">We never asked Trump for a ceasefire, Iran says as it blasts claims of deal as &#x27;ridiculous&#x27;</span></p></div><div class="demo-layout-card demo-layout-card--sm-left"><div class="demo-layout-card__media"></div><p class="h5"><span class="demo-layout-text">BORIS JOHNSON: Tony Blair is right. We may not like the war with Iran but it&#x27;s not our war</span></p></div></div></div><div class="layout-inset"><span class="demo-layout-tag">layout-inset</span><div class="demo-layout-box demo-layout-box--sport"><h2 class="demo-layout-heading"><span class="demo-layout-text demo-layout-text--strong">Section Header</span></h2><div class="layout-row"><span class="demo-layout-tag">layout-row</span><div class="layout-col"><span class="demo-layout-tag">Col 1-2</span><div class="demo-layout-card"><div class="demo-layout-card__media"></div><p class="h4"><span class="demo-layout-text">Arsenal close in on title as Saka double sinks Chelsea at the Emirates</span></p></div></div><div class="layout-col"><span class="demo-layout-tag">Col 1-2</span><div class="demo-layout-card demo-layout-card--sm-left"><div class="demo-layout-card__media"></div><p class="h5"><span class="demo-layout-text">England name unchanged side for Six Nations decider against France</span></p></div><div class="demo-layout-card demo-layout-card--sm-left"><div class="demo-layout-card__media"></div><p class="h5"><span class="demo-layout-text">Lewis Hamilton sets fastest lap in final practice at Silverstone</span></p></div><div class="demo-layout-card demo-layout-card--sm-left"><div class="demo-layout-card__media"></div><p class="h5"><span class="demo-layout-text">Emma Raducanu books her place in the Wimbledon quarter-finals</span></p></div></div></div></div></div><div class="layout-row"><span class="demo-layout-tag">layout-row</span><div class="layout-col"><span class="demo-layout-tag">Col 1-2</span><div class="demo-layout-card demo-layout-card--sm-left"><div class="demo-layout-card__media"></div><p class="h5"><span class="demo-layout-text">Iran &#x27;could WITHDRAW from ceasefire&#x27; as Israel is accused of violating terms of the deal</span></p></div></div><div class="layout-col"><span class="demo-layout-tag">Col 1-2</span><div class="demo-layout-card demo-layout-card--sm-left"><div class="demo-layout-card__media"></div><p class="h5"><span class="demo-layout-text">Iraq: Israel&#x27;s Lebanon strikes &#x27;evidence&#x27; of plan to sabotage truce</span></p></div></div></div></div><aside class="layout-beta"><span class="demo-layout-tag">layout-beta</span><header class="section-header section-header--sm"><div class="section-header__row"><h2 class="section-header__title"><span class="section-header__link"><span class="section-header__label"><span class="section-header__text"><span class="demo-layout-text demo-layout-text--strong">Section Header</span></span></span></span></h2></div></header><div class="layout-inset"><span class="demo-layout-tag">layout-inset</span><div class="demo-layout-box"><div class="demo-layout-card demo-layout-card--sm-right"><div class="demo-layout-card__media"></div><p class="h6"><span class="demo-layout-text">Molly-Mae shows off her glowing tan as she jets off to Dubai with Tommy Fury</span></p></div><div class="demo-layout-card demo-layout-card--sm-right"><div class="demo-layout-card__media"></div><p class="h6"><span class="demo-layout-text">Princess Andre takes subtle swipe at mum Katie Price as she reveals line</span></p></div><div class="demo-layout-card demo-layout-card--sm-right"><div class="demo-layout-card__media"></div><p class="h6"><span class="demo-layout-text">Jessica Alba, 47, strips down to a skimpy bikini on holiday after divorce agreement</span></p></div><div class="demo-layout-card demo-layout-card--sm-right"><div class="demo-layout-card__media"></div><p class="h6"><span class="demo-layout-text">Strictly star confirms romance with professional partner after weeks of rumours</span></p></div></div></div><div class="demo-layout-card demo-layout-card--sm-right"><div class="demo-layout-card__media"></div><p class="h6"><span class="demo-layout-text">Love yourself first: take time to prioritise your health this summer with these top 10 brands</span></p></div><div class="demo-layout-card demo-layout-card--sm-right"><div class="demo-layout-card__media"></div><p class="h6"><span class="demo-layout-text">The brand behind the self-tan that sells every 20 seconds drops glow-boosting SPF</span></p></div><div class="demo-layout-mpu">MPU 300 × 250</div></aside></div></section>
+
+        <!-- Fullwidth — header + Row (Col 1-3 ×3) -->
+        <section class="layout-full"><span class="demo-layout-tag">layout-full</span><h2 class="demo-layout-heading"><span class="demo-layout-text demo-layout-text--strong">Section Header</span></h2><div class="layout-row"><span class="demo-layout-tag">layout-row</span><div class="layout-col"><span class="demo-layout-tag">Col 1-3</span><div class="demo-layout-card demo-layout-card--featured"><div class="demo-layout-card__media"></div><p class="h5"><span class="demo-layout-text">Our Newsletters: explore our curated newsletters for the latest news</span></p></div></div><div class="layout-col"><span class="demo-layout-tag">Col 1-3</span><div class="demo-layout-card demo-layout-card--featured"><div class="demo-layout-card__media"></div><p class="h5"><span class="demo-layout-text">Games: Sudoku, Word Wheel, Guess Word and more</span></p></div></div><div class="layout-col"><span class="demo-layout-tag">Col 1-3</span><div class="demo-layout-card demo-layout-card--featured"><div class="demo-layout-card__media"></div><p class="h5"><span class="demo-layout-text">The Crime Desk: exclusive true crime stories, video and podcasts</span></p></div></div></div></section>
+
+        <!-- Fullwidth — Split --joined (one channel block) -->
+        <section class="layout-full"><span class="demo-layout-tag">layout-full</span><h2 class="demo-layout-heading"><span class="demo-layout-text demo-layout-text--strong">Section Header</span></h2><div class="layout-split layout-split--joined"><span class="demo-layout-tag">layout-split</span><div class="layout-alpha"><span class="demo-layout-tag">layout-alpha</span><div class="demo-layout-card"><div class="demo-layout-card__media"></div><p class="h2"><span class="demo-layout-text">Prince George and Princess Charlotte dash out to grab hats as the 29C sun beams down on Centre Court</span></p></div></div><aside class="layout-beta"><span class="demo-layout-tag">layout-beta</span><div class="demo-layout-card demo-layout-card--sm-right"><div class="demo-layout-card__media"></div><p class="h6"><span class="demo-layout-text">Sydney Sweeney is under attack again. This is the point that the jealous sisterhood is missing</span></p></div><div class="demo-layout-card demo-layout-card--sm-right"><div class="demo-layout-card__media"></div><p class="h6"><span class="demo-layout-text">Kylie Jenner was left &#x27;weeping&#x27; after revealing to daughter why the Kardashians are famous</span></p></div><div class="demo-layout-card demo-layout-card--sm-right"><div class="demo-layout-card__media"></div><p class="h6"><span class="demo-layout-text">Carol Kirkwood&#x27;s colleagues take a dig during her final moments on BBC</span></p></div><div class="demo-layout-card demo-layout-card--sm-right"><div class="demo-layout-card__media"></div><p class="h6"><span class="demo-layout-text">Pictured: The plastic surgery disaster that left a reality star unrecognisable</span></p></div></aside></div></section>
+
+        <!-- Fullwidth — Row of three channel columns -->
+        <section class="layout-full"><span class="demo-layout-tag">layout-full</span><div class="layout-row"><span class="demo-layout-tag">layout-row</span><div class="layout-col"><span class="demo-layout-tag">Col 1-3</span><h2 class="demo-layout-heading"><span class="demo-layout-text demo-layout-text--strong">Section Header</span></h2><div class="demo-layout-card"><div class="demo-layout-card__media"></div><p class="h4"><span class="demo-layout-text">Warn women in their 30s about alcohol and breast cancer link, urge scientists</span></p></div><div class="demo-layout-card demo-layout-card--sm-left"><div class="demo-layout-card__media"></div><p class="h5"><span class="demo-layout-text">The five-minute habit that could add years to your life, according to experts</span></p></div><div class="demo-layout-card demo-layout-card--sm-left"><div class="demo-layout-card__media"></div><p class="h5"><span class="demo-layout-text">Why you should never skip breakfast if you are over 50</span></p></div><div class="demo-layout-card demo-layout-card--sm-left"><div class="demo-layout-card__media"></div><p class="h5"><span class="demo-layout-text">GPs to offer weight-loss jabs on the NHS from next spring</span></p></div></div><div class="layout-col"><span class="demo-layout-tag">Col 1-3</span><h2 class="demo-layout-heading"><span class="demo-layout-text demo-layout-text--strong">Section Header</span></h2><div class="demo-layout-card"><div class="demo-layout-card__media"></div><p class="h4"><span class="demo-layout-text">The secret Greek island that&#x27;s half the price of Santorini</span></p></div><div class="demo-layout-card demo-layout-card--sm-left"><div class="demo-layout-card__media"></div><p class="h5"><span class="demo-layout-text">Inside the luxury train that crosses Europe in 48 hours</span></p></div><div class="demo-layout-card demo-layout-card--sm-left"><div class="demo-layout-card__media"></div><p class="h5"><span class="demo-layout-text">Holiday hotspot slaps new tourist tax on day-trippers</span></p></div><div class="demo-layout-card demo-layout-card--sm-left"><div class="demo-layout-card__media"></div><p class="h5"><span class="demo-layout-text">The best beaches in Britain, as voted by readers</span></p></div></div><div class="layout-col"><span class="demo-layout-tag">Col 1-3</span><h2 class="demo-layout-heading"><span class="demo-layout-text demo-layout-text--strong">Section Header</span></h2><div class="demo-layout-card"><div class="demo-layout-card__media"></div><p class="h4"><span class="demo-layout-text">Met Police did NOT launch child sex probe as force hunts for &#x27;disturbing&#x27; 2018 letter</span></p></div><div class="demo-layout-card demo-layout-card--sm-left"><div class="demo-layout-card__media"></div><p class="h5"><span class="demo-layout-text">Detectives reopen cold case after new DNA breakthrough</span></p></div><div class="demo-layout-card demo-layout-card--sm-left"><div class="demo-layout-card__media"></div><p class="h5"><span class="demo-layout-text">Inside the gang that stole £10m of luxury watches</span></p></div><div class="demo-layout-card demo-layout-card--sm-left"><div class="demo-layout-card__media"></div><p class="h5"><span class="demo-layout-text">Jury sent out in trial of man accused of killing his neighbour</span></p></div></div></div></section>
+
+        <!-- Fullwidth — Row of four (1/4) -->
+        <section class="layout-full"><span class="demo-layout-tag">layout-full</span><h2 class="demo-layout-heading"><span class="demo-layout-text demo-layout-text--strong">Section Header</span></h2><div class="layout-row"><span class="demo-layout-tag">layout-row</span><div class="layout-col"><span class="demo-layout-tag">Col 1-4</span><div class="demo-layout-card"><div class="demo-layout-card__media"></div><p class="h4"><span class="demo-layout-text">Farage faces calls to sack Reform&#x27;s housing spokesman over Grenfell Tower comments</span></p></div></div><div class="layout-col"><span class="demo-layout-tag">Col 1-4</span><div class="demo-layout-card"><div class="demo-layout-card__media"></div><p class="h4"><span class="demo-layout-text">BoE warns of interest rates pain to come as inflation spikes in Labour&#x27;s &#x27;winter of discontent&#x27;</span></p></div></div><div class="layout-col"><span class="demo-layout-tag">Col 1-4</span><div class="demo-layout-card"><div class="demo-layout-card__media"></div><p class="h4"><span class="demo-layout-text">Amanda Platell: Sydney Sweeney is under attack again</span></p></div></div><div class="layout-col"><span class="demo-layout-tag">Col 1-4</span><div class="demo-layout-card"><div class="demo-layout-card__media"></div><p class="h4"><span class="demo-layout-text">Stunning DAZN presenters refuse to bow to colleague&#x27;s &#x27;vulgarity&#x27; dig</span></p></div></div></div></section>
+    </main>
+
+    <script>
+      // Experiment scaffolding — fixed LG preview.
+      // The layout CSS reacts to the viewport, so the page renders itself in a
+      // 1024px iframe (?frame) to always show LG ≥1024, on any screen.
+      //   ?guides   region outlines and names on (Layout & Grid guides)
+      (() => {
+        const params = new URLSearchParams(location.search);
+        if (params.has('frame')) {
+          document.body.classList.add('exp-frame');
+          document.body.classList.toggle('demo-layout-guides', params.has('guides'));
+          return;
+        }
+        const stage = document.getElementById('exp-stage');
+        const guides = document.getElementById('exp-guides');
+        const render = () => {
+          const iframe = document.createElement('iframe');
+          iframe.src = `${location.pathname}?frame${guides.checked ? '&guides' : ''}`;
+          iframe.title = 'Layout at LG 1024';
+          iframe.addEventListener('load', async () => {
+            await iframe.contentDocument.fonts.ready;
+            iframe.height = iframe.contentDocument.documentElement.scrollHeight;
+          });
+          stage.replaceChildren(iframe);
+        };
+        guides.addEventListener('change', render);
+        render();
+      })();
+    </script>
+  </body>
+</html>
