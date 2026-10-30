@@ -11,6 +11,7 @@
     <link rel="stylesheet" href="../../tokens/dm_typography_web_tokens.css" />
     <link rel="stylesheet" href="../../styles/css/main.css" />
     <script src="../../scripts/scaffolding/demo-nav.js" defer></script>
+    <script src="../../scripts/modules/article-card-media.js" defer></script>
   </head>
   <body class="demo-page-body demo-page-body--flush">
     <div class="demo-card-page">
@@ -94,11 +95,13 @@
         </optgroup>
       </select>
       <span class="demo-vp-toolbar__divider" aria-hidden="true"></span>
-      <span id="demo-play-switch-label">Play icon</span>
-      <div class="demo-vp-toggle" role="group" aria-labelledby="demo-play-switch-label" id="demo-play-switch">
-        <button type="button" data-play="off" aria-pressed="true">Off</button>
-        <button type="button" data-play="on" aria-pressed="false">On</button>
-      </div>
+      <label for="demo-media-select">Media</label>
+      <select class="demo-vp-select" id="demo-media-select" autocomplete="off">
+        <option value="image">Image</option>
+        <option value="animated-preview">Preview (Video in an article)</option>
+        <option value="video">Video (not SM / Image Only)</option>
+        <option value="carousel">Carousel (not SM / Image Only)</option>
+      </select>
       </div>
     </div>
 
@@ -106,9 +109,12 @@
 
     <!-- Main Content columns — 3 (LG+), 2 (MD), 1 (SM-XS); demo-only 24px gap.
          Card structure:
-           .article-card__media    — placeholder image at the defined aspect ratio
-             .article-card__video  — video articles only ("Play icon › On"): play icon (Video Player
-                                     Controls), + duration pill on MD Vertical; never on Image Only
+           .article-card__media    — placeholder image at the defined aspect ratio; the Media select
+                                     swaps it (Article Card Media, modules/article-card-media):
+                                     Preview (Video in an article) — preview + play icon (.article-card__video;
+                                     SM thumbs keep the image + icon, Image Only no icon) · Video
+                                     (.article-card-player) · Carousel (.article-card-carousel) —
+                                     the last two not on SM thumbs or Image Only (they keep the image)
            .article-card__body     — headline + metadata
              .article-headline     — reused from modules/article-headline;
                                      holds the article link: <a class="article-card__link"> (whole card clickable)
@@ -136,7 +142,8 @@
       //   ?badge=live        Live badge — always comes with Live Key Updates (replaces preview text)
       //   ?meta=<type>       Article Card Metadata type (keys of META_TYPES below; default channel; off = none)
       //   ?badge=<kind>      editorial badge in every headline (keys of BADGES below)
-      //   ?play              video articles — play icon on the media (Image Only excluded)
+      //   ?media=<type>      media type (MEDIA_TYPES below; default image). Old links: ?play,
+      //                      ?media=preview / video-article = animated-preview
       (() => {
         const params = new URLSearchParams(location.search);
         const only = params.get('only');
@@ -346,31 +353,103 @@
 
         setMeta(params.get('meta'));
 
-        // Play icon — video articles only, so it is added / removed, not hidden.
-        // Decorative (the card is the link). Size per card type: _article-card-video.scss.
-        // MD (Vertical Media) also carries the duration pill. Image Only never has it.
+        // Media — Article Card Media (styles/scss/modules/_article-card-media.scss,
+        // behaviour scripts/modules/article-card-media.js).
+        //   image             the card's own photo
+        //   animated-preview  video article: animated preview + play icon (indicator
+        //                     only; size per card type, _article-card-video.scss; MD
+        //                     Vertical adds the duration). SM thumbs keep the photo +
+        //                     icon; Image Only takes the preview, never the icon
+        //   video          video player       — not on SM thumbs or Image Only
+        //   carousel       5 slides, 3rd a preview — not on SM thumbs or Image Only
+        // Cards that cannot take a type keep the photo.
+        const MEDIA_TYPES = ['image', 'animated-preview', 'video', 'carousel'];
+        const ASSETS = '../../assets/images/';
+        const PREVIEW_HTML = `<video src="${ASSETS}article-card-animated-preview.mp4#t=0.1" data-preview muted loop playsinline preload="metadata" aria-hidden="true"></video>`;
         const PLAY_HTML =
           '<span class="article-card__video" aria-hidden="true">' +
           '<span class="video-play"><span class="icon icon--media-play" aria-hidden="true"></span></span></span>';
-        const TIMER_HTML = '<span class="video-timer">29:59</span>';
+        const TIMER_HTML = '<span class="video-timer">00:05</span>';
+        const iconButton = (cls, attrs, icon) =>
+          `<button type="button" class="btn ${cls} btn--icon-only" ${attrs}><span class="btn__content"><span class="icon icon--${icon}" aria-hidden="true"></span></span></button>`;
+        const PLAYER_HTML =
+          '<div class="article-card__media article-card-player">' +
+          `<video src="${ASSETS}article-card-video.mp4#t=0.1" muted playsinline preload="metadata"></video>` +
+          '<button type="button" class="article-card-player__surface" aria-label="Play video"></button>' +
+          '<span class="article-card-player__play" aria-hidden="true"><span class="video-play"><span class="icon icon--media-play" aria-hidden="true"></span></span><span class="video-timer">00:11</span></span>' +
+          '<div class="article-card-player__actions">' +
+          iconButton('btn-tertiary-light', 'data-action="expand" aria-label="Full screen"', 'arrows-expand') +
+          iconButton('btn-tertiary-light', 'data-action="sound" aria-label="Unmute"', 'speaker-off') +
+          iconButton('btn-tertiary-light', 'data-action="share" aria-label="Share"', 'sharing-android') +
+          '</div>' +
+          '<div class="video-progress video-progress--inline">' +
+          '<span class="video-progress__elapsed">00:00</span>' +
+          '<div class="video-progress__track" role="progressbar" aria-label="Video progress" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0"><div class="video-progress__bar"></div></div>' +
+          '<span class="video-progress__remaining">-00:11</span>' +
+          '</div></div>';
+        const CAROUSEL_HTML =
+          '<div class="article-card__media article-card-carousel">' +
+          '<div class="article-card-carousel__track">' +
+          [1, 2, 3, 4, 5]
+            .map((n) => `<div class="article-card-carousel__item">${n === 3 ? PREVIEW_HTML : `<img src="${ASSETS}article-card-carousel-0${n}.jpg" alt="" />`}</div>`)
+            .join('') +
+          '</div>' +
+          `<div class="article-card-carousel__nav article-card-carousel__nav--prev">${iconButton('btn-tertiary-neutral', 'aria-label="Previous image"', 'arrow-left-light')}</div>` +
+          `<div class="article-card-carousel__nav article-card-carousel__nav--next">${iconButton('btn-tertiary-neutral', 'aria-label="Next image"', 'arrow-right-light')}</div>` +
+          `<div class="article-card-carousel__dots" aria-hidden="true">${'<span class="article-card-carousel__dot"></span>'.repeat(5)}</div>` +
+          '</div>';
 
-        const setPlay = (on) => {
-          document.querySelectorAll('.article-card').forEach((card) => {
-            if (card.matches('.article-card--image-only')) return;
-            const media = card.querySelector('.article-card__media');
-            const existing = media?.querySelector('.article-card__video');
-            if (on && media && !existing) {
-              media.insertAdjacentHTML('beforeend', PLAY_HTML);
-              if (card.matches('.article-card--md-vertical')) {
-                media.querySelector('.article-card__video').insertAdjacentHTML('beforeend', TIMER_HTML);
-              }
-            } else if (!on && existing) {
-              existing.remove();
+        // Each card's own photo, kept to put back
+        const photos = new Map();
+        document.querySelectorAll('.article-card').forEach((card) => {
+          const img = card.querySelector('.article-card__media > img');
+          if (img) photos.set(card, img.cloneNode());
+        });
+
+        const setMedia = (type) => {
+          photos.forEach((photo, card) => {
+            const small = card.matches('.article-card--sm-left, .article-card--sm-right');
+            const imageOnly = card.matches('.article-card--image-only');
+            const t = (type === 'video' || type === 'carousel') && (small || imageOnly) ? 'image' : type;
+
+            // Back to the photo first. Player and carousel replace the whole
+            // media box (never on Image Only, whose overlay lives in it).
+            let media = card.querySelector('.article-card__media');
+            if (media.matches('.article-card-player, .article-card-carousel')) {
+              const box = document.createElement('div');
+              box.className = 'article-card__media';
+              media.replaceWith(box);
+              media = box;
             }
+            media.querySelector(':scope > img, :scope > video')?.remove();
+            media.querySelector('.article-card__video')?.remove();
+            media.prepend(photo.cloneNode());
+
+            if (t === 'animated-preview') {
+              if (!small) media.querySelector(':scope > img').outerHTML = PREVIEW_HTML;
+              if (!imageOnly) {
+                media.insertAdjacentHTML('beforeend', PLAY_HTML);
+                if (card.matches('.article-card--md-vertical')) {
+                  media.querySelector('.article-card__video').insertAdjacentHTML('beforeend', TIMER_HTML);
+                }
+              }
+            } else if (t === 'video') {
+              media.outerHTML = PLAYER_HTML;
+            } else if (t === 'carousel') {
+              media.outerHTML = CAROUSEL_HTML;
+            }
+            // On first load the media script (deferred) runs after this and
+            // initialises everything itself
+            window.ArticleCardMedia?.init(card);
           });
         };
 
-        setPlay(params.has('play'));
+        const LEGACY = { preview: 'animated-preview', 'video-article': 'animated-preview' };
+        const asked = LEGACY[params.get('media')] || params.get('media');
+        const initialMedia = MEDIA_TYPES.includes(asked)
+          ? asked
+          : params.has('play') ? 'animated-preview' : 'image';
+        setMedia(initialMedia);
 
         if (only) {
           document.body.classList.add('demo-embed');
@@ -396,7 +475,7 @@
         const extraToggle = document.getElementById('demo-extra-switch');
         const badgeSelect = document.getElementById('demo-badge-select');
         const metaSelect = document.getElementById('demo-meta-select');
-        const playToggle = document.getElementById('demo-play-switch');
+        const mediaSelect = document.getElementById('demo-media-select');
         const status = document.getElementById('demo-vp-status');
         const grid = document.getElementById('demo-card-grid');
         const stage = document.getElementById('demo-vp-stage');
@@ -408,11 +487,12 @@
         badgeSelect.value = badge;
         let meta = META_TYPES[params.get('meta')] || params.get('meta') === 'off' ? params.get('meta') : 'channel';
         metaSelect.value = meta;
-        let play = params.has('play');
+        let media = initialMedia;
+        mediaSelect.value = media;
 
         // Current demo state, passed on to the fixed-viewport frame
         const stateQuery = () =>
-          `${preview ? '&preview' : ''}${badge ? `&badge=${badge}` : ''}${meta !== 'channel' ? `&meta=${meta}` : ''}${play ? '&play' : ''}`;
+          `${preview ? '&preview' : ''}${badge ? `&badge=${badge}` : ''}${meta !== 'channel' ? `&meta=${meta}` : ''}${media !== 'image' ? `&media=${media}` : ''}`;
 
         const fit = () => {
           if (!iframe || !iframe.contentDocument) return;
@@ -528,28 +608,19 @@
           if (current !== 'live') select(current);
         });
 
-        const syncPlay = () => {
-          playToggle.querySelectorAll('button').forEach((b) => {
-            b.setAttribute('aria-pressed', String(b.dataset.play === (play ? 'on' : 'off')));
-          });
-        };
-
-        playToggle.addEventListener('click', (event) => {
-          const button = event.target.closest('button[data-play]');
-          if (!button) return;
-          play = button.dataset.play === 'on';
-          setPlay(play);
-          syncPlay();
+        mediaSelect.addEventListener('change', () => {
+          media = mediaSelect.value;
+          setMedia(media);
 
           const url = new URL(location.href);
-          if (play) url.searchParams.set('play', '');
-          else url.searchParams.delete('play');
+          url.searchParams.delete('play');
+          if (media !== 'image') url.searchParams.set('media', media);
+          else url.searchParams.delete('media');
           history.replaceState(null, '', url);
 
           if (current !== 'live') select(current);
         });
 
-        syncPlay();
         syncControls();
         select(params.get('vp') || 'live');
       })();

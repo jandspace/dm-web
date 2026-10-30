@@ -1,0 +1,232 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Article Card Media</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&family=Lora:ital,wght@0,400;0,500;0,600;0,700;1,400&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="../../tokens/dm_tokens.css" />
+    <link rel="stylesheet" href="../../tokens/dm_typography_web_tokens.css" />
+    <link rel="stylesheet" href="../../styles/css/main.css" />
+    <script src="../../scripts/scaffolding/demo-nav.js" defer></script>
+    <script src="../../scripts/modules/article-card-media.js" defer></script>
+  </head>
+  <body class="demo-page-body">
+    <h1 class="demo-page-h1">Article Card Media</h1>
+    <p class="demo-page-intro">
+      What fills the media box of an Article Card: Image (photo or animated preview), Video and Carousel.
+      Figma: Web UI Kit › Article Card Media (5279:14012), Video (5279:13909), Carousel (5279:14031).
+      Video and Carousel are for the larger cards only — not SM thumbs, not Image Only.
+    </p>
+
+    <!-- ════════════════════════════════════════════════════
+         MEDIA TYPES × ASPECT RATIO
+         .article-card__media                         Image (img | video[data-preview])
+         .article-card__media.article-card-player     Video
+         .article-card__media.article-card-carousel   Carousel
+         Ratio comes from the card (demo-acm--square / --portrait are demo only)
+         Behaviour: scripts/modules/article-card-media.js
+    ════════════════════════════════════════════════════ -->
+    <div class="demo-grid demo-grid--acm">
+      <div class="demo-col-header"></div>
+      <div class="demo-col-header">Landscape<small>358:215 · Large crop</small></div>
+      <div class="demo-col-header">Square<small>1:1</small></div>
+      <div class="demo-col-header">Portrait<small>2:3 · Vertical crop</small></div>
+
+      <div class="demo-row-label">Image<small>Photo. Every card type.</small></div>
+      <div class="demo-cell">
+        <div class="article-card__media"><img src="../../assets/images/article-card-placeholder.jpg" alt="" /></div>
+      </div>
+      <div class="demo-cell">
+        <div class="article-card__media demo-acm--square"><img src="../../assets/images/article-card-placeholder.jpg" alt="" /></div>
+      </div>
+      <div class="demo-cell">
+        <div class="article-card__media demo-acm--portrait"><img src="../../assets/images/article-card-placeholder-portrait.jpg" alt="" /></div>
+      </div>
+
+      <div class="demo-row-label">Image + preview<small>Animated preview (5–7s, muted, loops while on screen). No controls — the card link takes the click.</small></div>
+      <div class="demo-cell">
+        <div class="article-card__media"><video src="../../assets/images/article-card-animated-preview.mp4#t=0.1" data-preview muted loop playsinline preload="metadata" aria-hidden="true"></video></div>
+      </div>
+      <div class="demo-cell">
+        <div class="article-card__media demo-acm--square"><video src="../../assets/images/article-card-animated-preview.mp4#t=0.1" data-preview muted loop playsinline preload="metadata" aria-hidden="true"></video></div>
+      </div>
+      <div class="demo-cell">
+        <div class="article-card__media demo-acm--portrait"><video src="../../assets/images/article-card-animated-preview.mp4#t=0.1" data-preview muted loop playsinline preload="metadata" aria-hidden="true"></video></div>
+      </div>
+
+      <div class="demo-row-label">Image + preview · video article<small>Same, with the play icon as an indicator only (size per card type, see Article Card).</small></div>
+      <div class="demo-cell">
+        <div class="article-card__media"><video src="../../assets/images/article-card-animated-preview.mp4#t=0.1" data-preview muted loop playsinline preload="metadata" aria-hidden="true"></video><span class="article-card__video" aria-hidden="true"><span class="video-play"><span class="icon icon--media-play" aria-hidden="true"></span></span></span></div>
+      </div>
+      <div class="demo-cell">
+        <div class="article-card__media demo-acm--square"><video src="../../assets/images/article-card-animated-preview.mp4#t=0.1" data-preview muted loop playsinline preload="metadata" aria-hidden="true"></video><span class="article-card__video" aria-hidden="true"><span class="video-play"><span class="icon icon--media-play" aria-hidden="true"></span></span></span></div>
+      </div>
+      <div class="demo-cell">
+        <div class="article-card__media demo-acm--portrait"><video src="../../assets/images/article-card-animated-preview.mp4#t=0.1" data-preview muted loop playsinline preload="metadata" aria-hidden="true"></video><span class="article-card__video" aria-hidden="true"><span class="video-play"><span class="icon icon--media-play" aria-hidden="true"></span></span></span></div>
+      </div>
+
+      <div class="demo-row-label">Video<small>Click to play (muted). Playing: controls fade after 3s, back on mouse move; on touch the first tap shows them. Not on SM or Image Only.</small></div>
+      <div class="demo-cell">
+        <div class="article-card__media article-card-player">
+          <video src="../../assets/images/article-card-video.mp4#t=0.1" muted playsinline preload="metadata"></video>
+          <button type="button" class="article-card-player__surface" aria-label="Play video"></button>
+          <span class="article-card-player__play" aria-hidden="true"><span class="video-play"><span class="icon icon--media-play" aria-hidden="true"></span></span><span class="video-timer">00:11</span></span>
+          <div class="article-card-player__actions">
+            <button type="button" class="btn btn-tertiary-light btn--icon-only" data-action="expand" aria-label="Full screen"><span class="btn__content"><span class="icon icon--arrows-expand" aria-hidden="true"></span></span></button>
+            <button type="button" class="btn btn-tertiary-light btn--icon-only" data-action="sound" aria-label="Unmute"><span class="btn__content"><span class="icon icon--speaker-off" aria-hidden="true"></span></span></button>
+            <button type="button" class="btn btn-tertiary-light btn--icon-only" data-action="share" aria-label="Share"><span class="btn__content"><span class="icon icon--sharing-android" aria-hidden="true"></span></span></button>
+          </div>
+          <div class="video-progress video-progress--inline">
+            <span class="video-progress__elapsed">00:00</span>
+            <div class="video-progress__track" role="progressbar" aria-label="Video progress" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0"><div class="video-progress__bar"></div></div>
+            <span class="video-progress__remaining">-00:11</span>
+          </div>
+        </div>
+      </div>
+      <div class="demo-cell">
+        <div class="article-card__media article-card-player demo-acm--square">
+          <video src="../../assets/images/article-card-video.mp4#t=0.1" muted playsinline preload="metadata"></video>
+          <button type="button" class="article-card-player__surface" aria-label="Play video"></button>
+          <span class="article-card-player__play" aria-hidden="true"><span class="video-play"><span class="icon icon--media-play" aria-hidden="true"></span></span><span class="video-timer">00:11</span></span>
+          <div class="article-card-player__actions">
+            <button type="button" class="btn btn-tertiary-light btn--icon-only" data-action="expand" aria-label="Full screen"><span class="btn__content"><span class="icon icon--arrows-expand" aria-hidden="true"></span></span></button>
+            <button type="button" class="btn btn-tertiary-light btn--icon-only" data-action="sound" aria-label="Unmute"><span class="btn__content"><span class="icon icon--speaker-off" aria-hidden="true"></span></span></button>
+            <button type="button" class="btn btn-tertiary-light btn--icon-only" data-action="share" aria-label="Share"><span class="btn__content"><span class="icon icon--sharing-android" aria-hidden="true"></span></span></button>
+          </div>
+          <div class="video-progress video-progress--inline">
+            <span class="video-progress__elapsed">00:00</span>
+            <div class="video-progress__track" role="progressbar" aria-label="Video progress" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0"><div class="video-progress__bar"></div></div>
+            <span class="video-progress__remaining">-00:11</span>
+          </div>
+        </div>
+      </div>
+      <div class="demo-cell">
+        <div class="article-card__media article-card-player demo-acm--portrait">
+          <video src="../../assets/images/article-card-video.mp4#t=0.1" muted playsinline preload="metadata"></video>
+          <button type="button" class="article-card-player__surface" aria-label="Play video"></button>
+          <span class="article-card-player__play" aria-hidden="true"><span class="video-play"><span class="icon icon--media-play" aria-hidden="true"></span></span><span class="video-timer">00:11</span></span>
+          <div class="article-card-player__actions">
+            <button type="button" class="btn btn-tertiary-light btn--icon-only" data-action="expand" aria-label="Full screen"><span class="btn__content"><span class="icon icon--arrows-expand" aria-hidden="true"></span></span></button>
+            <button type="button" class="btn btn-tertiary-light btn--icon-only" data-action="sound" aria-label="Unmute"><span class="btn__content"><span class="icon icon--speaker-off" aria-hidden="true"></span></span></button>
+            <button type="button" class="btn btn-tertiary-light btn--icon-only" data-action="share" aria-label="Share"><span class="btn__content"><span class="icon icon--sharing-android" aria-hidden="true"></span></span></button>
+          </div>
+          <div class="video-progress video-progress--inline">
+            <span class="video-progress__elapsed">00:00</span>
+            <div class="video-progress__track" role="progressbar" aria-label="Video progress" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0"><div class="video-progress__bar"></div></div>
+            <span class="video-progress__remaining">-00:11</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="demo-row-label">Carousel<small>Up to 5 images or previews (slide 3 is a preview). Arrows 40% → 100% on hover, swipe on touch. Not on SM or Image Only.</small></div>
+      <div class="demo-cell">
+        <div class="article-card__media article-card-carousel">
+          <div class="article-card-carousel__track">
+            <div class="article-card-carousel__item"><img src="../../assets/images/article-card-carousel-01.jpg" alt="" /></div>
+            <div class="article-card-carousel__item"><img src="../../assets/images/article-card-carousel-02.jpg" alt="" /></div>
+            <div class="article-card-carousel__item"><video src="../../assets/images/article-card-animated-preview.mp4#t=0.1" data-preview muted loop playsinline preload="metadata" aria-hidden="true"></video></div>
+            <div class="article-card-carousel__item"><img src="../../assets/images/article-card-carousel-04.jpg" alt="" /></div>
+            <div class="article-card-carousel__item"><img src="../../assets/images/article-card-carousel-05.jpg" alt="" /></div>
+          </div>
+          <div class="article-card-carousel__nav article-card-carousel__nav--prev"><button type="button" class="btn btn-tertiary-neutral btn--icon-only" aria-label="Previous image"><span class="btn__content"><span class="icon icon--arrow-left-light" aria-hidden="true"></span></span></button></div>
+          <div class="article-card-carousel__nav article-card-carousel__nav--next"><button type="button" class="btn btn-tertiary-neutral btn--icon-only" aria-label="Next image"><span class="btn__content"><span class="icon icon--arrow-right-light" aria-hidden="true"></span></span></button></div>
+          <div class="article-card-carousel__dots" aria-hidden="true"><span class="article-card-carousel__dot"></span><span class="article-card-carousel__dot"></span><span class="article-card-carousel__dot"></span><span class="article-card-carousel__dot"></span><span class="article-card-carousel__dot"></span></div>
+        </div>
+      </div>
+      <div class="demo-cell">
+        <div class="article-card__media article-card-carousel demo-acm--square">
+          <div class="article-card-carousel__track">
+            <div class="article-card-carousel__item"><img src="../../assets/images/article-card-carousel-01.jpg" alt="" /></div>
+            <div class="article-card-carousel__item"><img src="../../assets/images/article-card-carousel-02.jpg" alt="" /></div>
+            <div class="article-card-carousel__item"><video src="../../assets/images/article-card-animated-preview.mp4#t=0.1" data-preview muted loop playsinline preload="metadata" aria-hidden="true"></video></div>
+            <div class="article-card-carousel__item"><img src="../../assets/images/article-card-carousel-04.jpg" alt="" /></div>
+            <div class="article-card-carousel__item"><img src="../../assets/images/article-card-carousel-05.jpg" alt="" /></div>
+          </div>
+          <div class="article-card-carousel__nav article-card-carousel__nav--prev"><button type="button" class="btn btn-tertiary-neutral btn--icon-only" aria-label="Previous image"><span class="btn__content"><span class="icon icon--arrow-left-light" aria-hidden="true"></span></span></button></div>
+          <div class="article-card-carousel__nav article-card-carousel__nav--next"><button type="button" class="btn btn-tertiary-neutral btn--icon-only" aria-label="Next image"><span class="btn__content"><span class="icon icon--arrow-right-light" aria-hidden="true"></span></span></button></div>
+          <div class="article-card-carousel__dots" aria-hidden="true"><span class="article-card-carousel__dot"></span><span class="article-card-carousel__dot"></span><span class="article-card-carousel__dot"></span><span class="article-card-carousel__dot"></span><span class="article-card-carousel__dot"></span></div>
+        </div>
+      </div>
+      <div class="demo-cell">
+        <div class="article-card__media article-card-carousel demo-acm--portrait">
+          <div class="article-card-carousel__track">
+            <div class="article-card-carousel__item"><img src="../../assets/images/article-card-carousel-01.jpg" alt="" /></div>
+            <div class="article-card-carousel__item"><img src="../../assets/images/article-card-carousel-02.jpg" alt="" /></div>
+            <div class="article-card-carousel__item"><video src="../../assets/images/article-card-animated-preview.mp4#t=0.1" data-preview muted loop playsinline preload="metadata" aria-hidden="true"></video></div>
+            <div class="article-card-carousel__item"><img src="../../assets/images/article-card-carousel-04.jpg" alt="" /></div>
+            <div class="article-card-carousel__item"><img src="../../assets/images/article-card-carousel-05.jpg" alt="" /></div>
+          </div>
+          <div class="article-card-carousel__nav article-card-carousel__nav--prev"><button type="button" class="btn btn-tertiary-neutral btn--icon-only" aria-label="Previous image"><span class="btn__content"><span class="icon icon--arrow-left-light" aria-hidden="true"></span></span></button></div>
+          <div class="article-card-carousel__nav article-card-carousel__nav--next"><button type="button" class="btn btn-tertiary-neutral btn--icon-only" aria-label="Next image"><span class="btn__content"><span class="icon icon--arrow-right-light" aria-hidden="true"></span></span></button></div>
+          <div class="article-card-carousel__dots" aria-hidden="true"><span class="article-card-carousel__dot"></span><span class="article-card-carousel__dot"></span><span class="article-card-carousel__dot"></span><span class="article-card-carousel__dot"></span><span class="article-card-carousel__dot"></span></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ════════════════════════════════════════════════════
+         IN A CARD — MD · XL · MD (Vertical Media) · XL (Horizontal)
+         Player and carousel sit above the card link (z-index 2): clicks on them
+         stay in the media; a click on a carousel slide opens the article.
+    ════════════════════════════════════════════════════ -->
+    <div class="demo-card-section">
+      <div class="demo-card-section__title">In a card</div>
+      <p class="demo-card-section__note">MD (photo) · XL (preview of a video article) · MD (Vertical Media) (video) · XL (Horizontal) (carousel) · the headline, and a click on an image or a carousel slide, open the article; the video plays in the card</p>
+    </div>
+    <div class="demo-card-grid">
+      <article class="article-card article-card--md">
+        <div class="article-card__media"><img src="../../assets/images/article-card-placeholder.jpg" alt="" /></div>
+        <div class="article-card__body">
+          <h4 class="h4 article-headline"><a class="article-card__link" href="#article">Headline of Daily Mail article preview card - lorem ipsum dolor sit amet, con sectetur adipiscing jand</a></h4>
+          <div class="article-card__metadata article-card-metadata"><div class="article-card-metadata__info"><a class="article-card-metadata__channel" href="#channel"><span class="article-card-metadata__channel-text">Channel</span></a></div><a class="article-card-metadata__comments" href="#comments" aria-label="9.9k comments"><span class="icon icon--speechbubble-ellipsis article-card-metadata__comments-icon" aria-hidden="true"></span><span class="article-card-metadata__comments-count">9.9k</span></a></div>
+        </div>
+      </article>
+      <article class="article-card article-card--xl demo-span-2">
+        <div class="article-card__media"><video src="../../assets/images/article-card-animated-preview.mp4#t=0.1" data-preview muted loop playsinline preload="metadata" aria-hidden="true"></video><span class="article-card__video" aria-hidden="true"><span class="video-play"><span class="icon icon--media-play" aria-hidden="true"></span></span></span></div>
+        <div class="article-card__body">
+          <h2 class="h2 article-headline"><a class="article-card__link" href="#article">Headline of Daily Mail article preview card - lorem ipsum dolor sit amet, con sectetur adipiscing jand</a></h2>
+          <div class="article-card__metadata article-card-metadata"><div class="article-card-metadata__info"><a class="article-card-metadata__channel" href="#channel"><span class="article-card-metadata__channel-text">Channel</span></a></div><a class="article-card-metadata__comments" href="#comments" aria-label="9.9k comments"><span class="icon icon--speechbubble-ellipsis article-card-metadata__comments-icon" aria-hidden="true"></span><span class="article-card-metadata__comments-count">9.9k</span></a></div>
+        </div>
+      </article>
+      <article class="article-card article-card--md-vertical">
+        <h2 class="h2 article-headline"><a class="article-card__link" href="#article">Headline of Daily Mail article preview card - lorem ipsum dolor sit amet, con sectetur adipiscing jand</a></h2>
+        <div class="article-card__media article-card-player">
+          <video src="../../assets/images/article-card-video.mp4#t=0.1" muted playsinline preload="metadata"></video>
+          <button type="button" class="article-card-player__surface" aria-label="Play video"></button>
+          <span class="article-card-player__play" aria-hidden="true"><span class="video-play"><span class="icon icon--media-play" aria-hidden="true"></span></span><span class="video-timer">00:11</span></span>
+          <div class="article-card-player__actions">
+            <button type="button" class="btn btn-tertiary-light btn--icon-only" data-action="expand" aria-label="Full screen"><span class="btn__content"><span class="icon icon--arrows-expand" aria-hidden="true"></span></span></button>
+            <button type="button" class="btn btn-tertiary-light btn--icon-only" data-action="sound" aria-label="Unmute"><span class="btn__content"><span class="icon icon--speaker-off" aria-hidden="true"></span></span></button>
+            <button type="button" class="btn btn-tertiary-light btn--icon-only" data-action="share" aria-label="Share"><span class="btn__content"><span class="icon icon--sharing-android" aria-hidden="true"></span></span></button>
+          </div>
+          <div class="video-progress video-progress--inline">
+            <span class="video-progress__elapsed">00:00</span>
+            <div class="video-progress__track" role="progressbar" aria-label="Video progress" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0"><div class="video-progress__bar"></div></div>
+            <span class="video-progress__remaining">-00:11</span>
+          </div>
+        </div>
+        <div class="article-card__metadata article-card-metadata"><div class="article-card-metadata__info"><a class="article-card-metadata__channel" href="#channel"><span class="article-card-metadata__channel-text">Channel</span></a></div><a class="article-card-metadata__comments" href="#comments" aria-label="9.9k comments"><span class="icon icon--speechbubble-ellipsis article-card-metadata__comments-icon" aria-hidden="true"></span><span class="article-card-metadata__comments-count">9.9k</span></a></div>
+      </article>
+      <article class="article-card article-card--xl-horizontal demo-span-2">
+        <div class="article-card__media article-card-carousel">
+          <div class="article-card-carousel__track">
+            <div class="article-card-carousel__item"><img src="../../assets/images/article-card-carousel-01.jpg" alt="" /></div>
+            <div class="article-card-carousel__item"><img src="../../assets/images/article-card-carousel-02.jpg" alt="" /></div>
+            <div class="article-card-carousel__item"><video src="../../assets/images/article-card-animated-preview.mp4#t=0.1" data-preview muted loop playsinline preload="metadata" aria-hidden="true"></video></div>
+            <div class="article-card-carousel__item"><img src="../../assets/images/article-card-carousel-04.jpg" alt="" /></div>
+            <div class="article-card-carousel__item"><img src="../../assets/images/article-card-carousel-05.jpg" alt="" /></div>
+          </div>
+          <div class="article-card-carousel__nav article-card-carousel__nav--prev"><button type="button" class="btn btn-tertiary-neutral btn--icon-only" aria-label="Previous image"><span class="btn__content"><span class="icon icon--arrow-left-light" aria-hidden="true"></span></span></button></div>
+          <div class="article-card-carousel__nav article-card-carousel__nav--next"><button type="button" class="btn btn-tertiary-neutral btn--icon-only" aria-label="Next image"><span class="btn__content"><span class="icon icon--arrow-right-light" aria-hidden="true"></span></span></button></div>
+          <div class="article-card-carousel__dots" aria-hidden="true"><span class="article-card-carousel__dot"></span><span class="article-card-carousel__dot"></span><span class="article-card-carousel__dot"></span><span class="article-card-carousel__dot"></span><span class="article-card-carousel__dot"></span></div>
+        </div>
+        <div class="article-card__body">
+          <h3 class="h3 article-headline"><a class="article-card__link" href="#article">Headline of Daily Mail article preview card - lorem ipsum dolor sit amet, con sectetur adipiscing jand</a></h3>
+          <div class="article-card__metadata article-card-metadata"><div class="article-card-metadata__info"><a class="article-card-metadata__channel" href="#channel"><span class="article-card-metadata__channel-text">Channel</span></a></div><a class="article-card-metadata__comments" href="#comments" aria-label="9.9k comments"><span class="icon icon--speechbubble-ellipsis article-card-metadata__comments-icon" aria-hidden="true"></span><span class="article-card-metadata__comments-count">9.9k</span></a></div>
+        </div>
+      </article>
+    </div>
+  </body>
+</html>

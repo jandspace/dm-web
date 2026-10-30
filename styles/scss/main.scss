@@ -32,6 +32,7 @@
 @use 'modules/article-card-image-only';
 @use 'modules/article-card-key-updates';
 @use 'modules/article-card-video';
+@use 'modules/article-card-media';
 @use 'modules/article-card-banner';
 @use 'modules/article-card-metadata';
 @use 'modules/columnist-profile-photo';
@@ -63,6 +64,7 @@
 @use 'scaffolding/toast-demo';
 @use 'scaffolding/article-card-demo';
 @use 'scaffolding/article-card-metadata-demo';
+@use 'scaffolding/article-card-media-demo';
 @use 'scaffolding/section-header-demo';
 @use 'scaffolding/navigation-demo';
 @use 'scaffolding/video-player-controls-demo';

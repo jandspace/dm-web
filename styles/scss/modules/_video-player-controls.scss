@@ -3,7 +3,7 @@
 //
 //   .video-play        Play / Pause button — 7 sizes (xs → xxxl)
 //   .video-controller  Commercial Player controller — back · play/pause · next (sm / md / lg)
-//   .video-progress    Progress bar + elapsed / remaining time
+//   .video-progress    Progress bar + elapsed / remaining time (--inline: one row)
 //   .video-timer       Duration pill (Article Card › MD Vertical Media)
 //
 // Play  = translucent-light/thick fill + neutral/black icon
@@ -204,6 +204,30 @@ button.video-play {
 
 .video-progress__remaining {
   font-weight: var(--typography-font-weight-semibold);
+}
+
+// Inline — elapsed · track · remaining in one row, 8px track (Article Card
+// Media › Video). The times sit straight on the video, so they carry a shadow.
+//   .video-progress.video-progress--inline
+//     .video-progress__elapsed  .video-progress__track  .video-progress__remaining
+
+.video-progress--inline {
+  flex-direction: row;
+  align-items: center;
+  gap: var(--spacing-8);
+  padding: var(--spacing-8) var(--spacing-16);
+  font-size: var(--typography-font-size-label-xxsm);
+  line-height: var(--typography-line-height-narrow);
+  font-variant-numeric: tabular-nums;
+  color: var(--color-text-neutral-lightest);
+  text-shadow: 0 0 12px var(--color-effect-translucent-dark-moderate);
+  white-space: nowrap;
+
+  .video-progress__track {
+    flex: 1;
+    height: 8px;
+    background-color: var(--color-effect-translucent-light-deep);
+  }
 }
 
 // ── Timer (duration pill) ─────────────────────────────────────────────────────

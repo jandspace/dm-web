@@ -7,7 +7,8 @@
 //     .article-card-banner__story        16px white inset from MD up (16px below at SM / XS)
 //       .article-card-banner__panel      Lead Story — background/neutral/black; inner
 //                                        keyline when Secondary Stories follow
-//         .article-card-banner__media    <picture> — artwork per breakpoint
+//         .article-card-banner__media    <picture> — artwork per breakpoint, or
+//                                        <div role="img"> with two preview videos
 //         .article-card-banner__content
 //           .article-card-banner__headline > a.article-card-banner__link
 //           .article-card-banner__metadata   comments (Article Card Metadata)
@@ -92,7 +93,8 @@
   overflow: hidden;
   aspect-ratio: 360 / 336;
 
-  img {
+  img,
+  video {
     display: block;
     width: 100%;
     height: 100%;
@@ -115,6 +117,23 @@
   @include bp.respond-to(md) {
     width: auto;
     aspect-ratio: 964 / 544;
+  }
+}
+
+// Preview — the artwork as an animated preview (Article Card Media › Preview):
+// one video per artwork, only the one for the breakpoint shows. The hidden
+// one never plays (the preview script plays a video only while on screen).
+.article-card-banner__media .article-card-banner__preview--wide {
+  display: none;
+
+  @include bp.respond-to(md) {
+    display: block;
+  }
+}
+
+.article-card-banner__media .article-card-banner__preview--xs {
+  @include bp.respond-to(md) {
+    display: none;
   }
 }
 

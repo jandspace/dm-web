@@ -28,6 +28,12 @@
           <button type="button" data-zoom="fit" aria-pressed="true">Fit</button>
           <button type="button" data-zoom="1" aria-pressed="false">100%</button>
         </div>
+        <span class="demo-vp-toolbar__divider"></span>
+        <span id="demo-media-label">Media</span>
+        <div class="demo-vp-toggle" role="group" aria-labelledby="demo-media-label" id="demo-media">
+          <button type="button" data-media="image" aria-pressed="true">Image</button>
+          <button type="button" data-media="preview" aria-pressed="false">Preview</button>
+        </div>
       </div>
     </div>
 
@@ -61,6 +67,9 @@
         sheet.style.setProperty('--demo-vp-cols', VIEWPORTS.length);
         let zoomMode = 'fit';
         const cells = [];
+        // Media › Image | Preview — every frame swaps the artwork (index.html?media=preview)
+        let media = 'image';
+        const mediaQuery = () => (media === 'preview' ? '&media=preview' : '');
 
         const el = (tag, className, html) => {
           const node = document.createElement(tag);
@@ -85,7 +94,7 @@
             const size = el('div', 'demo-vp-size', '…');
             const iframe = document.createElement('iframe');
 
-            iframe.src = `index.html?frame${query}`;
+            iframe.src = `index.html?frame${query}${mediaQuery()}`;
             iframe.width = vp.width;
             iframe.height = 1200;
             iframe.title = `Banner Story ${name} at ${vp.label}`;
@@ -95,7 +104,7 @@
             cell.append(frame, size);
             sheet.append(cell);
 
-            const entry = { key, iframe, frame, size, rect: null };
+            const entry = { key, query, iframe, frame, size, rect: null };
             cells.push(entry);
 
             const measure = () => {
@@ -140,6 +149,16 @@
           zoomMode = button.dataset.zoom;
           zoom.querySelectorAll('button').forEach((b) => b.setAttribute('aria-pressed', String(b === button)));
           applyAll();
+        });
+        document.getElementById('demo-media').addEventListener('click', (event) => {
+          const button = event.target.closest('button[data-media]');
+          if (!button) return;
+          media = button.dataset.media;
+          event.currentTarget.querySelectorAll('button').forEach((b) => b.setAttribute('aria-pressed', String(b === button)));
+          cells.forEach((entry) => {
+            entry.size.textContent = '…';
+            entry.iframe.src = `index.html?frame${entry.query}${mediaQuery()}`;
+          });
         });
         window.addEventListener('resize', () => zoomMode === 'fit' && applyAll());
       })();

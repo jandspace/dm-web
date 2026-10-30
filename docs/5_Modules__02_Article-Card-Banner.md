@@ -13,7 +13,7 @@ Figma: Web UI Kit › Article Card - Banner (`8138:232841`)
 | **Shell** (`.article-card-banner`) | `color/background/neutral/lightest` surface with a 1px bottom keyline, inset 16px — `color/border/translucent-dark/pale` (Divider) |
 | **Story** (`__story`) | 16px white inset from MD up; 16px below the panel at SM / XS |
 | **Panel** (`__panel`) | The Lead Story — `color/background/neutral/black`. Inner bottom keyline, inset 16px — `color/border/translucent-light/subtle`, **only when Secondary Stories follow** |
-| **Media** (`__media`) | `<picture>` — editorial artwork, art-directed per breakpoint (§3) |
+| **Media** (`__media`) | `<picture>` — editorial artwork, art-directed per breakpoint (§3); or an animated preview (§3, Animated preview) |
 | **Headline** (`__headline`) | H2, centred, `color/text/neutral/lightest`. Holds the article link |
 | **Metadata** (`__metadata`) | Article Card Metadata, Comment Only, centred (§4) |
 
@@ -93,6 +93,26 @@ Unlike the Article Card, **SM and XS are separate layouts**: SM (≥640) targets
 
 - **`alt` carries the title text** of the artwork, so screen readers get what sighted users read in the image. The CMS supplies it per story.
 - Artwork is a photo — **JPEG**.
+
+### Animated preview
+
+The artwork can be an **animated preview** instead (Article Card Media › Preview — muted, loops while on screen, still with *Reduce motion*). Like the artwork, the title is part of the video, so there are **two videos**, one per artwork, at the same ratios:
+
+| Video | Shows at | Poster |
+|---|---|---|
+| `__preview--wide` | MD+ | the wide artwork |
+| `__preview--xs` | SM and XS | the small artwork |
+
+```html
+<div class="article-card-banner__media" role="img" aria-label="TIGER MAUL VICTIM">
+  <video class="article-card-banner__preview--wide" src="…-wide.mp4" poster="…-wide.jpg" data-preview muted loop playsinline preload="metadata" aria-hidden="true"></video>
+  <video class="article-card-banner__preview--xs" src="…-xs.mp4" poster="…-xs.jpg" data-preview muted loop playsinline preload="metadata" aria-hidden="true"></video>
+</div>
+```
+
+- CSS shows one video per breakpoint; the hidden one never plays (the preview script plays a video only while it is on screen).
+- The title text moves from the image `alt` to the box (`role="img"` + `aria-label`); the videos are decorative.
+- Behaviour: `scripts/modules/article-card-media.js`. Demo: Media › Preview on `modules/article-card-banner/`.
 
 ---
 

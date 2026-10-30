@@ -55,6 +55,7 @@
       items: [
         { name: 'Article Card', path: 'modules/article-card/', pages: [['Viewports', 'viewports.html']] },
         { name: 'Article Card — Banner Story', path: 'modules/article-card-banner/', pages: [['Viewports', 'viewports.html']] },
+        { name: 'Article Card Media', path: 'modules/article-card-media/' },
         { name: 'Article Card Metadata', path: 'modules/article-card-metadata/' },
         { name: 'Article Editorial Badge', path: 'modules/editorial-badge/' },
         { name: 'Article Headline', path: 'modules/article-headline/' },

@@ -329,6 +329,7 @@
             'Checks the Section Header without truncation: the long title wraps, the arrow follows the last word, the leading icon stays on the first line.',
             'Gamma (Banner Story) removed; alpha is greyed out (grayscale, 40% opacity) so beta stands out. Beta: More Showbiz → Daisy → 2 SM cards, then the long-title header (“This is a section header with a long title”) → Daisy → 5 SM cards.',
             'Section header icons load from assets/icons (shared icon set), not from the experiment folder.',
+            'Icons use the shared .icon class (2026-10-30): the inline SVG sprite stopped sizing once the shared CSS moved to .icon (play buttons and header arrows rendered 150px tall). Same look, no symbols left in the page.',
           ],
           result: '',
           pages: [['Page', 'index.html', 'Preview hover A with the duplicated long-title section header in beta.']],
@@ -357,6 +358,7 @@
             'A is the design system as it is today: grey hover surface + headline turns interaction blue. B (revised 2026-10-26, after Daniel Brant’s feedback): the same grey hover surface, but no blue — the headline keeps its resting colour, as cards in the Channel Puff already do; Live Key Updates keep theirs too. The earlier underline version of B (headline, Banner Story, key updates, section header) was dropped — not needed.',
             'Beta now opens with a Channel Puff (Showbiz, Figma 8181:237759): Image Only + 4 SM Right Thumb cards on the channel subtlest surface, closed by one keyline under the whole block (the last card has none) — new shared module .channel-puff, same on A and B. Card hover inside the puff uses no blue: the headline stays neutral/darker.',
             'Section headers from the new Section Header module, same on A and B: Branded “This is Showbiz” above the Channel Puff (8218:237980), SM “More Showbiz” above the Daisy Edgar-Jones card (8218:238038), and MD “Midterms 2026” with topic sub-items under the Deep Dive card (8219:238176).',
+            'Icons use the shared .icon class (2026-10-30): the inline SVG sprite stopped sizing once the shared CSS moved to .icon (play buttons and header arrows rendered 150px tall). Same look, no symbols left in the page.',
           ],
           result: '',
           pages: [

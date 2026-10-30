@@ -89,6 +89,8 @@ XL 152 · LG 120 · MD / SM-XS 128px
 | SM: Left / Right Thumb | xs 28 |
 | Image Only | — (none) |
 
+What else can fill the media — animated preview, a video the reader plays in the card, a carousel: **Article Card Media** (`docs/5_Modules__05_Article-Card-Media.md`).
+
 ---
 
 ## 4. Image Only
@@ -188,6 +190,7 @@ The disc behind the columnist photo is **editor-controlled per channel**, from t
 |---|---|
 | Card | `styles/scss/modules/_article-card.scss`, `_article-card-image-only.scss`, `_article-card-key-updates.scss`, `_article-card-video.scss` |
 | Video controls | `_video-player-controls.scss` — demo `modules/video-player-controls/index.html` |
+| Media | `_article-card-media.scss` (Video player, Carousel) · `scripts/modules/article-card-media.js` — demo `modules/article-card-media/index.html` |
 | Metadata | `_article-card-metadata.scss`, `_columnist-profile-photo.scss`, `_columnist-comment-announcement.scss` · section map `foundation/_sections.scss` |
-| Demo | `modules/article-card/index.html` (toolbar: Viewport · Badge · Preview · Metadata · Play icon), `viewports.html` (every type × breakpoint), `modules/article-card-metadata/index.html` |
+| Demo | `modules/article-card/index.html` (toolbar: Viewport · Badge · Preview · Metadata · Media — Image / Preview (Video in an article) / Video / Carousel), `viewports.html` (every type × breakpoint), `modules/article-card-metadata/index.html` |
 | Generators | `tools/demo-generators/` — the two `index.html` demo pages are generated |

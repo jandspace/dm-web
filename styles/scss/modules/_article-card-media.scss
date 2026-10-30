@@ -1,0 +1,241 @@
+// ── Article Card Media ────────────────────────────────────────────────────────
+// What fills .article-card__media. Three types:
+//
+//   Image     (every card)   photo, or a short animated preview (<video>,
+//                            5–7s, muted, loops while on screen). Video
+//                            articles add the play icon (_article-card-video).
+//                            No controls — the card link takes the click.
+//   Video     (not SM, not Image Only)   .article-card-player — the reader
+//                            plays it in the card, muted at start.
+//   Carousel  (not SM, not Image Only)   .article-card-carousel — up to 5
+//                            images or previews, arrows + swipe.
+//
+//   .article-card__media.article-card-player[data-state=ready|playing|paused]
+//     video
+//     button.article-card-player__surface   whole area: play / pause
+//     .article-card-player__play            centre: play (ready light, paused dark)
+//       .video-play  .video-timer           (timer: ready only)
+//     .article-card-player__actions         right: expand · sound · share (btn-tertiary-light)
+//     .video-progress.video-progress--inline
+//
+//   .article-card__media.article-card-carousel
+//     .article-card-carousel__track         scroll-snap row, swipe
+//       .article-card-carousel__item × ≤5   img | video
+//     .article-card-carousel__nav--prev/--next   btn-tertiary-neutral, icon only
+//     .article-card-carousel__dots          active 32 × 8, others 8 × 8
+//
+// While playing, the controls fade out after 3s without the pointer moving
+// (.is-idle, set by script). On touch the first tap only brings them back.
+// Both sit above the card link (z-index 2), so their clicks stay in the media.
+//
+// Behaviour: scripts/modules/article-card-media.js
+// Reference: Figma Web UI Kit › Article Card Media (5279:14012),
+//            Video (5279:13909), Carousel (5279:14031)
+
+@use 'video-player-controls' as vpc;
+
+// ── Video ─────────────────────────────────────────────────────────────────────
+
+.article-card-player {
+  z-index: 2;
+  background-color: var(--color-background-neutral-darker);
+}
+
+.article-card-player__surface {
+  position: absolute;
+  inset: 0;
+  padding: 0;
+  border: 0;
+  background: none;
+  cursor: pointer;
+}
+
+.article-card-player__play {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  pointer-events: none;
+
+  .video-play {
+    @include vpc.play-size(lg);
+  }
+
+  // The duration pill hangs 8px under the button (does not push it up)
+  .video-timer {
+    position: absolute;
+    top: calc(100% + var(--spacing-8));
+    left: 50%;
+    transform: translateX(-50%);
+  }
+}
+
+.article-card-player__actions {
+  position: absolute;
+  right: 0;
+  bottom: 29px; // Figma: clear of the progress row
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-16);
+  padding: var(--spacing-16) var(--spacing-8);
+}
+
+.article-card-player .video-progress {
+  position: absolute;
+  right: 0;
+  bottom: 0;
+  left: 0;
+}
+
+.article-card-player__actions,
+.article-card-player .video-progress {
+  transition: opacity 300ms ease;
+}
+
+// Short media (a landscape box under 215px high, e.g. MD at LG): tighter
+// column so the three buttons stay inside
+.article-card-player {
+  container-type: size;
+}
+
+@container (max-height: 214px) {
+  .article-card-player__actions {
+    gap: var(--spacing-8);
+    padding-block: var(--spacing-8);
+  }
+}
+
+// Ready: light play button + duration, nothing else
+.article-card-player[data-state='ready'] {
+  .article-card-player__actions,
+  .video-progress {
+    display: none;
+  }
+}
+
+// Paused: dark play button, no duration
+.article-card-player[data-state='paused'] {
+  .video-play {
+    background-color: var(--color-effect-translucent-dark-moderate);
+    color: var(--color-icon-neutral-white);
+  }
+
+  .video-timer {
+    display: none;
+  }
+}
+
+.article-card-player[data-state='playing'] .article-card-player__play {
+  display: none;
+}
+
+// Controls fade out while playing; keyboard focus keeps them. Not
+// :focus-within — a mouse click leaves focus on the surface button, so the
+// controls would never fade.
+.article-card-player.is-idle:not(:has(:focus-visible)) {
+  cursor: none;
+
+  .article-card-player__surface {
+    cursor: none;
+  }
+
+  .article-card-player__actions,
+  .video-progress {
+    opacity: 0;
+    pointer-events: none;
+  }
+}
+
+// ── Carousel ──────────────────────────────────────────────────────────────────
+
+.article-card-carousel {
+  z-index: 2;
+}
+
+.article-card-carousel__track {
+  display: flex;
+  height: 100%;
+  overflow-x: auto;
+  scroll-snap-type: x mandatory;
+  scroll-behavior: smooth;
+  scrollbar-width: none;
+  cursor: pointer; // a click opens the article (script)
+
+  &::-webkit-scrollbar {
+    display: none;
+  }
+}
+
+.article-card-carousel__item {
+  position: relative;
+  flex: 0 0 100%;
+  scroll-snap-align: start; // img / video sized by .article-card__media
+}
+
+// Arrows rest at 40% and come up to full on media hover. The first slide has
+// no Prev, the last no Next (hidden attribute, set by script).
+.article-card-carousel__nav {
+  position: absolute;
+  top: 50%;
+  padding: var(--spacing-8);
+  transform: translateY(-50%);
+  opacity: 0.4;
+  transition: opacity 150ms ease;
+
+  &--prev {
+    left: 0;
+  }
+
+  &--next {
+    right: 0;
+  }
+
+  &[hidden] {
+    display: none;
+  }
+}
+
+.article-card-carousel:hover .article-card-carousel__nav,
+.article-card-carousel__nav:focus-within {
+  opacity: 1;
+}
+
+.article-card-carousel__dots {
+  position: absolute;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  display: flex;
+  justify-content: center;
+  gap: var(--spacing-8);
+  padding: var(--spacing-16) var(--spacing-12);
+  background-image: linear-gradient(
+    to bottom,
+    var(--color-effect-translucent-dark-clear),
+    var(--color-effect-translucent-dark-moderate)
+  );
+  pointer-events: none;
+}
+
+.article-card-carousel__dot {
+  width: 8px;
+  height: 8px;
+  border-radius: var(--border-radius-full);
+  background-color: var(--color-effect-translucent-light-moderate);
+  transition: width 200ms ease;
+
+  &.is-active {
+    width: 32px;
+    background-color: var(--color-background-neutral-lightest);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .article-card-carousel__track {
+    scroll-behavior: auto;
+  }
+
+  .article-card-carousel__dot {
+    transition: none;
+  }
+}

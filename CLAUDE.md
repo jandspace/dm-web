@@ -22,7 +22,7 @@ index.html        — Demo index (Components / Modules), same list as the demo s
 foundation/       — Foundation: reference pages (Colour, Typography, Spacing, Border Radius — read live from tokens/; Elevation; Layout & Grid; Iconography — every file in assets/icons/, single-colour ones as .icon)
 components/       — Components: base UI elements (Button, Input, Tabs…) — one demo folder each
 modules/          — Modules: editorial / product blocks built from components (Article Card, Video Player Controls…)
-scripts/          — Demo-only JS (scripts/scaffolding/: side panel + index)
+scripts/          — JS: scripts/scaffolding/ (demo only: side panel + index), scripts/modules/ (prototype behaviour of a module, e.g. Article Card Media)
 projects/         — Project-specific prototypes, organised by project > platform
 experiments/      — A/B tests and one-off experiments (self-contained, never imported elsewhere)
 assets/           — Icons (Figma SVG originals) and images
@@ -395,7 +395,7 @@ All token files share the same version string (currently `1.0.4`). Update the `v
 
 ### Local Preview
 
-- From the repo root: `python3 -m http.server 3000` → `http://localhost:3000/` (index) or `/components/<name>/`, `/modules/<name>/`
+- From the repo root: `python3 -m http.server 3000` → `http://localhost:3000/` (index) or `/components/<name>/`, `/modules/<name>/`. Claude starts it in the Terminal panel when it is down — not with `preview_start` (macOS blocks the app's own process from `~/Documents`) and not through npm (python fails to spawn under npm)
 - The server sends no cache headers, so hard-refresh (Cmd+Shift+R) after every build or the old `main.css` is shown.
 
 ### SCSS Structure

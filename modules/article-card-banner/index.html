@@ -11,6 +11,7 @@
     <link rel="stylesheet" href="../../tokens/dm_typography_web_tokens.css" />
     <link rel="stylesheet" href="../../styles/css/main.css" />
     <script src="../../scripts/scaffolding/demo-nav.js" defer></script>
+    <script src="../../scripts/modules/article-card-media.js" defer></script>
   </head>
   <body class="demo-page-body demo-page-body--flush">
     <div class="demo-card-page">
@@ -20,6 +21,7 @@
         SM ≥640 (phone landscape) and XS &lt;640 (phone portrait) are separate layouts;
         the banner title is part of the artwork, swapped per breakpoint.
         Stories: the Lead Story alone (default), or with 3 or 6 Secondary Stories (follow-ups and related stories).
+        Media: the artwork (default), or an animated preview in its place (Article Card Media › Preview).
         Open <a href="viewports.html">all breakpoints side by side</a>.
       </p>
     </div>
@@ -42,6 +44,12 @@
           <button type="button" data-stories="4" aria-pressed="false">4</button>
           <button type="button" data-stories="7" aria-pressed="false">7</button>
         </div>
+        <span class="demo-vp-toolbar__divider"></span>
+        <span id="demo-media-label">Media</span>
+        <div class="demo-vp-toggle" role="group" aria-labelledby="demo-media-label" id="demo-media">
+          <button type="button" data-media="image" aria-pressed="true">Image</button>
+          <button type="button" data-media="preview" aria-pressed="false">Preview</button>
+        </div>
         <span class="demo-vp-status" id="demo-vp-status"></span>
       </div>
     </div>
@@ -52,7 +60,9 @@
              .article-card-banner__story    16px inset from MD
                .article-card-banner__panel  black panel — the whole panel is the link
                  .article-card-banner__media      <picture>: artwork per breakpoint
-                                                  (the banner title is part of the image)
+                                                  (the banner title is part of the image).
+                                                  Media › Preview: <div role="img"> with a wide
+                                                  and an XS preview video (Article Card Media)
                  .article-card-banner__content
                    h2.article-card-banner__headline > a.article-card-banner__link
                    .article-card-banner__metadata  Article Card Metadata — comments
@@ -111,8 +121,22 @@
       //   ?frame          page without chrome (rendered inside the viewport stage)
       //   ?vp=xl|lg|md|sm|xs  preview at a fixed viewport width
       //   ?stories=1|4|7  Lead Story alone (default), or with 3 / 6 Secondary Stories
+      //   ?media=preview  animated preview in place of the artwork (default image)
       (() => {
         const params = new URLSearchParams(location.search);
+
+        // Media › Preview: the two artworks become two preview videos (only the
+        // one for the breakpoint shows); the artwork stays as the poster. The
+        // alt text moves to the box, the videos are decorative.
+        const media = params.get('media') === 'preview' ? 'preview' : 'image';
+        if (media === 'preview') {
+          const picture = document.querySelector('.article-card-banner__media');
+          const alt = picture.querySelector('img').alt;
+          const video = (size) =>
+            `<video class="article-card-banner__preview--${size}" src="../../assets/images/article-card-banner-preview-${size}.mp4#t=0.1" ` +
+            `poster="../../assets/images/article-card-banner-${size}.jpg" data-preview muted loop playsinline preload="metadata" aria-hidden="true"></video>`;
+          picture.outerHTML = `<div class="article-card-banner__media" role="img" aria-label="${alt}">${video('wide')}${video('xs')}</div>`;
+        }
 
         // Story count: keep the first n − 1 Secondary Stories (removed, not
         // hidden, so the last-row keyline rules see the real list)
@@ -178,7 +202,7 @@
           stage.hidden = false;
           status.textContent = 'Loading…';
           iframe = document.createElement('iframe');
-          iframe.src = `index.html?frame&stories=${stories}`;
+          iframe.src = `index.html?frame&stories=${stories}${media === 'preview' ? '&media=preview' : ''}`;
           iframe.width = width;
           iframe.title = `Banner Story at ${vp.label}`;
           iframe.addEventListener('load', async () => {
@@ -201,6 +225,18 @@
           if (!button) return;
           const url = new URL(location.href);
           url.searchParams.set('stories', button.dataset.stories);
+          location.href = url;
+        });
+
+        // Media filter: reload with the new media (swapped on load)
+        const mediaToggle = document.getElementById('demo-media');
+        mediaToggle.querySelectorAll('button').forEach((b) => b.setAttribute('aria-pressed', String(b.dataset.media === media)));
+        mediaToggle.addEventListener('click', (event) => {
+          const button = event.target.closest('button[data-media]');
+          if (!button) return;
+          const url = new URL(location.href);
+          if (button.dataset.media === 'preview') url.searchParams.set('media', 'preview');
+          else url.searchParams.delete('media');
           location.href = url;
         });
 
