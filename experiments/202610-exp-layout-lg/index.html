@@ -181,8 +181,10 @@
         }
         const stage = document.getElementById('exp-stage');
         const viewSwitch = document.getElementById('exp-view');
-        let view = 'default';
+        // The chosen view is kept in the address (?view=…), so a copied link opens on it
+        let view = viewSwitch.querySelector(`[data-view="${params.get('view')}"]`) ? params.get('view') : 'default';
         const render = () => {
+          viewSwitch.querySelectorAll('[data-view]').forEach((b) => b.setAttribute('aria-pressed', String(b.dataset.view === view)));
           const iframe = document.createElement('iframe');
           iframe.src = `${location.pathname}?frame${view === 'default' ? '' : `&view=${view}`}`;
           iframe.title = 'Layout at LG 1024';
@@ -196,7 +198,7 @@
           const button = event.target.closest('[data-view]');
           if (!button) return;
           view = button.dataset.view;
-          viewSwitch.querySelectorAll('button').forEach((b) => b.setAttribute('aria-pressed', String(b === button)));
+          history.replaceState(null, '', view === 'default' ? location.pathname : `?view=${view}`);
           render();
         });
         render();
