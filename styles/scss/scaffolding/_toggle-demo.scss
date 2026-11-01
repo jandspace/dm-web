@@ -1,0 +1,56 @@
+// ── Components › Toggle demo — SCAFFOLDING ONLY ───────────────────────────────
+// Layout for components/toggle/. Never ships to production.
+
+.demo-toggle {
+  max-width: 1224px;
+}
+
+.demo-toggle__set {
+  margin: var(--spacing-48) 0 var(--spacing-8);
+  font-family: var(--typography-font-family-serif); // library chrome in Lora
+  font-size: 18px;
+  font-weight: 600;
+  color: var(--color-text-neutral-darker);
+
+  &:first-child {
+    margin-top: 0;
+  }
+}
+
+.demo-toggle__note {
+  max-width: 760px;
+  margin: 0 0 var(--spacing-16);
+  font-family: var(--typography-font-family-serif);
+  font-size: 13px;
+  line-height: 1.5;
+  color: var(--color-text-neutral-grey-dark);
+}
+
+// Settings panel — label left, switch right
+.demo-toggle__panel {
+  display: flex;
+  flex-direction: column;
+  max-width: 420px;
+  padding: var(--spacing-8) var(--spacing-24);
+  border-radius: var(--border-radius-8);
+  background-color: var(--color-background-neutral-lightest);
+  color: var(--color-text-neutral-darker);
+
+  .toggle-field {
+    padding: var(--spacing-16) 0;
+
+    & + .toggle-field {
+      border-top: 1px solid var(--color-border-translucent-dark-pale);
+    }
+  }
+}
+
+// States: label + Blue M / S · Green M / S (Figma order)
+.demo-grid--toggle {
+  grid-template-columns: 160px repeat(4, minmax(96px, 140px));
+
+  .demo-cell {
+    align-items: center;
+    justify-content: center;
+  }
+}

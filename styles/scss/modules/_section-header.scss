@@ -2,16 +2,18 @@
 // Title row that opens a section on the homepage / channel pages.
 //
 //   .section-header                 lightest surface, 20px top · 8px bottom · 16px sides
-//     .section-header__row          title (+ link arrow) … action
-//       .section-header__title      <h2>; holds the link when the header links
-//         a.section-header__link    icon + label + arrow — one link
-//           .section-header__icon   optional leading icon (slot)
-//           .section-header__label
-//             .section-header__text
-//               .section-header__arrow  quaternary icon-only button (decorative), after the last word
-//       a.section-header__action    optional — "Action Here ›"
+//     h2.section-header__title      icon + text (or the link holding them)
+//       a.section-header__link      when the header links — one link
+//         .section-header__icon     optional leading icon: .icon or <img>
+//         .section-header__text     label; the arrow sits inside, after the last word
+//           .section-header__arrow  quaternary icon-only button (decorative)
+//     a.section-header__action      optional — "Action Here ›", right of the title
 //     .section-header__description  optional preview text
 //     .section-header-tabs          optional sub-items (sub-channels / topics)
+//
+// Lines: title … action on the first; description and sub-items take a line
+// each (flex-wrap, full width). No row / label wrappers — the flex lives on
+// the header, the title and the link.
 //
 // Scale (Figma "Scale"):
 //   MD (default) — Primary. Label dmw_sans/h3/Bold (20 · 21 · 22 via the h3
@@ -31,25 +33,24 @@
 
 .section-header {
   display: flex;
-  flex-direction: column;
+  flex-wrap: wrap;
+  align-items: center;
   gap: var(--spacing-8);
   padding: var(--spacing-20) var(--spacing-16) var(--spacing-8);
   background-color: var(--color-background-neutral-lightest);
   font-family: var(--typography-font-family-sans);
 }
 
-.section-header__row {
-  display: flex;
-  align-items: center;
-  gap: var(--spacing-8);
+.section-header__description,
+.section-header-tabs {
+  flex-basis: 100%;
+  min-width: 0; // the tab row scrolls inside, not past the header
 }
 
 // ── Title ─────────────────────────────────────────────────────────────────────
 
 .section-header__title {
-  display: flex;
-  flex: 1 1 auto;
-  align-items: center;
+  flex: 1 1 0;
   min-width: 0;
   margin: 0;
   font-size: var(--typography-font-size-h3);
@@ -59,53 +60,43 @@
   color: var(--color-text-neutral-darker);
 }
 
-// The link (or a plain span when the header does not link) — icon + label.
-// Long labels wrap (no truncation); the arrow sits inside the text, so it
-// follows the last word onto whichever line that ends up on.
+// Icon + text side by side — in the title, or in the link when it links.
+// Long labels wrap (no truncation) under the text, not under the icon.
+.section-header__title,
 .section-header__link {
-  display: inline-flex;
-  align-items: center;
-  min-width: 0;
-  color: inherit;
-  text-decoration: none;
-}
-
-.section-header__label {
-  display: inline-flex;
+  display: flex;
   align-items: flex-start;
   gap: var(--spacing-6);
-  min-width: 0;
 
   @include bp.respond-to(md) {
     gap: var(--spacing-8);
   }
 }
 
+.section-header__link {
+  min-width: 0;
+  color: inherit;
+  text-decoration: none;
+}
+
 .section-header__text {
   min-width: 0;
 }
 
-// Leading icon — one label line tall, centred on the first line (a wrapped
-// label runs on under the text, not under the icon). SVG icons use
-// currentColor (follow the label on hover); image icons keep their colours.
+// Leading icon — centred on the first label line. .icon follows the label
+// colour (currentColor, also on hover); <img> icons keep their colours.
 .section-header__icon {
-  display: inline-flex;
+  --section-header-icon: 20px;
+  --icon-color: currentColor;
+
+  display: block;
   flex-shrink: 0;
-  align-items: center;
-  height: calc(var(--typography-line-height-narrow) * 1em);
+  width: var(--section-header-icon);
+  height: var(--section-header-icon);
+  margin-block: calc((var(--typography-line-height-narrow) * 1em - var(--section-header-icon)) / 2);
 
-  .icon,
-  img {
-    --icon-color: currentColor;
-
-    display: block;
-    width: 20px;
-    height: 20px;
-
-    @include bp.respond-to(md) {
-      width: 22px;
-      height: 22px;
-    }
+  @include bp.respond-to(md) {
+    --section-header-icon: 22px;
   }
 }
 
@@ -225,16 +216,13 @@ a.section-header__link:focus-visible {
     letter-spacing: var(--typography-letter-spacing-normal);
   }
 
-  .section-header__label {
+  .section-header__title,
+  .section-header__link {
     gap: var(--spacing-6);
   }
 
   .section-header__icon {
-    .icon,
-    img {
-      width: 18px;
-      height: 18px;
-    }
+    --section-header-icon: 18px;
   }
 
   // 30px circle, 14px icon
@@ -255,7 +243,7 @@ a.section-header__link:focus-visible {
 //   SM-XS <768 (Mweb) — swipe; the right edge fades out (16px, "No Arrow")
 //   MD ≥768 with a mouse (Dweb) — edge buttons with chevrons, shown on the
 //   side(s) that can scroll ("Right / Left / Left and Right Arrow"); the
-//   behaviour script toggles .is-scroll-start / .is-scroll-end.
+//   Scroll Row script sets [hidden] on an edge that cannot scroll.
 
 .section-header-tabs {
   position: relative;
@@ -268,13 +256,8 @@ a.section-header__link:focus-visible {
   margin: 0;
   padding: 0;
   list-style: none;
-  scroll-behavior: smooth;
   @include scroll-row.row;
   @include scroll-row.fade-end(16px); // Mweb: fade the right edge
-
-  @media (prefers-reduced-motion: reduce) {
-    scroll-behavior: auto;
-  }
 }
 
 // Tab item — label-sm Semibold, neutral/dark; on hover a 1px grey-dark line
@@ -354,8 +337,7 @@ a.section-header__link:focus-visible {
       mask-image: none;
     }
 
-    .section-header-tabs:not(.is-scroll-start) .section-header-tabs__edge--prev,
-    .section-header-tabs:not(.is-scroll-end) .section-header-tabs__edge--next {
+    .section-header-tabs__edge:not([hidden]) {
       display: flex;
     }
   }

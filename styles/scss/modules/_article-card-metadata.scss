@@ -1,9 +1,10 @@
 // ── Article Card Metadata ─────────────────────────────────────────────────────
 // Bottom row of the article card. Identical at every breakpoint.
 //
-//   [ info (left, flexible)                     ][ comments (right) ]
+//   [ info item(s) ……………………………………………………… comments ]
 //
-// Info slot — one of:
+// Everything sits straight in the row; the comments link pushes itself to the
+// right (margin-left: auto). Info — one of:
 //   Channel (link) · Timestamp · Channel + Timestamp · Ad Feature · Sponsored
 //   · Affiliate Content (link) · nothing (Comment Only)
 // Comments slot — speech-bubble icon + count (link to comments).
@@ -22,16 +23,6 @@
   font-size: var(--typography-font-size-label-xxsm);
   line-height: var(--typography-line-height-narrow);
   letter-spacing: var(--typography-letter-spacing-normal);
-}
-
-// ── Info slot ─────────────────────────────────────────────────────────────────
-
-.article-card-metadata__info {
-  display: flex;
-  flex: 1 1 0;
-  align-items: center;
-  gap: var(--spacing-4);
-  min-width: 0;
 }
 
 // Shared truncation for every info item

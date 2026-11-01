@@ -3,8 +3,8 @@
 // on a black panel), optionally followed by Secondary Stories — follow-ups and
 // related stories — on the same black: 1, 4 or 7 stories in all.
 //
-//   .article-card-banner                 white surface, bottom keyline
-//     .article-card-banner__story        16px white inset from MD up (16px below at SM / XS)
+//   .article-card-banner                 white surface, bottom keyline; 16px white inset
+//                                        from MD up (16px below at SM / XS)
 //       .article-card-banner__panel      Lead Story — background/neutral/black; inner
 //                                        keyline when Secondary Stories follow
 //         .article-card-banner__media    <picture> — artwork per breakpoint, or
@@ -37,7 +37,12 @@
 
 .article-card-banner {
   position: relative;
+  padding-bottom: var(--spacing-16); // white inset under the story (all sides from MD)
   background-color: var(--color-background-neutral-lightest);
+
+  @include bp.respond-to(md) {
+    padding: var(--spacing-16);
+  }
 
   // Bottom keyline, 16px inset
   &::after {
@@ -47,14 +52,6 @@
   // The last block of its column has none
   &:last-child::after {
     display: none;
-  }
-}
-
-.article-card-banner__story {
-  padding-bottom: var(--spacing-16);
-
-  @include bp.respond-to(md) {
-    padding: var(--spacing-16);
   }
 }
 

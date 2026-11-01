@@ -11,15 +11,13 @@ HEADLINE = "Headline of Daily Mail article preview card - lorem ipsum dolor sit 
 IMG = '<img src="../../assets/images/article-card-placeholder.jpg" alt="" />'
 IMG_PORTRAIT = '<img src="../../assets/images/article-card-placeholder-portrait.jpg" alt="" />'
 BADGE_SIZE = {2: "lg", 3: "md", 4: "md", 5: "sm", 6: "xs"}
-MPLUS = '<span class="badge__mplus"><img src="../../assets/images/mail-plus-lozenge.svg" alt="M+" /></span>'
+MPLUS = '<img class="badge__mplus" src="../../assets/images/mail-plus-lozenge.svg" alt="M+" />'
 # Article Card Metadata — Channel Only (modules/article-card-metadata)
 META = ('<div class="article-card__metadata article-card-metadata">'
-        '<div class="article-card-metadata__info">'
         '<a class="article-card-metadata__channel" href="#channel"><span class="article-card-metadata__channel-text">Channel</span></a>'
-        '</div>'
         '<a class="article-card-metadata__comments" href="#comments" aria-label="9.9k comments">'
         '<span class="icon icon--speechbubble-ellipsis article-card-metadata__comments-icon" aria-hidden="true"></span>'
-        '<span class="article-card-metadata__comments-count">9.9k</span></a>'
+        '9.9k</a>'
         '</div>')
 
 
@@ -32,7 +30,7 @@ def headline(level, kind, indent):
     return "\n".join([
         f'{pad}<h{level} class="h{level} article-headline">',
         f'{pad}  <span class="badge badge--{size} badge--highlight article-headline__badge"',
-        f'{pad}    >{mplus}<span class="badge__label"><span class="badge__text">Exclusive</span></span></span',
+        f'{pad}    >{mplus}<span class="badge__label">Exclusive</span></span',
         f'{pad}  >{HEADLINE}',
         f'{pad}</h{level}>',
     ])
@@ -50,14 +48,8 @@ def image_only(scale, level, span=""):
         '      <div class="article-card__media">',
         f'        {img}',
         '        <div class="article-card__overlay">',
-        '          <div class="article-card__scrim"></div>',
-        '          <div class="article-card__overlay-content">',
-        f'            <h{level} class="h{level} article-headline"><a class="article-card__link" href="#article">{IMAGE_ONLY_HEADLINE}</a></h{level}>',
-        '            <span class="btn btn-quaternary-dark btn--xs article-card__read-more" aria-hidden="true"',
-        '              ><span class="btn__content"><span class="btn__label">Read more</span',
-        '                ><span class="icon icon--arrow-right-light" aria-hidden="true"></span></span',
-        '            ></span>',
-        '          </div>',
+        f'          <h{level} class="h{level} article-headline"><a class="article-card__link" href="#article">{IMAGE_ONLY_HEADLINE}</a></h{level}>',
+        '          <span class="btn btn-quaternary-dark btn--xs article-card__read-more" aria-hidden="true">Read more<span class="icon icon--arrow-right-light" aria-hidden="true"></span></span>',
         '        </div>',
         '        <div class="article-card__signpost"></div>',
         '      </div>',

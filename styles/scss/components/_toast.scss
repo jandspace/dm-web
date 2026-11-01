@@ -64,9 +64,13 @@ $contexts: (
   display: flex;
   align-items: center;
   gap: var(--spacing-12);
-  padding: var(--spacing-12) var(--spacing-32) var(--spacing-12) var(--spacing-16);
+  padding: var(--spacing-12) var(--spacing-32) var(--spacing-12) var(--spacing-16); // right: clear of the close
   overflow: hidden;
   border-radius: var(--border-radius-12);
+
+  @include bp.respond-to(md) {
+    padding-right: 40px; // one row: text and buttons run up to the close
+  }
   box-shadow: var(--elevation-4);
   font-family: var(--typography-font-family-sans);
   color: var(--color-text-neutral-darker);
@@ -236,10 +240,17 @@ $contexts: (
   position: absolute;
   top: 0;
   right: 0;
+  opacity: 0.5;
+  transition: opacity 150ms ease;
 
+  // Hover / keyboard focus: full strength and the 40px hit area shown with a
+  // translucent fill — it sits over the content, so the reader sees what a
+  // click will hit (translucent reads on white and on the coloured toasts)
   &:hover,
+  &:focus-visible,
   &:active {
-    background-color: var(--color-effect-translucent-dark-clear);
+    opacity: 1;
+    background-color: var(--color-effect-translucent-dark-pale);
     box-shadow: none;
   }
 

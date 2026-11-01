@@ -6,7 +6,7 @@
 //       li > a.pagination__item         40px, 12px corners
 //         [aria-current="page"]         current page — neutral/dark, Semibold
 //       li > a.pagination__item--arrow  « ‹ › » — neutral/light, ico-chevron-* 14
-//       li > span.pagination__ellipsis  gap in the numbers, not a link
+//       li.pagination__ellipsis         gap in the numbers, not a link
 //     .pagination__compact              below LG: ‹ [ 2 ⌄ ] of 999 ›
 //       a.pagination__item--arrow       44px square
 //       .pagination__select > select    native picker (Input look)

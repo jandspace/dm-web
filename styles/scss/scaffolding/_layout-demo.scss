@@ -3,6 +3,7 @@
 // Guides switch that outlines and names each region. Never ships to production.
 
 @use '../foundation/breakpoints' as bp;
+@use '../components/divider';
 
 // Inside the viewport stage (?frame): the sample only, on the page surface
 .demo-frame.demo-layout-page {
@@ -154,14 +155,9 @@
   gap: var(--spacing-12);
   padding: var(--spacing-16);
 
+  // Keyline — the Divider, as the real cards
   &::after {
-    content: '';
-    position: absolute;
-    right: var(--spacing-16);
-    bottom: 0;
-    left: var(--spacing-16);
-    height: 1px;
-    background-color: var(--color-effect-translucent-dark-pale);
+    @include divider.divider;
   }
 
   &:last-child::after {

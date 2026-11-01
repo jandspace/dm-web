@@ -1,0 +1,245 @@
+// ── Tooltip & Popover ─────────────────────────────────────────────────────────
+// Two bubbles on one shape (as Bootstrap):
+//
+//   .popover    rich — icon, title, description, buttons, close; 280 wide.
+//               Opens on click: the native popover + popovertarget (outside
+//               click and Esc close it; keyboard and touch work).
+//   .tooltip    short text only, 240 max; on hover / focus of its trigger
+//               (aria-describedby), or flashed after an action ("Link copied").
+//               Never the only way to say something — touch has no hover.
+//
+//   div.popover[popover][data-placement]
+//     span.popover__icon > .icon           optional — 48 circle, 22 icon
+//     p.popover__title                     H5 Semibold
+//     p.popover__description               label-xsm — 3 lines at most
+//     .popover__actions                    optional — Button SM: Secondary + Quaternary
+//     button.popover__close                as the Toast close (Quaternary, icon only)
+//   div.tooltip[popover=manual][role=tooltip][data-placement]   text
+//
+// Shape: neutral/lightest, 4px corners (the tail can sit near the very end),
+// Elevation Lv-4 as a drop-shadow so the tail casts it too, 24 × 12 tail.
+//   data-placement="top|bottom|left|right"   preferred side from the trigger
+//   data-side                                the side it is on (set by the script)
+//   --tail                                   tail centre along that edge: centre
+//                                            by default, 18px from an end at most
+//   .popover--no-tail / .tooltip--no-tail
+//
+// Position: scripts/modules/tooltip.js puts it by its trigger, flips it to the
+// other side when it does not fit, keeps it 16px inside the viewport and moves
+// the tail so it still points at the trigger.
+//
+// Reference: Figma Web UI Kit › Tooltip (Popover) (3341:6789)
+
+.popover,
+.tooltip {
+  --tail: 50%;
+
+  position: relative; // in-page samples; [popover] is fixed (below)
+  overflow: visible;
+  border: 0;
+  border-radius: var(--border-radius-4);
+  background-color: var(--color-background-neutral-lightest);
+  filter: drop-shadow(var(--elevation-4));
+  font-family: var(--typography-font-family-sans);
+  color: var(--color-text-neutral-darker);
+
+  // Placed by the script (viewport coordinates)
+  &[popover] {
+    position: fixed;
+    inset: auto;
+    top: var(--y, 0);
+    left: var(--x, 0);
+    margin: 0;
+  }
+
+  &[popover]:not(:popover-open) {
+    display: none; // the display below would show a closed popover
+  }
+
+  // Motion: in from the trigger's side (8px) and fade, 150ms; out the same way.
+  // Closed state = the start and end of the move; display / overlay hold the
+  // bubble until the fade-out ends.
+  &[data-side='top'] { --enter: 0 8px; }
+  &[data-side='bottom'] { --enter: 0 -8px; }
+  &[data-side='left'] { --enter: 8px 0; }
+  &[data-side='right'] { --enter: -8px 0; }
+
+  &[popover] {
+    transition:
+      opacity 150ms ease,
+      translate 150ms ease,
+      display 150ms allow-discrete,
+      overlay 150ms allow-discrete;
+  }
+
+  &[popover]:not(:popover-open) {
+    opacity: 0;
+    translate: var(--enter, 0);
+  }
+
+  @starting-style {
+    &[popover]:popover-open {
+      opacity: 0;
+      translate: var(--enter, 0);
+    }
+  }
+
+  // Tail — 24 × 12, on the edge facing the trigger
+  &::before {
+    content: '';
+    position: absolute;
+    width: 24px;
+    height: 12px;
+    background-color: inherit;
+  }
+
+  &[data-side='top']::before {
+    top: 100%;
+    left: calc(var(--tail) - 12px);
+    clip-path: polygon(0 0, 100% 0, 50% 100%);
+  }
+
+  &[data-side='bottom']::before {
+    bottom: 100%;
+    left: calc(var(--tail) - 12px);
+    clip-path: polygon(50% 0, 100% 100%, 0 100%);
+  }
+
+  &[data-side='left']::before,
+  &[data-side='right']::before {
+    top: calc(var(--tail) - 12px);
+    width: 12px;
+    height: 24px;
+  }
+
+  &[data-side='left']::before {
+    left: 100%;
+    clip-path: polygon(0 0, 100% 50%, 0 100%);
+  }
+
+  &[data-side='right']::before {
+    right: 100%;
+    clip-path: polygon(100% 0, 100% 100%, 0 50%);
+  }
+
+  // Tail at an end (in-page samples; the script sets --tail in px)
+  &[data-align='start'] {
+    --tail: 18px;
+  }
+
+  &[data-align='end'] {
+    --tail: calc(100% - 18px);
+  }
+}
+
+.popover--no-tail::before,
+.tooltip--no-tail::before {
+  content: none;
+}
+
+// ── Popover ───────────────────────────────────────────────────────────────────
+// Icon column 48 + 12; title, description and buttons share the text column
+
+.popover {
+  display: grid;
+  grid-template-columns: auto minmax(0, 1fr);
+  column-gap: var(--spacing-12);
+  row-gap: var(--spacing-4);
+  align-content: start;
+  width: 280px;
+  max-width: calc(100vw - 2 * var(--spacing-16));
+  padding: var(--spacing-12) var(--spacing-32) var(--spacing-12) var(--spacing-16); // right: clear of the close
+
+  &:not(:has(> .popover__icon)) {
+    grid-template-columns: minmax(0, 1fr);
+  }
+}
+
+.popover__icon {
+  --icon-color: var(--color-icon-interaction-primary-default);
+
+  display: flex;
+  grid-row: 1 / span 3;
+  align-items: center;
+  justify-content: center;
+  width: 48px;
+  height: 48px;
+  border-radius: var(--border-radius-full);
+  background-color: var(--color-background-home-blue-subtlest);
+
+  > .icon {
+    width: 22px;
+    height: 22px;
+  }
+}
+
+.popover__title,
+.popover__description,
+.popover__actions {
+  grid-column: -2; // the text column, with or without the icon
+}
+
+.popover__title {
+  margin: 0;
+  padding-right: var(--spacing-16); // clear of the close button
+  font-size: var(--typography-font-size-h5);
+  font-weight: var(--typography-font-weight-semibold);
+  line-height: var(--typography-line-height-compact);
+}
+
+.popover__description {
+  margin: 0;
+  font-size: var(--typography-font-size-label-xsm);
+  font-weight: var(--typography-font-weight-regular);
+  line-height: var(--typography-line-height-narrow);
+  color: var(--color-text-neutral-dark);
+}
+
+.popover__actions {
+  display: flex;
+  gap: var(--spacing-8);
+  margin-top: var(--spacing-8); // 12 under the description
+}
+
+// Same as the Toast close: Quaternary icon-only at 50%, top right
+.popover__close {
+  position: absolute;
+  top: 0;
+  right: 0;
+  opacity: 0.5;
+  transition: opacity 150ms ease;
+
+  // Hover / keyboard focus: full strength and the 40px hit area shown with a
+  // translucent fill — it sits over the content, so the reader sees what a
+  // click will hit (translucent reads on white and on the coloured toasts)
+  &:hover,
+  &:focus-visible,
+  &:active {
+    opacity: 1;
+    background-color: var(--color-effect-translucent-dark-pale);
+    box-shadow: none;
+  }
+
+  > .icon {
+    width: 16px;
+    height: 16px;
+  }
+}
+
+// ── Tooltip ───────────────────────────────────────────────────────────────────
+
+.tooltip {
+  width: max-content;
+  max-width: 240px;
+  padding: var(--spacing-12) var(--spacing-16);
+  font-size: var(--typography-font-size-h5);
+  font-weight: var(--typography-font-weight-semibold);
+  line-height: var(--typography-line-height-compact);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .popover[popover],
+  .tooltip[popover] {
+    transition: none;
+  }
+}

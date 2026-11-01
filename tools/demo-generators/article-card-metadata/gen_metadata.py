@@ -5,7 +5,7 @@ Run from the repo root:
 """
 
 COMMENTS = '''<a class="article-card-metadata__comments" href="#comments" aria-label="{n} comments"
-            ><span class="icon icon--speechbubble-ellipsis article-card-metadata__comments-icon" aria-hidden="true"></span><span class="article-card-metadata__comments-count">{n}</span></a
+            ><span class="icon icon--speechbubble-ellipsis article-card-metadata__comments-icon" aria-hidden="true"></span>{n}</a
           >'''
 
 def channel(t):
@@ -17,18 +17,14 @@ def affiliate(t): return (f'<a class="article-card-metadata__affiliate" href="#a
     f'><span class="icon icon--square-arrow-up-right article-card-metadata__affiliate-icon" aria-hidden="true"></span></a>')
 
 def row(info, n='9.9k'):
-    info_html = f'<div class="article-card-metadata__info">{info}</div>' if info else '<div class="article-card-metadata__info"></div>'
+    # info items sit straight in the row; the comments link pushes itself right
+    info_html = f'{info}\n          ' if info else ''
     return f'''<div class="article-card-metadata">
-          {info_html}
-          {COMMENTS.format(n=n)}
+          {info_html}{COMMENTS.format(n=n)}
         </div>'''
 
 CTA = '''<div class="article-card-metadata article-card-metadata--cta">
-          <a class="btn btn-brand btn--xs" href="#cta"
-            ><span class="btn__content"
-              ><span class="icon icon--square-dashed" aria-hidden="true"></span><span class="btn__label">Button</span></span
-            ></a
-          >
+          <a class="btn btn-brand btn--xs" href="#cta"><span class="icon icon--square-dashed" aria-hidden="true"></span>Button</a>
         </div>'''
 
 # (label, note, default content, long content)
@@ -46,8 +42,7 @@ TYPES = [
 ANNOUNCE = {
   'scheduled': ('', 'Join Columnist in the comments', 'From 2.30pm'),
   'live': ('<span class="badge badge--xs badge--highlight columnist-announcement__badge"'
-           '><span class="badge__label"><span class="badge__live-indicator" aria-hidden="true"><span class="badge__live-dot"></span></span'
-           '><span class="badge__text">Live</span></span></span>', 'Columnist is in the comments', 'Join now'),
+           '><span class="badge__label"><span class="badge__live" aria-hidden="true"></span>Live</span></span>', 'Columnist is in the comments', 'Join now'),
   'ended': ('', 'Columnist logged off', 'Read their comments'),
 }
 
@@ -183,8 +178,8 @@ print(f'''<!doctype html>
 
     <!-- Structure:
            .article-card-metadata
-             .article-card-metadata__info      — channel link · time · ad label · affiliate link (one or two, or empty)
-             .article-card-metadata__comments  — speech-bubble icon + count, links to comments
+             channel link · time · ad label · affiliate link — one or two, or none (straight in the row)
+             .article-card-metadata__comments  — speech-bubble icon + count, links to comments (pushed right)
            CTA type: .article-card-metadata--cta holding a .btn.btn-brand.btn--xs -->
     <div class="demo-grid demo-grid--metadata">
 {body}

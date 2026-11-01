@@ -11,7 +11,7 @@
 //   · Headline: Large H3 · Medium H4
 //   · No preview text / Key Updates
 //
-// Layering: image, scrim, overlay content and signpost share one grid cell
+// Layering: image, scrim (::after), overlay and signpost share one grid cell
 // instead of using position: absolute, so the headline link's ::after can
 // still stretch over the whole card (its containing block stays the card).
 //
@@ -59,22 +59,13 @@
   aspect-ratio: 15 / 16;
 }
 
-// ── Overlay: scrim + headline + Read more ─────────────────────────────────────
-
-.article-card__overlay {
-  display: grid;
-  align-self: stretch; // the whole image area — the scrim height is a % of it
-
-  > * {
-    grid-area: 1 / 1;
-  }
-}
-
-// Scrim — translucent-dark-thick with a 16px backdrop blur over the bottom 60%
-// of the image, faded in from the top with a cubic ease-out mask
+// ── Scrim ─────────────────────────────────────────────────────────────────────
+// Drawn by the media box itself (::after, in the same grid cell) — no element.
+// translucent-dark-thick with a 16px backdrop blur over the bottom 60% of the
+// image, faded in from the top with a cubic ease-out mask
 // (alpha = 1 − (1 − t)³): it builds up fast and stays dark for most of its
 // height. Stops sample the curve every 20%. Mask colours carry alpha only.
-.article-card__scrim {
+.article-card--image-only .article-card__media::after {
   $ease-out: linear-gradient(
     to bottom,
     rgb(0 0 0 / 0) 0%,
@@ -85,6 +76,8 @@
     rgb(0 0 0) 100%
   );
 
+  content: '';
+  grid-area: 1 / 1;
   align-self: end;
   height: 60%;
   background-color: var(--color-effect-translucent-dark-thick);
@@ -95,7 +88,12 @@
   transition: background-color 0.2s;
 }
 
-.article-card__overlay-content {
+// ── Overlay: headline + Read more ─────────────────────────────────────────────
+// z-index 1: above the scrim (painted after it); grid items stack without
+// position, so the card stays the link's containing block.
+
+.article-card__overlay {
+  z-index: 1;
   display: flex;
   flex-direction: column;
   justify-content: flex-end;
@@ -103,7 +101,6 @@
   align-self: end;
   gap: var(--spacing-4);
   padding: var(--spacing-64) var(--spacing-16) var(--spacing-8);
-  isolation: isolate; // paints above the scrim (scrim is a stacking context)
 
   .article-headline {
     width: 100%;
@@ -113,35 +110,32 @@
 // "Read more" — .btn.btn-quaternary-dark.btn--xs with a trailing arrow.
 // No button hover; on card hover a 1px line grows from the left under the
 // label + arrow, matching the channel / comments hover line in the metadata.
+// The line spans label + arrow: inside the xs side padding, 2px under the text.
 .article-card__read-more {
   pointer-events: none; // the card link handles the click
 
-  .btn__content {
-    position: relative;
-
-    &::before {
-      content: '';
-      position: absolute;
-      right: 0;
-      bottom: -2px;
-      left: 0;
-      height: 1px;
-      background: var(--color-effect-translucent-light-deep); // light line on the dark scrim
-      transform: scaleX(0);
-      transform-origin: left center;
-      transition: transform 0.2s;
-    }
+  &::before {
+    content: '';
+    position: absolute;
+    right: var(--spacing-10);
+    bottom: calc(50% - 0.6em - 3px); // text line is 1.2em, centred; 2px below it
+    left: var(--spacing-10);
+    height: 1px;
+    background: var(--color-effect-translucent-light-deep); // light line on the dark scrim
+    transform: scaleX(0);
+    transform-origin: left center;
+    transition: transform 0.2s;
   }
 }
 
 // ── Signpost: editorial badge top-left on the image ──────────────────────────
 
 .article-card__signpost {
+  z-index: 1; // above the scrim
   align-self: start;
   justify-self: start;
   display: flex;
   padding: var(--spacing-16);
-  isolation: isolate;
 
   &:empty {
     display: none;
@@ -162,12 +156,12 @@
 .article-card--image-only:has(.article-card__link:hover),
 .article-card--image-only:has(.article-card__link:focus-visible) {
   // Read more: underline grows in (no button hover background)
-  .article-card__read-more .btn__content::before {
+  .article-card__read-more::before {
     transform: scaleX(1);
   }
 
   // Scrim deepens slightly: thick (80%) → solid (100%) under the same mask
-  .article-card__scrim {
+  .article-card__media::after {
     background-color: var(--color-effect-translucent-dark-solid);
   }
 
@@ -178,8 +172,8 @@
 }
 
 @media (prefers-reduced-motion: reduce) {
-  .article-card__scrim,
-  .article-card__read-more .btn__content::before {
+  .article-card--image-only .article-card__media::after,
+  .article-card__read-more::before {
     transition: none;
   }
 }

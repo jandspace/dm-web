@@ -29,7 +29,8 @@
   gap: var(--spacing-12);
 }
 
-// Anatomy: open boxes on a scrim-coloured stage
+// Anatomy: open boxes on a scrim-coloured stage. The boxes are plain <div class="modal">
+// in the page flow (no dialog), so they need their own position and no gap.
 .demo-modal__stage {
   display: flex;
   flex-wrap: wrap;
@@ -38,6 +39,13 @@
   padding: var(--spacing-32);
   border-radius: var(--border-radius-8);
   background-color: var(--color-background-shade-moderate);
+
+  .modal {
+    --modal-gap: 0px;
+
+    position: relative;
+    margin: 0;
+  }
 }
 
 // Sample body copy, as the Figma content slot (Article page heading + paragraph)

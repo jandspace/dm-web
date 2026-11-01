@@ -1,0 +1,141 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Tooltip &amp; Popover</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&family=Lora:wght@400;600;700&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="../../tokens/dm_tokens.css" />
+    <link rel="stylesheet" href="../../tokens/dm_typography_web_tokens.css" />
+    <link rel="stylesheet" href="../../styles/css/main.css" />
+    <script src="../../scripts/scaffolding/demo-nav.js" defer></script>
+    <script src="../../scripts/modules/tooltip.js" defer></script>
+  </head>
+  <body class="demo-page-body">
+    <h1 class="demo-page-h1">Tooltip &amp; Popover</h1>
+    <p class="demo-page-intro">
+      Two bubbles on one shape, as in Bootstrap. <strong>Popover</strong> — rich (icon, title, description, buttons,
+      close), opened by a click. <strong>Tooltip</strong> — a short label on hover or keyboard focus, or flashed after an
+      action. Figma: Web UI Kit › Tooltip (Popover) (<code>3341:6789</code>). Doc: <code>docs/4_Components__11_Tooltip.md</code>.
+    </p>
+
+    <!-- ════════════════════════════════════════════════════
+         POPOVER   button[popovertarget] → div.popover[popover][data-placement]
+         TOOLTIP   [aria-describedby] → div.tooltip[popover=manual][role=tooltip][data-placement]
+         Behaviour: scripts/modules/tooltip.js (placing, flip, tail; tooltip show / hide)
+    ════════════════════════════════════════════════════ -->
+    <main class="demo-tooltip">
+      <h2 class="demo-tooltip__set">Try it — Popover</h2>
+      <p class="demo-tooltip__note">
+        Click a button. Outside click or Esc closes it. Near an edge the bubble stays 16px inside the window and the tail
+        moves to keep pointing at the button; without room on its side it flips.
+      </p>
+      <div class="demo-tooltip__row demo-tooltip__row--spread">
+        <button class="btn btn-secondary-neutral" type="button" popovertarget="demo-pop-1">Bottom (left edge)</button>
+        <button class="btn btn-secondary-neutral" type="button" popovertarget="demo-pop-2">Top</button>
+        <button class="btn btn-secondary-neutral" type="button" popovertarget="demo-pop-3">Right</button>
+        <button class="btn btn-secondary-neutral" type="button" popovertarget="demo-pop-4">Bottom (right edge)</button>
+      </div>
+      <div class="popover" id="demo-pop-1" popover data-placement="bottom">
+        <span class="popover__icon" aria-hidden="true"><span class="icon icon--info-circle-outline"></span></span>
+        <p class="popover__title">Tooltip Title Here</p>
+        <p class="popover__description">Tooltip description. Lorem ipsum dolor sit amet con sectetur adipiscing elit.</p>
+        <div class="popover__actions"><button class="btn btn-secondary-brand btn--sm" type="button">Button</button><button class="btn btn-quaternary-brand btn--sm" type="button">Button</button></div>
+        <button class="popover__close btn btn-quaternary-neutral btn--icon-only" type="button" aria-label="Close" popovertarget="demo-pop-1" popovertargetaction="hide"><span class="icon icon--xmark-light" aria-hidden="true"></span></button>
+      </div>
+      <div class="popover" id="demo-pop-2" popover data-placement="top">
+        <span class="popover__icon" aria-hidden="true"><span class="icon icon--info-circle-outline"></span></span>
+        <p class="popover__title">Tooltip Title Here</p>
+        <p class="popover__description">Tooltip description. Lorem ipsum dolor sit amet con sectetur adipiscing elit.</p>
+        <div class="popover__actions"><button class="btn btn-secondary-brand btn--sm" type="button">Button</button><button class="btn btn-quaternary-brand btn--sm" type="button">Button</button></div>
+        <button class="popover__close btn btn-quaternary-neutral btn--icon-only" type="button" aria-label="Close" popovertarget="demo-pop-2" popovertargetaction="hide"><span class="icon icon--xmark-light" aria-hidden="true"></span></button>
+      </div>
+      <div class="popover" id="demo-pop-3" popover data-placement="right">
+        <span class="popover__icon" aria-hidden="true"><span class="icon icon--info-circle-outline"></span></span>
+        <p class="popover__title">Tooltip Title Here</p>
+        <p class="popover__description">Tooltip description. Lorem ipsum dolor sit amet con sectetur adipiscing elit.</p>
+        <div class="popover__actions"><button class="btn btn-secondary-brand btn--sm" type="button">Button</button><button class="btn btn-quaternary-brand btn--sm" type="button">Button</button></div>
+        <button class="popover__close btn btn-quaternary-neutral btn--icon-only" type="button" aria-label="Close" popovertarget="demo-pop-3" popovertargetaction="hide"><span class="icon icon--xmark-light" aria-hidden="true"></span></button>
+      </div>
+      <div class="popover" id="demo-pop-4" popover data-placement="bottom">
+        <span class="popover__icon" aria-hidden="true"><span class="icon icon--info-circle-outline"></span></span>
+        <p class="popover__title">Tooltip Title Here</p>
+        <p class="popover__description">Tooltip description. Lorem ipsum dolor sit amet con sectetur adipiscing elit.</p>
+        <div class="popover__actions"><button class="btn btn-secondary-brand btn--sm" type="button">Button</button><button class="btn btn-quaternary-brand btn--sm" type="button">Button</button></div>
+        <button class="popover__close btn btn-quaternary-neutral btn--icon-only" type="button" aria-label="Close" popovertarget="demo-pop-4" popovertargetaction="hide"><span class="icon icon--xmark-light" aria-hidden="true"></span></button>
+      </div>
+
+      <h2 class="demo-tooltip__set">Try it — Tooltip</h2>
+      <p class="demo-tooltip__note">
+        Hover a button with the mouse, or Tab to it. Save article keeps its saved state on the button (filled bookmark); its tooltip is only the label — "Save article" /
+        "Saved".
+        Copy link flashes "Link copied" — the kind that also shows on touch, because it follows a tap.
+      </p>
+      <div class="demo-tooltip__row">
+        <button class="btn btn-tertiary-neutral btn--icon-only" type="button" aria-label="Save article" aria-pressed="false" aria-describedby="demo-tip-save" id="demo-save"><span class="icon icon--bookmark-outline" aria-hidden="true"></span></button>
+        <button class="btn btn-tertiary-neutral btn--icon-only" type="button" aria-label="Copy link" id="demo-share"><span class="icon icon--two-rectangles" aria-hidden="true"></span></button>
+        <button class="btn btn-secondary-neutral" type="button" aria-describedby="demo-tip-long">Longer label</button>
+      </div>
+      <div class="tooltip" id="demo-tip-save" role="tooltip" popover="manual" data-placement="top">Save article</div>
+      <div class="tooltip" id="demo-tip-long" role="tooltip" popover="manual" data-placement="bottom">Tooltips wrap at 240px, so keep them to a short line or two</div>
+      <div class="tooltip" id="demo-tip-copied" role="status" popover="manual" data-placement="top">Link copied</div>
+
+      <h2 class="demo-tooltip__set">Popover — tail</h2>
+      <p class="demo-tooltip__note">
+        <code>data-side</code> is the side the bubble sits on from its trigger (the tail points back); <code>--tail</code>
+        moves the tail along that edge — centred, or 18px from an end at most. The script sets both; these are fixed
+        samples (<code>data-align</code>).
+      </p>
+      <div class="demo-tooltip__gallery">
+        <figure class="demo-tooltip__cell"><figcaption>Below — tail on top · start</figcaption><div class="popover" data-side="bottom" data-align="start"><span class="popover__icon" aria-hidden="true"><span class="icon icon--info-circle-outline"></span></span><p class="popover__title">Tooltip Title Here</p><p class="popover__description">Tooltip description. Lorem ipsum dolor sit amet con sectetur adipiscing elit.</p><div class="popover__actions"><button class="btn btn-secondary-brand btn--sm" type="button">Button</button><button class="btn btn-quaternary-brand btn--sm" type="button">Button</button></div><button class="popover__close btn btn-quaternary-neutral btn--icon-only" type="button" aria-label="Close"><span class="icon icon--xmark-light" aria-hidden="true"></span></button></div></figure>
+        <figure class="demo-tooltip__cell"><figcaption>Below — tail on top · centre</figcaption><div class="popover" data-side="bottom"><span class="popover__icon" aria-hidden="true"><span class="icon icon--info-circle-outline"></span></span><p class="popover__title">Tooltip Title Here</p><p class="popover__description">Tooltip description. Lorem ipsum dolor sit amet con sectetur adipiscing elit.</p><div class="popover__actions"><button class="btn btn-secondary-brand btn--sm" type="button">Button</button><button class="btn btn-quaternary-brand btn--sm" type="button">Button</button></div><button class="popover__close btn btn-quaternary-neutral btn--icon-only" type="button" aria-label="Close"><span class="icon icon--xmark-light" aria-hidden="true"></span></button></div></figure>
+        <figure class="demo-tooltip__cell"><figcaption>Below — tail on top · end</figcaption><div class="popover" data-side="bottom" data-align="end"><span class="popover__icon" aria-hidden="true"><span class="icon icon--info-circle-outline"></span></span><p class="popover__title">Tooltip Title Here</p><p class="popover__description">Tooltip description. Lorem ipsum dolor sit amet con sectetur adipiscing elit.</p><div class="popover__actions"><button class="btn btn-secondary-brand btn--sm" type="button">Button</button><button class="btn btn-quaternary-brand btn--sm" type="button">Button</button></div><button class="popover__close btn btn-quaternary-neutral btn--icon-only" type="button" aria-label="Close"><span class="icon icon--xmark-light" aria-hidden="true"></span></button></div></figure>
+        <figure class="demo-tooltip__cell"><figcaption>Above — tail at the bottom · start</figcaption><div class="popover" data-side="top" data-align="start"><span class="popover__icon" aria-hidden="true"><span class="icon icon--info-circle-outline"></span></span><p class="popover__title">Tooltip Title Here</p><p class="popover__description">Tooltip description. Lorem ipsum dolor sit amet con sectetur adipiscing elit.</p><div class="popover__actions"><button class="btn btn-secondary-brand btn--sm" type="button">Button</button><button class="btn btn-quaternary-brand btn--sm" type="button">Button</button></div><button class="popover__close btn btn-quaternary-neutral btn--icon-only" type="button" aria-label="Close"><span class="icon icon--xmark-light" aria-hidden="true"></span></button></div></figure>
+        <figure class="demo-tooltip__cell"><figcaption>Above — tail at the bottom · centre</figcaption><div class="popover" data-side="top"><span class="popover__icon" aria-hidden="true"><span class="icon icon--info-circle-outline"></span></span><p class="popover__title">Tooltip Title Here</p><p class="popover__description">Tooltip description. Lorem ipsum dolor sit amet con sectetur adipiscing elit.</p><div class="popover__actions"><button class="btn btn-secondary-brand btn--sm" type="button">Button</button><button class="btn btn-quaternary-brand btn--sm" type="button">Button</button></div><button class="popover__close btn btn-quaternary-neutral btn--icon-only" type="button" aria-label="Close"><span class="icon icon--xmark-light" aria-hidden="true"></span></button></div></figure>
+        <figure class="demo-tooltip__cell"><figcaption>Above — tail at the bottom · end</figcaption><div class="popover" data-side="top" data-align="end"><span class="popover__icon" aria-hidden="true"><span class="icon icon--info-circle-outline"></span></span><p class="popover__title">Tooltip Title Here</p><p class="popover__description">Tooltip description. Lorem ipsum dolor sit amet con sectetur adipiscing elit.</p><div class="popover__actions"><button class="btn btn-secondary-brand btn--sm" type="button">Button</button><button class="btn btn-quaternary-brand btn--sm" type="button">Button</button></div><button class="popover__close btn btn-quaternary-neutral btn--icon-only" type="button" aria-label="Close"><span class="icon icon--xmark-light" aria-hidden="true"></span></button></div></figure>
+        <figure class="demo-tooltip__cell"><figcaption>Left — tail on the right · start</figcaption><div class="popover" data-side="left" data-align="start"><span class="popover__icon" aria-hidden="true"><span class="icon icon--info-circle-outline"></span></span><p class="popover__title">Tooltip Title Here</p><p class="popover__description">Tooltip description. Lorem ipsum dolor sit amet con sectetur adipiscing elit.</p><div class="popover__actions"><button class="btn btn-secondary-brand btn--sm" type="button">Button</button><button class="btn btn-quaternary-brand btn--sm" type="button">Button</button></div><button class="popover__close btn btn-quaternary-neutral btn--icon-only" type="button" aria-label="Close"><span class="icon icon--xmark-light" aria-hidden="true"></span></button></div></figure>
+        <figure class="demo-tooltip__cell"><figcaption>Left — tail on the right · centre</figcaption><div class="popover" data-side="left"><span class="popover__icon" aria-hidden="true"><span class="icon icon--info-circle-outline"></span></span><p class="popover__title">Tooltip Title Here</p><p class="popover__description">Tooltip description. Lorem ipsum dolor sit amet con sectetur adipiscing elit.</p><div class="popover__actions"><button class="btn btn-secondary-brand btn--sm" type="button">Button</button><button class="btn btn-quaternary-brand btn--sm" type="button">Button</button></div><button class="popover__close btn btn-quaternary-neutral btn--icon-only" type="button" aria-label="Close"><span class="icon icon--xmark-light" aria-hidden="true"></span></button></div></figure>
+        <figure class="demo-tooltip__cell"><figcaption>Left — tail on the right · end</figcaption><div class="popover" data-side="left" data-align="end"><span class="popover__icon" aria-hidden="true"><span class="icon icon--info-circle-outline"></span></span><p class="popover__title">Tooltip Title Here</p><p class="popover__description">Tooltip description. Lorem ipsum dolor sit amet con sectetur adipiscing elit.</p><div class="popover__actions"><button class="btn btn-secondary-brand btn--sm" type="button">Button</button><button class="btn btn-quaternary-brand btn--sm" type="button">Button</button></div><button class="popover__close btn btn-quaternary-neutral btn--icon-only" type="button" aria-label="Close"><span class="icon icon--xmark-light" aria-hidden="true"></span></button></div></figure>
+        <figure class="demo-tooltip__cell"><figcaption>Right — tail on the left · start</figcaption><div class="popover" data-side="right" data-align="start"><span class="popover__icon" aria-hidden="true"><span class="icon icon--info-circle-outline"></span></span><p class="popover__title">Tooltip Title Here</p><p class="popover__description">Tooltip description. Lorem ipsum dolor sit amet con sectetur adipiscing elit.</p><div class="popover__actions"><button class="btn btn-secondary-brand btn--sm" type="button">Button</button><button class="btn btn-quaternary-brand btn--sm" type="button">Button</button></div><button class="popover__close btn btn-quaternary-neutral btn--icon-only" type="button" aria-label="Close"><span class="icon icon--xmark-light" aria-hidden="true"></span></button></div></figure>
+        <figure class="demo-tooltip__cell"><figcaption>Right — tail on the left · centre</figcaption><div class="popover" data-side="right"><span class="popover__icon" aria-hidden="true"><span class="icon icon--info-circle-outline"></span></span><p class="popover__title">Tooltip Title Here</p><p class="popover__description">Tooltip description. Lorem ipsum dolor sit amet con sectetur adipiscing elit.</p><div class="popover__actions"><button class="btn btn-secondary-brand btn--sm" type="button">Button</button><button class="btn btn-quaternary-brand btn--sm" type="button">Button</button></div><button class="popover__close btn btn-quaternary-neutral btn--icon-only" type="button" aria-label="Close"><span class="icon icon--xmark-light" aria-hidden="true"></span></button></div></figure>
+        <figure class="demo-tooltip__cell"><figcaption>Right — tail on the left · end</figcaption><div class="popover" data-side="right" data-align="end"><span class="popover__icon" aria-hidden="true"><span class="icon icon--info-circle-outline"></span></span><p class="popover__title">Tooltip Title Here</p><p class="popover__description">Tooltip description. Lorem ipsum dolor sit amet con sectetur adipiscing elit.</p><div class="popover__actions"><button class="btn btn-secondary-brand btn--sm" type="button">Button</button><button class="btn btn-quaternary-brand btn--sm" type="button">Button</button></div><button class="popover__close btn btn-quaternary-neutral btn--icon-only" type="button" aria-label="Close"><span class="icon icon--xmark-light" aria-hidden="true"></span></button></div></figure>
+        <figure class="demo-tooltip__cell"><figcaption>No tail · .popover--no-tail</figcaption><div class="popover popover--no-tail" data-side="top"><span class="popover__icon" aria-hidden="true"><span class="icon icon--info-circle-outline"></span></span><p class="popover__title">Tooltip Title Here</p><p class="popover__description">Tooltip description. Lorem ipsum dolor sit amet con sectetur adipiscing elit.</p><div class="popover__actions"><button class="btn btn-secondary-brand btn--sm" type="button">Button</button><button class="btn btn-quaternary-brand btn--sm" type="button">Button</button></div><button class="popover__close btn btn-quaternary-neutral btn--icon-only" type="button" aria-label="Close"><span class="icon icon--xmark-light" aria-hidden="true"></span></button></div></figure>
+        <figure class="demo-tooltip__cell"><figcaption>No icon</figcaption><div class="popover" data-side="top"><p class="popover__title">Tooltip Title Here</p><p class="popover__description">Tooltip description. Lorem ipsum dolor sit amet con sectetur adipiscing elit.</p><div class="popover__actions"><button class="btn btn-secondary-brand btn--sm" type="button">Button</button><button class="btn btn-quaternary-brand btn--sm" type="button">Button</button></div><button class="popover__close btn btn-quaternary-neutral btn--icon-only" type="button" aria-label="Close"><span class="icon icon--xmark-light" aria-hidden="true"></span></button></div></figure>
+        <figure class="demo-tooltip__cell"><figcaption>No buttons</figcaption><div class="popover" data-side="top"><span class="popover__icon" aria-hidden="true"><span class="icon icon--info-circle-outline"></span></span><p class="popover__title">Tooltip Title Here</p><p class="popover__description">Tooltip description. Lorem ipsum dolor sit amet con sectetur adipiscing elit.</p><button class="popover__close btn btn-quaternary-neutral btn--icon-only" type="button" aria-label="Close"><span class="icon icon--xmark-light" aria-hidden="true"></span></button></div></figure>
+      </div>
+
+      <h2 class="demo-tooltip__set">Tooltip — text only</h2>
+      <p class="demo-tooltip__note">H5 Semibold, 240px at most. Same shape and tail as the Popover.</p>
+      <div class="demo-tooltip__gallery demo-tooltip__gallery--tips">
+        <figure class="demo-tooltip__cell"><figcaption>Above</figcaption><div class="tooltip" data-side="top">Link copied</div></figure>
+        <figure class="demo-tooltip__cell"><figcaption>Below</figcaption><div class="tooltip" data-side="bottom">Save for later</div></figure>
+        <figure class="demo-tooltip__cell"><figcaption>Right</figcaption><div class="tooltip" data-side="right">Share</div></figure>
+        <figure class="demo-tooltip__cell"><figcaption>Long — wraps at 240</figcaption><div class="tooltip" data-side="top">Tooltips wrap at 240px, so keep them to a short line or two</div></figure>
+      </div>
+    </main>
+
+    <script>
+      // Scaffolding only — Save article: Loading while it saves, then the saved state
+      // (filled bookmark, aria-pressed); the tooltip label follows the state. (On a real
+      // page the result goes in a Toast — see the Tooltip doc.)
+      document.getElementById('demo-save').addEventListener('click', (event) => {
+        const button = event.currentTarget;
+        const saved = button.getAttribute('aria-pressed') !== 'true';
+        button.classList.add('btn--loading');
+        setTimeout(() => {
+          button.classList.remove('btn--loading');
+          button.setAttribute('aria-pressed', String(saved));
+          button.querySelector('.icon').className = `icon icon--${saved ? 'bookmark-solid' : 'bookmark-outline'}`;
+          document.getElementById('demo-tip-save').textContent = saved ? 'Saved' : 'Save article';
+        }, 800);
+      });
+
+      document.getElementById('demo-share').addEventListener('click', (event) => {
+        navigator.clipboard?.writeText(location.href).catch(() => {});
+        Tooltip.flash(document.getElementById('demo-tip-copied'), event.currentTarget);
+      });
+    </script>
+  </body>
+</html>

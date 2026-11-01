@@ -23,6 +23,8 @@
 @use 'components/scroll-row';
 @use 'components/tabs';
 @use 'components/toast';
+@use 'components/toggle';
+@use 'components/tooltip';
 
 // Modules — editorial / product blocks built from components (Figma "DM Web ::: Modules")
 @use 'modules/editorial-badge';
@@ -62,6 +64,8 @@
 @use 'scaffolding/pagination-demo';
 @use 'scaffolding/tabs-demo';
 @use 'scaffolding/toast-demo';
+@use 'scaffolding/toggle-demo';
+@use 'scaffolding/tooltip-demo';
 @use 'scaffolding/article-card-demo';
 @use 'scaffolding/article-card-metadata-demo';
 @use 'scaffolding/article-card-media-demo';

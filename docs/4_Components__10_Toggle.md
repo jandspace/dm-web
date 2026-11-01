@@ -224,5 +224,35 @@ This is why the On Hover track (`interaction-primary/hover`, `#002e6b`) appears 
 
 ---
 
+## 8. Code (Web)
+
+```html
+<label class="toggle-field">
+  <span class="toggle-field__text">
+    <span class="toggle-field__label">Auto-play videos</span>
+    <span class="toggle-field__description">Videos play muted as you scroll</span>
+  </span>
+  <button type="button" class="toggle" role="switch" aria-checked="true">
+    <span class="toggle__disk" data-theme="light"></span>
+  </button>
+</label>
+```
+
+| Class | Use |
+|---|---|
+| `.toggle` | The switch — Medium 46 × 26, disk 22. State from `aria-checked` |
+| `.toggle--sm` | Small 36 × 22, disk 18 |
+| `.toggle--positive` | On in `interaction-positive` (§ 4-A) |
+| `.toggle__disk` | Always `data-theme="light"` — Theme Pinned (§ 4-C): `icon/neutral/lightest` would turn dark in dark mode otherwise |
+| `.toggle-field` | Optional `<label>` wrapper: text left, switch right; clicking the text flips the switch |
+| `.toggle-field__label` / `__description` | label-md Semibold / label-sm Regular — `text/neutral/darker` / `text/neutral/grey-dark` |
+
+- Disabled: the `disabled` attribute (25% opacity, no hover change).
+- The script only flips `aria-checked` on click; `Space` on a focused `<button>` clicks it.
+- Without a visible label next to it, give the button `aria-label`.
+- Files: `styles/scss/components/_toggle.scss` · demo `components/toggle/`.
+
+---
+
 *Component: Toggle Switch — Daily Mail Design System*
 *Last updated: 2026/05/11*

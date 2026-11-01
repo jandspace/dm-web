@@ -314,10 +314,11 @@
           status: 'In progress',
           notes: [
             'The Layout & Grid sample (foundation/layout/) fixed at LG: the page renders itself in a 1024px iframe, so .container is always 996px (Alpha 664 + Beta 332).',
-            'Placeholder cards and layout classes from the shared CSS, unchanged. A Guides checkbox outlines and names each region.',
+            'Placeholder cards and layout classes from the shared CSS, unchanged. View (sticky): Default · Guides (outlines and names each region) · Keylines (every keyline as a moving dashed line in border/semantic-warning/base, to check where they fall).',
+            'Section headers use the simpler library markup (2026-10-30): no row / label / icon wrappers. Same look.',
           ],
           result: '',
-          pages: [['Page', 'index.html', 'Layout & Grid sample at LG ≥1024 in a 996px container, with Guides on / off.']],
+          pages: [['Page', 'index.html', 'Layout & Grid sample at LG ≥1024 in a 996px container — View: Default / Guides / Keylines.']],
         },
         {
           id: '202610-exp-section-header-long-title',
@@ -330,6 +331,7 @@
             'Gamma (Banner Story) removed; alpha is greyed out (grayscale, 40% opacity) so beta stands out. Beta: More Showbiz → Daisy → 2 SM cards, then the long-title header (“This is a section header with a long title”) → Daisy → 5 SM cards.',
             'Section header icons load from assets/icons (shared icon set), not from the experiment folder.',
             'Icons use the shared .icon class (2026-10-30): the inline SVG sprite stopped sizing once the shared CSS moved to .icon (play buttons and header arrows rendered 150px tall). Same look, no symbols left in the page.',
+            'Section headers, buttons and badges use the simpler library markup (2026-10-30): no row / label / icon wrappers, no button content / label spans or spinner SVG, no badge text / M+ / live-dot wrappers, no metadata info / count wrappers, no Image Only scrim / overlay-content elements, no Banner story wrapper, no Branded section header slot (the logo img sits in the banner). Sub-item chevrons run on the shared scripts/modules/scroll-row.js (the copied script is gone). Same look — except the MD (Vertical Media) video card: its play icon now sits bottom-left without the duration pill, as in the library.',
           ],
           result: '',
           pages: [['Page', 'index.html', 'Preview hover A with the duplicated long-title section header in beta.']],
@@ -359,6 +361,7 @@
             'Beta now opens with a Channel Puff (Showbiz, Figma 8181:237759): Image Only + 4 SM Right Thumb cards on the channel subtlest surface, closed by one keyline under the whole block (the last card has none) — new shared module .channel-puff, same on A and B. Card hover inside the puff uses no blue: the headline stays neutral/darker.',
             'Section headers from the new Section Header module, same on A and B: Branded “This is Showbiz” above the Channel Puff (8218:237980), SM “More Showbiz” above the Daisy Edgar-Jones card (8218:238038), and MD “Midterms 2026” with topic sub-items under the Deep Dive card (8219:238176).',
             'Icons use the shared .icon class (2026-10-30): the inline SVG sprite stopped sizing once the shared CSS moved to .icon (play buttons and header arrows rendered 150px tall). Same look, no symbols left in the page.',
+            'Section headers, buttons and badges use the simpler library markup (2026-10-30): no row / label / icon wrappers, no button content / label spans or spinner SVG, no badge text / M+ / live-dot wrappers, no metadata info / count wrappers, no Image Only scrim / overlay-content elements, no Banner story wrapper, no Branded section header slot (the logo img sits in the banner). Sub-item chevrons run on the shared scripts/modules/scroll-row.js (the copied script is gone). Same look — except the MD (Vertical Media) video card: its play icon now sits bottom-left without the duration pill, as in the library.',
           ],
           result: '',
           pages: [

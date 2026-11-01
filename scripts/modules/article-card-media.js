@@ -8,11 +8,13 @@
 //   .article-card-carousel  arrows, swipe (scroll-snap), dots; a click on a
 //                           slide opens the article
 //
-// Call ArticleCardMedia.init(root) again after adding cards to the page.
+// Call ArticleCardMedia.init(root) again after adding cards to the page —
+// elements already set up are skipped.
 
 (() => {
   const IDLE_MS = 3000;
   const reducedMotion = matchMedia('(prefers-reduced-motion: reduce)');
+  const ready = new WeakSet(); // elements already set up
 
   const clock = (s) => {
     const t = Math.max(0, Math.floor(s || 0));
@@ -24,6 +26,7 @@
   const previewObserver = new IntersectionObserver(
     (entries) => {
       entries.forEach(({ target, isIntersecting }) => {
+        if (!target.isConnected) return previewObserver.unobserve(target); // taken off the page
         if (isIntersecting && !reducedMotion.matches) target.play().catch(() => {});
         else target.pause();
       });
@@ -45,6 +48,7 @@
     const surface = player.querySelector('.article-card-player__surface');
     const timer = player.querySelector('.video-timer');
     const progress = player.querySelector('.video-progress');
+    const bar = progress.querySelector('[role="progressbar"]');
     const elapsed = player.querySelector('.video-progress__elapsed');
     const remaining = player.querySelector('.video-progress__remaining');
     const sound = player.querySelector('[data-action="sound"]');
@@ -72,7 +76,7 @@
     const update = () => {
       const pct = video.duration ? (video.currentTime / video.duration) * 100 : 0;
       progress.style.setProperty('--video-progress', `${pct}%`);
-      progress.querySelector('[role="progressbar"]').setAttribute('aria-valuenow', Math.round(pct));
+      bar.setAttribute('aria-valuenow', Math.round(pct));
       elapsed.textContent = clock(video.currentTime);
       remaining.textContent = `-${clock(video.duration - video.currentTime)}`;
     };
@@ -107,7 +111,7 @@
     });
 
     player.querySelector('[data-action="expand"]')?.addEventListener('click', () => {
-      if (video.requestFullscreen) video.requestFullscreen();
+      if (video.requestFullscreen) video.requestFullscreen().catch(() => {});
       else video.webkitEnterFullscreen?.(); // iOS Safari
     });
 
@@ -123,7 +127,7 @@
     player.querySelector('[data-action="share"]')?.addEventListener('click', () => {
       const url = player.closest('.article-card')?.querySelector('.article-card__link')?.href || location.href;
       if (navigator.share) navigator.share({ url }).catch(() => {});
-      else navigator.clipboard?.writeText(url);
+      else navigator.clipboard?.writeText(url).catch(() => {});
       wake();
     });
 
@@ -164,10 +168,16 @@
     update();
   };
 
+  const once = (setup) => (el) => {
+    if (ready.has(el)) return;
+    ready.add(el);
+    setup(el);
+  };
+
   const init = (root = document) => {
-    root.querySelectorAll('video[data-preview]').forEach(initPreview);
-    root.querySelectorAll('.article-card-player').forEach(initPlayer);
-    root.querySelectorAll('.article-card-carousel').forEach(initCarousel);
+    root.querySelectorAll('video[data-preview]').forEach(once(initPreview));
+    root.querySelectorAll('.article-card-player').forEach(once(initPlayer));
+    root.querySelectorAll('.article-card-carousel').forEach(once(initCarousel));
   };
 
   window.ArticleCardMedia = { init };

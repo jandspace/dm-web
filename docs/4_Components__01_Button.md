@@ -673,7 +673,23 @@ Icon-only buttons are used when space is limited or when the action can be clear
 
 Because icon-only buttons rely on visual recognition, they should only be used for widely recognised actions. *Icon-only buttons may appear visually smaller, but the interactive hit area should maintain a minimum touch target of approximately 44px where possible. This can be achieved by providing sufficient spacing around the button within the layout.*
 
-### 8-E. Usage Guidelines
+### 8-E. Markup
+
+The label and icons sit straight in the button — no inner wrappers, no spinner element.
+
+```html
+<button class="btn btn-brand">Button</button>                                                       <!-- Label only -->
+<button class="btn btn-brand"><span class="icon icon--add" aria-hidden="true"></span>Button</button>  <!-- Icon + Label -->
+<button class="btn btn-brand">Button<span class="icon icon--chevron-down" aria-hidden="true"></span></button> <!-- Label + Addon -->
+<button class="btn btn-brand btn--icon-only" aria-label="Add"><span class="icon icon--add" aria-hidden="true"></span></button> <!-- Icon only -->
+<button class="btn btn-brand btn--loading" aria-label="Loading">Button</button>                    <!-- Loading -->
+```
+
+- Icons are `1em` (16 at MD) and take the label colour; the gap between icon and label is set per size on `.btn` (XS 4 · SM 5 · MD 6 · LG 8 · XL 10).
+- Loading: `.btn--loading` hides the label and icons (the button keeps its width) and draws the Loading ring with `::after` — 16 · 20 · 24 · 28 · 32 by size (`--btn-spinner`).
+- Styles: `styles/scss/components/_button.scss`.
+
+### 8-F. Usage Guidelines
 
 To maintain clarity and reduce cognitive load:
 

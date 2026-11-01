@@ -75,37 +75,36 @@ button.video-play {
 }
 
 // ── Commercial Player controller ──────────────────────────────────────────────
-// back · play/pause · next. The side slots share the free width equally, so the
-// play button stays centred; the row is capped per size.
+// back · play/pause · next, straight in the controller: a 1fr · auto · 1fr grid
+// keeps the play button centred; the row is capped per size by the side
+// padding (never under 16px).
 //   sm: max 160 · icons 18 · play md (44)
 //   md: max 192 · icons 22 · play lg (56)
 //   lg: max 256 · icons 28 · play xl (68)
+//
+//   .video-controller.video-controller--{sm|md|lg}
+//     button.video-controller__skip   back
+//     .video-play                     play / pause
+//     button.video-controller__skip   next
 
 .video-controller {
   --video-controller-max: 160px;
   --video-controller-icon: 18px;
 
-  display: flex;
-  justify-content: center;
-  width: 100%;
-  padding: var(--spacing-12) var(--spacing-16);
-}
-
-.video-controller__inner {
-  display: flex;
-  flex: 1 1 0;
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto minmax(0, 1fr);
   align-items: center;
+  align-content: center;
   gap: var(--spacing-6);
-  max-width: var(--video-controller-max);
-}
+  width: 100%;
+  padding: var(--spacing-12) max(var(--spacing-16), (100% - var(--video-controller-max)) / 2);
 
-.video-controller__side {
-  display: flex;
-  flex: 1 1 0;
-  min-width: 0;
+  > :first-child {
+    justify-self: start;
+  }
 
-  &:last-child {
-    justify-content: flex-end;
+  > :last-child {
+    justify-self: end;
   }
 }
 
@@ -140,12 +139,11 @@ button.video-play {
 }
 
 // Figma fixes the Large row at 80px — the 68px play button eats into the
-// 12px vertical padding rather than growing the row.
+// 12px vertical padding rather than growing the row (align-content: center).
 .video-controller--lg {
   --video-controller-max: 256px;
   --video-controller-icon: 28px;
 
-  align-items: center;
   height: 80px;
 
   .video-play {

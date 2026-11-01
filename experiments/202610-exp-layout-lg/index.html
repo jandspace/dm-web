@@ -50,12 +50,48 @@
         color: var(--color-text-neutral-grey-dark);
       }
 
-      .exp-shell__guides {
+      /* View filter — sticks to the top while the sample scrolls */
+      .exp-shell__view {
+        position: sticky;
+        top: 0;
+        z-index: 1;
         display: flex;
         align-items: center;
         gap: var(--spacing-8);
+        max-width: 996px;
+        margin: 0 auto;
+        padding: var(--spacing-8) 0;
+        background-color: var(--color-background-neutral-lightest);
         font-size: 12px;
         color: var(--color-text-neutral-darker);
+      }
+
+      /* Keylines view: every keyline (Divider mixin) reads the
+         border/translucent-dark/pale token — point it at the warning colour,
+         then paint the keylines as a moving dashed line ("marching ants").
+         45° stripes give dashes on horizontal and vertical lines alike; the
+         tile (8px stripe period × √2) slides one step per loop. */
+      .exp-keylines .exp-page {
+        --color-border-translucent-dark-pale: var(--color-border-semantic-warning-base);
+      }
+
+      .exp-keylines :is(.layout-full, .layout-split, .layout-alpha, .layout-row, .layout-col, .layout-inset, .demo-layout-card)::after,
+      .exp-keylines .layout-beta::before {
+        background: repeating-linear-gradient(45deg, var(--color-border-semantic-warning-base) 0 4px, transparent 4px 8px) 0 0 / 11.3137px 11.3137px;
+        animation: exp-keyline-march 0.8s linear infinite;
+      }
+
+      @keyframes exp-keyline-march {
+        to {
+          background-position: 11.3137px 0;
+        }
+      }
+
+      @media (prefers-reduced-motion: reduce) {
+        .exp-keylines :is(.layout-full, .layout-split, .layout-alpha, .layout-row, .layout-col, .layout-inset, .demo-layout-card)::after,
+        .exp-keylines .layout-beta::before {
+          animation: none;
+        }
       }
 
       /* The frame stays 1024px wide (LG rules) but only the 996px container
@@ -92,8 +128,15 @@
             (Alpha 664 + Beta 332). Shared CSS, unchanged.
           </p>
         </div>
-        <label class="exp-shell__guides"><input type="checkbox" id="exp-guides" /> Guides</label>
       </header>
+      <div class="exp-shell__view">
+        <span id="exp-view-label">View</span>
+        <div class="demo-vp-toggle" role="group" aria-labelledby="exp-view-label" id="exp-view">
+          <button type="button" data-view="default" aria-pressed="true">Default</button>
+          <button type="button" data-view="guides" aria-pressed="false">Guides</button>
+          <button type="button" data-view="keylines" aria-pressed="false">Keylines</button>
+        </div>
+      </div>
       <div class="exp-shell__stage" id="exp-stage"></div>
     </div>
 
@@ -107,7 +150,7 @@
         <section class="layout-full"><span class="demo-layout-tag">layout-full</span><div class="demo-layout-card"><div class="demo-layout-card__media demo-layout-card__media--banner"></div><p class="h1"><span class="demo-layout-text">PM declares war on Brexit: Starmer uses Trump&#x27;s abuse to signal he&#x27;ll move UK closer to EU as President hurls fresh insults</span></p></div></section>
 
         <!-- Fullwidth — Split: header in Alpha, Beta led by a small header + tinted box -->
-        <section class="layout-full"><span class="demo-layout-tag">layout-full</span><div class="layout-split"><span class="demo-layout-tag">layout-split</span><div class="layout-alpha"><span class="demo-layout-tag">layout-alpha</span><h2 class="demo-layout-heading"><span class="demo-layout-text demo-layout-text--strong">Section Header</span></h2><div class="layout-row"><span class="demo-layout-tag">layout-row</span><div class="layout-col"><span class="demo-layout-tag">Col 1-1</span><div class="demo-layout-card"><div class="demo-layout-card__media"></div><p class="h2"><span class="demo-layout-text">Trump has wanted to leave Nato for 40 years... but Marco Rubio&#x27;s swingeing intervention may stop him</span></p></div></div></div><div class="layout-row"><span class="demo-layout-tag">layout-row</span><div class="layout-col"><span class="demo-layout-tag">Col 1-2</span><div class="demo-layout-card demo-layout-card--sm-left"><div class="demo-layout-card__media"></div><p class="h5"><span class="demo-layout-text">Pete Hegseth claims &#x27;Iran begged for this ceasefire&#x27;: Live updates</span></p></div><div class="demo-layout-card demo-layout-card--sm-left"><div class="demo-layout-card__media"></div><p class="h5"><span class="demo-layout-text">White House publishes 10-point ceasefire plan not one received by US, says Iran</span></p></div></div><div class="layout-col"><span class="demo-layout-tag">Col 1-2</span><div class="demo-layout-card demo-layout-card--sm-left"><div class="demo-layout-card__media"></div><p class="h5"><span class="demo-layout-text">We never asked Trump for a ceasefire, Iran says as it blasts claims of deal as &#x27;ridiculous&#x27;</span></p></div><div class="demo-layout-card demo-layout-card--sm-left"><div class="demo-layout-card__media"></div><p class="h5"><span class="demo-layout-text">BORIS JOHNSON: Tony Blair is right. We may not like the war with Iran but it&#x27;s not our war</span></p></div></div></div><div class="layout-inset"><span class="demo-layout-tag">layout-inset</span><div class="demo-layout-box demo-layout-box--sport"><h2 class="demo-layout-heading"><span class="demo-layout-text demo-layout-text--strong">Section Header</span></h2><div class="layout-row"><span class="demo-layout-tag">layout-row</span><div class="layout-col"><span class="demo-layout-tag">Col 1-2</span><div class="demo-layout-card"><div class="demo-layout-card__media"></div><p class="h4"><span class="demo-layout-text">Arsenal close in on title as Saka double sinks Chelsea at the Emirates</span></p></div></div><div class="layout-col"><span class="demo-layout-tag">Col 1-2</span><div class="demo-layout-card demo-layout-card--sm-left"><div class="demo-layout-card__media"></div><p class="h5"><span class="demo-layout-text">England name unchanged side for Six Nations decider against France</span></p></div><div class="demo-layout-card demo-layout-card--sm-left"><div class="demo-layout-card__media"></div><p class="h5"><span class="demo-layout-text">Lewis Hamilton sets fastest lap in final practice at Silverstone</span></p></div><div class="demo-layout-card demo-layout-card--sm-left"><div class="demo-layout-card__media"></div><p class="h5"><span class="demo-layout-text">Emma Raducanu books her place in the Wimbledon quarter-finals</span></p></div></div></div></div></div><div class="layout-row"><span class="demo-layout-tag">layout-row</span><div class="layout-col"><span class="demo-layout-tag">Col 1-2</span><div class="demo-layout-card demo-layout-card--sm-left"><div class="demo-layout-card__media"></div><p class="h5"><span class="demo-layout-text">Iran &#x27;could WITHDRAW from ceasefire&#x27; as Israel is accused of violating terms of the deal</span></p></div></div><div class="layout-col"><span class="demo-layout-tag">Col 1-2</span><div class="demo-layout-card demo-layout-card--sm-left"><div class="demo-layout-card__media"></div><p class="h5"><span class="demo-layout-text">Iraq: Israel&#x27;s Lebanon strikes &#x27;evidence&#x27; of plan to sabotage truce</span></p></div></div></div></div><aside class="layout-beta"><span class="demo-layout-tag">layout-beta</span><header class="section-header section-header--sm"><div class="section-header__row"><h2 class="section-header__title"><span class="section-header__link"><span class="section-header__label"><span class="section-header__text"><span class="demo-layout-text demo-layout-text--strong">Section Header</span></span></span></span></h2></div></header><div class="layout-inset"><span class="demo-layout-tag">layout-inset</span><div class="demo-layout-box"><div class="demo-layout-card demo-layout-card--sm-right"><div class="demo-layout-card__media"></div><p class="h6"><span class="demo-layout-text">Molly-Mae shows off her glowing tan as she jets off to Dubai with Tommy Fury</span></p></div><div class="demo-layout-card demo-layout-card--sm-right"><div class="demo-layout-card__media"></div><p class="h6"><span class="demo-layout-text">Princess Andre takes subtle swipe at mum Katie Price as she reveals line</span></p></div><div class="demo-layout-card demo-layout-card--sm-right"><div class="demo-layout-card__media"></div><p class="h6"><span class="demo-layout-text">Jessica Alba, 47, strips down to a skimpy bikini on holiday after divorce agreement</span></p></div><div class="demo-layout-card demo-layout-card--sm-right"><div class="demo-layout-card__media"></div><p class="h6"><span class="demo-layout-text">Strictly star confirms romance with professional partner after weeks of rumours</span></p></div></div></div><div class="demo-layout-card demo-layout-card--sm-right"><div class="demo-layout-card__media"></div><p class="h6"><span class="demo-layout-text">Love yourself first: take time to prioritise your health this summer with these top 10 brands</span></p></div><div class="demo-layout-card demo-layout-card--sm-right"><div class="demo-layout-card__media"></div><p class="h6"><span class="demo-layout-text">The brand behind the self-tan that sells every 20 seconds drops glow-boosting SPF</span></p></div><div class="demo-layout-mpu">MPU 300 × 250</div></aside></div></section>
+        <section class="layout-full"><span class="demo-layout-tag">layout-full</span><div class="layout-split"><span class="demo-layout-tag">layout-split</span><div class="layout-alpha"><span class="demo-layout-tag">layout-alpha</span><h2 class="demo-layout-heading"><span class="demo-layout-text demo-layout-text--strong">Section Header</span></h2><div class="layout-row"><span class="demo-layout-tag">layout-row</span><div class="layout-col"><span class="demo-layout-tag">Col 1-1</span><div class="demo-layout-card"><div class="demo-layout-card__media"></div><p class="h2"><span class="demo-layout-text">Trump has wanted to leave Nato for 40 years... but Marco Rubio&#x27;s swingeing intervention may stop him</span></p></div></div></div><div class="layout-row"><span class="demo-layout-tag">layout-row</span><div class="layout-col"><span class="demo-layout-tag">Col 1-2</span><div class="demo-layout-card demo-layout-card--sm-left"><div class="demo-layout-card__media"></div><p class="h5"><span class="demo-layout-text">Pete Hegseth claims &#x27;Iran begged for this ceasefire&#x27;: Live updates</span></p></div><div class="demo-layout-card demo-layout-card--sm-left"><div class="demo-layout-card__media"></div><p class="h5"><span class="demo-layout-text">White House publishes 10-point ceasefire plan not one received by US, says Iran</span></p></div></div><div class="layout-col"><span class="demo-layout-tag">Col 1-2</span><div class="demo-layout-card demo-layout-card--sm-left"><div class="demo-layout-card__media"></div><p class="h5"><span class="demo-layout-text">We never asked Trump for a ceasefire, Iran says as it blasts claims of deal as &#x27;ridiculous&#x27;</span></p></div><div class="demo-layout-card demo-layout-card--sm-left"><div class="demo-layout-card__media"></div><p class="h5"><span class="demo-layout-text">BORIS JOHNSON: Tony Blair is right. We may not like the war with Iran but it&#x27;s not our war</span></p></div></div></div><div class="layout-inset"><span class="demo-layout-tag">layout-inset</span><div class="demo-layout-box demo-layout-box--sport"><h2 class="demo-layout-heading"><span class="demo-layout-text demo-layout-text--strong">Section Header</span></h2><div class="layout-row"><span class="demo-layout-tag">layout-row</span><div class="layout-col"><span class="demo-layout-tag">Col 1-2</span><div class="demo-layout-card"><div class="demo-layout-card__media"></div><p class="h4"><span class="demo-layout-text">Arsenal close in on title as Saka double sinks Chelsea at the Emirates</span></p></div></div><div class="layout-col"><span class="demo-layout-tag">Col 1-2</span><div class="demo-layout-card demo-layout-card--sm-left"><div class="demo-layout-card__media"></div><p class="h5"><span class="demo-layout-text">England name unchanged side for Six Nations decider against France</span></p></div><div class="demo-layout-card demo-layout-card--sm-left"><div class="demo-layout-card__media"></div><p class="h5"><span class="demo-layout-text">Lewis Hamilton sets fastest lap in final practice at Silverstone</span></p></div><div class="demo-layout-card demo-layout-card--sm-left"><div class="demo-layout-card__media"></div><p class="h5"><span class="demo-layout-text">Emma Raducanu books her place in the Wimbledon quarter-finals</span></p></div></div></div></div></div><div class="layout-row"><span class="demo-layout-tag">layout-row</span><div class="layout-col"><span class="demo-layout-tag">Col 1-2</span><div class="demo-layout-card demo-layout-card--sm-left"><div class="demo-layout-card__media"></div><p class="h5"><span class="demo-layout-text">Iran &#x27;could WITHDRAW from ceasefire&#x27; as Israel is accused of violating terms of the deal</span></p></div></div><div class="layout-col"><span class="demo-layout-tag">Col 1-2</span><div class="demo-layout-card demo-layout-card--sm-left"><div class="demo-layout-card__media"></div><p class="h5"><span class="demo-layout-text">Iraq: Israel&#x27;s Lebanon strikes &#x27;evidence&#x27; of plan to sabotage truce</span></p></div></div></div></div><aside class="layout-beta"><span class="demo-layout-tag">layout-beta</span><header class="section-header section-header--sm"><h2 class="section-header__title"><span class="demo-layout-text demo-layout-text--strong">Section Header</span></h2></header><div class="layout-inset"><span class="demo-layout-tag">layout-inset</span><div class="demo-layout-box"><div class="demo-layout-card demo-layout-card--sm-right"><div class="demo-layout-card__media"></div><p class="h6"><span class="demo-layout-text">Molly-Mae shows off her glowing tan as she jets off to Dubai with Tommy Fury</span></p></div><div class="demo-layout-card demo-layout-card--sm-right"><div class="demo-layout-card__media"></div><p class="h6"><span class="demo-layout-text">Princess Andre takes subtle swipe at mum Katie Price as she reveals line</span></p></div><div class="demo-layout-card demo-layout-card--sm-right"><div class="demo-layout-card__media"></div><p class="h6"><span class="demo-layout-text">Jessica Alba, 47, strips down to a skimpy bikini on holiday after divorce agreement</span></p></div><div class="demo-layout-card demo-layout-card--sm-right"><div class="demo-layout-card__media"></div><p class="h6"><span class="demo-layout-text">Strictly star confirms romance with professional partner after weeks of rumours</span></p></div></div></div><div class="demo-layout-card demo-layout-card--sm-right"><div class="demo-layout-card__media"></div><p class="h6"><span class="demo-layout-text">Love yourself first: take time to prioritise your health this summer with these top 10 brands</span></p></div><div class="demo-layout-card demo-layout-card--sm-right"><div class="demo-layout-card__media"></div><p class="h6"><span class="demo-layout-text">The brand behind the self-tan that sells every 20 seconds drops glow-boosting SPF</span></p></div><div class="demo-layout-mpu">MPU 300 × 250</div></aside></div></section>
 
         <!-- Fullwidth — header + Row (Col 1-3 ×3) -->
         <section class="layout-full"><span class="demo-layout-tag">layout-full</span><h2 class="demo-layout-heading"><span class="demo-layout-text demo-layout-text--strong">Section Header</span></h2><div class="layout-row"><span class="demo-layout-tag">layout-row</span><div class="layout-col"><span class="demo-layout-tag">Col 1-3</span><div class="demo-layout-card demo-layout-card--featured"><div class="demo-layout-card__media"></div><p class="h5"><span class="demo-layout-text">Our Newsletters: explore our curated newsletters for the latest news</span></p></div></div><div class="layout-col"><span class="demo-layout-tag">Col 1-3</span><div class="demo-layout-card demo-layout-card--featured"><div class="demo-layout-card__media"></div><p class="h5"><span class="demo-layout-text">Games: Sudoku, Word Wheel, Guess Word and more</span></p></div></div><div class="layout-col"><span class="demo-layout-tag">Col 1-3</span><div class="demo-layout-card demo-layout-card--featured"><div class="demo-layout-card__media"></div><p class="h5"><span class="demo-layout-text">The Crime Desk: exclusive true crime stories, video and podcasts</span></p></div></div></div></section>
@@ -126,19 +169,22 @@
       // Experiment scaffolding — fixed LG preview.
       // The layout CSS reacts to the viewport, so the page renders itself in a
       // 1024px iframe (?frame) to always show LG ≥1024, on any screen.
-      //   ?guides   region outlines and names on (Layout & Grid guides)
+      //   ?view=guides     region outlines and names (Layout & Grid guides)
+      //   ?view=keylines   every keyline as a moving dashed line in border/semantic-warning/base
       (() => {
         const params = new URLSearchParams(location.search);
         if (params.has('frame')) {
           document.body.classList.add('exp-frame');
-          document.body.classList.toggle('demo-layout-guides', params.has('guides'));
+          document.body.classList.toggle('demo-layout-guides', params.get('view') === 'guides');
+          document.body.classList.toggle('exp-keylines', params.get('view') === 'keylines');
           return;
         }
         const stage = document.getElementById('exp-stage');
-        const guides = document.getElementById('exp-guides');
+        const viewSwitch = document.getElementById('exp-view');
+        let view = 'default';
         const render = () => {
           const iframe = document.createElement('iframe');
-          iframe.src = `${location.pathname}?frame${guides.checked ? '&guides' : ''}`;
+          iframe.src = `${location.pathname}?frame${view === 'default' ? '' : `&view=${view}`}`;
           iframe.title = 'Layout at LG 1024';
           iframe.addEventListener('load', async () => {
             await iframe.contentDocument.fonts.ready;
@@ -146,7 +192,13 @@
           });
           stage.replaceChildren(iframe);
         };
-        guides.addEventListener('change', render);
+        viewSwitch.addEventListener('click', (event) => {
+          const button = event.target.closest('[data-view]');
+          if (!button) return;
+          view = button.dataset.view;
+          viewSwitch.querySelectorAll('button').forEach((b) => b.setAttribute('aria-pressed', String(b === button)));
+          render();
+        });
         render();
       })();
     </script>

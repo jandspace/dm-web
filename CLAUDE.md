@@ -22,7 +22,7 @@ index.html        — Demo index (Components / Modules), same list as the demo s
 foundation/       — Foundation: reference pages (Colour, Typography, Spacing, Border Radius — read live from tokens/; Elevation; Layout & Grid; Iconography — every file in assets/icons/, single-colour ones as .icon)
 components/       — Components: base UI elements (Button, Input, Tabs…) — one demo folder each
 modules/          — Modules: editorial / product blocks built from components (Article Card, Video Player Controls…)
-scripts/          — JS: scripts/scaffolding/ (demo only: side panel + index), scripts/modules/ (prototype behaviour of a module, e.g. Article Card Media)
+scripts/          — JS: scripts/scaffolding/ (demo only: side panel + index), scripts/modules/ (behaviour shared by pages — Article Card Media, Scroll Row, Toast, Tooltip; never copy it into a page)
 projects/         — Project-specific prototypes, organised by project > platform
 experiments/      — A/B tests and one-off experiments (self-contained, never imported elsewhere)
 assets/           — Icons (Figma SVG originals) and images
@@ -335,6 +335,29 @@ iOS and Android use the same four steps (`typography-ios/letter-spacing/*`, `typ
 
 ---
 
+## Minimal Code — HTML, CSS and JS
+
+**This is a core rule.** The library is shared with developers, who study, extend and ship it. A component that is complex at the base becomes harder to change at every level built on it, so keep each layer as small as it can be.
+
+**HTML — fewest elements**
+- Add an element only when it does a job: semantics (heading, link, button, list), a layout or style that cannot sit on an existing element, or behaviour.
+- **Figma layers are not the HTML structure.** Auto-layout frames, wrappers and slots exist to draw in Figma; read them for intent and leave them out of the markup. Example: Section Header has no row or label wrappers — the header, title and link lay out their children themselves.
+- Put the class on the element itself instead of wrapping it (`<span class="icon icon--x section-header__icon">`, not a span around the icon).
+- Optional parts are left out of the HTML when not used — never present and hidden.
+
+**CSS — fewest rules**
+- Use tokens and existing components / mixins as they are (Button, Divider, Scroll Row, `.icon`…) before writing new rules.
+- Keep selectors short and specificity low — one class where one class does it; no deep descendant chains, no `!important`.
+- One layout method per element (flex or grid), with `gap` rather than margins between siblings.
+- Custom properties for values a variant changes (e.g. `--toggle-width`), so variants override one value instead of repeating rules.
+
+**JS — least behaviour**
+- Prefer HTML and CSS (native elements, `:hover`, `:focus-visible`, `scroll-snap`, `<details>`) over script.
+- Script sets state (an attribute or class, e.g. `aria-checked`, `data-state`); CSS draws it. No styles written from JS.
+- One small script per behaviour, no libraries, no wrapper abstractions.
+
+**Before adding anything, ask:** can an existing element, class, token or native feature already do this? If yes, use it.
+
 ## Coding Rules
 
 - **Never use raw hex values.** Always use semantic colour tokens via CSS custom properties.
@@ -343,7 +366,7 @@ iOS and Android use the same four steps (`typography-ios/letter-spacing/*`, `typ
 - **Content keylines:** drawn by the block itself as a pseudo-element with the Divider mixin (`@include divider.divider` — `styles/scss/components/_divider.scss`; args `vertical`, `$inset: false`), never an `<hr>`. `--color-border-translucent-dark-pale` is the default for keylines (a border token — not `effect/translucent-dark/pale`, which is for fills and shadows) between content cards and blocks — it is translucent, so it still reads on tinted surfaces (e.g. a pink box). Only on dark surfaces use a light keyline. Figma sometimes carries the App keyline (`border/neutral/light`) into Web frames — treat that as a mistake.
 - **Backgrounds:** use the background tokens directly — Figma's Surface layers (and Surface to darker) map 1:1 to tokens, so there is no Surface component in code. Stack several backgrounds with one CSS `background` or a pseudo-element. Map: `docs/3_Foundation__02_Colour.md` § 8.
 - **Figma strokes and padding.** In an auto-layout frame, check *Strokes* under Advanced layout settings (`strokesIncludedInLayout`). **Included in layout** (preferred — it behaves like CSS): use a plain `border` + the Figma padding. **Excluded** (Figma's default): the stroke takes no space but a CSS `border` would, so draw it as `box-shadow: inset …` and keep the padding — or ask the designer to switch it to Included.
-- **Keep the code simple.** Pick the plainest way that meets the design — use tokens as they are, no extra wrappers or tricks.
+- **Keep the code simple** — see *Minimal Code* above. Pick the plainest way that meets the design.
 - Mobile-first CSS: XS as the base (no media query), scale up with `min-width` breakpoints.
 - Mobile landscape handled with `orientation: landscape`, not px breakpoints.
 - Typography does not change on mobile landscape — layout and padding only.

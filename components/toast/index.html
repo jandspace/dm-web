@@ -118,30 +118,28 @@
 
     <!-- Modal for "Over a modal": its Save shows a toast above it -->
     <dialog class="modal modal--middle" id="demo-modal" aria-labelledby="demo-modal-title" tabindex="-1">
-      <div class="modal__content">
-        <div class="modal__header">
-          <h2 class="modal__title h4" id="demo-modal-title">Newsletter preferences</h2>
-          <button class="modal__close btn btn-tertiary-dark btn--icon-only" type="button" aria-label="Close" data-close>
-            <span class="icon icon--xmark-light" aria-hidden="true"></span>
-          </button>
-        </div>
-        <div class="modal__body">
-          <p class="text-md">Save, and the toast shows above this modal — toasts live in the top layer.</p>
-        </div>
-        <div class="modal__footer">
-          <button class="btn btn-secondary-brand" type="button" data-close>Cancel</button>
-          <button class="btn btn-brand" type="button" id="demo-modal-save">Save</button>
-        </div>
+      <h2 class="modal__title h4" id="demo-modal-title">Newsletter preferences</h2>
+      <button class="modal__close btn btn-tertiary-dark btn--icon-only" type="button" aria-label="Close" data-close>
+        <span class="icon icon--xmark-light" aria-hidden="true"></span>
+      </button>
+      <div class="modal__body">
+        <p class="text-md">Save, and the toast shows above this modal — toasts live in the top layer.</p>
+      </div>
+      <div class="modal__footer">
+        <button class="btn btn-secondary-brand" type="button" data-close>Cancel</button>
+        <button class="btn btn-brand" type="button" id="demo-modal-save">Save</button>
       </div>
     </dialog>
 
     <!-- Toast region: one per page, straight in <body> -->
     <section class="toast-region" id="toast-region" popover="manual" aria-label="Notifications" aria-live="polite"></section>
 
+    <script src="../../scripts/modules/toast.js"></script>
     <script>
-      // Scaffolding only — what the page does with toasts: build, stack, time out, close.
+      // Scaffolding only — sample toasts, position switch, a modal, viewport previews.
+      // Building, stacking, timing out and closing: scripts/modules/toast.js (Toast.show)
       const region = document.getElementById('toast-region');
-      const ICON = { success: 'tick', error: 'xmark', warning: 'exclamation-mark-triangle', info: 'info', neutral: 'megaphone' };
+      const show = (options) => Toast.show(options);
       const SAMPLES = {
         saved: { context: 'success', title: 'Article saved', description: 'Find it in your reading list.' },
         comment: { context: 'error', title: "Couldn't post your comment", description: 'Check your connection and try again.', actions: ['Retry'] },
@@ -150,76 +148,6 @@
         copied: { context: 'neutral', title: 'Link copied' },
         prefs: { context: 'success', title: 'Preferences saved' },
       };
-
-      // Stack: index from the front, offset for the spread-out list, the front toast's height
-      const layout = () => {
-        const toasts = [...region.querySelectorAll('.toast:not(.is-leaving)')];
-        let offset = 0;
-        toasts.forEach((toast, i) => {
-          toast.style.setProperty('--toast-index', i);
-          toast.style.setProperty('--toast-offset', `${offset}px`);
-          offset += toast.scrollHeight + 8;
-        });
-        region.style.setProperty('--toast-front-height', toasts[0] ? `${toasts[0].offsetHeight}px` : 'auto');
-        region.style.setProperty('--toast-stack-height', `${Math.max(offset - 8, 0)}px`);
-        if (!toasts.length && region.matches(':popover-open')) region.hidePopover();
-      };
-
-      const dismiss = (toast) => {
-        if (toast.classList.contains('is-leaving')) return;
-        toast.classList.add('is-leaving');
-        layout();
-        setTimeout(() => {
-          toast.remove();
-          layout();
-        }, 200);
-      };
-
-      // Into the top layer, above everything. While a modal is open the rest of the page
-      // is inert, so the region moves into the modal (its buttons stay clickable) and back
-      // to <body> when the modal closes.
-      const place = () => {
-        const host = document.querySelector('dialog:modal') || document.body;
-        if (region.parentElement !== host) {
-          if (region.matches(':popover-open')) region.hidePopover();
-          host.append(region);
-        }
-        if (region.querySelector('.toast') && !region.matches(':popover-open')) region.showPopover();
-      };
-      document.addEventListener('close', () => setTimeout(place), true); // a dialog closed
-
-      const show = ({ context, title, description, actions = [], keep = false }) => {
-        const toast = document.createElement('div');
-        toast.className = `toast toast--${context}`;
-        toast.dataset.theme = 'light';
-        toast.setAttribute('role', context === 'error' || context === 'warning' ? 'alert' : 'status');
-        const primary = context === 'neutral' ? 'btn-brand' : 'btn-neutral-inverse';
-        toast.innerHTML =
-          `<span class="toast__icon"><span class="icon icon--${ICON[context]}" aria-hidden="true"></span></span>` +
-          `<div class="toast__body"><div class="toast__text">` +
-          `<p class="toast__title">${title}</p>` +
-          (description ? `<p class="toast__description">${description}</p>` : '') +
-          `</div>` +
-          (actions.length
-            ? `<div class="toast__actions">${actions.map((a, i) => `<button class="btn ${i === actions.length - 1 ? primary : 'btn-quaternary-neutral'} btn--sm" type="button" data-close>${a}</button>`).join('')}</div>`
-            : '') +
-          `</div>` +
-          `<button class="toast__close btn btn-quaternary-neutral btn--icon-only" type="button" aria-label="Dismiss" data-close><span class="icon icon--xmark-light" aria-hidden="true"></span></button>`;
-        region.prepend(toast);
-
-        place();
-        layout();
-
-        // Auto-dismiss: 3s, only without buttons and not for errors; waits while hovered / focused
-        if (!keep && !actions.length && context !== 'error') {
-          const tick = () => (region.matches(':hover, :focus-within') ? setTimeout(tick, 1000) : dismiss(toast));
-          setTimeout(tick, 3000);
-        }
-      };
-
-      region.addEventListener('click', (event) => {
-        if (event.target.closest('[data-close]')) dismiss(event.target.closest('.toast'));
-      });
 
       document.querySelectorAll('[data-sample]').forEach((button) =>
         button.addEventListener('click', () => show(SAMPLES[button.dataset.sample])),
@@ -239,7 +167,10 @@
         modal.focus();
       });
       modal.addEventListener('click', (event) => {
-        if (event.target === modal || event.target.closest('[data-close]')) modal.close();
+        // The dialog is the box: a click on it outside its rectangle is on the scrim
+        const r = modal.getBoundingClientRect();
+        const onScrim = event.target === modal && (event.clientX < r.left || event.clientX > r.right || event.clientY < r.top || event.clientY > r.bottom);
+        if (onScrim || event.target.closest('[data-close]')) modal.close();
       });
       document.getElementById('demo-modal-save').addEventListener('click', () => show(SAMPLES.prefs));
 

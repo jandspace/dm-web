@@ -1,16 +1,17 @@
 // ── Modal ─────────────────────────────────────────────────────────────────────
 // Focused content or a required action above the page, over a scrim. Built on
 // the native <dialog> (showModal): Esc, focus trap and ::backdrop come with it.
-// Concept as Bootstrap's modal — header / body / footer, sizes, inner scroll.
+// Concept as Bootstrap's modal — title / body / footer, sizes, inner scroll.
 //
-//   dialog.modal                        Full-viewport frame: scrim + backdrop padding
-//     .modal__content                   Box — lightest, 16px corners, Elevation 5
-//       .modal__header                  optional — title + close
-//         h2.modal__title.h4            H4 size, Bold; keyline below (16px inset)
-//         button.modal__close           Button Tertiary Dark, icon only, top right
-//       (no title: no header — button.modal__close straight in the box)
-//       .modal__body                    16px padding; scrolls when the box is capped
-//       .modal__footer                  optional — keyline above, buttons on the right
+//   dialog.modal                        The box — lightest, 16px corners, Elevation 5.
+//                                       showModal() puts it in the top layer over the scrim
+//     h2.modal__title.h4                optional — H4 size, Bold; keyline below (16px inset)
+//     button.modal__close               Button Tertiary Dark, icon only, top right (with or without a title)
+//     .modal__body                      16px padding; scrolls when the box is capped
+//     .modal__footer                    optional — keyline above, buttons on the right
+//
+// No frame or header wrappers: the dialog is the box, and its margins place it
+// (auto = middle). --modal-gap is the scrim kept around it.
 //
 // Sizes (max width of the box)       SM-XS   MD    LG
 //   Default                          480     480   640
@@ -21,8 +22,8 @@
 // Position: top from MD, middle on SM-XS (Default, Large).
 //   .modal--middle / .modal--bottom   any breakpoint
 //
-// The box hugs its content up to the viewport (minus backdrop padding); taller
-// content scrolls in the body, header and footer stay (Figma "Fill (Inner Scroll)").
+// The box hugs its content up to the viewport (minus the gap); taller content
+// scrolls in the body, title and footer stay (Figma "Fill (Inner Scroll)").
 //
 // Reference: Figma Web UI Kit › Modal (3358:62)
 
@@ -30,34 +31,40 @@
 @use 'divider';
 
 .modal {
-  // Reset the UA dialog box: the dialog is the frame, the box is .modal__content
-  width: 100%;
-  max-width: none;
-  height: 100%;
-  max-height: none;
-  margin: 0;
-  padding: var(--spacing-32);
-  border: 0;
-  background: none;
-  overflow: hidden;
-  outline: none; // focused itself on open (tabindex="-1" + focus()) — no ring around the frame
+  --modal-gap: var(--spacing-32);
 
-  &[open] {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center; // SM-XS: middle
-  }
+  display: flex;
+  flex-direction: column;
+  width: calc(100% - 2 * var(--modal-gap));
+  max-width: 480px;
+  max-height: calc(100% - 2 * var(--modal-gap));
+  margin: auto; // middle
+  padding: 0;
+  overflow: hidden;
+  border: 0;
+  border-radius: var(--border-radius-16);
+  outline: none; // focused itself on open (tabindex="-1" + focus()) — no ring around the box
+  background-color: var(--color-background-neutral-lightest);
+  box-shadow: var(--elevation-5);
+  font-family: var(--typography-font-family-sans);
+  color: var(--color-text-neutral-darker);
 
   &::backdrop {
     background-color: var(--color-background-shade-moderate);
   }
 
   @include bp.respond-to(md) {
-    &[open] {
-      justify-content: flex-start; // top
-    }
+    margin-top: var(--modal-gap); // top
   }
+
+  @include bp.respond-to(lg) {
+    max-width: 640px;
+  }
+}
+
+// display: flex above would show a closed dialog
+dialog.modal:not([open]) {
+  display: none;
 }
 
 // Page under an open modal does not scroll
@@ -65,34 +72,11 @@ html:has(.modal[open]) {
   overflow: hidden;
 }
 
-.modal__content {
-  position: relative;
-  display: flex;
-  flex-direction: column;
-  width: 100%;
-  max-width: 480px;
-  max-height: 100%;
-  overflow: hidden;
-  border-radius: var(--border-radius-16);
-  background-color: var(--color-background-neutral-lightest);
-  box-shadow: var(--elevation-5);
-  font-family: var(--typography-font-family-sans);
-  color: var(--color-text-neutral-darker);
-
-  @include bp.respond-to(lg) {
-    max-width: 640px;
-  }
-}
-
-// ── Header ────────────────────────────────────────────────────────────────────
-
-.modal__header {
-  position: relative;
-  flex-shrink: 0;
-}
+// ── Title ─────────────────────────────────────────────────────────────────────
 
 .modal__title {
   position: relative;
+  flex-shrink: 0;
   margin: 0;
   padding: var(--spacing-16) var(--spacing-48) var(--spacing-16) var(--spacing-16); // right: room for close
   font-weight: var(--typography-font-weight-bold); // h4 size, Bold: it heads the dialog (an h2) — wins over .h4 Semibold by source order
@@ -103,8 +87,7 @@ html:has(.modal[open]) {
   }
 }
 
-// In the header, or straight in the box when there is no title (no header):
-// same corner either way, over the body
+// Top-right corner of the box, over the title or (no title) the body
 .modal__close {
   position: absolute;
   top: var(--spacing-6);
@@ -154,65 +137,59 @@ html:has(.modal[open]) {
 // ── Sizes ─────────────────────────────────────────────────────────────────────
 
 .modal--large {
-  padding: var(--spacing-16);
+  --modal-gap: var(--spacing-16);
 
-  .modal__content {
-    max-width: 640px;
-  }
+  max-width: 640px;
 
   @include bp.respond-to(md) {
-    padding: var(--spacing-32);
+    --modal-gap: var(--spacing-32);
 
-    .modal__content {
-      max-width: 800px;
-    }
+    max-width: 800px;
   }
 
   @include bp.respond-to(lg) {
-    .modal__content {
-      max-width: 960px;
-    }
+    max-width: 960px;
   }
 }
 
-// Bottom sheet: full width at the bottom; header, body and footer 960 max, centred
+// Bottom sheet: full width at the bottom; title, body and footer 960 max, centred
 .modal--fullwidth {
-  padding: var(--spacing-32) 0 0;
+  align-items: center;
+  width: 100%;
+  max-width: none;
+  max-height: 80vh;
+  max-height: 80dvh; // mobile: follows the address bar
+  margin: auto 0 0;
+  border-radius: var(--border-radius-16) var(--border-radius-16) 0 0;
 
-  &[open] {
-    justify-content: flex-end;
+  @include bp.respond-to(md) {
+    max-height: 50vh;
+    max-height: 50dvh;
+    margin: auto 0 0;
   }
 
-  .modal__content {
-    align-items: center;
-    max-width: none;
-    max-height: 80vh;
-    max-height: 80dvh; // mobile: follows the address bar
-    border-radius: var(--border-radius-16) var(--border-radius-16) 0 0;
-
-    @include bp.respond-to(md) {
-      max-height: 50vh;
-      max-height: 50dvh;
-    }
-  }
-
-  .modal__header,
+  .modal__title,
   .modal__body,
   .modal__footer {
     width: 100%;
     max-width: 960px;
+  }
+
+  // The close sits at the corner of the 960 content, not of the screen
+  .modal__close {
+    right: calc(max(0px, (100% - 960px) / 2) + var(--spacing-6));
   }
 }
 
 // ── Position ──────────────────────────────────────────────────────────────────
 // After the sizes so they win at every breakpoint
 
-.modal--middle[open] {
-  justify-content: center;
+.modal.modal--middle {
+  margin: auto;
 }
 
-.modal--bottom[open] {
-  justify-content: flex-end;
+.modal.modal--bottom {
+  margin: auto auto var(--modal-gap);
 }
 
 // ── Motion ────────────────────────────────────────────────────────────────────
@@ -237,31 +214,20 @@ html:has(.modal[open]) {
 }
 
 .modal[open] {
-  .modal__content {
-    animation: modal-in 200ms ease-out;
-  }
+  animation: modal-in 200ms ease-out;
 
   &::backdrop {
     animation: modal-backdrop-in 200ms ease-out;
   }
 }
 
-.modal--fullwidth[open] .modal__content {
+.modal--fullwidth[open] {
   animation-name: modal-sheet-in;
 }
 
 @media (prefers-reduced-motion: reduce) {
-  .modal[open] {
-    .modal__content {
-      animation: none;
-    }
-
-    &::backdrop {
-      animation: none;
-    }
-  }
-
-  .modal--fullwidth[open] .modal__content {
+  .modal[open],
+  .modal[open]::backdrop {
     animation: none;
   }
 }

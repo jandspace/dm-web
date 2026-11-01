@@ -11,39 +11,36 @@ Figma: Web UI Kit › Article Card - Banner (`8138:232841`)
 | Element | Description |
 |---|---|
 | **Shell** (`.article-card-banner`) | `color/background/neutral/lightest` surface with a 1px bottom keyline, inset 16px — `color/border/translucent-dark/pale` (Divider) |
-| **Story** (`__story`) | 16px white inset from MD up; 16px below the panel at SM / XS |
 | **Panel** (`__panel`) | The Lead Story — `color/background/neutral/black`. Inner bottom keyline, inset 16px — `color/border/translucent-light/subtle`, **only when Secondary Stories follow** |
 | **Media** (`__media`) | `<picture>` — editorial artwork, art-directed per breakpoint (§3); or an animated preview (§3, Animated preview) |
 | **Headline** (`__headline`) | H2, centred, `color/text/neutral/lightest`. Holds the article link |
 | **Metadata** (`__metadata`) | Article Card Metadata, Comment Only, centred (§4) |
 
 ```html
-<article class="article-card-banner">
-  <div class="article-card-banner__story">
-    <div class="article-card-banner__panel">
-      <picture class="article-card-banner__media">
-        <source media="(min-width: 768px)" srcset="banner-wide.jpg" />
-        <img src="banner-xs.jpg" alt="Tiger maul victim" />
-      </picture>
-      <div class="article-card-banner__content">
-        <h2 class="article-card-banner__headline">
-          <a class="article-card-banner__link" href="…">Headline</a>
-        </h2>
-        <div class="article-card-banner__metadata article-card-metadata">
-          <a class="article-card-metadata__comments" href="…">…2.1k comments</a>
-        </div>
+<article class="article-card-banner">   <!-- white surface: 16px inset from MD (16px below at SM / XS), bottom keyline -->
+  <div class="article-card-banner__panel">
+    <picture class="article-card-banner__media">
+      <source media="(min-width: 768px)" srcset="banner-wide.jpg" />
+      <img src="banner-xs.jpg" alt="Tiger maul victim" />
+    </picture>
+    <div class="article-card-banner__content">
+      <h2 class="article-card-banner__headline">
+        <a class="article-card-banner__link" href="…">Headline</a>
+      </h2>
+      <div class="article-card-banner__metadata article-card-metadata">
+        <a class="article-card-metadata__comments" href="…">…2.1k comments</a>
       </div>
     </div>
-    <ul class="article-card-banner__related">            <!-- Secondary Stories: 3 or 6 -->
-      <li class="article-card-banner__related-item">
-        <img class="article-card-banner__related-media" src="thumb.jpg" alt="" />   <!-- optional -->
-        <h3 class="article-card-banner__related-headline">
-          <a class="article-card-banner__related-link" href="…">Headline</a>
-        </h3>
-      </li>
-      …
-    </ul>
   </div>
+  <ul class="article-card-banner__related">            <!-- Secondary Stories: 3 or 6 -->
+    <li class="article-card-banner__related-item">
+      <img class="article-card-banner__related-media" src="thumb.jpg" alt="" />   <!-- optional -->
+      <h3 class="article-card-banner__related-headline">
+        <a class="article-card-banner__related-link" href="…">Headline</a>
+      </h3>
+    </li>
+    …
+  </ul>
 </article>
 ```
 

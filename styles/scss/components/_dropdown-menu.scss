@@ -7,14 +7,18 @@
 //       .icon | img                    icon 32 (img: colour icons)
 //       .dropdown-menu__heading            label-md Semibold
 //       .dropdown-menu__description        label-xxsm, grey
-//     ul.dropdown-menu__list               8px inset, scrolls when the box is capped
-//       li.dropdown-menu__group            Group Title — 8px further out than items
-//       li > button.dropdown-menu__item    icon 18 (optional) + label + tick
-//         .icon | img                  icon 18 (img: colour icons)
-//         span.dropdown-menu__label
-//         .icon.dropdown-menu__tick        shown when selected
-//       li.dropdown-menu__separator        Space (Keyline)
-//       li.dropdown-menu__space            Space (Empty)
+//     .dropdown-menu__list                 8px inset, scrolls when the box is capped
+//       .dropdown-menu__group              Group Title — 8px further out than items
+//       .dropdown-menu__item               icon 18 (optional) + label text + tick
+//         .icon | img                      icon 18 (img: colour icons)
+//         .icon.dropdown-menu__tick        shown when selected, pushed to the end
+//       .dropdown-menu__separator          Space (Keyline)
+//       .dropdown-menu__space              Space (Empty)
+//
+// Markup — the items sit straight in the list, the label is plain text:
+//   pick one   div.dropdown-menu__list[role=listbox] > button.dropdown-menu__item[role=option]
+//              (+ div.dropdown-menu__group[role=presentation], div.dropdown-menu__separator[role=separator])
+//   links      ul.dropdown-menu__list > li > a.dropdown-menu__item (a real list of links)
 //
 // Item states (Figma "Dropdown Item" › Status):
 //   Hover     neutral/light, as Button Quaternary Neutral
@@ -141,6 +145,7 @@
   font-weight: var(--typography-font-weight-semibold);
   line-height: var(--typography-line-height-narrow);
   text-align: left;
+  overflow-wrap: anywhere; // long labels wrap
   text-decoration: none; // also used on <a>
   color: var(--color-text-neutral-darker);
   cursor: pointer;
@@ -181,15 +186,10 @@
   }
 }
 
-.dropdown-menu__label {
-  flex: 1 1 0;
-  min-width: 0;
-  overflow-wrap: anywhere;
-}
-
 .dropdown-menu__tick {
   display: none;
   flex-shrink: 0;
+  margin-left: auto;
   width: 18px;
   height: 18px;
   --icon-color: var(--color-icon-home-blue-base);

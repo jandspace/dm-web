@@ -11,6 +11,7 @@
     <link rel="stylesheet" href="../../tokens/dm_typography_web_tokens.css" />
     <link rel="stylesheet" href="../../styles/css/main.css" />
     <script src="../../scripts/scaffolding/demo-nav.js" defer></script>
+    <script src="../../scripts/modules/scroll-row.js" defer></script>
   </head>
   <body class="demo-page-body demo-nav-page">
     <svg style="display: none" aria-hidden="true">
@@ -353,30 +354,30 @@
               </div>
               <div class="masthead-topbar__action">
                 <button type="button" class="masthead-action masthead-edition" aria-expanded="false" aria-controls="masthead-edition-menu">
-                  <img src="../../assets/icons/ico-flag-united-kingdom.svg" alt="" /><span>UK Edition</span><span class="icon icon--chevron-down masthead-edition__chevron" aria-hidden="true"></span>
+                  <img src="../../assets/icons/ico-flag-united-kingdom.svg" alt="" />UK Edition<span class="icon icon--chevron-down masthead-edition__chevron" aria-hidden="true"></span>
                 </button>
                 <div class="dropdown-menu masthead-edition-menu" id="masthead-edition-menu" hidden>
                   <ul class="dropdown-menu__list">
                     <li class="dropdown-menu__group">Select Edition</li>
-                    <li><a class="dropdown-menu__item" href="#uk" aria-current="true"><img src="../../assets/icons/ico-flag-united-kingdom.svg" alt="" /><span class="dropdown-menu__label">UK</span><span class="icon icon--tick dropdown-menu__tick" aria-hidden="true"></span></a></li>
-                    <li><a class="dropdown-menu__item" href="#us"><img src="../../assets/icons/ico-flag-united-states.svg" alt="" /><span class="dropdown-menu__label">US</span><span class="icon icon--tick dropdown-menu__tick" aria-hidden="true"></span></a></li>
-                    <li><a class="dropdown-menu__item" href="#au"><img src="../../assets/icons/ico-flag-australia.svg" alt="" /><span class="dropdown-menu__label">AU</span><span class="icon icon--tick dropdown-menu__tick" aria-hidden="true"></span></a></li>
-                    <li><a class="dropdown-menu__item" href="#ie"><img src="../../assets/icons/ico-flag-ireland.svg" alt="" /><span class="dropdown-menu__label">IE</span><span class="icon icon--tick dropdown-menu__tick" aria-hidden="true"></span></a></li>
+                    <li><a class="dropdown-menu__item" href="#uk" aria-current="true"><img src="../../assets/icons/ico-flag-united-kingdom.svg" alt="" />UK<span class="icon icon--tick dropdown-menu__tick" aria-hidden="true"></span></a></li>
+                    <li><a class="dropdown-menu__item" href="#us"><img src="../../assets/icons/ico-flag-united-states.svg" alt="" />US<span class="icon icon--tick dropdown-menu__tick" aria-hidden="true"></span></a></li>
+                    <li><a class="dropdown-menu__item" href="#au"><img src="../../assets/icons/ico-flag-australia.svg" alt="" />AU<span class="icon icon--tick dropdown-menu__tick" aria-hidden="true"></span></a></li>
+                    <li><a class="dropdown-menu__item" href="#ie"><img src="../../assets/icons/ico-flag-ireland.svg" alt="" />IE<span class="icon icon--tick dropdown-menu__tick" aria-hidden="true"></span></a></li>
                   </ul>
                 </div>
               </div>
               <!-- Login item by user: logged out — Login · logged in — Profile (grey) · Mail+ subscriber — Profile (Mail+ blue) -->
               <div class="masthead-topbar__action" data-user="guest">
-                <a class="masthead-action" href="#login"><span class="icon icon--person-outline" aria-hidden="true"></span><span>Login</span></a>
+                <a class="masthead-action" href="#login"><span class="icon icon--person-outline" aria-hidden="true"></span>Login</a>
               </div>
               <div class="masthead-topbar__action" data-user="member" hidden>
-                <a class="masthead-action masthead-profile" href="#account"><span class="icon icon--person" aria-hidden="true"></span><span>Profile</span></a>
+                <a class="masthead-action masthead-profile" href="#account"><span class="icon icon--person" aria-hidden="true"></span>Profile</a>
               </div>
               <div class="masthead-topbar__action" data-user="subscriber" hidden>
-                <a class="masthead-action masthead-profile masthead-profile--mplus" href="#account"><span class="icon icon--person" aria-hidden="true"></span><span>Profile</span></a>
+                <a class="masthead-action masthead-profile masthead-profile--mplus" href="#account"><span class="icon icon--person" aria-hidden="true"></span>Profile</a>
               </div>
               <div class="masthead-topbar__action">
-                <button type="button" class="masthead-action"><span class="icon icon--magnifier" aria-hidden="true"></span><span>Search</span></button>
+                <button type="button" class="masthead-action"><span class="icon icon--magnifier" aria-hidden="true"></span>Search</button>
               </div>
             </div>
           </div>
@@ -406,7 +407,7 @@
                 <li class="masthead-nav__item masthead-nav__item--home masthead-nav__item--has-panel" data-channel="home" data-label="Home">
                   <a class="masthead-nav__link" href="#" aria-current="page">Home</a>
                   <div class="masthead-nav__panel">
-                    <a class="masthead-nav__panel-channel" href="#"><span>Home</span><span class="icon icon--arrow-right-light" aria-hidden="true"></span></a>
+                    <a class="masthead-nav__panel-channel" href="#">Home<span class="icon icon--arrow-right-light" aria-hidden="true"></span></a>
                     <ul class="masthead-nav__panel-topics">
                       <li><a class="masthead-nav__panel-topic" href="#">Latest Headlines</a></li>
                       <li><a class="masthead-nav__panel-topic" href="#">Deep Dive</a></li>
@@ -421,7 +422,7 @@
                 <li class="masthead-nav__item masthead-nav__item--news masthead-nav__item--has-panel" data-channel="news" data-label="News">
                   <a class="masthead-nav__link" href="#">News</a>
                   <div class="masthead-nav__panel">
-                    <a class="masthead-nav__panel-channel" href="#"><span>News</span><span class="icon icon--arrow-right-light" aria-hidden="true"></span></a>
+                    <a class="masthead-nav__panel-channel" href="#">News<span class="icon icon--arrow-right-light" aria-hidden="true"></span></a>
                     <ul class="masthead-nav__panel-topics">
                       <li><a class="masthead-nav__panel-topic" href="#">Latest Headlines</a></li>
                       <li><a class="masthead-nav__panel-topic" href="#">Science</a></li>
@@ -438,7 +439,7 @@
                 <li class="masthead-nav__item masthead-nav__item--royals masthead-nav__item--has-panel" data-channel="royals" data-label="Royals">
                   <a class="masthead-nav__link" href="#">Royals</a>
                   <div class="masthead-nav__panel">
-                    <a class="masthead-nav__panel-channel" href="#"><span>Royals</span><span class="icon icon--arrow-right-light" aria-hidden="true"></span></a>
+                    <a class="masthead-nav__panel-channel" href="#">Royals<span class="icon icon--arrow-right-light" aria-hidden="true"></span></a>
                     <ul class="masthead-nav__panel-topics">
                       <li><a class="masthead-nav__panel-topic" href="#">King Charles III</a></li>
                       <li><a class="masthead-nav__panel-topic" href="#">Prince William</a></li>
@@ -452,7 +453,7 @@
                 <li class="masthead-nav__item masthead-nav__item--home masthead-nav__item--has-panel" data-channel="home" data-label="US">
                   <a class="masthead-nav__link" href="#">US</a>
                   <div class="masthead-nav__panel">
-                    <a class="masthead-nav__panel-channel" href="#"><span>US</span><span class="icon icon--arrow-right-light" aria-hidden="true"></span></a>
+                    <a class="masthead-nav__panel-channel" href="#">US<span class="icon icon--arrow-right-light" aria-hidden="true"></span></a>
                     <ul class="masthead-nav__panel-topics">
                       <li><a class="masthead-nav__panel-topic" href="#">Latest Headlines</a></li>
                       <li><a class="masthead-nav__panel-topic" href="#">Podcasts</a></li>
@@ -463,7 +464,7 @@
                 <li class="masthead-nav__item masthead-nav__item--sport masthead-nav__item--has-panel" data-channel="sport" data-label="Sport">
                   <a class="masthead-nav__link" href="#">Sport</a>
                   <div class="masthead-nav__panel">
-                    <a class="masthead-nav__panel-channel" href="#"><span>Sport</span><span class="icon icon--arrow-right-light" aria-hidden="true"></span></a>
+                    <a class="masthead-nav__panel-channel" href="#">Sport<span class="icon icon--arrow-right-light" aria-hidden="true"></span></a>
                     <ul class="masthead-nav__panel-topics">
                       <li><a class="masthead-nav__panel-topic" href="#">Football</a></li>
                       <li><a class="masthead-nav__panel-topic" href="#">Premier League</a></li>
@@ -484,7 +485,7 @@
                 <li class="masthead-nav__item masthead-nav__item--showbiz masthead-nav__item--has-panel" data-channel="showbiz" data-label="Showbiz">
                   <a class="masthead-nav__link" href="#">Showbiz</a>
                   <div class="masthead-nav__panel">
-                    <a class="masthead-nav__panel-channel" href="#"><span>Showbiz</span><span class="icon icon--arrow-right-light" aria-hidden="true"></span></a>
+                    <a class="masthead-nav__panel-channel" href="#">Showbiz<span class="icon icon--arrow-right-light" aria-hidden="true"></span></a>
                     <ul class="masthead-nav__panel-topics">
                       <li><a class="masthead-nav__panel-topic" href="#">Headlines</a></li>
                       <li><a class="masthead-nav__panel-topic" href="#">Showbiz</a></li>
@@ -497,7 +498,7 @@
                 <li class="masthead-nav__item masthead-nav__item--lifestyle masthead-nav__item--has-panel" data-channel="lifestyle" data-label="Lifestyle">
                   <a class="masthead-nav__link" href="#">Lifestyle</a>
                   <div class="masthead-nav__panel">
-                    <a class="masthead-nav__panel-channel" href="#"><span>Lifestyle</span><span class="icon icon--arrow-right-light" aria-hidden="true"></span></a>
+                    <a class="masthead-nav__panel-channel" href="#">Lifestyle<span class="icon icon--arrow-right-light" aria-hidden="true"></span></a>
                     <ul class="masthead-nav__panel-topics">
                       <li><a class="masthead-nav__panel-topic" href="#">You Mag</a></li>
                       <li><a class="masthead-nav__panel-topic" href="#">Femail</a></li>
@@ -519,7 +520,7 @@
                 <li class="masthead-nav__item masthead-nav__item--money masthead-nav__item--has-panel" data-channel="money" data-label="Money">
                   <a class="masthead-nav__link" href="#">Money</a>
                   <div class="masthead-nav__panel">
-                    <a class="masthead-nav__panel-channel" href="#"><span>Money</span><span class="icon icon--arrow-right-light" aria-hidden="true"></span></a>
+                    <a class="masthead-nav__panel-channel" href="#">Money<span class="icon icon--arrow-right-light" aria-hidden="true"></span></a>
                     <ul class="masthead-nav__panel-topics">
                       <li><a class="masthead-nav__panel-topic" href="#">Money</a></li>
                       <li><a class="masthead-nav__panel-topic" href="#">Business</a></li>
@@ -540,7 +541,7 @@
                 <li class="masthead-nav__item masthead-nav__item--games masthead-nav__item--has-panel" data-channel="games" data-label="Games">
                   <a class="masthead-nav__link" href="#">Games</a>
                   <div class="masthead-nav__panel masthead-nav__panel--end">
-                    <a class="masthead-nav__panel-channel" href="#"><span>Games</span><span class="icon icon--arrow-right-light" aria-hidden="true"></span></a>
+                    <a class="masthead-nav__panel-channel" href="#">Games<span class="icon icon--arrow-right-light" aria-hidden="true"></span></a>
                     <ul class="masthead-nav__panel-topics">
                       <li><a class="masthead-nav__panel-topic" href="#">Arcade Games</a></li>
                     </ul>
@@ -549,7 +550,7 @@
                 <li class="masthead-nav__item masthead-nav__item--travel masthead-nav__item--has-panel" data-channel="travel" data-label="Travel">
                   <a class="masthead-nav__link" href="#">Travel</a>
                   <div class="masthead-nav__panel masthead-nav__panel--end">
-                    <a class="masthead-nav__panel-channel" href="#"><span>Travel</span><span class="icon icon--arrow-right-light" aria-hidden="true"></span></a>
+                    <a class="masthead-nav__panel-channel" href="#">Travel<span class="icon icon--arrow-right-light" aria-hidden="true"></span></a>
                     <ul class="masthead-nav__panel-topics">
                       <li><a class="masthead-nav__panel-topic" href="#">Latest Headlines</a></li>
                       <li><a class="masthead-nav__panel-topic" href="#">Escape</a></li>
@@ -563,7 +564,7 @@
                 <li class="masthead-nav__item masthead-nav__item--shopping masthead-nav__item--has-panel" data-channel="shopping" data-label="Buyline">
                   <a class="masthead-nav__link" href="#">Buyline</a>
                   <div class="masthead-nav__panel masthead-nav__panel--end">
-                    <a class="masthead-nav__panel-channel" href="#"><span>Buyline</span><span class="icon icon--arrow-right-light" aria-hidden="true"></span></a>
+                    <a class="masthead-nav__panel-channel" href="#">Buyline<span class="icon icon--arrow-right-light" aria-hidden="true"></span></a>
                     <ul class="masthead-nav__panel-topics">
                       <li><a class="masthead-nav__panel-topic" href="#">Beauty</a></li>
                       <li><a class="masthead-nav__panel-topic" href="#">Fashion</a></li>
@@ -575,7 +576,7 @@
                 <li class="masthead-nav__item masthead-nav__item--home masthead-nav__mplus masthead-nav__item--has-panel" data-channel="home" data-label="Daily Mail+">
                   <a class="masthead-nav__link" href="#" aria-label="Daily Mail+"><svg class="masthead-nav__mplus-wordmark" aria-hidden="true"><use href="#logo-mplus-wordmark" /></svg><svg class="masthead-nav__mplus-lozenge" aria-hidden="true"><use href="#logo-mplus-lozenge" /></svg></a>
                   <div class="masthead-nav__panel masthead-nav__panel--end">
-                    <a class="masthead-nav__panel-channel" href="#"><span>Daily Mail+</span><span class="icon icon--arrow-right-light" aria-hidden="true"></span></a>
+                    <a class="masthead-nav__panel-channel" href="#">Daily Mail+<span class="icon icon--arrow-right-light" aria-hidden="true"></span></a>
                     <ul class="masthead-nav__panel-topics">
                       <li><a class="masthead-nav__panel-topic" href="#">Puzzles</a></li>
                     </ul>
@@ -630,10 +631,10 @@
             <div class="dropdown-menu masthead-edition-menu" id="masthead-sticky-edition-menu" hidden>
               <ul class="dropdown-menu__list">
                 <li class="dropdown-menu__group">Select Edition</li>
-                <li><a class="dropdown-menu__item" href="#uk" aria-current="true"><img src="../../assets/icons/ico-flag-united-kingdom.svg" alt="" /><span class="dropdown-menu__label">UK</span><span class="icon icon--tick dropdown-menu__tick" aria-hidden="true"></span></a></li>
-                <li><a class="dropdown-menu__item" href="#us"><img src="../../assets/icons/ico-flag-united-states.svg" alt="" /><span class="dropdown-menu__label">US</span><span class="icon icon--tick dropdown-menu__tick" aria-hidden="true"></span></a></li>
-                <li><a class="dropdown-menu__item" href="#au"><img src="../../assets/icons/ico-flag-australia.svg" alt="" /><span class="dropdown-menu__label">AU</span><span class="icon icon--tick dropdown-menu__tick" aria-hidden="true"></span></a></li>
-                <li><a class="dropdown-menu__item" href="#ie"><img src="../../assets/icons/ico-flag-ireland.svg" alt="" /><span class="dropdown-menu__label">IE</span><span class="icon icon--tick dropdown-menu__tick" aria-hidden="true"></span></a></li>
+                <li><a class="dropdown-menu__item" href="#uk" aria-current="true"><img src="../../assets/icons/ico-flag-united-kingdom.svg" alt="" />UK<span class="icon icon--tick dropdown-menu__tick" aria-hidden="true"></span></a></li>
+                <li><a class="dropdown-menu__item" href="#us"><img src="../../assets/icons/ico-flag-united-states.svg" alt="" />US<span class="icon icon--tick dropdown-menu__tick" aria-hidden="true"></span></a></li>
+                <li><a class="dropdown-menu__item" href="#au"><img src="../../assets/icons/ico-flag-australia.svg" alt="" />AU<span class="icon icon--tick dropdown-menu__tick" aria-hidden="true"></span></a></li>
+                <li><a class="dropdown-menu__item" href="#ie"><img src="../../assets/icons/ico-flag-ireland.svg" alt="" />IE<span class="icon icon--tick dropdown-menu__tick" aria-hidden="true"></span></a></li>
               </ul>
             </div>
           </div>
@@ -700,7 +701,6 @@
         const setSheet = (open) => {
           if (pinned && !open) return;
           trigger.setAttribute('aria-expanded', String(open));
-          document.documentElement.classList.toggle('masthead-sheet-open', open);
           if (open) {
             sheet.hidden = false;
             backdrop.hidden = false;
@@ -853,19 +853,7 @@
           sticky.classList.toggle('is-visible', !entry.isIntersecting && box.height > 0 && box.bottom <= 0);
         }).observe(masthead);
 
-        // Sticky Navbar channels: chevrons only where the row can scroll
-        const list = sticky.querySelector('.masthead-sticky__list');
-        const prev = sticky.querySelector('.masthead-sticky__edge--prev');
-        const next = sticky.querySelector('.masthead-sticky__edge--next');
-        const updateEdges = () => {
-          prev.hidden = list.scrollLeft <= 1;
-          next.hidden = list.scrollLeft + list.clientWidth >= list.scrollWidth - 1;
-        };
-        const page = (dir) => list.scrollBy({ left: dir * list.clientWidth * 0.8, behavior: 'smooth' });
-        prev.addEventListener('click', () => page(-1));
-        next.addEventListener('click', () => page(1));
-        list.addEventListener('scroll', updateEdges, { passive: true });
-        new ResizeObserver(updateEdges).observe(list);
+        // Sticky Navbar channels: chevron edges — scripts/modules/scroll-row.js
       })();
     </script>
 

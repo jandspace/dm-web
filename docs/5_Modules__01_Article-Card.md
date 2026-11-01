@@ -76,7 +76,7 @@ XL 152 · LG 120 · MD / SM-XS 128px
 
 - **Video articles only.** Present in the HTML only for video; never shipped and hidden. Decorative (`aria-hidden`) — the whole card is the link.
 - Markup: `.article-card__video` inside `.article-card__media`, holding a Video Player Controls play button (`.video-play`, see `modules/video-player-controls/`).
-- Position: bottom-left, 8px inset (SM thumbs 6px). MD (Vertical Media): centred on the media, with the duration pill (`.video-timer`) 8px below.
+- Position: bottom-left, 8px inset (SM thumbs 6px) — MD (Vertical Media) too.
 - Size by card type — set per breakpoint in CSS (`play-size()` mixin), not with a modifier:
 
 | Card type | Play size |
@@ -84,7 +84,7 @@ XL 152 · LG 120 · MD / SM-XS 128px
 | XL | SM-XS lg 56 · MD+ xl 68 |
 | XL (Horizontal) | lg 56 · LG md 44 · XL lg 56 |
 | XL (Triple) | lg 56 |
-| MD (Vertical Media) | lg 56 + duration pill |
+| MD (Vertical Media) | lg 56 |
 | MD | md 44 |
 | SM: Left / Right Thumb | xs 28 |
 | Image Only | — (none) |
@@ -177,7 +177,8 @@ The disc behind the columnist photo is **editor-controlled per channel**, from t
 
 ## 7. Implementation Notes
 
-- **Grid stacking, not `position: absolute`,** for layers inside the media (Image Only image, scrim, overlay, badge). An absolutely positioned ancestor would trap the stretched link inside it.
+- **Grid stacking, not `position: absolute`,** for layers inside the media (Image Only image, scrim, overlay, badge). An absolutely positioned ancestor would trap the stretched link inside it. The scrim is the media box's own `::after` (no element); overlay and badge sit above it with `z-index: 1`.
+- **Metadata items sit straight in the row** (no info wrapper); the comments link pushes itself right with `margin-left: auto`.
 - **Line-clamped blocks space with `margin`, not `padding`.** Overflow clips at the padding edge, so bottom padding lets the next line show through.
 - **Truncating links** keep the ellipsis on an inner span (`__channel-text`, `__affiliate-text`) so the hover line on the link is not clipped.
 - **Icons:** Figma originals are stored in `assets/icons/`; single-colour icons use `.icon` (the file as a CSS mask, coloured by a `color/icon/*` token — Foundation › Iconography).

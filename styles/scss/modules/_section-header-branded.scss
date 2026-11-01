@@ -6,7 +6,7 @@
 //   .section-header-branded           lightest surface, 20px top · 8px bottom · 16px sides
 //     a.section-header-branded__banner      52px, 8px corners, 48px side padding
 //       img.section-header-branded__bg      background image (cover, 4px blur)
-//       .section-header-branded__slot       text (.section-header-branded__name) or <img> logo
+//       .section-header-branded__name       channel name (text) — or img.section-header-branded__logo
 //       .section-header-branded__arrow      tertiary icon-only button on dark (34 · 14)
 //     .section-header-tabs                  optional sub-items (see _section-header.scss)
 //
@@ -79,26 +79,17 @@
   transform: scale(1.08);
 }
 
-// Slot — channel name or logo, centred, never taller than the banner content (44px)
-.section-header-branded__slot {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  width: 100%;
-  height: 100%;
+// Logo — straight in the banner, centred, never taller than its content (44px)
+.section-header-branded__logo {
+  display: block;
   min-width: 0;
-  overflow: hidden;
-
-  img,
-  svg {
-    display: block;
-    max-width: 100%;
-    max-height: 100%;
-  }
+  max-width: 100%;
+  max-height: 100%;
 }
 
 // Text name — dmw_serif/h2/Semibold, white
 .section-header-branded__name {
+  min-width: 0; // ellipsis inside the banner
   margin: 0;
   overflow: hidden;
   font-family: var(--typography-font-family-serif);
@@ -120,8 +111,7 @@
   transform: translateY(-50%);
   pointer-events: none; // the banner is the link
 
-  // The icon sits straight in the button (no .btn__content), so size it here
-  // (.btn--sm keeps 12px side padding inside the 34px circle — never shrink)
+  // 14px icon in the 34px circle (.btn--sm keeps 12px side padding — never shrink)
   .icon {
     --icon-color: currentColor;
 

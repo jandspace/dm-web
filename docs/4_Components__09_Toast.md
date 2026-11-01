@@ -11,12 +11,12 @@ Figma: Web UI Kit › Toast (`3265:1886`) — Breakpoint SM-XS / MD, Context Suc
 | Element | Class | Description |
 |---|---|---|
 | **Region** | `section.toast-region[popover="manual"]` | One per page, straight in `<body>`. Top centre, 16px from the edge; `--bottom` for bottom centre. `calc(100% − 32px)` wide, **738px max** |
-| **Toast** | `.toast.toast--{context}[data-theme="light"]` | 12px corners, **Elevation 4**. Padding 12 · 32 right (room for close) · 12 · 16; 12px between icon and body |
+| **Toast** | `.toast.toast--{context}[data-theme="light"]` | 12px corners, **Elevation 4**. Padding 12 · 32 right (MD+: 40 — room for the close) · 12 · 16; 12px between icon and body |
 | **Icon** *(optional)* | `.toast__icon > .icon` | 48px circle in the context's deep colour, 22px icon in `icon/neutral/lightest` (`--icon-color`). Sits at the top of the row: beside a one-line text it reads as centred; with longer text it stays at the top |
 | **Title** *(optional)* | `p.toast__title` | H5 size, Semibold, line height compact; one line, ellipsis |
 | **Description** *(optional)* | `p.toast__description` | text-sm Regular, line height normal |
 | **Buttons** *(optional)* | `.toast__actions` | Button SM: Quaternary Neutral, then the primary — Neutral Inverse (white), or Brand on a Neutral toast. 8px apart |
-| **Close** | `button.toast__close` | Button Quaternary Neutral, icon only (40px), `ico-xmark-light`, top right. No hover / pressed surface on the coloured toast |
+| **Close** | `button.toast__close` | Button Quaternary Neutral, icon only (40px), `ico-xmark-light` 16, top right, **50% opacity**. Hover / keyboard focus: full opacity and the 40px hit area shown in `effect/translucent-dark/pale` — the button sits over the content, so the reader sees what a click will hit (a translucent fill reads on white and on the coloured toasts) |
 
 **Layout:** SM-XS — the buttons sit under the text, on the right. MD+ — one row, buttons on the right of the text.
 
@@ -42,11 +42,19 @@ Figma: Web UI Kit › Toast (`3265:1886`) — Breakpoint SM-XS / MD, Context Suc
 |---|---|
 | **Where** | Top centre on every viewport; bottom centre when the top is busy (e.g. a sticky bar the toast would cover) |
 | **Above everything** | The region is a manual popover — the top layer — so it shows over an open modal. While a modal is open the rest of the page is inert, so the page script moves the region into the modal, and back to `<body>` when it closes |
-| **Auto-dismiss** | **3 seconds** for toasts with no action (no buttons) — e.g. "Article saved", "Link copied"; never for toasts with buttons or errors (close or a button only). The timer waits while the pointer or focus is on the toasts |
+| **Auto-dismiss** | **3 seconds** for toasts with no action (no buttons) — e.g. "Article saved" (without a button); never for toasts with buttons or errors (close or a button only). The timer waits while the pointer or focus is on the toasts |
 | **Stack** | The newest is in front. Each older toast sits **16px further back** (below at the top, above at the bottom) and **5% smaller**, cut to the front toast's height; **3** show. Hover or focus spreads them into a list, 8px apart |
 | **Enter / leave** | Slides 16px in from the edge and fades (300ms); leaves the same way (200ms). Reduced motion: no slide or fade |
 
-The page script sets `--toast-index`, `--toast-offset` (the spread-out position) on each toast and `--toast-front-height`, `--toast-stack-height` on the region, and shows / hides the popover — see the demo.
+The Toast script (`scripts/modules/toast.js` — `Toast.show({ context, title, description, actions })`) sets `--toast-index`, `--toast-offset` (the spread-out position) on each toast and `--toast-front-height`, `--toast-stack-height` on the region, and shows / hides the popover.
+
+### Toast or Tooltip?
+
+| Situation | Feedback |
+|---|---|
+| The result is stored or sent, or may need a follow-up (Undo, View, Retry) — e.g. **Save article**, post a comment | **Toast** |
+| A light confirmation that ends where it happened — e.g. **Link copied** | **Tooltip** flash next to the button |
+| The button's own state (saved / not saved) | **The button**: filled icon + `aria-pressed="true"`; its tooltip is only the label ("Save article" / "Saved") |
 
 ---
 

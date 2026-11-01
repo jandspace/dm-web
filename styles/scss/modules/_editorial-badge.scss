@@ -1,12 +1,27 @@
 // ── Editorial Badge ───────────────────────────────────────────────────────────
 // Badge variants, sizes, type colours, M+ lozenge, and live indicator.
+//
+//   .badge.badge--{size}[.badge--{type}]
+//     img.badge__mplus                 optional M+ lozenge (full badge height)
+//     span.badge__label                optional label segment, type colour
+//       span.badge__live               optional live ring + pulsing dot (one element)
+//
+//   <span class="badge badge--md badge--highlight"><span class="badge__label">Exclusive</span></span>
+//   <span class="badge badge--md badge--highlight"><img class="badge__mplus" src="mail-plus-lozenge.svg" alt="M+" /><span class="badge__label">Opinion</span></span>
+//   <span class="badge badge--md badge--highlight"><span class="badge__label"><span class="badge__live" aria-hidden="true"></span>Live</span></span>
+//
 // Reference: DM Design System — Editorial Badge component
 
 // ── Base ──────────────────────────────────────────────────────────────────────
 
 .badge {
+  // per size (below): height, corner, label padding / size, live dot
+  --badge-height: 22px;
+  --badge-dot: 8px;
+
   display: inline-flex;
   align-items: stretch;
+  height: var(--badge-height);
   overflow: hidden;
   background-color: var(--color-background-neutral-dark);
 }
@@ -14,94 +29,74 @@
 // ── Size variants ─────────────────────────────────────────────────────────────
 
 .badge--xl {
-  height: 32px;
+  --badge-height: 32px;
+  --badge-dot: 12px;
+
   border-radius: var(--border-radius-6);
 
   .badge__label {
     padding: 0 var(--spacing-6);
     font-size: var(--typography-font-size-label-xl);
   }
-  .badge__mplus img {
-    height: 32px;
-  }
-  .badge__live-dot {
-    width: 12px;
-    height: 12px;
-  }
 }
 
 .badge--lg {
-  height: 26px;
+  --badge-height: 26px;
+  --badge-dot: 10px;
+
   border-radius: var(--border-radius-4);
 
   .badge__label {
     padding: 0 var(--spacing-4);
     font-size: var(--typography-font-size-label-lg);
   }
-  .badge__mplus img {
-    height: 26px;
-  }
-  .badge__live-dot {
-    width: 10px;
-    height: 10px;
-  }
 }
 
 .badge--md {
-  height: 22px;
+  --badge-height: 22px;
+  --badge-dot: 8px;
+
   border-radius: var(--border-radius-4);
 
   .badge__label {
     padding: 0 var(--spacing-4);
     font-size: var(--typography-font-size-label-md);
   }
-  .badge__mplus img {
-    height: 22px;
-  }
-  .badge__live-dot {
-    width: 8px;
-    height: 8px;
-  }
 }
 
 .badge--sm {
-  height: 18px;
+  --badge-height: 18px;
+  --badge-dot: 6px;
+
   border-radius: 3px;
 
   .badge__label {
     padding: 0 3px;
     font-size: var(--typography-font-size-label-sm);
   }
-  .badge__mplus img {
-    height: 18px;
-  }
-  .badge__live-dot {
-    width: 6px;
-    height: 6px;
-  }
 }
 
 .badge--xs {
-  height: 16px;
+  --badge-height: 16px;
+  --badge-dot: 6px;
+
   border-radius: 3px;
 
+  // 2px top padding moves the centred label 1px down (optical centre, see
+  // below); the live ring stays on the geometric centre
   .badge__label {
-    padding: 0 3px;
+    padding: 2px 3px 0;
     font-size: var(--typography-font-size-label-xxsm);
   }
-  .badge__mplus img {
-    height: 16px;
-  }
-  .badge__live-dot {
-    width: 6px;
-    height: 6px;
-  }
-  .badge__text {
-    top: 1px;
+
+  .badge__live {
+    margin-top: -2px;
   }
 }
 
 // ── Label segment ─────────────────────────────────────────────────────────────
+// Uppercase text has no descenders, so line-height 1 keeps it on the optical
+// centre (a taller line reserves descender space and lifts the caps).
 
 .badge__label {
   display: flex;
@@ -109,7 +104,7 @@
   gap: var(--spacing-4);
   font-family: var(--typography-font-family-sans);
   font-weight: var(--typography-font-weight-bold);
-  line-height: var(--typography-line-height-narrow);
+  line-height: 1;
   letter-spacing: 0;
   white-space: nowrap;
   text-transform: uppercase;
@@ -119,70 +114,46 @@
 
 // ── Type colour tokens ────────────────────────────────────────────────────────
 
-.badge--highlight {
-  .badge__label {
-    background-color: var(--color-background-editorial-highlight-base);
-  }
+.badge--highlight .badge__label {
+  background-color: var(--color-background-editorial-highlight-base);
 }
-.badge--feature {
-  .badge__label {
-    background-color: var(--color-background-editorial-feature-base);
-  }
+
+.badge--feature .badge__label {
+  background-color: var(--color-background-editorial-feature-base);
 }
-.badge--analysis {
-  .badge__label {
-    background-color: var(--color-background-editorial-analysis-base);
-  }
+
+.badge--analysis .badge__label {
+  background-color: var(--color-background-editorial-analysis-base);
 }
 
 // ── M+ lozenge ───────────────────────────────────────────────────────────────
 
-.badge__mplus {
-  display: flex;
-  align-items: stretch;
+// .badge prefix: the badge can sit on a card image, whose `img` rule
+// (.article-card__media img — 100% × 100%) would otherwise stretch the lozenge
+.badge .badge__mplus {
+  display: block;
   flex-shrink: 0;
-
-  img {
-    width: auto;
-    display: block;
-  }
+  width: auto;
+  height: var(--badge-height);
 }
 
 // ── Live indicator ────────────────────────────────────────────────────────────
+// One element: 1px white ring, 2px gap, pulsing white dot (the content box).
 
-.badge__live-indicator {
-  display: flex;
-  align-items: center;
-  justify-content: center;
+.badge__live {
+  flex-shrink: 0;
+  box-sizing: content-box;
+  width: var(--badge-dot);
+  height: var(--badge-dot);
+  padding: var(--spacing-2);
   border: 1px solid var(--color-border-neutral-white);
   border-radius: var(--border-radius-full);
-  padding: var(--spacing-2);
-  flex-shrink: 0;
-}
-
-.badge__live-dot {
-  border-radius: 50%;
-  background-color: var(--color-background-neutral-white);
-  flex-shrink: 0;
+  background: var(--color-background-neutral-white) content-box;
   animation: live-pulse 1.6s ease-in-out infinite;
 }
 
 @keyframes live-pulse {
-  0%,
-  100% {
-    opacity: 1;
-  }
   50% {
-    opacity: 0.2;
+    background-color: var(--color-effect-translucent-light-subtle);
   }
-}
-
-// ── Optical centering ─────────────────────────────────────────────────────────
-// text-transform: uppercase removes descenders but line-height still reserves
-// space for them, pushing text visually above geometric centre.
-// Nudge only the text span — background, padding, and container are untouched.
-
-.badge__text {
-  position: relative;
-  line-height: 1;
 }

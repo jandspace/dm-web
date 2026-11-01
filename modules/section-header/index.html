@@ -11,6 +11,7 @@
     <link rel="stylesheet" href="../../tokens/dm_typography_web_tokens.css" />
     <link rel="stylesheet" href="../../styles/css/main.css" />
     <script src="../../scripts/scaffolding/demo-nav.js" defer></script>
+    <script src="../../scripts/modules/scroll-row.js" defer></script>
   </head>
   <body class="demo-page-body">
 
@@ -45,81 +46,63 @@
 
     <div class="demo-sh__cell">
       <header class="section-header">
-        <div class="section-header__row">
-          <h2 class="section-header__title"><span class="section-header__link"><span class="section-header__label"><span class="section-header__text">Section Header</span></span></span></h2>
-        </div>
+        <h2 class="section-header__title">Section Header</h2>
       </header>
       <span class="demo-sh__caption">MD — Label only</span>
     </div>
 
     <div class="demo-sh__cell">
       <header class="section-header section-header--sm">
-        <div class="section-header__row">
-          <h2 class="section-header__title"><span class="section-header__link"><span class="section-header__label"><span class="section-header__text">Section Header</span></span></span></h2>
-        </div>
+        <h2 class="section-header__title">Section Header</h2>
       </header>
       <span class="demo-sh__caption">SM — Label only</span>
     </div>
 
     <div class="demo-sh__cell">
       <header class="section-header">
-        <div class="section-header__row">
-          <h2 class="section-header__title"><a class="section-header__link" href="#section"><span class="section-header__label"><span class="section-header__text">Section Header<span class="section-header__arrow btn btn-quaternary-neutral btn--icon-only" aria-hidden="true"><span class="icon icon--arrow-right-light" aria-hidden="true"></span></span></span></span></a></h2>
-        </div>
+        <h2 class="section-header__title"><a class="section-header__link" href="#section"><span class="section-header__text">Section Header<span class="section-header__arrow btn btn-quaternary-neutral btn--icon-only" aria-hidden="true"><span class="icon icon--arrow-right-light" aria-hidden="true"></span></span></span></a></h2>
       </header>
       <span class="demo-sh__caption">MD — Label, Link arrow</span>
     </div>
 
     <div class="demo-sh__cell">
       <header class="section-header section-header--sm">
-        <div class="section-header__row">
-          <h2 class="section-header__title"><a class="section-header__link" href="#section"><span class="section-header__label"><span class="section-header__text">Section Header<span class="section-header__arrow btn btn-quaternary-neutral btn--icon-only" aria-hidden="true"><span class="icon icon--arrow-right-light" aria-hidden="true"></span></span></span></span></a></h2>
-        </div>
+        <h2 class="section-header__title"><a class="section-header__link" href="#section"><span class="section-header__text">Section Header<span class="section-header__arrow btn btn-quaternary-neutral btn--icon-only" aria-hidden="true"><span class="icon icon--arrow-right-light" aria-hidden="true"></span></span></span></a></h2>
       </header>
       <span class="demo-sh__caption">SM — Label, Link arrow</span>
     </div>
 
     <div class="demo-sh__cell">
       <header class="section-header">
-        <div class="section-header__row">
-          <h2 class="section-header__title"><span class="section-header__link"><span class="section-header__label"><span class="section-header__icon" aria-hidden="true"><span class="icon icon--square-dashed" aria-hidden="true"></span></span><span class="section-header__text">Section Header</span></span></span></h2>
-        </div>
+        <h2 class="section-header__title"><span class="icon icon--square-dashed section-header__icon" aria-hidden="true"></span>Section Header</h2>
       </header>
       <span class="demo-sh__caption">MD — Icon, Label</span>
     </div>
 
     <div class="demo-sh__cell">
       <header class="section-header section-header--sm">
-        <div class="section-header__row">
-          <h2 class="section-header__title"><span class="section-header__link"><span class="section-header__label"><span class="section-header__icon" aria-hidden="true"><span class="icon icon--square-dashed" aria-hidden="true"></span></span><span class="section-header__text">Section Header</span></span></span></h2>
-        </div>
+        <h2 class="section-header__title"><span class="icon icon--square-dashed section-header__icon" aria-hidden="true"></span>Section Header</h2>
       </header>
       <span class="demo-sh__caption">SM — Icon, Label</span>
     </div>
 
     <div class="demo-sh__cell">
       <header class="section-header">
-        <div class="section-header__row">
-          <h2 class="section-header__title"><a class="section-header__link" href="#section"><span class="section-header__label"><span class="section-header__icon" aria-hidden="true"><span class="icon icon--square-dashed" aria-hidden="true"></span></span><span class="section-header__text">Section Header<span class="section-header__arrow btn btn-quaternary-neutral btn--icon-only" aria-hidden="true"><span class="icon icon--arrow-right-light" aria-hidden="true"></span></span></span></span></a></h2>
-        </div>
+        <h2 class="section-header__title"><a class="section-header__link" href="#section"><span class="icon icon--square-dashed section-header__icon" aria-hidden="true"></span><span class="section-header__text">Section Header<span class="section-header__arrow btn btn-quaternary-neutral btn--icon-only" aria-hidden="true"><span class="icon icon--arrow-right-light" aria-hidden="true"></span></span></span></a></h2>
       </header>
       <span class="demo-sh__caption">MD — Icon, Label, Link arrow</span>
     </div>
 
     <div class="demo-sh__cell">
       <header class="section-header section-header--sm">
-        <div class="section-header__row">
-          <h2 class="section-header__title"><a class="section-header__link" href="#section"><span class="section-header__label"><span class="section-header__icon" aria-hidden="true"><span class="icon icon--square-dashed" aria-hidden="true"></span></span><span class="section-header__text">Section Header<span class="section-header__arrow btn btn-quaternary-neutral btn--icon-only" aria-hidden="true"><span class="icon icon--arrow-right-light" aria-hidden="true"></span></span></span></span></a></h2>
-        </div>
+        <h2 class="section-header__title"><a class="section-header__link" href="#section"><span class="icon icon--square-dashed section-header__icon" aria-hidden="true"></span><span class="section-header__text">Section Header<span class="section-header__arrow btn btn-quaternary-neutral btn--icon-only" aria-hidden="true"><span class="icon icon--arrow-right-light" aria-hidden="true"></span></span></span></a></h2>
       </header>
       <span class="demo-sh__caption">SM — Icon, Label, Link arrow</span>
     </div>
 
     <div class="demo-sh__cell">
       <header class="section-header">
-        <div class="section-header__row">
-          <h2 class="section-header__title"><a class="section-header__link" href="#section"><span class="section-header__label"><span class="section-header__icon" aria-hidden="true"><span class="icon icon--square-dashed" aria-hidden="true"></span></span><span class="section-header__text">Section Header<span class="section-header__arrow btn btn-quaternary-neutral btn--icon-only" aria-hidden="true"><span class="icon icon--arrow-right-light" aria-hidden="true"></span></span></span></span></a></h2>
-        </div>
+        <h2 class="section-header__title"><a class="section-header__link" href="#section"><span class="icon icon--square-dashed section-header__icon" aria-hidden="true"></span><span class="section-header__text">Section Header<span class="section-header__arrow btn btn-quaternary-neutral btn--icon-only" aria-hidden="true"><span class="icon icon--arrow-right-light" aria-hidden="true"></span></span></span></a></h2>
         <p class="section-header__description">Preview Text, Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quisque quis massa sit amet ex con sectetur fermentum.</p>
       </header>
       <span class="demo-sh__caption">MD — Icon, Label, Link arrow, Description (Preview)</span>
@@ -127,9 +110,7 @@
 
     <div class="demo-sh__cell">
       <header class="section-header section-header--sm">
-        <div class="section-header__row">
-          <h2 class="section-header__title"><a class="section-header__link" href="#section"><span class="section-header__label"><span class="section-header__icon" aria-hidden="true"><span class="icon icon--square-dashed" aria-hidden="true"></span></span><span class="section-header__text">Section Header<span class="section-header__arrow btn btn-quaternary-neutral btn--icon-only" aria-hidden="true"><span class="icon icon--arrow-right-light" aria-hidden="true"></span></span></span></span></a></h2>
-        </div>
+        <h2 class="section-header__title"><a class="section-header__link" href="#section"><span class="icon icon--square-dashed section-header__icon" aria-hidden="true"></span><span class="section-header__text">Section Header<span class="section-header__arrow btn btn-quaternary-neutral btn--icon-only" aria-hidden="true"><span class="icon icon--arrow-right-light" aria-hidden="true"></span></span></span></a></h2>
         <p class="section-header__description">Preview Text, Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quisque quis massa sit amet ex con sectetur fermentum.</p>
       </header>
       <span class="demo-sh__caption">SM — Icon, Label, Link arrow, Description (Preview)</span>
@@ -137,29 +118,23 @@
 
     <div class="demo-sh__cell">
       <header class="section-header">
-        <div class="section-header__row">
-          <h2 class="section-header__title"><a class="section-header__link" href="#section"><span class="section-header__label"><span class="section-header__icon" aria-hidden="true"><span class="icon icon--square-dashed" aria-hidden="true"></span></span><span class="section-header__text">Section Header<span class="section-header__arrow btn btn-quaternary-neutral btn--icon-only" aria-hidden="true"><span class="icon icon--arrow-right-light" aria-hidden="true"></span></span></span></span></a></h2>
-          <a class="section-header__action" href="#action">Action Here<span class="icon icon--chevron-right" aria-hidden="true"></span></a>
-        </div>
+        <h2 class="section-header__title"><a class="section-header__link" href="#section"><span class="icon icon--square-dashed section-header__icon" aria-hidden="true"></span><span class="section-header__text">Section Header<span class="section-header__arrow btn btn-quaternary-neutral btn--icon-only" aria-hidden="true"><span class="icon icon--arrow-right-light" aria-hidden="true"></span></span></span></a></h2>
+        <a class="section-header__action" href="#action">Action Here<span class="icon icon--chevron-right" aria-hidden="true"></span></a>
       </header>
       <span class="demo-sh__caption">MD — Icon, Label, Link arrow, Action</span>
     </div>
 
     <div class="demo-sh__cell">
       <header class="section-header section-header--sm">
-        <div class="section-header__row">
-          <h2 class="section-header__title"><a class="section-header__link" href="#section"><span class="section-header__label"><span class="section-header__icon" aria-hidden="true"><span class="icon icon--square-dashed" aria-hidden="true"></span></span><span class="section-header__text">Section Header<span class="section-header__arrow btn btn-quaternary-neutral btn--icon-only" aria-hidden="true"><span class="icon icon--arrow-right-light" aria-hidden="true"></span></span></span></span></a></h2>
-          <a class="section-header__action" href="#action">Action Here<span class="icon icon--chevron-right" aria-hidden="true"></span></a>
-        </div>
+        <h2 class="section-header__title"><a class="section-header__link" href="#section"><span class="icon icon--square-dashed section-header__icon" aria-hidden="true"></span><span class="section-header__text">Section Header<span class="section-header__arrow btn btn-quaternary-neutral btn--icon-only" aria-hidden="true"><span class="icon icon--arrow-right-light" aria-hidden="true"></span></span></span></a></h2>
+        <a class="section-header__action" href="#action">Action Here<span class="icon icon--chevron-right" aria-hidden="true"></span></a>
       </header>
       <span class="demo-sh__caption">SM — Icon, Label, Link arrow, Action</span>
     </div>
 
     <div class="demo-sh__cell">
       <header class="section-header">
-        <div class="section-header__row">
-          <h2 class="section-header__title"><a class="section-header__link" href="#section"><span class="section-header__label"><span class="section-header__icon" aria-hidden="true"><span class="icon icon--square-dashed" aria-hidden="true"></span></span><span class="section-header__text">Lifestyle<span class="section-header__arrow btn btn-quaternary-neutral btn--icon-only" aria-hidden="true"><span class="icon icon--arrow-right-light" aria-hidden="true"></span></span></span></span></a></h2>
-        </div>
+        <h2 class="section-header__title"><a class="section-header__link" href="#section"><span class="icon icon--square-dashed section-header__icon" aria-hidden="true"></span><span class="section-header__text">Lifestyle<span class="section-header__arrow btn btn-quaternary-neutral btn--icon-only" aria-hidden="true"><span class="icon icon--arrow-right-light" aria-hidden="true"></span></span></span></a></h2>
         <nav class="section-header-tabs" aria-label="Sub-channels">
           <button type="button" class="section-header-tabs__edge section-header-tabs__edge--prev" aria-label="Scroll left" tabindex="-1"><span class="icon icon--chevron-left" aria-hidden="true"></span></button>
           <ul class="section-header-tabs__list">
@@ -189,9 +164,7 @@
     <div class="demo-sh__cell">
       <span class="demo-sh__example">Example — sample content</span>
       <header class="section-header">
-        <div class="section-header__row">
-          <h2 class="section-header__title"><span class="section-header__link"><span class="section-header__label"><span class="section-header__text">War in the Middle East</span></span></span></h2>
-        </div>
+        <h2 class="section-header__title">War in the Middle East</h2>
         <nav class="section-header-tabs" aria-label="Sub-channels">
           <button type="button" class="section-header-tabs__edge section-header-tabs__edge--prev" aria-label="Scroll left" tabindex="-1"><span class="icon icon--chevron-left" aria-hidden="true"></span></button>
           <ul class="section-header-tabs__list">
@@ -221,7 +194,7 @@
       <header class="section-header-branded">
         <a class="section-header-branded__banner" href="#channel" aria-label="Place Your Logo">
           <img class="section-header-branded__bg" src="../../assets/images/section-header-branded-placeholder.jpg" alt="" />
-          <span class="section-header-branded__slot"><span class="section-header-branded__name">Place Your Logo</span></span>
+          <span class="section-header-branded__name">Place Your Logo</span>
           <span class="section-header-branded__arrow btn btn-tertiary-dark btn--sm btn--icon-only" aria-hidden="true"><span class="icon icon--arrow-right-light" aria-hidden="true"></span></span>
         </a>
       </header>
@@ -232,7 +205,7 @@
       <header class="section-header-branded">
         <a class="section-header-branded__banner" href="#channel" aria-label="Daily Mail">
           <img class="section-header-branded__bg" src="../../assets/images/section-header-branded-placeholder.jpg" alt="" />
-          <span class="section-header-branded__slot"><img src="../../assets/images/logo-dailymail-white.svg" alt="Daily Mail" height="26" /></span>
+          <img class="section-header-branded__logo" src="../../assets/images/logo-dailymail-white.svg" alt="Daily Mail" height="26" />
           <span class="section-header-branded__arrow btn btn-tertiary-dark btn--sm btn--icon-only" aria-hidden="true"><span class="icon icon--arrow-right-light" aria-hidden="true"></span></span>
         </a>
       </header>
@@ -243,7 +216,7 @@
       <header class="section-header-branded">
         <a class="section-header-branded__banner" href="#channel" aria-label="Showbiz">
           <img class="section-header-branded__bg" src="../../assets/images/section-header-branded-placeholder.jpg" alt="" />
-          <span class="section-header-branded__slot"><span class="section-header-branded__name">Showbiz</span></span>
+          <span class="section-header-branded__name">Showbiz</span>
           <span class="section-header-branded__arrow btn btn-tertiary-dark btn--sm btn--icon-only" aria-hidden="true"><span class="icon icon--arrow-right-light" aria-hidden="true"></span></span>
         </a>
         <nav class="section-header-tabs" aria-label="Sub-channels">
@@ -273,26 +246,6 @@
     <!-- Fixed-viewport preview: this page rendered in an iframe at the chosen width -->
     <div class="demo-vp-stage" id="demo-vp-stage" hidden></div>
 
-    <script>
-      // Sub-items behaviour (reference for the build): the edge buttons scroll the
-      // row by ~80% of its width; .is-scroll-start / .is-scroll-end hide the edge
-      // on a side that cannot scroll (CSS shows edges only at MD+ with a mouse).
-      document.querySelectorAll('.section-header-tabs').forEach((tabs) => {
-        const list = tabs.querySelector('.section-header-tabs__list');
-        const update = () => {
-          tabs.classList.toggle('is-scroll-start', list.scrollLeft <= 1);
-          tabs.classList.toggle('is-scroll-end', list.scrollLeft + list.clientWidth >= list.scrollWidth - 1);
-        };
-        tabs.querySelectorAll('.section-header-tabs__edge').forEach((edge) => {
-          const dir = edge.classList.contains('section-header-tabs__edge--prev') ? -1 : 1;
-          edge.addEventListener('click', () => list.scrollBy({ left: dir * list.clientWidth * 0.8 }));
-        });
-        list.addEventListener('scroll', update, { passive: true });
-        new ResizeObserver(update).observe(list);
-        document.fonts.ready.then(update); // label widths change once the web font is in
-        update();
-      });
-    </script>
 
     <script>
       // Scaffolding only — viewport preview.

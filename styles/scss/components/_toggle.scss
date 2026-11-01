@@ -1,0 +1,143 @@
+// ── Toggle Switch ─────────────────────────────────────────────────────────────
+// Binary control that commits at once — on / off, no confirm step.
+//
+//   label.toggle-field                    optional wrapper: label text + switch
+//     .toggle-field__text
+//       .toggle-field__label
+//       .toggle-field__description        optional supporting text
+//     button.toggle[role=switch][aria-checked]
+//       span.toggle__disk[data-theme=light]
+//
+//   .toggle            Medium 46 × 26 · disk 22 (default)
+//   .toggle--sm        Small  36 × 22 · disk 18
+//   .toggle--positive  On in interaction-positive (green) — only where a
+//                      Positive button would be right; never mixed with blue
+//                      toggles on one screen
+//
+// Track: Off translucent-dark/pale (hover subtle) · On interaction-primary
+// (or -positive) default (hover /hover). Disk: icon/neutral/lightest, Theme
+// Pinned — data-theme="light" keeps it light in dark mode. Elevation Lv-2 on
+// the disk in the On state only. Disabled: the whole switch at 25%.
+// Focus: the browser's own ring (as Button).
+//
+// Reference: Figma Web UI Kit › Toggle Switch (4277:82221)
+
+.toggle {
+  --toggle-width: 46px;
+  --toggle-disk: 22px;
+
+  display: inline-flex;
+  flex-shrink: 0;
+  align-items: center;
+  width: var(--toggle-width);
+  padding: 2px;
+  border: 0;
+  border-radius: var(--border-radius-full);
+  background-color: var(--color-effect-translucent-dark-pale);
+  cursor: pointer;
+  transition: background-color 150ms ease;
+
+  &:hover,
+  &.is-hover {
+    background-color: var(--color-effect-translucent-dark-subtle);
+  }
+
+  &[aria-checked='true'] {
+    background-color: var(--color-background-interaction-primary-default);
+
+    &:hover,
+    &.is-hover {
+      background-color: var(--color-background-interaction-primary-hover);
+    }
+
+    .toggle__disk {
+      box-shadow: var(--elevation-2);
+      transform: translateX(calc(var(--toggle-width) - var(--toggle-disk) - 4px));
+    }
+  }
+
+  &:disabled {
+    opacity: 0.25;
+    cursor: not-allowed;
+  }
+}
+
+.toggle--sm {
+  --toggle-width: 36px;
+  --toggle-disk: 18px;
+}
+
+.toggle--positive[aria-checked='true'] {
+  background-color: var(--color-background-interaction-positive-default);
+
+  &:hover,
+  &.is-hover {
+    background-color: var(--color-background-interaction-positive-hover);
+  }
+}
+
+// Disabled keeps the Default colours — no hover change
+.toggle:disabled:hover {
+  background-color: var(--color-effect-translucent-dark-pale);
+}
+
+.toggle[aria-checked='true']:disabled:hover {
+  background-color: var(--color-background-interaction-primary-default);
+}
+
+.toggle--positive[aria-checked='true']:disabled:hover {
+  background-color: var(--color-background-interaction-positive-default);
+}
+
+.toggle__disk {
+  width: var(--toggle-disk);
+  height: var(--toggle-disk);
+  border-radius: var(--border-radius-full);
+  background-color: var(--color-icon-neutral-lightest);
+  transition:
+    transform 150ms ease,
+    box-shadow 150ms ease;
+}
+
+// ── Label ─────────────────────────────────────────────────────────────────────
+// A toggle always has a visible label. Clicking the text flips the switch
+// (<label> wraps the button).
+
+.toggle-field {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--spacing-16);
+  cursor: pointer;
+
+  &:has(.toggle:disabled) {
+    cursor: not-allowed;
+  }
+}
+
+.toggle-field__text {
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-2);
+}
+
+.toggle-field__label {
+  font-size: var(--typography-font-size-label-md);
+  font-weight: var(--typography-font-weight-semibold);
+  line-height: var(--typography-line-height-narrow);
+  color: var(--color-text-neutral-darker);
+}
+
+.toggle-field__description {
+  font-size: var(--typography-font-size-label-sm);
+  font-weight: var(--typography-font-weight-regular);
+  line-height: var(--typography-line-height-narrow);
+  color: var(--color-text-neutral-grey-dark);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .toggle,
+  .toggle__disk {
+    transition: none;
+  }
+}

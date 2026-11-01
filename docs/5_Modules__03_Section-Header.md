@@ -14,15 +14,31 @@ Code: `styles/scss/modules/_section-header.scss`, `_section-header-branded.scss`
 
 ### 1-A. Structure
 
+Minimal markup — no row or label wrappers. The header lays out its children itself (flex-wrap): title … action on the first line, description and sub-items on a line each.
+
+```html
+<!-- Linked: icon + label + arrow, one link -->
+<header class="section-header">
+  <h2 class="section-header__title"><a class="section-header__link" href="/showbiz"><img class="section-header__icon" src="ico-ch-uk-showbiz-color.svg" alt="" /><span class="section-header__text">More Showbiz<span class="section-header__arrow btn btn-quaternary-neutral btn--icon-only" aria-hidden="true"><span class="icon icon--arrow-right-light" aria-hidden="true"></span></span></span></a></h2>
+  <a class="section-header__action" href="/showbiz/all">Action Here<span class="icon icon--chevron-right" aria-hidden="true"></span></a>
+  <p class="section-header__description">Preview text</p>
+</header>
+
+<!-- Not linked: the title holds icon + label directly -->
+<header class="section-header section-header--sm">
+  <h2 class="section-header__title"><span class="icon icon--square-dashed section-header__icon" aria-hidden="true"></span>War in the Middle East</h2>
+</header>
+```
+
 | Part | Class | Notes |
 |---|---|---|
-| Container | `.section-header` | `color/background/neutral/lightest`; padding 20 top · 8 bottom · 16 sides; 8px gap between rows |
-| Row | `.section-header__row` | Title (fills) … Action |
-| Title | `h2.section-header__title` | Holds the link (or a plain span when the header does not link) |
+| Container | `.section-header` | `color/background/neutral/lightest`; padding 20 top · 8 bottom · 16 sides; 8px gap between lines and between title and action |
+| Title | `h2.section-header__title` | Fills the first line. Holds the link — or, when the header does not link, the icon and label directly |
 | Link | `a.section-header__link` | Icon + label + arrow — **one link** |
-| Leading icon | `.section-header__icon` | Optional slot. SVG uses `currentColor` (follows the label on hover); image icons keep their colours |
+| Leading icon | `.section-header__icon` | Optional — on the icon itself: `.icon` (follows the label colour, also on hover) or `<img>` (keeps its colours). Centred on the first label line; a wrapped label runs on under the text, not under the icon |
+| Label text | `.section-header__text` | Only in a linked header — it holds the arrow. Without a link the label is plain text in the title |
 | Arrow | `.section-header__arrow` | `.btn.btn-quaternary-neutral.btn--icon-only`, decorative (`aria-hidden`). Sits **inside** `.section-header__text`, right after the last word |
-| Action | `a.section-header__action` | Optional, right — label + chevron, its own link |
+| Action | `a.section-header__action` | Optional, right of the title — label + chevron, its own link |
 | Description | `.section-header__description` | Optional preview text — text-sm Regular, line-height normal, `color/text/neutral/grey-dark` |
 | Sub-items | `.section-header-tabs` | Optional — MD only (see 1-D) |
 
@@ -61,7 +77,7 @@ Sub-channels or topics in one row that scrolls sideways.
 - Item: label-sm Semibold, `color/text/neutral/dark`, 4px vertical padding, 16px apart.
 - Hover: a 1px `color/border/neutral/grey-dark` line grows from the left under the label.
 - **Mweb (<768):** swipe; the right edge fades out (16px).
-- **Dweb (≥768 with a mouse):** chevron edge buttons ("Horizontal Scroll Edge": 32px, surface gradient from transparent to 40%, 14px chevron in `color/icon/neutral/grey-dark`; on hover the chevron turns `color/icon/interaction-primary/default` and the surface steps to `color/background/neutral/lighter`) on the side(s) that can scroll. Each click scrolls ~80% of the row. The behaviour script sets `.is-scroll-start` / `.is-scroll-end` on `.section-header-tabs` (reference in the demo page).
+- **Dweb (≥768 with a mouse):** chevron edge buttons ("Horizontal Scroll Edge": 32px, surface gradient from transparent to 40%, 14px chevron in `color/icon/neutral/grey-dark`; on hover the chevron turns `color/icon/interaction-primary/default` and the surface steps to `color/background/neutral/lighter`) on the side(s) that can scroll. Each click scrolls ~80% of the row. The shared Scroll Row script (`scripts/modules/scroll-row.js`) sets `[hidden]` on an edge that cannot scroll — the same script runs Tabs and the Sticky Navbar.
 
 ### 1-E. Interaction
 
@@ -82,7 +98,7 @@ Sub-channels or topics in one row that scrolls sideways.
 | Banner | `a.section-header-branded__banner` | **The whole banner is the link.** 52px, 8px corners, 4px / 48px padding |
 | Background | `img.section-header-branded__bg` | Cover image, blurred 4px |
 | Surface | banner `::before` | `color/effect/translucent-dark/pale` → `translucent-dark/deep` on hover |
-| Slot | `.section-header-branded__slot` | Channel name or logo, centred, max 44px tall |
+| Name / Logo | `span.section-header-branded__name` or `img.section-header-branded__logo` | Straight in the banner (no slot wrapper) — channel name or logo, centred, max 44px tall |
 | Name (text) | `.section-header-branded__name` | dmw_serif/h2/Semibold, white |
 | Arrow | `.section-header-branded__arrow` | `.btn.btn-tertiary-dark.btn--sm.btn--icon-only` (34, icon 14), 8px from the right, decorative |
 | Sub-items | `.section-header-tabs` | Optional, as in 1-D |

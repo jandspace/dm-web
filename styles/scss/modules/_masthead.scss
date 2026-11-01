@@ -125,19 +125,15 @@
   white-space: nowrap;
   text-decoration: none;
   cursor: pointer;
+  isolation: isolate; // the hover pill (z-index -1) stays behind the label and icon
 
   .icon,
   img {
     --icon-color: currentColor;
 
-    position: relative;
     flex-shrink: 0;
     width: 14px;
     height: 14px;
-  }
-
-  > span {
-    position: relative;
   }
 
   // Hover surface — background/neutral/light pill, 4px / 8px outside the content
@@ -145,6 +141,7 @@
     content: '';
     position: absolute;
     inset: -4px -8px;
+    z-index: -1;
     border-radius: var(--border-radius-full);
     background-color: var(--color-background-neutral-light);
     opacity: 0;
@@ -855,23 +852,20 @@
   color: var(--color-text-neutral-darker);
   white-space: nowrap;
   text-decoration: none;
+  isolation: isolate; // the hover pill (z-index -1) stays behind the label and icon
 
   .icon {
     --icon-color: currentColor;
 
-    position: relative;
     width: 14px;
     height: 14px;
-  }
-
-  span {
-    position: relative;
   }
 
   &::before {
     content: '';
     position: absolute;
     inset: 2px -8px;
+    z-index: -1;
     border-radius: var(--border-radius-full);
     background-color: var(--color-background-neutral-light);
     opacity: 0;

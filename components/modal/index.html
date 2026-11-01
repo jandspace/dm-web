@@ -87,18 +87,17 @@
       <section class="demo-modal__anatomy">
       <h2 class="demo-modal__set">Anatomy</h2>
       <p class="demo-modal__note">
-        The box open on a scrim. Header (title + close, keyline below), body, footer (keyline above, buttons on the
-        right). Without a title there is no header: the close button stays in the corner over the body, and the body starts at the top. The footer is optional.
+        The box open on a scrim. Title (keyline below) with the close button in the corner, body, footer (keyline
+        above, buttons on the right). Without a title the close button stays in the corner over the body, and the body
+        starts at the top. The footer is optional.
       </p>
 
       <div class="demo-modal__stage">
-        <div class="modal__content">
-          <div class="modal__header">
-            <h2 class="modal__title h4">Modal Content Title</h2>
-            <button class="modal__close btn btn-tertiary-dark btn--icon-only" type="button" aria-label="Close">
-              <span class="icon icon--xmark-light" aria-hidden="true"></span>
-            </button>
-          </div>
+        <div class="modal">
+          <h2 class="modal__title h4">Modal Content Title</h2>
+          <button class="modal__close btn btn-tertiary-dark btn--icon-only" type="button" aria-label="Close">
+            <span class="icon icon--xmark-light" aria-hidden="true"></span>
+          </button>
           <div class="modal__body demo-modal__copy">
             <h3 class="h4">Article page heading, Lorem ipsum dolor sit amet, consectetur adipiscing elit</h3>
             <p class="text-md">
@@ -112,12 +111,12 @@
           </div>
         </div>
 
-        <div class="modal__content">
+        <div class="modal">
           <button class="modal__close btn btn-tertiary-dark btn--icon-only" type="button" aria-label="Close">
             <span class="icon icon--xmark-light" aria-hidden="true"></span>
           </button>
           <div class="modal__body demo-modal__copy">
-            <h3 class="h4">No modal title — no header, the close button stays in the corner</h3>
+            <h3 class="h4">No modal title — the close button stays in the corner</h3>
             <p class="text-md">Nam lacinia placerat porta. Sed rutrum nunc at nulla bibendum rutrum.</p>
           </div>
         </div>
@@ -127,54 +126,50 @@
 
     <!-- One dialog; the Try it buttons set its size / position and which parts show -->
     <dialog class="modal" id="demo-modal" aria-labelledby="demo-modal-title" tabindex="-1">
-      <div class="modal__content">
-        <div class="modal__header">
-          <h2 class="modal__title h4" id="demo-modal-title">Modal Content Title</h2>
-          <button class="modal__close btn btn-tertiary-dark btn--icon-only" type="button" aria-label="Close" data-close>
-            <span class="icon icon--xmark-light" aria-hidden="true"></span>
-          </button>
-        </div>
-        <div class="modal__body demo-modal__copy">
-          <h3 class="h4">Article page heading, Lorem ipsum dolor sit amet, consectetur adipiscing elit</h3>
+      <h2 class="modal__title h4" id="demo-modal-title">Modal Content Title</h2>
+      <button class="modal__close btn btn-tertiary-dark btn--icon-only" type="button" aria-label="Close" data-close>
+        <span class="icon icon--xmark-light" aria-hidden="true"></span>
+      </button>
+      <div class="modal__body demo-modal__copy">
+        <h3 class="h4">Article page heading, Lorem ipsum dolor sit amet, consectetur adipiscing elit</h3>
+        <p class="text-md">
+          Article page default paragraph in Body 16px, Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+          Vivamus faucibus metus nisl, eget accumsan nibh semper sit amet. <a href="#">Hyperlink</a>.
+        </p>
+        <p class="text-md">
+          Nam lacinia placerat porta. Sed rutrum nunc at nulla bibendum rutrum. Cras consequat facilisis aliquam.
+          Curabitur aliquet nisi id maximus tincidunt.
+        </p>
+        <div data-long-copy hidden>
           <p class="text-md">
-            Article page default paragraph in Body 16px, Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-            Vivamus faucibus metus nisl, eget accumsan nibh semper sit amet. <a href="#">Hyperlink</a>.
+            Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Integer
+            posuere erat a ante venenatis dapibus posuere velit aliquet. Donec ullamcorper nulla non metus auctor
+            fringilla. Maecenas sed diam eget risus varius blandit sit amet non magna.
           </p>
           <p class="text-md">
-            Nam lacinia placerat porta. Sed rutrum nunc at nulla bibendum rutrum. Cras consequat facilisis aliquam.
-            Curabitur aliquet nisi id maximus tincidunt.
+            Cras mattis consectetur purus sit amet fermentum. Aenean lacinia bibendum nulla sed consectetur. Duis
+            mollis, est non commodo luctus, nisi erat porttitor ligula, eget lacinia odio sem nec elit. Nullam quis
+            risus eget urna mollis ornare vel eu leo.
           </p>
-          <div data-long-copy hidden>
-            <p class="text-md">
-              Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Integer
-              posuere erat a ante venenatis dapibus posuere velit aliquet. Donec ullamcorper nulla non metus auctor
-              fringilla. Maecenas sed diam eget risus varius blandit sit amet non magna.
-            </p>
-            <p class="text-md">
-              Cras mattis consectetur purus sit amet fermentum. Aenean lacinia bibendum nulla sed consectetur. Duis
-              mollis, est non commodo luctus, nisi erat porttitor ligula, eget lacinia odio sem nec elit. Nullam quis
-              risus eget urna mollis ornare vel eu leo.
-            </p>
-            <p class="text-md">
-              Vestibulum id ligula porta felis euismod semper. Morbi leo risus, porta ac consectetur ac, vestibulum at
-              eros. Curabitur blandit tempus porttitor. Etiam porta sem malesuada magna mollis euismod. Sed posuere
-              consectetur est at lobortis.
-            </p>
-            <p class="text-md">
-              Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet
-              risus. Donec sed odio dui. Praesent commodo cursus magna, vel scelerisque nisl consectetur et. Vivamus
-              sagittis lacus vel augue laoreet rutrum faucibus dolor auctor.
-            </p>
-            <p class="text-md">
-              Aenean eu leo quam. Pellentesque ornare sem lacinia quam venenatis vestibulum. Nulla vitae elit libero, a
-              pharetra augue. Maecenas faucibus mollis interdum. Etiam porta sem malesuada magna mollis euismod.
-            </p>
-          </div>
+          <p class="text-md">
+            Vestibulum id ligula porta felis euismod semper. Morbi leo risus, porta ac consectetur ac, vestibulum at
+            eros. Curabitur blandit tempus porttitor. Etiam porta sem malesuada magna mollis euismod. Sed posuere
+            consectetur est at lobortis.
+          </p>
+          <p class="text-md">
+            Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet
+            risus. Donec sed odio dui. Praesent commodo cursus magna, vel scelerisque nisl consectetur et. Vivamus
+            sagittis lacus vel augue laoreet rutrum faucibus dolor auctor.
+          </p>
+          <p class="text-md">
+            Aenean eu leo quam. Pellentesque ornare sem lacinia quam venenatis vestibulum. Nulla vitae elit libero, a
+            pharetra augue. Maecenas faucibus mollis interdum. Etiam porta sem malesuada magna mollis euismod.
+          </p>
         </div>
-        <div class="modal__footer">
-          <button class="btn btn-secondary-brand" type="button" data-close>Secondary</button>
-          <button class="btn btn-brand" type="button" data-close>Primary Action</button>
-        </div>
+      </div>
+      <div class="modal__footer">
+        <button class="btn btn-secondary-brand" type="button" data-close>Secondary</button>
+        <button class="btn btn-brand" type="button" data-close>Primary Action</button>
       </div>
     </dialog>
 
@@ -182,9 +177,6 @@
       // Scaffolding only — open the dialog in the chosen setup; close on [data-close] or a scrim click.
       // (Esc closes a showModal() dialog on its own.)
       const modal = document.getElementById('demo-modal');
-      const content = modal.querySelector('.modal__content');
-      const header = modal.querySelector('.modal__header');
-      const close = modal.querySelector('.modal__close');
       const title = modal.querySelector('.modal__title');
       const footer = modal.querySelector('.modal__footer');
       const longCopy = modal.querySelector('[data-long-copy]');
@@ -192,14 +184,9 @@
       document.querySelectorAll('[data-modal]').forEach((button) => {
         button.addEventListener('click', () => {
           modal.className = ['modal', button.dataset.modal].filter(Boolean).join(' ');
-          // No title: no header, the close button goes straight in the box (as in real markup)
-          if ('noTitle' in button.dataset) {
-            content.prepend(close);
-            header.remove();
-          } else {
-            header.replaceChildren(title, close);
-            content.prepend(header);
-          }
+          // No title: the title is left out (as in real markup); the close stays in the corner
+          if ('noTitle' in button.dataset) title.remove();
+          else modal.prepend(title);
           footer.hidden = 'noFooter' in button.dataset;
           longCopy.hidden = !('long' in button.dataset);
           if (!title.isConnected) modal.setAttribute('aria-label', 'Modal');
@@ -211,7 +198,10 @@
       });
 
       modal.addEventListener('click', (event) => {
-        if (event.target === modal || event.target.closest('[data-close]')) modal.close();
+        // The dialog is the box: a click on it outside its rectangle is on the scrim
+        const r = modal.getBoundingClientRect();
+        const onScrim = event.target === modal && (event.clientX < r.left || event.clientX > r.right || event.clientY < r.top || event.clientY > r.bottom);
+        if (onScrim || event.target.closest('[data-close]')) modal.close();
       });
 
       const params = new URLSearchParams(location.search);

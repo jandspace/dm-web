@@ -7,9 +7,12 @@
 // ── Base ──────────────────────────────────────────────────────────────────────
 
 .btn {
+  --btn-spinner: 24px; // loading ring, per size
+
   display: inline-flex;
   align-items: center;
   justify-content: center;
+  gap: var(--spacing-6); // icon ↔ label
   height: 40px;
   padding: 0 14px;
   border: none;
@@ -29,20 +32,15 @@
   position: relative;
 }
 
-.btn__content {
-  display: inline-flex;
-  align-items: center;
-  gap: var(--spacing-6);
-
-  .icon {
-    width: 1em;
-    height: 1em;
-  }
-}
-
-// Icons take the label colour, in every variant and state
+// Markup: the label and icons sit straight in the button — no inner wrappers.
+//   <button class="btn btn-brand"><span class="icon icon--add" aria-hidden="true"></span>Label</button>
+// Icons are 1em (the label size) and take the label colour, in every variant and state
 .btn .icon {
   --icon-color: currentColor;
+
+  flex-shrink: 0;
+  width: 1em;
+  height: 1em;
 }
 
 // ── Static state helpers (for demo display) ───────────────────────────────────
@@ -53,30 +51,29 @@
 }
 
 // ── Loading ───────────────────────────────────────────────────────────────────
-// The spinner is the Loading component's Three-Quarters Circle (loading.ring)
-
-.btn svg.btn-spinner {
-  display: none;
-}
+// The label and icons hide (the button keeps its width) and the Loading
+// component's Three-Quarters Circle (ico-loading + loading.ring) spins in the
+// middle, in the label colour. Drawn by ::after — no spinner markup.
 
 .btn--loading {
   pointer-events: none;
   cursor: not-allowed;
+  -webkit-text-fill-color: transparent; // hides the label but keeps `color` for the ring
 
-  .btn__label,
-  .btn__content {
+  .icon {
     visibility: hidden;
   }
 
-  svg.btn-spinner {
-    display: block;
+  &::after {
+    content: '';
     position: absolute;
-    top: 50%;
-    left: 50%;
-    width: 24px;
-    height: 24px;
-    margin-top: -12px;
-    margin-left: -12px;
+    inset: 0;
+    width: var(--btn-spinner);
+    height: var(--btn-spinner);
+    margin: auto;
+    background-color: currentColor;
+    -webkit-mask: url('../../assets/icons/ico-loading.svg') center / contain no-repeat; // Chrome < 120
+    mask: url('../../assets/icons/ico-loading.svg') center / contain no-repeat;
     @include loading.ring;
   }
 }
@@ -628,86 +625,54 @@
 // ── Size modifiers ────────────────────────────────────────────────────────────
 
 .btn--xs {
+  --btn-spinner: 16px;
+
   height: 28px;
   padding: 0 var(--spacing-10);
+  gap: var(--spacing-4);
   font-size: var(--typography-font-size-label-xxsm);
-
-  .btn__content {
-    gap: var(--spacing-4);
-  }
 
   &.btn--icon-only {
     width: 28px;
-  }
-
-  &.btn--loading svg.btn-spinner {
-    width: 16px;
-    height: 16px;
-    margin-top: -8px;
-    margin-left: -8px;
   }
 }
 
 .btn--sm {
+  --btn-spinner: 20px;
+
   height: 34px;
   padding: 0 var(--spacing-12);
+  gap: 5px;
   font-size: var(--typography-font-size-label-sm);
-
-  .btn__content {
-    gap: 5px;
-  }
 
   &.btn--icon-only {
     width: 34px;
   }
-
-  &.btn--loading svg.btn-spinner {
-    width: 20px;
-    height: 20px;
-    margin-top: -10px;
-    margin-left: -10px;
-  }
 }
 
 .btn--lg {
+  --btn-spinner: 28px;
+
   height: 46px;
   padding: 0 var(--spacing-16);
+  gap: var(--spacing-8);
   font-size: var(--typography-font-size-label-lg);
-
-  .btn__content {
-    gap: var(--spacing-8);
-  }
 
   &.btn--icon-only {
     width: 46px;
   }
-
-  &.btn--loading svg.btn-spinner {
-    width: 28px;
-    height: 28px;
-    margin-top: -14px;
-    margin-left: -14px;
-  }
 }
 
 .btn--xl {
+  --btn-spinner: 32px;
+
   height: 52px;
   padding: 0 18px;
+  gap: var(--spacing-10);
   font-size: var(--typography-font-size-label-xl);
-
-  .btn__content {
-    gap: var(--spacing-10);
-  }
 
   &.btn--icon-only {
     width: 52px;
-  }
-
-  &.btn--loading svg.btn-spinner {
-    width: 32px;
-    height: 32px;
-    margin-top: -16px;
-    margin-left: -16px;
   }
 }
 

@@ -551,7 +551,8 @@
   }
 }
 
-// Page under an open sheet does not scroll
-.masthead-sheet-open {
+// Page under an open sheet does not scroll — read from the sheet itself (not
+// [hidden]), so it holds however the sheet was opened
+html:has(.masthead-sheet:not([hidden])) {
   overflow: hidden;
 }

@@ -7,14 +7,13 @@
 //     img
 //     .article-card__video          bottom-left, 8px inset (SM thumbs 6px)
 //       .video-play                 size per card type / breakpoint below
-//       .video-timer                MD (Vertical Media) only
 //
 // Size (Figma "Article Card", Video Play Icon on):
 //   XL            SM-XS lg 56 · MD+ xl 68
 //   XL Horizontal lg 56 · LG md 44 · XL lg 56
 //   XL Triple     lg 56
 //   MD            md 44
-//   MD Vertical   lg 56, centred, with the duration pill under it
+//   MD Vertical   lg 56
 //   SM thumbs     xs 28
 //   Image Only    none
 //
@@ -62,24 +61,8 @@
   @include vpc.play-size(lg);
 }
 
-// The play button sits dead centre; the duration pill hangs 8px below it
-// (it does not push the button up).
-.article-card--md-vertical .article-card__video {
-  top: 50%;
-  bottom: auto;
-  left: 50%;
-  transform: translate(-50%, -50%);
-
-  .video-play {
-    @include vpc.play-size(lg);
-  }
-
-  .video-timer {
-    position: absolute;
-    top: calc(100% + var(--spacing-8));
-    left: 50%;
-    transform: translateX(-50%);
-  }
+.article-card--md-vertical .article-card__video .video-play {
+  @include vpc.play-size(lg);
 }
 
 .article-card--sm-left,

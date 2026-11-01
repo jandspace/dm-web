@@ -1,0 +1,105 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Toggle</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&family=Lora:wght@400;600;700&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="../../tokens/dm_tokens.css" />
+    <link rel="stylesheet" href="../../tokens/dm_typography_web_tokens.css" />
+    <link rel="stylesheet" href="../../styles/css/main.css" />
+    <script src="../../scripts/scaffolding/demo-nav.js" defer></script>
+  </head>
+  <body class="demo-page-body">
+    <h1 class="demo-page-h1">Toggle</h1>
+    <p class="demo-page-intro">
+      A switch that commits at once — on or off, no confirm step. Blue (<code>interaction-primary</code>) by default;
+      green (<code>interaction-positive</code>) only where a Positive button would be right. Figma: Web UI Kit › Toggle Switch
+      (<code>4277:82221</code>). Doc: <code>docs/4_Components__10_Toggle.md</code>.
+    </p>
+
+    <!-- ════════════════════════════════════════════════════
+         TOGGLE SWITCH
+         button.toggle[role=switch][aria-checked] > span.toggle__disk[data-theme=light]
+           .toggle--sm        Small 36 × 22 (default Medium 46 × 26)
+           .toggle--positive  On in interaction-positive
+         label.toggle-field wraps label text + switch (the text flips it too)
+    ════════════════════════════════════════════════════ -->
+    <main class="demo-toggle">
+      <h2 class="demo-toggle__set">Try it</h2>
+      <p class="demo-toggle__note">Click a switch or its label, or Tab to one and press Space. Several toggles on one screen are all blue.</p>
+      <div class="demo-toggle__panel">
+          <label class="toggle-field"><span class="toggle-field__text"><span class="toggle-field__label">Dark mode</span></span><button type="button" class="toggle" role="switch" aria-checked="false"><span class="toggle__disk" data-theme="light"></span></button></label>
+          <label class="toggle-field"><span class="toggle-field__text"><span class="toggle-field__label">Auto-play videos</span><span class="toggle-field__description">Videos play muted as you scroll</span></span><button type="button" class="toggle" role="switch" aria-checked="true"><span class="toggle__disk" data-theme="light"></span></button></label>
+          <label class="toggle-field"><span class="toggle-field__text"><span class="toggle-field__label">Show captions</span></span><button type="button" class="toggle" role="switch" aria-checked="true"><span class="toggle__disk" data-theme="light"></span></button></label>
+          <label class="toggle-field"><span class="toggle-field__text"><span class="toggle-field__label">Data saving mode</span><span class="toggle-field__description">Not available on this device</span></span><button type="button" class="toggle" role="switch" aria-checked="false" disabled><span class="toggle__disk" data-theme="light"></span></button></label>
+      </div>
+
+      <h2 class="demo-toggle__set">Positive</h2>
+      <p class="demo-toggle__note">
+        Green only when the action is as affirmative as an Approve or Activate button — rare, and never next to blue toggles.
+      </p>
+      <div class="demo-toggle__panel">
+          <label class="toggle-field"><span class="toggle-field__text"><span class="toggle-field__label">Activate Mail+ offers</span><span class="toggle-field__description">Your subscription benefits are switched on</span></span><button type="button" class="toggle toggle--positive" role="switch" aria-checked="true"><span class="toggle__disk" data-theme="light"></span></button></label>
+      </div>
+
+      <h2 class="demo-toggle__set">States</h2>
+      <p class="demo-toggle__note">Hover is Web only (shown here with <code>.is-hover</code>). Disabled sets the whole switch to 25%, colours unchanged.</p>
+    </main>
+    <div class="demo-grid demo-grid--toggle">
+      <div class="demo-col-header"></div>
+      <div class="demo-col-header">Blue · Medium<small>46 × 26 · disk 22</small></div>
+      <div class="demo-col-header">Blue · Small<small>36 × 22 · disk 18</small></div>
+      <div class="demo-col-header">Green · Medium<small>.toggle--positive</small></div>
+      <div class="demo-col-header">Green · Small<small>.toggle--positive</small></div>
+
+      <div class="demo-row-label">On</div>
+      <div class="demo-cell"><button type="button" class="toggle" role="switch" aria-checked="true" aria-label="toggle, on"><span class="toggle__disk" data-theme="light"></span></button></div>
+      <div class="demo-cell"><button type="button" class="toggle toggle--sm" role="switch" aria-checked="true" aria-label="small toggle, on"><span class="toggle__disk" data-theme="light"></span></button></div>
+      <div class="demo-cell"><button type="button" class="toggle toggle--positive" role="switch" aria-checked="true" aria-label="Positive toggle, on"><span class="toggle__disk" data-theme="light"></span></button></div>
+      <div class="demo-cell"><button type="button" class="toggle toggle--sm toggle--positive" role="switch" aria-checked="true" aria-label="Positive small toggle, on"><span class="toggle__disk" data-theme="light"></span></button></div>
+
+      <div class="demo-row-label">On · Hover</div>
+      <div class="demo-cell"><button type="button" class="toggle is-hover" role="switch" aria-checked="true" aria-label="toggle, on · hover"><span class="toggle__disk" data-theme="light"></span></button></div>
+      <div class="demo-cell"><button type="button" class="toggle toggle--sm is-hover" role="switch" aria-checked="true" aria-label="small toggle, on · hover"><span class="toggle__disk" data-theme="light"></span></button></div>
+      <div class="demo-cell"><button type="button" class="toggle toggle--positive is-hover" role="switch" aria-checked="true" aria-label="Positive toggle, on · hover"><span class="toggle__disk" data-theme="light"></span></button></div>
+      <div class="demo-cell"><button type="button" class="toggle toggle--sm toggle--positive is-hover" role="switch" aria-checked="true" aria-label="Positive small toggle, on · hover"><span class="toggle__disk" data-theme="light"></span></button></div>
+
+      <div class="demo-row-label">Off</div>
+      <div class="demo-cell"><button type="button" class="toggle" role="switch" aria-checked="false" aria-label="toggle, off"><span class="toggle__disk" data-theme="light"></span></button></div>
+      <div class="demo-cell"><button type="button" class="toggle toggle--sm" role="switch" aria-checked="false" aria-label="small toggle, off"><span class="toggle__disk" data-theme="light"></span></button></div>
+      <div class="demo-cell"><button type="button" class="toggle toggle--positive" role="switch" aria-checked="false" aria-label="Positive toggle, off"><span class="toggle__disk" data-theme="light"></span></button></div>
+      <div class="demo-cell"><button type="button" class="toggle toggle--sm toggle--positive" role="switch" aria-checked="false" aria-label="Positive small toggle, off"><span class="toggle__disk" data-theme="light"></span></button></div>
+
+      <div class="demo-row-label">Off · Hover</div>
+      <div class="demo-cell"><button type="button" class="toggle is-hover" role="switch" aria-checked="false" aria-label="toggle, off · hover"><span class="toggle__disk" data-theme="light"></span></button></div>
+      <div class="demo-cell"><button type="button" class="toggle toggle--sm is-hover" role="switch" aria-checked="false" aria-label="small toggle, off · hover"><span class="toggle__disk" data-theme="light"></span></button></div>
+      <div class="demo-cell"><button type="button" class="toggle toggle--positive is-hover" role="switch" aria-checked="false" aria-label="Positive toggle, off · hover"><span class="toggle__disk" data-theme="light"></span></button></div>
+      <div class="demo-cell"><button type="button" class="toggle toggle--sm toggle--positive is-hover" role="switch" aria-checked="false" aria-label="Positive small toggle, off · hover"><span class="toggle__disk" data-theme="light"></span></button></div>
+
+      <div class="demo-row-label">On · Disabled</div>
+      <div class="demo-cell"><button type="button" class="toggle" role="switch" aria-checked="true" aria-label="toggle, on · disabled" disabled><span class="toggle__disk" data-theme="light"></span></button></div>
+      <div class="demo-cell"><button type="button" class="toggle toggle--sm" role="switch" aria-checked="true" aria-label="small toggle, on · disabled" disabled><span class="toggle__disk" data-theme="light"></span></button></div>
+      <div class="demo-cell"><button type="button" class="toggle toggle--positive" role="switch" aria-checked="true" aria-label="Positive toggle, on · disabled" disabled><span class="toggle__disk" data-theme="light"></span></button></div>
+      <div class="demo-cell"><button type="button" class="toggle toggle--sm toggle--positive" role="switch" aria-checked="true" aria-label="Positive small toggle, on · disabled" disabled><span class="toggle__disk" data-theme="light"></span></button></div>
+
+      <div class="demo-row-label">Off · Disabled</div>
+      <div class="demo-cell"><button type="button" class="toggle" role="switch" aria-checked="false" aria-label="toggle, off · disabled" disabled><span class="toggle__disk" data-theme="light"></span></button></div>
+      <div class="demo-cell"><button type="button" class="toggle toggle--sm" role="switch" aria-checked="false" aria-label="small toggle, off · disabled" disabled><span class="toggle__disk" data-theme="light"></span></button></div>
+      <div class="demo-cell"><button type="button" class="toggle toggle--positive" role="switch" aria-checked="false" aria-label="Positive toggle, off · disabled" disabled><span class="toggle__disk" data-theme="light"></span></button></div>
+      <div class="demo-cell"><button type="button" class="toggle toggle--sm toggle--positive" role="switch" aria-checked="false" aria-label="Positive small toggle, off · disabled" disabled><span class="toggle__disk" data-theme="light"></span></button></div>
+    </div>
+
+    <script>
+      // Scaffolding only — flips aria-checked on click (Space on a focused
+      // <button> clicks it too). Hover / disabled samples in States stay put.
+      document.addEventListener('click', (event) => {
+        const toggle = event.target.closest('.toggle');
+        if (!toggle || toggle.disabled || toggle.classList.contains('is-hover')) return;
+        toggle.setAttribute('aria-checked', String(toggle.getAttribute('aria-checked') !== 'true'));
+      });
+    </script>
+  </body>
+</html>

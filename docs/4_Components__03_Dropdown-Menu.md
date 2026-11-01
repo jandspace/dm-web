@@ -59,20 +59,21 @@ Figma: Web UI Kit › Dropdowns (`175:5715`) — Dropdown Box, Dropdown Title, D
       <span class="dropdown-menu__description">Description</span>
     </p>
   </div>
-  <ul class="dropdown-menu__list" role="listbox" aria-label="Dropdown Title">
-    <li class="dropdown-menu__group" role="presentation">First Menus</li>
-    <li role="none">
-      <button class="dropdown-menu__item" type="button" role="option" aria-selected="true">
-        <span class="icon icon--compass" aria-hidden="true"></span>
-        <span class="dropdown-menu__label">Menu Label</span>
-        <span class="icon icon--tick dropdown-menu__tick" aria-hidden="true"></span>
-      </button>
-    </li>
-    <li class="dropdown-menu__separator" role="separator"></li>
+  <div class="dropdown-menu__list" role="listbox" aria-label="Dropdown Title">
+    <div class="dropdown-menu__group" role="presentation">First Menus</div>
+    <button class="dropdown-menu__item" type="button" role="option" aria-selected="true">
+      <span class="icon icon--compass" aria-hidden="true"></span>
+      Menu Label
+      <span class="icon icon--tick dropdown-menu__tick" aria-hidden="true"></span>
+    </button>
+    <div class="dropdown-menu__separator" role="separator"></div>
     …
-  </ul>
+  </div>
 </div>
 ```
+
+- **Items sit straight in the list**; the label is plain text (the tick is pushed to the end with `margin-left: auto`).
+- **Pick one** (listbox): `div` list, `button[role=option]` items. **A list of links** (e.g. the Edition menu): `ul > li > a.dropdown-menu__item` — a real list, so `li` stays.
 
 | | File |
 |---|---|

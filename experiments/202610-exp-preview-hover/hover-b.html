@@ -134,6 +134,7 @@
       }
     </style>
     <script src="../../scripts/scaffolding/experiments-home.js" defer></script>
+    <script src="../../scripts/modules/scroll-row.js" defer></script>
 </head>
   <body>
 
@@ -157,22 +158,20 @@
       <!-- gamma — Article Card - Banner (Figma 8138:233166) -->
       <section class="exp-gamma">
         <article class="article-card-banner">
-          <div class="article-card-banner__story">
-            <div class="article-card-banner__panel">
-              <!-- LG-only experiment: one artwork (the banner title is part of the image) -->
-              <picture class="article-card-banner__media">
-                <img src="images/00-tiger-maul-victim.jpg" alt="Tiger maul victim" />
-              </picture>
-              <div class="article-card-banner__content">
-                <h2 class="article-card-banner__headline">
-                  <a class="article-card-banner__link" href="#article">Pictured: Man mauled to death by tiger at Yorkshire zoo as video shows him walking up to the cat</a>
-                </h2>
-                <div class="article-card-banner__metadata article-card-metadata">
-                  <a class="article-card-metadata__comments" href="#comments" aria-label="2.1k comments">
-                    <span class="icon icon--speechbubble-ellipsis article-card-metadata__comments-icon" aria-hidden="true"></span>
-                    <span class="article-card-metadata__comments-count">2.1k comments</span>
-                  </a>
-                </div>
+          <div class="article-card-banner__panel">
+            <!-- LG-only experiment: one artwork (the banner title is part of the image) -->
+            <picture class="article-card-banner__media">
+              <img src="images/00-tiger-maul-victim.jpg" alt="Tiger maul victim" />
+            </picture>
+            <div class="article-card-banner__content">
+              <h2 class="article-card-banner__headline">
+                <a class="article-card-banner__link" href="#article">Pictured: Man mauled to death by tiger at Yorkshire zoo as video shows him walking up to the cat</a>
+              </h2>
+              <div class="article-card-banner__metadata article-card-metadata">
+                <a class="article-card-metadata__comments" href="#comments" aria-label="2.1k comments">
+                  <span class="icon icon--speechbubble-ellipsis article-card-metadata__comments-icon" aria-hidden="true"></span>
+                  2.1k comments
+                </a>
               </div>
             </div>
           </div>
@@ -190,8 +189,8 @@
               <h2 class="h2 article-headline"><a class="article-card__link" href="#article">David Hasselhoff, 73, cuts frail figure as Baywatch icon leans on wife in first public sighting in months after surgeries</a></h2>
               <p class="article-card__preview">David Hasselhoff looked frail when he was spotted for the first time in months on Monday as he enjoyed a hike in nature with his wife, Hayley Roberts, at his side. But the 73-year-old Baywatch icon - who was outfitted with two trekking poles to handle the uneven terrain out in Calabasas, California - is actually on the upswing after undergoing both knee- and hip-replacement surgery, the Daily Mail has learned. A representative for Hasselhoff revealed that he had undergone the medical procedures, after he was previously seen requiring a wheelchair to get around at Los Angeles's LAX airport.</p>
               <div class="article-card__metadata article-card-metadata">
-                <div class="article-card-metadata__info"><a class="article-card-metadata__channel" href="#channel"><span class="article-card-metadata__channel-text">Showbiz</span></a></div>
-                <a class="article-card-metadata__comments" href="#comments" aria-label="357 comments"><span class="icon icon--speechbubble-ellipsis article-card-metadata__comments-icon" aria-hidden="true"></span><span class="article-card-metadata__comments-count">357</span></a>
+                <a class="article-card-metadata__channel" href="#channel"><span class="article-card-metadata__channel-text">Showbiz</span></a>
+                <a class="article-card-metadata__comments" href="#comments" aria-label="357 comments"><span class="icon icon--speechbubble-ellipsis article-card-metadata__comments-icon" aria-hidden="true"></span>357</a>
               </div>
             </div>
           </article>
@@ -200,11 +199,11 @@
           <article class="article-card article-card--xl-horizontal">
             <div class="article-card__media"><img src="images/02-machete-gang.jpg" alt="" /><span class="article-card__video" aria-hidden="true"><span class="video-play"><span class="icon icon--media-play" aria-hidden="true"></span></span></span></div>
             <div class="article-card__body">
-              <h3 class="h3 article-headline"><a class="article-card__link" href="#article"><span class="badge badge--md article-headline__badge"><span class="badge__mplus"><img src="../../assets/images/mail-plus-lozenge.svg" alt="M+" /></span></span>Chilling moment two innocent teenagers are 'hunted down' by machete-wielding gang in mistaken identity 'revenge' murder is shown in court</a></h3>
+              <h3 class="h3 article-headline"><a class="article-card__link" href="#article"><span class="badge badge--md article-headline__badge"><img class="badge__mplus" src="../../assets/images/mail-plus-lozenge.svg" alt="M+" /></span>Chilling moment two innocent teenagers are 'hunted down' by machete-wielding gang in mistaken identity 'revenge' murder is shown in court</a></h3>
               <p class="article-card__preview">CCTV footage captured the horrific 33-second attack on Mason Rist, 15, and his close friend Max Dixon, 16, aaa</p>
               <div class="article-card__metadata article-card-metadata">
-                <div class="article-card-metadata__info"><a class="article-card-metadata__channel" href="#channel"><span class="article-card-metadata__channel-text">News</span></a></div>
-                <a class="article-card-metadata__comments" href="#comments" aria-label="529 comments"><span class="icon icon--speechbubble-ellipsis article-card-metadata__comments-icon" aria-hidden="true"></span><span class="article-card-metadata__comments-count">529</span></a>
+                <a class="article-card-metadata__channel" href="#channel"><span class="article-card-metadata__channel-text">News</span></a>
+                <a class="article-card-metadata__comments" href="#comments" aria-label="529 comments"><span class="icon icon--speechbubble-ellipsis article-card-metadata__comments-icon" aria-hidden="true"></span>529</a>
               </div>
             </div>
           </article>
@@ -214,17 +213,14 @@
             <div class="article-card__media">
               <img src="images/03-migration-deep-dive.jpg" alt="" />
               <div class="article-card__overlay">
-                <div class="article-card__scrim"></div>
-                <div class="article-card__overlay-content">
-                  <h3 class="h3 article-headline"><a class="article-card__link" href="#article">Think you understand Britain's migration crisis? You've never seen it like this. DEEP DIVE</a></h3>
-                  <span class="btn btn-quaternary-dark btn--xs article-card__read-more" aria-hidden="true"><span class="btn__content"><span class="btn__label">Read more</span><span class="icon icon--arrow-right-light" aria-hidden="true"></span></span></span>
-                </div>
+                <h3 class="h3 article-headline"><a class="article-card__link" href="#article">Think you understand Britain's migration crisis? You've never seen it like this. DEEP DIVE</a></h3>
+                <span class="btn btn-quaternary-dark btn--xs article-card__read-more" aria-hidden="true">Read more<span class="icon icon--arrow-right-light" aria-hidden="true"></span></span>
               </div>
               <div class="article-card__signpost"></div>
             </div>
             <div class="article-card__metadata article-card-metadata">
-              <div class="article-card-metadata__info"><a class="article-card-metadata__channel" href="#channel"><span class="article-card-metadata__channel-text">Deep Dive</span></a></div>
-              <a class="article-card-metadata__comments" href="#comments" aria-label="785 comments"><span class="icon icon--speechbubble-ellipsis article-card-metadata__comments-icon" aria-hidden="true"></span><span class="article-card-metadata__comments-count">785</span></a>
+              <a class="article-card-metadata__channel" href="#channel"><span class="article-card-metadata__channel-text">Deep Dive</span></a>
+              <a class="article-card-metadata__comments" href="#comments" aria-label="785 comments"><span class="icon icon--speechbubble-ellipsis article-card-metadata__comments-icon" aria-hidden="true"></span>785</a>
             </div>
           </article>
 
@@ -232,9 +228,7 @@
                "2026" digits: Figma #0063de / #fc2d2d have no token — nearest
                home-blue-base / showbiz-red-base -->
           <header class="section-header">
-            <div class="section-header__row">
-              <h2 class="section-header__title"><span class="section-header__link"><span class="section-header__label"><span class="section-header__icon" aria-hidden="true"><img src="images/ico-midterm2026.svg" alt="" /></span><span class="section-header__text">Midterms <span style="color: var(--color-text-home-blue-base)">2</span><span style="color: var(--color-text-showbiz-red-base)">0</span><span style="color: var(--color-text-home-blue-base)">2</span><span style="color: var(--color-text-showbiz-red-base)">6</span></span></span></span></h2>
-            </div>
+            <h2 class="section-header__title"><img class="section-header__icon" src="images/ico-midterm2026.svg" alt="" /><span class="section-header__text">Midterms <span style="color: var(--color-text-home-blue-base)">2</span><span style="color: var(--color-text-showbiz-red-base)">0</span><span style="color: var(--color-text-home-blue-base)">2</span><span style="color: var(--color-text-showbiz-red-base)">6</span></span></h2>
             <nav class="section-header-tabs" aria-label="Midterms 2026 topics">
               <button type="button" class="section-header-tabs__edge section-header-tabs__edge--prev" aria-label="Scroll left" tabindex="-1"><span class="icon icon--chevron-left" aria-hidden="true"></span></button>
               <ul class="section-header-tabs__list">
@@ -256,11 +250,11 @@
             <div class="exp-column">
               <!-- MD (Vertical Media) · Exclusive -->
               <article class="article-card article-card--md-vertical">
-                <h2 class="h2 article-headline"><a class="article-card__link" href="#article"><span class="badge badge--lg badge--highlight article-headline__badge"><span class="badge__label"><span class="badge__text">Exclusive</span></span></span>Beat the Burnham Budget! SIMON LAMBERT reveals how to protect your money</a></h2>
-                <div class="article-card__media"><img src="images/04-burnham-budget.jpg" alt="" /><span class="article-card__video" aria-hidden="true"><span class="video-play"><span class="icon icon--media-play" aria-hidden="true"></span></span><span class="video-timer">29:59</span></span></div>
+                <h2 class="h2 article-headline"><a class="article-card__link" href="#article"><span class="badge badge--lg badge--highlight article-headline__badge"><span class="badge__label">Exclusive</span></span>Beat the Burnham Budget! SIMON LAMBERT reveals how to protect your money</a></h2>
+                <div class="article-card__media"><img src="images/04-burnham-budget.jpg" alt="" /><span class="article-card__video" aria-hidden="true"><span class="video-play"><span class="icon icon--media-play" aria-hidden="true"></span></span></span></div>
                 <div class="article-card__metadata article-card-metadata">
-                  <div class="article-card-metadata__info"><a class="article-card-metadata__channel" href="#channel"><span class="article-card-metadata__channel-text">Money</span></a></div>
-                  <a class="article-card-metadata__comments" href="#comments" aria-label="892 comments"><span class="icon icon--speechbubble-ellipsis article-card-metadata__comments-icon" aria-hidden="true"></span><span class="article-card-metadata__comments-count">892</span></a>
+                  <a class="article-card-metadata__channel" href="#channel"><span class="article-card-metadata__channel-text">Money</span></a>
+                  <a class="article-card-metadata__comments" href="#comments" aria-label="892 comments"><span class="icon icon--speechbubble-ellipsis article-card-metadata__comments-icon" aria-hidden="true"></span>892</a>
                 </div>
               </article>
 
@@ -268,7 +262,7 @@
               <article class="article-card article-card--md article-card--no-keyline">
                 <div class="article-card__media"><img src="images/05-russell-brand-live.jpg" alt="" /></div>
                 <div class="article-card__body">
-                  <h4 class="h4 article-headline"><a class="article-card__link" href="#article"><span class="badge badge--md badge--highlight article-headline__badge"><span class="badge__label"><span class="badge__live-indicator" aria-hidden="true"><span class="badge__live-dot"></span></span><span class="badge__text">Live</span></span></span>Russell Brand trial live: Court is shown photos of star's home where woman claims he raped her before ordering her to 'clear up the mess you've made'</a></h4>
+                  <h4 class="h4 article-headline"><a class="article-card__link" href="#article"><span class="badge badge--md badge--highlight article-headline__badge"><span class="badge__label"><span class="badge__live" aria-hidden="true"></span>Live</span></span>Russell Brand trial live: Court is shown photos of star's home where woman claims he raped her before ordering her to 'clear up the mess you've made'</a></h4>
                   <div class="article-card-key-updates">
                     <p class="article-card-key-updates__title">Key updates</p>
                     <ul class="article-card-key-updates__list">
@@ -277,8 +271,8 @@
                     </ul>
                   </div>
                   <div class="article-card__metadata article-card-metadata">
-                    <div class="article-card-metadata__info"><a class="article-card-metadata__channel" href="#channel"><span class="article-card-metadata__channel-text">Crime Desk</span></a></div>
-                    <a class="article-card-metadata__comments" href="#comments" aria-label="1.7k comments"><span class="icon icon--speechbubble-ellipsis article-card-metadata__comments-icon" aria-hidden="true"></span><span class="article-card-metadata__comments-count">1.7k</span></a>
+                    <a class="article-card-metadata__channel" href="#channel"><span class="article-card-metadata__channel-text">Crime Desk</span></a>
+                    <a class="article-card-metadata__comments" href="#comments" aria-label="1.7k comments"><span class="icon icon--speechbubble-ellipsis article-card-metadata__comments-icon" aria-hidden="true"></span>1.7k</a>
                   </div>
                 </div>
               </article>
@@ -290,17 +284,14 @@
                 <div class="article-card__media">
                   <img src="images/06-meghan-photos.jpg" alt="" />
                   <div class="article-card__overlay">
-                    <div class="article-card__scrim"></div>
-                    <div class="article-card__overlay-content">
-                      <h4 class="h4 article-headline"><a class="article-card__link" href="#article">Hidden details in Meghan's photos showing her new life in the country - including £2,000 Oura ring</a></h4>
-                      <span class="btn btn-quaternary-dark btn--xs article-card__read-more" aria-hidden="true"><span class="btn__content"><span class="btn__label">Read more</span><span class="icon icon--arrow-right-light" aria-hidden="true"></span></span></span>
-                    </div>
+                    <h4 class="h4 article-headline"><a class="article-card__link" href="#article">Hidden details in Meghan's photos showing her new life in the country - including £2,000 Oura ring</a></h4>
+                    <span class="btn btn-quaternary-dark btn--xs article-card__read-more" aria-hidden="true">Read more<span class="icon icon--arrow-right-light" aria-hidden="true"></span></span>
                   </div>
-                  <div class="article-card__signpost"><span class="badge badge--lg article-headline__badge"><span class="badge__mplus"><img src="../../assets/images/mail-plus-lozenge.svg" alt="M+" /></span></span></div>
+                  <div class="article-card__signpost"><span class="badge badge--lg article-headline__badge"><img class="badge__mplus" src="../../assets/images/mail-plus-lozenge.svg" alt="M+" /></span></div>
                 </div>
                 <div class="article-card__metadata article-card-metadata">
-                  <div class="article-card-metadata__info"><a class="article-card-metadata__channel" href="#channel"><span class="article-card-metadata__channel-text">Royals</span></a></div>
-                  <a class="article-card-metadata__comments" href="#comments" aria-label="913 comments"><span class="icon icon--speechbubble-ellipsis article-card-metadata__comments-icon" aria-hidden="true"></span><span class="article-card-metadata__comments-count">913</span></a>
+                  <a class="article-card-metadata__channel" href="#channel"><span class="article-card-metadata__channel-text">Royals</span></a>
+                  <a class="article-card-metadata__comments" href="#comments" aria-label="913 comments"><span class="icon icon--speechbubble-ellipsis article-card-metadata__comments-icon" aria-hidden="true"></span>913</a>
                 </div>
               </article>
 
@@ -310,8 +301,8 @@
                 <div class="article-card__body">
                   <h5 class="h5 article-headline"><a class="article-card__link" href="#article">Bad omen for England? Argentina request to wear their 'LUCKY' blue kit for World Cup semi-final</a></h5>
                   <div class="article-card__metadata article-card-metadata">
-                    <div class="article-card-metadata__info"><a class="article-card-metadata__channel" href="#channel"><span class="article-card-metadata__channel-text">Sport</span></a></div>
-                    <a class="article-card-metadata__comments" href="#comments" aria-label="5 comments"><span class="icon icon--speechbubble-ellipsis article-card-metadata__comments-icon" aria-hidden="true"></span><span class="article-card-metadata__comments-count">5</span></a>
+                    <a class="article-card-metadata__channel" href="#channel"><span class="article-card-metadata__channel-text">Sport</span></a>
+                    <a class="article-card-metadata__comments" href="#comments" aria-label="5 comments"><span class="icon icon--speechbubble-ellipsis article-card-metadata__comments-icon" aria-hidden="true"></span>5</a>
                   </div>
                 </div>
               </article>
@@ -319,9 +310,9 @@
               <article class="article-card article-card--sm-left">
                 <div class="article-card__media"><img src="images/08-russell-brand-court.jpg" alt="" /><span class="article-card__video" aria-hidden="true"><span class="video-play"><span class="icon icon--media-play" aria-hidden="true"></span></span></span></div>
                 <div class="article-card__body">
-                  <h5 class="h5 article-headline"><a class="article-card__link" href="#article"><span class="badge badge--sm article-headline__badge"><span class="badge__mplus"><img src="../../assets/images/mail-plus-lozenge.svg" alt="M+" /></span></span>Russell Brand is a ruthless 'sexual predator' who raped victims while pursuing a 'goal', court hears</a></h5>
+                  <h5 class="h5 article-headline"><a class="article-card__link" href="#article"><span class="badge badge--sm article-headline__badge"><img class="badge__mplus" src="../../assets/images/mail-plus-lozenge.svg" alt="M+" /></span>Russell Brand is a ruthless 'sexual predator' who raped victims while pursuing a 'goal', court hears</a></h5>
                   <div class="article-card__metadata article-card-metadata">
-                    <div class="article-card-metadata__info"><a class="article-card-metadata__channel" href="#channel"><span class="article-card-metadata__channel-text">News</span></a></div>
+                    <a class="article-card-metadata__channel" href="#channel"><span class="article-card-metadata__channel-text">News</span></a>
                   </div>
                 </div>
               </article>
@@ -331,8 +322,8 @@
                 <div class="article-card__body">
                   <h5 class="h5 article-headline"><a class="article-card__link" href="#article">Billie Piper exudes glamour in a kooky furry strapless dress at Variety London Film Festival dinner</a></h5>
                   <div class="article-card__metadata article-card-metadata">
-                    <div class="article-card-metadata__info"><a class="article-card-metadata__channel" href="#channel"><span class="article-card-metadata__channel-text">Showbiz</span></a></div>
-                    <a class="article-card-metadata__comments" href="#comments" aria-label="Comment"><span class="icon icon--speechbubble-ellipsis article-card-metadata__comments-icon" aria-hidden="true"></span><span class="article-card-metadata__comments-count">Comment</span></a>
+                    <a class="article-card-metadata__channel" href="#channel"><span class="article-card-metadata__channel-text">Showbiz</span></a>
+                    <a class="article-card-metadata__comments" href="#comments" aria-label="Comment"><span class="icon icon--speechbubble-ellipsis article-card-metadata__comments-icon" aria-hidden="true"></span>Comment</a>
                   </div>
                 </div>
               </article>
@@ -340,7 +331,7 @@
               <!-- Columnist (normal) — SM Left Thumb with Columnist metadata: no thumbnail -->
               <article class="article-card article-card--sm-left article-card--no-keyline">
                 <div class="article-card__body">
-                  <h5 class="h5 article-headline"><a class="article-card__link" href="#article"><span class="badge badge--sm badge--highlight article-headline__badge"><span class="badge__mplus"><img src="../../assets/images/mail-plus-lozenge.svg" alt="M+" /></span><span class="badge__label"><span class="badge__text">Opinion</span></span></span>AMANDA PLATELL: Sydney Sweeney is under attack again. This is the point that the jealous, snobby sisterhood is missing - and why THEY are the ones being misogynistic</a></h5>
+                  <h5 class="h5 article-headline"><a class="article-card__link" href="#article"><span class="badge badge--sm badge--highlight article-headline__badge"><img class="badge__mplus" src="../../assets/images/mail-plus-lozenge.svg" alt="M+" /><span class="badge__label">Opinion</span></span>AMANDA PLATELL: Sydney Sweeney is under attack again. This is the point that the jealous, snobby sisterhood is missing - and why THEY are the ones being misogynistic</a></h5>
                   <div class="article-card__metadata article-card-metadata article-card-metadata--columnist">
                     <div class="article-card-metadata__columnist">
                       <div class="article-card-metadata__byline">
@@ -348,7 +339,7 @@
                           <a class="article-card-metadata__author-name" href="#author">Amanda Platell</a>
                           <span class="article-card-metadata__author-role">Daily Mail Columnist</span>
                         </div>
-                        <a class="article-card-metadata__comments" href="#comments" aria-label="7 comments"><span class="icon icon--speechbubble-ellipsis article-card-metadata__comments-icon" aria-hidden="true"></span><span class="article-card-metadata__comments-count">7</span></a>
+                        <a class="article-card-metadata__comments" href="#comments" aria-label="7 comments"><span class="icon icon--speechbubble-ellipsis article-card-metadata__comments-icon" aria-hidden="true"></span>7</a>
                       </div>
                       <a class="columnist-photo columnist-photo--lg" href="#author" tabindex="-1" aria-hidden="true"><img class="columnist-photo__img" src="images/17-amanda-platell.png" alt="Amanda Platell" /></a>
                     </div>
@@ -365,7 +356,7 @@
           <header class="section-header-branded">
             <a class="section-header-branded__banner" href="#showbiz" aria-label="This is Showbiz">
               <img class="section-header-branded__bg" src="images/23-showbiz-branded-bg.jpg" alt="" />
-              <span class="section-header-branded__slot"><img src="images/this-is-showbiz.svg" alt="" width="168" height="21" /></span>
+              <img class="section-header-branded__logo" src="images/this-is-showbiz.svg" alt="" width="168" height="21" />
               <span class="section-header-branded__arrow btn btn-tertiary-dark btn--sm btn--icon-only" aria-hidden="true"><span class="icon icon--arrow-right-light" aria-hidden="true"></span></span>
             </a>
           </header>
@@ -378,13 +369,10 @@
               <div class="article-card__media">
                 <img src="images/18-kelly-clarkson.jpg" alt="" />
                 <div class="article-card__overlay">
-                  <div class="article-card__scrim"></div>
-                  <div class="article-card__overlay-content">
-                    <h4 class="h4 article-headline"><a class="article-card__link" href="#article">Leaked security footage casts new light on Kelly Clarkson's furious feud with Brooklyn store</a></h4>
-                    <span class="btn btn-quaternary-dark btn--xs article-card__read-more" aria-hidden="true"><span class="btn__content"><span class="btn__label">Read more</span><span class="icon icon--arrow-right-light" aria-hidden="true"></span></span></span>
-                  </div>
+                  <h4 class="h4 article-headline"><a class="article-card__link" href="#article">Leaked security footage casts new light on Kelly Clarkson's furious feud with Brooklyn store</a></h4>
+                  <span class="btn btn-quaternary-dark btn--xs article-card__read-more" aria-hidden="true">Read more<span class="icon icon--arrow-right-light" aria-hidden="true"></span></span>
                 </div>
-                <div class="article-card__signpost"><span class="badge badge--lg article-headline__badge"><span class="badge__mplus"><img src="../../assets/images/mail-plus-lozenge.svg" alt="M+" /></span></span></div>
+                <div class="article-card__signpost"><span class="badge badge--lg article-headline__badge"><img class="badge__mplus" src="../../assets/images/mail-plus-lozenge.svg" alt="M+" /></span></div>
               </div>
             </article>
 
@@ -398,14 +386,14 @@
             <article class="article-card article-card--sm-right">
               <div class="article-card__media"><img src="images/20-stacey-solomon.jpg" alt="" /></div>
               <div class="article-card__body">
-                <h6 class="h6 article-headline"><a class="article-card__link" href="#article"><span class="badge badge--xs badge--highlight article-headline__badge"><span class="badge__mplus"><img src="../../assets/images/mail-plus-lozenge.svg" alt="M+" /></span><span class="badge__label"><span class="badge__text">Exclusive</span></span></span>Glum Stacey Solomon ditches wedding ring as it emerges she's NOT legally married to Joe Swash</a></h6>
+                <h6 class="h6 article-headline"><a class="article-card__link" href="#article"><span class="badge badge--xs badge--highlight article-headline__badge"><img class="badge__mplus" src="../../assets/images/mail-plus-lozenge.svg" alt="M+" /><span class="badge__label">Exclusive</span></span>Glum Stacey Solomon ditches wedding ring as it emerges she's NOT legally married to Joe Swash</a></h6>
               </div>
             </article>
 
             <article class="article-card article-card--sm-right">
               <div class="article-card__media"><img src="images/21-doja-cat.jpg" alt="" /><span class="article-card__video" aria-hidden="true"><span class="video-play"><span class="icon icon--media-play" aria-hidden="true"></span></span></span></div>
               <div class="article-card__body">
-                <h6 class="h6 article-headline"><a class="article-card__link" href="#article"><span class="badge badge--xs article-headline__badge"><span class="badge__mplus"><img src="../../assets/images/mail-plus-lozenge.svg" alt="M+" /></span></span>Doja Cat BEGS fans to ignore her plastic surgery disaster</a></h6>
+                <h6 class="h6 article-headline"><a class="article-card__link" href="#article"><span class="badge badge--xs article-headline__badge"><img class="badge__mplus" src="../../assets/images/mail-plus-lozenge.svg" alt="M+" /></span>Doja Cat BEGS fans to ignore her plastic surgery disaster</a></h6>
               </div>
             </article>
 
@@ -414,7 +402,7 @@
               <div class="article-card__body">
                 <h6 class="h6 article-headline"><a class="article-card__link" href="#article">Thousands with eczema swear by this honey salve to quickly relieve dryness and itchiness - and it's 10% off</a></h6>
                 <div class="article-card__metadata article-card-metadata">
-                  <div class="article-card-metadata__info"><span class="article-card-metadata__label">Ad Feature</span></div>
+                  <span class="article-card-metadata__label">Ad Feature</span>
                 </div>
               </div>
             </article>
@@ -423,9 +411,7 @@
 
           <!-- Section Header · SM: More Showbiz (Figma 8218:238038) -->
           <header class="section-header section-header--sm">
-            <div class="section-header__row">
-              <h2 class="section-header__title"><a class="section-header__link" href="#showbiz"><span class="section-header__label"><span class="section-header__icon" aria-hidden="true"><img src="../../assets/icons/ico-ch-uk-showbiz-color.svg" alt="" /></span><span class="section-header__text">More Showbiz<span class="section-header__arrow btn btn-quaternary-neutral btn--icon-only" aria-hidden="true"><span class="icon icon--arrow-right-light" aria-hidden="true"></span></span></span></span></a></h2>
-            </div>
+            <h2 class="section-header__title"><a class="section-header__link" href="#showbiz"><img class="section-header__icon" src="../../assets/icons/ico-ch-uk-showbiz-color.svg" alt="" /><span class="section-header__text">More Showbiz<span class="section-header__arrow btn btn-quaternary-neutral btn--icon-only" aria-hidden="true"><span class="icon icon--arrow-right-light" aria-hidden="true"></span></span></span></a></h2>
           </header>
 
           <!-- MD · no metadata -->
@@ -454,14 +440,14 @@
           <article class="article-card article-card--sm-right">
             <div class="article-card__media"><img src="images/14-alice-vanderpump.jpg" alt="" /><span class="article-card__video" aria-hidden="true"><span class="video-play"><span class="icon icon--media-play" aria-hidden="true"></span></span></span></div>
             <div class="article-card__body">
-              <h6 class="h6 article-headline"><a class="article-card__link" href="#article"><span class="badge badge--xs badge--highlight article-headline__badge"><span class="badge__mplus"><img src="../../assets/images/mail-plus-lozenge.svg" alt="M+" /></span><span class="badge__label"><span class="badge__text">Exclusive</span></span></span>Scandalous pictures raise questions about THAT shot of Alice Vanderpump with reality star</a></h6>
+              <h6 class="h6 article-headline"><a class="article-card__link" href="#article"><span class="badge badge--xs badge--highlight article-headline__badge"><img class="badge__mplus" src="../../assets/images/mail-plus-lozenge.svg" alt="M+" /><span class="badge__label">Exclusive</span></span>Scandalous pictures raise questions about THAT shot of Alice Vanderpump with reality star</a></h6>
             </div>
           </article>
 
           <article class="article-card article-card--sm-right">
             <div class="article-card__media"><img src="images/15-meghan-wardrobe.jpg" alt="" /></div>
             <div class="article-card__body">
-              <h6 class="h6 article-headline"><a class="article-card__link" href="#article"><span class="badge badge--xs article-headline__badge"><span class="badge__mplus"><img src="../../assets/images/mail-plus-lozenge.svg" alt="M+" /></span></span>The 8 hidden meanings in Meghan's wardrobe for her quasi-royal tour - including subtle nods to Harry</a></h6>
+              <h6 class="h6 article-headline"><a class="article-card__link" href="#article"><span class="badge badge--xs article-headline__badge"><img class="badge__mplus" src="../../assets/images/mail-plus-lozenge.svg" alt="M+" /></span>The 8 hidden meanings in Meghan's wardrobe for her quasi-royal tour - including subtle nods to Harry</a></h6>
             </div>
           </article>
 
@@ -470,7 +456,7 @@
             <div class="article-card__body">
               <h6 class="h6 article-headline"><a class="article-card__link" href="#article">The brand behind the self-tan that sells every 20 seconds drops glow-boosting SPF - as fans praise how it 'evens skin tone'</a></h6>
               <div class="article-card__metadata article-card-metadata">
-                <div class="article-card-metadata__info"><span class="article-card-metadata__label">Ad Feature</span></div>
+                <span class="article-card-metadata__label">Ad Feature</span>
               </div>
             </div>
           </article>
@@ -478,26 +464,6 @@
       </div>
     </main>
 
-    <script>
-      // Section Header sub-items — edge buttons scroll the row; .is-scroll-start /
-      // .is-scroll-end hide the edge on a side that cannot scroll (same as
-      // modules/section-header/)
-      document.querySelectorAll('.section-header-tabs').forEach((tabs) => {
-        const list = tabs.querySelector('.section-header-tabs__list');
-        const update = () => {
-          tabs.classList.toggle('is-scroll-start', list.scrollLeft <= 1);
-          tabs.classList.toggle('is-scroll-end', list.scrollLeft + list.clientWidth >= list.scrollWidth - 1);
-        };
-        tabs.querySelectorAll('.section-header-tabs__edge').forEach((edge) => {
-          const dir = edge.classList.contains('section-header-tabs__edge--prev') ? -1 : 1;
-          edge.addEventListener('click', () => list.scrollBy({ left: dir * list.clientWidth * 0.8 }));
-        });
-        list.addEventListener('scroll', update, { passive: true });
-        new ResizeObserver(update).observe(list);
-        document.fonts.ready.then(update); // label widths change once the web font is in
-        update();
-      });
-    </script>
     <script>
       // Experiment scaffolding — fixed LG preview.
       // The card CSS reacts to the viewport, so the page renders itself in a

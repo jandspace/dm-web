@@ -325,7 +325,7 @@
   display: flex;
 }
 
-// Wraps the real Modal box (.modal__content — components/modal); tag above it
+// Wraps the real Modal box (div.modal — components/modal); tag above it
 .demo-scale__scene-modal {
   position: relative;
   width: 360px;
@@ -335,6 +335,13 @@
   > .demo-scale__tag {
     top: calc(-1 * var(--spacing-24));
     left: 0;
+  }
+
+  .modal {
+    --modal-gap: 0px;
+
+    position: relative;
+    margin: 0;
   }
 
   .modal__body p {

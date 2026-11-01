@@ -21,8 +21,8 @@
 
     <!-- Structure:
            .article-card-metadata
-             .article-card-metadata__info      — channel link · time · ad label · affiliate link (one or two, or empty)
-             .article-card-metadata__comments  — speech-bubble icon + count, links to comments
+             channel link · time · ad label · affiliate link — one or two, or none (straight in the row)
+             .article-card-metadata__comments  — speech-bubble icon + count, links to comments (pushed right)
            CTA type: .article-card-metadata--cta holding a .btn.btn-brand.btn--xs -->
     <div class="demo-grid demo-grid--metadata">
       <div class="demo-group-header"><span class="demo-group-title">Standard</span></div>
@@ -32,9 +32,9 @@
       <div class="demo-cell">
         <div class="demo-metadata-sample demo-metadata-sample--358">
         <div class="article-card-metadata">
-          <div class="article-card-metadata__info"><a class="article-card-metadata__channel" href="#channel"><span class="article-card-metadata__channel-text">Channel</span></a></div>
+          <a class="article-card-metadata__channel" href="#channel"><span class="article-card-metadata__channel-text">Channel</span></a>
           <a class="article-card-metadata__comments" href="#comments" aria-label="9.9k comments"
-            ><span class="icon icon--speechbubble-ellipsis article-card-metadata__comments-icon" aria-hidden="true"></span><span class="article-card-metadata__comments-count">9.9k</span></a
+            ><span class="icon icon--speechbubble-ellipsis article-card-metadata__comments-icon" aria-hidden="true"></span>9.9k</a
           >
         </div>
         </div>
@@ -45,9 +45,9 @@
       <div class="demo-cell">
         <div class="demo-metadata-sample demo-metadata-sample--358">
         <div class="article-card-metadata">
-          <div class="article-card-metadata__info"><time class="article-card-metadata__time" datetime="2026-10-20T11:30">30m ago</time></div>
+          <time class="article-card-metadata__time" datetime="2026-10-20T11:30">30m ago</time>
           <a class="article-card-metadata__comments" href="#comments" aria-label="9.9k comments"
-            ><span class="icon icon--speechbubble-ellipsis article-card-metadata__comments-icon" aria-hidden="true"></span><span class="article-card-metadata__comments-count">9.9k</span></a
+            ><span class="icon icon--speechbubble-ellipsis article-card-metadata__comments-icon" aria-hidden="true"></span>9.9k</a
           >
         </div>
         </div>
@@ -58,9 +58,9 @@
       <div class="demo-cell">
         <div class="demo-metadata-sample demo-metadata-sample--358">
         <div class="article-card-metadata">
-          <div class="article-card-metadata__info"><a class="article-card-metadata__channel" href="#channel"><span class="article-card-metadata__channel-text">Channel</span></a><time class="article-card-metadata__time" datetime="2026-10-20T11:30">30m ago</time></div>
+          <a class="article-card-metadata__channel" href="#channel"><span class="article-card-metadata__channel-text">Channel</span></a><time class="article-card-metadata__time" datetime="2026-10-20T11:30">30m ago</time>
           <a class="article-card-metadata__comments" href="#comments" aria-label="9.9k comments"
-            ><span class="icon icon--speechbubble-ellipsis article-card-metadata__comments-icon" aria-hidden="true"></span><span class="article-card-metadata__comments-count">9.9k</span></a
+            ><span class="icon icon--speechbubble-ellipsis article-card-metadata__comments-icon" aria-hidden="true"></span>9.9k</a
           >
         </div>
         </div>
@@ -71,9 +71,8 @@
       <div class="demo-cell">
         <div class="demo-metadata-sample demo-metadata-sample--358">
         <div class="article-card-metadata">
-          <div class="article-card-metadata__info"></div>
           <a class="article-card-metadata__comments" href="#comments" aria-label="9.9k comments"
-            ><span class="icon icon--speechbubble-ellipsis article-card-metadata__comments-icon" aria-hidden="true"></span><span class="article-card-metadata__comments-count">9.9k</span></a
+            ><span class="icon icon--speechbubble-ellipsis article-card-metadata__comments-icon" aria-hidden="true"></span>9.9k</a
           >
         </div>
         </div>
@@ -84,9 +83,9 @@
       <div class="demo-cell">
         <div class="demo-metadata-sample demo-metadata-sample--358">
         <div class="article-card-metadata">
-          <div class="article-card-metadata__info"><span class="article-card-metadata__label">Ad Feature</span></div>
+          <span class="article-card-metadata__label">Ad Feature</span>
           <a class="article-card-metadata__comments" href="#comments" aria-label="9.9k comments"
-            ><span class="icon icon--speechbubble-ellipsis article-card-metadata__comments-icon" aria-hidden="true"></span><span class="article-card-metadata__comments-count">9.9k</span></a
+            ><span class="icon icon--speechbubble-ellipsis article-card-metadata__comments-icon" aria-hidden="true"></span>9.9k</a
           >
         </div>
         </div>
@@ -97,9 +96,9 @@
       <div class="demo-cell">
         <div class="demo-metadata-sample demo-metadata-sample--358">
         <div class="article-card-metadata">
-          <div class="article-card-metadata__info"><span class="article-card-metadata__label">Sponsored</span></div>
+          <span class="article-card-metadata__label">Sponsored</span>
           <a class="article-card-metadata__comments" href="#comments" aria-label="9.9k comments"
-            ><span class="icon icon--speechbubble-ellipsis article-card-metadata__comments-icon" aria-hidden="true"></span><span class="article-card-metadata__comments-count">9.9k</span></a
+            ><span class="icon icon--speechbubble-ellipsis article-card-metadata__comments-icon" aria-hidden="true"></span>9.9k</a
           >
         </div>
         </div>
@@ -110,9 +109,9 @@
       <div class="demo-cell">
         <div class="demo-metadata-sample demo-metadata-sample--358">
         <div class="article-card-metadata">
-          <div class="article-card-metadata__info"><a class="article-card-metadata__affiliate" href="#affiliate" rel="sponsored noopener" target="_blank"><span class="article-card-metadata__affiliate-text">Affiliate Content</span><span class="icon icon--square-arrow-up-right article-card-metadata__affiliate-icon" aria-hidden="true"></span></a></div>
+          <a class="article-card-metadata__affiliate" href="#affiliate" rel="sponsored noopener" target="_blank"><span class="article-card-metadata__affiliate-text">Affiliate Content</span><span class="icon icon--square-arrow-up-right article-card-metadata__affiliate-icon" aria-hidden="true"></span></a>
           <a class="article-card-metadata__comments" href="#comments" aria-label="9.9k comments"
-            ><span class="icon icon--speechbubble-ellipsis article-card-metadata__comments-icon" aria-hidden="true"></span><span class="article-card-metadata__comments-count">9.9k</span></a
+            ><span class="icon icon--speechbubble-ellipsis article-card-metadata__comments-icon" aria-hidden="true"></span>9.9k</a
           >
         </div>
         </div>
@@ -123,11 +122,7 @@
       <div class="demo-cell">
         <div class="demo-metadata-sample demo-metadata-sample--358">
         <div class="article-card-metadata article-card-metadata--cta">
-          <a class="btn btn-brand btn--xs" href="#cta"
-            ><span class="btn__content"
-              ><span class="icon icon--square-dashed" aria-hidden="true"></span><span class="btn__label">Button</span></span
-            ></a
-          >
+          <a class="btn btn-brand btn--xs" href="#cta"><span class="icon icon--square-dashed" aria-hidden="true"></span>Button</a>
         </div>
         </div>
       </div>
@@ -144,7 +139,7 @@
                 <span class="article-card-metadata__author-role">Daily Mail Columnist</span>
               </div>
               <a class="article-card-metadata__comments" href="#comments" aria-label="9.9k comments"
-            ><span class="icon icon--speechbubble-ellipsis article-card-metadata__comments-icon" aria-hidden="true"></span><span class="article-card-metadata__comments-count">9.9k</span></a
+            ><span class="icon icon--speechbubble-ellipsis article-card-metadata__comments-icon" aria-hidden="true"></span>9.9k</a
           >
             </div>
             <a class="columnist-photo columnist-photo--lg" href="#author" tabindex="-1" aria-hidden="true"
@@ -170,7 +165,7 @@
                 <span class="article-card-metadata__author-role">Daily Mail Columnist</span>
               </div>
               <a class="article-card-metadata__comments" href="#comments" aria-label="9.9k comments"
-            ><span class="icon icon--speechbubble-ellipsis article-card-metadata__comments-icon" aria-hidden="true"></span><span class="article-card-metadata__comments-count">9.9k</span></a
+            ><span class="icon icon--speechbubble-ellipsis article-card-metadata__comments-icon" aria-hidden="true"></span>9.9k</a
           >
             </div>
             <a class="columnist-photo columnist-photo--lg" href="#author" tabindex="-1" aria-hidden="true"
@@ -193,7 +188,7 @@
                 <span class="article-card-metadata__author-role">Daily Mail Columnist</span>
               </div>
               <a class="article-card-metadata__comments" href="#comments" aria-label="9.9k comments"
-            ><span class="icon icon--speechbubble-ellipsis article-card-metadata__comments-icon" aria-hidden="true"></span><span class="article-card-metadata__comments-count">9.9k</span></a
+            ><span class="icon icon--speechbubble-ellipsis article-card-metadata__comments-icon" aria-hidden="true"></span>9.9k</a
           >
             </div>
             <a class="columnist-photo columnist-photo--lg" href="#author" tabindex="-1" aria-hidden="true"
@@ -220,7 +215,7 @@
                 <span class="article-card-metadata__author-role">Daily Mail Columnist</span>
               </div>
               <a class="article-card-metadata__comments" href="#comments" aria-label="9.9k comments"
-            ><span class="icon icon--speechbubble-ellipsis article-card-metadata__comments-icon" aria-hidden="true"></span><span class="article-card-metadata__comments-count">9.9k</span></a
+            ><span class="icon icon--speechbubble-ellipsis article-card-metadata__comments-icon" aria-hidden="true"></span>9.9k</a
           >
             </div>
             <a class="columnist-photo columnist-photo--lg columnist-photo--live" href="#author" tabindex="-1" aria-hidden="true"
@@ -228,7 +223,7 @@
             /></a>
           </div>
           <a class="columnist-announcement columnist-announcement--live" href="#comments"
-            ><span class="columnist-announcement__text"><span class="badge badge--xs badge--highlight columnist-announcement__badge"><span class="badge__label"><span class="badge__live-indicator" aria-hidden="true"><span class="badge__live-dot"></span></span><span class="badge__text">Live</span></span></span>Columnist is in the comments</span
+            ><span class="columnist-announcement__text"><span class="badge badge--xs badge--highlight columnist-announcement__badge"><span class="badge__label"><span class="badge__live" aria-hidden="true"></span>Live</span></span>Columnist is in the comments</span
             ><span class="columnist-announcement__action">Join now</span></a
           >
         </div>
@@ -247,7 +242,7 @@
                 <span class="article-card-metadata__author-role">Daily Mail Columnist</span>
               </div>
               <a class="article-card-metadata__comments" href="#comments" aria-label="9.9k comments"
-            ><span class="icon icon--speechbubble-ellipsis article-card-metadata__comments-icon" aria-hidden="true"></span><span class="article-card-metadata__comments-count">9.9k</span></a
+            ><span class="icon icon--speechbubble-ellipsis article-card-metadata__comments-icon" aria-hidden="true"></span>9.9k</a
           >
             </div>
             <a class="columnist-photo columnist-photo--lg" href="#author" tabindex="-1" aria-hidden="true"

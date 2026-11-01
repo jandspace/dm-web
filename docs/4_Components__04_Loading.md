@@ -42,7 +42,7 @@ One size only — it is a block, not an inline indicator.
 | Motion | One turn every 1.2s, linear |
 | Sizes | 24 by default; `--16`, `--20`, `--28`, `--32` |
 
-**Button** shows it while its action runs (`.btn--loading`): the label hides and the ring sits in the middle, one size per button size — XS 16 · SM 20 · MD 24 · LG 28 · XL 32. Button's `.btn-spinner` uses the same `loading.ring` mixin, so a change here reaches every button. Input will use it too.
+**Button** shows it while its action runs (`.btn--loading`): the label hides and the ring sits in the middle, one size per button size — XS 16 · SM 20 · MD 24 · LG 28 · XL 32. Button draws it with `::after` (the `ico-loading` file as a mask + the same `loading.ring` mixin) — no spinner markup — so a change here reaches every button. Input will use it too.
 
 ---
 

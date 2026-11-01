@@ -56,60 +56,57 @@
 
     <!-- Banner Story in the page container (720 · 960 · 996 · 1224; full width below 640).
          Structure:
-           .article-card-banner             white surface + bottom keyline
-             .article-card-banner__story    16px inset from MD
-               .article-card-banner__panel  black panel — the whole panel is the link
-                 .article-card-banner__media      <picture>: artwork per breakpoint
-                                                  (the banner title is part of the image).
-                                                  Media › Preview: <div role="img"> with a wide
-                                                  and an XS preview video (Article Card Media)
-                 .article-card-banner__content
-                   h2.article-card-banner__headline > a.article-card-banner__link
-                   .article-card-banner__metadata  Article Card Metadata — comments
-               ul.article-card-banner__related   Secondary Stories (3 or 6) under the Lead Story
-                 li.article-card-banner__related-item  [img thumbnail] + h3 > a (stretched) -->
+           .article-card-banner             white surface + bottom keyline, 16px inset from MD
+             .article-card-banner__panel  black panel — the whole panel is the link
+               .article-card-banner__media      <picture>: artwork per breakpoint
+                                                (the banner title is part of the image).
+                                                Media › Preview: <div role="img"> with a wide
+                                                and an XS preview video (Article Card Media)
+               .article-card-banner__content
+                 h2.article-card-banner__headline > a.article-card-banner__link
+                 .article-card-banner__metadata  Article Card Metadata — comments
+             ul.article-card-banner__related   Secondary Stories (3 or 6) under the Lead Story
+               li.article-card-banner__related-item  [img thumbnail] + h3 > a (stretched) -->
     <main class="container demo-container-start" id="demo-banner">
       <article class="article-card-banner">
-        <div class="article-card-banner__story">
-          <div class="article-card-banner__panel">
-            <picture class="article-card-banner__media">
-              <source media="(min-width: 768px)" srcset="../../assets/images/article-card-banner-wide.jpg" />
-              <img src="../../assets/images/article-card-banner-xs.jpg" alt="Banner Story" />
-            </picture>
-            <div class="article-card-banner__content">
-              <h2 class="article-card-banner__headline">
-                <a class="article-card-banner__link" href="#article">Headline of Daily Mail article preview card - lorem ipsum dolor sit amet, con sectetur adipiscing jand</a>
-              </h2>
-              <div class="article-card-banner__metadata article-card-metadata">
-                <a class="article-card-metadata__comments" href="#comments" aria-label="2.1k comments">
-                  <span class="icon icon--speechbubble-ellipsis article-card-metadata__comments-icon" aria-hidden="true"></span>
-                  <span class="article-card-metadata__comments-count">2.1k comments</span>
-                </a>
-              </div>
+        <div class="article-card-banner__panel">
+          <picture class="article-card-banner__media">
+            <source media="(min-width: 768px)" srcset="../../assets/images/article-card-banner-wide.jpg" />
+            <img src="../../assets/images/article-card-banner-xs.jpg" alt="Banner Story" />
+          </picture>
+          <div class="article-card-banner__content">
+            <h2 class="article-card-banner__headline">
+              <a class="article-card-banner__link" href="#article">Headline of Daily Mail article preview card - lorem ipsum dolor sit amet, con sectetur adipiscing jand</a>
+            </h2>
+            <div class="article-card-banner__metadata article-card-metadata">
+              <a class="article-card-metadata__comments" href="#comments" aria-label="2.1k comments">
+                <span class="icon icon--speechbubble-ellipsis article-card-metadata__comments-icon" aria-hidden="true"></span>
+                2.1k comments
+              </a>
             </div>
           </div>
-          <!-- Secondary Stories — follow-ups / related stories (3 or 6; the demo trims them to the Stories filter) -->
-          <ul class="article-card-banner__related" aria-label="Related stories">
-            <li class="article-card-banner__related-item">
-              <img class="article-card-banner__related-media" src="../../assets/images/article-card-placeholder.jpg" alt="" /><h3 class="article-card-banner__related-headline"><a class="article-card-banner__related-link" href="#related-1">Second Lead article headline - lorem ipsum dolor sit amet, con sectetur adipiscing elit phasell us</a></h3>
-            </li>
-            <li class="article-card-banner__related-item">
-              <img class="article-card-banner__related-media" src="../../assets/images/article-card-placeholder.jpg" alt="" /><h3 class="article-card-banner__related-headline"><a class="article-card-banner__related-link" href="#related-2">Second Lead article headline - lorem ipsum dolor sit amet, con sectetur adipiscing elit phasell us</a></h3>
-            </li>
-            <li class="article-card-banner__related-item">
-              <img class="article-card-banner__related-media" src="../../assets/images/article-card-placeholder.jpg" alt="" /><h3 class="article-card-banner__related-headline"><a class="article-card-banner__related-link" href="#related-3">Second Lead article headline - lorem ipsum dolor sit amet, con sectetur adipiscing elit phasell us</a></h3>
-            </li>
-            <li class="article-card-banner__related-item">
-              <h3 class="article-card-banner__related-headline"><a class="article-card-banner__related-link" href="#related-4">Second Lead article headline - lorem ipsum dolor sit amet, con sectetur adipiscing elit phasell us</a></h3>
-            </li>
-            <li class="article-card-banner__related-item">
-              <h3 class="article-card-banner__related-headline"><a class="article-card-banner__related-link" href="#related-5">Second Lead article headline - lorem ipsum dolor sit amet, con sectetur adipiscing elit phasell us</a></h3>
-            </li>
-            <li class="article-card-banner__related-item">
-              <h3 class="article-card-banner__related-headline"><a class="article-card-banner__related-link" href="#related-6">Second Lead article headline - lorem ipsum dolor sit amet, con sectetur adipiscing elit phasell us</a></h3>
-            </li>
-          </ul>
         </div>
+        <!-- Secondary Stories — follow-ups / related stories (3 or 6; the demo trims them to the Stories filter) -->
+        <ul class="article-card-banner__related" aria-label="Related stories">
+          <li class="article-card-banner__related-item">
+            <img class="article-card-banner__related-media" src="../../assets/images/article-card-placeholder.jpg" alt="" /><h3 class="article-card-banner__related-headline"><a class="article-card-banner__related-link" href="#related-1">Second Lead article headline - lorem ipsum dolor sit amet, con sectetur adipiscing elit phasell us</a></h3>
+          </li>
+          <li class="article-card-banner__related-item">
+            <img class="article-card-banner__related-media" src="../../assets/images/article-card-placeholder.jpg" alt="" /><h3 class="article-card-banner__related-headline"><a class="article-card-banner__related-link" href="#related-2">Second Lead article headline - lorem ipsum dolor sit amet, con sectetur adipiscing elit phasell us</a></h3>
+          </li>
+          <li class="article-card-banner__related-item">
+            <img class="article-card-banner__related-media" src="../../assets/images/article-card-placeholder.jpg" alt="" /><h3 class="article-card-banner__related-headline"><a class="article-card-banner__related-link" href="#related-3">Second Lead article headline - lorem ipsum dolor sit amet, con sectetur adipiscing elit phasell us</a></h3>
+          </li>
+          <li class="article-card-banner__related-item">
+            <h3 class="article-card-banner__related-headline"><a class="article-card-banner__related-link" href="#related-4">Second Lead article headline - lorem ipsum dolor sit amet, con sectetur adipiscing elit phasell us</a></h3>
+          </li>
+          <li class="article-card-banner__related-item">
+            <h3 class="article-card-banner__related-headline"><a class="article-card-banner__related-link" href="#related-5">Second Lead article headline - lorem ipsum dolor sit amet, con sectetur adipiscing elit phasell us</a></h3>
+          </li>
+          <li class="article-card-banner__related-item">
+            <h3 class="article-card-banner__related-headline"><a class="article-card-banner__related-link" href="#related-6">Second Lead article headline - lorem ipsum dolor sit amet, con sectetur adipiscing elit phasell us</a></h3>
+          </li>
+        </ul>
       </article>
     </main>
 

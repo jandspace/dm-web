@@ -83,17 +83,15 @@
         `<span class="icon icon--${icon}" aria-hidden="true"></span></a>`;
 
       const render = (current, total) => {
-        const li = (html) => `<li>${html}</li>`;
+        const li = (html, cls) => `<li${cls ? ` class="${cls}"` : ''}>${html}</li>`;
         const pages = [];
         if (current > 2) pages.push(li(arrow(1, 'chevron-double-left', 'First page')));
         if (current > 1) pages.push(li(arrow(current - 1, 'chevron-left', 'Previous page')));
         slots(current, total).forEach((n) => {
           pages.push(
-            li(
-              n === null
-                ? `<span class="pagination__ellipsis"><span class="icon icon--dots-horizontal" aria-hidden="true"></span></span>`
-                : `<a class="pagination__item" href="?page=${n}" data-page="${n}"${n === current ? ' aria-current="page"' : ''}>${n}</a>`,
-            ),
+            n === null
+              ? li('<span class="icon icon--dots-horizontal" aria-hidden="true"></span>', 'pagination__ellipsis')
+              : li(`<a class="pagination__item" href="?page=${n}" data-page="${n}"${n === current ? ' aria-current="page"' : ''}>${n}</a>`),
           );
         });
         if (current < total) pages.push(li(arrow(current + 1, 'chevron-right', 'Next page')));

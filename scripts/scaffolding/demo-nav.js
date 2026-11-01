@@ -48,6 +48,8 @@
         { name: 'Pagination', path: 'components/pagination/' },
         { name: 'Tabs', path: 'components/tabs/' },
         { name: 'Toast', path: 'components/toast/' },
+        { name: 'Toggle', path: 'components/toggle/' },
+        { name: 'Tooltip & Popover', path: 'components/tooltip/' },
       ],
     },
     {
@@ -175,16 +177,14 @@
 
     const trigger = el('button', { class: 'demo-theme__trigger', type: 'button', 'aria-haspopup': 'listbox', 'aria-expanded': 'false' });
     const items = THEMES.map(([value, label]) =>
-      el('li', { role: 'none' }, [
-        el('button', { class: 'dropdown-menu__item', type: 'button', role: 'option', 'data-value': value }, [
-          glyph(value),
-          el('span', { class: 'dropdown-menu__label', text: label }),
-          el('span', { class: 'icon icon--tick dropdown-menu__tick', 'aria-hidden': 'true' }),
-        ]),
+      el('button', { class: 'dropdown-menu__item', type: 'button', role: 'option', 'data-value': value }, [
+        glyph(value),
+        label,
+        el('span', { class: 'icon icon--tick dropdown-menu__tick', 'aria-hidden': 'true' }),
       ]),
     );
     const menu = el('div', { class: 'dropdown-menu demo-theme__menu', hidden: '' }, [
-      el('ul', { class: 'dropdown-menu__list', role: 'listbox', 'aria-label': 'Theme' }, items),
+      el('div', { class: 'dropdown-menu__list', role: 'listbox', 'aria-label': 'Theme' }, items),
     ]);
 
     const render = () => {

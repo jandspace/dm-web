@@ -13,6 +13,8 @@ Code: `styles/scss/modules/_article-card-media.scss` · behaviour `scripts/modul
 
 The aspect ratio comes from the card type (see Article Card § 2 and Media). Corners: the card's (4px; Image Only 8px).
 
+**Theme Pinned:** everything drawn over a video or image — the play icon, the player and the carousel — carries `data-theme="light"`, so it keeps its light look in dark mode (a white play button, white time on the dark pill). The tokens would flip otherwise, and the picture under them does not.
+
 ---
 
 ## 1. Image

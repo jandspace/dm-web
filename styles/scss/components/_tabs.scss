@@ -9,7 +9,7 @@
 //   Navigation (links):      nav.tabs > ul.tabs__list > li > a.tabs__tab[aria-current]
 //
 //     .icon.tabs__icon        optional, 16px, takes the text colour
-//     span                    label
+//     label text              straight in the tab
 //   button.tabs__edge--prev / --next   MD+ with a mouse: chevrons where the row can scroll
 //
 // Selected: neutral/darker. Button only: in a channel, the channel's base colour
@@ -210,7 +210,7 @@
 }
 
 // ── Chevron edges (MD+, mouse only) ───────────────────────────────────────────
-// The page script toggles [hidden] by scroll position
+// The Scroll Row script (scripts/modules/scroll-row.js) sets [hidden] by scroll position
 
 .tabs__edge {
   display: none;
