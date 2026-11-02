@@ -1,0 +1,205 @@
+// ── Footer ────────────────────────────────────────────────────────────────────
+// Page footer, inside .container after the content — never full-bleed.
+// LG: menus in five columns · below LG: each menu an accordion (<details>).
+//
+//   footer.footer
+//     .footer__top                              2px rule on top, keyline below
+//       a.footer__logo                          Daily Mail symbol (mask — flips in dark mode)
+//       .footer__social                         second line below MD
+//         p.footer__follow                      "Follow us on:" — MD+ only
+//         a.btn.btn-secondary-neutral.btn--icon-only × n
+//       a.btn.btn-quaternary-neutral.btn--sm    Back to top + chevron-up
+//     .footer__menus
+//       details.footer__menu × n                always open from LG (::details-content)
+//         summary.footer__heading               label + chevron-down (below LG)
+//         ul.footer__links > li > a
+//     p.footer__copyright
+//
+// Reference: Figma Web UI Kit › Footer (117:12220)
+
+@use '../foundation/breakpoints' as bp;
+@use '../components/divider';
+
+.footer {
+  padding: var(--spacing-32) var(--spacing-16);
+  background-color: var(--color-background-neutral-lightest);
+}
+
+// ── Top row ───────────────────────────────────────────────────────────────────
+// Logo · social · Back to top on one line from MD; below MD the social links
+// wrap onto a line of their own under logo · Back to top.
+
+.footer__top {
+  position: relative;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: var(--spacing-12);
+  padding: var(--spacing-20) 0 var(--spacing-8);
+  border-top: 2px solid var(--color-border-neutral-grey-dark);
+
+  &::after {
+    @include divider.divider(horizontal, false);
+  }
+
+  @include bp.respond-to(md) {
+    flex-wrap: nowrap;
+    gap: var(--spacing-8);
+    padding-bottom: var(--spacing-20);
+  }
+}
+
+.footer__logo {
+  width: 160px;
+  height: 33px;
+  margin-right: auto; // pushes the rest of the row to the right
+  background-color: var(--color-icon-neutral-black);
+  -webkit-mask: url('../../assets/images/logo-dailymail.svg') left center / contain no-repeat; // Chrome < 120
+  mask: url('../../assets/images/logo-dailymail.svg') left center / contain no-repeat;
+
+  @include bp.respond-to(md) {
+    width: 195px;
+    height: 40px;
+  }
+}
+
+.footer__social {
+  display: flex;
+  flex-basis: 100%;
+  order: 1; // after Back to top
+  align-items: center;
+  gap: var(--spacing-8);
+  padding-block: var(--spacing-12);
+
+  // Footer Social Link: 40 round, border/neutral/light, icon 18
+  .btn {
+    border-color: var(--color-border-neutral-light);
+  }
+
+  .icon {
+    width: 18px;
+    height: 18px;
+  }
+
+  @include bp.respond-to(md) {
+    flex-basis: auto;
+    order: 0;
+    padding-block: 0;
+  }
+}
+
+.footer__follow {
+  display: none;
+  font-size: var(--typography-font-size-label-sm);
+  font-weight: var(--typography-font-weight-semibold);
+  line-height: var(--typography-line-height-narrow);
+  white-space: nowrap;
+
+  @include bp.respond-to(md) {
+    display: block;
+  }
+}
+
+// ── Menus ─────────────────────────────────────────────────────────────────────
+
+.footer__menus {
+  display: grid;
+  padding-block: var(--spacing-8);
+
+  @include bp.respond-to(md) {
+    gap: var(--spacing-4);
+  }
+
+  @include bp.respond-to(lg) {
+    grid-template-columns: 1fr 1fr 224px 224px 1fr;
+    gap: var(--spacing-12);
+  }
+}
+
+// Below LG the heading is the accordion toggle: 40 high (the chevron's 40 box)
+// on the right that turns when open. From LG it is a plain column heading and
+// the list always shows.
+.footer__heading {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  cursor: pointer;
+  list-style: none;
+  font-size: var(--typography-font-size-h6);
+  font-weight: var(--typography-font-weight-bold);
+  line-height: var(--typography-line-height-compact);
+  letter-spacing: var(--typography-letter-spacing-wide);
+
+  &::-webkit-details-marker {
+    display: none; // Safari
+  }
+
+  .icon {
+    width: 40px;
+    height: 40px;
+    -webkit-mask-size: 14px;
+    mask-size: 14px;
+    transition: rotate 200ms ease;
+  }
+
+  @include bp.respond-to(lg) {
+    padding-block: var(--spacing-6);
+    pointer-events: none;
+
+    .icon {
+      display: none;
+    }
+  }
+}
+
+.footer__menu[open] .footer__heading .icon {
+  rotate: 180deg;
+}
+
+.footer__menu::details-content {
+  @include bp.respond-to(lg) {
+    content-visibility: visible;
+  }
+}
+
+.footer__links {
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-8);
+  padding: var(--spacing-4) 0 var(--spacing-8);
+  list-style: none;
+
+  @include bp.respond-to(lg) {
+    padding-bottom: 0;
+  }
+
+  a {
+    display: block;
+    padding-block: var(--spacing-4);
+    color: var(--color-text-neutral-grey-dark);
+    font-size: var(--typography-font-size-label-xsm);
+    line-height: var(--typography-line-height-narrow);
+    text-decoration: none;
+    transition: opacity 0.3s ease-in-out;
+
+    // Hover as on the live site: lighter, no underline
+    &:hover {
+      opacity: 0.6;
+    }
+  }
+}
+
+.footer__copyright {
+  padding-block: var(--spacing-16);
+  font-size: var(--typography-font-size-text-xsm);
+  font-weight: var(--typography-font-weight-semibold);
+  line-height: var(--typography-line-height-normal);
+  letter-spacing: var(--typography-letter-spacing-wide);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .footer__heading .icon,
+  .footer__links a {
+    transition: none;
+  }
+}

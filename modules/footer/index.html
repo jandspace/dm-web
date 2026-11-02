@@ -1,0 +1,209 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Footer</title>
+    <link rel="icon" href="../../assets/favicon.svg" type="image/svg+xml" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&family=Lora:ital,wght@0,400;0,500;0,600;0,700;1,400&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="../../tokens/dm_tokens.css" />
+    <link rel="stylesheet" href="../../tokens/dm_typography_web_tokens.css" />
+    <link rel="stylesheet" href="../../styles/css/main.css" />
+    <script src="../../scripts/scaffolding/demo-nav.js" defer></script>
+  </head>
+  <body class="demo-page-body demo-ft-page">
+
+    <h1 class="demo-page-h1">Footer</h1>
+    <p class="demo-page-intro">
+      Figma: Web UI Kit › Footer (117:12220). The footer sits inside the container, after the page content — it ends
+      with the container, not the window. LG: menus in five columns. MD and SM-XS: each menu is an accordion
+      (chevron turns when open); below MD the social links take a line of their own and “Follow us on:” is left out.
+    </p>
+
+    <div class="demo-vp-toolbar demo-vp-toolbar--sticky">
+      <div class="demo-vp-toolbar__row">
+        <span id="demo-vp-switch-label">Viewport</span>
+        <div class="demo-vp-toggle" role="group" aria-labelledby="demo-vp-switch-label" id="demo-vp-switch">
+          <button type="button" data-vp="live" aria-pressed="true">Live</button>
+          <button type="button" data-vp="lg" aria-pressed="false">LG ≥1024</button>
+          <button type="button" data-vp="md" aria-pressed="false">MD ≥768</button>
+          <button type="button" data-vp="xs" aria-pressed="false">SM-XS &lt;768</button>
+        </div>
+        <span class="demo-vp-status" id="demo-vp-status"></span>
+      </div>
+    </div>
+
+    <div class="demo-ft container">
+      <footer class="footer">
+        <div class="footer__top">
+          <a class="footer__logo" href="/" aria-label="Daily Mail home"></a>
+          <div class="footer__social">
+            <p class="footer__follow">Follow us on:</p>
+            <a class="btn btn-secondary-neutral btn--icon-only" href="#" aria-label="Facebook"><span class="icon icon--sn-facebook" aria-hidden="true"></span></a>
+            <a class="btn btn-secondary-neutral btn--icon-only" href="#" aria-label="TikTok"><span class="icon icon--sn-tiktok" aria-hidden="true"></span></a>
+            <a class="btn btn-secondary-neutral btn--icon-only" href="#" aria-label="Instagram"><span class="icon icon--sn-instagram" aria-hidden="true"></span></a>
+            <a class="btn btn-secondary-neutral btn--icon-only" href="#" aria-label="Snapchat"><span class="icon icon--sn-snapchat" aria-hidden="true"></span></a>
+            <a class="btn btn-secondary-neutral btn--icon-only" href="#" aria-label="YouTube"><span class="icon icon--sn-youtube" aria-hidden="true"></span></a>
+          </div>
+          <a class="btn btn-quaternary-neutral btn--sm" href="#top">Back to top<span class="icon icon--chevron-up" aria-hidden="true"></span></a>
+        </div>
+
+        <div class="footer__menus">
+          <details class="footer__menu">
+            <summary class="footer__heading">Company<span class="icon icon--chevron-down" aria-hidden="true"></span></summary>
+            <ul class="footer__links">
+              <li><a href="#">DMG Media</a></li>
+              <li><a href="#">Leadership Team</a></li>
+              <li><a href="#">This is Money</a></li>
+              <li><a href="#">Metro</a></li>
+              <li><a href="#">Newzit</a></li>
+              <li><a href="#">Mail Travel</a></li>
+              <li><a href="#">About Daily Mail</a></li>
+            </ul>
+          </details>
+          <details class="footer__menu">
+            <summary class="footer__heading">Channels<span class="icon icon--chevron-down" aria-hidden="true"></span></summary>
+            <ul class="footer__links">
+              <li><a href="#">Home</a></li>
+              <li><a href="#">News</a></li>
+              <li><a href="#">Royals</a></li>
+              <li><a href="#">Showbiz</a></li>
+              <li><a href="#">Sport</a></li>
+              <li><a href="#">TV</a></li>
+              <li><a href="#">Femail</a></li>
+              <li><a href="#">Health</a></li>
+              <li><a href="#">Science</a></li>
+              <li><a href="#">Money</a></li>
+              <li><a href="#">Travel</a></li>
+              <li><a href="#">Podcasts</a></li>
+              <li><a href="#">Shopping</a></li>
+              <li><a href="#">DailyMail+</a></li>
+            </ul>
+          </details>
+          <details class="footer__menu">
+            <summary class="footer__heading">Terms of Use<span class="icon icon--chevron-down" aria-hidden="true"></span></summary>
+            <ul class="footer__links">
+              <li><a href="#">Website Terms</a></li>
+              <li><a href="#">Privacy Settings</a></li>
+              <li><a href="#">Privacy Policy</a></li>
+              <li><a href="#">Subscription Terms &amp; Conditions</a></li>
+              <li><a href="#">Do Not Sell My Information</a></li>
+              <li><a href="#">CA Privacy</a></li>
+              <li><a href="#">Text-Based Site</a></li>
+              <li><a href="#">Contributors</a></li>
+            </ul>
+          </details>
+          <details class="footer__menu">
+            <summary class="footer__heading">Get in Touch<span class="icon icon--chevron-down" aria-hidden="true"></span></summary>
+            <ul class="footer__links">
+              <li><a href="#">Contact Us</a></li>
+              <li><a href="#">How to Complain</a></li>
+              <li><a href="#">Work With Us</a></li>
+              <li><a href="#">Advertise With Us</a></li>
+              <li><a href="#">Mail Subscriptions Help &amp; FAQs</a></li>
+            </ul>
+          </details>
+          <details class="footer__menu">
+            <summary class="footer__heading">More<span class="icon icon--chevron-down" aria-hidden="true"></span></summary>
+            <ul class="footer__links">
+              <li><a href="#">Site Map</a></li>
+              <li><a href="#">RSS</a></li>
+              <li><a href="#">Archive</a></li>
+              <li><a href="#">Video Archive</a></li>
+              <li><a href="#">Authors</a></li>
+              <li><a href="#">Topic Index</a></li>
+            </ul>
+          </details>
+        </div>
+
+        <p class="footer__copyright">© 2025 Associated Newspapers Limited</p>
+      </footer>
+    </div>
+
+    <!-- Fixed-viewport preview: this page rendered in an iframe at the chosen width -->
+    <div class="demo-vp-stage" id="demo-vp-stage" hidden></div>
+
+    <script>
+      // Scaffolding only — viewport preview.
+      //   ?frame              page without chrome (rendered inside the viewport stage)
+      //   ?vp=lg|md|xs        preview at a fixed viewport width
+      (() => {
+        const params = new URLSearchParams(location.search);
+        if (params.has('frame')) {
+          document.body.classList.add('demo-frame');
+          document.querySelectorAll('.demo-page-h1, .demo-page-intro, .demo-vp-toolbar').forEach((el) => el.remove());
+          return;
+        }
+
+        const VIEWPORTS = {
+          lg: { label: 'LG ≥1024', width: 1024 },
+          md: { label: 'MD ≥768', width: 768 },
+          xs: { label: 'SM-XS <768', width: 390 },
+        };
+
+        const toggle = document.getElementById('demo-vp-switch');
+        const status = document.getElementById('demo-vp-status');
+        const content = [...document.querySelectorAll('.demo-ft')];
+        const stage = document.getElementById('demo-vp-stage');
+        let iframe = null;
+        let width = 0;
+
+        const fit = () => {
+          if (!iframe || !iframe.contentDocument) return;
+          const scale = Math.min(1, (stage.parentElement.clientWidth - 80) / width);
+          const height = iframe.contentDocument.documentElement.scrollHeight;
+          iframe.height = height;
+          iframe.style.transform = `scale(${scale})`;
+          stage.style.width = `${width * scale}px`;
+          stage.style.height = `${height * scale}px`;
+          status.textContent = `${width}px preview · ${Math.round(scale * 100)}%`;
+        };
+
+        const select = (key) => {
+          const vp = VIEWPORTS[key];
+          toggle.querySelectorAll('button').forEach((b) => {
+            b.setAttribute('aria-pressed', String(b.dataset.vp === (vp ? key : 'live')));
+          });
+          const url = new URL(location.href);
+          if (vp) url.searchParams.set('vp', key);
+          else url.searchParams.delete('vp');
+          history.replaceState(null, '', url);
+
+          if (!vp) {
+            stage.hidden = true;
+            stage.replaceChildren();
+            iframe = null;
+            content.forEach((el) => (el.hidden = false));
+            status.textContent = '';
+            return;
+          }
+
+          width = vp.width;
+          content.forEach((el) => (el.hidden = true));
+          stage.hidden = false;
+          status.textContent = 'Loading…';
+          iframe = document.createElement('iframe');
+          iframe.src = 'index.html?frame';
+          iframe.width = width;
+          iframe.title = `Footer at ${vp.label}`;
+          iframe.addEventListener('load', async () => {
+            await iframe.contentDocument.fonts.ready;
+            fit();
+            // An accordion opening changes the frame height
+            iframe.contentDocument.addEventListener('toggle', fit, true);
+          });
+          stage.replaceChildren(iframe);
+        };
+
+        toggle.addEventListener('click', (event) => {
+          const button = event.target.closest('button[data-vp]');
+          if (button) select(button.dataset.vp);
+        });
+        window.addEventListener('resize', fit);
+        select(params.get('vp') || 'live');
+      })();
+    </script>
+  </body>
+</html>

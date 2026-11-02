@@ -8228,6 +8228,184 @@ html:has(.masthead-sheet:not([hidden])) {
     transition: none;
   }
 }
+.footer {
+  padding: var(--spacing-32) var(--spacing-16);
+  background-color: var(--color-background-neutral-lightest);
+}
+
+.footer__top {
+  position: relative;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: var(--spacing-12);
+  padding: var(--spacing-20) 0 var(--spacing-8);
+  border-top: 2px solid var(--color-border-neutral-grey-dark);
+}
+.footer__top::after {
+  content: "";
+  position: absolute;
+  background-color: var(--color-border-translucent-dark-pale);
+  right: 0;
+  bottom: 0;
+  left: 0;
+  height: 1px;
+}
+@media (min-width: 768px) {
+  .footer__top {
+    flex-wrap: nowrap;
+    gap: var(--spacing-8);
+    padding-bottom: var(--spacing-20);
+  }
+}
+
+.footer__logo {
+  width: 160px;
+  height: 33px;
+  margin-right: auto;
+  background-color: var(--color-icon-neutral-black);
+  -webkit-mask: url("../../assets/images/logo-dailymail.svg") left center/contain no-repeat;
+  mask: url("../../assets/images/logo-dailymail.svg") left center/contain no-repeat;
+}
+@media (min-width: 768px) {
+  .footer__logo {
+    width: 195px;
+    height: 40px;
+  }
+}
+
+.footer__social {
+  display: flex;
+  flex-basis: 100%;
+  order: 1;
+  align-items: center;
+  gap: var(--spacing-8);
+  padding-block: var(--spacing-12);
+}
+.footer__social .btn {
+  border-color: var(--color-border-neutral-light);
+}
+.footer__social .icon {
+  width: 18px;
+  height: 18px;
+}
+@media (min-width: 768px) {
+  .footer__social {
+    flex-basis: auto;
+    order: 0;
+    padding-block: 0;
+  }
+}
+
+.footer__follow {
+  display: none;
+  font-size: var(--typography-font-size-label-sm);
+  font-weight: var(--typography-font-weight-semibold);
+  line-height: var(--typography-line-height-narrow);
+  white-space: nowrap;
+}
+@media (min-width: 768px) {
+  .footer__follow {
+    display: block;
+  }
+}
+
+.footer__menus {
+  display: grid;
+  padding-block: var(--spacing-8);
+}
+@media (min-width: 768px) {
+  .footer__menus {
+    gap: var(--spacing-4);
+  }
+}
+@media (min-width: 1024px) {
+  .footer__menus {
+    grid-template-columns: 1fr 1fr 224px 224px 1fr;
+    gap: var(--spacing-12);
+  }
+}
+
+.footer__heading {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  cursor: pointer;
+  list-style: none;
+  font-size: var(--typography-font-size-h6);
+  font-weight: var(--typography-font-weight-bold);
+  line-height: var(--typography-line-height-compact);
+  letter-spacing: var(--typography-letter-spacing-wide);
+}
+.footer__heading::-webkit-details-marker {
+  display: none;
+}
+.footer__heading .icon {
+  width: 40px;
+  height: 40px;
+  -webkit-mask-size: 14px;
+  mask-size: 14px;
+  transition: rotate 200ms ease;
+}
+@media (min-width: 1024px) {
+  .footer__heading {
+    padding-block: var(--spacing-6);
+    pointer-events: none;
+  }
+  .footer__heading .icon {
+    display: none;
+  }
+}
+
+.footer__menu[open] .footer__heading .icon {
+  rotate: 180deg;
+}
+
+@media (min-width: 1024px) {
+  .footer__menu::details-content {
+    content-visibility: visible;
+  }
+}
+
+.footer__links {
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-8);
+  padding: var(--spacing-4) 0 var(--spacing-8);
+  list-style: none;
+}
+@media (min-width: 1024px) {
+  .footer__links {
+    padding-bottom: 0;
+  }
+}
+.footer__links a {
+  display: block;
+  padding-block: var(--spacing-4);
+  color: var(--color-text-neutral-grey-dark);
+  font-size: var(--typography-font-size-label-xsm);
+  line-height: var(--typography-line-height-narrow);
+  text-decoration: none;
+  transition: opacity 0.3s ease-in-out;
+}
+.footer__links a:hover {
+  opacity: 0.6;
+}
+
+.footer__copyright {
+  padding-block: var(--spacing-16);
+  font-size: var(--typography-font-size-text-xsm);
+  font-weight: var(--typography-font-weight-semibold);
+  line-height: var(--typography-line-height-normal);
+  letter-spacing: var(--typography-letter-spacing-wide);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .footer__heading .icon,
+  .footer__links a {
+    transition: none;
+  }
+}
 .demo-grid {
   display: grid;
 }
@@ -11563,6 +11741,10 @@ body:not(.demo-frame) .demo-container-start {
 }
 .demo-anatomy-frame .demo-anatomy__group:first-of-type {
   margin-top: 0;
+}
+
+.demo-frame.demo-ft-page {
+  padding: var(--spacing-16) 0 0;
 }
 
 .demo-grid--vpc {

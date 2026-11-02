@@ -1,0 +1,9 @@
+// ── Footer demo — SCAFFOLDING ONLY ────────────────────────────────────────────
+// Layout for modules/footer/. Never ships to production.
+// The footer sits in a .container, so the preview shows it ending with the
+// container, not the window.
+
+// Inside the viewport stage (?frame): the page edge to edge, as on the site
+.demo-frame.demo-ft-page {
+  padding: var(--spacing-16) 0 0;
+}
