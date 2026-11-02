@@ -67,6 +67,8 @@ At the end the video goes back to `ready`.
 | Arrows | `.article-card-carousel__nav--prev` / `--next` | `.btn.btn-tertiary-neutral.btn--icon-only` (`arrow-left-light` / `arrow-right-light`), 8px from the edge, vertically centred. 40% opacity, 100% on media hover or focus. No Prev on the first slide, no Next on the last |
 | Dots | `.article-card-carousel__dots` | Bottom, on a dark gradient. Active 32 × 8 `background/neutral/lightest`; others 8 × 8 `effect/translucent-light/moderate`, 8px gap. Decorative |
 
+**Autoplay.** The carousel moves to the next slide every 5s and goes back to the first after the last. It waits while the mouse is over the media or keyboard focus is on an arrow, and while the carousel is less than half on screen; leaving the media starts a full 5s again. Any slide change (arrow, swipe) restarts the wait. No autoplay with `prefers-reduced-motion: reduce`.
+
 **Arrows stay on touch screens.** There is no hover there, so they rest at 40% — still visible, so readers can tell the images move, and tappable. Swipe works as well. The dots show how many images there are.
 
 ## 4. In a card

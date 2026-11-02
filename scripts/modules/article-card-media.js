@@ -6,13 +6,16 @@
 //   .article-card-player    Video: ready → playing ⇄ paused, muted at start,
 //                           controls fade after 3s (touch: first tap shows them)
 //   .article-card-carousel  arrows, swipe (scroll-snap), dots; a click on a
-//                           slide opens the article
+//                           slide opens the article. Autoplay: next slide every
+//                           5s, waits while the mouse or keyboard focus is on it
+//                           or it is off screen; never with reduced motion
 //
 // Call ArticleCardMedia.init(root) again after adding cards to the page —
 // elements already set up are skipped.
 
 (() => {
   const IDLE_MS = 3000;
+  const AUTOPLAY_MS = 5000;
   const reducedMotion = matchMedia('(prefers-reduced-motion: reduce)');
   const ready = new WeakSet(); // elements already set up
 
@@ -137,6 +140,18 @@
 
   // ── Carousel ──────────────────────────────────────────────────────────────
 
+  const onScreen = new WeakSet(); // carousels at least half on screen
+  const carouselObserver = new IntersectionObserver(
+    (entries) => {
+      entries.forEach(({ target, isIntersecting }) => {
+        if (!target.isConnected) return carouselObserver.unobserve(target);
+        if (isIntersecting) onScreen.add(target);
+        else onScreen.delete(target);
+      });
+    },
+    { threshold: 0.5 },
+  );
+
   const initCarousel = (carousel) => {
     const track = carousel.querySelector('.article-card-carousel__track');
     const items = [...track.children];
@@ -146,9 +161,23 @@
 
     const index = () => Math.round(track.scrollLeft / track.clientWidth);
     const go = (i) => track.scrollTo({ left: i * track.clientWidth });
+    let current = 0;
+    let hovered = false;
+    let timer;
+
+    // Autoplay: each slide change starts the 5s wait again; after the last
+    // slide it goes back to the first
+    const held = () =>
+      hovered || reducedMotion.matches || !onScreen.has(carousel) || carousel.querySelector(':focus-visible');
+    const restart = () => {
+      clearTimeout(timer);
+      timer = setTimeout(() => (held() ? restart() : go((index() + 1) % items.length)), AUTOPLAY_MS);
+    };
 
     const update = () => {
       const i = index();
+      if (i !== current) restart();
+      current = i;
       dots.forEach((dot, n) => dot.classList.toggle('is-active', n === i));
       prev.hidden = i === 0;
       next.hidden = i === items.length - 1;
@@ -158,6 +187,11 @@
     prev.addEventListener('click', () => go(index() - 1));
     next.addEventListener('click', () => go(index() + 1));
     track.addEventListener('scroll', update, { passive: true });
+    carousel.addEventListener('pointerenter', (e) => (hovered = e.pointerType === 'mouse'));
+    carousel.addEventListener('pointerleave', () => {
+      hovered = false;
+      restart();
+    });
 
     // The track sits above the card link (so it can be swiped): pass clicks on
     // a slide on to the article
@@ -166,6 +200,8 @@
     });
 
     update();
+    carouselObserver.observe(carousel);
+    restart();
   };
 
   const once = (setup) => (el) => {
