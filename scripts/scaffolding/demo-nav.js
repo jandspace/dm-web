@@ -55,6 +55,7 @@
     {
       group: 'Modules',
       items: [
+        { name: 'Advertisement', path: 'modules/advertisement/' },
         { name: 'Article Card', path: 'modules/article-card/', pages: [['Viewports', 'viewports.html']] },
         { name: 'Article Card — Banner Story', path: 'modules/article-card-banner/', pages: [['Viewports', 'viewports.html']] },
         { name: 'Article Card Media', path: 'modules/article-card-media/' },

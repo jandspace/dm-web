@@ -46,6 +46,7 @@
 @use 'modules/masthead-sheet';
 @use 'modules/masthead-sticky';
 @use 'modules/footer';
+@use 'modules/advertisement';
 
 // Scaffolding (prototype/demo only — never shipped to production)
 @use 'scaffolding/demo-grid';
@@ -73,4 +74,5 @@
 @use 'scaffolding/section-header-demo';
 @use 'scaffolding/navigation-demo';
 @use 'scaffolding/footer-demo';
+@use 'scaffolding/advertisement-demo';
 @use 'scaffolding/video-player-controls-demo';

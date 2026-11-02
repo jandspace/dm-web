@@ -1,0 +1,198 @@
+// ── Advertisement ─────────────────────────────────────────────────────────────
+// Ad slots: the space the page keeps for an ad and its "Advertisement" label.
+// The creative itself (an ad-server iframe) is the slot's only child; the slot
+// reserves its size so the page does not jump when the ad loads.
+//
+//   aside.ad-slot.ad-slot--{type}  aria-label="Advertisement"
+//     iframe | creative                     the ad (demo: a placeholder image)
+//
+//   Billboard  .ad-billboard > .ad-slot             top of the page, before the
+//              masthead, full window width. LG 970×250 · MD 728×90 (or fluid
+//              ≤650×250 — .ad-slot--tall). None below MD
+//   Side Ads   .container.ad-skin                   the page's container
+//                .ad-rail.ad-rail--left|--right > .ad-slot.ad-slot--side
+//              160×600 beside the container, 8px off, sticky. From 1350 (bp.side-ads)
+//   MPU        .ad-slot.ad-slot--mpu (+ --sticky · --dmpu)   in Beta, 300 wide;
+//              on mobile in the page, between content blocks
+//   Mobile     .ad-sticky-bottom > .ad-slot.ad-slot--mobile  bar fixed to the bottom, <MD
+//
+// Sizes follow the IAB standard units: Billboard 970×250, Leaderboard 728×90,
+// Wide Skyscraper 160×600, Medium Rectangle (MPU) 300×250, Half Page (DMPU)
+// 300×600, Mobile Leaderboard 320×50 / Large Mobile Banner 320×100.
+//
+// Reference: Figma Web UI Kit › Advertisement (76:3047)
+
+@use '../foundation/breakpoints' as bp;
+@use '../components/divider';
+
+// ── Slot ──────────────────────────────────────────────────────────────────────
+// Label above the creative (Side Ads: below). The creative box keeps the ad's
+// size and shows background/neutral/lighter until the ad fills it.
+
+.ad-slot {
+  --ad-width: 300px;
+  --ad-height: 250px;
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--spacing-4);
+
+  // "Advertisement" — the alt text after / is empty, so screen readers read
+  // the slot's aria-label once instead
+  &::before {
+    content: 'Advertisement' / '';
+    color: var(--color-text-neutral-grey-dark);
+    font-size: var(--typography-font-size-label-xxsm);
+    line-height: var(--typography-line-height-narrow);
+  }
+
+  > * {
+    display: block;
+    width: var(--ad-width);
+    max-width: 100%;
+    height: var(--ad-height);
+    border: 0;
+    background-color: var(--color-background-neutral-lighter);
+  }
+}
+
+// ── Billboard ─────────────────────────────────────────────────────────────────
+// A band across the window on background/neutral/lighter, label at the ad's left.
+
+.ad-billboard {
+  display: none;
+  padding: var(--spacing-8) var(--spacing-16) var(--spacing-16);
+  background-color: var(--color-background-neutral-lighter);
+
+  @include bp.respond-to(md) {
+    display: block;
+  }
+
+  .ad-slot {
+    --ad-width: 728px;
+    --ad-height: 90px;
+
+    width: fit-content;
+    max-width: 100%;
+    margin-inline: auto;
+    align-items: flex-start;
+  }
+
+  // MD: the fluid 250-high unit (up to 650 wide) in place of the 728×90
+  .ad-slot--tall {
+    --ad-width: 650px;
+    --ad-height: 250px;
+  }
+
+  // After --tall, so LG is always the 970×250
+  @include bp.respond-to(lg) {
+    .ad-slot {
+      --ad-width: 970px;
+      --ad-height: 250px;
+    }
+  }
+}
+
+// ── Side Ads ──────────────────────────────────────────────────────────────────
+// Each rail runs the height of the container, 8px outside it; the slot sticks
+// below the sticky masthead (--ad-sticky-top, set by the page) and stops with
+// the container.
+
+.ad-skin {
+  position: relative;
+}
+
+.ad-rail {
+  display: none;
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  width: 160px;
+
+  &--left {
+    right: calc(100% + var(--spacing-8));
+  }
+
+  &--right {
+    left: calc(100% + var(--spacing-8));
+  }
+
+  @include bp.side-ads {
+    display: block;
+  }
+}
+
+.ad-slot--side {
+  --ad-width: 160px;
+  --ad-height: 600px;
+
+  position: sticky;
+  top: var(--ad-sticky-top, var(--spacing-16));
+  flex-direction: column-reverse; // label below the ad
+  align-items: flex-start;
+  gap: var(--spacing-8);
+}
+
+// ── MPU ───────────────────────────────────────────────────────────────────────
+// In Beta (332 at LG = 300 + 16 each side), keyline below unless last.
+// --sticky: a 300×600 space where the 300×250 ad stays in view.
+// --dmpu: a 300×600 ad.
+
+.ad-slot--mpu {
+  position: relative;
+  padding: var(--spacing-16);
+
+  &:not(:last-child)::after {
+    @include divider.divider;
+  }
+}
+
+.ad-slot--dmpu {
+  --ad-height: 600px;
+}
+
+.ad-slot--sticky {
+  // A 600-high space under the label. It has to be content height, not padding:
+  // a sticky child only moves within its parent's content box
+  min-height: calc(
+    2 * var(--spacing-16) + var(--typography-font-size-label-xxsm) * var(--typography-line-height-narrow) +
+      var(--spacing-4) + 600px
+  );
+
+  > * {
+    position: sticky;
+    top: var(--ad-sticky-top, var(--spacing-16));
+  }
+}
+
+// ── Mobile ────────────────────────────────────────────────────────────────────
+// A bar fixed to the bottom of the screen (the only mobile-size slot — in the
+// page, mobile uses MPUs): 320×50, up to 320×100 (--ad-height). Translucent
+// light, blurred, keyline on top, no label. The page keeps room for it at its end.
+
+.ad-slot--mobile {
+  --ad-width: 320px;
+  --ad-height: 50px;
+
+  &::before {
+    content: none;
+  }
+}
+
+.ad-sticky-bottom {
+  position: fixed;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  z-index: 10;
+  padding: var(--spacing-4) var(--spacing-16);
+  border-top: 1px solid var(--color-border-translucent-dark-pale);
+  background-color: var(--color-effect-translucent-light-moderate);
+  -webkit-backdrop-filter: blur(16px);
+  backdrop-filter: blur(16px);
+
+  @include bp.respond-to(md) {
+    display: none;
+  }
+}

@@ -1,0 +1,77 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Advertisement</title>
+    <link rel="icon" href="../../assets/favicon.svg" type="image/svg+xml" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&family=Lora:ital,wght@0,400;0,500;0,600;0,700;1,400&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="../../tokens/dm_tokens.css" />
+    <link rel="stylesheet" href="../../tokens/dm_typography_web_tokens.css" />
+    <link rel="stylesheet" href="../../styles/css/main.css" />
+    <script src="../../scripts/scaffolding/demo-nav.js" defer></script>
+  </head>
+  <body class="demo-page-body">
+
+    <h1 class="demo-page-h1">Advertisement</h1>
+    <p class="demo-page-intro">
+      Figma: Web UI Kit › Advertisement (76:3047); ads are the Ad Placeholder images (5100:12848).
+      The ad slot inventory — each slot with its label, size and where it sits. On a page the slots show only at
+      their breakpoints; here every one is shown at once. Placement and behaviour: docs/5_Modules__07_Advertisement.md.
+    </p>
+
+    <div class="demo-ad-inv">
+      <h2 class="demo-section-title">Desktop &amp; tablet — top of the page</h2>
+      <div class="demo-ad-inv__list">
+        <figure class="demo-ad-inv__item">
+          <div class="ad-billboard demo-ad-billboard--lg">
+            <aside class="ad-slot" aria-label="Advertisement"><img src="../../assets/images/ad-placeholder-970x250.jpg" alt="" /></aside>
+          </div>
+          <figcaption><b>Billboard · LG ≥1024</b>970×250 (IAB Billboard). Before the masthead, in a band across the window.</figcaption>
+        </figure>
+        <figure class="demo-ad-inv__item">
+          <div class="ad-billboard demo-ad-billboard--md">
+            <aside class="ad-slot" aria-label="Advertisement"><img src="../../assets/images/ad-placeholder-728x90.jpg" alt="" /></aside>
+          </div>
+          <figcaption><b>Billboard · MD 768–1023</b>728×90 (IAB Leaderboard), or fluid up to 650×250 (<code>.ad-slot--tall</code>). Same band.</figcaption>
+        </figure>
+      </div>
+
+      <h2 class="demo-section-title">Desktop — beside the container</h2>
+      <div class="demo-ad-inv__list">
+        <figure class="demo-ad-inv__item">
+          <aside class="ad-slot ad-slot--side" aria-label="Advertisement"><img src="../../assets/images/ad-placeholder-160x600.jpg" alt="" /></aside>
+          <figcaption><b>Side Ad · ≥1350</b>160×600 (IAB Wide Skyscraper). Left and right of the container, 8px off; sticks while the page scrolls. Label below.</figcaption>
+        </figure>
+      </div>
+
+      <h2 class="demo-section-title">Beta — right rail · in the page on mobile</h2>
+      <div class="demo-ad-inv__list">
+        <figure class="demo-ad-inv__item">
+          <aside class="ad-slot ad-slot--mpu" aria-label="Advertisement"><img src="../../assets/images/ad-placeholder-300x250.jpg" alt="" /></aside>
+          <figcaption><b>MPU</b>300×250 (IAB Medium Rectangle). 16px inset, keyline below.</figcaption>
+        </figure>
+        <figure class="demo-ad-inv__item">
+          <aside class="ad-slot ad-slot--mpu ad-slot--sticky" aria-label="Advertisement"><img src="../../assets/images/ad-placeholder-300x250.jpg" alt="" /></aside>
+          <figcaption><b>MPU · sticky</b>300×250 in a 300×600 space: scroll the page — the ad stays 16px from the top until the space ends.</figcaption>
+        </figure>
+        <figure class="demo-ad-inv__item">
+          <aside class="ad-slot ad-slot--mpu ad-slot--dmpu" aria-label="Advertisement"><img src="../../assets/images/ad-placeholder-300x600.jpg" alt="" /></aside>
+          <figcaption><b>DMPU</b>300×600 (IAB Half Page).</figcaption>
+        </figure>
+      </div>
+
+      <h2 class="demo-section-title">Mobile — SM-XS &lt;768</h2>
+      <div class="demo-ad-inv__list">
+        <figure class="demo-ad-inv__item">
+          <div class="ad-sticky-bottom">
+            <aside class="ad-slot ad-slot--mobile" aria-label="Advertisement"><img src="../../assets/images/ad-placeholder-320x50.jpg" alt="" /></aside>
+          </div>
+          <figcaption><b>Mobile · bottom bar</b>320×50 (IAB Mobile Leaderboard), up to 320×100. Fixed to the bottom of the screen: translucent, blurred, keyline on top, no label. In the page, mobile shows MPUs.</figcaption>
+        </figure>
+      </div>
+    </div>
+  </body>
+</html>

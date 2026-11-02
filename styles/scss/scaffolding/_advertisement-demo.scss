@@ -1,0 +1,81 @@
+// ── Advertisement demo — SCAFFOLDING ONLY ─────────────────────────────────────
+// Layout for modules/advertisement/. Never ships to production.
+// An inventory: every slot shown at once, whatever the window width. The ads
+// are images exported from Figma Ad Placeholder (5100:12848):
+// assets/images/ad-placeholder-{width}x{height}.jpg, one per size.
+//
+//   .demo-ad-inv            the inventory
+//     .demo-ad-inv__list    a row of samples, wrapping
+//       figure.demo-ad-inv__item > slot + figcaption
+
+.demo-ad-inv__list {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: flex-start;
+  gap: var(--spacing-32);
+}
+
+.demo-ad-inv__item {
+  display: grid;
+  gap: var(--spacing-12);
+  max-width: 100%;
+
+  figcaption {
+    max-width: 320px;
+    font-size: 12px;
+    line-height: var(--typography-line-height-normal);
+    color: var(--color-text-neutral-grey-dark);
+
+    b {
+      display: block;
+      color: var(--color-text-neutral-darker);
+    }
+  }
+}
+
+// The 970 billboard scrolls sideways on a narrow window. Only the billboards:
+// a scroll box would stop the sticky MPU from sticking to the page.
+.demo-ad-inv__item:has(.ad-billboard) {
+  overflow-x: auto;
+}
+
+// The sticky MPU's 600 space, outlined so the ad can be seen moving in it
+.demo-ad-inv .ad-slot--sticky {
+  outline: 1px dashed var(--color-border-neutral-grey-light);
+  outline-offset: -1px;
+}
+
+// ── Show each slot here regardless of the window width ────────────────────────
+// On a page the slots follow their breakpoints and positions; in the inventory
+// they sit in place, at their own size.
+
+.demo-ad-inv {
+  .ad-billboard,
+  .ad-sticky-bottom {
+    display: block;
+  }
+
+  .ad-slot--side {
+    position: static;
+  }
+
+  .ad-sticky-bottom {
+    position: static;
+    width: 390px;
+    max-width: 100%;
+  }
+
+  .ad-slot--mpu {
+    background-color: var(--color-background-neutral-lightest); // Beta surface
+  }
+}
+
+.demo-ad-billboard--lg .ad-slot {
+  --ad-width: 970px;
+  --ad-height: 250px;
+}
+
+.demo-ad-billboard--md .ad-slot {
+  --ad-width: 728px;
+  --ad-height: 90px;
+}
