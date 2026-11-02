@@ -58,7 +58,7 @@ Unlike the Article Card, **SM and XS are separate layouts**: SM (≥640) targets
 | **SM** ≥640 | Media left (50%), text right, vertically centred | 360:336 | — | 16 | H2 (22) |
 | **MD** ≥768 | Stacked | 964:544 | 16 | 16 | H2 (24) |
 | **LG** ≥1024 | Stacked | 964:544 | 16 | 16 | H2 (28) |
-| **XL** ≥1376 | Stacked | 964:544 | 16 | 16 | H2 (28) |
+| **XL** ≥1580 | Stacked | 964:544 | 16 | 16 | H2 (28) |
 
 - Headline: `typography/font-size/h2` (sizes follow the token), semibold, line-height narrow, letter-spacing compact.
 - Content: headline and metadata 16px apart.
@@ -67,7 +67,7 @@ Unlike the Article Card, **SM and XS are separate layouts**: SM (≥640) targets
 
 ## 2-A. Secondary Stories
 
-| | XS <640 | SM ≥640 · MD ≥768 | LG ≥1024 | XL ≥1376 |
+| | XS <640 | SM ≥640 · MD ≥768 | LG ≥1024 | XL ≥1580 |
 |---|---|---|---|---|
 | Columns | 1 | 3 | 3 | 3 |
 | Thumbnail (4:3, 4px corners) | 102×76 | 96×72 | 96×72 | 120×90 |
@@ -139,5 +139,5 @@ Article Card Metadata, Comment Only, centred and light on the black panel:
 | | Path |
 |---|---|
 | Component | `styles/scss/modules/_article-card-banner.scss` |
-| Demo | `modules/article-card-banner/index.html` (Viewport: Live · XL ≥1376 · LG ≥1024 · MD ≥768 · SM ≥640 · XS <640 — buttons name the breakpoint; the preview width shows in the status · Stories: 1 (default) · 4 · 7) · `viewports.html` (every count at every breakpoint) |
+| Demo | `modules/article-card-banner/index.html` (Viewport: Live · XL ≥1580 · LG ≥1024 · MD ≥768 · SM ≥640 · XS <640 — buttons name the breakpoint; the preview width shows in the status · Stories: 1 (default) · 4 · 7) · `viewports.html` (every count at every breakpoint) |
 | Artwork (demo) | `assets/images/article-card-banner-wide.jpg`, `-xs.jpg` (SM + XS) |

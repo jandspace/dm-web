@@ -44,7 +44,7 @@ The card carries its own 16px inset; the column grid carries none (Foundation �
 
 The card fills its column span, capped at:
 
-| Span | MD ≥768 | LG ≥1024 | XL ≥1376 |
+| Span | MD ≥768 | LG ≥1024 | XL ≥1580 |
 |---|---|---|---|
 | 2 columns (XL, XL Horizontal, Image Only Large) | 768 | 664 | 816 |
 | 3 columns (XL Triple) | 768 | 996 | 1224 |

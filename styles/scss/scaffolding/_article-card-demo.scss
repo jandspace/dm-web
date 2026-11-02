@@ -201,7 +201,7 @@ $demo-card-gap: 24px;
   }
 
   @include bp.respond-to(xl) {
-    &::after { content: 'XL ≥1376'; }
+    &::after { content: 'XL ≥1580'; }
   }
 }
 

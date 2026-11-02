@@ -87,15 +87,15 @@ The system uses five breakpoints, named by size tier from Extra Small to Extra L
 | **SM** Small | ≥ 640px | 40rem | `sm` | Smartphones (landscape), foldables, mini tablets |
 | **MD** Medium | ≥ 768px | 48rem | `md` | Standard tablets (iPad), small laptops |
 | **LG** Large | ≥ 1024px | 64rem | `lg` | Tablets (landscape), compact and legacy laptops (12"–14", up to 1366px) |
-| **XL** Extra Large | ≥ 1376px | 86rem | `xl` | Standard laptops (1440px+), desktop monitors |
+| **XL** Extra Large | ≥ 1580px | 98.75rem | `xl` | Wide laptops (1600px+), desktop monitors |
 
 **On the XS tier.** XS has no media query of its own — it is the default. Any style written without a breakpoint prefix applies to XS. This is what mobile first means in practice.
 
 **On the SM tier.** 640px is the minimum width at which a two-column card layout becomes viable. Below this threshold, content stacks in a single column. The 640px value aligns with Tailwind's default `sm` breakpoint and reflects the realistic lower bound for phone landscape and small tablet viewports.
 
-**On the LG tier.** LG covers tablets in landscape orientation and compact or legacy laptops — typically 12" to 14" screens running at 1024px to 1280px. These devices receive the standard 996px container. A 1366×768 legacy laptop sits at the top end of this tier and is intentionally kept here.
+**On the LG tier.** LG covers tablets in landscape orientation and laptops up to about 1579px — 1024px to 1366px legacy laptops, 1440px and 1536px (a 1920px screen at 125% scaling) laptops. These devices receive the standard 996px container, which leaves room for the 160×600 Side Ads from 1350px (996 + 2 × (8 + 160) = 1332px, plus a 17px scrollbar).
 
-**On the XL tier.** 1376px is set deliberately above the 1366×768 legacy laptop resolution. At 1376px and above — standard laptops (1440px+), widescreen monitors — the wider 1224px container activates. The 10px gap between 1366 and 1376 is intentional: it ensures legacy laptops never accidentally trigger the wider container.
+**On the XL tier.** 1580px is set so the wider 1224px container always leaves room for the Side Ads: 1224 + 2 × (8 + 160) = 1560px, plus a 17px Windows scrollbar. Below 1580px the 996px container is kept, so 1366, 1440 and 1536 laptops all show Side Ads. (XL was 1580px until November 2026; at 1580–1559px the 1224px container left no room for Side Ads.)
 
 ### **2-C. CSS Media Query Declarations**
 
@@ -113,8 +113,8 @@ All breakpoints use `min-width`. There are no `max-width` queries in the base sy
 /* LG — 1024px and up */
 @media (min-width: 1024px) { ... }
 
-/* XL — 1376px and up */
-@media (min-width: 1376px) { ... }
+/* XL — 1580px and up */
+@media (min-width: 1580px) { ... }
 ```
 
 ### **2-D. Figma Variant Naming**
@@ -123,7 +123,7 @@ Breakpoints are reflected in Figma component variants using the following naming
 
 | Variant (Breakpoint) | Applied Breakpoint | Notes |
 | :---- | :---- | :---- |
-| `XL ≥1376` | ≥ 1376px | |
+| `XL ≥1580` | ≥ 1580px | |
 | `LG ≥1024` | ≥ 1024px | |
 | `MD ≥768` | ≥ 768px | |
 | `SM-XS <768` | < 768px | Default for most Mobile Web components. Covers the full XS–SM range. |
@@ -159,7 +159,7 @@ The table below shows which breakpoint tiers are actively implemented per produc
 | SM (≥ 640px) | — | ✅ Active | In progress |
 | MD (≥ 768px) | ✅ Active | ✅ Active | In progress |
 | LG (≥ 1024px) | ✅ Active | ✅ Active (tablet) | In progress |
-| XL (≥ 1376px) | ✅ Active | — | In progress |
+| XL (≥ 1580px) | ✅ Active | — | In progress |
 
 ---
 
@@ -182,7 +182,7 @@ See Foundation → [**Spacing, Section 4-A**](https://zeroheight.com/609615368/p
 | **SM** | ≥ 640px | Fluid | 720px | Caps at 720px for cross-platform consistency. See 3-C. |
 | **MD** | ≥ 768px | Fluid | 960px | Fluid up to 960px, then holds. |
 | **LG** | ≥ 1024px | Fixed | 996px | Fixed container. Fluid behaviour ends here. |
-| **XL** | ≥ 1376px | Fixed | 1224px | Wider container for standard laptops and monitors. |
+| **XL** | ≥ 1580px | Fixed | 1224px | Wider container for standard laptops and monitors. |
 
 ### **3-C. Why SM Caps at 720px**
 
@@ -224,7 +224,7 @@ LG and XL use fixed containers. The shift from fluid (MD) to fixed (LG) is the m
 }
 
 /* XL container — fixed, wider */
-@media (min-width: 1376px) {
+@media (min-width: 1580px) {
   .container {
     max-width: 1224px;
     margin: 0 auto;
@@ -266,7 +266,7 @@ A consistent 16px inset is visible on each side of the content area across all b
 | **SM** (≥ 640px) | Max 720px fluid | 6 | Fluid (16.6667%) | 16px |
 | **MD** (≥ 768px) | Max 960px fluid | 6 | Fluid (16.6667%) | 16px |
 | **LG** (≥ 1024px) | 996px fixed | 12 | 8.3333% (=83px) | 16px |
-| **XL** (≥ 1376px) | 1224px fixed | 12 | 8.3333% (=102px) | 16px |
+| **XL** (≥ 1580px) | 1224px fixed | 12 | 8.3333% (=102px) | 16px |
 
 Breakpoint: **XS < 640px**
 ![][image5]
@@ -296,7 +296,7 @@ Breakpoint: **LG ≥ 1024px**
 - Column Width: **8.3333% (=83px)**
 - Padding: **16px (each side)**
 
-Breakpoint: **XL ≥ 1376px**
+Breakpoint: **XL ≥ 1580px**
 ![][image9]
 - Container: **1224px fixed**
 - Columns: **12**
@@ -309,15 +309,15 @@ Breakpoint: **XL ≥ 1376px**
 
 ### **4-C. Desktop Web: 12-Column Grid (LG and XL)**
 
-`LG` and `XL` both use a 12-column grid. The column width differs because the container width differs — 996px at LG (≥ 1024px), 1224px at XL (≥ 1376px) — but the structural logic is identical. Content is always positioned in terms of column spans, not absolute pixel values.
+`LG` and `XL` both use a 12-column grid. The column width differs because the container width differs — 996px at LG (≥ 1024px), 1224px at XL (≥ 1580px) — but the structural logic is identical. Content is always positioned in terms of column spans, not absolute pixel values.
 
-| | **Breakpoint: XL ≥1376px** | **Breakpoint: LG ≥1024px** |
+| | **Breakpoint: XL ≥1580px** | **Breakpoint: LG ≥1024px** |
 | :---- | :---- | :---- |
 | Container | 1224px | 996px |
 | Columns | 12 | 12 |
 
 ![][image10]
-**Breakpoint: XL ≥1376px** — Container: 1224px — Columns: 12
+**Breakpoint: XL ≥1580px** — Container: 1224px — Columns: 12
 
 ![][image11]
 **Breakpoint: LG ≥1024px** — Container: 996px — Columns: 12

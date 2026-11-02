@@ -142,7 +142,7 @@ Components already carry `spacing-16` internally — adding container-level padd
 | SM (≥ 640px) | 16px | `spacing-16` | Component / Module |
 | MD (≥ 768px) | 16px | `spacing-16` | Component / Module |
 | LG (≥ 1024px) | 16px | `spacing-16` | Component / Module |
-| XL (≥ 1376px) | 16px | `spacing-16` | Component / Module |
+| XL (≥ 1580px) | 16px | `spacing-16` | Component / Module |
 
 ### 4-B. Column Gutter
 
@@ -167,7 +167,7 @@ The structural spacing values — column padding and gutter — are fixed across
 | SM (≥ 640px) | Max 720px | 6 | 16px | 32px |
 | MD (≥ 768px) | Max 960px | 6 | 16px | 32px |
 | LG (≥ 1024px) | 996px fixed | 12 | 16px | 32px |
-| XL (≥ 1376px) | 1224px fixed | 12 | 16px | 32px |
+| XL (≥ 1580px) | 1224px fixed | 12 | 16px | 32px |
 
 ---
 

@@ -171,9 +171,9 @@ DM is currently **adaptive**, not fully responsive. Desktop and mobile are serve
 | SM    | ≥640px  | 720px     | Phone landscape, foldables |
 | MD    | ≥768px  | 960px     | Tablet portrait |
 | LG    | ≥1024px | 996px     | Desktop         |
-| XL    | ≥1376px | 1224px    | Wide desktop    |
+| XL    | ≥1580px | 1224px    | Wide desktop (room for Side Ads) |
 
-Source of truth: `styles/scss/foundation/_breakpoints.scss` — use `@include bp.respond-to(md)` etc., never hard-coded media queries. Typography tokens still switch at 768 / 1024 only.
+Source of truth: `styles/scss/foundation/_breakpoints.scss` — use `@include bp.respond-to(md)` etc., never hard-coded media queries. Side Ads (160×600 beside the container) show from 1350px — `@include bp.side-ads` (996 + 2 × 168 + a 17px scrollbar); XL starts at 1580 so the 1224 container leaves room for them too. Typography tokens still switch at 768 / 1024 only.
 
 ### Mobile Web
 
@@ -184,7 +184,7 @@ Source of truth: `styles/scss/foundation/_breakpoints.scss` — use `@include bp
 
 ### Demo viewport switches
 
-Viewport buttons on demo pages name the **breakpoint**, never a device width — `XL ≥1376 · LG ≥1024 · MD ≥768 · SM-XS <768` (or `SM ≥640 · XS <640` when they differ), the Figma variant names. The preview width (e.g. 1440) shows only in the status text as `1440px preview`, so nobody reads it as a breakpoint.
+Viewport buttons on demo pages name the **breakpoint**, never a device width — `XL ≥1580 · LG ≥1024 · MD ≥768 · SM-XS <768` (or `SM ≥640 · XS <640` when they differ), the Figma variant names. The preview width (e.g. 1440) shows only in the status text as `1440px preview`, so nobody reads it as a breakpoint.
 
 ---
 
