@@ -12856,6 +12856,50 @@ body:not(.demo-frame) .demo-container-start {
   height: 100%;
 }
 
+.homepage .ad-billboard {
+  position: sticky;
+  top: 0;
+}
+.homepage main {
+  position: relative;
+  background-color: var(--color-background-neutral-lightest);
+}
+
+@supports (animation-timeline: scroll()) {
+  @media (min-width: 768px) {
+    .homepage .masthead::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      clip-path: inset(-16px 0 100%);
+      pointer-events: none;
+      animation: homepage-lift linear both;
+      animation-timeline: scroll(root);
+      animation-range: 0 16px;
+    }
+    .homepage .ad-billboard {
+      animation: homepage-sink linear both;
+      animation-timeline: scroll(root);
+      animation-range: 0 250px;
+    }
+  }
+}
+@keyframes homepage-lift {
+  from {
+    box-shadow: none;
+  }
+  to {
+    box-shadow: var(--elevation-3);
+  }
+}
+@keyframes homepage-sink {
+  from {
+    background-color: var(--color-background-neutral-lighter);
+  }
+  to {
+    background-color: var(--color-background-neutral-light);
+  }
+}
 .homepage__page {
   --ad-sticky-top: calc(var(--spacing-48) + var(--spacing-16));
 }

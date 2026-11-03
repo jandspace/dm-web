@@ -30,6 +30,72 @@
   height: 100%;
 }
 
+// Billboard as an underlay (as on The Washington Post): it stays at the top of
+// the window and the page — masthead (z 50) first, then <main> — slides over
+// it. <main> is positioned without a z-index, so it paints after the billboard
+// but makes no stacking context (the Side Ads keep their z-index over the
+// masthead), and carries the page surface to cover it.
+.homepage {
+  .ad-billboard {
+    position: sticky;
+    top: 0;
+  }
+
+  main {
+    position: relative;
+    background-color: var(--color-background-neutral-lightest);
+  }
+}
+
+// The page lifts once it starts to scroll over the billboard: no shadow at the
+// top, Elevation Lv-3 above the masthead after the first 16px. Scroll-driven
+// (no script). Drawn by a pseudo-element the size of the masthead, clipped to
+// what lies above its top edge — so the shadow falls on the billboard only, not
+// on the page under the masthead, and the dropdown panels are not clipped.
+// Browsers without scroll timelines show no shadow.
+@supports (animation-timeline: scroll()) {
+  @include bp.respond-to(md) {
+    .homepage .masthead::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      clip-path: inset(-16px 0 100%);
+      pointer-events: none;
+      animation: homepage-lift linear both;
+      animation-timeline: scroll(root);
+      animation-range: 0 16px;
+    }
+
+    // The billboard band darkens as the page covers it: lighter → light over
+    // the first 250px (about the LG band's height)
+    .homepage .ad-billboard {
+      animation: homepage-sink linear both;
+      animation-timeline: scroll(root);
+      animation-range: 0 250px;
+    }
+  }
+}
+
+@keyframes homepage-lift {
+  from {
+    box-shadow: none;
+  }
+
+  to {
+    box-shadow: var(--elevation-3);
+  }
+}
+
+@keyframes homepage-sink {
+  from {
+    background-color: var(--color-background-neutral-lighter);
+  }
+
+  to {
+    background-color: var(--color-background-neutral-light);
+  }
+}
+
 // Side Ads stick under the Sticky Navbar (48 + 16). The rails start 29px below
 // the masthead top as in Figma, not at the container top: lifted by the
 // masthead (154) + Navbar L2 (60) minus 29, at LG/XL where Side Ads show —
