@@ -1,8 +1,8 @@
 // ── Scroll Row ────────────────────────────────────────────────────────────────
 // A row that scrolls sideways when its items don't fit (no wrapping). Mixins only
 // — the block that scrolls includes them. Used by Navigation (L1 row, Sticky
-// Navbar), Section Header (Channel Tabs) and Tabs, so the scroll behaviour stays
-// one piece.
+// Navbar), Section Header (Channel Tabs), Tabs and Carousel, so the scroll
+// behaviour stays one piece.
 //
 //   row                 overflow-x, no scrollbar, smooth paging (instant with
 //                       reduced motion)

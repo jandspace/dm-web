@@ -1,0 +1,205 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Carousel</title>
+    <link rel="icon" href="../../assets/favicon.svg" type="image/svg+xml" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&family=Lora:ital,wght@0,400;0,500;0,600;0,700;1,400&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="../../tokens/dm_tokens.css" />
+    <link rel="stylesheet" href="../../tokens/dm_typography_web_tokens.css" />
+    <link rel="stylesheet" href="../../styles/css/main.css" />
+    <script src="../../scripts/scaffolding/demo-nav.js" defer></script>
+    <script src="../../scripts/modules/carousel.js" defer></script>
+    <script src="../../scripts/scaffolding/demo-drag-swipe.js" defer></script>
+  </head>
+  <body class="demo-page-body demo-carousel-page">
+    <h1 class="demo-page-h1">Carousel</h1>
+    <p class="demo-page-intro">
+      Items in a row that scrolls sideways and snaps an item to the start. Two types, by how they show there is more:
+      <b>Row</b> — several items in view, the one cut off on the right (with a 16px fade) shows it, no dots;
+      <b>Slide</b> — one item fills the box, dots show it. Arrows at 40% until hovered: a Slide has them at every
+      width (on a phone they and the dots say "this moves"); a Row from LG only (below LG the cut-off item and swipe are
+      enough). Figma: Web UI Kit › Carousel (3927:40511). Doc: <code>docs/4_Components__12_Carousel.md</code>.
+      Used by Article Card (Slide) and Shorts Signpost (Row).
+    </p>
+
+    <div class="demo-vp-toolbar demo-vp-toolbar--sticky">
+      <div class="demo-vp-toolbar__row">
+        <span id="demo-vp-switch-label">Viewport</span>
+        <div class="demo-vp-toggle" role="group" aria-labelledby="demo-vp-switch-label" id="demo-vp-switch">
+          <button type="button" data-vp="live" aria-pressed="true">Live</button>
+          <button type="button" data-vp="lg" aria-pressed="false">LG ≥1024</button>
+          <button type="button" data-vp="md" aria-pressed="false">MD ≥768</button>
+          <button type="button" data-vp="xs" aria-pressed="false">SM-XS &lt;768</button>
+        </div>
+        <span class="demo-vp-status" id="demo-vp-status"></span>
+      </div>
+    </div>
+
+    <!-- ════════════════════════════════════════════════════
+         .carousel (.carousel--slide[data-theme=light]) ([data-autoplay])
+           .carousel__track > items (each one element: a link, a card…)
+           .carousel__nav.carousel__nav--prev / --next
+           .carousel__dots > .carousel__dot × n   Slide only, inside the picture
+    ════════════════════════════════════════════════════ -->
+    <main class="demo-carousel">
+      <h2 class="demo-section-title">Row — cut off on the right, no dots</h2>
+      <p class="demo-carousel__note">--carousel-gap 8 · --carousel-inset 16 · --carousel-end 16. Next brings the item cut off on the right to the start; Prev the reverse.</p>
+      <div class="demo-carousel__panel demo-carousel__panel--row">
+        <div class="carousel">
+          <div class="carousel__track">
+            <a class="demo-carousel__card media media--302" href="#" aria-label="Sample item 1"><img src="../../assets/images/article-card-carousel-01.jpg" alt="" /></a>
+            <a class="demo-carousel__card media media--302" href="#" aria-label="Sample item 2"><img src="../../assets/images/article-card-carousel-02.jpg" alt="" /></a>
+            <a class="demo-carousel__card media media--302" href="#" aria-label="Sample item 3"><img src="../../assets/images/article-card-carousel-03.jpg" alt="" /></a>
+            <a class="demo-carousel__card media media--302" href="#" aria-label="Sample item 4"><img src="../../assets/images/article-card-carousel-04.jpg" alt="" /></a>
+            <a class="demo-carousel__card media media--302" href="#" aria-label="Sample item 5"><img src="../../assets/images/article-card-carousel-05.jpg" alt="" /></a>
+            <a class="demo-carousel__card media media--302" href="#" aria-label="Sample item 6"><img src="../../assets/images/article-card-carousel-01.jpg" alt="" /></a>
+            <a class="demo-carousel__card media media--302" href="#" aria-label="Sample item 7"><img src="../../assets/images/article-card-carousel-02.jpg" alt="" /></a>
+            <a class="demo-carousel__card media media--302" href="#" aria-label="Sample item 8"><img src="../../assets/images/article-card-carousel-03.jpg" alt="" /></a>
+          </div>
+          <div class="carousel__nav carousel__nav--prev" data-theme="light"><button type="button" class="btn btn-tertiary-neutral btn--icon-only" aria-label="Previous"><span class="icon icon--arrow-left-light" aria-hidden="true"></span></button></div>
+          <div class="carousel__nav carousel__nav--next" data-theme="light"><button type="button" class="btn btn-tertiary-neutral btn--icon-only" aria-label="Next"><span class="icon icon--arrow-right-light" aria-hidden="true"></span></button></div>
+        </div>
+      </div>
+
+      <h2 class="demo-section-title">Row — With Auto-Play</h2>
+      <p class="demo-carousel__note">The same Row with <code>data-autoplay</code>: every 5s it moves as Next does; after the end, back to the first. No dots, so nothing shows the wait. Waits while hovered, focused or off screen; none with reduced motion.</p>
+      <div class="demo-carousel__panel demo-carousel__panel--row">
+        <div class="carousel" data-autoplay>
+          <div class="carousel__track">
+            <a class="demo-carousel__card media media--302" href="#" aria-label="Sample item 1"><img src="../../assets/images/article-card-carousel-01.jpg" alt="" /></a>
+            <a class="demo-carousel__card media media--302" href="#" aria-label="Sample item 2"><img src="../../assets/images/article-card-carousel-02.jpg" alt="" /></a>
+            <a class="demo-carousel__card media media--302" href="#" aria-label="Sample item 3"><img src="../../assets/images/article-card-carousel-03.jpg" alt="" /></a>
+            <a class="demo-carousel__card media media--302" href="#" aria-label="Sample item 4"><img src="../../assets/images/article-card-carousel-04.jpg" alt="" /></a>
+            <a class="demo-carousel__card media media--302" href="#" aria-label="Sample item 5"><img src="../../assets/images/article-card-carousel-05.jpg" alt="" /></a>
+            <a class="demo-carousel__card media media--302" href="#" aria-label="Sample item 6"><img src="../../assets/images/article-card-carousel-01.jpg" alt="" /></a>
+            <a class="demo-carousel__card media media--302" href="#" aria-label="Sample item 7"><img src="../../assets/images/article-card-carousel-02.jpg" alt="" /></a>
+            <a class="demo-carousel__card media media--302" href="#" aria-label="Sample item 8"><img src="../../assets/images/article-card-carousel-03.jpg" alt="" /></a>
+          </div>
+          <div class="carousel__nav carousel__nav--prev" data-theme="light"><button type="button" class="btn btn-tertiary-neutral btn--icon-only" aria-label="Previous"><span class="icon icon--arrow-left-light" aria-hidden="true"></span></button></div>
+          <div class="carousel__nav carousel__nav--next" data-theme="light"><button type="button" class="btn btn-tertiary-neutral btn--icon-only" aria-label="Next"><span class="icon icon--arrow-right-light" aria-hidden="true"></span></button></div>
+        </div>
+      </div>
+
+      <h2 class="demo-section-title">Slide — Static</h2>
+      <p class="demo-carousel__note">One item fills the box. Dots inside the picture, over a scrim; arrows at its vertical centre. Theme Pinned (<code>data-theme="light"</code>). Moves only by arrow or swipe.</p>
+      <div class="demo-carousel__panel">
+        <div class="carousel carousel--slide" data-theme="light">
+          <div class="carousel__track">
+            <img src="../../assets/images/article-card-carousel-01.jpg" alt="" />
+            <img src="../../assets/images/article-card-carousel-02.jpg" alt="" />
+            <img src="../../assets/images/article-card-carousel-03.jpg" alt="" />
+            <img src="../../assets/images/article-card-carousel-04.jpg" alt="" />
+            <img src="../../assets/images/article-card-carousel-05.jpg" alt="" />
+          </div>
+          <div class="carousel__nav carousel__nav--prev" data-theme="light"><button type="button" class="btn btn-tertiary-neutral btn--icon-only" aria-label="Previous image"><span class="icon icon--arrow-left-light" aria-hidden="true"></span></button></div>
+          <div class="carousel__nav carousel__nav--next" data-theme="light"><button type="button" class="btn btn-tertiary-neutral btn--icon-only" aria-label="Next image"><span class="icon icon--arrow-right-light" aria-hidden="true"></span></button></div>
+          <div class="carousel__dots" aria-hidden="true"><span class="carousel__dot"></span><span class="carousel__dot"></span><span class="carousel__dot"></span><span class="carousel__dot"></span><span class="carousel__dot"></span></div>
+        </div>
+      </div>
+
+      <h2 class="demo-section-title">Slide — With Auto-Play</h2>
+      <p class="demo-carousel__note">The same Slide with <code>data-autoplay</code>: the active dot fills in 5s, then the next slide; after the last, the first. Waits while hovered, focused or off screen; none with reduced motion.</p>
+      <div class="demo-carousel__panel">
+        <div class="carousel carousel--slide" data-theme="light" data-autoplay>
+          <div class="carousel__track">
+            <img src="../../assets/images/article-card-carousel-01.jpg" alt="" />
+            <img src="../../assets/images/article-card-carousel-02.jpg" alt="" />
+            <img src="../../assets/images/article-card-carousel-03.jpg" alt="" />
+            <img src="../../assets/images/article-card-carousel-04.jpg" alt="" />
+            <img src="../../assets/images/article-card-carousel-05.jpg" alt="" />
+          </div>
+          <div class="carousel__nav carousel__nav--prev" data-theme="light"><button type="button" class="btn btn-tertiary-neutral btn--icon-only" aria-label="Previous image"><span class="icon icon--arrow-left-light" aria-hidden="true"></span></button></div>
+          <div class="carousel__nav carousel__nav--next" data-theme="light"><button type="button" class="btn btn-tertiary-neutral btn--icon-only" aria-label="Next image"><span class="icon icon--arrow-right-light" aria-hidden="true"></span></button></div>
+          <div class="carousel__dots" aria-hidden="true"><span class="carousel__dot"></span><span class="carousel__dot"></span><span class="carousel__dot"></span><span class="carousel__dot"></span><span class="carousel__dot"></span></div>
+        </div>
+      </div>
+    </main>
+
+    <!-- Fixed-viewport preview: this page rendered in an iframe at the chosen width -->
+    <div class="demo-vp-stage" id="demo-vp-stage" hidden></div>
+
+    <script>
+      // Scaffolding only — viewport preview.
+      //   ?frame              page without chrome (rendered inside the viewport stage)
+      //   ?vp=lg|md|xs        preview at a fixed viewport width
+      (() => {
+        const params = new URLSearchParams(location.search);
+        if (params.has('frame')) {
+          document.body.classList.add('demo-frame');
+          document.querySelectorAll('.demo-page-h1, .demo-page-intro, .demo-vp-toolbar').forEach((el) => el.remove());
+          return;
+        }
+
+        const VIEWPORTS = {
+          lg: { label: 'LG ≥1024', width: 1024 },
+          md: { label: 'MD ≥768', width: 768 },
+          xs: { label: 'SM-XS <768', width: 390 },
+        };
+
+        const toggle = document.getElementById('demo-vp-switch');
+        const status = document.getElementById('demo-vp-status');
+        const content = document.querySelector('.demo-carousel');
+        const stage = document.getElementById('demo-vp-stage');
+        let iframe = null;
+        let width = 0;
+
+        const fit = () => {
+          if (!iframe || !iframe.contentDocument) return;
+          const scale = Math.min(1, (stage.parentElement.clientWidth - 80) / width);
+          const height = iframe.contentDocument.documentElement.scrollHeight;
+          iframe.height = height;
+          iframe.style.transform = `scale(${scale})`;
+          stage.style.width = `${width * scale}px`;
+          stage.style.height = `${height * scale}px`;
+          status.textContent = `${width}px preview · ${Math.round(scale * 100)}%`;
+        };
+
+        const select = (key) => {
+          const vp = VIEWPORTS[key];
+          toggle.querySelectorAll('button').forEach((b) => {
+            b.setAttribute('aria-pressed', String(b.dataset.vp === (vp ? key : 'live')));
+          });
+          const url = new URL(location.href);
+          if (vp) url.searchParams.set('vp', key);
+          else url.searchParams.delete('vp');
+          history.replaceState(null, '', url);
+
+          if (!vp) {
+            stage.hidden = true;
+            stage.replaceChildren();
+            iframe = null;
+            content.hidden = false;
+            status.textContent = '';
+            return;
+          }
+
+          width = vp.width;
+          content.hidden = true;
+          stage.hidden = false;
+          status.textContent = 'Loading…';
+          iframe = document.createElement('iframe');
+          iframe.src = 'index.html?frame';
+          iframe.width = width;
+          iframe.title = `Carousel at ${vp.label}`;
+          iframe.addEventListener('load', async () => {
+            await iframe.contentDocument.fonts.ready;
+            fit();
+            iframe.contentDocument.querySelectorAll('img').forEach((img) => img.addEventListener('load', fit));
+          });
+          stage.replaceChildren(iframe);
+        };
+
+        toggle.addEventListener('click', (event) => {
+          const button = event.target.closest('button[data-vp]');
+          if (button) select(button.dataset.vp);
+        });
+        window.addEventListener('resize', fit);
+        select(params.get('vp') || 'live');
+      })();
+    </script>
+  </body>
+</html>

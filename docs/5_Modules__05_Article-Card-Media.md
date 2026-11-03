@@ -58,18 +58,28 @@ At the end the video goes back to `ready`.
 
 ## 3. Carousel
 
-`.article-card__media.article-card-carousel` — up to 5 items, each an image or an animated preview.
+`.article-card__media.article-card-carousel` — up to 5 items, each an image or an animated preview. It is a **Carousel, Slide type, with autoplay** (`docs/4_Components__12_Carousel.md`): arrows, swipe, dots and autoplay all come from the component.
 
-| Part | Class | Notes |
-|---|---|---|
-| Track | `.article-card-carousel__track` | Horizontal scroll-snap row — swipe on touch, trackpad scroll on desktop |
-| Item | `.article-card-carousel__item` | `img` or `video[data-preview]` (a preview plays only while its slide shows) |
-| Arrows | `.article-card-carousel__nav--prev` / `--next` | `.btn.btn-tertiary-neutral.btn--icon-only` (`arrow-left-light` / `arrow-right-light`), 8px from the edge, vertically centred. 40% opacity, 100% on media hover or focus. No Prev on the first slide, no Next on the last |
-| Dots | `.article-card-carousel__dots` | Bottom, on a dark gradient. Active 32 × 8 `background/neutral/lightest`; others 8 × 8 `effect/translucent-light/moderate`, 8px gap. Decorative |
+```html
+<div class="article-card__media article-card-carousel carousel carousel--slide" data-theme="light" data-autoplay>
+  <div class="carousel__track"><img …> <img …> <video data-preview …> …</div>
+  <div class="carousel__nav carousel__nav--prev"><button class="btn btn-tertiary-neutral btn--icon-only" aria-label="Previous image">…</button></div>
+  <div class="carousel__nav carousel__nav--next"><button class="btn btn-tertiary-neutral btn--icon-only" aria-label="Next image">…</button></div>
+  <div class="carousel__dots" aria-hidden="true"><span class="carousel__dot"></span> × 5</div>
+</div>
+```
 
-**Autoplay.** The carousel moves to the next slide every 5s and goes back to the first after the last. It waits while the mouse is over the media or keyboard focus is on an arrow, and while the carousel is less than half on screen; leaving the media starts a full 5s again. Any slide change (arrow, swipe) restarts the wait. No autoplay with `prefers-reduced-motion: reduce`.
+What the card adds (`.article-card-carousel`):
 
-**Arrows stay on touch screens.** There is no hover there, so they rest at 40% — still visible, so readers can tell the images move, and tappable. Swipe works as well. The dots show how many images there are.
+| | Notes |
+|---|---|
+| Items | `img` or `video[data-preview]` straight in the track (a preview plays only while its slide shows), sized by `.article-card__media` |
+| Dots | From the component: inside the picture, over the dark scrim (Figma 5279:14017) — nothing added here |
+| Click | A click on a slide opens the article (script) |
+
+**Arrows at every width** (Carousel rule for a Slide): on touch screens they rest at 40% — with the dots they tell the reader the picture moves — and swipe works as well.
+
+**Autoplay.** The active dot fills in 5s, then the next slide; after the last, the first. It waits while the mouse is over the media, keyboard focus is in it, or it is less than half on screen. Any slide change restarts the fill. None with `prefers-reduced-motion: reduce`.
 
 ## 4. In a card
 

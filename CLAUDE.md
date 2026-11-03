@@ -22,7 +22,7 @@ index.html        — Demo index (Components / Modules), same list as the demo s
 foundation/       — Foundation: reference pages (Colour, Typography, Spacing, Border Radius — read live from tokens/; Elevation; Layout & Grid; Iconography — every file in assets/icons/, single-colour ones as .icon)
 components/       — Components: base UI elements (Button, Input, Tabs…) — one demo folder each
 modules/          — Modules: editorial / product blocks built from components (Article Card, Video Player Controls…)
-scripts/          — JS: scripts/scaffolding/ (demo only: side panel + index), scripts/modules/ (behaviour shared by pages — Article Card Media, Scroll Row, Toast, Tooltip; never copy it into a page)
+scripts/          — JS: scripts/scaffolding/ (demo only: side panel + index), scripts/modules/ (behaviour shared by pages — Article Card Media, Carousel, Scroll Row, Toast, Tooltip; never copy it into a page)
 projects/         — Project-specific prototypes, organised by project > platform
 experiments/      — A/B tests and one-off experiments (self-contained, never imported elsewhere)
 assets/           — Icons (Figma SVG originals) and images
@@ -52,8 +52,8 @@ projects/
 
 Folders follow the Figma UI Kit and design system taxonomy: **Foundation › Components › Modules**. The demo folders (`components/`, `modules/`) and the SCSS folders (`styles/scss/components/`, `styles/scss/modules/`) mirror each other.
 
-- **Component** — a base UI element listed under Figma "DM Web ::: Components" (Button, Divider, Dropdown Menu, Input, Loading, Modal, Pagination, Tabs, Toast, Toggle, Tooltip…).
-- **Module** — a block listed under Figma "DM Web ::: Modules" (Article Card, Article Editorial Badge, Breadcrumbs, Carousel, Navigation, Video Player Controls…). Parts of a module (e.g. Article Card Metadata, Columnist Profile Photo) live in `modules/` too.
+- **Component** — a base UI element listed under Figma "DM Web ::: Components" (Button, Divider, Dropdown Menu, Input, Loading, Modal, Pagination, Tabs, Toast, Toggle, Tooltip…). Also **Carousel** — its Figma page is under Modules, but it has no content of its own and modules are built with it.
+- **Module** — a block listed under Figma "DM Web ::: Modules" (Article Card, Article Editorial Badge, Breadcrumbs, Navigation, Video Player Controls…). Parts of a module (e.g. Article Card Metadata, Columnist Profile Photo) live in `modules/` too.
 - When unsure, check which Figma page the frame lives on.
 - `projects/` → project-specific screens and flows, split by platform
 
@@ -77,7 +77,7 @@ SCSS aliases: use `--spacing-N` and `--border-radius-N` in component files — t
 | ----- | ---- | -------- |
 | 0 (none) | Page — scrolls with it, split by keylines | Page, Article Card |
 | 1 | Sticky — stuck to an edge | Sticky Navbar |
-| 2 | Floating control | Carousel arrows, back-to-top |
+| 2 | Floating control | Back-to-top |
 | 3 | Floating panel — stays while reading | Mini video player |
 | 4 | Temporary — closes on outside click or by itself | Dropdown Menu, Nav Panel, Tooltip, Toast |
 | 5 | Modal — blocks the page, over a scrim | Modal |

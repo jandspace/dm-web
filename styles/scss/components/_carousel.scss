@@ -1,0 +1,190 @@
+// ── Carousel ──────────────────────────────────────────────────────────────────
+// Items in a row that scrolls sideways and snaps an item to the start. Two types:
+//
+//   Row     (default)         items keep their own width, several in view; the
+//                             one cut off on the right (16px fade) shows there
+//                             is more — no dots. E.g. Shorts Signpost
+//   Slide   .carousel--slide  one item fills the box; dots show there is more.
+//                             E.g. Article Card carousel
+//
+//   .carousel (.carousel--slide) ([data-autoplay])
+//     .carousel__track                      Scroll Row; its children are the items
+//     .carousel__nav.carousel__nav--prev    btn-tertiary-neutral, icon only,
+//     .carousel__nav.carousel__nav--next    vertically centred, no shadow
+//     .carousel__dots                       Slide only, ≤ 7 items, inside the picture
+//       .carousel__dot × n                  active 32 × 8, others 8 × 8
+//
+// Arrows: Slide at every width (a touch screen has nothing else that says "this
+// moves" on a single picture); Row from LG only — below it the cut-off item and
+// swipe are enough. At 40% until the carousel is hovered. No Prev at the start,
+// no Next at the end.
+// Autoplay ([data-autoplay], Row or Slide): every 5s it moves as Next does;
+// after the end, back to the first. Slide: the active dot fills in 5s (below);
+// Row: a timer in the script. Waits while hovered, focused or off screen; none
+// with reduced motion.
+//
+// The module sets, on the carousel or a parent:
+//   --carousel-gap    space between items (default 0)
+//   --carousel-inset  where the first item sits, and where a snapped one stops (0)
+//   --carousel-end    room after the last item (0)
+//
+// Behaviour: scripts/modules/carousel.js
+// Reference: Figma Web UI Kit › Carousel (3927:40511) — Carousel Indicator
+
+@use '../foundation/breakpoints' as bp;
+@use 'scroll-row';
+
+.carousel {
+  --carousel-nav: none; // arrows: Row from LG only
+
+  position: relative;
+
+  @include bp.respond-to(lg) {
+    --carousel-nav: block;
+  }
+}
+
+.carousel--slide {
+  --carousel-nav: block; // Slide: every width
+}
+
+.carousel__track {
+  @include scroll-row.row;
+  @include scroll-row.fade-end(16px);
+
+  display: flex;
+  gap: var(--carousel-gap, 0);
+  padding-inline: var(--carousel-inset, 0) var(--carousel-end, 0);
+  scroll-padding-left: var(--carousel-inset, 0);
+  scroll-snap-type: x mandatory;
+
+  > * {
+    flex: none;
+    scroll-snap-align: start;
+  }
+}
+
+.carousel--slide .carousel__track {
+  height: 100%;
+  mask-image: none; // nothing is cut off
+
+  > * {
+    flex-basis: 100%;
+    min-width: 0; // an img would not shrink below its file's width otherwise
+  }
+}
+
+// ── Arrows ────────────────────────────────────────────────────────────────────
+
+.carousel__nav {
+  display: var(--carousel-nav);
+  position: absolute;
+  top: 50%;
+  padding: var(--spacing-8);
+  transform: translateY(-50%);
+  opacity: 0.4;
+  transition: opacity 150ms ease;
+
+  &--prev {
+    left: 0;
+  }
+
+  &--next {
+    right: 0;
+  }
+
+  &[hidden] {
+    display: none;
+  }
+}
+
+.carousel:hover .carousel__nav,
+.carousel__nav:focus-within {
+  opacity: 1;
+}
+
+// ── Dots ──────────────────────────────────────────────────────────────────────
+// Inside the picture, along its bottom edge, over a dark scrim — never under
+// it, so the carousel is only the picture (a card's headline follows it
+// directly) and the arrows sit at its vertical centre. Light dots on the scrim:
+// a Slide is Theme Pinned (data-theme="light"), as the picture does not change
+// with the theme. Decorative: they take no clicks.
+// Figma: Article Card Media › Carousel Slider (5279:14017) — 8 + 8 × 12 padding.
+
+.carousel__dots {
+  position: absolute;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  display: flex;
+  justify-content: center;
+  gap: var(--spacing-8);
+  padding: var(--spacing-16) var(--spacing-20);
+  background-image: linear-gradient(
+    to bottom,
+    var(--color-effect-translucent-dark-clear),
+    var(--color-effect-translucent-dark-moderate)
+  );
+  pointer-events: none;
+}
+
+.carousel__dot {
+  position: relative;
+  overflow: hidden;
+  width: 8px;
+  height: 8px;
+  border-radius: var(--border-radius-full);
+  background-color: var(--color-effect-translucent-light-moderate);
+  transition: width 200ms ease;
+
+  &.is-active {
+    width: 32px;
+    background-color: var(--color-background-neutral-lightest);
+  }
+}
+
+// Autoplay: the active dot is a track that fills in 5s. The end of the fill
+// moves to the next slide (script), so pausing the fill pauses the carousel.
+@media (prefers-reduced-motion: no-preference) {
+  .carousel[data-autoplay] .carousel__dot.is-active {
+    background-color: var(--color-effect-translucent-light-moderate);
+
+    &::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      bottom: 0;
+      left: 0;
+      border-radius: inherit;
+      background-color: var(--color-background-neutral-lightest);
+      animation: carousel-autoplay 5s linear;
+    }
+  }
+
+  .carousel[data-paused] .carousel__dot::before,
+  .carousel:has(:focus-visible) .carousel__dot::before {
+    animation-play-state: paused;
+  }
+
+  @media (hover: hover) {
+    .carousel:hover .carousel__dot::before {
+      animation-play-state: paused;
+    }
+  }
+}
+
+@keyframes carousel-autoplay {
+  from {
+    width: 8px;
+  }
+
+  to {
+    width: 100%;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .carousel__dot {
+    transition: none;
+  }
+}

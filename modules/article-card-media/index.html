@@ -12,6 +12,8 @@
     <link rel="stylesheet" href="../../tokens/dm_typography_web_tokens.css" />
     <link rel="stylesheet" href="../../styles/css/main.css" />
     <script src="../../scripts/scaffolding/demo-nav.js" defer></script>
+    <script src="../../scripts/modules/carousel.js" defer></script>
+    <script src="../../scripts/scaffolding/demo-drag-swipe.js" defer></script>
     <script src="../../scripts/modules/article-card-media.js" defer></script>
   </head>
   <body class="demo-page-body">
@@ -122,47 +124,47 @@
         </div>
       </div>
 
-      <div class="demo-row-label">Carousel<small>Up to 5 images or previews (slide 3 is a preview). Arrows 40% → 100% on hover, swipe on touch. Not on SM or Image Only.</small></div>
+      <div class="demo-row-label">Carousel<small>Carousel component, Slide type with autoplay: up to 5 images or previews (slide 3 is a preview). LG: arrows 40% → 100% on hover; below LG swipe. The active dot fills in 5s. Not on SM or Image Only.</small></div>
       <div class="demo-cell">
-        <div class="article-card__media article-card-carousel" data-theme="light">
-          <div class="article-card-carousel__track">
-            <div class="article-card-carousel__item"><img src="../../assets/images/article-card-carousel-01.jpg" alt="" /></div>
-            <div class="article-card-carousel__item"><img src="../../assets/images/article-card-carousel-02.jpg" alt="" /></div>
-            <div class="article-card-carousel__item"><video src="../../assets/images/article-card-animated-preview.mp4#t=0.1" data-preview muted loop playsinline preload="metadata" aria-hidden="true"></video></div>
-            <div class="article-card-carousel__item"><img src="../../assets/images/article-card-carousel-04.jpg" alt="" /></div>
-            <div class="article-card-carousel__item"><img src="../../assets/images/article-card-carousel-05.jpg" alt="" /></div>
+        <div class="article-card__media article-card-carousel carousel carousel--slide" data-theme="light" data-autoplay>
+          <div class="carousel__track">
+            <img src="../../assets/images/article-card-carousel-01.jpg" alt="" />
+            <img src="../../assets/images/article-card-carousel-02.jpg" alt="" />
+            <video src="../../assets/images/article-card-animated-preview.mp4#t=0.1" data-preview muted loop playsinline preload="metadata" aria-hidden="true"></video>
+            <img src="../../assets/images/article-card-carousel-04.jpg" alt="" />
+            <img src="../../assets/images/article-card-carousel-05.jpg" alt="" />
           </div>
-          <div class="article-card-carousel__nav article-card-carousel__nav--prev"><button type="button" class="btn btn-tertiary-neutral btn--icon-only" aria-label="Previous image"><span class="icon icon--arrow-left-light" aria-hidden="true"></span></button></div>
-          <div class="article-card-carousel__nav article-card-carousel__nav--next"><button type="button" class="btn btn-tertiary-neutral btn--icon-only" aria-label="Next image"><span class="icon icon--arrow-right-light" aria-hidden="true"></span></button></div>
-          <div class="article-card-carousel__dots" aria-hidden="true"><span class="article-card-carousel__dot"></span><span class="article-card-carousel__dot"></span><span class="article-card-carousel__dot"></span><span class="article-card-carousel__dot"></span><span class="article-card-carousel__dot"></span></div>
+          <div class="carousel__nav carousel__nav--prev"><button type="button" class="btn btn-tertiary-neutral btn--icon-only" aria-label="Previous image"><span class="icon icon--arrow-left-light" aria-hidden="true"></span></button></div>
+          <div class="carousel__nav carousel__nav--next"><button type="button" class="btn btn-tertiary-neutral btn--icon-only" aria-label="Next image"><span class="icon icon--arrow-right-light" aria-hidden="true"></span></button></div>
+          <div class="carousel__dots" aria-hidden="true"><span class="carousel__dot"></span><span class="carousel__dot"></span><span class="carousel__dot"></span><span class="carousel__dot"></span><span class="carousel__dot"></span></div>
         </div>
       </div>
       <div class="demo-cell">
-        <div class="article-card__media article-card-carousel demo-acm--square" data-theme="light">
-          <div class="article-card-carousel__track">
-            <div class="article-card-carousel__item"><img src="../../assets/images/article-card-carousel-01.jpg" alt="" /></div>
-            <div class="article-card-carousel__item"><img src="../../assets/images/article-card-carousel-02.jpg" alt="" /></div>
-            <div class="article-card-carousel__item"><video src="../../assets/images/article-card-animated-preview.mp4#t=0.1" data-preview muted loop playsinline preload="metadata" aria-hidden="true"></video></div>
-            <div class="article-card-carousel__item"><img src="../../assets/images/article-card-carousel-04.jpg" alt="" /></div>
-            <div class="article-card-carousel__item"><img src="../../assets/images/article-card-carousel-05.jpg" alt="" /></div>
+        <div class="article-card__media article-card-carousel carousel carousel--slide demo-acm--square" data-theme="light" data-autoplay>
+          <div class="carousel__track">
+            <img src="../../assets/images/article-card-carousel-01.jpg" alt="" />
+            <img src="../../assets/images/article-card-carousel-02.jpg" alt="" />
+            <video src="../../assets/images/article-card-animated-preview.mp4#t=0.1" data-preview muted loop playsinline preload="metadata" aria-hidden="true"></video>
+            <img src="../../assets/images/article-card-carousel-04.jpg" alt="" />
+            <img src="../../assets/images/article-card-carousel-05.jpg" alt="" />
           </div>
-          <div class="article-card-carousel__nav article-card-carousel__nav--prev"><button type="button" class="btn btn-tertiary-neutral btn--icon-only" aria-label="Previous image"><span class="icon icon--arrow-left-light" aria-hidden="true"></span></button></div>
-          <div class="article-card-carousel__nav article-card-carousel__nav--next"><button type="button" class="btn btn-tertiary-neutral btn--icon-only" aria-label="Next image"><span class="icon icon--arrow-right-light" aria-hidden="true"></span></button></div>
-          <div class="article-card-carousel__dots" aria-hidden="true"><span class="article-card-carousel__dot"></span><span class="article-card-carousel__dot"></span><span class="article-card-carousel__dot"></span><span class="article-card-carousel__dot"></span><span class="article-card-carousel__dot"></span></div>
+          <div class="carousel__nav carousel__nav--prev"><button type="button" class="btn btn-tertiary-neutral btn--icon-only" aria-label="Previous image"><span class="icon icon--arrow-left-light" aria-hidden="true"></span></button></div>
+          <div class="carousel__nav carousel__nav--next"><button type="button" class="btn btn-tertiary-neutral btn--icon-only" aria-label="Next image"><span class="icon icon--arrow-right-light" aria-hidden="true"></span></button></div>
+          <div class="carousel__dots" aria-hidden="true"><span class="carousel__dot"></span><span class="carousel__dot"></span><span class="carousel__dot"></span><span class="carousel__dot"></span><span class="carousel__dot"></span></div>
         </div>
       </div>
       <div class="demo-cell">
-        <div class="article-card__media article-card-carousel demo-acm--portrait" data-theme="light">
-          <div class="article-card-carousel__track">
-            <div class="article-card-carousel__item"><img src="../../assets/images/article-card-carousel-01.jpg" alt="" /></div>
-            <div class="article-card-carousel__item"><img src="../../assets/images/article-card-carousel-02.jpg" alt="" /></div>
-            <div class="article-card-carousel__item"><video src="../../assets/images/article-card-animated-preview.mp4#t=0.1" data-preview muted loop playsinline preload="metadata" aria-hidden="true"></video></div>
-            <div class="article-card-carousel__item"><img src="../../assets/images/article-card-carousel-04.jpg" alt="" /></div>
-            <div class="article-card-carousel__item"><img src="../../assets/images/article-card-carousel-05.jpg" alt="" /></div>
+        <div class="article-card__media article-card-carousel carousel carousel--slide demo-acm--portrait" data-theme="light" data-autoplay>
+          <div class="carousel__track">
+            <img src="../../assets/images/article-card-carousel-01.jpg" alt="" />
+            <img src="../../assets/images/article-card-carousel-02.jpg" alt="" />
+            <video src="../../assets/images/article-card-animated-preview.mp4#t=0.1" data-preview muted loop playsinline preload="metadata" aria-hidden="true"></video>
+            <img src="../../assets/images/article-card-carousel-04.jpg" alt="" />
+            <img src="../../assets/images/article-card-carousel-05.jpg" alt="" />
           </div>
-          <div class="article-card-carousel__nav article-card-carousel__nav--prev"><button type="button" class="btn btn-tertiary-neutral btn--icon-only" aria-label="Previous image"><span class="icon icon--arrow-left-light" aria-hidden="true"></span></button></div>
-          <div class="article-card-carousel__nav article-card-carousel__nav--next"><button type="button" class="btn btn-tertiary-neutral btn--icon-only" aria-label="Next image"><span class="icon icon--arrow-right-light" aria-hidden="true"></span></button></div>
-          <div class="article-card-carousel__dots" aria-hidden="true"><span class="article-card-carousel__dot"></span><span class="article-card-carousel__dot"></span><span class="article-card-carousel__dot"></span><span class="article-card-carousel__dot"></span><span class="article-card-carousel__dot"></span></div>
+          <div class="carousel__nav carousel__nav--prev"><button type="button" class="btn btn-tertiary-neutral btn--icon-only" aria-label="Previous image"><span class="icon icon--arrow-left-light" aria-hidden="true"></span></button></div>
+          <div class="carousel__nav carousel__nav--next"><button type="button" class="btn btn-tertiary-neutral btn--icon-only" aria-label="Next image"><span class="icon icon--arrow-right-light" aria-hidden="true"></span></button></div>
+          <div class="carousel__dots" aria-hidden="true"><span class="carousel__dot"></span><span class="carousel__dot"></span><span class="carousel__dot"></span><span class="carousel__dot"></span><span class="carousel__dot"></span></div>
         </div>
       </div>
     </div>
@@ -211,17 +213,17 @@
         <div class="article-card__metadata article-card-metadata"><a class="article-card-metadata__channel" href="#channel"><span class="article-card-metadata__channel-text">Channel</span></a><a class="article-card-metadata__comments" href="#comments" aria-label="9.9k comments"><span class="icon icon--speechbubble-ellipsis article-card-metadata__comments-icon" aria-hidden="true"></span>9.9k</a></div>
       </article>
       <article class="article-card article-card--xl-horizontal demo-span-2">
-        <div class="article-card__media article-card-carousel" data-theme="light">
-          <div class="article-card-carousel__track">
-            <div class="article-card-carousel__item"><img src="../../assets/images/article-card-carousel-01.jpg" alt="" /></div>
-            <div class="article-card-carousel__item"><img src="../../assets/images/article-card-carousel-02.jpg" alt="" /></div>
-            <div class="article-card-carousel__item"><video src="../../assets/images/article-card-animated-preview.mp4#t=0.1" data-preview muted loop playsinline preload="metadata" aria-hidden="true"></video></div>
-            <div class="article-card-carousel__item"><img src="../../assets/images/article-card-carousel-04.jpg" alt="" /></div>
-            <div class="article-card-carousel__item"><img src="../../assets/images/article-card-carousel-05.jpg" alt="" /></div>
+        <div class="article-card__media article-card-carousel carousel carousel--slide" data-theme="light" data-autoplay>
+          <div class="carousel__track">
+            <img src="../../assets/images/article-card-carousel-01.jpg" alt="" />
+            <img src="../../assets/images/article-card-carousel-02.jpg" alt="" />
+            <video src="../../assets/images/article-card-animated-preview.mp4#t=0.1" data-preview muted loop playsinline preload="metadata" aria-hidden="true"></video>
+            <img src="../../assets/images/article-card-carousel-04.jpg" alt="" />
+            <img src="../../assets/images/article-card-carousel-05.jpg" alt="" />
           </div>
-          <div class="article-card-carousel__nav article-card-carousel__nav--prev"><button type="button" class="btn btn-tertiary-neutral btn--icon-only" aria-label="Previous image"><span class="icon icon--arrow-left-light" aria-hidden="true"></span></button></div>
-          <div class="article-card-carousel__nav article-card-carousel__nav--next"><button type="button" class="btn btn-tertiary-neutral btn--icon-only" aria-label="Next image"><span class="icon icon--arrow-right-light" aria-hidden="true"></span></button></div>
-          <div class="article-card-carousel__dots" aria-hidden="true"><span class="article-card-carousel__dot"></span><span class="article-card-carousel__dot"></span><span class="article-card-carousel__dot"></span><span class="article-card-carousel__dot"></span><span class="article-card-carousel__dot"></span></div>
+          <div class="carousel__nav carousel__nav--prev"><button type="button" class="btn btn-tertiary-neutral btn--icon-only" aria-label="Previous image"><span class="icon icon--arrow-left-light" aria-hidden="true"></span></button></div>
+          <div class="carousel__nav carousel__nav--next"><button type="button" class="btn btn-tertiary-neutral btn--icon-only" aria-label="Next image"><span class="icon icon--arrow-right-light" aria-hidden="true"></span></button></div>
+          <div class="carousel__dots" aria-hidden="true"><span class="carousel__dot"></span><span class="carousel__dot"></span><span class="carousel__dot"></span><span class="carousel__dot"></span><span class="carousel__dot"></span></div>
         </div>
         <div class="article-card__body">
           <h3 class="h3 article-headline"><a class="article-card__link" href="#article">Headline of Daily Mail article preview card - lorem ipsum dolor sit amet, con sectetur adipiscing jand</a></h3>

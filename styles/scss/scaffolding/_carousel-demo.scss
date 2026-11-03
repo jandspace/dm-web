@@ -1,0 +1,50 @@
+// ── Carousel demo — SCAFFOLDING ONLY ──────────────────────────────────────────
+// Layout for components/carousel/. Never ships to production.
+
+// Inside the viewport stage (?frame): 16px round the samples
+.demo-frame.demo-carousel-page {
+  padding: var(--spacing-16);
+}
+
+.demo-carousel {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr); // a scrolling track must not widen the column
+  max-width: 720px;
+
+  &[hidden] {
+    display: none; // hidden while a viewport preview shows
+  }
+}
+
+.demo-carousel__note {
+  margin: 0 0 var(--spacing-12);
+  font-size: 12px;
+  line-height: var(--typography-line-height-normal);
+  color: var(--color-text-neutral-grey-dark);
+}
+
+.demo-carousel__panel {
+  padding: var(--spacing-16);
+  background-color: var(--color-background-neutral-lightest);
+
+  &--row {
+    --carousel-gap: var(--spacing-8);
+    --carousel-inset: var(--spacing-16);
+    --carousel-end: var(--spacing-16);
+
+    padding-inline: 0;
+  }
+}
+
+// A Row item: a link holding a Media box (.media--302) — the item could as well
+// be an Article Card or a Short
+.demo-carousel__card {
+  width: 240px;
+  border-radius: var(--border-radius-8);
+}
+
+.demo-carousel__panel .carousel--slide img {
+  display: block;
+  aspect-ratio: 16 / 9;
+  object-fit: cover;
+}

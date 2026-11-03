@@ -191,7 +191,7 @@ The disc behind the columnist photo is **editor-controlled per channel**, from t
 |---|---|
 | Card | `styles/scss/modules/_article-card.scss`, `_article-card-image-only.scss`, `_article-card-key-updates.scss`, `_article-card-video.scss` |
 | Video controls | `_video-player-controls.scss` — demo `modules/video-player-controls/index.html` |
-| Media | `_article-card-media.scss` (Video player, Carousel) · `scripts/modules/article-card-media.js` — demo `modules/article-card-media/index.html` |
+| Media | `_article-card-media.scss` (Video player, Carousel) · `scripts/modules/article-card-media.js` · Carousel component `components/_carousel.scss` + `scripts/modules/carousel.js` — demo `modules/article-card-media/index.html` |
 | Metadata | `_article-card-metadata.scss`, `_columnist-profile-photo.scss`, `_columnist-comment-announcement.scss` · section map `foundation/_sections.scss` |
 | Demo | `modules/article-card/index.html` (toolbar: Viewport · Badge · Preview · Metadata · Media — Image / Preview (Video in an article) / Video / Carousel), `viewports.html` (every type × breakpoint), `modules/article-card-metadata/index.html` |
 | Generators | `tools/demo-generators/` — the two `index.html` demo pages are generated |

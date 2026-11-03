@@ -12,6 +12,8 @@
     <link rel="stylesheet" href="../../tokens/dm_typography_web_tokens.css" />
     <link rel="stylesheet" href="../../styles/css/main.css" />
     <script src="../../scripts/scaffolding/demo-nav.js" defer></script>
+    <script src="../../scripts/modules/carousel.js" defer></script>
+    <script src="../../scripts/scaffolding/demo-drag-swipe.js" defer></script>
     <script src="../../scripts/modules/article-card-media.js" defer></script>
   </head>
   <body class="demo-page-body demo-page-body--flush">
@@ -534,15 +536,15 @@
           '<span class="video-progress__remaining">-00:11</span>' +
           '</div></div>';
         const CAROUSEL_HTML =
-          '<div class="article-card__media article-card-carousel" data-theme="light">' +
-          '<div class="article-card-carousel__track">' +
+          '<div class="article-card__media article-card-carousel carousel carousel--slide" data-theme="light" data-autoplay>' +
+          '<div class="carousel__track">' +
           [1, 2, 3, 4, 5]
-            .map((n) => `<div class="article-card-carousel__item">${n === 3 ? PREVIEW_HTML : `<img src="${ASSETS}article-card-carousel-0${n}.jpg" alt="" />`}</div>`)
+            .map((n) => (n === 3 ? PREVIEW_HTML : `<img src="${ASSETS}article-card-carousel-0${n}.jpg" alt="" />`))
             .join('') +
           '</div>' +
-          `<div class="article-card-carousel__nav article-card-carousel__nav--prev">${iconButton('btn-tertiary-neutral', 'aria-label="Previous image"', 'arrow-left-light')}</div>` +
-          `<div class="article-card-carousel__nav article-card-carousel__nav--next">${iconButton('btn-tertiary-neutral', 'aria-label="Next image"', 'arrow-right-light')}</div>` +
-          `<div class="article-card-carousel__dots" aria-hidden="true">${'<span class="article-card-carousel__dot"></span>'.repeat(5)}</div>` +
+          `<div class="carousel__nav carousel__nav--prev">${iconButton('btn-tertiary-neutral', 'aria-label="Previous image"', 'arrow-left-light')}</div>` +
+          `<div class="carousel__nav carousel__nav--next">${iconButton('btn-tertiary-neutral', 'aria-label="Next image"', 'arrow-right-light')}</div>` +
+          `<div class="carousel__dots" aria-hidden="true">${'<span class="carousel__dot"></span>'.repeat(5)}</div>` +
           '</div>';
 
         // Each card's own photo, kept to put back
@@ -581,9 +583,10 @@
             } else if (t === 'carousel') {
               media.outerHTML = CAROUSEL_HTML;
             }
-            // On first load the media script (deferred) runs after this and
-            // initialises everything itself
+            // On first load the media scripts (deferred) run after this and
+            // initialise everything themselves
             window.ArticleCardMedia?.init(card);
+            window.Carousel?.init(card);
           });
         };
 

@@ -183,8 +183,8 @@
 }
 
 // ── Elevation: one page with every level in place ─────────────────────────────
-// A wireframe page: the sticky bar, an arrow on a carousel image, a dropdown, a
-// toast, a mini player and (Modal on) a modal over a scrim — each with its level.
+// A wireframe page: the sticky bar, a back-to-top button, a dropdown, a toast,
+// a mini player and (Modal on) a modal over a scrim — each with its level.
 
 .demo-scale__scene {
   position: relative;
@@ -212,7 +212,7 @@
 
 // Every floating layer: a white surface with a corner radius
 .demo-scale__scene-bar,
-.demo-scale__scene-arrow,
+.demo-scale__scene-top,
 .demo-scale__scene-dropdown,
 .demo-scale__scene-toast,
 .demo-scale__scene-player,
@@ -254,21 +254,20 @@
   }
 }
 
-// 2 · Carousel arrow — on the image
-.demo-scale__scene-arrow {
-  top: 50%;
-  right: var(--spacing-12);
+// 2 · Back-to-top button — bottom left, over the page
+.demo-scale__scene-top {
+  bottom: var(--spacing-24);
+  left: var(--spacing-24);
+  z-index: 1;
   width: 40px;
   height: 40px;
-  margin-top: -20px;
   border-radius: var(--border-radius-full);
   box-shadow: var(--elevation-2);
 
   .demo-scale__tag {
     top: auto;
     bottom: calc(100% + var(--spacing-4));
-    left: 50%;
-    transform: translateX(-50%);
+    left: 0;
   }
 }
 
