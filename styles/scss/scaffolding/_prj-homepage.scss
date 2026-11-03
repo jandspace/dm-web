@@ -1,0 +1,63 @@
+// ── Project: Homepage (prototype only) ────────────────────────────────────────
+// Page styles for projects/202611-prj-homepage/ — the DM homepage frame:
+// Billboard › Masthead › page container with Side Ads › Footer.
+//
+//   body.homepage
+//     .container.ad-skin.homepage__page   page container; Side Ads beside it
+//       section.layout-full.homepage-slot  empty section, a placeholder until its
+//                                          content goes in (then drop the class)
+//
+// Reference: Figma Web UI Kit › Homepage › Budget/Legacy - 1366x768 (8709:88370)
+
+@use '../foundation/breakpoints' as bp;
+
+// SM-XS: room at the end of the page for the bottom ad bar (320×50 + 4px
+// padding top and bottom + its 1px keyline)
+.homepage {
+  padding-bottom: calc(50px + 2 * var(--spacing-4) + 1px);
+
+  @include bp.respond-to(md) {
+    padding-bottom: 0;
+  }
+}
+
+// Billboard: one slot, the creative for the breakpoint from <picture>
+.homepage .ad-billboard img {
+  display: block;
+  width: 100%;
+  height: 100%;
+}
+
+// Side Ads stick under the Sticky Navbar (48 + 16). The rails start 29px below
+// the masthead top as in Figma, not at the container top: lifted by the
+// masthead (155 at LG/XL, where Side Ads show) minus 29. They end with this
+// container, so the ads scroll up with the footer when it comes into view.
+.homepage__page {
+  --ad-sticky-top: calc(var(--spacing-48) + var(--spacing-16));
+
+  .ad-rail {
+    top: -126px;
+    z-index: 51; // over the masthead (50) beside it, under the Sticky Navbar (60)
+  }
+}
+
+// ── Placeholder section ───────────────────────────────────────────────────────
+// 320 high like the Figma frame: a dashed box inside the 16px inset
+
+.homepage-slot {
+  display: flex;
+  min-height: 320px;
+  padding: var(--spacing-16);
+}
+
+.homepage-slot__label {
+  display: flex;
+  flex: 1;
+  align-items: center;
+  justify-content: center;
+  border: 1px dashed var(--color-border-neutral-grey-light);
+  border-radius: var(--border-radius-4);
+  color: var(--color-text-neutral-grey-dark);
+  font-size: var(--typography-font-size-label-sm);
+  line-height: var(--typography-line-height-narrow);
+}

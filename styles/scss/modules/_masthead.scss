@@ -22,6 +22,7 @@
 
 @use '../foundation/breakpoints' as bp;
 @use '../foundation/sections';
+@use '../components/divider';
 @use '../components/scroll-row';
 
 // Hover only where the pointer can really hover (mouse, trackpad) — touch
@@ -93,19 +94,33 @@
   }
 }
 
-.masthead__inner {
+// The page container inside a full-width bar: full width below MD, then
+// 960 · 996 · 1224 with a 16px inset. A mixin: Navbar L2 shares it.
+@mixin container {
   width: 100%;
   margin-inline: auto;
 
-  // Desktop: keyline under the navbar
   @include bp.respond-to(md) {
     max-width: 960px;
     padding-inline: var(--spacing-16);
-    border-bottom: 1px solid var(--color-border-neutral-light);
   }
 
   @include bp.respond-to(lg) { max-width: 996px; }
   @include bp.respond-to(xl) { max-width: 1224px; }
+}
+
+.masthead__inner {
+  @include container;
+
+  // Desktop: keyline under the navbar, 16px in from each side (inside the
+  // padding, as the Topbar's)
+  @include bp.respond-to(md) {
+    position: relative;
+
+    &::after {
+      @include divider.divider;
+    }
+  }
 }
 
 // Shared: label-sm Semibold item with an optional 14px icon
@@ -183,7 +198,7 @@
     gap: var(--spacing-16);
     min-height: 32px;
     padding-block: 2px;
-    border-bottom: 1px solid var(--color-border-neutral-light);
+    border-bottom: 1px solid var(--color-border-translucent-dark-pale);
   }
 }
 
@@ -231,7 +246,7 @@
   align-items: center;
   min-height: 22px;
   padding-inline: var(--spacing-16);
-  border-left: 1px solid var(--color-border-neutral-light);
+  border-left: 1px solid var(--color-border-translucent-dark-pale);
 }
 
 // Profile (logged in): filled person icon — neutral/grey-dark; Mail+ subscriber:
@@ -528,18 +543,27 @@
   }
 }
 
+// Login by user (Figma M_ Branding - Login items, 2883:22873): logged out —
+// person icon; logged in — initials (label-sm Semibold); Mail+ subscriber —
+// initials on the Mail+ gradient, and no Subscribe pill
 .masthead-login-round {
   position: relative;
+  isolation: isolate; // the circle sits behind the initials
   display: flex;
   align-items: center;
   justify-content: center;
   width: 44px;
   height: 44px;
-  color: var(--color-icon-neutral-lightest);
+  font-size: var(--typography-font-size-label-sm);
+  font-weight: var(--typography-font-weight-semibold);
+  line-height: var(--typography-line-height-narrow);
+  color: var(--color-text-neutral-lightest);
+  text-decoration: none;
 
   &::before {
     content: '';
     position: absolute;
+    z-index: -1;
     width: 34px;
     height: 34px;
     border: 1px solid var(--color-border-translucent-light-moderate);
@@ -552,6 +576,14 @@
     width: 14px;
     height: 14px;
   }
+}
+
+.masthead-login-round--mplus::before {
+  background-image: linear-gradient(
+    118deg,
+    var(--color-miscellaneous-mailplus-mplus-dark-blue) 4%,
+    var(--color-miscellaneous-mailplus-mplus-solid-blue) 65%
+  );
 }
 
 // ── 3. Navbar L1 ──────────────────────────────────────────────────────────────
@@ -891,8 +923,9 @@
   list-style: none;
 }
 
-// Subchannel — label-sm Regular, 1px grey-dark line grows from the left on hover
-.masthead-nav__panel-topic {
+// Subchannel — label-sm Regular, 1px grey-dark line grows from the left on hover.
+// A mixin: Navbar L2 items share it (_navbar-l2.scss).
+@mixin subchannel-link {
   position: relative;
   display: inline-block;
   padding-block: var(--spacing-4);
@@ -924,4 +957,8 @@
   @include pointer-hover('::after') {
     transform: scaleX(1);
   }
+}
+
+.masthead-nav__panel-topic {
+  @include subchannel-link;
 }

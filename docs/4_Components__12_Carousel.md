@@ -110,5 +110,5 @@ Code: `--carousel-nav` on `.carousel` — `none` below LG on a Row, `block` othe
 
 ## 7. Notes / open points
 
-- **Mouse drag on demo pages only:** the demos load `scripts/scaffolding/demo-drag-swipe.js`, so a mouse can drag a track to try the touch swipe on a desktop (it snaps like a swipe; a drag is not a click). Not product behaviour — on the site a mouse uses the arrows and a trackpad scrolls.
+- **Mouse drag on demo pages only:** the demos load `scripts/scaffolding/demo-drag-swipe.js`, so a mouse can drag a track to try the touch swipe on a desktop (it snaps like a swipe; a drag is not a click). The same script drags every Scroll Row (Tabs, Section Header tabs, Navbar L1 / L2, Sticky Navbar) — see CLAUDE.md. Not product behaviour — on the site a mouse uses the arrows and a trackpad scrolls.
 - **Figma page:** Carousel is under Modules in the Figma file; proposed to move it to Components.

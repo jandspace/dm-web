@@ -1,8 +1,9 @@
 // ── Navigation demo — SCAFFOLDING ONLY ────────────────────────────────────────
 // Layout for modules/navigation/ (index + anatomy). Never ships to production.
 
-// Index: the live masthead sits under the intro and toolbar
-.demo-nav-content .masthead {
+// Index: the live masthead sits under the intro and toolbar. Not in the
+// preview frames — there the page (Navbar L2 first) follows it directly
+.demo-nav-page:not(.demo-frame) .demo-nav-content .masthead {
   margin-bottom: var(--spacing-48);
 }
 
@@ -15,6 +16,7 @@
   .demo-page-h1,
   .demo-page-intro,
   .demo-vp-toolbar,
+  .demo-nav-l2,
   .demo-nav-sticky,
   .demo-nav-sheet {
     display: none;
@@ -31,6 +33,7 @@
 // below for the Edition menu
 .demo-frame.demo-sticky-frame {
   .masthead,
+  .navbar-l2,
   .demo-nav-filler {
     display: none;
   }
@@ -47,6 +50,7 @@
   display: none;
 }
 
+.demo-nav-l2,
 .demo-nav-sticky {
   margin-bottom: var(--spacing-48);
 
@@ -182,7 +186,8 @@
   border-radius: var(--border-radius-8);
 }
 
-.demo-anatomy__context--sheet {
+.demo-anatomy__context--sheet,
+.demo-anatomy__context--l2 {
   padding: var(--spacing-12) var(--spacing-20);
   border-radius: var(--border-radius-8);
   background-color: var(--color-background-neutral-lightest);

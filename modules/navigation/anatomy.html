@@ -12,6 +12,8 @@
     <link rel="stylesheet" href="../../tokens/dm_typography_web_tokens.css" />
     <link rel="stylesheet" href="../../styles/css/main.css" />
     <script src="../../scripts/scaffolding/demo-nav.js" defer></script>
+    <script src="../../scripts/modules/scroll-row.js" defer></script>
+    <script src="../../scripts/scaffolding/demo-drag-swipe.js" defer></script>
   </head>
   <body class="demo-page-body demo-anatomy-page">
     <svg style="display: none" aria-hidden="true">
@@ -27,7 +29,7 @@
 
     <h1 class="demo-page-h1">Navigation — Anatomy</h1>
     <p class="demo-page-intro">
-      Every part of the <a href="index.html">Masthead</a> on its own, with its class. Desktop parts (≥768) are shown on
+      Every part of the <a href="index.html">Navigation</a> — Masthead and Navbar L2 — on its own, with its class. Desktop parts (≥768) are shown on
       this page; Mweb parts (&lt;768) in a 390px frame below, so their real Mweb styles apply. Hover and open states are
       shown with the static helpers <code>.is-hover</code> / <code>.is-open</code>.
     </p>
@@ -128,6 +130,22 @@
             </div>
           </div>
           <figcaption><span class="demo-anatomy__name">Login — Hover</span><code class="demo-anatomy__class">.is-hover</code></figcaption>
+        </figure>
+        <figure class="demo-anatomy__item">
+          <div class="demo-anatomy__specimen">
+            <div class="masthead masthead--home demo-anatomy__context">
+              <a class="masthead-action masthead-profile" href="#account"><span class="icon icon--person" aria-hidden="true"></span>Profile</a>
+            </div>
+          </div>
+          <figcaption><span class="demo-anatomy__name">Profile — Logged in</span><code class="demo-anatomy__class">.masthead-profile</code></figcaption>
+        </figure>
+        <figure class="demo-anatomy__item">
+          <div class="demo-anatomy__specimen">
+            <div class="masthead masthead--home demo-anatomy__context">
+              <a class="masthead-action masthead-profile masthead-profile--mplus" href="#account"><span class="icon icon--person" aria-hidden="true"></span>Profile</a>
+            </div>
+          </div>
+          <figcaption><span class="demo-anatomy__name">Profile — M+ subscriber</span><code class="demo-anatomy__class">.masthead-profile--mplus</code></figcaption>
         </figure>
         <figure class="demo-anatomy__item">
           <div class="demo-anatomy__specimen">
@@ -347,11 +365,65 @@
           <figcaption><span class="demo-anatomy__name">Hover — Dropdown (tab + panel)</span><code class="demo-anatomy__class">.masthead-nav__item--has-panel</code></figcaption>
         </figure>
       </div>
+      <h3 class="demo-anatomy__group">4. Navbar L2</h3>
+      <p class="demo-anatomy__note">Under the masthead, the first child of &lt;main&gt; — full width, content in the page container. Subchannels (or a topic package) 10px apart with a 1px divider, over a 3px bar in the channel colour (.navbar-l2--{section}). Centred while they fit; when they overflow, left-aligned and scrollable with chevron edges (mouse) on the side(s) that can scroll.</p>
+      <div class="demo-anatomy__row">
+        <figure class="demo-anatomy__item demo-anatomy__item--wide">
+          <div class="demo-anatomy__specimen">
+            <nav class="navbar-l2 navbar-l2--sport" aria-label="Sport"><div class="navbar-l2__inner"><ul class="navbar-l2__list"><li><a class="navbar-l2__link" href="#t">Football</a></li><li><a class="navbar-l2__link" href="#t">Premier League</a></li><li><a class="navbar-l2__link" href="#t">Transfer News</a></li><li><a class="navbar-l2__link" href="#t">M+ Sport</a></li><li><a class="navbar-l2__link" href="#t">Racing</a></li><li><a class="navbar-l2__link" href="#t" aria-current="page">Golf</a></li><li><a class="navbar-l2__link" href="#t">F1</a></li><li><a class="navbar-l2__link" href="#t">Tennis</a></li></ul><button type="button" class="navbar-l2__edge navbar-l2__edge--prev" aria-label="Scroll subchannels left" hidden><span class="icon icon--chevron-left" aria-hidden="true"></span></button><button type="button" class="navbar-l2__edge navbar-l2__edge--next" aria-label="Scroll subchannels right" hidden><span class="icon icon--chevron-right" aria-hidden="true"></span></button></div></nav>
+          </div>
+          <figcaption><span class="demo-anatomy__name">Subchannels — fits (centred), current item</span><code class="demo-anatomy__class">.navbar-l2</code></figcaption>
+        </figure>
+        <figure class="demo-anatomy__item demo-anatomy__item--wide">
+          <div class="demo-anatomy__specimen">
+            <nav class="navbar-l2 navbar-l2--lifestyle" aria-label="Lifestyle"><div class="navbar-l2__inner"><ul class="navbar-l2__list"><li><a class="navbar-l2__link" href="#t">You Mag</a></li><li><a class="navbar-l2__link" href="#t">Femail</a></li><li><a class="navbar-l2__link" href="#t">Health</a></li><li><a class="navbar-l2__link" href="#t">Food &amp; Drink</a></li><li><a class="navbar-l2__link" href="#t">Horoscopes</a></li><li><a class="navbar-l2__link" href="#t">Gardening</a></li><li><a class="navbar-l2__link" href="#t">Fitness &amp; Wellbeing</a></li><li><a class="navbar-l2__link" href="#t">Homes</a></li><li><a class="navbar-l2__link" href="#t">Fashion</a></li><li><a class="navbar-l2__link" href="#t">Beauty</a></li><li><a class="navbar-l2__link" href="#t">Love &amp; Sex</a></li><li><a class="navbar-l2__link" href="#t">Books</a></li><li><a class="navbar-l2__link" href="#t">Cars</a></li><li><a class="navbar-l2__link" href="#t">Mail Shop</a></li></ul><button type="button" class="navbar-l2__edge navbar-l2__edge--prev" aria-label="Scroll subchannels left" hidden><span class="icon icon--chevron-left" aria-hidden="true"></span></button><button type="button" class="navbar-l2__edge navbar-l2__edge--next" aria-label="Scroll subchannels right" hidden><span class="icon icon--chevron-right" aria-hidden="true"></span></button></div></nav>
+          </div>
+          <figcaption><span class="demo-anatomy__name">Subchannels — overflows (chevron edges, mouse)</span><code class="demo-anatomy__class">.navbar-l2__edge--prev / --next</code></figcaption>
+        </figure>
+        <figure class="demo-anatomy__item demo-anatomy__item--wide">
+          <div class="demo-anatomy__specimen">
+            <nav class="navbar-l2 navbar-l2--news" aria-label="Budget 2026"><div class="navbar-l2__inner"><ul class="navbar-l2__list"><li class="navbar-l2__head"><a class="navbar-l2__topic" href="#t">Budget 2026<span class="icon icon--chevron-right" aria-hidden="true"></span></a><a class="navbar-l2__live" href="#t"><span class="badge__live" aria-hidden="true"></span>Live</a></li><li><a class="navbar-l2__link" href="#t">What it means for you</a></li><li><a class="navbar-l2__link" href="#t">Income tax</a></li><li><a class="navbar-l2__link" href="#t">Pensions</a></li><li><a class="navbar-l2__link" href="#t">Property</a></li><li><a class="navbar-l2__link" href="#t">Fuel duty</a></li><li><a class="navbar-l2__link" href="#t">Analysis</a></li></ul><button type="button" class="navbar-l2__edge navbar-l2__edge--prev" aria-label="Scroll topics left" hidden><span class="icon icon--chevron-left" aria-hidden="true"></span></button><button type="button" class="navbar-l2__edge navbar-l2__edge--next" aria-label="Scroll topics right" hidden><span class="icon icon--chevron-right" aria-hidden="true"></span></button></div></nav>
+          </div>
+          <figcaption><span class="demo-anatomy__name">Topic package</span><code class="demo-anatomy__class">.navbar-l2__head</code></figcaption>
+        </figure>
+      </div>
+      <div class="demo-anatomy__row">
+        <figure class="demo-anatomy__item">
+          <div class="demo-anatomy__specimen">
+            <div class="demo-anatomy__context--l2 navbar-l2--sport"><ul class="demo-anatomy__list"><li><a class="navbar-l2__link" href="#t">Football</a></li></ul></div>
+          </div>
+          <figcaption><span class="demo-anatomy__name">Item — Default</span><code class="demo-anatomy__class">.navbar-l2__link</code></figcaption>
+        </figure>
+        <figure class="demo-anatomy__item">
+          <div class="demo-anatomy__specimen">
+            <div class="demo-anatomy__context--l2 navbar-l2--sport"><ul class="demo-anatomy__list"><li><a class="navbar-l2__link is-hover" href="#t">Football</a></li></ul></div>
+          </div>
+          <figcaption><span class="demo-anatomy__name">Item — Hover</span><code class="demo-anatomy__class">.is-hover</code></figcaption>
+        </figure>
+        <figure class="demo-anatomy__item">
+          <div class="demo-anatomy__specimen">
+            <div class="demo-anatomy__context--l2 navbar-l2--sport"><ul class="demo-anatomy__list"><li><a class="navbar-l2__link" href="#t" aria-current="page">Football</a></li></ul></div>
+          </div>
+          <figcaption><span class="demo-anatomy__name">Item — Current (channel colour)</span><code class="demo-anatomy__class">[aria-current="page"]</code></figcaption>
+        </figure>
+        <figure class="demo-anatomy__item">
+          <div class="demo-anatomy__specimen">
+            <div class="demo-anatomy__context--l2 navbar-l2--news"><ul class="demo-anatomy__list"><li><a class="navbar-l2__topic" href="#t">Budget 2026<span class="icon icon--chevron-right" aria-hidden="true"></span></a></li></ul></div>
+          </div>
+          <figcaption><span class="demo-anatomy__name">Topic</span><code class="demo-anatomy__class">.navbar-l2__topic</code></figcaption>
+        </figure>
+        <figure class="demo-anatomy__item">
+          <div class="demo-anatomy__specimen">
+            <div class="demo-anatomy__context--l2 navbar-l2--news"><ul class="demo-anatomy__list"><li><a class="navbar-l2__live" href="#t"><span class="badge__live" aria-hidden="true"></span>Live</a></li></ul></div>
+          </div>
+          <figcaption><span class="demo-anatomy__name">Live</span><code class="demo-anatomy__class">.navbar-l2__live + .badge__live</code></figcaption>
+        </figure>
+      </div>
     </section>
 
     <section class="demo-anatomy" id="demo-anatomy-mobile">
       <h2 class="demo-section-title">Mweb</h2>
-      <h3 class="demo-anatomy__group">4. Mweb masthead</h3>
+      <h3 class="demo-anatomy__group">5. Mweb masthead</h3>
       <p class="demo-anatomy__note">Below 768 the masthead takes the channel colour. White logo, Subscribe pill (primary on dark), round login (secondary on dark), burger and white labels; the current channel gets a 4px white pill.</p>
       <div class="demo-anatomy__row">
         <figure class="demo-anatomy__item">
@@ -376,7 +448,23 @@
               <a class="masthead-login-round" href="#login" aria-label="Login"><span class="icon icon--person-outline" aria-hidden="true"></span></a>
             </div>
           </div>
-          <figcaption><span class="demo-anatomy__name">Login</span><code class="demo-anatomy__class">.masthead-login-round</code></figcaption>
+          <figcaption><span class="demo-anatomy__name">Login — Logged out</span><code class="demo-anatomy__class">.masthead-login-round</code></figcaption>
+        </figure>
+        <figure class="demo-anatomy__item">
+          <div class="demo-anatomy__specimen">
+            <div class="masthead masthead--home demo-anatomy__context demo-anatomy__context--mweb">
+              <a class="masthead-login-round" href="#account" aria-label="My account">ME</a>
+            </div>
+          </div>
+          <figcaption><span class="demo-anatomy__name">Login — Logged in (initials)</span><code class="demo-anatomy__class">.masthead-login-round</code></figcaption>
+        </figure>
+        <figure class="demo-anatomy__item">
+          <div class="demo-anatomy__specimen">
+            <div class="masthead masthead--home demo-anatomy__context demo-anatomy__context--mweb">
+              <a class="masthead-login-round masthead-login-round--mplus" href="#account" aria-label="My account">ME</a>
+            </div>
+          </div>
+          <figcaption><span class="demo-anatomy__name">Login — M+ subscriber (no Subscribe)</span><code class="demo-anatomy__class">.masthead-login-round--mplus</code></figcaption>
         </figure>
       </div>
       <div class="demo-anatomy__row">
@@ -440,7 +528,7 @@
         </figure>
       </div>
 
-      <h3 class="demo-anatomy__group">5. Nav Sheet</h3>
+      <h3 class="demo-anatomy__group">6. Nav Sheet</h3>
       <p class="demo-anatomy__note">Opened by the burger. Full-screen, lightest.</p>
       <div class="demo-anatomy__row">
         <figure class="demo-anatomy__item">
@@ -520,6 +608,22 @@
             </div>
           </div>
           <figcaption><span class="demo-anatomy__name">Daily Mail+ row (full logo, no submenu)</span><code class="demo-anatomy__class">.masthead-sheet__mplus-logo</code></figcaption>
+        </figure>
+      </div>
+      <h3 class="demo-anatomy__group">7. Mweb Navbar L2</h3>
+      <p class="demo-anatomy__note">Full width, 48px row from the left (16px in) and a 4px channel bar. The right edge fades; swipe to scroll (on this page a mouse can drag it).</p>
+      <div class="demo-anatomy__row">
+        <figure class="demo-anatomy__item demo-anatomy__item--wide">
+          <div class="demo-anatomy__specimen">
+            <nav class="navbar-l2 navbar-l2--sport" aria-label="Sport"><div class="navbar-l2__inner"><ul class="navbar-l2__list"><li><a class="navbar-l2__link" href="#t">Football</a></li><li><a class="navbar-l2__link" href="#t">Premier League</a></li><li><a class="navbar-l2__link" href="#t">Transfer News</a></li><li><a class="navbar-l2__link" href="#t">M+ Sport</a></li><li><a class="navbar-l2__link" href="#t">Racing</a></li><li><a class="navbar-l2__link" href="#t" aria-current="page">Golf</a></li><li><a class="navbar-l2__link" href="#t">F1</a></li><li><a class="navbar-l2__link" href="#t">Tennis</a></li></ul><button type="button" class="navbar-l2__edge navbar-l2__edge--prev" aria-label="Scroll subchannels left" hidden><span class="icon icon--chevron-left" aria-hidden="true"></span></button><button type="button" class="navbar-l2__edge navbar-l2__edge--next" aria-label="Scroll subchannels right" hidden><span class="icon icon--chevron-right" aria-hidden="true"></span></button></div></nav>
+          </div>
+          <figcaption><span class="demo-anatomy__name">Subchannels</span><code class="demo-anatomy__class">.navbar-l2</code></figcaption>
+        </figure>
+        <figure class="demo-anatomy__item demo-anatomy__item--wide">
+          <div class="demo-anatomy__specimen">
+            <nav class="navbar-l2 navbar-l2--news" aria-label="Budget 2026"><div class="navbar-l2__inner"><ul class="navbar-l2__list"><li class="navbar-l2__head"><a class="navbar-l2__topic" href="#t">Budget 2026<span class="icon icon--chevron-right" aria-hidden="true"></span></a><a class="navbar-l2__live" href="#t"><span class="badge__live" aria-hidden="true"></span>Live</a></li><li><a class="navbar-l2__link" href="#t">What it means for you</a></li><li><a class="navbar-l2__link" href="#t">Income tax</a></li><li><a class="navbar-l2__link" href="#t">Pensions</a></li><li><a class="navbar-l2__link" href="#t">Property</a></li><li><a class="navbar-l2__link" href="#t">Fuel duty</a></li><li><a class="navbar-l2__link" href="#t">Analysis</a></li></ul><button type="button" class="navbar-l2__edge navbar-l2__edge--prev" aria-label="Scroll topics left" hidden><span class="icon icon--chevron-left" aria-hidden="true"></span></button><button type="button" class="navbar-l2__edge navbar-l2__edge--next" aria-label="Scroll topics right" hidden><span class="icon icon--chevron-right" aria-hidden="true"></span></button></div></nav>
+          </div>
+          <figcaption><span class="demo-anatomy__name">Topic package</span><code class="demo-anatomy__class">.navbar-l2__head</code></figcaption>
         </figure>
       </div>
     </section>

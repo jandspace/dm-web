@@ -1,13 +1,15 @@
 // ── Demo: mouse drag = swipe — SCAFFOLDING ONLY ───────────────────────────────
-// For scripts/scaffolding/demo-drag-swipe.js: a mouse drags a Carousel track
-// on demo pages. Never ships to production.
+// For scripts/scaffolding/demo-drag-swipe.js: a mouse drags a row that scrolls
+// sideways (Carousel track, Scroll Row) on demo and prototype pages. Never
+// ships to production.
 
-[data-demo-drag] .carousel__track {
+// [data-drag-ready]: set by the script while the row overflows
+[data-demo-drag] [data-drag-ready] {
   cursor: grab;
 }
 
-// While dragging, the track follows the pointer: no snap, no smooth scroll
-[data-demo-drag] .carousel__track[data-dragging] {
+// While dragging, the row follows the pointer: no snap, no smooth scroll
+[data-demo-drag] [data-dragging] {
   cursor: grabbing;
   scroll-behavior: auto;
   scroll-snap-type: none;

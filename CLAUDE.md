@@ -22,8 +22,8 @@ index.html        — Demo index (Components / Modules), same list as the demo s
 foundation/       — Foundation: reference pages (Colour, Typography, Spacing, Border Radius — read live from tokens/; Elevation; Layout & Grid; Iconography — every file in assets/icons/, single-colour ones as .icon)
 components/       — Components: base UI elements (Button, Input, Tabs…) — one demo folder each
 modules/          — Modules: editorial / product blocks built from components (Article Card, Video Player Controls…)
-scripts/          — JS: scripts/scaffolding/ (demo only: side panel + index), scripts/modules/ (behaviour shared by pages — Article Card Media, Carousel, Scroll Row, Shorts Signpost, Toast, Tooltip; never copy it into a page)
-projects/         — Project-specific prototypes, organised by project > platform
+scripts/          — JS: scripts/scaffolding/ (demo only: side panel + index), scripts/modules/ (behaviour shared by pages — Article Card Media, Carousel, Masthead, Scroll Row, Shorts Signpost, Toast, Tooltip; never copy it into a page)
+projects/         — Project-specific prototypes: YYYYMM-prj-<name>/ (main page index.html), listed on projects/index.html
 experiments/      — A/B tests and one-off experiments (self-contained, never imported elsewhere)
 assets/           — Icons (Figma SVG originals) and images
 docs/             — Design system documentation (read before component work)
@@ -33,18 +33,13 @@ CLAUDE.md         — This file
 
 ### Project Folder Convention
 
+Same format as experiments: `projects/YYYYMM-prj-<name>/`, main page `index.html` right in the folder — see **Projects** below.
+
 ```
 projects/
-├── daily-briefing/
-│   ├── ios/
-│   └── android/
-├── daily-mail-shorts/
-│   ├── ios/
-│   └── android/
-├── vertical-module/
-│   ├── ios/
-│   ├── android/
-│   └── web/
+├── index.html                 — Projects landing page (PROJECTS list)
+├── 202611-prj-homepage/
+│   └── index.html             — the project's main page
 └── ...
 ```
 
@@ -431,12 +426,13 @@ All token files share the same version string (currently `1.0.4`). Update the `v
 
 ### Rules
 
-- Never write `<style>` blocks inside HTML files (only exception: `experiments/`, see below)
+- Never write `<style>` blocks inside HTML files (only exception: experiment pages in `experiments/`, see below)
 - New components go in `styles/scss/components/_[name].scss` (demo: `components/[name]/`); new modules in `styles/scss/modules/_[name].scss` (demo: `modules/[name]/`)
 - New demo/prototype-only styling always goes in `styles/scss/scaffolding/_[name].scss` — never mix into `components/` or `modules/`
 - Demo pages use `<body class="demo-page-body">` — background `color/background/neutral/lighter` for every page in `components/`, `modules/` and the index. Keep it unless asked otherwise; put light/dark surfaces on the samples, not on the page.
 - Pages in `experiments/` and `projects/` keep the base body background `color/background/neutral/lightest` (set in `foundation/_reset.scss`) — don't paint a different page background unless asked.
 - Every new demo page loads the side panel (`<script src="../../scripts/scaffolding/demo-nav.js" defer></script>`) and gets an entry in `scripts/scaffolding/demo-nav.js`
+- **Mouse drag = swipe (demo only):** swipe stays a touch gesture in the product, but every demo and project page with a row that scrolls sideways (Carousel track, Scroll Row — Tabs, Section Header tabs, Navbar L1, Sticky Navbar, Navbar L2) loads `<script src="../../scripts/scaffolding/demo-drag-swipe.js" defer></script>`, so a mouse can drag the row to try the mobile swipe on a desktop (Carousel snaps as a swipe does; a drag is not a click). Never product behaviour — on the site a mouse uses the arrows / chevron edges. A new kind of scrolling row goes into the script's `ROWS` list (styles: `scaffolding/_demo-drag-swipe.scss`). Experiments marked Decided or Archived stay as they were tested.
 - Always add new files to `main.scss` via `@use`
 - Always use semantic colour tokens (`var(--color-...)`) and typography tokens (`var(--typography-...)`) — never raw hex or px line-height
 
@@ -454,9 +450,22 @@ One-off tests and A/B variants live in `experiments/YYYYMM-exp-<name>/` (e.g. `2
 - **B (variant)** — same links, plus an inline `<style>` that overrides only the changed parts. Shared SCSS/CSS/JS is never edited for a variant, so A is unaffected.
 - **Fixed breakpoint:** when a test targets one breakpoint, the page frames itself in an iframe of that width (e.g. 1024px for LG) instead of being responsive.
 - Images go in the experiment's own `images/` folder.
-- **Experiments home button:** every experiment page loads `<script src="../../scripts/scaffolding/experiments-home.js" defer></script>` in `<head>` — a round bulb button bottom-left ("Experiments" on hover) back to `experiments/`.
-- **Experiment notes — always:** whenever you create or change files in `experiments/`, add or update that experiment's entry in `experiments/index.html` (the `EXPERIMENTS` list, newest first) in the same turn, without being asked: `id` (folder), `date` (start date), `title`, `status` (In progress / Decided / Archived), `notes` (what is tested and why — short), `result` (once decided), `pages` (label, file, one-line description for each test page). The year filter (All / YYYY) is built from `date`.
+- **Experiments home button:** every experiment page loads `<script src="../../scripts/scaffolding/home-button.js" data-home="experiments" defer></script>` in `<head>` — a round bulb button bottom-left ("Experiments" on hover) back to `experiments/`.
+- **Footer:** every experiment and project page loads `scripts/scaffolding/page-footer.js` (defer, in `<head>`) — the copyright line as a reveal underlay: fixed to the window bottom on `background/neutral/light`, behind the page (body = raised lightest layer with a shadow), shown when scrolled to the end. The two landing pages use the library footer instead (`<footer class="demo-footer">` at the end of `.notes-main`), because of their fixed left panel.
+- **Landing page:** `experiments/index.html` — the list and cards come from the shared `scripts/scaffolding/notes-index.js` (`renderNotesIndex(EXPERIMENTS)`) and `styles/scss/scaffolding/_notes-index.scss` (no inline `<style>`); the page holds only the `EXPERIMENTS` list.
+- **Notes style (experiments and projects):** short lines, not prose — one fact per line, no explanation of why unless it decides something. First lines say what it is; each later change is one line starting with its date (`2026-11-03 — …`). Page descriptions are a few words. On the landing page the page links show first (grey block) and long notes scroll inside the card.
+- **Experiment notes — always:** whenever you create or change files in `experiments/`, add or update that experiment's entry in `experiments/index.html` (the `EXPERIMENTS` list, newest first) in the same turn, without being asked: `id` (folder), `date` (start date), `title`, `status` (In progress / Decided / Archived), `notes` (what is tested — short lines, see Notes style), `result` (once decided), `pages` (label, file, one-line description for each test page). The year filter (All / YYYY) is built from `date`.
 - **After the test:** move the winning change into `styles/scss/components/` or `modules/` and `docs/`; keep or delete the folder.
+
+## Projects
+
+Project prototypes (a page or flow built from the library, e.g. a homepage demo) live in `projects/YYYYMM-prj-<name>/` (e.g. `202611-prj-homepage/`) — the experiments naming, with `prj`. The main page is `index.html` right in the project folder — no platform subfolder; other pages sit beside it. Web pages cover every breakpoint unless the project says otherwise.
+
+- **Shared code only:** pages link `tokens/*.css` and `styles/css/main.css`, and use library classes and `scripts/modules/` as they are. No inline `<style>` — page styles go in `styles/scss/scaffolding/_prj-<name>.scss` (prototype-only, `@use` in `main.scss`). Behaviour a page needs that the library has only inline in a demo moves to `scripts/modules/` first (e.g. `masthead.js`), never copied.
+- Images go in the project's own `images/` folder.
+- **Projects home button:** every project page loads `<script src="../../scripts/scaffolding/home-button.js" data-home="projects" defer></script>` in `<head>` — a round button bottom-left ("Projects" on hover) back to `projects/` — plus `page-footer.js` (see Experiments › Footer).
+- **Landing page:** `projects/index.html` — same page as the experiments one (`notes-index.js` + `_notes-index.scss`), holding only the `PROJECTS` list.
+- **Project notes — always:** whenever you create or change files in `projects/`, add or update that project's entry in `projects/index.html` (the `PROJECTS` list, newest first) in the same turn, without being asked: `id` (folder), `date` (start date), `title`, `status` (In progress / Done / Archived), `notes` (what is built, then each later step — short lines, see Notes style), `result` (once done), `pages` (label, file path in the folder, one-line description for each page). The year filter (All / YYYY) is built from `date`.
 
 ---
 
@@ -472,6 +481,6 @@ One-off tests and A/B variants live in `experiments/YYYYMM-exp-<name>/` (e.g. `2
 - Before starting any task, read all `.md` files in the `docs/` folder
 - Apply DM Design System rules and conventions from `docs/` throughout all work
 - When working on a specific component, read its doc first. Docs are named `docs/<section>_<Group>__<NN>_<Name>.md` (e.g. `docs/4_Components__01_Button.md`, `docs/5_Modules__01_Article-Card.md`)
-- **New library elements replace look-alikes.** When adding an element the library does not define yet (a component, module or foundation item), first search `projects/` and `experiments/` for a similar one already built there. Compare it with the new element and settle the differences. Then list the pages to switch to the library element (its classes / mixins) and **ask before replacing** — an experiment marked Decided or Archived records what the test looked like, so it may need to stay as it is. After replacing, every use stays consistent; in `experiments/`, update that experiment's notes in `experiments/index.html` too.
+- **New library elements replace look-alikes.** When adding an element the library does not define yet (a component, module or foundation item), first search `projects/` and `experiments/` for a similar one already built there. Compare it with the new element and settle the differences. Then list the pages to switch to the library element (its classes / mixins) and **ask before replacing** — an experiment marked Decided or Archived records what the test looked like, so it may need to stay as it is. After replacing, every use stays consistent; update the notes in `experiments/index.html` / `projects/index.html` too.
 - **Figma is not perfect.** Designers rarely work in the codebase, so layer names, stray widths or copied App values (e.g. keylines) can be human error. Read Figma for intent, cross-check it against the docs and the rest of the file, and flag what looks wrong instead of copying it.
 - Figma MCP: the desktop server only reads the file open in the active Figma tab ("node not found" otherwise); the remote server works from the fileKey in the URL

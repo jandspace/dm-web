@@ -1,9 +1,11 @@
-# Navigation — Masthead
+# Navigation
 
-The site header: **Topbar › Branding › Navbar L1**, plus the **Nav Sheet** on Mweb.
+The site header: **Topbar › Branding › Navbar L1**, plus the **Nav Sheet** on Mweb. Under it, in the page: **Navbar L2** (§ 11).
+
+Team names: **L1** = the main channels (Navbar L1, in the masthead) · **L2** = the bar under the masthead (subchannels or a topic package).
 
 Figma: Web UI Kit › Masthead (71:2568) · Topbar (2839:29038, Large 2841:9111) · Branding (2841:11471) · Navbar - L1 (2839:29304) · Nav Sheet (332:8626) · Nav Sheet sizes (328:29645).
-Code: `styles/scss/modules/_masthead.scss`, `_masthead-sheet.scss` · demo `modules/navigation/` (live masthead) and `modules/navigation/anatomy.html` (every part on its own, with its class).
+Code: `styles/scss/modules/_masthead.scss`, `_masthead-sheet.scss`, `_navbar-l2.scss` · demo `modules/navigation/` (live masthead) and `modules/navigation/anatomy.html` (every part on its own, with its class).
 
 ---
 
@@ -17,9 +19,9 @@ Code: `styles/scss/modules/_masthead.scss`, `_masthead-sheet.scss` · demo `modu
 
 | Part | Class | Desktop (≥768) | Mweb (<768) |
 |---|---|---|---|
-| Shell | `header.masthead.masthead--{section}` | `color/background/neutral/lightest`, keyline under the navbar | channel base colour, 4px top inset |
+| Shell | `header.masthead.masthead--{section}` | `color/background/neutral/lightest`, `border/translucent-dark/pale` keyline under the navbar — 16px in from each side, inside the container padding (Figma Masthead Container Keyline, x 16) | channel base colour, 4px top inset |
 | Container | `.masthead__inner` | page container, 16px inset | full width |
-| Topbar | `.masthead-topbar` | 32px row, light keyline below | hidden |
+| Topbar | `.masthead-topbar` | 32px row, `border/translucent-dark/pale` keyline below | hidden |
 | Branding | `.masthead-branding` | 72px (MD) · 84px (LG+) | 48px row |
 | Navbar L1 | `nav.masthead-nav` | 38px items | burger + 44px items |
 | Nav Sheet | `.masthead-sheet` | — | full screen <640; 390px panel ≥640 |
@@ -28,7 +30,7 @@ Code: `styles/scss/modules/_masthead.scss`, `_masthead-sheet.scss` · demo `modu
 ## 3. Topbar
 
 - **Left:** channel id — 3px `color/border/{channel}/base` left border + 4px padding (label 7px in; Figma Topbar - Channel Id 66:2166, strokes included in layout), label-xsm Bold `neutral/darker` — then *Last updated: …* (label-xsm Regular `neutral/dark`, **LG+ only**).
-- **Right:** Mail+ Subscribe (channel pages only; never for Mail+ subscribers) · Edition · Login / Profile · Search. Each item 16px inset on both sides — Search too, so its label ends 16px before the row's end — with a 1px `color/border/neutral/light` keyline on its left.
+- **Right:** Mail+ Subscribe (channel pages only; never for Mail+ subscribers) · Edition · Login / Profile · Search. Each item 16px inset on both sides — Search too, so its label ends 16px before the row's end — with a 1px `color/border/translucent-dark/pale` keyline on its left.
 - **Login item by user** (Figma Topbar - Login items 1651:55213): logged out — *Login*, person outline icon; logged in — *Profile*, filled person icon `color/icon/neutral/grey-dark`; Mail+ subscriber — *Profile*, filled person icon in Mail+ blue (`mplus-solid-blue`; Figma uses the Mail+ gradient), and no Subscribe.
 - **Topbar Subscribe** (Figma "Topbar - Subscribe Button", `.masthead-topbar-subscribe`): Mail+ gradient pill (165°, `mplus-dark-blue` 4% → `mplus-solid-blue` 65%), 4px / 12px padding, 4px gap; Daily Mail+ wordmark 80×14 (2px top offset) + "Subscribe" label-sm Semibold white. Hover as the Branding Subscribe. Item: 14px icon + label-sm Semibold `neutral/darker`, 6px gap (Edition: flag 14 · label · chevron 12, 4px gap).
 - **Hover:** `color/background/neutral/light` pill, 4px / 8px outside the content.
@@ -40,7 +42,8 @@ Code: `styles/scss/modules/_masthead.scss`, `_masthead-sheet.scss` · demo `modu
 - **Daily Mail+ landing** (`.masthead--mplus`): the Daily Mail+ logo instead — 387×68 (LG+) · 312×55 (MD) · 148×26 white (Mweb) (Figma Branding 2841:11459, M_ Branding Id 2902:28145) — and on Mweb the masthead background is the horizontal Mail+ gradient (`mplus-dark-blue` → `mplus-solid-blue`) instead of the channel colour. A Daily Mail+ article uses the general article template (Daily Mail logo, channel colour) — only the Sticky Navbar's right side differs.
 - **Mail+ Subscribe — one place per page.** Home and Daily Mail+ home (`.masthead--landing`): the large Subscribe in the Branding slot, none in the Topbar. Every other channel page: the Topbar Subscribe, and the Branding slot stays empty. (Mweb keeps its Subscribe pill on every page.)
 - **Slot (desktop):** right column, max 480px, content right-aligned. Landing pages: **Mail+ Subscribe** — 48px pill, Mail+ gradient (`miscellaneous/mailplus/mplus-dark-blue` → `mplus-solid-blue`), Daily Mail+ wordmark 114×20 + "Subscribe" label-xl Semibold white. Hover: `color/background/interaction-primary/hover`, as the primary (brand) button. Other branding elements can replace it.
-- **Mweb:** Subscribe pill (34px, lightest, M+ icon + label-sm Semibold) and a round login (44px target, 34px circle with a `translucent-light/moderate` border, person icon 14).
+- **Mweb:** Subscribe pill (34px, lightest, M+ icon + label-sm Semibold) and a round login (44px target, 34px circle with a `translucent-light/moderate` border).
+- **Mweb login by user** (Figma M_ Branding - Login items, 2883:22873): logged out — Subscribe + person icon 14; logged in — Subscribe + initials (label-sm Semibold, lightest); Mail+ subscriber — no Subscribe, initials on the Mail+ gradient (118°, `mplus-dark-blue` 4% → `mplus-solid-blue` 65%; `.masthead-login-round--mplus`).
 
 ## 5. Navbar L1
 
@@ -118,6 +121,66 @@ Under the masthead the demo page shows the Nav Sheet open in a frame at the chos
 
 For the Anatomy page (like the Button's helpers): `.is-hover` on Topbar actions, Subscribe, L1 links, panel links and the sheet's expand button; `.is-open` on an L1 item shows its tab and panel (MD+).
 
-## 11. Not yet
+## 11. Navbar L2
+
+Figma: Navbar - L2 (2841:11409 — MD+ variants: Type L2 - SubChannel / Topic Package × Carousel No / Yes - Start / Yes - Finish) · M_ Navbar - L2 (2891:27468) · SubChannel Tabs Item (2841:10240, Mweb 2891:27385). Code: `_navbar-l2.scss`, edges `scripts/modules/scroll-row.js`.
+
+### 11-A. Placement
+
+- **Part of the page, not the masthead:** the **first child of `<main>`**, under the masthead. **Full width, as the masthead**; its content sits in the same container (`.navbar-l2__inner` — the masthead's `container` mixin: full width below MD, then 960 · 996 · 1224 with a 16px inset). So `<main>` holds the bar first and the page container after it. It changes with the page (subchannels, a topic package, or nothing) and has no sticky state, so it stays out of `header.masthead` and `masthead.js`.
+- **Optional:** a page without L2 leaves it out of the HTML.
+- Its channel is set on the bar itself (`.navbar-l2--{section}`), the same section as the page's `.masthead--{section}`.
+- The Sticky Navbar may later show L2 in its centre (§ 12) — that would be a Sticky Navbar variant sharing the links, not this element.
+
+### 11-B. Structure
+
+```html
+<main>
+  <nav class="navbar-l2 navbar-l2--sport" aria-label="Sport">
+    <div class="navbar-l2__inner">
+      <ul class="navbar-l2__list">
+        <li><a class="navbar-l2__link" href="…">Football</a></li>
+        <li><a class="navbar-l2__link" href="…" aria-current="page">Golf</a></li>
+        …
+      </ul>
+      <button type="button" class="navbar-l2__edge navbar-l2__edge--prev" aria-label="Scroll subchannels left" hidden><span class="icon icon--chevron-left" aria-hidden="true"></span></button>
+      <button type="button" class="navbar-l2__edge navbar-l2__edge--next" aria-label="Scroll subchannels right" hidden><span class="icon icon--chevron-right" aria-hidden="true"></span></button>
+    </div>
+  </nav>
+  <div class="container">…</div>
+</main>
+```
+
+**Topic package:** the first `li` is the head — the topic and its live coverage; topics follow.
+
+```html
+<li class="navbar-l2__head">
+  <a class="navbar-l2__topic" href="…">Budget 2026<span class="icon icon--chevron-right" aria-hidden="true"></span></a>
+  <a class="navbar-l2__live" href="…"><span class="badge__live" aria-hidden="true"></span>Live</a>
+</li>
+```
+
+The Live link is optional (only while there is live coverage).
+
+### 11-C. Look
+
+| | MD+ (≥768) | Mweb (<768) |
+|---|---|---|
+| Box | full width (`neutral/lightest`); content in the page container, 16px inset; 12px above the row, 12px row → bar, 8px under the bar (60px) | full width; 48px row |
+| Bar | 3px `color/background/{channel}/base`, inside the 16px inset | 4px, full width |
+| Row | centred while it fits, 12px padding; overflows → left-aligned, scrolls | from the left, 16px in, 32px fade on the right (swipe) |
+| Overflow | mouse: chevron edges (Scroll Row `edge`, 14px chevron, fading from the surface) on the side(s) that can scroll, a click pages ~80%; touch: the fade | the fade |
+
+- **Item** (SubChannel Tabs Item): label-sm Regular `text/neutral/darker`, 4px vertical padding — the same link as the L1 dropdown's subchannels (`masthead.subchannel-link` mixin). **Hover:** a 1px `border/neutral/grey-dark` line grows from the left (also on keyboard focus; mouse only). **Current** (`aria-current="page"`): Semibold, `text/{channel}/base`.
+- **Divider:** 1px × 15px `border/neutral/light` between items, 10px either side. (One divider in the Figma frames uses `background/neutral/grey-light` — a stray; all use the border token.)
+- **Topic head:** topic — label-sm Semibold + chevron 12, 8px gap; Live — the Editorial Badge live ring (`.badge__live`, 8px dot) in `icon/semantic-error/base` + "Live" label-sm Semibold, 4px gap. No divider between the topic and Live; one after Live. Hover as the items.
+- Background `color/background/neutral/lightest`. No Elevation (Level 0 — scrolls with the page).
+
+### 11-D. Demo
+
+- **Index:** **Live** — the module itself (HTML, no frame) in its own **Navbar L2** section between the masthead and the Sticky Navbar. **A viewport chosen** — the section goes and the bar shows in the masthead preview frame, as the first item of the page's first `.layout-full`. The one toolbar drives the masthead and L2 together (Viewport, Location, Channel, User type); **L2** switches Subchannels / Topic package. The subchannels come from the current channel's L1 panel (Crime Desk: none — a note instead). Clicking an item makes it current.
+- **Anatomy:** 4. Navbar L2 (subchannels that fit / overflow, topic package, item states) and 7. Mweb Navbar L2.
+
+## 12. Not yet
 
 - Sticky Navbar centre content other than L1 (L2 subchannels, topic package, article headline) and the Mweb row variants.

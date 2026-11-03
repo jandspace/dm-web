@@ -7,6 +7,7 @@
 //   Tabs                       .tabs                 > .tabs__list                 · .tabs__edge--prev / --next
 //   Section Header sub-items   .section-header-tabs  > .section-header-tabs__list  · .section-header-tabs__edge--prev / --next
 //   Sticky Navbar channels     .masthead-sticky__center > .masthead-sticky__list   · .masthead-sticky__edge--prev / --next
+//   Navbar L2                  .navbar-l2            > .navbar-l2__list            · .navbar-l2__edge--prev / --next
 //
 // Call ScrollRow.init(root) again after adding rows — rows already set up are skipped.
 
@@ -15,6 +16,7 @@
     ['.tabs', '.tabs__list', '.tabs__edge'],
     ['.section-header-tabs', '.section-header-tabs__list', '.section-header-tabs__edge'],
     ['.masthead-sticky__center', '.masthead-sticky__list', '.masthead-sticky__edge'],
+    ['.navbar-l2', '.navbar-l2__list', '.navbar-l2__edge'],
   ];
   const ready = new WeakSet();
 

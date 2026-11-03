@@ -139,6 +139,7 @@
 
 // ── Live indicator ────────────────────────────────────────────────────────────
 // One element: 1px white ring, 2px gap, pulsing white dot (the content box).
+// --badge-live-color sets another colour (Navbar L2: on a light bar, red).
 
 .badge__live {
   flex-shrink: 0;
@@ -146,9 +147,9 @@
   width: var(--badge-dot);
   height: var(--badge-dot);
   padding: var(--spacing-2);
-  border: 1px solid var(--color-border-neutral-white);
+  border: 1px solid var(--badge-live-color, var(--color-border-neutral-white));
   border-radius: var(--border-radius-full);
-  background: var(--color-background-neutral-white) content-box;
+  background: var(--badge-live-color, var(--color-background-neutral-white)) content-box;
   animation: live-pulse 1.6s ease-in-out infinite;
 }
 

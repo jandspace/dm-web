@@ -11,300 +11,41 @@
     <link rel="stylesheet" href="../tokens/dm_tokens.css" />
     <link rel="stylesheet" href="../tokens/dm_typography_web_tokens.css" />
     <link rel="stylesheet" href="../styles/css/main.css" />
-
-    <!-- Page layout only (experiments may use an inline <style>):
-         left panel (logo · year menu) + accordion cards.
-         Folder / A-B conventions: CLAUDE.md › Experiments. -->
-    <style>
-      .exp-layout {
-        font-family: var(--typography-font-family-sans);
-        color: var(--color-text-neutral-darker);
-      }
-
-      /* ── Left panel ── */
-      .exp-nav {
-        padding: var(--spacing-24) var(--spacing-24) var(--spacing-32);
-        border-bottom: 1px solid var(--color-border-neutral-light);
-        background-color: var(--color-background-neutral-lighter);
-      }
-
-      @media (min-width: 768px) {
-        .exp-nav {
-          position: fixed;
-          top: 0;
-          bottom: 0;
-          left: 0;
-          width: 272px;
-          overflow-y: auto;
-          border-right: 1px solid var(--color-border-neutral-light);
-          border-bottom: 0;
-        }
-
-        .exp-main {
-          margin-left: 272px;
-        }
-      }
-
-      .exp-nav__logo {
-        display: block;
-        width: fit-content;
-        margin-bottom: var(--spacing-24);
-        text-decoration: none;
-      }
-
-      .exp-nav__logo img {
-        display: block;
-        width: 140px;
-        height: auto;
-      }
-
-      .exp-nav__strapline {
-        display: block;
-        margin-top: var(--spacing-6);
-        font-size: var(--typography-font-size-label-sm);
-        font-weight: var(--typography-font-weight-bold);
-        line-height: var(--typography-line-height-narrow);
-        letter-spacing: var(--typography-letter-spacing-wide);
-        color: var(--color-text-neutral-darker);
-        text-transform: uppercase;
-      }
-
-      .exp-nav__heading {
-        margin: var(--spacing-24) 0 var(--spacing-8);
-        font-size: 10px;
-        font-weight: var(--typography-font-weight-bold);
-        letter-spacing: 0.12em;
-        text-transform: uppercase;
-        color: var(--color-text-neutral-grey-dark);
-      }
-
-      .exp-nav__menu {
-        margin: 0;
-        padding: 0;
-        list-style: none;
-      }
-
-      .exp-nav__item {
-        display: flex;
-        align-items: center;
-        justify-content: space-between;
-        width: 100%;
-        padding: var(--spacing-6) var(--spacing-8);
-        border: 0;
-        border-radius: var(--border-radius-6);
-        background: none;
-        font: inherit;
-        font-size: 13px;
-        font-weight: var(--typography-font-weight-semibold);
-        color: var(--color-text-neutral-dark);
-        text-align: left;
-        cursor: pointer;
-      }
-
-      .exp-nav__item:hover {
-        background-color: var(--color-background-neutral-light);
-      }
-
-      .exp-nav__item[aria-current='true'] {
-        background-color: var(--color-background-neutral-lightest);
-        color: var(--color-text-interaction-primary-default);
-      }
-
-      .exp-nav__count {
-        font-weight: var(--typography-font-weight-regular);
-        color: var(--color-text-neutral-grey-dark);
-      }
-
-      .exp-nav__back {
-        display: inline-block;
-        margin-top: var(--spacing-24);
-        font-size: 12px;
-        color: var(--color-text-interaction-primary-default);
-      }
-
-      /* ── Content ── */
-      .exp-main {
-        max-width: calc(880px + 80px);
-        padding: var(--spacing-48) 40px;
-      }
-
-      .exp-main__title {
-        margin: 0 0 var(--spacing-24);
-        font-size: var(--typography-font-size-h2);
-        font-weight: var(--typography-font-weight-bold);
-        line-height: var(--typography-line-height-narrow);
-      }
-
-      .exp-year {
-        margin: var(--spacing-32) 0 var(--spacing-12);
-        font-size: 11px;
-        font-weight: var(--typography-font-weight-bold);
-        letter-spacing: 0.12em;
-        color: var(--color-text-neutral-grey-dark);
-      }
-
-      .exp-year:first-child {
-        margin-top: 0;
-      }
-
-      /* Card + accordion (<details>): head always visible, body collapses */
-      .exp-card {
-        margin-bottom: var(--spacing-12);
-        border: 1px solid var(--color-border-neutral-light);
-        border-radius: var(--border-radius-8);
-        background-color: var(--color-background-neutral-white);
-      }
-
-      .exp-card__head {
-        position: relative;
-        display: block;
-        padding: var(--spacing-16) var(--spacing-48) var(--spacing-16) var(--spacing-20);
-        cursor: pointer;
-        list-style: none;
-      }
-
-      .exp-card__head::-webkit-details-marker {
-        display: none;
-      }
-
-      /* Chevron — points down when closed, up when open */
-      .exp-card__head::after {
-        content: '';
-        position: absolute;
-        top: 50%;
-        right: var(--spacing-20);
-        width: 8px;
-        height: 8px;
-        border-right: 1.5px solid var(--color-icon-neutral-dark);
-        border-bottom: 1.5px solid var(--color-icon-neutral-dark);
-        transform: translateY(-75%) rotate(45deg);
-        transition: transform 0.2s;
-      }
-
-      .exp-card[open] .exp-card__head::after {
-        transform: translateY(-25%) rotate(-135deg);
-      }
-
-      .exp-card__head:hover .exp-card__title {
-        color: var(--color-text-interaction-primary-default);
-      }
-
-      .exp-card__head:focus-visible {
-        outline: 2px solid var(--color-border-home-blue-base);
-        outline-offset: -2px;
-        border-radius: var(--border-radius-8);
-      }
-
-      .exp-card__meta {
-        display: flex;
-        flex-wrap: wrap;
-        align-items: center;
-        gap: var(--spacing-8);
-        margin-bottom: var(--spacing-6);
-        font-size: 12px;
-        color: var(--color-text-neutral-grey-dark);
-      }
-
-      /* Status badge — colour by status (semantic tokens) */
-      .exp-card__status {
-        padding: 1px var(--spacing-6);
-        border-radius: var(--border-radius-4);
-        background-color: var(--color-background-neutral-lighter);
-        font-weight: var(--typography-font-weight-semibold);
-        color: var(--color-text-neutral-dark);
-      }
-
-      .exp-card__status--in-progress {
-        background-color: var(--color-background-semantic-info-subtlest);
-        color: var(--color-text-semantic-info-deep);
-      }
-
-      .exp-card__status--decided {
-        background-color: var(--color-background-semantic-success-subtlest);
-        color: var(--color-text-semantic-success-deep);
-      }
-
-      .exp-card__status--archived {
-        background-color: var(--color-background-neutral-lighter);
-        color: var(--color-text-neutral-grey-dark);
-      }
-
-      /* Archived experiments read as past work */
-      .exp-card--archived {
-        opacity: 0.7;
-      }
-
-      .exp-card__title {
-        margin: 0;
-        font-size: var(--typography-font-size-h5);
-        font-weight: var(--typography-font-weight-semibold);
-        line-height: var(--typography-line-height-compact);
-      }
-
-      .exp-card__body {
-        padding: var(--spacing-16) var(--spacing-20) var(--spacing-20);
-        border-top: 1px solid var(--color-border-neutral-light);
-      }
-
-      .exp-card__text {
-        margin: 0 0 var(--spacing-8);
-        font-size: var(--typography-font-size-text-sm);
-        line-height: var(--typography-line-height-normal);
-        color: var(--color-text-neutral-dark);
-      }
-
-      .exp-card__links {
-        display: flex;
-        flex-direction: column;
-        gap: var(--spacing-4);
-        margin: var(--spacing-12) 0 0;
-        padding: 0;
-        list-style: none;
-        font-size: var(--typography-font-size-text-sm);
-        line-height: var(--typography-line-height-normal);
-      }
-
-      .exp-card__links a {
-        font-weight: var(--typography-font-weight-semibold);
-        color: var(--color-text-interaction-primary-default);
-      }
-
-      .exp-card__links span {
-        color: var(--color-text-neutral-grey-dark);
-      }
-    </style>
   </head>
   <body>
-    <div class="exp-layout">
-      <nav class="exp-nav" aria-label="Experiments">
-        <a class="exp-nav__logo" href="./">
+    <div class="notes-layout">
+      <nav class="notes-nav" aria-label="Experiments">
+        <a class="notes-nav__logo" href="./">
           <img src="../assets/images/logo-dailymail.svg" alt="Daily Mail" width="140" height="29" />
-          <span class="exp-nav__strapline">Experiments</span>
+          <span class="notes-nav__strapline">Experiments</span>
         </a>
 
-        <p class="exp-nav__heading" id="exp-year-label">Year</p>
-        <ul class="exp-nav__menu" id="exp-year" aria-labelledby="exp-year-label"></ul>
+        <p class="notes-nav__heading" id="notes-year-label">Year</p>
+        <ul class="notes-nav__menu" id="notes-year" aria-labelledby="notes-year-label"></ul>
 
-        <a class="exp-nav__back" href="../">← Web UI Kit</a>
+        <a class="notes-nav__back" href="../">← Web UI Kit</a>
       </nav>
 
-      <main class="exp-main">
-        <h1 class="exp-main__title">Experiments</h1>
-        <div id="exp-list"></div>
+      <main class="notes-main">
+        <h1 class="notes-main__title">Experiments</h1>
+        <div id="notes-list"></div>
+        <footer class="demo-footer">© 2026 Joungmin Shin · Contact: <a href="mailto:joungmin.shin@dmgmedia.co.uk">joungmin.shin@dmgmedia.co.uk</a></footer>
       </main>
     </div>
 
+    <script src="../scripts/scaffolding/notes-index.js"></script>
     <script>
       // ── Experiment notes ────────────────────────────────────────────────────
       // One entry per experiment, newest first. Claude Code adds or updates the
       // entry whenever it creates or changes files in experiments/ (CLAUDE.md ›
-      // Experiments). The year menu is built from `date`.
+      // Experiments). Page and cards: scripts/scaffolding/notes-index.js +
+      // styles/scss/scaffolding/_notes-index.scss. The year menu is built from `date`.
       //
       //   id       folder name (YYYYMM-exp-<name>)
       //   date     'YYYY-MM-DD' — when the experiment started
       //   title    short name
       //   status   'In progress' | 'Decided' | 'Archived'
-      //   notes    what is tested and why (one or more paragraphs)
+      //   notes    short lines, not prose: what is tested, then one line per later change (dated)
       //   result   outcome / decision, once there is one
       //   pages    [label, file in the folder, one-line description]
       const EXPERIMENTS = [
@@ -314,12 +55,14 @@
           title: 'Layout — LG 996 container',
           status: 'In progress',
           notes: [
-            'The Layout & Grid sample (foundation/layout/) fixed at LG: the page renders itself in a 1024px iframe, so .container is always 996px (Alpha 664 + Beta 332).',
-            'Placeholder cards and layout classes from the shared CSS, unchanged. View (sticky): Default · Guides (outlines and names each region) · Keylines (every keyline as a moving dashed line in border/semantic-warning/base, to check where they fall). The view is kept in the address (?view=guides / ?view=keylines), so a copied link opens on it.',
-            'Section headers use the simpler library markup (2026-10-30): no row / label / icon wrappers. Same look.',
+            'Layout & Grid sample fixed at LG (1024px iframe → 996 container: Alpha 664 + Beta 332).',
+            'View: Default · Guides (regions named) · Keylines (dashed warning line). Kept in the URL (?view=).',
+            '2026-10-30 — Section headers on the simpler library markup.',
+            '2026-11-03 — Home button → shared home-button.js.',
+            '2026-11-03 — Footer → shared page-footer.js (reveal underlay).',
           ],
           result: '',
-          pages: [['Page', 'index.html', 'Layout & Grid sample at LG ≥1024 in a 996px container — View: Default / Guides / Keylines.']],
+          pages: [['Page', 'index.html', 'LG layout sample — Default / Guides / Keylines.']],
         },
         {
           id: '202610-exp-section-header-long-title',
@@ -327,15 +70,15 @@
           title: 'Section header — long title',
           status: 'In progress',
           notes: [
-            'Copy of Preview hover A (shared CSS, LG ≥1024 in a 1024px frame). In beta, the SM “More Showbiz” header and the cards under it are duplicated with a long-title header.',
-            'Checks the Section Header without truncation: the long title wraps, the arrow follows the last word, the leading icon stays on the first line.',
-            'Gamma (Banner Story) removed; alpha is greyed out (grayscale, 40% opacity) so beta stands out. Beta: More Showbiz → Daisy → 2 SM cards, then the long-title header (“This is a section header with a long title”) → Daisy → 5 SM cards.',
-            'Section header icons load from assets/icons (shared icon set), not from the experiment folder.',
-            'Icons use the shared .icon class (2026-10-30): the inline SVG sprite stopped sizing once the shared CSS moved to .icon (play buttons and header arrows rendered 150px tall). Same look, no symbols left in the page.',
-            'Section headers, buttons and badges use the simpler library markup (2026-10-30): no row / label / icon wrappers, no button content / label spans or spinner SVG, no badge text / M+ / live-dot wrappers, no metadata info / count wrappers, no Image Only scrim / overlay-content elements, no Banner story wrapper, no Branded section header slot (the logo img sits in the banner). Sub-item chevrons run on the shared scripts/modules/scroll-row.js (the copied script is gone). Same look — except the MD (Vertical Media) video card: its play icon now sits bottom-left without the duration pill, as in the library.',
+            'Copy of Preview hover A (LG, 1024 frame) with a long-title Section Header added in beta.',
+            'Checks: title wraps, arrow follows the last word, leading icon stays on line 1.',
+            'Gamma removed; alpha greyed out so beta stands out.',
+            '2026-10-30 — Icons on .icon; library markup for headers, buttons, badges; chevrons on scroll-row.js. MD video card: play icon bottom-left, no duration pill (as library).',
+            '2026-11-03 — Home button → shared home-button.js.',
+            '2026-11-03 — Footer → shared page-footer.js (reveal underlay).',
           ],
           result: '',
-          pages: [['Page', 'index.html', 'Preview hover A with the duplicated long-title section header in beta.']],
+          pages: [['Page', 'index.html', 'Preview hover A + long-title section header in beta.']],
         },
         {
           id: '202610-exp-banner-slab-text',
@@ -343,13 +86,13 @@
           title: 'Banner Story — live slab title text',
           status: 'In progress',
           notes: [
-            'The Banner Story title (e.g. “TIGER MAUL VICTIM”) is currently baked into the artwork. This tests setting it as live text in DM Slab (Beton SH XBold Condensed), fitted to the banner width by script.',
-            'First draft: banner-dm-slab.html — real DM banner images paired with the same titles as live text. DM Slab loads only where the font is installed locally (no font file in the repo); Roboto Slab (Google Fonts, 800) is the secondary everywhere else.',
+            'Banner Story title as live text (DM Slab, fitted to width by script) instead of baked into the artwork.',
+            'DM Slab only where installed locally; fallback Roboto Slab 800.',
+            '2026-11-03 — Home button → shared home-button.js.',
+            '2026-11-03 — Footer → shared page-footer.js (reveal underlay).',
           ],
           result: '',
-          pages: [
-            ['Draft — fit text', 'banner-dm-slab.html', 'Image banners vs live uppercase slab titles, sized to fill the container width.'],
-          ],
+          pages: [['Draft — fit text', 'banner-dm-slab.html', 'Image banners vs live slab titles.']],
         },
         {
           id: '202610-exp-preview-hover',
@@ -357,99 +100,23 @@
           title: 'Preview hover — card hover treatment',
           status: 'In progress',
           notes: [
-            'Compares two hover treatments for article cards on a real section front: Figma lead block “lead-alpha” (8104:231432) with a gamma Banner Story on top, fixed at LG ≥1024 in a 1024px frame.',
-            'A is the design system as it is today: grey hover surface + headline turns interaction blue. B (revised 2026-10-26, after Daniel Brant’s feedback): the same grey hover surface, but no blue — the headline keeps its resting colour, as cards in the Channel Puff already do; Live Key Updates keep theirs too. The earlier underline version of B (headline, Banner Story, key updates, section header) was dropped — not needed.',
-            'Beta now opens with a Channel Puff (Showbiz, Figma 8181:237759): Image Only + 4 SM Right Thumb cards on the channel subtlest surface, closed by one keyline under the whole block (the last card has none) — new shared module .channel-puff, same on A and B. Card hover inside the puff uses no blue: the headline stays neutral/darker.',
-            'Section headers from the new Section Header module, same on A and B: Branded “This is Showbiz” above the Channel Puff (8218:237980), SM “More Showbiz” above the Daisy Edgar-Jones card (8218:238038), and MD “Midterms 2026” with topic sub-items under the Deep Dive card (8219:238176).',
-            'Icons use the shared .icon class (2026-10-30): the inline SVG sprite stopped sizing once the shared CSS moved to .icon (play buttons and header arrows rendered 150px tall). Same look, no symbols left in the page.',
-            'Section headers, buttons and badges use the simpler library markup (2026-10-30): no row / label / icon wrappers, no button content / label spans or spinner SVG, no badge text / M+ / live-dot wrappers, no metadata info / count wrappers, no Image Only scrim / overlay-content elements, no Banner story wrapper, no Branded section header slot (the logo img sits in the banner). Sub-item chevrons run on the shared scripts/modules/scroll-row.js (the copied script is gone). Same look — except the MD (Vertical Media) video card: its play icon now sits bottom-left without the duration pill, as in the library.',
+            'Two card hover treatments on a real section front (Figma lead-alpha 8104:231432, LG, 1024 frame).',
+            'A: grey surface + blue headline (current). B: grey surface, headline keeps its colour.',
+            'Same on A and B: Channel Puff (Showbiz) opening beta; Section Headers — Branded, SM, MD with sub-items.',
+            '2026-10-26 — B revised after Daniel Brant’s feedback: no blue; underline version dropped.',
+            '2026-10-30 — Icons on .icon; library markup for headers, buttons, badges; chevrons on scroll-row.js. MD video card: play icon bottom-left, no duration pill (as library).',
+            '2026-11-03 — Home button → shared home-button.js.',
+            '2026-11-03 — Footer → shared page-footer.js (reveal underlay).',
           ],
           result: '',
           pages: [
-            ['A — Control', 'hover-a.html', 'Shared CSS only: grey hover surface (zoom-in) + headline turns interaction-primary.'],
-            ['B — Variant', 'hover-b.html', 'Inline override: grey hover surface as A, no blue — headline (and key updates) keep their colour.'],
+            ['A — Control', 'hover-a.html', 'Grey surface + blue headline.'],
+            ['B — Variant', 'hover-b.html', 'Grey surface, no blue.'],
           ],
         },
       ];
 
-      (() => {
-        const list = document.getElementById('exp-list');
-        const menu = document.getElementById('exp-year');
-        const years = [...new Set(EXPERIMENTS.map((e) => e.date.slice(0, 4)))].sort().reverse();
-
-        const el = (tag, className, text) => {
-          const node = document.createElement(tag);
-          if (className) node.className = className;
-          if (text) node.textContent = text;
-          return node;
-        };
-
-        // Accordion card: <details> head = date · status · folder · title
-        const card = (e, open) => {
-          const status = e.status.toLowerCase().replace(/\s+/g, '-'); // 'In progress' → in-progress
-          const item = el('details', `exp-card exp-card--${status}`);
-          item.open = open;
-
-          const head = el('summary', 'exp-card__head');
-          const meta = el('div', 'exp-card__meta');
-          meta.append(el('span', '', e.date), el('span', `exp-card__status exp-card__status--${status}`, e.status), el('code', '', e.id));
-          head.append(meta, el('h3', 'exp-card__title', e.title));
-
-          const body = el('div', 'exp-card__body');
-          e.notes.forEach((p) => body.append(el('p', 'exp-card__text', p)));
-          if (e.result) body.append(el('p', 'exp-card__text', `Result: ${e.result}`));
-          const links = el('ul', 'exp-card__links');
-          e.pages.forEach(([label, file, desc]) => {
-            const li = el('li');
-            const a = el('a', '', label);
-            a.href = `${e.id}/${file}`;
-            li.append(a, el('span', '', ` — ${desc}`));
-            links.append(li);
-          });
-          body.append(links);
-
-          item.append(head, body);
-          return item;
-        };
-
-        const render = (year) => {
-          list.replaceChildren();
-          let first = true; // the top item of the list starts open
-          years
-            .filter((y) => year === 'all' || y === year)
-            .forEach((y) => {
-              list.append(el('h2', 'exp-year', y));
-              EXPERIMENTS.filter((e) => e.date.startsWith(y)).forEach((e) => {
-                list.append(card(e, first));
-                first = false;
-              });
-            });
-          menu.querySelectorAll('button').forEach((b) => b.setAttribute('aria-current', String(b.dataset.year === year)));
-          const url = new URL(location.href);
-          if (year === 'all') url.searchParams.delete('year');
-          else url.searchParams.set('year', year);
-          history.replaceState(null, '', url);
-        };
-
-        // Year menu: All + one item per year, with counts
-        ['all', ...years].forEach((y) => {
-          const count = y === 'all' ? EXPERIMENTS.length : EXPERIMENTS.filter((e) => e.date.startsWith(y)).length;
-          const b = el('button', 'exp-nav__item');
-          b.type = 'button';
-          b.dataset.year = y;
-          b.append(el('span', '', y === 'all' ? 'All' : y), el('span', 'exp-nav__count', String(count)));
-          const li = el('li');
-          li.append(b);
-          menu.append(li);
-        });
-        menu.addEventListener('click', (event) => {
-          const b = event.target.closest('button[data-year]');
-          if (b) render(b.dataset.year);
-        });
-
-        const initial = new URLSearchParams(location.search).get('year');
-        render(years.includes(initial) ? initial : 'all');
-      })();
+      renderNotesIndex(EXPERIMENTS);
     </script>
   </body>
 </html>

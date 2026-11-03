@@ -1,0 +1,187 @@
+// ── Navbar L2 (Navigation) ────────────────────────────────────────────────────
+// The second navigation level under the masthead: the channel's subchannels, or
+// a topic package. Part of the page, not the masthead — the first child of
+// <main>, left out on pages without one. No sticky state.
+//
+//   nav.navbar-l2.navbar-l2--{section}         full width; section → channel colour (bar, current item)
+//     .navbar-l2__inner                        page container (the masthead's), bar under the row
+//       ul.navbar-l2__list                     Scroll Row
+//         li.navbar-l2__head                   Topic package only: topic link + Live link
+//           a.navbar-l2__topic                 label-sm Semibold + chevron 12
+//           a.navbar-l2__live                  span.badge__live + "Live"
+//         li > a.navbar-l2__link               subchannel / topic — current: aria-current="page"
+//       button.navbar-l2__edge--prev / --next  MD+ with a mouse: chevrons where it can scroll
+//
+// Items 10px apart with a 1px × 15px border/neutral/light divider between them,
+// over a 3px (MD+) / 4px (Mweb) bar in the channel colour.
+// Full browser width, as the masthead; the content sits in the same container
+// (960 · 996 · 1224, 16px inset). MD+: items centred while they fit.
+// Mweb (<768): full width, 48px row from the left, the right edge fades (swipe).
+// Too many to fit at MD+: left-aligned and scrollable — chevron edges with a
+// mouse (scripts/modules/scroll-row.js), the fade on touch screens.
+//
+// Reference: Figma Web UI Kit › Navbar - L2 (2841:11409) · M_ Navbar - L2 (2891:27468)
+
+@use '../foundation/breakpoints' as bp;
+@use '../foundation/sections';
+@use '../components/scroll-row';
+@use 'masthead';
+
+.navbar-l2 {
+  --navbar-l2-color: var(--color-background-home-blue-base);
+  --navbar-l2-current: var(--color-text-home-blue-base);
+  --navbar-l2-surface: var(--color-background-neutral-lightest); // what the edges fade from
+
+  background-color: var(--navbar-l2-surface);
+  font-family: var(--typography-font-family-sans);
+}
+
+.navbar-l2__inner {
+  @include masthead.container;
+
+  position: relative;
+  padding-bottom: 4px; // the bar
+
+  // The bar in the channel colour
+  &::after {
+    content: '';
+    position: absolute;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    height: 4px;
+    background-color: var(--navbar-l2-color);
+  }
+
+  @include bp.respond-to(md) {
+    padding-bottom: 11px; // bar 3 + 8 below it
+
+    &::after {
+      right: var(--spacing-16);
+      bottom: var(--spacing-8);
+      left: var(--spacing-16);
+      height: 3px;
+    }
+  }
+}
+
+@each $section, $colour in sections.$sections {
+  .navbar-l2--#{$section} {
+    --navbar-l2-color: var(--color-background-#{$colour}-base);
+    --navbar-l2-current: var(--color-text-#{$colour}-base);
+  }
+}
+
+.navbar-l2__list {
+  @include scroll-row.row;
+  @include scroll-row.fade-end(32px);
+
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-10);
+  height: 48px;
+  margin: 0;
+  padding: 0 var(--spacing-32) 0 var(--spacing-16);
+  list-style: none;
+
+  li {
+    display: flex;
+    flex-shrink: 0;
+    align-items: center;
+    gap: var(--spacing-10);
+  }
+
+  // Divider between items
+  li + li::before {
+    content: '';
+    width: 1px;
+    height: 15px;
+    background-color: var(--color-border-neutral-light);
+  }
+
+  @include bp.respond-to(md) {
+    height: auto;
+    padding: var(--spacing-12);
+
+    // Auto margins centre the row while it fits; once it overflows they fall
+    // to 0, so it starts at the left and scrolls
+    li:first-child {
+      margin-left: auto;
+    }
+
+    li:last-child {
+      margin-right: auto;
+    }
+
+    // Mouse: chevron edges instead of the fade
+    @media (hover: hover) {
+      mask-image: none;
+    }
+  }
+}
+
+// Subchannel / topic — the dropdown panel's subchannel link (Masthead)
+.navbar-l2__link {
+  @include masthead.subchannel-link;
+
+  &[aria-current='page'] {
+    font-weight: var(--typography-font-weight-semibold);
+    color: var(--navbar-l2-current);
+  }
+}
+
+// Topic package head: the topic and its live coverage
+.navbar-l2__topic,
+.navbar-l2__live {
+  @include masthead.subchannel-link;
+
+  display: flex;
+  align-items: center;
+  font-weight: var(--typography-font-weight-semibold);
+}
+
+.navbar-l2__topic {
+  gap: var(--spacing-8);
+
+  .icon {
+    width: 12px;
+    height: 12px;
+  }
+}
+
+.navbar-l2__live {
+  --badge-dot: 8px;
+  --badge-live-color: var(--color-icon-semantic-error-base);
+
+  gap: var(--spacing-4);
+}
+
+// ── Chevron edges (MD+, mouse only) ───────────────────────────────────────────
+// Over the row, inside the 16px inset; scroll-row.js sets [hidden] by position
+
+.navbar-l2__edge {
+  display: none;
+}
+
+@include bp.respond-to(md) {
+  @media (hover: hover) {
+    .navbar-l2__edge {
+      color: var(--color-icon-neutral-darker);
+
+      &--prev {
+        @include scroll-row.edge(prev, var(--navbar-l2-surface));
+        left: var(--spacing-16);
+      }
+
+      &--next {
+        @include scroll-row.edge(next, var(--navbar-l2-surface));
+        right: var(--spacing-16);
+      }
+
+      &--prev,
+      &--next {
+        bottom: 11px; // the bar shows under the edge
+      }
+    }
+  }
+}

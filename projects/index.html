@@ -1,0 +1,76 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Projects — DM Web UI Kit</title>
+    <link rel="icon" href="../assets/favicon.svg" type="image/svg+xml" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="../tokens/dm_tokens.css" />
+    <link rel="stylesheet" href="../tokens/dm_typography_web_tokens.css" />
+    <link rel="stylesheet" href="../styles/css/main.css" />
+  </head>
+  <body>
+    <div class="notes-layout">
+      <nav class="notes-nav" aria-label="Projects">
+        <a class="notes-nav__logo" href="./">
+          <img src="../assets/images/logo-dailymail.svg" alt="Daily Mail" width="140" height="29" />
+          <span class="notes-nav__strapline">Projects</span>
+        </a>
+
+        <p class="notes-nav__heading" id="notes-year-label">Year</p>
+        <ul class="notes-nav__menu" id="notes-year" aria-labelledby="notes-year-label"></ul>
+
+        <a class="notes-nav__back" href="../">← Web UI Kit</a>
+      </nav>
+
+      <main class="notes-main">
+        <h1 class="notes-main__title">Projects</h1>
+        <div id="notes-list"></div>
+        <footer class="demo-footer">© 2026 Joungmin Shin · Contact: <a href="mailto:joungmin.shin@dmgmedia.co.uk">joungmin.shin@dmgmedia.co.uk</a></footer>
+      </main>
+    </div>
+
+    <script src="../scripts/scaffolding/notes-index.js"></script>
+    <script>
+      // ── Project notes ───────────────────────────────────────────────────────
+      // One entry per project, newest first. Claude Code adds or updates the
+      // entry whenever it creates or changes files in projects/ (CLAUDE.md ›
+      // Projects). Page and cards: scripts/scaffolding/notes-index.js +
+      // styles/scss/scaffolding/_notes-index.scss. The year menu is built from `date`.
+      //
+      //   id       folder name (YYYYMM-prj-<name>)
+      //   date     'YYYY-MM-DD' — when the project started
+      //   title    short name
+      //   status   'In progress' | 'Done' | 'Archived'
+      //   notes    short lines, not prose: what is built, then one line per later change (dated)
+      //   result   outcome, once there is one
+      //   pages    [label, file in the folder, one-line description]
+      const PROJECTS = [
+        {
+          id: '202611-prj-homepage',
+          date: '2026-11-03',
+          title: 'Homepage — page frame',
+          status: 'In progress',
+          notes: [
+            'DM homepage built from the library, one content block at a time.',
+            'Frame from Figma 8709:88370: Billboard › Masthead › Sticky Navbar › 3 empty sections › Footer.',
+            'All breakpoints (XS–XL), no viewport switch. Billboard MD 728×90 / LG 970×250 · Side Ads ≥1350 · mobile bottom bar <MD.',
+            'Side Ads: start 29px under the masthead top, stick at 64px, stop at the footer. 8px from the container (doc; Figma 0).',
+            'Sections: .homepage-slot placeholders. Styles: _prj-homepage.scss · behaviour: scripts/modules/masthead.js.',
+            '2026-11-03 — Masthead keylines (library): 16px inset, border/translucent-dark/pale.',
+            '2026-11-03 — Main page moved from web/ to the project folder.',
+            '2026-11-03 — Footer → shared page-footer.js (reveal underlay).',
+            '2026-11-03 — Mouse drag = swipe on sideways rows (demo-drag-swipe.js).',
+          ],
+          result: '',
+          pages: [['Homepage', 'index.html', 'Empty page frame, all breakpoints.']],
+        },
+      ];
+
+      renderNotesIndex(PROJECTS);
+    </script>
+  </body>
+</html>

@@ -46,6 +46,7 @@
 @use 'modules/masthead';
 @use 'modules/masthead-sheet';
 @use 'modules/masthead-sticky';
+@use 'modules/navbar-l2';
 @use 'modules/footer';
 @use 'modules/advertisement';
 @use 'modules/shorts-signpost';
@@ -81,3 +82,5 @@
 @use 'scaffolding/advertisement-demo';
 @use 'scaffolding/shorts-signpost-demo';
 @use 'scaffolding/video-player-controls-demo';
+@use 'scaffolding/notes-index';
+@use 'scaffolding/prj-homepage';

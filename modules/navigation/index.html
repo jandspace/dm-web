@@ -3,7 +3,7 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Navigation — Masthead</title>
+    <title>Navigation</title>
     <link rel="icon" href="../../assets/favicon.svg" type="image/svg+xml" />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
@@ -13,6 +13,7 @@
     <link rel="stylesheet" href="../../styles/css/main.css" />
     <script src="../../scripts/scaffolding/demo-nav.js" defer></script>
     <script src="../../scripts/modules/scroll-row.js" defer></script>
+    <script src="../../scripts/scaffolding/demo-drag-swipe.js" defer></script>
   </head>
   <body class="demo-page-body demo-nav-page">
     <svg style="display: none" aria-hidden="true">
@@ -277,7 +278,7 @@
     </div>
 
     <div class="demo-nav-content">
-      <h1 class="demo-page-h1">Navigation — Masthead</h1>
+      <h1 class="demo-page-h1">Navigation</h1>
       <p class="demo-page-intro">
         Topbar · Branding · Navbar L1 (Figma Web UI Kit › Masthead 71:2568), plus the Mweb Nav Sheet (332:8626).
         The masthead always fills the browser width; its content sits in the page container. Below 768 the
@@ -285,6 +286,9 @@
         subchannels (every channel except Crime Desk) open a dropdown panel on hover, with a short hover-intent delay (open 150ms · close 300ms). Links are placeholders (#).
         On scroll: MD+ shows the Sticky Navbar once the masthead has gone (Sticky menus pick its right side); Mweb keeps
         the nav row and hides the logo block until you scroll up — scroll inside a viewport preview to try it.
+        Navbar L2 (Figma 2841:11409 · Mweb 2891:27468) — full width as the masthead — sits in its own section below (with a
+        viewport chosen: in the masthead preview, first in the page's <code>.layout-full</code>): the channel's subchannels (from its L1 panel; Crime Desk has none) or a topic package (toolbar › L2). The
+        toolbar drives the masthead and L2 together. Click an item to make it current.
         Every part on its own: <a href="anatomy.html">Navigation Anatomy</a>.
       </p>
 
@@ -330,6 +334,12 @@
             <option value="guest">Non-logged-in user</option>
             <option value="member">Logged-in user</option>
             <option value="subscriber">M+ subscriber</option>
+          </select>
+          <span class="demo-vp-toolbar__divider"></span>
+          <label for="demo-l2">L2</label>
+          <select class="demo-vp-select" id="demo-l2">
+            <option value="sub">Subchannels</option>
+            <option value="topic">Topic package</option>
           </select>
           <span class="demo-vp-status" id="demo-vp-status"></span>
         </div>
@@ -395,7 +405,10 @@
             </div>
             <div class="masthead-branding__mobile">
               <a class="masthead-subscribe-pill" href="#subscribe"><span class="icon icon--ch-mailplus" aria-hidden="true"></span>Subscribe</a>
-              <a class="masthead-login-round" href="#login" aria-label="Login"><span class="icon icon--person-outline" aria-hidden="true"></span></a>
+              <!-- Login by user: logged out — person icon · logged in — initials · Mail+ subscriber — initials on the Mail+ gradient (no Subscribe) -->
+              <a class="masthead-login-round" href="#login" aria-label="Login" data-user="guest"><span class="icon icon--person-outline" aria-hidden="true"></span></a>
+              <a class="masthead-login-round" href="#account" aria-label="My account" data-user="member" hidden>ME</a>
+              <a class="masthead-login-round masthead-login-round--mplus" href="#account" aria-label="My account" data-user="subscriber" hidden>ME</a>
             </div>
           </div>
 
@@ -645,8 +658,9 @@
         </div>
       </div>
 
-      <!-- Page placeholder (preview frames only) — room to scroll, so the sticky behaviour shows -->
-      <main class="container demo-nav-filler" aria-hidden="true">
+      <!-- Page placeholder (preview frames only) — room to scroll, so the sticky behaviour
+           shows. The frames move the Navbar L2 in as the first item of the first .layout-full -->
+      <main class="container demo-nav-filler">
         <section class="layout-full"><div class="layout-row"><div class="layout-col"><div class="demo-layout-card"><div class="demo-layout-card__media"></div><p class="h5"><span class="demo-layout-text">Placeholder headline for scrolling the page under the masthead</span></p></div><div class="demo-layout-card"><div class="demo-layout-card__media"></div><p class="h5"><span class="demo-layout-text">Another placeholder story to give the page some length</span></p></div><div class="demo-layout-card"><div class="demo-layout-card__media"></div><p class="h5"><span class="demo-layout-text">Scroll down to hide the logo, scroll up to bring it back</span></p></div><div class="demo-layout-card"><div class="demo-layout-card__media"></div><p class="h5"><span class="demo-layout-text">A third placeholder headline in this column</span></p></div></div><div class="layout-col"><div class="demo-layout-card"><div class="demo-layout-card__media"></div><p class="h5"><span class="demo-layout-text">Placeholder headline for scrolling the page under the masthead</span></p></div><div class="demo-layout-card"><div class="demo-layout-card__media"></div><p class="h5"><span class="demo-layout-text">Another placeholder story to give the page some length</span></p></div><div class="demo-layout-card"><div class="demo-layout-card__media"></div><p class="h5"><span class="demo-layout-text">Scroll down to hide the logo, scroll up to bring it back</span></p></div><div class="demo-layout-card"><div class="demo-layout-card__media"></div><p class="h5"><span class="demo-layout-text">A third placeholder headline in this column</span></p></div></div><div class="layout-col"><div class="demo-layout-card"><div class="demo-layout-card__media"></div><p class="h5"><span class="demo-layout-text">Placeholder headline for scrolling the page under the masthead</span></p></div><div class="demo-layout-card"><div class="demo-layout-card__media"></div><p class="h5"><span class="demo-layout-text">Another placeholder story to give the page some length</span></p></div><div class="demo-layout-card"><div class="demo-layout-card__media"></div><p class="h5"><span class="demo-layout-text">Scroll down to hide the logo, scroll up to bring it back</span></p></div><div class="demo-layout-card"><div class="demo-layout-card__media"></div><p class="h5"><span class="demo-layout-text">A third placeholder headline in this column</span></p></div></div></div></section>
         <section class="layout-full"><div class="layout-row"><div class="layout-col"><div class="demo-layout-card"><div class="demo-layout-card__media"></div><p class="h5"><span class="demo-layout-text">Placeholder headline for scrolling the page under the masthead</span></p></div><div class="demo-layout-card"><div class="demo-layout-card__media"></div><p class="h5"><span class="demo-layout-text">Another placeholder story to give the page some length</span></p></div><div class="demo-layout-card"><div class="demo-layout-card__media"></div><p class="h5"><span class="demo-layout-text">Scroll down to hide the logo, scroll up to bring it back</span></p></div><div class="demo-layout-card"><div class="demo-layout-card__media"></div><p class="h5"><span class="demo-layout-text">A third placeholder headline in this column</span></p></div></div><div class="layout-col"><div class="demo-layout-card"><div class="demo-layout-card__media"></div><p class="h5"><span class="demo-layout-text">Placeholder headline for scrolling the page under the masthead</span></p></div><div class="demo-layout-card"><div class="demo-layout-card__media"></div><p class="h5"><span class="demo-layout-text">Another placeholder story to give the page some length</span></p></div><div class="demo-layout-card"><div class="demo-layout-card__media"></div><p class="h5"><span class="demo-layout-text">Scroll down to hide the logo, scroll up to bring it back</span></p></div><div class="demo-layout-card"><div class="demo-layout-card__media"></div><p class="h5"><span class="demo-layout-text">A third placeholder headline in this column</span></p></div></div><div class="layout-col"><div class="demo-layout-card"><div class="demo-layout-card__media"></div><p class="h5"><span class="demo-layout-text">Placeholder headline for scrolling the page under the masthead</span></p></div><div class="demo-layout-card"><div class="demo-layout-card__media"></div><p class="h5"><span class="demo-layout-text">Another placeholder story to give the page some length</span></p></div><div class="demo-layout-card"><div class="demo-layout-card__media"></div><p class="h5"><span class="demo-layout-text">Scroll down to hide the logo, scroll up to bring it back</span></p></div><div class="demo-layout-card"><div class="demo-layout-card__media"></div><p class="h5"><span class="demo-layout-text">A third placeholder headline in this column</span></p></div></div></div></section>
         <section class="layout-full"><div class="layout-row"><div class="layout-col"><div class="demo-layout-card"><div class="demo-layout-card__media"></div><p class="h5"><span class="demo-layout-text">Placeholder headline for scrolling the page under the masthead</span></p></div><div class="demo-layout-card"><div class="demo-layout-card__media"></div><p class="h5"><span class="demo-layout-text">Another placeholder story to give the page some length</span></p></div><div class="demo-layout-card"><div class="demo-layout-card__media"></div><p class="h5"><span class="demo-layout-text">Scroll down to hide the logo, scroll up to bring it back</span></p></div><div class="demo-layout-card"><div class="demo-layout-card__media"></div><p class="h5"><span class="demo-layout-text">A third placeholder headline in this column</span></p></div></div><div class="layout-col"><div class="demo-layout-card"><div class="demo-layout-card__media"></div><p class="h5"><span class="demo-layout-text">Placeholder headline for scrolling the page under the masthead</span></p></div><div class="demo-layout-card"><div class="demo-layout-card__media"></div><p class="h5"><span class="demo-layout-text">Another placeholder story to give the page some length</span></p></div><div class="demo-layout-card"><div class="demo-layout-card__media"></div><p class="h5"><span class="demo-layout-text">Scroll down to hide the logo, scroll up to bring it back</span></p></div><div class="demo-layout-card"><div class="demo-layout-card__media"></div><p class="h5"><span class="demo-layout-text">A third placeholder headline in this column</span></p></div></div><div class="layout-col"><div class="demo-layout-card"><div class="demo-layout-card__media"></div><p class="h5"><span class="demo-layout-text">Placeholder headline for scrolling the page under the masthead</span></p></div><div class="demo-layout-card"><div class="demo-layout-card__media"></div><p class="h5"><span class="demo-layout-text">Another placeholder story to give the page some length</span></p></div><div class="demo-layout-card"><div class="demo-layout-card__media"></div><p class="h5"><span class="demo-layout-text">Scroll down to hide the logo, scroll up to bring it back</span></p></div><div class="demo-layout-card"><div class="demo-layout-card__media"></div><p class="h5"><span class="demo-layout-text">A third placeholder headline in this column</span></p></div></div></div></section>
@@ -654,6 +668,58 @@
 
       <!-- Fixed-viewport preview: this page rendered in an iframe at the chosen width -->
       <div class="demo-vp-stage demo-nav-stage" id="demo-vp-stage" hidden></div>
+
+      <!-- Navbar L2 — the module itself (Live); with a viewport chosen it shows in the
+           masthead preview, first in the page's .layout-full -->
+      <section class="demo-nav-l2" id="demo-l2-section">
+        <h2 class="demo-section-title">Navbar L2</h2>
+        <!-- ── Navbar L2 — the first child of <main>, not part of the masthead ──
+             nav.navbar-l2.navbar-l2--{section}   full width
+               .navbar-l2__inner                  page container + channel bar
+                 ul.navbar-l2__list               subchannels (current: aria-current="page")
+                   li.navbar-l2__head              topic package only: topic + Live
+                 button.navbar-l2__edge--prev / --next
+             The demo fills the subchannels from the current channel's L1 panel
+             and switches Subchannels / Topic package (toolbar › L2). Live: shown
+             here; a viewport preview moves it into its frame's page. -->
+        <nav class="navbar-l2 navbar-l2--home" id="demo-l2-sub" aria-label="Home">
+          <div class="navbar-l2__inner">
+            <ul class="navbar-l2__list">
+              <li><a class="navbar-l2__link" href="#">Latest Headlines</a></li>
+              <li><a class="navbar-l2__link" href="#">Deep Dive</a></li>
+              <li><a class="navbar-l2__link" href="#">Video</a></li>
+              <li><a class="navbar-l2__link" href="#">Podcasts</a></li>
+              <li><a class="navbar-l2__link" href="#">Columnists</a></li>
+              <li><a class="navbar-l2__link" href="#">University Guide</a></li>
+              <li><a class="navbar-l2__link" href="#">Kim Kardashian</a></li>
+            </ul>
+            <button type="button" class="navbar-l2__edge navbar-l2__edge--prev" aria-label="Scroll subchannels left" hidden><span class="icon icon--chevron-left" aria-hidden="true"></span></button>
+            <button type="button" class="navbar-l2__edge navbar-l2__edge--next" aria-label="Scroll subchannels right" hidden><span class="icon icon--chevron-right" aria-hidden="true"></span></button>
+          </div>
+        </nav>
+
+        <nav class="navbar-l2 navbar-l2--home" id="demo-l2-topic" aria-label="Budget 2026" hidden>
+          <div class="navbar-l2__inner">
+            <ul class="navbar-l2__list">
+              <li class="navbar-l2__head">
+                <a class="navbar-l2__topic" href="#">Budget 2026<span class="icon icon--chevron-right" aria-hidden="true"></span></a>
+                <a class="navbar-l2__live" href="#"><span class="badge__live" aria-hidden="true"></span>Live</a>
+              </li>
+              <li><a class="navbar-l2__link" href="#">What it means for you</a></li>
+              <li><a class="navbar-l2__link" href="#">Income tax</a></li>
+              <li><a class="navbar-l2__link" href="#">Pensions</a></li>
+              <li><a class="navbar-l2__link" href="#">Property</a></li>
+              <li><a class="navbar-l2__link" href="#">Fuel duty</a></li>
+              <li><a class="navbar-l2__link" href="#">Analysis</a></li>
+            </ul>
+            <button type="button" class="navbar-l2__edge navbar-l2__edge--prev" aria-label="Scroll topics left" hidden><span class="icon icon--chevron-left" aria-hidden="true"></span></button>
+            <button type="button" class="navbar-l2__edge navbar-l2__edge--next" aria-label="Scroll topics right" hidden><span class="icon icon--chevron-right" aria-hidden="true"></span></button>
+          </div>
+        </nav>
+        <p class="demo-page-intro demo-nav-l2__note" id="demo-l2-note" hidden>
+          No subchannel L2 for this channel — pick another channel, or the topic package.
+        </p>
+      </section>
 
       <!-- Sticky Navbar — this page at the chosen viewport with only the Sticky Navbar,
            shown in place (?frame&sticky); Location and User type from the toolbar -->
@@ -672,191 +738,7 @@
       </section>
     </div>
 
-    <script>
-      // Masthead behaviour (reference for the build):
-      //   · burger slides the Nav Sheet in from the left (≥640: 390px + blurred backdrop);
-      //     close button, backdrop click or Escape slides it out
-      //   · Edition buttons (Topbar, Sticky Navbar flag) toggle their menus (click outside closes)
-      //   · Nav Sheet channels open as an accordion (one at a time)
-      //   · the current channel is scrolled into view when the row scrolls
-      //   · LG+ with a mouse: dropdown panels open after 150ms on an item and
-      //     close 300ms after the pointer leaves (hover intent) — passing over
-      //     other tabs on the way to a panel does not swap it
-      window.mastheadRevealCurrent = () => {
-        const list = document.querySelector('.masthead-nav__list');
-        const current = list.querySelector('[aria-current="page"]');
-        if (!current || list.scrollWidth <= list.clientWidth) return;
-        const item = current.parentElement;
-        list.scrollLeft = item.offsetLeft - (list.clientWidth - item.offsetWidth) / 2;
-      };
-      (() => {
-        const sheet = document.getElementById('masthead-sheet');
-        const backdrop = document.getElementById('masthead-sheet-backdrop');
-        const trigger = document.querySelector('.masthead-nav__trigger');
-        // Slide in from the left: show, then add .is-open on the next frame so
-        // the transform transitions; on close, hide once the slide has ended
-        const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)');
-        // ?sheet (the Nav Sheet preview frame): open from the start, no slide,
-        // and it stays open — close / backdrop / Escape do nothing
-        const pinned = new URLSearchParams(location.search).has('sheet');
-        const setSheet = (open) => {
-          if (pinned && !open) return;
-          trigger.setAttribute('aria-expanded', String(open));
-          if (open) {
-            sheet.hidden = false;
-            backdrop.hidden = false;
-            requestAnimationFrame(() =>
-              requestAnimationFrame(() => {
-                sheet.classList.add('is-open');
-                backdrop.classList.add('is-open');
-              }),
-            );
-            sheet.querySelector('.masthead-sheet__close').focus();
-          } else {
-            sheet.classList.remove('is-open');
-            backdrop.classList.remove('is-open');
-            let done = false;
-            const hide = () => {
-              if (done || sheet.classList.contains('is-open')) return;
-              done = true;
-              sheet.hidden = true;
-              backdrop.hidden = true;
-              sheet.removeEventListener('transitionend', onEnd);
-            };
-            // only the sheet's own slide counts (children transition too)
-            const onEnd = (e) => e.target === sheet && e.propertyName === 'transform' && hide();
-            if (reduceMotion.matches) hide();
-            else {
-              sheet.addEventListener('transitionend', onEnd);
-              setTimeout(hide, 400); // fallback if transitionend never fires
-            }
-            trigger.focus();
-          }
-        };
-        trigger.addEventListener('click', () => setSheet(true));
-        if (pinned) {
-          sheet.hidden = backdrop.hidden = false;
-          sheet.classList.add('is-open');
-          backdrop.classList.add('is-open');
-          trigger.setAttribute('aria-expanded', 'true');
-        }
-        backdrop.addEventListener('click', () => setSheet(false));
-        sheet.querySelector('.masthead-sheet__close').addEventListener('click', () => setSheet(false));
-
-        // Edition menus — the Topbar's and the Sticky Navbar's flag; one open at a time
-        const editions = [...document.querySelectorAll('.masthead-edition, .masthead-sticky__edition')].map((btn) => ({
-          btn,
-          menu: document.getElementById(btn.getAttribute('aria-controls')),
-        }));
-        const setMenu = (edition, open) => {
-          edition.menu.hidden = !open;
-          edition.btn.setAttribute('aria-expanded', String(open));
-        };
-        editions.forEach((edition) => {
-          edition.btn.addEventListener('click', (e) => {
-            e.stopPropagation();
-            const open = edition.menu.hidden;
-            editions.forEach((other) => setMenu(other, other === edition && open));
-          });
-        });
-        document.addEventListener('click', (e) => {
-          editions.forEach((edition) => !edition.menu.hidden && !edition.menu.contains(e.target) && setMenu(edition, false));
-        });
-        document.addEventListener('keydown', (e) => {
-          if (e.key !== 'Escape') return;
-          if (!sheet.hidden) setSheet(false);
-          editions.forEach((edition) => setMenu(edition, false));
-        });
-
-        const nav = document.querySelector('.masthead-nav');
-        const desktop = window.matchMedia('(min-width: 1024px) and (hover: hover)');
-        const OPEN_DELAY = 150;
-        const CLOSE_DELAY = 300;
-        let openItem = null;
-        let openTimer = 0;
-        let closeTimer = 0;
-        const closePanel = () => {
-          openItem?.classList.remove('is-open');
-          openItem = null;
-        };
-        const openPanel = (item) => {
-          if (openItem && openItem !== item) openItem.classList.remove('is-open');
-          item.classList.add('is-open');
-          openItem = item;
-        };
-        nav.classList.add('masthead-nav--intent');
-        nav.querySelectorAll('.masthead-nav__item').forEach((item) => {
-          const hasPanel = item.classList.contains('masthead-nav__item--has-panel');
-          item.addEventListener('mouseenter', () => {
-            if (!desktop.matches) return;
-            clearTimeout(closeTimer);
-            clearTimeout(openTimer);
-            if (item === openItem) return;
-            // after the delay: open this item's panel, or close the open one
-            openTimer = setTimeout(() => (hasPanel ? openPanel(item) : closePanel()), OPEN_DELAY);
-          });
-          item.addEventListener('mouseleave', () => {
-            clearTimeout(openTimer);
-            closeTimer = setTimeout(closePanel, CLOSE_DELAY);
-          });
-        });
-        document.addEventListener('keydown', (e) => e.key === 'Escape' && closePanel());
-
-        // Accordion: one channel open at a time
-        const expands = [...sheet.querySelectorAll('.masthead-sheet__expand')];
-        expands.forEach((btn) => {
-          btn.addEventListener('click', () => {
-            const open = btn.getAttribute('aria-expanded') !== 'true';
-            expands.forEach((other) => {
-              other.setAttribute('aria-expanded', String(other === btn && open));
-              other.setAttribute('aria-label', `${other === btn && open ? 'Hide' : 'Show'} ${other.closest('.masthead-sheet__channel').querySelector('.masthead-sheet__channel-label').textContent} sections`);
-            });
-          });
-        });
-      })();
-
-      // Scroll behaviour (reference for the build):
-      //   · Mweb (<768): the masthead sticks with only its nav row in view; scrolling
-      //     down hides the logo block, scrolling up brings it back (.is-revealed)
-      //   · MD+: the Sticky Navbar slides down once the masthead has left the screen
-      //     and slides back up when the masthead returns
-      //   · Sticky Navbar channels: chevrons on the side(s) that can scroll
-      (() => {
-        const masthead = document.querySelector('.masthead');
-        const navRow = masthead.querySelector('.masthead-nav');
-        const sticky = document.getElementById('masthead-sticky');
-
-        // Mweb: how far the masthead may slide up — everything above the nav row
-        const setCollapse = () => masthead.style.setProperty('--masthead-collapse', `${navRow.offsetTop}px`);
-        setCollapse();
-        window.addEventListener('resize', setCollapse);
-        document.fonts.ready.then(setCollapse);
-
-        // Mweb: reveal the logo block when scrolling up (past it), hide it when scrolling down
-        const THRESHOLD = 4; // px of movement before the direction counts
-        let lastY = window.scrollY;
-        window.addEventListener(
-          'scroll',
-          () => {
-            const y = window.scrollY;
-            if (y <= 0) masthead.classList.remove('is-revealed');
-            else if (y > lastY + THRESHOLD) masthead.classList.remove('is-revealed');
-            else if (y < lastY - THRESHOLD && y > navRow.offsetTop) masthead.classList.add('is-revealed');
-            if (Math.abs(y - lastY) > THRESHOLD) lastY = y;
-          },
-          { passive: true },
-        );
-
-        // MD+: Sticky Navbar in once the whole masthead is above the screen (a
-        // masthead that isn't rendered has no box — it never counts as scrolled away)
-        new IntersectionObserver(([entry]) => {
-          const box = entry.boundingClientRect;
-          sticky.classList.toggle('is-visible', !entry.isIntersecting && box.height > 0 && box.bottom <= 0);
-        }).observe(masthead);
-
-        // Sticky Navbar channels: chevron edges — scripts/modules/scroll-row.js
-      })();
-    </script>
+    <script src="../../scripts/modules/masthead.js"></script>
 
     <script>
       // Scaffolding only — channel / location / user switches + viewport previews.
@@ -864,6 +746,7 @@
       //                       articles; Home and Daily Mail+ landing set their own
       //   ?location=…         home · channel · article · mplus-landing · mplus-article
       //   ?user=…             guest · member · subscriber
+      //   ?l2=sub|topic       Navbar L2: the channel's subchannels, or a topic package
       //   ?frame              masthead only (rendered inside the viewport stage)
       //   ?frame&sheet        same, with the Nav Sheet open (the Nav Sheet preview)
       //   ?frame&sticky       the Sticky Navbar only, shown in place (the Sticky Navbar preview)
@@ -874,6 +757,7 @@
         const sticky = document.getElementById('masthead-sticky');
         const LOCATIONS = ['home', 'channel', 'article', 'mplus-landing', 'mplus-article'];
         const USERS = ['guest', 'member', 'subscriber'];
+        const L2_TYPES = ['sub', 'topic'];
         const pick = (value, list) => (list.includes(value) ? value : list[0]);
 
         // Channel shown for a location: Home and Daily Mail+ landing are their own
@@ -896,7 +780,42 @@
           document.getElementById('demo-channel-name').textContent = label;
           masthead.querySelectorAll('.masthead-nav__link').forEach((a) => a.removeAttribute('aria-current'));
           item.querySelector('.masthead-nav__link').setAttribute('aria-current', 'page');
+          setL2(item);
         };
+
+        // Navbar L2 — the channel colour, and its subchannels taken from the
+        // channel's L1 panel (none for Crime Desk: no subchannel L2)
+        const l2Sub = document.getElementById('demo-l2-sub');
+        const l2Topic = document.getElementById('demo-l2-topic');
+        let l2Type = pick(params.get('l2'), L2_TYPES);
+        const setL2 = (item) => {
+          const topics = [...item.querySelectorAll('.masthead-nav__panel-topic')];
+          [l2Sub, l2Topic].forEach((nav) => {
+            nav.className = nav.className.replace(/navbar-l2--[\w-]+/, `navbar-l2--${item.dataset.channel}`);
+          });
+          l2Sub.setAttribute('aria-label', item.dataset.label);
+          const list = l2Sub.querySelector('.navbar-l2__list');
+          list.replaceChildren(
+            ...topics.map((topic) => {
+              const li = document.createElement('li');
+              li.innerHTML = `<a class="navbar-l2__link" href="#">${topic.innerHTML}</a>`;
+              return li;
+            }),
+          );
+          list.scrollLeft = 0;
+          list.dispatchEvent(new Event('scroll')); // Scroll Row: edges for the new items
+          l2Sub.hidden = l2Type !== 'sub' || !topics.length;
+          l2Topic.hidden = l2Type !== 'topic';
+        };
+
+        // Demo: a clicked L2 item becomes the current one
+        document.addEventListener('click', (e) => {
+          const link = e.target.closest('.navbar-l2__link');
+          if (!link) return;
+          e.preventDefault();
+          link.closest('.navbar-l2').querySelectorAll('.navbar-l2__link').forEach((a) => a.removeAttribute('aria-current'));
+          link.setAttribute('aria-current', 'page');
+        });
 
         // Page type and user — a real page renders only what it needs; the demo
         // shows / hides. Landing pages (Home, Daily Mail+) carry Subscribe in the
@@ -937,12 +856,16 @@
           document.body.classList.add('demo-frame');
           if (params.has('sheet')) document.body.classList.add('demo-sheet-frame');
           if (params.has('sticky')) document.body.classList.add('demo-sticky-frame');
+          // Navbar L2 in the page: the first item of the first .layout-full
+          document.querySelector('.demo-nav-filler .layout-full').prepend(l2Sub, l2Topic);
           return;
         }
 
         const select = document.getElementById('demo-channel');
         const placeSelect = document.getElementById('demo-location');
         const userSelect = document.getElementById('demo-user');
+        const l2Select = document.getElementById('demo-l2');
+        l2Select.value = l2Type;
         select.value = params.get('channel') || 'News';
         placeSelect.value = place;
         userSelect.value = user;
@@ -953,7 +876,7 @@
         syncChannelSelect();
 
         const frameQuery = (placeValue, userValue) =>
-          `channel=${encodeURIComponent(select.value)}&location=${placeValue}&user=${userValue}`;
+          `channel=${encodeURIComponent(select.value)}&location=${placeValue}&user=${userValue}&l2=${l2Select.value}`;
 
         const VIEWPORTS = {
           xl: { label: 'XL ≥1580', width: 1600, height: 900 }, // 16:9
@@ -1026,6 +949,16 @@
           );
         };
 
+        // Navbar L2 section — the module itself (Live). Crime Desk has no
+        // subchannels: a note instead. With a viewport chosen the section goes:
+        // the bar is in the masthead preview's page.
+        const l2Section = document.getElementById('demo-l2-section');
+        const l2Note = document.getElementById('demo-l2-note');
+        const showL2 = () => {
+          l2Section.hidden = vpKey !== 'live';
+          l2Note.hidden = !(l2Sub.hidden && l2Topic.hidden);
+        };
+
         // Nav Sheet preview — the page open on the sheet
         const sheetStage = document.getElementById('demo-sheet-stage');
         let fitSheet = () => {};
@@ -1051,6 +984,7 @@
           setParam('channel', select.value, 'News');
           setParam('location', placeSelect.value, 'home');
           setParam('user', userSelect.value, 'guest');
+          setParam('l2', l2Select.value, 'sub');
           history.replaceState(null, '', url);
         };
 
@@ -1059,6 +993,7 @@
           toggle.querySelectorAll('button').forEach((b) => b.setAttribute('aria-pressed', String(b.dataset.vp === vpKey)));
           syncUrl();
           const vp = VIEWPORTS[vpKey];
+          showL2();
           showSticky();
           showSheet();
           masthead.hidden = Boolean(vp);
@@ -1086,13 +1021,14 @@
         // Switches: apply to the live masthead and reload the previews (masthead,
         // Sticky Navbar, Nav Sheet)
         const applyMasthead = () => {
+          l2Type = l2Select.value;
           syncChannelSelect();
           setChannel(channelFor(placeSelect.value, select.value));
           setPage(placeSelect.value, userSelect.value);
           window.mastheadRevealCurrent();
           show(vpKey);
         };
-        [select, placeSelect, userSelect].forEach((el) => el.addEventListener('change', applyMasthead));
+        [select, placeSelect, userSelect, l2Select].forEach((el) => el.addEventListener('change', applyMasthead));
 
         toggle.addEventListener('click', (e) => {
           const b = e.target.closest('button[data-vp]');
