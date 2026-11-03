@@ -1,0 +1,12 @@
+// ── Shorts Signpost demo — SCAFFOLDING ONLY ───────────────────────────────────
+// Layout for modules/shorts-signpost/. Never ships to production.
+// The signpost Fullwidth in a .container, on the page surface.
+
+.demo-ss {
+  background-color: var(--color-background-neutral-lightest);
+}
+
+// Inside the viewport stage (?frame): the page edge to edge, as on the site
+.demo-frame.demo-ss-page {
+  padding: 0;
+}

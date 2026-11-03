@@ -22,7 +22,7 @@ index.html        — Demo index (Components / Modules), same list as the demo s
 foundation/       — Foundation: reference pages (Colour, Typography, Spacing, Border Radius — read live from tokens/; Elevation; Layout & Grid; Iconography — every file in assets/icons/, single-colour ones as .icon)
 components/       — Components: base UI elements (Button, Input, Tabs…) — one demo folder each
 modules/          — Modules: editorial / product blocks built from components (Article Card, Video Player Controls…)
-scripts/          — JS: scripts/scaffolding/ (demo only: side panel + index), scripts/modules/ (behaviour shared by pages — Article Card Media, Carousel, Scroll Row, Toast, Tooltip; never copy it into a page)
+scripts/          — JS: scripts/scaffolding/ (demo only: side panel + index), scripts/modules/ (behaviour shared by pages — Article Card Media, Carousel, Scroll Row, Shorts Signpost, Toast, Tooltip; never copy it into a page)
 projects/         — Project-specific prototypes, organised by project > platform
 experiments/      — A/B tests and one-off experiments (self-contained, never imported elsewhere)
 assets/           — Icons (Figma SVG originals) and images

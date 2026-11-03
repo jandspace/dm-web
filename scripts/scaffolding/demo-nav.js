@@ -66,6 +66,7 @@
         { name: 'Footer', path: 'modules/footer/' },
         { name: 'Navigation', path: 'modules/navigation/', pages: [['Anatomy', 'anatomy.html']] },
         { name: 'Section Header', path: 'modules/section-header/' },
+        { name: 'Shorts Signpost', path: 'modules/shorts-signpost/' },
         { name: 'Video Player Controls', path: 'modules/video-player-controls/' },
       ],
     },

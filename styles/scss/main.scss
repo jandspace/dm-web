@@ -48,6 +48,7 @@
 @use 'modules/masthead-sticky';
 @use 'modules/footer';
 @use 'modules/advertisement';
+@use 'modules/shorts-signpost';
 
 // Scaffolding (prototype/demo only — never shipped to production)
 @use 'scaffolding/demo-grid';
@@ -78,4 +79,5 @@
 @use 'scaffolding/navigation-demo';
 @use 'scaffolding/footer-demo';
 @use 'scaffolding/advertisement-demo';
+@use 'scaffolding/shorts-signpost-demo';
 @use 'scaffolding/video-player-controls-demo';

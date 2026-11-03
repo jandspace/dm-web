@@ -1,0 +1,206 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Shorts Signpost</title>
+    <link rel="icon" href="../../assets/favicon.svg" type="image/svg+xml" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&family=Lora:ital,wght@0,400;0,500;0,600;0,700;1,400&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="../../tokens/dm_tokens.css" />
+    <link rel="stylesheet" href="../../tokens/dm_typography_web_tokens.css" />
+    <link rel="stylesheet" href="../../styles/css/main.css" />
+    <script src="../../scripts/scaffolding/demo-nav.js" defer></script>
+    <script src="../../scripts/modules/carousel.js" defer></script>
+    <script src="../../scripts/scaffolding/demo-drag-swipe.js" defer></script>
+    <script src="../../scripts/modules/shorts-signpost.js" defer></script>
+  </head>
+  <body class="demo-page-body demo-ss-page">
+
+    <h1 class="demo-page-h1">Shorts Signpost</h1>
+    <p class="demo-page-intro">
+      Figma: Web UI Kit › Shorts › Shorts Signpost (151:3722). A row of Shorts that scrolls sideways — each card opens the
+      Short (the player is not built yet). Cards 172 × 306 (160 × 284 below MD), 9:16. It fits any column — Fullwidth,
+      Alpha or Beta; shown here Fullwidth. LG: arrows on hover. A swipe snaps a card to the start; below MD the row runs
+      to the window edge. Headline is optional (filter). Cards and arrows are Theme Pinned (light). One card plays its
+      preview at a time: the first at load; Next brings the card cut off on the right to the start and plays it; a mouse
+      resting 1s on a card plays that one. The row is a Carousel (Row type: no dots, 16px fade on the cut-off card).
+      Behaviour: scripts/modules/carousel.js, shorts-signpost.js.
+    </p>
+
+    <div class="demo-vp-toolbar demo-vp-toolbar--sticky">
+      <div class="demo-vp-toolbar__row">
+        <span id="demo-vp-switch-label">Viewport</span>
+        <div class="demo-vp-toggle" role="group" aria-labelledby="demo-vp-switch-label" id="demo-vp-switch">
+          <button type="button" data-vp="live" aria-pressed="true">Live</button>
+          <button type="button" data-vp="lg" aria-pressed="false">LG ≥1024</button>
+          <button type="button" data-vp="md" aria-pressed="false">MD ≥768</button>
+          <button type="button" data-vp="xs" aria-pressed="false">SM-XS &lt;768</button>
+        </div>
+        <span class="demo-vp-toolbar__divider"></span>
+        <span id="demo-headline-label">Headline</span>
+        <div class="demo-vp-toggle" role="group" aria-labelledby="demo-headline-label" id="demo-headline">
+          <button type="button" data-headline="on" aria-pressed="true">On</button>
+          <button type="button" data-headline="off" aria-pressed="false">Off</button>
+        </div>
+        <span class="demo-vp-status" id="demo-vp-status"></span>
+      </div>
+    </div>
+
+    <div class="demo-ss container">
+      <section class="layout-full">
+        <div class="shorts-signpost">
+          <div class="carousel">
+            <div class="carousel__track">
+              <a class="shorts-card media media--shorts" href="#" data-theme="light">
+                <video src="../../assets/images/article-card-animated-preview.mp4#t=0.1" muted loop playsinline preload="metadata" aria-hidden="true"></video>
+                <p class="shorts-card__headline h6">Kate and William share sweet moment at Wimbledon</p>
+              </a>
+              <a class="shorts-card media media--shorts" href="#" data-theme="light">
+                <video src="../../assets/images/article-card-animated-preview.mp4" poster="../../assets/images/article-card-carousel-01.jpg" muted loop playsinline preload="none" aria-hidden="true"></video>
+                <p class="shorts-card__headline h6">Watch: dog steals the show at a village wedding in the Cotswolds</p>
+              </a>
+              <a class="shorts-card media media--shorts" href="#" data-theme="light">
+                <video src="../../assets/images/article-card-animated-preview.mp4" poster="../../assets/images/article-card-carousel-02.jpg" muted loop playsinline preload="none" aria-hidden="true"></video>
+                <p class="shorts-card__headline h6">Inside the £2m mansion with a slide instead of stairs</p>
+              </a>
+              <a class="shorts-card media media--shorts" href="#" data-theme="light">
+                <video src="../../assets/images/article-card-animated-preview.mp4" poster="../../assets/images/article-card-carousel-03.jpg" muted loop playsinline preload="none" aria-hidden="true"></video>
+                <p class="shorts-card__headline h6">Storm chaser films lightning striking the same tree three times in a row</p>
+              </a>
+              <a class="shorts-card media media--shorts" href="#" data-theme="light">
+                <video src="../../assets/images/article-card-animated-preview.mp4" poster="../../assets/images/article-card-carousel-04.jpg" muted loop playsinline preload="none" aria-hidden="true"></video>
+                <p class="shorts-card__headline h6">Chef reveals the one mistake everyone makes with roast potatoes</p>
+              </a>
+              <a class="shorts-card media media--shorts" href="#" data-theme="light">
+                <video src="../../assets/images/article-card-animated-preview.mp4" poster="../../assets/images/article-card-carousel-05.jpg" muted loop playsinline preload="none" aria-hidden="true"></video>
+                <p class="shorts-card__headline h6">Commuters stunned as a seal hops onto a Thames Clipper</p>
+              </a>
+              <a class="shorts-card media media--shorts" href="#" data-theme="light">
+                <video src="../../assets/images/article-card-animated-preview.mp4" poster="../../assets/images/article-card-placeholder-portrait.jpg" muted loop playsinline preload="none" aria-hidden="true"></video>
+                <p class="shorts-card__headline h6">Gran, 92, smashes her own record on the climbing wall</p>
+              </a>
+              <a class="shorts-card media media--shorts" href="#" data-theme="light">
+                <video src="../../assets/images/article-card-animated-preview.mp4" poster="../../assets/images/article-card-carousel-01.jpg" muted loop playsinline preload="none" aria-hidden="true"></video>
+                <p class="shorts-card__headline h6">Fans queue overnight for the last Oasis tickets</p>
+              </a>
+              <a class="shorts-card media media--shorts" href="#" data-theme="light">
+                <video src="../../assets/images/article-card-animated-preview.mp4" poster="../../assets/images/article-card-carousel-02.jpg" muted loop playsinline preload="none" aria-hidden="true"></video>
+                <p class="shorts-card__headline h6">The secret garden hidden on a London rooftop</p>
+              </a>
+              <a class="shorts-card media media--shorts" href="#" data-theme="light">
+                <video src="../../assets/images/article-card-animated-preview.mp4" poster="../../assets/images/article-card-carousel-03.jpg" muted loop playsinline preload="none" aria-hidden="true"></video>
+                <p class="shorts-card__headline h6">Toddler's reaction to first taste of lemon goes viral</p>
+              </a>
+            </div>
+            <div class="carousel__nav carousel__nav--prev" data-theme="light"><button type="button" class="btn btn-tertiary-neutral btn--icon-only" aria-label="Previous Shorts"><span class="icon icon--arrow-left-light" aria-hidden="true"></span></button></div>
+            <div class="carousel__nav carousel__nav--next" data-theme="light"><button type="button" class="btn btn-tertiary-neutral btn--icon-only" aria-label="Next Shorts"><span class="icon icon--arrow-right-light" aria-hidden="true"></span></button></div>
+          </div>
+        </div>
+      </section>
+    </div>
+
+    <!-- Fixed-viewport preview: this page rendered in an iframe at the chosen width -->
+    <div class="demo-vp-stage" id="demo-vp-stage" hidden></div>
+
+    <script>
+      // Scaffolding only — viewport preview + headline filter.
+      //   ?frame              page without chrome (rendered inside the viewport stage)
+      //   ?vp=lg|md|xs        preview at a fixed viewport width
+      //   ?headline=off       cards without headlines (default on)
+      (() => {
+        const params = new URLSearchParams(location.search);
+
+        // Headline › Off: the headlines are removed, not hidden — the scrim
+        // shows only on a card that has one
+        const headline = params.get('headline') === 'off' ? 'off' : 'on';
+        if (headline === 'off') document.querySelectorAll('.shorts-card__headline').forEach((el) => el.remove());
+
+        if (params.has('frame')) {
+          document.body.classList.add('demo-frame');
+          document.querySelectorAll('.demo-page-h1, .demo-page-intro, .demo-vp-toolbar').forEach((el) => el.remove());
+          return;
+        }
+
+        const VIEWPORTS = {
+          lg: { label: 'LG ≥1024', width: 1024 },
+          md: { label: 'MD ≥768', width: 768 },
+          xs: { label: 'SM-XS <768', width: 390 },
+        };
+
+        const toggle = document.getElementById('demo-vp-switch');
+        const status = document.getElementById('demo-vp-status');
+        const content = [...document.querySelectorAll('.demo-ss')];
+        const stage = document.getElementById('demo-vp-stage');
+        let iframe = null;
+        let width = 0;
+
+        const fit = () => {
+          if (!iframe || !iframe.contentDocument) return;
+          const scale = Math.min(1, (stage.parentElement.clientWidth - 80) / width);
+          const height = iframe.contentDocument.documentElement.scrollHeight;
+          iframe.height = height;
+          iframe.style.transform = `scale(${scale})`;
+          stage.style.width = `${width * scale}px`;
+          stage.style.height = `${height * scale}px`;
+          status.textContent = `${width}px preview · ${Math.round(scale * 100)}%`;
+        };
+
+        const select = (key) => {
+          const vp = VIEWPORTS[key];
+          toggle.querySelectorAll('button').forEach((b) => {
+            b.setAttribute('aria-pressed', String(b.dataset.vp === (vp ? key : 'live')));
+          });
+          const url = new URL(location.href);
+          if (vp) url.searchParams.set('vp', key);
+          else url.searchParams.delete('vp');
+          history.replaceState(null, '', url);
+
+          if (!vp) {
+            stage.hidden = true;
+            stage.replaceChildren();
+            iframe = null;
+            content.forEach((el) => (el.hidden = false));
+            status.textContent = '';
+            return;
+          }
+
+          width = vp.width;
+          content.forEach((el) => (el.hidden = true));
+          stage.hidden = false;
+          status.textContent = 'Loading…';
+          iframe = document.createElement('iframe');
+          iframe.src = `index.html?frame${headline === 'off' ? '&headline=off' : ''}`;
+          iframe.width = width;
+          iframe.title = `Shorts Signpost at ${vp.label}`;
+          iframe.addEventListener('load', async () => {
+            await iframe.contentDocument.fonts.ready;
+            fit();
+          });
+          stage.replaceChildren(iframe);
+        };
+
+        toggle.addEventListener('click', (event) => {
+          const button = event.target.closest('button[data-vp]');
+          if (button) select(button.dataset.vp);
+        });
+
+        // Headline filter: reload with the new setting (removed on load)
+        const headlineToggle = document.getElementById('demo-headline');
+        headlineToggle.querySelectorAll('button').forEach((b) => b.setAttribute('aria-pressed', String(b.dataset.headline === headline)));
+        headlineToggle.addEventListener('click', (event) => {
+          const button = event.target.closest('button[data-headline]');
+          if (!button) return;
+          const url = new URL(location.href);
+          if (button.dataset.headline === 'off') url.searchParams.set('headline', 'off');
+          else url.searchParams.delete('headline');
+          location.href = url;
+        });
+
+        window.addEventListener('resize', fit);
+        select(params.get('vp') || 'live');
+      })();
+    </script>
+  </body>
+</html>

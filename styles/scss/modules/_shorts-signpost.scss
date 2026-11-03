@@ -1,0 +1,92 @@
+// ── Shorts Signpost ───────────────────────────────────────────────────────────
+// A row of Shorts cards that scrolls sideways; each card opens the Short.
+// The row is a Carousel (components/_carousel.scss), Row type: no dots, the
+// card cut off on the right (16px fade) shows there is more.
+//
+//   .shorts-signpost
+//     .carousel
+//       .carousel__track
+//         a.shorts-card.media.media--shorts × n  9:16 cover, radius 8, data-theme="light"
+//           video[poster]                        cover frame; plays the preview
+//           p.shorts-card__headline.h6           optional: white, 3 lines max, over a scrim
+//       .carousel__nav--prev / --next            data-theme="light"
+//
+// Takes its column's width — Fullwidth, Alpha or Beta. Cards 172 wide (160
+// below MD), 8 apart. The track keeps 16px after the last card. LG and MD:
+// 16px inset all round; SM-XS: the track runs edge to edge and starts 16px in.
+// Keyline below unless last.
+//
+// Theme Pinned: cards and arrows sit on the picture, so they keep the light
+// look in dark mode — the scrim and the white headline would flip otherwise.
+//
+// Behaviour: scripts/modules/carousel.js (arrows, snap) and
+// scripts/modules/shorts-signpost.js (one preview playing at a time).
+//
+// Reference: Figma Web UI Kit › Shorts › Shorts Signpost (151:3722)
+
+@use '../foundation/breakpoints' as bp;
+@use '../components/divider';
+
+.shorts-signpost {
+  --carousel-gap: var(--spacing-8);
+  --carousel-inset: var(--spacing-16);
+  --carousel-end: var(--spacing-16);
+
+  position: relative;
+  padding-block: var(--spacing-16);
+
+  &:not(:last-child)::after {
+    @include divider.divider;
+  }
+
+  @include bp.respond-to(md) {
+    --carousel-inset: 0;
+
+    padding-inline: var(--spacing-16);
+  }
+}
+
+// ── Card ──────────────────────────────────────────────────────────────────────
+
+.shorts-card {
+  width: 160px;
+  border-radius: var(--border-radius-8);
+
+  @include bp.respond-to(md) {
+    width: 172px;
+  }
+
+  // Scrim under the headline — none on a card without one
+  &:has(.shorts-card__headline)::before {
+    content: '';
+    position: absolute;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    height: 128px;
+    background-image: linear-gradient(
+      to bottom,
+      var(--color-effect-translucent-dark-clear),
+      var(--color-effect-translucent-dark-solid)
+    );
+  }
+
+  // Inside the track's scroll box, an outside outline would be clipped
+  &:focus-visible {
+    outline-offset: -2px;
+  }
+}
+
+.shorts-card__headline {
+  position: absolute;
+  right: var(--spacing-12);
+  bottom: var(--spacing-12);
+  left: var(--spacing-12);
+  display: -webkit-box;
+  margin: 0;
+  overflow: hidden;
+  color: var(--color-text-neutral-white);
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 3;
+  line-clamp: 3;
+}
