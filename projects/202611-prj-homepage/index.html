@@ -561,21 +561,38 @@
         </div>
       </div>
 
-    <!-- ── Page — Side Ads (≥1350) run beside it and stop where the footer starts ── -->
-    <div class="container ad-skin homepage__page">
-      <div class="ad-rail ad-rail--left">
-        <aside class="ad-slot ad-slot--side" aria-label="Advertisement"><img src="../../assets/images/ad-placeholder-160x600.jpg" alt="" /></aside>
-      </div>
-      <div class="ad-rail ad-rail--right">
-        <aside class="ad-slot ad-slot--side" aria-label="Advertisement"><img src="../../assets/images/ad-placeholder-160x600.jpg" alt="" /></aside>
-      </div>
+    <main>
+      <!-- ── Navbar L2 — first child of <main>, full width; Home subchannels ── -->
+      <nav class="navbar-l2 navbar-l2--home" aria-label="Home">
+        <div class="navbar-l2__inner">
+          <ul class="navbar-l2__list">
+            <li><a class="navbar-l2__link" href="#">Latest Headlines</a></li>
+            <li><a class="navbar-l2__link" href="#">Deep Dive</a></li>
+            <li><a class="navbar-l2__link" href="#">Video</a></li>
+            <li><a class="navbar-l2__link" href="#">Podcasts</a></li>
+            <li><a class="navbar-l2__link" href="#">Columnists</a></li>
+            <li><a class="navbar-l2__link" href="#">University Guide</a></li>
+            <li><a class="navbar-l2__link" href="#">Kim Kardashian</a></li>
+          </ul>
+          <button type="button" class="navbar-l2__edge navbar-l2__edge--prev" aria-label="Scroll subchannels left" hidden><span class="icon icon--chevron-left" aria-hidden="true"></span></button>
+          <button type="button" class="navbar-l2__edge navbar-l2__edge--next" aria-label="Scroll subchannels right" hidden><span class="icon icon--chevron-right" aria-hidden="true"></span></button>
+        </div>
+      </nav>
 
-      <main>
+      <!-- ── Page — Side Ads (≥1350) run beside it and stop where the footer starts ── -->
+      <div class="container ad-skin homepage__page">
+        <div class="ad-rail ad-rail--left">
+          <aside class="ad-slot ad-slot--side" aria-label="Advertisement"><img src="../../assets/images/ad-placeholder-160x600.jpg" alt="" /></aside>
+        </div>
+        <div class="ad-rail ad-rail--right">
+          <aside class="ad-slot ad-slot--side" aria-label="Advertisement"><img src="../../assets/images/ad-placeholder-160x600.jpg" alt="" /></aside>
+        </div>
+
         <section class="layout-full homepage-slot" aria-label="Section 1"><p class="homepage-slot__label">Section 1</p></section>
         <section class="layout-full homepage-slot" aria-label="Section 2"><p class="homepage-slot__label">Section 2</p></section>
         <section class="layout-full homepage-slot" aria-label="Section 3"><p class="homepage-slot__label">Section 3</p></section>
-      </main>
-    </div>
+      </div>
+    </main>
 
     <div class="container">
       <footer class="footer">

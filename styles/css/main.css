@@ -12856,7 +12856,7 @@ body:not(.demo-frame) .demo-container-start {
   --ad-sticky-top: calc(var(--spacing-48) + var(--spacing-16));
 }
 .homepage__page .ad-rail {
-  top: -126px;
+  top: -185px;
   z-index: 51;
 }
 

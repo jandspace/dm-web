@@ -3,9 +3,11 @@
 // Billboard › Masthead › page container with Side Ads › Footer.
 //
 //   body.homepage
-//     .container.ad-skin.homepage__page   page container; Side Ads beside it
-//       section.layout-full.homepage-slot  empty section, a placeholder until its
-//                                          content goes in (then drop the class)
+//     main
+//       nav.navbar-l2                      full width, first child of <main>
+//       .container.ad-skin.homepage__page  page container; Side Ads beside it
+//         section.layout-full.homepage-slot  empty section, a placeholder until its
+//                                            content goes in (then drop the class)
 //
 // Reference: Figma Web UI Kit › Homepage › Budget/Legacy - 1366x768 (8709:88370)
 
@@ -30,13 +32,14 @@
 
 // Side Ads stick under the Sticky Navbar (48 + 16). The rails start 29px below
 // the masthead top as in Figma, not at the container top: lifted by the
-// masthead (155 at LG/XL, where Side Ads show) minus 29. They end with this
-// container, so the ads scroll up with the footer when it comes into view.
+// masthead (154) + Navbar L2 (60) minus 29, at LG/XL where Side Ads show —
+// update it if either changes height. They end with this container, so the
+// ads scroll up with the footer when it comes into view.
 .homepage__page {
   --ad-sticky-top: calc(var(--spacing-48) + var(--spacing-16));
 
   .ad-rail {
-    top: -126px;
+    top: -185px;
     z-index: 51; // over the masthead (50) beside it, under the Sticky Navbar (60)
   }
 }
