@@ -2,7 +2,7 @@
 
 Items in a row that scrolls sideways and snaps an item to the start. Every carousel has to show that there is more than what is in view — the two types do it in different ways.
 
-Figma: Web UI Kit › Carousel (3927:40511) — Carousel Indicator, Indicator item. (The Figma page sits under Modules; in code it is a Component: it has no content of its own and modules are built with it.)
+Figma: Web UI Kit › Carousel (3927:40511) — Carousel Indicator, Indicator item, **Carousel Nav** (8709:13762: `Position` Start / Middle / End × `State` Default / Hover; layers Prev / Next; Theme Pinned Light, no background). (The Figma page sits under Modules; in code it is a Component: it has no content of its own and modules are built with it.)
 Code: `styles/scss/components/_carousel.scss` · behaviour `scripts/modules/carousel.js` · demo `components/carousel/`.
 Used by: Article Card carousel (Slide), Shorts Signpost (Row).
 
