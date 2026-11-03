@@ -8897,6 +8897,10 @@ html:has(.masthead-sheet:not([hidden])) {
   position: relative;
 }
 
+body:has(.ad-skin) {
+  overflow-x: clip;
+}
+
 .ad-rail {
   display: none;
   position: absolute;
@@ -8910,7 +8914,7 @@ html:has(.masthead-sheet:not([hidden])) {
 .ad-rail--right {
   left: calc(100% + var(--spacing-8));
 }
-@media (min-width: 1350px) {
+@media (min-width: 1024px) {
   .ad-rail {
     display: block;
   }
@@ -12858,6 +12862,21 @@ body:not(.demo-frame) .demo-container-start {
 .homepage__page .ad-rail {
   top: -185px;
   z-index: 51;
+}
+
+.homepage-dweb {
+  display: none;
+}
+@media (min-width: 768px) {
+  .homepage-dweb {
+    display: inline;
+  }
+}
+
+@media (min-width: 768px) {
+  .homepage-mweb {
+    display: none;
+  }
 }
 
 .homepage-slot {

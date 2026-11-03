@@ -57,17 +57,19 @@
           notes: [
             'DM homepage built from the library, one content block at a time.',
             'Frame from Figma 8709:88370: Billboard › Masthead › Sticky Navbar › Navbar L2 › 3 empty sections › Footer.',
-            'All breakpoints (XS–XL), no viewport switch. Billboard MD 728×90 / LG 970×250 · Side Ads ≥1350 · mobile bottom bar <MD.',
+            'All breakpoints (XS–XL), no viewport switch. Billboard MD 728×90 / LG 970×250 · Side Ads LG+ · mobile bottom bar <MD.',
             'Side Ads: start 29px under the masthead top, stick at 64px, stop at the footer. 8px from the container (doc; Figma 0).',
             'Sections: .homepage-slot placeholders. Styles: _prj-homepage.scss · behaviour: scripts/modules/masthead.js.',
             '2026-11-03 — Masthead keylines (library): 16px inset, border/translucent-dark/pale.',
             '2026-11-03 — Main page moved from web/ to the project folder.',
             '2026-11-03 — Footer → shared page-footer.js (reveal underlay).',
             '2026-11-04 — Navbar L2 (Home subchannels) as first child of <main>; page container moved inside <main>. Side Ads lift 185 (masthead 154 + L2 60 − 29).',
+            '2026-11-04 — Section 1: Banner Story, Lead Story only (News, 1.2k comments) — xlsx dm-home-cards-20261103-05 #2. Artwork in images/ (wide 964×544, xs 750×700). Dweb / Mweb headlines via .homepage-dweb / .homepage-mweb.',
+            '2026-11-04 — Side Ads on all of LG (library): cut at the window edge below 1350, no sideways scroll.',
             '2026-11-03 — Mouse drag = swipe on sideways rows (demo-drag-swipe.js).',
           ],
           result: '',
-          pages: [['Homepage', 'index.html', 'Empty page frame, all breakpoints.']],
+          pages: [['Homepage', 'index.html', 'Page frame + Banner Story, all breakpoints.']],
         },
       ];
 

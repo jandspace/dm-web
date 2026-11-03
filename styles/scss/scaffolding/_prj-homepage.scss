@@ -44,6 +44,24 @@
   }
 }
 
+// ── Dweb / Mweb copy ──────────────────────────────────────────────────────────
+// Desktop and mobile are separate sites with their own headlines; this page
+// serves both, so a card can carry the two and show one per breakpoint.
+
+.homepage-dweb {
+  display: none;
+
+  @include bp.respond-to(md) {
+    display: inline;
+  }
+}
+
+.homepage-mweb {
+  @include bp.respond-to(md) {
+    display: none;
+  }
+}
+
 // ── Placeholder section ───────────────────────────────────────────────────────
 // 320 high like the Figma frame: a dashed box inside the 16px inset
 

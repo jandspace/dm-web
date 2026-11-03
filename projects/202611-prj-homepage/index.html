@@ -588,7 +588,28 @@
           <aside class="ad-slot ad-slot--side" aria-label="Advertisement"><img src="../../assets/images/ad-placeholder-160x600.jpg" alt="" /></aside>
         </div>
 
-        <section class="layout-full homepage-slot" aria-label="Section 1"><p class="homepage-slot__label">Section 1</p></section>
+        <!-- Section 1 — Banner Story, Lead Story only (News). Dweb / Mweb headlines differ: .homepage-dweb (≥768) · .homepage-mweb (<768) -->
+        <section class="layout-full">
+          <article class="article-card-banner">
+            <div class="article-card-banner__panel">
+              <picture class="article-card-banner__media">
+                <source media="(min-width: 768px)" srcset="images/banner-high-court-wide.jpg" />
+                <img src="images/banner-high-court-xs.jpg" alt="Star loses gag bid" />
+              </picture>
+              <div class="article-card-banner__content">
+                <h2 class="article-card-banner__headline">
+                  <a class="article-card-banner__link" href="#article-16261289"><span class="homepage-dweb">Celebrity who threatened kill himself if sex abuse allegations were made public LOSES High Court bid against them being published</span><span class="homepage-mweb">Celebrity who threatened to kill himself if sex abuse claims went public loses High Court bid</span></a>
+                </h2>
+                <div class="article-card-banner__metadata article-card-metadata">
+                  <a class="article-card-metadata__comments" href="#comments-16261289" aria-label="1.2k comments">
+                    <span class="icon icon--speechbubble-ellipsis article-card-metadata__comments-icon" aria-hidden="true"></span>
+                    1.2k comments
+                  </a>
+                </div>
+              </div>
+            </div>
+          </article>
+        </section>
         <section class="layout-full homepage-slot" aria-label="Section 2"><p class="homepage-slot__label">Section 2</p></section>
         <section class="layout-full homepage-slot" aria-label="Section 3"><p class="homepage-slot__label">Section 3</p></section>
       </div>
