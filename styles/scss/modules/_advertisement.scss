@@ -11,7 +11,8 @@
 //              ≤650×250 — .ad-slot--tall). None below MD
 //   Side Ads   .container.ad-skin                   the page's container
 //                .ad-rail.ad-rail--left|--right > .ad-slot.ad-slot--side
-//              160×600 beside the container, 8px off, sticky. From 1350 (bp.side-ads)
+//              160×600 beside the container, 8px off, sticky. LG+ (fully in view from 1350;
+//              narrower: cut at the window edge, no sideways scroll)
 //   MPU        .ad-slot.ad-slot--mpu (+ --sticky · --dmpu)   in Beta, 300 wide;
 //              on mobile in the page, between content blocks
 //   Mobile     .ad-sticky-bottom > .ad-slot.ad-slot--mobile  bar fixed to the bottom, <MD
@@ -97,10 +98,18 @@
 // ── Side Ads ──────────────────────────────────────────────────────────────────
 // Each rail runs the height of the container, 8px outside it; the slot sticks
 // below the sticky masthead (--ad-sticky-top, set by the page) and stops with
-// the container.
+// the container. Shown on every desktop (LG+): from 1350 they fit beside the
+// 996 container; narrower windows cut them at the edge — clipped, so they
+// never add a sideways scroll.
 
 .ad-skin {
   position: relative;
+}
+
+// overflow-x: clip, not hidden — it makes no scroll container, so the sticky
+// slots (and the sticky masthead) keep working
+body:has(.ad-skin) {
+  overflow-x: clip;
 }
 
 .ad-rail {
@@ -118,7 +127,7 @@
     left: calc(100% + var(--spacing-8));
   }
 
-  @include bp.side-ads {
+  @include bp.respond-to(lg) {
     display: block;
   }
 }

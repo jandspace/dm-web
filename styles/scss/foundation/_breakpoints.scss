@@ -36,13 +36,3 @@ $breakpoints: (
   }
 }
 
-// side-ads — viewports wide enough for the 160×600 Side Ads beside the 996
-// container: 996 + 2 × (8 + 160) = 1332px layout width, + 17px for a Windows
-// scrollbar (media queries include it). From XL (≥1580) the 1224 container
-// fits them too: 1224 + 336 = 1560 + 17.
-// Reference: Foundation > Layout & Grid > 2-B · Modules > Advertisement
-@mixin side-ads {
-  @media (min-width: 1350px) {
-    @content;
-  }
-}

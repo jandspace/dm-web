@@ -168,7 +168,7 @@ DM is currently **adaptive**, not fully responsive. Desktop and mobile are serve
 | LG    | ≥1024px | 996px     | Desktop         |
 | XL    | ≥1580px | 1224px    | Wide desktop (room for Side Ads) |
 
-Source of truth: `styles/scss/foundation/_breakpoints.scss` — use `@include bp.respond-to(md)` etc., never hard-coded media queries. Side Ads (160×600 beside the container) show from 1350px — `@include bp.side-ads` (996 + 2 × 168 + a 17px scrollbar); XL starts at 1580 so the 1224 container leaves room for them too. Typography tokens still switch at 768 / 1024 only.
+Source of truth: `styles/scss/foundation/_breakpoints.scss` — use `@include bp.respond-to(md)` etc., never hard-coded media queries. Side Ads (160×600 beside the container) show from LG; fully in view from 1350px (996 + 2 × 168 + a 17px scrollbar), narrower they are cut at the window edge — `overflow-x: clip` on the body, never a sideways scroll. XL starts at 1580 so the 1224 container leaves room for them too. Typography tokens still switch at 768 / 1024 only.
 
 ### Mobile Web
 

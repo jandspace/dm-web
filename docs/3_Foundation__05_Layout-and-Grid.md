@@ -93,7 +93,7 @@ The system uses five breakpoints, named by size tier from Extra Small to Extra L
 
 **On the SM tier.** 640px is the minimum width at which a two-column card layout becomes viable. Below this threshold, content stacks in a single column. The 640px value aligns with Tailwind's default `sm` breakpoint and reflects the realistic lower bound for phone landscape and small tablet viewports.
 
-**On the LG tier.** LG covers tablets in landscape orientation and laptops up to about 1579px — 1024px to 1366px legacy laptops, 1440px and 1536px (a 1920px screen at 125% scaling) laptops. These devices receive the standard 996px container, which leaves room for the 160×600 Side Ads from 1350px (996 + 2 × (8 + 160) = 1332px, plus a 17px scrollbar).
+**On the LG tier.** LG covers tablets in landscape orientation and laptops up to about 1579px — 1024px to 1366px legacy laptops, 1440px and 1536px (a 1920px screen at 125% scaling) laptops. These devices receive the standard 996px container. The 160×600 Side Ads show across LG; they are fully in view from 1350px (996 + 2 × (8 + 160) = 1332px, plus a 17px scrollbar) — narrower, they are cut at the window edge without a sideways scroll (Advertisement § 3).
 
 **On the XL tier.** 1580px is set so the wider 1224px container always leaves room for the Side Ads: 1224 + 2 × (8 + 160) = 1560px, plus a 17px Windows scrollbar. Below 1580px the 996px container is kept, so 1366, 1440 and 1536 laptops all show Side Ads. (XL was 1580px until November 2026; at 1580–1559px the 1224px container left no room for Side Ads.)
 
