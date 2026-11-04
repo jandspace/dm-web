@@ -2,7 +2,7 @@
 // Editorial heading H1–H6 with optional inline badge at the start of text.
 // Badge is a genuine inline span in the heading's text flow — no
 // position:absolute, no text-indent, no per-label-length indent calculation.
-// Wrapping is correct by construction; badge size mapping: H1→xl H2→lg
+// Wrapping is correct by construction; a space follows the badge (no margin); badge size mapping: H1→xl H2→lg
 // H3/H4→md H5→sm H6→xs.
 
 .article-headline {
@@ -13,25 +13,22 @@
   &__badge {
     // vertical-align: middle is the starting point — check per badge size visually.
     // Badge display (inline-flex) and chrome come from badge--* classes; don't override.
-    vertical-align: middle;
+    // No margin: the gap to the headline is the space character written after
+    // the badge in the markup (it scales with the headline size, is read by
+    // screen readers and copied with the text). Never write the badge glued
+    // to the first word.
+    // Vertical position: middle, then nudged per badge size so the badge centre
+    // sits on the centre of the headline's capitals (measured at XS, MD and LG,
+    // within ±1px). Change one value to retune a size, in whole pixels.
+    --headline-badge-shift: 0px;
 
-    &.badge--xl {
-      margin-right: var(--number-spacing-10, 10px);
-      transform: translateY(-4px);
-    }
-    &.badge--lg {
-      margin-right: var(--number-spacing-8, 8px);
-      transform: translateY(-2px);
-    }
-    &.badge--md,
-    &.badge--sm {
-      margin-right: var(--number-spacing-6, 6px);
-    }
-    &.badge--sm {
-      transform: translateY(-1px);
-    }
-    &.badge--xs {
-      margin-right: var(--number-spacing-4, 4px);
-    }
+    vertical-align: middle;
+    transform: translateY(var(--headline-badge-shift));
+
+    &.badge--xl { --headline-badge-shift: -3px; } // H1
+    &.badge--lg { --headline-badge-shift: -2px; } // H2
+    &.badge--md { --headline-badge-shift: -2px; } // H3 · H4
+    &.badge--sm { --headline-badge-shift: -1px; } // H5
+    &.badge--xs { --headline-badge-shift: -1px; } // H6
   }
 }

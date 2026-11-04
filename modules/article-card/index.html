@@ -410,7 +410,7 @@
             }
             // Others: inside the article link, at the start of the headline text
             const target = h.querySelector('.article-card__link') || h;
-            target.insertAdjacentHTML('afterbegin', badgeHTML(BADGES[kind], BADGE_SIZE[h.tagName.toLowerCase()]));
+            target.insertAdjacentHTML('afterbegin', badgeHTML(BADGES[kind], BADGE_SIZE[h.tagName.toLowerCase()]) + ' ');
           });
         };
 

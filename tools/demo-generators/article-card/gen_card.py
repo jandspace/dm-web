@@ -31,7 +31,7 @@ def headline(level, kind, indent):
         f'{pad}<h{level} class="h{level} article-headline">',
         f'{pad}  <span class="badge badge--{size} badge--highlight article-headline__badge"',
         f'{pad}    >{mplus}<span class="badge__label">Exclusive</span></span',
-        f'{pad}  >{HEADLINE}',
+        f'{pad}  > {HEADLINE}',
         f'{pad}</h{level}>',
     ])
 

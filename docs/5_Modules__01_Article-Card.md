@@ -13,7 +13,7 @@ The full-width top story is a separate block — see [Article Card — Banner St
 | Element | Description |
 |---|---|
 | **Media container** | Image or video at a fixed aspect ratio per card type. 4px corners (Image Only: 8px) |
-| **Headline** | Article Headline (`.article-headline`), H2–H6 by card type. Holds the article link and, optionally, an editorial badge inline at the start |
+| **Headline** | Article Headline (`.article-headline`), H2–H6 by card type. Holds the article link and, optionally, an editorial badge inline at the start, followed by a space (§ Badge in the headline) |
 | **Preview text** *(optional)* | CMS-controlled summary under the headline |
 | **Live Key Updates** *(optional)* | Live articles only — replaces the preview text slot |
 | **Metadata** | Article Card Metadata row — info on the left, comment counter on the right |
@@ -40,17 +40,22 @@ The card carries its own 16px inset; the column grid carries none (Foundation �
 - SM: Left Thumb is used in the main (left) columns; SM: Right Thumb in the right-hand sidebar, where metadata is usually dropped.
 - SM Thumb + Columnist metadata: the thumbnail is hidden (Columnist needs ≥300px of text width).
 
+### Badge in the headline
+
+The editorial badge sits inside the article link, at the start of the headline text, size by headline level (H2 lg · H3/H4 md · H5 sm · H6 xs).
+
+- **Gap = one space character**, written after the badge in the markup — no margin. It scales with the headline size (about ¼ of the font size: ≈7px at H2 28, ≈4px at H5 16), is read by screen readers ("Breaking Trump…", not "BreakingTrump…") and is copied with the text. At a line end the browser drops it.
+- A newline between the badge and the text counts as the space, so formatted HTML is fine. Never glue the badge to the first word (`</span>Trump`).
+- Scripts that insert a badge add the space too (`badgeHTML(…) + ' '`).
+- **Vertical position:** `vertical-align: middle`, then a per-size nudge so the badge centre sits on the centre of the headline's capitals — `--headline-badge-shift` in `_article-headline.scss`: xl −3 · lg −2 · md −2 · sm −1 · xs −1px (measured at XS, MD and LG, all within ±0.5px). Retune one size by changing its value, in whole pixels.
+
+```html
+<h5 class="h5 article-headline"><a class="article-card__link" href="…"><span class="badge badge--sm badge--highlight article-headline__badge"><span class="badge__label">Breaking</span></span> Corbyn joins Left's demands…</a></h5>
+```
+
 ### Max width by breakpoint
 
-The card fills its column span, capped at:
-
-| Span | MD ≥768 | LG ≥1024 | XL ≥1580 |
-|---|---|---|---|
-| 2 columns (XL, XL Horizontal, Image Only Large) | 768 | 664 | 816 |
-| 3 columns (XL Triple) | 768 | 996 | 1224 |
-| 1 column (MD, MD Vertical, SM, Image Only Medium) | 384 | 332 | 408 |
-
-SM-XS has no cap — the card runs the full container width.
+No max width: the card fills the layout column it sits in (Foundation › Layout & Grid § 5), at every breakpoint.
 
 ### Thumbnail width (SM types)
 

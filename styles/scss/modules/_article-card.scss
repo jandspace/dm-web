@@ -225,37 +225,7 @@
 // which carries all of its own styling — see _article-card-metadata.scss.
 
 // ── Max width per card type ───────────────────────────────────────────────────
-// Card fills its grid column(s) up to the column span of the active breakpoint
-// (Figma card widths). SM-XS: no cap, card runs the full container width.
-//
-//                       MD    LG    XL
-//   XL / XL Horizontal  768   664   816
-//   XL Triple           768   996   1224
-//   1-column types      384   332   408
-
-.article-card--xl,
-.article-card--xl-horizontal,
-.article-card--image-only-large {
-  @include bp.respond-to(md) { max-width: 768px; }
-  @include bp.respond-to(lg) { max-width: 664px; }
-  @include bp.respond-to(xl) { max-width: 816px; }
-}
-
-.article-card--xl-triple {
-  @include bp.respond-to(md) { max-width: 768px; }
-  @include bp.respond-to(lg) { max-width: 996px; }
-  @include bp.respond-to(xl) { max-width: 1224px; }
-}
-
-.article-card--md-vertical,
-.article-card--md,
-.article-card--sm-left,
-.article-card--sm-right,
-.article-card--image-only-medium {
-  @include bp.respond-to(md) { max-width: 384px; }
-  @include bp.respond-to(lg) { max-width: 332px; }
-  @include bp.respond-to(xl) { max-width: 408px; }
-}
+// Card width comes from the layout column it sits in — no max width of its own.
 
 // ── Card type: XL ─────────────────────────────────────────────────────────────
 // Stacked: media (358:215) → headline → metadata. Base styles cover it.
