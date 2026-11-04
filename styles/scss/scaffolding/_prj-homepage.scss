@@ -12,7 +12,7 @@
 //
 // Reference: Figma Web UI Kit › Homepage › Budget/Legacy - 1366x768 (8709:88370)
 
-@use '../foundation/breakpoints' as bp;
+@use "../foundation/breakpoints" as bp;
 
 // SM-XS: room at the end of the page for the bottom ad bar (320×50 + 4px
 // padding top and bottom + its 1px keyline)
@@ -83,7 +83,7 @@
 @supports (animation-timeline: scroll()) {
   @include bp.respond-to(md) {
     .homepage .masthead::before {
-      content: '';
+      content: "";
       position: absolute;
       inset: 0;
       clip-path: inset(-16px 0 100%);
@@ -137,6 +137,16 @@
   }
 }
 
+// DMPU (300×600) only from LG, where Beta is a side rail; on mobile and
+// tablet Beta stacks under Alpha and the tall ad is left out
+.homepage .ad-slot--dmpu {
+  display: none;
+
+  @include bp.respond-to(lg) {
+    display: flex;
+  }
+}
+
 // ── Dweb / Mweb copy ──────────────────────────────────────────────────────────
 // Desktop and mobile are separate sites with their own headlines; this page
 // serves both, so a card can carry the two and show one per breakpoint.
@@ -156,7 +166,8 @@
 }
 
 // ── Placeholder section ───────────────────────────────────────────────────────
-// 320 high like the Figma frame: a dashed box inside the 16px inset
+// 320 high like the Figma frame: a box inside the 16px inset, a soft
+// background/neutral/light glow fading inward (inset shadow, 32px blur, no border)
 
 .homepage-slot {
   display: flex;
@@ -169,9 +180,9 @@
   flex: 1;
   align-items: center;
   justify-content: center;
-  border: 1px dashed var(--color-border-neutral-grey-light);
   border-radius: var(--border-radius-4);
   color: var(--color-text-neutral-grey-dark);
   font-size: var(--typography-font-size-label-sm);
   line-height: var(--typography-line-height-narrow);
+  box-shadow: inset 0 0 32px var(--color-background-neutral-light);
 }
