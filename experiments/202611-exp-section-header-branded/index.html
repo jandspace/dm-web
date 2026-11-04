@@ -1,0 +1,451 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Experiment · Section Header Branded — extras</title>
+    <link rel="icon" href="../../assets/favicon.svg" type="image/svg+xml" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="../../tokens/dm_tokens.css" />
+    <link rel="stylesheet" href="../../tokens/dm_typography_web_tokens.css" />
+    <link rel="stylesheet" href="../../styles/css/main.css" />
+    <script src="../../scripts/scaffolding/home-button.js" data-home="experiments" defer></script>
+    <script src="../../scripts/scaffolding/page-footer.js" defer></script>
+
+    <!-- ════════════════════════════════════════════════════
+         B = variant on top of the library Section Header - Branded
+         (styles/scss/modules/_section-header-branded.scss, untouched).
+         Figma: Web UI Kit › Section Header - Branded example (8794:8073)
+    ════════════════════════════════════════════════════ -->
+    <style>
+      /* ── Logo: always its own aspect ratio, as large as fits — at most the
+         slot height (44, library max-height) and 240px wide. Library squashes
+         it (max-width with a fixed height). ── */
+      .section-header-branded__logo {
+        width: auto;
+        height: auto;
+        max-width: min(100%, 240px);
+      }
+
+      /* ── Variant: Extra block — sponsorship line under the banner ── */
+      .section-header-branded__sponsor {
+        display: flex;
+        flex-wrap: wrap;
+        align-items: center;
+        justify-content: center;
+        gap: var(--spacing-4);
+        margin: 0;
+        padding-block: var(--spacing-4);
+        font-size: var(--typography-font-size-label-xsm);
+        font-weight: var(--typography-font-weight-regular);
+        line-height: var(--typography-line-height-narrow);
+        color: var(--color-text-neutral-dark);
+      }
+
+      /* container: its content box is the banner width */
+      .section-header-branded {
+        container-type: inline-size;
+      }
+
+      /* Narrow banner (Figma 163px): still a link, no arrow button — so the
+         48px kept clear for the arrow drops to 16 and the logo gets the room */
+      @container (max-width: 240px) {
+        .section-header-branded__arrow {
+          display: none;
+        }
+
+        .section-header-branded__banner {
+          padding-inline: var(--spacing-16);
+        }
+      }
+
+      /* ── Variant: Figures — cut-out photos beside the logo ──
+         The banner stops clipping (overflow) so the figures can rise above
+         it; the background image clips itself instead. It is scaled 1.08
+         (library), so its own inset is 3.7% (= 0.04 / 1.08) to land on the
+         banner edge, radius 8 / 1.08. The surface follows the radius.
+         The figures move out from the logo as the banner widens: no gap at
+         300 (Figma), 1/24 of every px beyond it, 64px at most (632 → 14,
+         964 → 28). */
+      .section-header-branded--figures .section-header-branded__banner {
+        gap: clamp(0px, (100cqi - 300px) / 24, 64px);
+        overflow: visible;
+      }
+
+      .section-header-branded--figures .section-header-branded__banner::before {
+        border-radius: inherit;
+      }
+
+      .section-header-branded--figures .section-header-branded__bg {
+        clip-path: inset(3.7% round calc(var(--border-radius-8) / 1.08));
+      }
+
+      /* Bottom on the banner edge (past its 4px padding), height from
+         --figure-height (Figma 60 → 8px above the banner). Width follows. */
+      .section-header-branded__figure {
+        flex-shrink: 0;
+        align-self: flex-end;
+        width: auto;
+        height: var(--figure-height, 60px);
+        max-height: 60px; /* limit */
+        margin-bottom: calc(-1 * var(--spacing-4));
+        pointer-events: none;
+      }
+
+      /* With figures the group keeps its size and spills into the banner's
+         side padding (Figma 300px: 232 group in a 204 slot) — the logo
+         doesn't shrink */
+      .section-header-branded__figure + .section-header-branded__logo {
+        flex-shrink: 0;
+      }
+
+      /* limit: two figures at most */
+      .section-header-branded__figure ~ .section-header-branded__figure ~ .section-header-branded__figure {
+        display: none;
+      }
+
+      /* limit: no figures on a narrow banner (Figma 163px: logo only) */
+      @container (max-width: 240px) {
+        .section-header-branded__figure {
+          display: none;
+        }
+
+        .section-header-branded__figure + .section-header-branded__logo {
+          flex-shrink: 1;
+        }
+      }
+
+      /* ── Don't samples: limits off ── */
+      .exp-unguarded .section-header-branded__figure {
+        max-height: none;
+      }
+
+      .exp-unguarded .section-header-branded__figure ~ .section-header-branded__figure ~ .section-header-branded__figure {
+        display: block;
+      }
+
+      @container (max-width: 240px) {
+        .exp-unguarded .section-header-branded__figure {
+          display: block;
+        }
+      }
+
+      /* ── Page layout only ── */
+      .exp-page {
+        max-width: 1100px;
+        margin: 0 auto;
+        padding: var(--spacing-32) var(--spacing-16) var(--spacing-64);
+        font-family: var(--typography-font-family-sans);
+        overflow-x: auto;
+      }
+
+      .exp-page__title {
+        margin: 0;
+        font-size: var(--typography-font-size-h3);
+        font-weight: var(--typography-font-weight-bold);
+        line-height: var(--typography-line-height-narrow);
+        color: var(--color-text-neutral-darker);
+      }
+
+      .exp-page__meta,
+      .exp-row__caption {
+        max-width: 720px;
+        margin: var(--spacing-4) 0 0;
+        font-size: var(--typography-font-size-text-sm);
+        line-height: var(--typography-line-height-normal);
+        color: var(--color-text-neutral-grey-dark);
+      }
+
+      .exp-row {
+        display: flex;
+        flex-direction: column;
+        align-items: flex-start;
+        gap: var(--spacing-16);
+        margin-top: var(--spacing-48);
+      }
+
+      .exp-row__title {
+        margin: 0;
+        font-size: var(--typography-font-size-h5);
+        font-weight: var(--typography-font-weight-semibold);
+        line-height: var(--typography-line-height-compact);
+        color: var(--color-text-neutral-darker);
+      }
+
+      .exp-row__caption {
+        margin-top: calc(-1 * var(--spacing-12));
+      }
+
+      .exp-cell {
+        position: relative;
+        outline: 1px dashed var(--color-border-translucent-dark-pale);
+      }
+
+      .exp-cell-label {
+        margin: var(--spacing-8) 0 calc(-1 * var(--spacing-12)); /* 4px above its sample */
+        font-size: var(--typography-font-size-label-xsm);
+        line-height: var(--typography-line-height-narrow);
+        color: var(--color-text-neutral-grey-dark);
+      }
+
+      .exp-dont {
+        display: flex;
+        flex-direction: column;
+        gap: var(--spacing-8);
+        max-width: 664px;
+        margin: 0;
+      }
+
+      .exp-dont__reason {
+        font-size: var(--typography-font-size-text-sm);
+        line-height: var(--typography-line-height-normal);
+        color: var(--color-text-neutral-dark);
+      }
+
+      .exp-dont__label {
+        display: block;
+        font-weight: var(--typography-font-weight-semibold);
+        color: var(--color-text-semantic-error-base);
+      }
+
+      /* a block above, so an overflow shows what it covers */
+      .exp-prev {
+        padding: var(--spacing-16);
+        background-color: var(--color-background-neutral-lighter);
+        font-size: var(--typography-font-size-label-sm);
+        line-height: var(--typography-line-height-narrow);
+        color: var(--color-text-neutral-grey-dark);
+      }
+    </style>
+  </head>
+  <body>
+    <main class="exp-page">
+      <h1 class="exp-page__title">Section Header — Branded: extras</h1>
+      <p class="exp-page__meta">Figma: Web UI Kit › Section Header - Branded example (8794:8073). Widths as in Figma, each with where it is used. Under a 240px banner (195) the arrow is hidden; the banner stays a link. Hover a banner for the library hover.</p>
+
+      <section class="exp-row">
+        <h2 class="exp-row__title">1. Logo only — The Crime Desk</h2>
+        <p class="exp-row__caption">Library as it is, plus: no arrow under a 240px banner.</p>
+        <p class="exp-cell-label"><strong>195px</strong> — Half a mobile browser width (e.g. iPhone 390 ÷ 2)</p>
+        <div class="exp-cell" style="width: 195px">
+          <header class="section-header-branded">
+            <a class="section-header-branded__banner" href="#channel" aria-label="The Crime Desk">
+              <img class="section-header-branded__bg" src="images/bg-crime-desk.jpg" alt="" />
+              <img class="section-header-branded__logo" src="images/logo-crime-desk.svg" alt="The Crime Desk" width="171" height="42" />
+              <span class="section-header-branded__arrow btn btn-tertiary-dark btn--sm btn--icon-only" aria-hidden="true"><span class="icon icon--arrow-right-light" aria-hidden="true"></span></span>
+            </a>
+          </header>
+        </div>
+        <p class="exp-cell-label"><strong>332px</strong> — LG ≥1024 · Single (½ Alpha)</p>
+        <div class="exp-cell" style="width: 332px">
+          <header class="section-header-branded">
+            <a class="section-header-branded__banner" href="#channel" aria-label="The Crime Desk">
+              <img class="section-header-branded__bg" src="images/bg-crime-desk.jpg" alt="" />
+              <img class="section-header-branded__logo" src="images/logo-crime-desk.svg" alt="The Crime Desk" width="171" height="42" />
+              <span class="section-header-branded__arrow btn btn-tertiary-dark btn--sm btn--icon-only" aria-hidden="true"><span class="icon icon--arrow-right-light" aria-hidden="true"></span></span>
+            </a>
+          </header>
+        </div>
+        <p class="exp-cell-label"><strong>664px</strong> — LG ≥1024 · Double (Alpha)</p>
+        <div class="exp-cell" style="width: 664px">
+          <header class="section-header-branded">
+            <a class="section-header-branded__banner" href="#channel" aria-label="The Crime Desk">
+              <img class="section-header-branded__bg" src="images/bg-crime-desk.jpg" alt="" />
+              <img class="section-header-branded__logo" src="images/logo-crime-desk.svg" alt="The Crime Desk" width="171" height="42" />
+              <span class="section-header-branded__arrow btn btn-tertiary-dark btn--sm btn--icon-only" aria-hidden="true"><span class="icon icon--arrow-right-light" aria-hidden="true"></span></span>
+            </a>
+          </header>
+        </div>
+        <p class="exp-cell-label"><strong>996px</strong> — LG ≥1024 · Triple (Gamma)</p>
+        <div class="exp-cell" style="width: 996px">
+          <header class="section-header-branded">
+            <a class="section-header-branded__banner" href="#channel" aria-label="The Crime Desk">
+              <img class="section-header-branded__bg" src="images/bg-crime-desk.jpg" alt="" />
+              <img class="section-header-branded__logo" src="images/logo-crime-desk.svg" alt="The Crime Desk" width="171" height="42" />
+              <span class="section-header-branded__arrow btn btn-tertiary-dark btn--sm btn--icon-only" aria-hidden="true"><span class="icon icon--arrow-right-light" aria-hidden="true"></span></span>
+            </a>
+          </header>
+        </div>
+      </section>
+      <section class="exp-row">
+        <h2 class="exp-row__title">2. Extra block — This is Money + Sponsored by</h2>
+        <p class="exp-row__caption">New: .section-header-branded__sponsor under the banner (label-xsm Regular, neutral/dark, 4px gap). Header gap 4 + padding 4 = Figma Extra block 24px.</p>
+        <p class="exp-cell-label"><strong>195px</strong> — Half a mobile browser width (e.g. iPhone 390 ÷ 2)</p>
+        <div class="exp-cell" style="width: 195px">
+          <header class="section-header-branded">
+            <a class="section-header-branded__banner" href="#channel" aria-label="This is Money">
+              <img class="section-header-branded__bg" src="images/bg-money.jpg" alt="" style="object-position: 50% 29%; filter: blur(10px)" />
+              <img class="section-header-branded__logo" src="images/logo-thisismoney.svg" alt="This is Money" width="196" height="20" />
+              <span class="section-header-branded__arrow btn btn-tertiary-dark btn--sm btn--icon-only" aria-hidden="true"><span class="icon icon--arrow-right-light" aria-hidden="true"></span></span>
+            </a>
+            <p class="section-header-branded__sponsor">Sponsored by <img src="images/logo-nationwide.svg" alt="Nationwide" width="121" height="16" /></p>
+          </header>
+        </div>
+        <p class="exp-cell-label"><strong>332px</strong> — LG ≥1024 · Single (½ Alpha)</p>
+        <div class="exp-cell" style="width: 332px">
+          <header class="section-header-branded">
+            <a class="section-header-branded__banner" href="#channel" aria-label="This is Money">
+              <img class="section-header-branded__bg" src="images/bg-money.jpg" alt="" style="object-position: 50% 29%; filter: blur(10px)" />
+              <img class="section-header-branded__logo" src="images/logo-thisismoney.svg" alt="This is Money" width="196" height="20" />
+              <span class="section-header-branded__arrow btn btn-tertiary-dark btn--sm btn--icon-only" aria-hidden="true"><span class="icon icon--arrow-right-light" aria-hidden="true"></span></span>
+            </a>
+            <p class="section-header-branded__sponsor">Sponsored by <img src="images/logo-nationwide.svg" alt="Nationwide" width="121" height="16" /></p>
+          </header>
+        </div>
+        <p class="exp-cell-label"><strong>664px</strong> — LG ≥1024 · Double (Alpha)</p>
+        <div class="exp-cell" style="width: 664px">
+          <header class="section-header-branded">
+            <a class="section-header-branded__banner" href="#channel" aria-label="This is Money">
+              <img class="section-header-branded__bg" src="images/bg-money.jpg" alt="" style="object-position: 50% 29%; filter: blur(10px)" />
+              <img class="section-header-branded__logo" src="images/logo-thisismoney.svg" alt="This is Money" width="196" height="20" />
+              <span class="section-header-branded__arrow btn btn-tertiary-dark btn--sm btn--icon-only" aria-hidden="true"><span class="icon icon--arrow-right-light" aria-hidden="true"></span></span>
+            </a>
+            <p class="section-header-branded__sponsor">Sponsored by <img src="images/logo-nationwide.svg" alt="Nationwide" width="121" height="16" /></p>
+          </header>
+        </div>
+        <p class="exp-cell-label"><strong>996px</strong> — LG ≥1024 · Triple (Gamma)</p>
+        <div class="exp-cell" style="width: 996px">
+          <header class="section-header-branded">
+            <a class="section-header-branded__banner" href="#channel" aria-label="This is Money">
+              <img class="section-header-branded__bg" src="images/bg-money.jpg" alt="" style="object-position: 50% 29%; filter: blur(10px)" />
+              <img class="section-header-branded__logo" src="images/logo-thisismoney.svg" alt="This is Money" width="196" height="20" />
+              <span class="section-header-branded__arrow btn btn-tertiary-dark btn--sm btn--icon-only" aria-hidden="true"><span class="icon icon--arrow-right-light" aria-hidden="true"></span></span>
+            </a>
+            <p class="section-header-branded__sponsor">Sponsored by <img src="images/logo-nationwide.svg" alt="Nationwide" width="121" height="16" /></p>
+          </header>
+        </div>
+      </section>
+      <section class="exp-row">
+        <h2 class="exp-row__title">3. Figures — Femail</h2>
+        <p class="exp-row__caption">New: .section-header-branded--figures + img.section-header-branded__figure. Figures sit on the banner bottom and rise 8px above it (60px tall); they spill into the 48px side padding at 332, as in Figma, and move out from the logo as the banner widens (gap up to 64px). Logo centred on the banner. Hidden when the banner is under 240px.</p>
+        <p class="exp-cell-label"><strong>195px</strong> — Half a mobile browser width (e.g. iPhone 390 ÷ 2)</p>
+        <div class="exp-cell" style="width: 195px">
+          <header class="section-header-branded section-header-branded--figures">
+            <a class="section-header-branded__banner" href="#channel" aria-label="Femail">
+              <img class="section-header-branded__bg" src="images/bg-femail.jpg" alt="" />
+              <img class="section-header-branded__figure" src="images/femail-left.png" alt="" width="66" height="60" />
+              <img class="section-header-branded__logo" src="images/logo-femail.svg" alt="Femail" width="89" height="28" />
+              <img class="section-header-branded__figure" src="images/femail-right.png" alt="" width="77" height="60" />
+              <span class="section-header-branded__arrow btn btn-tertiary-dark btn--sm btn--icon-only" aria-hidden="true"><span class="icon icon--arrow-right-light" aria-hidden="true"></span></span>
+            </a>
+          </header>
+        </div>
+        <p class="exp-cell-label"><strong>332px</strong> — LG ≥1024 · Single (½ Alpha)</p>
+        <div class="exp-cell" style="width: 332px">
+          <header class="section-header-branded section-header-branded--figures">
+            <a class="section-header-branded__banner" href="#channel" aria-label="Femail">
+              <img class="section-header-branded__bg" src="images/bg-femail.jpg" alt="" />
+              <img class="section-header-branded__figure" src="images/femail-left.png" alt="" width="66" height="60" />
+              <img class="section-header-branded__logo" src="images/logo-femail.svg" alt="Femail" width="89" height="28" />
+              <img class="section-header-branded__figure" src="images/femail-right.png" alt="" width="77" height="60" />
+              <span class="section-header-branded__arrow btn btn-tertiary-dark btn--sm btn--icon-only" aria-hidden="true"><span class="icon icon--arrow-right-light" aria-hidden="true"></span></span>
+            </a>
+          </header>
+        </div>
+        <p class="exp-cell-label"><strong>664px</strong> — LG ≥1024 · Double (Alpha)</p>
+        <div class="exp-cell" style="width: 664px">
+          <header class="section-header-branded section-header-branded--figures">
+            <a class="section-header-branded__banner" href="#channel" aria-label="Femail">
+              <img class="section-header-branded__bg" src="images/bg-femail.jpg" alt="" />
+              <img class="section-header-branded__figure" src="images/femail-left.png" alt="" width="66" height="60" />
+              <img class="section-header-branded__logo" src="images/logo-femail.svg" alt="Femail" width="89" height="28" />
+              <img class="section-header-branded__figure" src="images/femail-right.png" alt="" width="77" height="60" />
+              <span class="section-header-branded__arrow btn btn-tertiary-dark btn--sm btn--icon-only" aria-hidden="true"><span class="icon icon--arrow-right-light" aria-hidden="true"></span></span>
+            </a>
+          </header>
+        </div>
+        <p class="exp-cell-label"><strong>996px</strong> — LG ≥1024 · Triple (Gamma)</p>
+        <div class="exp-cell" style="width: 996px">
+          <header class="section-header-branded section-header-branded--figures">
+            <a class="section-header-branded__banner" href="#channel" aria-label="Femail">
+              <img class="section-header-branded__bg" src="images/bg-femail.jpg" alt="" />
+              <img class="section-header-branded__figure" src="images/femail-left.png" alt="" width="66" height="60" />
+              <img class="section-header-branded__logo" src="images/logo-femail.svg" alt="Femail" width="89" height="28" />
+              <img class="section-header-branded__figure" src="images/femail-right.png" alt="" width="77" height="60" />
+              <span class="section-header-branded__arrow btn btn-tertiary-dark btn--sm btn--icon-only" aria-hidden="true"><span class="icon icon--arrow-right-light" aria-hidden="true"></span></span>
+            </a>
+          </header>
+        </div>
+      </section>
+      <section class="exp-row">
+        <h2 class="exp-row__title">4. Don't</h2>
+        <p class="exp-row__caption">What breaks when Figures are pushed past their limits. The limits are switched off on these samples, over a section above.</p>
+        <figure class="exp-dont">
+          <div class="exp-cell exp-unguarded" style="width: 664px">
+            <div class="exp-prev" aria-hidden="true">Previous section</div>
+            <header class="section-header-branded section-header-branded--figures" style="--figure-height: 100px">
+              <a class="section-header-branded__banner" href="#channel" aria-label="Femail">
+                <img class="section-header-branded__bg" src="images/bg-femail.jpg" alt="" />
+                <img class="section-header-branded__figure" src="images/femail-left.png" alt="" width="66" height="60" />
+                <img class="section-header-branded__logo" src="images/logo-femail.svg" alt="Femail" width="89" height="28" />
+                <img class="section-header-branded__figure" src="images/femail-right.png" alt="" width="77" height="60" />
+                <span class="section-header-branded__arrow btn btn-tertiary-dark btn--sm btn--icon-only" aria-hidden="true"><span class="icon icon--arrow-right-light" aria-hidden="true"></span></span>
+              </a>
+            </header>
+          </div>
+          <figcaption class="exp-dont__reason">
+            <strong class="exp-dont__label">Don't — An image taller than the header</strong>
+            Never use an image taller than the whole header module. There is little room above the banner, so it runs into the section above and covers its content.
+          </figcaption>
+        </figure>
+        <figure class="exp-dont">
+          <div class="exp-cell exp-unguarded" style="width: 332px">
+            <div class="exp-prev" aria-hidden="true">Previous section</div>
+            <header class="section-header-branded section-header-branded--figures">
+              <a class="section-header-branded__banner" href="#channel" aria-label="Femail">
+                <img class="section-header-branded__bg" src="images/bg-femail.jpg" alt="" />
+                <img class="section-header-branded__figure" src="images/femail-left.png" alt="" width="66" height="60" />
+                <img class="section-header-branded__logo" src="images/logo-femail.svg" alt="Femail" width="89" height="28" />
+                <img class="section-header-branded__figure" src="images/femail-right.png" alt="" width="77" height="60" />
+                <img class="section-header-branded__figure" src="images/femail-left.png" alt="" width="66" height="60" />
+                <span class="section-header-branded__arrow btn btn-tertiary-dark btn--sm btn--icon-only" aria-hidden="true"><span class="icon icon--arrow-right-light" aria-hidden="true"></span></span>
+              </a>
+            </header>
+          </div>
+          <figcaption class="exp-dont__reason">
+            <strong class="exp-dont__label">Don't — A busy graphic around the logo</strong>
+            The logo always sits in the centre. Keep the graphic simple: extra figures push the logo off centre and run under the arrow.
+          </figcaption>
+        </figure>
+        <figure class="exp-dont">
+          <div class="exp-cell exp-unguarded" style="width: 195px">
+            <div class="exp-prev" aria-hidden="true">Previous section</div>
+            <header class="section-header-branded section-header-branded--figures">
+              <a class="section-header-branded__banner" href="#channel" aria-label="Femail">
+                <img class="section-header-branded__bg" src="images/bg-femail.jpg" alt="" />
+                <img class="section-header-branded__figure" src="images/femail-left.png" alt="" width="66" height="60" />
+                <img class="section-header-branded__logo" src="images/logo-femail.svg" alt="Femail" width="89" height="28" />
+                <img class="section-header-branded__figure" src="images/femail-right.png" alt="" width="77" height="60" />
+                <span class="section-header-branded__arrow btn btn-tertiary-dark btn--sm btn--icon-only" aria-hidden="true"><span class="icon icon--arrow-right-light" aria-hidden="true"></span></span>
+              </a>
+            </header>
+          </div>
+          <figcaption class="exp-dont__reason">
+            <strong class="exp-dont__label">Don't — A full composition on a narrow header</strong>
+            A narrow header has little room, so keep it simple: logo only. Figures crowd the logo out until the channel name disappears.
+          </figcaption>
+        </figure>
+        <figure class="exp-dont">
+          <div class="exp-cell exp-unguarded" style="width: 332px">
+            <div class="exp-prev" aria-hidden="true">Previous section</div>
+            <header class="section-header-branded section-header-branded--figures">
+              <a class="section-header-branded__banner" href="#channel" aria-label="Femail">
+                <img class="section-header-branded__bg" src="images/bg-femail.jpg" alt="" />
+                <img class="section-header-branded__figure" src="images/bg-money.jpg" alt="" width="60" height="60" />
+                <img class="section-header-branded__logo" src="images/logo-femail.svg" alt="Femail" width="89" height="28" />
+                <img class="section-header-branded__figure" src="images/femail-right.png" alt="" width="77" height="60" />
+                <span class="section-header-branded__arrow btn btn-tertiary-dark btn--sm btn--icon-only" aria-hidden="true"><span class="icon icon--arrow-right-light" aria-hidden="true"></span></span>
+              </a>
+            </header>
+          </div>
+          <figcaption class="exp-dont__reason">
+            <strong class="exp-dont__label">Don't — A photo with a background</strong>
+            Only cut-outs (transparent PNG) can rise above the banner. A photo with its own background sticks out as a box and reads as a broken image.
+          </figcaption>
+        </figure>
+      </section>
+    </main>
+  </body>
+</html>

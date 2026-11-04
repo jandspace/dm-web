@@ -50,6 +50,27 @@
       //   pages    [label, file in the folder, one-line description]
       const EXPERIMENTS = [
         {
+          id: '202611-exp-section-header-branded',
+          date: '2026-11-04',
+          title: 'Section header — Branded extras',
+          status: 'In progress',
+          notes: [
+            'Branded header variants from Figma (8794:8073) on the library Section Header - Branded, overrides inline.',
+            'Extra block: "Sponsored by" + partner logo under the banner (This is Money × Nationwide).',
+            'Figures: cut-out photos beside the logo (Femail), 8px above the banner; banner unclipped, background clips itself.',
+            'Limits: figure max 60px, 2 figures max, none under a 240px banner (container query).',
+            'This is Money in Figma: 10px image blur + translucent-dark/subtle surface (library: 4px, pale) — page uses the library surface, image blur 10 inline.',
+            '2026-11-04 — Arrow hidden under a 240px banner (195); the banner stays a link.',
+            '2026-11-04 — Stress test → Don\'t: taller than 60px, more than two figures, figures on a narrow banner, photo with a background — each with its reason.',
+            '2026-11-04 — Width labels: 195 half a mobile browser · 332 Single (½ Alpha) · 664 Double (Alpha) · 996 Triple (Gamma).',
+            '2026-11-04 — Don\'ts reworded: image taller than the header, busy graphic around a centred logo, full composition on a narrow header.',
+            '2026-11-04 — Logo keeps its ratio (width/height auto), max 240 × 44; narrow banner side padding 48 → 16 (no arrow), Crime Desk 67 → 131 wide at 195.',
+            '2026-11-04 — Femail: figures move out from the logo as the banner widens (gap (width − 300) / 24, max 64: 14 at 664, 28 at 996); logo centred on the banner (Figma had it 4px high).',
+          ],
+          result: '',
+          pages: [['Page', 'index.html', 'Crime Desk · This is Money · Femail at 195 / 332 / 664 / 996, plus Don\'ts.']],
+        },
+        {
           id: '202610-exp-layout-lg',
           date: '2026-10-30',
           title: 'Layout — LG 996 container',
