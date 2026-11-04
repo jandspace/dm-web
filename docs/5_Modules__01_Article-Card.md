@@ -155,6 +155,8 @@ The channel link turns `color/text/neutral/darker` on hover (rest: `neutral/dark
 
 Article Card Metadata (`.article-card__metadata.article-card-metadata`) — one type per card: Channel, Timestamp, Channel + Timestamp, Comment Only, Ad Feature, Sponsored, Affiliate Content, CTA or Columnist. Channel hover colour: §5-D.
 
+Comment Only: the count is followed by the word — "9.9k comments", or "1 comment" for one. Other types show the count alone.
+
 - **Columnist name** (link to the author page): on hover turns `color/text/interaction-primary/default` — the same colour as the headline on card hover — and gets an underline.
 - **Columnist photo** is also a link to the author page: `<a class="columnist-photo" href="…" tabindex="-1" aria-hidden="true">` — a duplicate of the name link, so it is hidden from keyboard and screen readers. On hover: 3px outline, no offset, `color/effect/translucent-dark/subtle`, round with the disc. Outside a card (static) the photo stays a `<span>`.
 

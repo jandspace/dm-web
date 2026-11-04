@@ -4,9 +4,14 @@ Run from the repo root:
     python3 tools/demo-generators/article-card-metadata/gen_metadata.py > modules/article-card-metadata/index.html
 """
 
-COMMENTS = '''<a class="article-card-metadata__comments" href="#comments" aria-label="{n} comments"
-            ><span class="icon icon--speechbubble-ellipsis article-card-metadata__comments-icon" aria-hidden="true"></span>{n}</a
+COMMENTS = '''<a class="article-card-metadata__comments" href="#comments" aria-label="{n} {word}"
+            ><span class="icon icon--speechbubble-ellipsis article-card-metadata__comments-icon" aria-hidden="true"></span>{text}</a
           >'''
+
+def comments(n, spelled=False):
+    # Comment Only spells the word out after the count: "9.9k comments", "1 comment"
+    word = 'comment' if n == '1' else 'comments'
+    return COMMENTS.format(n=n, word=word, text=f'{n} {word}' if spelled else n)
 
 def channel(t):
     return f'<a class="article-card-metadata__channel" href="#channel"><span class="article-card-metadata__channel-text">{t}</span></a>'
@@ -20,7 +25,7 @@ def row(info, n='9.9k'):
     # info items sit straight in the row; the comments link pushes itself right
     info_html = f'{info}\n          ' if info else ''
     return f'''<div class="article-card-metadata">
-          {info_html}{COMMENTS.format(n=n)}
+          {info_html}{comments(n, spelled=not info)}
         </div>'''
 
 CTA = '''<div class="article-card-metadata article-card-metadata--cta">
@@ -32,7 +37,7 @@ TYPES = [
   ('Channel Only', 'Channel links to its section', row(channel('Channel')), row(channel('Royal Family News'), '12.3k')),
   ('Timestamp Only', '', row(time('30m ago')), row(time('Updated 2 hours ago'), '12.3k')),
   ('Channel + Timestamp', '4px disc separator', row(channel('Channel') + time('30m ago')), row(channel('Royal Family News') + time('30m ago'), '12.3k')),
-  ('Comment Only', 'Info slot empty', row(''), row('', '12.3k')),
+  ('Comment Only', 'Info slot empty · count + comment(s)', row('', '1'), row('', '12.3k')),
   ('Ad Feature', '', row(label('Ad Feature')), row(label('Ad Feature'), '12.3k')),
   ('Sponsored', '', row(label('Sponsored')), row(label('Sponsored by Brand Partner'), '12.3k')),
   ('Affiliate Content', 'External link', row(affiliate('Affiliate Content')), row(affiliate('Affiliate Content'), '12.3k')),
@@ -55,7 +60,7 @@ def columnist(mode, name='Columnist Name', role='Daily Mail Columnist', n='9.9k'
                 <a class="article-card-metadata__author-name" href="#author">{name}</a>
                 <span class="article-card-metadata__author-role">{role}</span>
               </div>
-              {COMMENTS.format(n=n)}
+              {comments(n)}
             </div>
             <a class="columnist-photo columnist-photo--lg{live}" href="#author" tabindex="-1" aria-hidden="true"
               ><img class="columnist-photo__img" src="../../assets/images/columnist-placeholder.png" alt="{name}"

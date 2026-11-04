@@ -418,10 +418,11 @@
 
         // Article Card Metadata — same markup as modules/article-card-metadata.
         // The element keeps the card's slot hook: "article-card__metadata article-card-metadata".
-        const COMMENTS =
+        // Comment Only spells the word out after the count: "9.9k comments" ("1 comment").
+        const COMMENTS = (text = '9.9k') =>
           '<a class="article-card-metadata__comments" href="#comments" aria-label="9.9k comments">' +
           '<span class="icon icon--speechbubble-ellipsis article-card-metadata__comments-icon" aria-hidden="true"></span>' +
-          '9.9k</a>';
+          `${text}</a>`;
         const CHANNEL =
           '<a class="article-card-metadata__channel" href="#channel"><span class="article-card-metadata__channel-text">Channel</span></a>';
         const TIME = '<time class="article-card-metadata__time" datetime="2026-10-20T11:30">30m ago</time>';
@@ -432,7 +433,7 @@
           '<span class="icon icon--square-arrow-up-right article-card-metadata__affiliate-icon" aria-hidden="true"></span></a>';
 
         const standard = (info) =>
-          `<div class="article-card__metadata article-card-metadata">${info}${COMMENTS}</div>`;
+          `<div class="article-card__metadata article-card-metadata">${info}${COMMENTS(info ? '9.9k' : '9.9k comments')}</div>`;
 
         const ANNOUNCE = {
           scheduled: ['', 'Join Columnist in the comments', 'From 2.30pm'],
@@ -458,7 +459,7 @@
             '<div class="article-card-metadata__author">' +
             '<a class="article-card-metadata__author-name" href="#author">Columnist Name</a>' +
             '<span class="article-card-metadata__author-role">Daily Mail Columnist</span></div>' +
-            COMMENTS +
+            COMMENTS() +
             '</div>' +
             `<a class="columnist-photo columnist-photo--lg${mode === 'live' ? ' columnist-photo--live' : ''}" href="#author" tabindex="-1" aria-hidden="true">` +
             '<img class="columnist-photo__img" src="../../assets/images/columnist-placeholder.png" alt="Columnist Name" /></a>' +
