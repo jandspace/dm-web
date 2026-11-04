@@ -66,7 +66,7 @@ Layout & Grid uses it through the `keyline` mixin in `styles/scss/foundation/_la
 | | File |
 |---|---|
 | Mixin | `styles/scss/components/_divider.scss` |
-| Demo | `components/divider/` |
+| Demo | `components/keyline/` |
 
 ---
 
