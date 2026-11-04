@@ -36,7 +36,18 @@
       <div class="masthead-sheet__top">
         <div class="masthead-sheet__home">
           <a class="masthead-sheet__home-link" href="#"><img src="../../assets/icons/ico-ch-home-color.svg" alt="" />Home</a>
-          <button type="button" class="masthead-sheet__edition"><img src="../../assets/icons/ico-flag-united-kingdom.svg" alt="" />UK<span class="icon icon--chevron-down" aria-hidden="true"></span></button>
+          <div class="masthead-sheet__edition-wrap">
+            <button type="button" class="btn btn-tertiary-neutral btn--xs masthead-sheet__edition" aria-expanded="false" aria-controls="masthead-sheet-edition-menu"><img src="../../assets/icons/ico-flag-united-kingdom.svg" alt="" />UK<span class="icon icon--chevron-down" aria-hidden="true"></span></button>
+            <div class="dropdown-menu masthead-edition-menu masthead-sheet__edition-menu" id="masthead-sheet-edition-menu" hidden>
+              <ul class="dropdown-menu__list">
+                <li class="dropdown-menu__group">Select Edition</li>
+                <li><a class="dropdown-menu__item" href="#uk" aria-current="true"><img src="../../assets/icons/ico-flag-united-kingdom.svg" alt="" />UK<span class="icon icon--tick dropdown-menu__tick" aria-hidden="true"></span></a></li>
+                <li><a class="dropdown-menu__item" href="#us"><img src="../../assets/icons/ico-flag-united-states.svg" alt="" />US<span class="icon icon--tick dropdown-menu__tick" aria-hidden="true"></span></a></li>
+                <li><a class="dropdown-menu__item" href="#au"><img src="../../assets/icons/ico-flag-australia.svg" alt="" />AU<span class="icon icon--tick dropdown-menu__tick" aria-hidden="true"></span></a></li>
+                <li><a class="dropdown-menu__item" href="#ie"><img src="../../assets/icons/ico-flag-ireland.svg" alt="" />IE<span class="icon icon--tick dropdown-menu__tick" aria-hidden="true"></span></a></li>
+              </ul>
+            </div>
+          </div>
         </div>
         <a class="masthead-sheet__login" href="#login"><span class="icon icon--person-outline" aria-hidden="true"></span>Login</a>
       </div>

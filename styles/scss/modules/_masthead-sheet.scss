@@ -4,7 +4,7 @@
 //
 //   .masthead-sheet[hidden]              lightest, fixed, covers the viewport
 //     .masthead-sheet__bar               close (44 · icon 16)
-//     .masthead-sheet__top               Home + edition pill … Login (secondary)
+//     .masthead-sheet__top               Home + edition pill (+ its menu) … Login (secondary)
 //     .masthead-sheet__body              scrolls
 //       .masthead-sheet__search          pill input (lighter, grey-light border)
 //       .masthead-sheet__playlists       Live · Today's Pick · Podcasts · Deep-Dive
@@ -134,29 +134,45 @@
   }
 }
 
-// Edition pill — tertiary XS: lighter surface, flag 12 · label-xxsm · chevron 12
+// Edition pill — a Button: .btn.btn-tertiary-neutral.btn--xs (lighter surface,
+// label-xxsm, icons 1em = 12; hover / pressed from the component). Here: the
+// flag at 12, the chevron turns while the menu is open, and open = Pressed
 .masthead-sheet__edition {
-  display: inline-flex;
-  align-items: center;
-  gap: var(--spacing-4);
-  height: 28px;
-  padding: 0 var(--spacing-10);
-  border: 0;
-  border-radius: var(--border-radius-full);
-  background-color: var(--color-background-neutral-lighter);
-  font: inherit;
-  font-size: var(--typography-font-size-label-xxsm);
-  font-weight: var(--typography-font-weight-semibold);
-  color: var(--color-text-neutral-darker);
-  cursor: pointer;
-
-  img,
-  .icon {
-    --icon-color: currentColor;
-
+  img {
     width: 12px;
     height: 12px;
   }
+
+  .icon {
+    transition: transform 0.15s;
+  }
+
+  &[aria-expanded='true'] {
+    background-color: var(--color-background-neutral-light);
+    box-shadow: inset 0 1px 1px 0 var(--color-effect-translucent-dark-moderate);
+
+    .icon {
+      transform: rotate(180deg);
+    }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .icon {
+      transition: none;
+    }
+  }
+}
+
+// Edition menu — the same Dropdown Menu as the Topbar's (.masthead-edition-menu),
+// under the pill and left-aligned with it (the pill sits on the left of the sheet)
+.masthead-sheet__edition-wrap {
+  position: relative;
+  display: flex;
+}
+
+.masthead-sheet__edition-menu {
+  right: auto;
+  left: 0;
 }
 
 // Login — secondary SM: 33px, grey-light border, person 14 + label-sm

@@ -5,7 +5,9 @@
 //
 //   · burger slides the Nav Sheet in from the left (≥640: 390px + blurred backdrop);
 //     close button, backdrop click or Escape slides it out
-//   · Edition buttons (Topbar, Sticky Navbar flag) toggle their menus (click outside closes)
+//   · Edition buttons (Topbar, Sticky Navbar flag, Nav Sheet pill) toggle their
+//     menus (click outside closes; Escape closes the menu before the sheet);
+//     picking an edition updates every Edition button and menu
 //   · Nav Sheet channels open as an accordion (one at a time)
 //   · the current channel is scrolled into view when the row scrolls
 //   · LG+ with a mouse: dropdown panels open after 150ms on an item and
@@ -76,8 +78,9 @@ window.mastheadRevealCurrent = () => {
   backdrop.addEventListener('click', () => setSheet(false));
   sheet.querySelector('.masthead-sheet__close').addEventListener('click', () => setSheet(false));
 
-  // Edition menus — the Topbar's and the Sticky Navbar's flag; one open at a time
-  const editions = [...document.querySelectorAll('.masthead-edition, .masthead-sticky__edition')].map((btn) => ({
+  // Edition menus — the Topbar's, the Sticky Navbar's flag and the Nav Sheet's
+  // pill; one open at a time
+  const editions = [...document.querySelectorAll('.masthead-edition, .masthead-sticky__edition, .masthead-sheet__edition')].map((btn) => ({
     btn,
     menu: document.getElementById(btn.getAttribute('aria-controls')),
   }));
@@ -95,10 +98,39 @@ window.mastheadRevealCurrent = () => {
   document.addEventListener('click', (e) => {
     editions.forEach((edition) => !edition.menu.hidden && !edition.menu.contains(e.target) && setMenu(edition, false));
   });
+
+  // Picking an edition (prototype — the site would load that edition): every
+  // Edition button takes its flag and code, every menu marks it Selected, the
+  // menu closes. The code is swapped in the button's text and aria-label
+  // ("UK" → "US" in "UK Edition", "Edition: UK"), so no extra markup.
+  const CODE = /\b(UK|US|AU|IE)\b/;
+  editions.forEach(({ menu }) => {
+    menu.addEventListener('click', (e) => {
+      const item = e.target.closest('.dropdown-menu__item');
+      if (!item) return;
+      const code = item.textContent.trim();
+      const flag = item.querySelector('img').getAttribute('src');
+      editions.forEach((edition) => {
+        edition.btn.querySelector('img').setAttribute('src', flag);
+        edition.btn.childNodes.forEach((node) => {
+          if (node.nodeType === Node.TEXT_NODE) node.textContent = node.textContent.replace(CODE, code);
+        });
+        const label = edition.btn.getAttribute('aria-label');
+        if (label) edition.btn.setAttribute('aria-label', label.replace(CODE, code));
+        edition.menu.querySelectorAll('.dropdown-menu__item').forEach((other) => {
+          if (other.textContent.trim() === code) other.setAttribute('aria-current', 'true');
+          else other.removeAttribute('aria-current');
+        });
+        setMenu(edition, false);
+      });
+    });
+  });
   document.addEventListener('keydown', (e) => {
     if (e.key !== 'Escape') return;
-    if (!sheet.hidden) setSheet(false);
+    // An open Edition menu closes first; the sheet on the next Escape
+    const menuOpen = editions.some((edition) => !edition.menu.hidden);
     editions.forEach((edition) => setMenu(edition, false));
+    if (!menuOpen && !sheet.hidden) setSheet(false);
   });
 
   const nav = document.querySelector('.masthead-nav');
