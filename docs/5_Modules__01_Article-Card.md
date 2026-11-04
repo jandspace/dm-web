@@ -13,7 +13,7 @@ The full-width top story is a separate block — see [Article Card — Banner St
 | Element | Description |
 |---|---|
 | **Media container** | Image or video at a fixed aspect ratio per card type. 4px corners (Image Only: 8px) |
-| **Headline** | Article Headline (`.article-headline`), H2–H6 by card type. Holds the article link and, optionally, an editorial badge inline at the start, followed by a space (§ Badge in the headline) |
+| **Headline** | Article Headline (`.article-headline`), H2–H6 by card type. Holds the article link and, optionally, an editorial badge inline at the start, followed by a space (§ Badge in the headline). Inter by default; Lora when Figma calls for it (e.g. a columnist's quote) — add `.serif` to the heading, nothing else changes |
 | **Preview text** *(optional)* | CMS-controlled summary under the headline |
 | **Live Key Updates** *(optional)* | Live articles only — replaces the preview text slot |
 | **Metadata** | Article Card Metadata row — info on the left, comment counter on the right |

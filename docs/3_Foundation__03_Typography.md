@@ -32,14 +32,14 @@ image required
 
 | Typeface | Role | Usage |
 |---|---|---|
-| **Sans (Inter)** | Primary | Used for the majority of UI and content. Body text and paragraphs, UI components (buttons, labels, navigation), metadata and supporting text, and article headlines on Web. Inter is optimised for screen readability and should be used as the default typeface across all platforms. |
-| **Serif (Lora)** | Editorial | Used selectively for editorial emphasis. Article headlines and story titles on App (iOS/Android), content cards and featured sections, author comments and quotes. Lora introduces a sense of authority and distinction, and should only be used in editorial contexts. |
+| **Sans (Inter)** | Primary | Used for the majority of UI and content. Body text and paragraphs, UI components (buttons, labels, navigation), metadata and supporting text, and article headlines on Web (by default). Inter is optimised for screen readability and should be used as the default typeface across all platforms. |
+| **Serif (Lora)** | Editorial | Used selectively for editorial emphasis. Article headlines and story titles on App (iOS/Android), Web article headlines where Figma calls for it (e.g. a columnist's quote), content cards and featured sections, author comments and quotes. Lora introduces a sense of authority and distinction, and should only be used in editorial contexts. |
 
 ### 2-B. Usage Principles
 
 - Default to Sans (Inter) for all functional and UI-related content
 - Use Serif (Lora) only where editorial emphasis is required
-- **Article headlines:** By default, article headlines use Inter on Web and Lora on App (iOS/Android). This is the default, not an absolute rule — exceptions exist (e.g. a columnist's quote).
+- **Article headlines:** Article headlines use Inter on Web and Lora on App (iOS/Android) by default. On Web, a headline may switch to Lora case by case (e.g. a columnist's quote) — follow Figma. In code: add `.serif` to the heading (`<h4 class="h4 serif article-headline">`); size, weight, line height and letter spacing stay as the level sets them. Only the headline changes; the rest of the card (metadata, badges) stays Inter.
 - Avoid mixing typefaces within the same UI component
 - Prioritise readability and consistency over stylistic variation
 - Not all content requires editorial styling. Use Serif only where it adds clear value.

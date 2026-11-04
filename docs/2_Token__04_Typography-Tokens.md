@@ -30,7 +30,7 @@ We utilise two distinct typefaces to balance Daily Mail's editorial heritage wit
 - **Sans (Inter):** Used for all other elements, including body copy, paragraphs, and functional labels, to ensure maximum legibility on digital screens.
 - **Serif (Lora):** Reserved for editorial headlines and story titles to convey trust and authority.
 
-By default, article headlines use Inter on Web and Lora on App (iOS/Android). This is the default, not an absolute rule — exceptions exist (e.g. a columnist's quote).
+Article headlines use Inter on Web and Lora on App (iOS/Android) by default. On Web, a headline may switch to Lora case by case (e.g. a columnist's quote) — follow Figma. In code: add `.serif` to the heading (`<h4 class="h4 serif article-headline">`); size, weight, line height and letter spacing stay as the level sets them. Only the headline changes; the rest of the card (metadata, badges) stays Inter.
 
 #### Type Scale
 
@@ -106,7 +106,7 @@ We utilise two distinct typefaces to balance editorial authority with functional
 - **Serif (`typography-font-family-serif`):** Lora. Used for editorial emphasis (App article headlines, quotes) to convey the 'Trusted Authority' of the Daily Mail brand.
 - **Sans (`typography-font-family-sans`):** Inter. Used for UI elements, body copy and Web article headlines to ensure 'Frictionless Diversity' and legibility.
 
-By default, article headlines use Inter on Web and Lora on App (iOS/Android). This is the default, not an absolute rule — exceptions exist (e.g. a columnist's quote).
+Article headlines use Inter on Web and Lora on App (iOS/Android) by default. On Web, a headline may switch to Lora case by case (e.g. a columnist's quote) — follow Figma. In code: add `.serif` to the heading (`<h4 class="h4 serif article-headline">`); size, weight, line height and letter spacing stay as the level sets them. Only the headline changes; the rest of the card (metadata, badges) stays Inter.
 
 ### 4-B. Font Weight
 

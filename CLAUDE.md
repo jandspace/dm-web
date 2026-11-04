@@ -211,7 +211,7 @@ Page layout uses named classes on the column grid (12 columns from LG, 6 below, 
 | Sans (default)    | Inter  | All UI, body copy, labels, metadata — **and article headlines on Web** |
 | Serif (editorial) | Lora   | Article headlines on **App** (iOS/Android), featured content, quotes |
 
-**Article headlines:** By default, article headlines use Inter on Web and Lora on App (iOS/Android). This is the default, not an absolute rule — exceptions exist (e.g. a columnist's quote). Follow Figma for each case.
+**Article headlines:** Inter on Web and Lora on App (iOS/Android) by default. On Web a headline may switch to Lora case by case (e.g. a columnist's quote) — follow Figma; in code add `.serif` to the heading (`<h4 class="h4 serif article-headline">`), size / weight / line height stay as the level sets them, and the rest of the card stays Inter.
 
 Never mix typefaces within a single UI component.
 
