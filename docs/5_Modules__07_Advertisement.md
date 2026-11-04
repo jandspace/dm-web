@@ -67,6 +67,7 @@ Side Ads show on every desktop — **LG and up** (≥1024). 160 + 8 each side = 
 | 1224 (XL) | 1560 | **1580** → XL starts here |
 
 - **1350 and up:** both ads fully beside the container. XL moved from 1376 to **1580** (November 2026) so 1366, 1440 and 1536 laptops keep the 996 container and the full ads.
+- **Gap:** 8px from the container while there is room; below a 1332 window it shrinks smoothly to 0 (at 1316) — `--ad-rail-gap: clamp(0px, (100vw − container) / 2 − 160px, 8px)`, so the ads stay against the container as long as possible before they are cut.
 - **1024–1349** (e.g. 1280 laptops): the ads still show, cut at the window edge (at 1024 only a few px are in view). The page never scrolls sideways for them: `overflow-x: clip` on the body. A 120×600 Skyscraper would fit from 1252 (open point).
 
 ## 4. Placeholder creative (demo)

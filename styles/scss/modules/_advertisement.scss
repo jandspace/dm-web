@@ -119,12 +119,17 @@ body:has(.ad-skin) {
   bottom: 0;
   width: 160px;
 
+  // Gap to the container: 8px while the window has room (1332+ at LG),
+  // shrinking to 0 as it narrows — the room each side, (window − container) / 2,
+  // minus the 160 ad. % here is the container's width.
+  --ad-rail-gap: clamp(0px, (100vw - 100%) / 2 - 160px, var(--spacing-8));
+
   &--left {
-    right: calc(100% + var(--spacing-8));
+    right: calc(100% + var(--ad-rail-gap));
   }
 
   &--right {
-    left: calc(100% + var(--spacing-8));
+    left: calc(100% + var(--ad-rail-gap));
   }
 
   @include bp.respond-to(lg) {
