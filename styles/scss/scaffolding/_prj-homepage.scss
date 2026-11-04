@@ -8,6 +8,7 @@
 //       .container.ad-skin.homepage__page  page container; Side Ads beside it
 //         section.layout-full.homepage-slot  empty section, a placeholder until its
 //                                            content goes in (then drop the class)
+//     .container.homepage__footer        Footer — covers the billboard underlay
 //
 // Reference: Figma Web UI Kit › Homepage › Budget/Legacy - 1366x768 (8709:88370)
 
@@ -44,7 +45,33 @@
   main {
     position: relative;
     background-color: var(--color-background-neutral-lightest);
+
+    // Tablet (MD): the page runs 768 wide, centred; its surface still spans
+    // the window (spread shadow, clipped to its height) so the billboard
+    // underlay never shows beside it
+    @include bp.respond-to(md) {
+      max-width: 768px;
+      margin-inline: auto;
+      box-shadow: 0 0 0 100vmax var(--color-background-neutral-lightest);
+      clip-path: inset(0 -100vmax);
+    }
+
+    @include bp.respond-to(lg) {
+      max-width: none;
+      box-shadow: none;
+      clip-path: none;
+    }
   }
+}
+
+// The footer slides over the billboard too. Its container is 996 wide, so the
+// surface reaches the window edges with a spread shadow, clipped to its own
+// height (full-bleed background without a wrapper)
+.homepage__footer {
+  position: relative;
+  background-color: var(--color-background-neutral-lightest);
+  box-shadow: 0 0 0 100vmax var(--color-background-neutral-lightest);
+  clip-path: inset(0 -100vmax);
 }
 
 // The page lifts once it starts to scroll over the billboard: no shadow at the
