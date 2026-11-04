@@ -351,6 +351,11 @@ iOS and Android use the same four steps (`typography-ios/letter-spacing/*`, `typ
 - Script sets state (an attribute or class, e.g. `aria-checked`, `data-state`); CSS draws it. No styles written from JS.
 - One small script per behaviour, no libraries, no wrapper abstractions.
 
+**HTML formatting — one element per line**
+- Every HTML file, generated or hand-written, is written out with **one block element per line, children indented two spaces** (the way a person would write it). A short element holding only inline content (a link, a span, an img) may stay on one line.
+- Never write a section, card list or page as one long line — editors stop syntax colouring on very long lines (VS Code past 20,000 characters) and nobody can find or edit the content. When a script builds markup, it formats it before writing.
+- Write text as plain characters (`'`, `"`, `£`), not character references (`&#x27;`), so it can be searched as it reads; escape only `&`, `<` and `>` where needed.
+
 **Before adding anything, ask:** can an existing element, class, token or native feature already do this? If yes, use it.
 
 ## Coding Rules
@@ -449,7 +454,7 @@ One-off tests and A/B variants live in `experiments/YYYYMM-exp-<name>/` (e.g. `2
 - **A (control)** — links the shared `tokens/*.css` and `styles/css/main.css` only. Inline `<style>` is allowed for page layout (grid, widths) — never for component styles.
 - **B (variant)** — same links, plus an inline `<style>` that overrides only the changed parts. Shared SCSS/CSS/JS is never edited for a variant, so A is unaffected.
 - **Fixed breakpoint:** when a test targets one breakpoint, the page frames itself in an iframe of that width (e.g. 1024px for LG) instead of being responsive.
-- Images go in the experiment's own `images/` folder.
+- **Images:** link the original image address when it can be linked — don't download a copy. Only images with no linkable source go in the experiment's own `images/` folder.
 - **Experiments home button:** every experiment page loads `<script src="../../scripts/scaffolding/home-button.js" data-home="experiments" defer></script>` in `<head>` — a round bulb button bottom-left ("Experiments" on hover) back to `experiments/`.
 - **Footer:** every experiment and project page loads `scripts/scaffolding/page-footer.js` (defer, in `<head>`) — the copyright line as a reveal underlay: fixed to the window bottom on `background/neutral/light`, behind the page (body = raised lightest layer with a shadow), shown when scrolled to the end. The two landing pages use the library footer instead (`<footer class="demo-footer">` at the end of `.notes-main`), because of their fixed left panel.
 - **Landing page:** `experiments/index.html` — the list and cards come from the shared `scripts/scaffolding/notes-index.js` (`renderNotesIndex(EXPERIMENTS)`) and `styles/scss/scaffolding/_notes-index.scss` (no inline `<style>`); the page holds only the `EXPERIMENTS` list.
@@ -462,7 +467,7 @@ One-off tests and A/B variants live in `experiments/YYYYMM-exp-<name>/` (e.g. `2
 Project prototypes (a page or flow built from the library, e.g. a homepage demo) live in `projects/YYYYMM-prj-<name>/` (e.g. `202611-prj-homepage/`) — the experiments naming, with `prj`. The main page is `index.html` right in the project folder — no platform subfolder; other pages sit beside it. Web pages cover every breakpoint unless the project says otherwise.
 
 - **Shared code only:** pages link `tokens/*.css` and `styles/css/main.css`, and use library classes and `scripts/modules/` as they are. No inline `<style>` — page styles go in `styles/scss/scaffolding/_prj-<name>.scss` (prototype-only, `@use` in `main.scss`). Behaviour a page needs that the library has only inline in a demo moves to `scripts/modules/` first (e.g. `masthead.js`), never copied.
-- Images go in the project's own `images/` folder.
+- **Images:** link the original image address (e.g. `https://i.dailymail.com/…`) when it can be linked — don't download a copy. Only images with no linkable source go in the project's own `images/` folder.
 - **Projects home button:** every project page loads `<script src="../../scripts/scaffolding/home-button.js" data-home="projects" defer></script>` in `<head>` — a round button bottom-left ("Projects" on hover) back to `projects/` — plus `page-footer.js` (see Experiments › Footer).
 - **Landing page:** `projects/index.html` — same page as the experiments one (`notes-index.js` + `_notes-index.scss`), holding only the `PROJECTS` list.
 - **Project notes — always:** whenever you create or change files in `projects/`, add or update that project's entry in `projects/index.html` (the `PROJECTS` list, newest first) in the same turn, without being asked: `id` (folder), `date` (start date), `title`, `status` (In progress / Done / Archived), `notes` (what is built, then each later step — short lines, see Notes style), `result` (once done), `pages` (label, file path in the folder, one-line description for each page). The year filter (All / YYYY) is built from `date`.

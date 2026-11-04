@@ -3,7 +3,7 @@
 //   <script src="../../scripts/scaffolding/home-button.js" data-home="experiments" defer></script>
 //   <script src="../../scripts/scaffolding/home-button.js" data-home="projects" defer></script>
 // It adds a round button bottom-left (Experiments: ico-bulb-on · Projects:
-// ico-page-edit); on hover it widens to show the section name; it links to
+// ico-menu-list); on hover it widens to show the section name; it links to
 // that section's index (experiments/ · projects/).
 // The copyright footer is a separate script: scripts/scaffolding/page-footer.js.
 //
@@ -18,7 +18,7 @@
   const root = new URL('../../', script.src); // scripts/scaffolding/ → repo root
   const SECTIONS = {
     experiments: { label: 'Experiments', icon: 'ico-bulb-on' },
-    projects: { label: 'Projects', icon: 'ico-page-edit' },
+    projects: { label: 'Projects', icon: 'ico-menu-list' },
   };
   const section = script.dataset.home in SECTIONS ? script.dataset.home : 'experiments';
   const { label, icon } = SECTIONS[section];
