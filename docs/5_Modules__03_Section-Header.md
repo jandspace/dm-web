@@ -96,8 +96,7 @@ Sub-channels or topics in one row that scrolls sideways.
 |---|---|---|
 | Container | `.section-header-branded` | lightest; padding 20 top · 8 bottom · 16 sides; 4px gap |
 | Banner | `a.section-header-branded__banner` | **The whole banner is the link.** 52px, 8px corners, 4px / 48px padding |
-| Background | `img.section-header-branded__bg` | Cover image, blurred 4px |
-| Surface | banner `::before` | `color/effect/translucent-dark/pale` → `translucent-dark/deep` on hover |
+| Background | `img.section-header-branded__bg` | The graphic team's artwork as it is — cover, no blur, no surface over it |
 | Name / Logo | `span.section-header-branded__name` or `img.section-header-branded__logo` | Straight in the banner (no slot wrapper) — channel name or logo, centred, max 44px tall |
 | Name (text) | `.section-header-branded__name` | dmw_serif/h2/Semibold, white |
 | Arrow | `.section-header-branded__arrow` | `.btn.btn-tertiary-dark.btn--sm.btn--icon-only` (34, icon 14), 8px from the right, decorative |
@@ -106,4 +105,5 @@ Sub-channels or topics in one row that scrolls sideways.
 ### 2-B. Notes
 
 - The slot takes either text (the channel name in the serif face) or a logo image (SVG/PNG, white on the dark surface).
-- The blur is applied to the image (`filter`), not as a `backdrop-filter` on the surface: same look, and no backdrop-filter layer for Chrome to leave unclipped at the rounded corners.
+- No blur and no surface: the artwork comes from the graphic design team ready to use (contrast for the white name / logo included). Figma removed both (2026-11-05). Artwork lives in `assets/images/section-header-branded-<channel>.jpg`.
+- No hover change on the banner (Figma Default = Hover).

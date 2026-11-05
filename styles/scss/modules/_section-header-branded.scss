@@ -5,15 +5,14 @@
 //
 //   .section-header-branded           lightest surface, 20px top · 8px bottom · 16px sides
 //     a.section-header-branded__banner      52px, 8px corners, 48px side padding
-//       img.section-header-branded__bg      background image (cover, 4px blur)
+//       img.section-header-branded__bg      background artwork (cover)
 //       .section-header-branded__name       channel name (text) — or img.section-header-branded__logo
 //       .section-header-branded__arrow      tertiary icon-only button on dark (34 · 14)
 //     .section-header-tabs                  optional sub-items (see _section-header.scss)
 //
-// Surface over the image: translucent-dark/pale at rest → translucent-dark/deep
-// on hover. The 4px blur goes on the image itself (filter), not as a
-// backdrop-filter on the surface — same look, and no backdrop-filter layer
-// for Chrome to leave unclipped at the rounded corners.
+// The background is the graphic team's artwork used as it is — no blur, no
+// surface over it (Figma removed both). The artwork carries its own contrast
+// for the white name / logo.
 //
 // Reference: Figma Web UI Kit › Section Header - Branded (6416:109910)
 
@@ -34,49 +33,25 @@
   height: 52px;
   padding: var(--spacing-4) var(--spacing-48);
   overflow: hidden;
-  isolation: isolate;
+  isolation: isolate; // the artwork's z-index stays inside the banner
   border-radius: var(--border-radius-8);
   background-color: var(--color-background-neutral-grey-dark); // until the image loads
   text-decoration: none;
-
-  // Surface over the image
-  &::before {
-    content: '';
-    position: absolute;
-    inset: 0;
-    z-index: -1;
-    background-color: var(--color-effect-translucent-dark-pale);
-    transition: background-color 0.2s;
-  }
-
-  &:hover::before,
-  &:focus-visible::before {
-    background-color: var(--color-effect-translucent-dark-deep);
-  }
 
   &:focus-visible {
     outline: 2px solid var(--color-border-home-blue-base);
     outline-offset: 2px;
   }
-
-  @media (prefers-reduced-motion: reduce) {
-    &::before {
-      transition: none;
-    }
-  }
 }
 
-// Background image — blurred 4px; scaled up a touch so the blur's soft edge
-// stays outside the rounded banner
+// Background artwork — cover, behind the name / logo
 .section-header-branded__bg {
   position: absolute;
   inset: 0;
-  z-index: -2;
+  z-index: -1;
   width: 100%;
   height: 100%;
   object-fit: cover;
-  filter: blur(4px);
-  transform: scale(1.08);
 }
 
 // Logo — straight in the banner, centred, never taller than its content (44px)

@@ -63,9 +63,7 @@
 
       /* ── Variant: Figures — cut-out photos beside the logo ──
          The banner stops clipping (overflow) so the figures can rise above
-         it; the background image clips itself instead. It is scaled 1.08
-         (library), so its own inset is 3.7% (= 0.04 / 1.08) to land on the
-         banner edge, radius 8 / 1.08. The surface follows the radius.
+         it; the background image clips itself instead (8px corners).
          The figures move out from the logo as the banner widens: no gap at
          300 (Figma), 1/24 of every px beyond it, 64px at most (632 → 14,
          964 → 28). */
@@ -74,12 +72,8 @@
         overflow: visible;
       }
 
-      .section-header-branded--figures .section-header-branded__banner::before {
-        border-radius: inherit;
-      }
-
       .section-header-branded--figures .section-header-branded__bg {
-        clip-path: inset(3.7% round calc(var(--border-radius-8) / 1.08));
+        clip-path: inset(0 round var(--border-radius-8));
       }
 
       /* Bottom on the banner edge (past its 4px padding), height from
@@ -210,6 +204,11 @@
         color: var(--color-text-semantic-error-base);
       }
 
+      /* Don't sample: the cut-out shown as an uncut photo (studio background) */
+      .exp-photo-bg {
+        background-color: var(--color-background-neutral-light);
+      }
+
       /* a block above, so an overflow shows what it covers */
       .exp-prev {
         padding: var(--spacing-16);
@@ -232,7 +231,7 @@
         <div class="exp-cell" style="width: 195px">
           <header class="section-header-branded">
             <a class="section-header-branded__banner" href="#channel" aria-label="The Crime Desk">
-              <img class="section-header-branded__bg" src="images/bg-crime-desk.jpg" alt="" />
+              <img class="section-header-branded__bg" src="../../assets/images/section-header-branded-crime-desk.jpg" alt="" />
               <img class="section-header-branded__logo" src="images/logo-crime-desk.svg" alt="The Crime Desk" width="171" height="42" />
               <span class="section-header-branded__arrow btn btn-tertiary-dark btn--sm btn--icon-only" aria-hidden="true"><span class="icon icon--arrow-right-light" aria-hidden="true"></span></span>
             </a>
@@ -242,7 +241,7 @@
         <div class="exp-cell" style="width: 332px">
           <header class="section-header-branded">
             <a class="section-header-branded__banner" href="#channel" aria-label="The Crime Desk">
-              <img class="section-header-branded__bg" src="images/bg-crime-desk.jpg" alt="" />
+              <img class="section-header-branded__bg" src="../../assets/images/section-header-branded-crime-desk.jpg" alt="" />
               <img class="section-header-branded__logo" src="images/logo-crime-desk.svg" alt="The Crime Desk" width="171" height="42" />
               <span class="section-header-branded__arrow btn btn-tertiary-dark btn--sm btn--icon-only" aria-hidden="true"><span class="icon icon--arrow-right-light" aria-hidden="true"></span></span>
             </a>
@@ -252,7 +251,7 @@
         <div class="exp-cell" style="width: 664px">
           <header class="section-header-branded">
             <a class="section-header-branded__banner" href="#channel" aria-label="The Crime Desk">
-              <img class="section-header-branded__bg" src="images/bg-crime-desk.jpg" alt="" />
+              <img class="section-header-branded__bg" src="../../assets/images/section-header-branded-crime-desk.jpg" alt="" />
               <img class="section-header-branded__logo" src="images/logo-crime-desk.svg" alt="The Crime Desk" width="171" height="42" />
               <span class="section-header-branded__arrow btn btn-tertiary-dark btn--sm btn--icon-only" aria-hidden="true"><span class="icon icon--arrow-right-light" aria-hidden="true"></span></span>
             </a>
@@ -262,7 +261,7 @@
         <div class="exp-cell" style="width: 996px">
           <header class="section-header-branded">
             <a class="section-header-branded__banner" href="#channel" aria-label="The Crime Desk">
-              <img class="section-header-branded__bg" src="images/bg-crime-desk.jpg" alt="" />
+              <img class="section-header-branded__bg" src="../../assets/images/section-header-branded-crime-desk.jpg" alt="" />
               <img class="section-header-branded__logo" src="images/logo-crime-desk.svg" alt="The Crime Desk" width="171" height="42" />
               <span class="section-header-branded__arrow btn btn-tertiary-dark btn--sm btn--icon-only" aria-hidden="true"><span class="icon icon--arrow-right-light" aria-hidden="true"></span></span>
             </a>
@@ -276,7 +275,7 @@
         <div class="exp-cell" style="width: 195px">
           <header class="section-header-branded">
             <a class="section-header-branded__banner" href="#channel" aria-label="This is Money">
-              <img class="section-header-branded__bg" src="images/bg-money.jpg" alt="" style="object-position: 50% 29%; filter: blur(10px)" />
+              <img class="section-header-branded__bg" src="../../assets/images/section-header-branded-money.jpg" alt="" style="object-position: 50% 29%" />
               <img class="section-header-branded__logo" src="images/logo-thisismoney.svg" alt="This is Money" width="196" height="20" />
               <span class="section-header-branded__arrow btn btn-tertiary-dark btn--sm btn--icon-only" aria-hidden="true"><span class="icon icon--arrow-right-light" aria-hidden="true"></span></span>
             </a>
@@ -287,7 +286,7 @@
         <div class="exp-cell" style="width: 332px">
           <header class="section-header-branded">
             <a class="section-header-branded__banner" href="#channel" aria-label="This is Money">
-              <img class="section-header-branded__bg" src="images/bg-money.jpg" alt="" style="object-position: 50% 29%; filter: blur(10px)" />
+              <img class="section-header-branded__bg" src="../../assets/images/section-header-branded-money.jpg" alt="" style="object-position: 50% 29%" />
               <img class="section-header-branded__logo" src="images/logo-thisismoney.svg" alt="This is Money" width="196" height="20" />
               <span class="section-header-branded__arrow btn btn-tertiary-dark btn--sm btn--icon-only" aria-hidden="true"><span class="icon icon--arrow-right-light" aria-hidden="true"></span></span>
             </a>
@@ -298,7 +297,7 @@
         <div class="exp-cell" style="width: 664px">
           <header class="section-header-branded">
             <a class="section-header-branded__banner" href="#channel" aria-label="This is Money">
-              <img class="section-header-branded__bg" src="images/bg-money.jpg" alt="" style="object-position: 50% 29%; filter: blur(10px)" />
+              <img class="section-header-branded__bg" src="../../assets/images/section-header-branded-money.jpg" alt="" style="object-position: 50% 29%" />
               <img class="section-header-branded__logo" src="images/logo-thisismoney.svg" alt="This is Money" width="196" height="20" />
               <span class="section-header-branded__arrow btn btn-tertiary-dark btn--sm btn--icon-only" aria-hidden="true"><span class="icon icon--arrow-right-light" aria-hidden="true"></span></span>
             </a>
@@ -309,7 +308,7 @@
         <div class="exp-cell" style="width: 996px">
           <header class="section-header-branded">
             <a class="section-header-branded__banner" href="#channel" aria-label="This is Money">
-              <img class="section-header-branded__bg" src="images/bg-money.jpg" alt="" style="object-position: 50% 29%; filter: blur(10px)" />
+              <img class="section-header-branded__bg" src="../../assets/images/section-header-branded-money.jpg" alt="" style="object-position: 50% 29%" />
               <img class="section-header-branded__logo" src="images/logo-thisismoney.svg" alt="This is Money" width="196" height="20" />
               <span class="section-header-branded__arrow btn btn-tertiary-dark btn--sm btn--icon-only" aria-hidden="true"><span class="icon icon--arrow-right-light" aria-hidden="true"></span></span>
             </a>
@@ -324,7 +323,7 @@
         <div class="exp-cell" style="width: 195px">
           <header class="section-header-branded section-header-branded--figures">
             <a class="section-header-branded__banner" href="#channel" aria-label="Femail">
-              <img class="section-header-branded__bg" src="images/bg-femail.jpg" alt="" />
+              <img class="section-header-branded__bg" src="../../assets/images/section-header-branded-femail.jpg" alt="" />
               <img class="section-header-branded__figure" src="images/femail-left.png" alt="" width="66" height="60" />
               <img class="section-header-branded__logo" src="images/logo-femail.svg" alt="Femail" width="89" height="28" />
               <img class="section-header-branded__figure" src="images/femail-right.png" alt="" width="77" height="60" />
@@ -336,7 +335,7 @@
         <div class="exp-cell" style="width: 332px">
           <header class="section-header-branded section-header-branded--figures">
             <a class="section-header-branded__banner" href="#channel" aria-label="Femail">
-              <img class="section-header-branded__bg" src="images/bg-femail.jpg" alt="" />
+              <img class="section-header-branded__bg" src="../../assets/images/section-header-branded-femail.jpg" alt="" />
               <img class="section-header-branded__figure" src="images/femail-left.png" alt="" width="66" height="60" />
               <img class="section-header-branded__logo" src="images/logo-femail.svg" alt="Femail" width="89" height="28" />
               <img class="section-header-branded__figure" src="images/femail-right.png" alt="" width="77" height="60" />
@@ -348,7 +347,7 @@
         <div class="exp-cell" style="width: 664px">
           <header class="section-header-branded section-header-branded--figures">
             <a class="section-header-branded__banner" href="#channel" aria-label="Femail">
-              <img class="section-header-branded__bg" src="images/bg-femail.jpg" alt="" />
+              <img class="section-header-branded__bg" src="../../assets/images/section-header-branded-femail.jpg" alt="" />
               <img class="section-header-branded__figure" src="images/femail-left.png" alt="" width="66" height="60" />
               <img class="section-header-branded__logo" src="images/logo-femail.svg" alt="Femail" width="89" height="28" />
               <img class="section-header-branded__figure" src="images/femail-right.png" alt="" width="77" height="60" />
@@ -360,7 +359,7 @@
         <div class="exp-cell" style="width: 996px">
           <header class="section-header-branded section-header-branded--figures">
             <a class="section-header-branded__banner" href="#channel" aria-label="Femail">
-              <img class="section-header-branded__bg" src="images/bg-femail.jpg" alt="" />
+              <img class="section-header-branded__bg" src="../../assets/images/section-header-branded-femail.jpg" alt="" />
               <img class="section-header-branded__figure" src="images/femail-left.png" alt="" width="66" height="60" />
               <img class="section-header-branded__logo" src="images/logo-femail.svg" alt="Femail" width="89" height="28" />
               <img class="section-header-branded__figure" src="images/femail-right.png" alt="" width="77" height="60" />
@@ -377,7 +376,7 @@
             <div class="exp-prev" aria-hidden="true">Previous section</div>
             <header class="section-header-branded section-header-branded--figures" style="--figure-height: 100px">
               <a class="section-header-branded__banner" href="#channel" aria-label="Femail">
-                <img class="section-header-branded__bg" src="images/bg-femail.jpg" alt="" />
+                <img class="section-header-branded__bg" src="../../assets/images/section-header-branded-femail.jpg" alt="" />
                 <img class="section-header-branded__figure" src="images/femail-left.png" alt="" width="66" height="60" />
                 <img class="section-header-branded__logo" src="images/logo-femail.svg" alt="Femail" width="89" height="28" />
                 <img class="section-header-branded__figure" src="images/femail-right.png" alt="" width="77" height="60" />
@@ -395,7 +394,7 @@
             <div class="exp-prev" aria-hidden="true">Previous section</div>
             <header class="section-header-branded section-header-branded--figures">
               <a class="section-header-branded__banner" href="#channel" aria-label="Femail">
-                <img class="section-header-branded__bg" src="images/bg-femail.jpg" alt="" />
+                <img class="section-header-branded__bg" src="../../assets/images/section-header-branded-femail.jpg" alt="" />
                 <img class="section-header-branded__figure" src="images/femail-left.png" alt="" width="66" height="60" />
                 <img class="section-header-branded__logo" src="images/logo-femail.svg" alt="Femail" width="89" height="28" />
                 <img class="section-header-branded__figure" src="images/femail-right.png" alt="" width="77" height="60" />
@@ -414,7 +413,7 @@
             <div class="exp-prev" aria-hidden="true">Previous section</div>
             <header class="section-header-branded section-header-branded--figures">
               <a class="section-header-branded__banner" href="#channel" aria-label="Femail">
-                <img class="section-header-branded__bg" src="images/bg-femail.jpg" alt="" />
+                <img class="section-header-branded__bg" src="../../assets/images/section-header-branded-femail.jpg" alt="" />
                 <img class="section-header-branded__figure" src="images/femail-left.png" alt="" width="66" height="60" />
                 <img class="section-header-branded__logo" src="images/logo-femail.svg" alt="Femail" width="89" height="28" />
                 <img class="section-header-branded__figure" src="images/femail-right.png" alt="" width="77" height="60" />
@@ -432,17 +431,17 @@
             <div class="exp-prev" aria-hidden="true">Previous section</div>
             <header class="section-header-branded section-header-branded--figures">
               <a class="section-header-branded__banner" href="#channel" aria-label="Femail">
-                <img class="section-header-branded__bg" src="images/bg-femail.jpg" alt="" />
-                <img class="section-header-branded__figure" src="images/bg-money.jpg" alt="" width="60" height="60" />
+                <img class="section-header-branded__bg" src="../../assets/images/section-header-branded-femail.jpg" alt="" />
+                <img class="section-header-branded__figure exp-photo-bg" src="images/femail-left.png" alt="" width="66" height="60" />
                 <img class="section-header-branded__logo" src="images/logo-femail.svg" alt="Femail" width="89" height="28" />
-                <img class="section-header-branded__figure" src="images/femail-right.png" alt="" width="77" height="60" />
+                <img class="section-header-branded__figure exp-photo-bg" src="images/femail-right.png" alt="" width="77" height="60" />
                 <span class="section-header-branded__arrow btn btn-tertiary-dark btn--sm btn--icon-only" aria-hidden="true"><span class="icon icon--arrow-right-light" aria-hidden="true"></span></span>
               </a>
             </header>
           </div>
           <figcaption class="exp-dont__reason">
             <strong class="exp-dont__label">Don't — A photo with a background</strong>
-            Only cut-outs (transparent PNG) can rise above the banner. A photo with its own background sticks out as a box and reads as a broken image.
+            The same two figures as in 3, but with the photo's background left in. Only cut-outs (transparent PNG) can rise above the banner: a background turns each figure into a box that covers the banner and reads as a broken image.
           </figcaption>
         </figure>
       </section>

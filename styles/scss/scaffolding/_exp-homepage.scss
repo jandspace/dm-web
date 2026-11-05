@@ -179,11 +179,10 @@
 // ── This is Money header (Figma 8804:238027) ──────────────────────────────────
 // From experiments/202611-exp-section-header-branded (In progress) — moves to
 // _section-header-branded.scss once that test is decided.
-//   · background: Figma crop (upper part of the photo) and 10px blur
+//   · background: Figma crop (upper part of the photo)
 //   · Extra block: "Sponsored by" + sponsor logo under the banner
 .homepage-money .section-header-branded__bg {
   object-position: 50% 29%;
-  filter: blur(10px);
 }
 
 .homepage-sponsor {
@@ -210,13 +209,9 @@
     overflow: visible;
   }
 
-  .section-header-branded__banner::before {
-    border-radius: inherit;
-  }
-
-  // the banner no longer clips: the (1.08-scaled) image clips itself
+  // the banner no longer clips: the image clips itself
   .section-header-branded__bg {
-    clip-path: inset(3.7% round calc(var(--border-radius-8) / 1.08));
+    clip-path: inset(0 round var(--border-radius-8));
   }
 
   .section-header-branded__logo {

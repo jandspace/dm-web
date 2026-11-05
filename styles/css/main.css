@@ -6336,36 +6336,18 @@ a.section-header__link:focus-visible {
   background-color: var(--color-background-neutral-grey-dark);
   text-decoration: none;
 }
-.section-header-branded__banner::before {
-  content: "";
-  position: absolute;
-  inset: 0;
-  z-index: -1;
-  background-color: var(--color-effect-translucent-dark-pale);
-  transition: background-color 0.2s;
-}
-.section-header-branded__banner:hover::before, .section-header-branded__banner:focus-visible::before {
-  background-color: var(--color-effect-translucent-dark-deep);
-}
 .section-header-branded__banner:focus-visible {
   outline: 2px solid var(--color-border-home-blue-base);
   outline-offset: 2px;
-}
-@media (prefers-reduced-motion: reduce) {
-  .section-header-branded__banner::before {
-    transition: none;
-  }
 }
 
 .section-header-branded__bg {
   position: absolute;
   inset: 0;
-  z-index: -2;
+  z-index: -1;
   width: 100%;
   height: 100%;
   object-fit: cover;
-  filter: blur(4px);
-  transform: scale(1.08);
 }
 
 .section-header-branded__logo {
@@ -12902,7 +12884,6 @@ body:not(.demo-frame) .demo-container-start {
 
 .homepage-money .section-header-branded__bg {
   object-position: 50% 29%;
-  filter: blur(10px);
 }
 
 .homepage-sponsor {
@@ -12924,11 +12905,8 @@ body:not(.demo-frame) .demo-container-start {
   gap: clamp(0px, (100cqi - 300px) / 24, 64px);
   overflow: visible;
 }
-.homepage-figures .section-header-branded__banner::before {
-  border-radius: inherit;
-}
 .homepage-figures .section-header-branded__bg {
-  clip-path: inset(3.7% round calc(var(--border-radius-8) / 1.08));
+  clip-path: inset(0 round var(--border-radius-8));
 }
 .homepage-figures .section-header-branded__logo {
   flex-shrink: 0;
