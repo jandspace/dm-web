@@ -237,6 +237,42 @@
   }
 }
 
+// ── Test: SM metadata full width (index-2.html only) ──────────────────────────
+// The metadata row sits under the thumbnail + headline row (out of the body)
+// and spans the card. 8px above it, as inside the body.
+.homepage-sm-meta-full .article-card--sm-right {
+  flex-wrap: wrap;
+  row-gap: var(--spacing-8);
+
+  > .article-card__metadata {
+    flex-basis: 100%;
+    order: 2;
+  }
+}
+
+// ── Test: Columnist data + regular metadata (index-2.html only) ───────────────
+// The columnist byline (name + role · photo) is its own block, without the
+// comment count; the regular metadata row (channel · comments) follows it.
+// Name and role keep their library styles (.article-card-metadata__author*).
+.article-card__columnist-data {
+  display: flex;
+  align-items: flex-end;
+  gap: var(--spacing-16);
+  padding-top: var(--spacing-8);
+  font-family: var(--typography-font-family-sans);
+  line-height: var(--typography-line-height-narrow);
+
+  .article-card-metadata__author {
+    padding-block: var(--spacing-4);
+  }
+
+  // above the stretched article link, like the metadata links
+  a {
+    position: relative;
+    z-index: 2;
+  }
+}
+
 // ── Placeholder section ───────────────────────────────────────────────────────
 // 320 high like the Figma frame: a box inside the 16px inset, a soft
 // background/neutral/light glow fading inward (inset shadow, 32px blur, no border)

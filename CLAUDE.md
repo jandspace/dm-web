@@ -419,7 +419,7 @@ All token files share the same version string (currently `1.0.4`). Update the `v
 
 ### Local Preview
 
-- From the repo root: `python3 -m http.server 3000` → `http://localhost:3000/` (index) or `/components/<name>/`, `/modules/<name>/`. Claude starts it in the Terminal panel when it is down — not with `preview_start` (macOS blocks the app's own process from `~/Documents`) and not through npm (python fails to spawn under npm)
+- `http://localhost:3001/` (index) or `/components/<name>/`, `/modules/<name>/` — served by `python3 -m http.server 3001` from the repo root. The user starts it in a terminal with `dmon` (alias in `~/.zshrc`) and stops it with Ctrl+C or `dmoff`. If it is down while Claude works, Claude starts it in the Terminal panel — not with `preview_start` (macOS blocks the app's own process from `~/Documents`) and not through npm (python fails to spawn under npm)
 - The server sends no cache headers, so hard-refresh (Cmd+Shift+R) after every build or the old `main.css` is shown.
 
 ### SCSS Structure
