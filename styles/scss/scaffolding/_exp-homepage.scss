@@ -209,6 +209,10 @@
     overflow: visible;
   }
 
+  .section-header-branded__banner::before {
+    border-radius: inherit;
+  }
+
   // the banner no longer clips: the image clips itself
   .section-header-branded__bg {
     clip-path: inset(0 round var(--border-radius-8));

@@ -89,3 +89,8 @@
 .demo-frame .demo-sh {
   padding: 0 var(--spacing-16) var(--spacing-32);
 }
+
+// Branded: a header at 195px (half a phone) — the narrow-banner rules
+.demo-sh__narrow {
+  width: 195px;
+}

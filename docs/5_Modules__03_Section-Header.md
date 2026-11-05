@@ -96,14 +96,34 @@ Sub-channels or topics in one row that scrolls sideways.
 |---|---|---|
 | Container | `.section-header-branded` | lightest; padding 20 top · 8 bottom · 16 sides; 4px gap |
 | Banner | `a.section-header-branded__banner` | **The whole banner is the link.** 52px, 8px corners, 4px / 48px padding |
-| Background | `img.section-header-branded__bg` | The graphic team's artwork as it is — cover, no blur, no surface over it |
-| Name / Logo | `span.section-header-branded__name` or `img.section-header-branded__logo` | Straight in the banner (no slot wrapper) — channel name or logo, centred, max 44px tall |
+| Background | `img.section-header-branded__bg` | The graphic team's artwork as it is — cover, no blur |
+| Surface | banner `::before` | `color/effect/translucent-dark/clear` → `translucent-dark/moderate` on hover / focus |
+| Name / Logo | `span.section-header-branded__name` or `img.section-header-branded__logo` | Straight in the banner (no slot wrapper) — channel name or logo, centred. Logo keeps its ratio: max 44px tall, max 240px wide (give the `<img>` its width and height) |
 | Name (text) | `.section-header-branded__name` | dmw_serif/h2/Semibold, white |
 | Arrow | `.section-header-branded__arrow` | `.btn.btn-tertiary-dark.btn--sm.btn--icon-only` (34, icon 14), 8px from the right, decorative |
 | Sub-items | `.section-header-tabs` | Optional, as in 1-D |
+| Extra block | `p.section-header-branded__sponsor` | Optional, under the banner: "Sponsored by" (label-xsm Regular, neutral/dark) + partner logo `<img>` 16px tall, 4px gap, centred; wraps when narrow |
+| Figures | `.section-header-branded--figures` + `img.section-header-branded__figure` | Variant: cut-out photos one each side of the logo (see 2-C) |
 
 ### 2-B. Notes
 
 - The slot takes either text (the channel name in the serif face) or a logo image (SVG/PNG, white on the dark surface).
-- No blur and no surface: the artwork comes from the graphic design team ready to use (contrast for the white name / logo included). Figma removed both (2026-11-05). Artwork lives in `assets/images/section-header-branded-<channel>.jpg`.
-- No hover change on the banner (Figma Default = Hover).
+- No blur: the artwork comes from the graphic design team ready to use (contrast for the white name / logo included). Figma removed it (2026-11-05). Artwork lives in `assets/images/section-header-branded-<channel>.jpg`.
+- Hover / focus: the surface goes from `translucent-dark/clear` (nothing) to `translucent-dark/moderate`, 0.2s; no transition with reduced motion.
+- Narrow banner (under 240px — e.g. 195, half a phone): still a link, the arrow is hidden and the side padding drops 48 → 16, so the logo gets the room. The header is the size container (`container-type: inline-size`; its content box is the banner width).
+
+### 2-C. Figures (variant)
+
+Cut-out photos beside the logo, e.g. Femail. Tested in `experiments/202611-exp-section-header-branded/`.
+
+- `<header class="section-header-branded section-header-branded--figures">` — in the banner: figure · logo · figure.
+- Figures are 60px tall, on the banner's bottom edge, rising 8px above it (inside the header's 20px top padding). The banner stops clipping; the artwork clips itself to the 8px corners.
+- At a 300px banner the group runs into the side padding (as in Figma); wider, the figures move out from the logo — gap `(width − 300) / 24`, 64px at most.
+- Limits in CSS: 60px tall, two figures, none under a 240px banner (logo only).
+
+**Don't**
+
+- Use an image taller than the header module — it runs into the section above.
+- Crowd the logo with a busy graphic — the logo stays centred and simple.
+- Build a full composition on a narrow header — logo only.
+- Use a photo with a background — only cut-outs (transparent PNG) can rise above the banner.

@@ -9,10 +9,22 @@
 //       .section-header-branded__name       channel name (text) — or img.section-header-branded__logo
 //       .section-header-branded__arrow      tertiary icon-only button on dark (34 · 14)
 //     .section-header-tabs                  optional sub-items (see _section-header.scss)
+//     p.section-header-branded__sponsor     optional Extra block — "Sponsored by" + partner logo
 //
-// The background is the graphic team's artwork used as it is — no blur, no
-// surface over it (Figma removed both). The artwork carries its own contrast
-// for the white name / logo.
+//   .section-header-branded--figures      variant: cut-out photos beside the logo
+//       img.section-header-branded__figure  (in the banner, one each side of the logo)
+//
+// Logo: always its own aspect ratio, as large as fits — at most the slot height
+// (44px) and 240px wide. Narrow banner (under 240px, e.g. 195 = half a phone):
+// still a link, no arrow, side padding 48 → 16 so the logo gets the room. The
+// header is the size container (its content box = the banner width).
+//
+// The background is the graphic team's artwork used as it is — no blur. The
+// artwork carries its own contrast for the white name / logo.
+//
+// Surface over the artwork (banner ::before): translucent-dark/clear at rest
+// (nothing shows) → translucent-dark/moderate on hover / focus — the whole banner
+// is the link.
 //
 // Reference: Figma Web UI Kit › Section Header - Branded (6416:109910)
 
@@ -23,6 +35,7 @@
   padding: var(--spacing-20) var(--spacing-16) var(--spacing-8);
   background-color: var(--color-background-neutral-lightest);
   font-family: var(--typography-font-family-sans);
+  container-type: inline-size;
 }
 
 .section-header-branded__banner {
@@ -30,6 +43,7 @@
   display: flex;
   align-items: center;
   justify-content: center;
+  flex-shrink: 0; // stays 52px when sub-items follow (their flex-basis is 100%)
   height: 52px;
   padding: var(--spacing-4) var(--spacing-48);
   overflow: hidden;
@@ -38,9 +52,31 @@
   background-color: var(--color-background-neutral-grey-dark); // until the image loads
   text-decoration: none;
 
+  // Surface over the artwork
+  &::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    z-index: -1;
+    border-radius: inherit; // for --figures, where the banner doesn't clip
+    background-color: var(--color-effect-translucent-dark-clear);
+    transition: background-color 0.2s;
+  }
+
+  &:hover::before,
+  &:focus-visible::before {
+    background-color: var(--color-effect-translucent-dark-moderate);
+  }
+
   &:focus-visible {
     outline: 2px solid var(--color-border-home-blue-base);
     outline-offset: 2px;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    &::before {
+      transition: none;
+    }
   }
 }
 
@@ -48,17 +84,21 @@
 .section-header-branded__bg {
   position: absolute;
   inset: 0;
-  z-index: -1;
+  z-index: -2;
   width: 100%;
   height: 100%;
   object-fit: cover;
 }
 
-// Logo — straight in the banner, centred, never taller than its content (44px)
+// Logo — straight in the banner, centred. Its size comes from the <img>
+// width / height (Figma size); it keeps that ratio when it has to shrink
+// (height follows the width) — never wider than 240px nor the banner, never
+// taller than the slot (44px)
 .section-header-branded__logo {
   display: block;
   min-width: 0;
-  max-width: 100%;
+  height: auto;
+  max-width: min(100%, 240px);
   max-height: 100%;
 }
 
@@ -93,5 +133,83 @@
     flex-shrink: 0;
     width: 14px;
     height: 14px;
+  }
+}
+
+// Narrow banner (under 240px): no arrow, the logo takes the room
+@container (max-width: 240px) {
+  .section-header-branded__arrow {
+    display: none;
+  }
+
+  .section-header-branded__banner {
+    padding-inline: var(--spacing-16);
+  }
+}
+
+// ── Extra block: sponsorship ──────────────────────────────────────────────────
+// Under the banner: label-xsm Regular, neutral/dark, then the partner's logo
+// (an <img>, 16px tall), 4px apart, centred. Header gap 4 + padding 4 = Figma
+// Extra block 24px. Wraps on a narrow header.
+
+.section-header-branded__sponsor {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: center;
+  gap: var(--spacing-4);
+  margin: 0;
+  padding-block: var(--spacing-4);
+  font-size: var(--typography-font-size-label-xsm);
+  font-weight: var(--typography-font-weight-regular);
+  line-height: var(--typography-line-height-narrow);
+  color: var(--color-text-neutral-dark);
+}
+
+// ── Variant: Figures ──────────────────────────────────────────────────────────
+// Cut-out photos (transparent PNG) one each side of the logo, 60px tall: they
+// sit on the banner's bottom edge and rise 8px above it (inside the header's
+// 20px top padding). The banner stops clipping; the artwork clips itself.
+// At 300 the group (figure · logo · figure) runs into the side padding as in
+// Figma; wider, the figures move out from the logo — 1/24 of every px beyond
+// 300, 64px at most. Limits: 60px tall, two figures, none under a 240px banner.
+
+.section-header-branded--figures {
+  .section-header-branded__banner {
+    gap: clamp(0px, (100cqi - 300px) / 24, 64px);
+    overflow: visible;
+  }
+
+  .section-header-branded__bg {
+    clip-path: inset(0 round var(--border-radius-8));
+  }
+}
+
+.section-header-branded__figure {
+  flex-shrink: 0;
+  align-self: flex-end;
+  width: auto;
+  height: 60px;
+  margin-bottom: calc(-1 * var(--spacing-4)); // on the banner edge, past its padding
+  pointer-events: none;
+
+  // two at most
+  & ~ & ~ & {
+    display: none;
+  }
+
+  // the group keeps its size — the logo doesn't shrink
+  & + .section-header-branded__logo {
+    flex-shrink: 0;
+  }
+}
+
+@container (max-width: 240px) {
+  .section-header-branded__figure {
+    display: none;
+  }
+
+  .section-header-branded__figure + .section-header-branded__logo {
+    flex-shrink: 1;
   }
 }

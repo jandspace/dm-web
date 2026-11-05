@@ -72,6 +72,10 @@
         overflow: visible;
       }
 
+      .section-header-branded--figures .section-header-branded__banner::before {
+        border-radius: inherit;
+      }
+
       .section-header-branded--figures .section-header-branded__bg {
         clip-path: inset(0 round var(--border-radius-8));
       }
@@ -209,6 +213,15 @@
         background-color: var(--color-background-neutral-light);
       }
 
+      /* 1. Logo only: one channel's samples at a time (Tabs above) */
+      .exp-panel {
+        display: contents;
+      }
+
+      .exp-panel[hidden] {
+        display: none;
+      }
+
       /* a block above, so an overflow shows what it covers */
       .exp-prev {
         padding: var(--spacing-16);
@@ -225,47 +238,183 @@
       <p class="exp-page__meta">Figma: Web UI Kit › Section Header - Branded example (8794:8073). Widths as in Figma, each with where it is used. Under a 240px banner (195) the arrow is hidden; the banner stays a link. Hover a banner for the library hover.</p>
 
       <section class="exp-row">
-        <h2 class="exp-row__title">1. Logo only — The Crime Desk</h2>
-        <p class="exp-row__caption">Library as it is, plus: no arrow under a 240px banner.</p>
-        <p class="exp-cell-label"><strong>195px</strong> — Half a mobile browser width (e.g. iPhone 390 ÷ 2)</p>
-        <div class="exp-cell" style="width: 195px">
-          <header class="section-header-branded">
-            <a class="section-header-branded__banner" href="#channel" aria-label="The Crime Desk">
-              <img class="section-header-branded__bg" src="../../assets/images/section-header-branded-crime-desk.jpg" alt="" />
-              <img class="section-header-branded__logo" src="images/logo-crime-desk.svg" alt="The Crime Desk" width="171" height="42" />
-              <span class="section-header-branded__arrow btn btn-tertiary-dark btn--sm btn--icon-only" aria-hidden="true"><span class="icon icon--arrow-right-light" aria-hidden="true"></span></span>
-            </a>
-          </header>
+        <h2 class="exp-row__title">1. Logo only</h2>
+        <p class="exp-row__caption">Library as it is, plus: no arrow under a 240px banner. Pick a channel.</p>
+        <div class="tabs">
+          <div class="tabs__list" role="tablist" aria-label="Channel">
+            <button class="tabs__tab" type="button" role="tab" id="exp-tab-crime-desk" aria-controls="exp-panel-crime-desk" aria-selected="true">Crime Desk</button>
+            <button class="tabs__tab" type="button" role="tab" id="exp-tab-health" aria-controls="exp-panel-health" aria-selected="false">Health</button>
+            <button class="tabs__tab" type="button" role="tab" id="exp-tab-sport" aria-controls="exp-panel-sport" aria-selected="false">Sport</button>
+            <button class="tabs__tab" type="button" role="tab" id="exp-tab-showbiz" aria-controls="exp-panel-showbiz" aria-selected="false">This is Showbiz</button>
+          </div>
         </div>
-        <p class="exp-cell-label"><strong>332px</strong> — LG ≥1024 · Single (½ Alpha)</p>
-        <div class="exp-cell" style="width: 332px">
-          <header class="section-header-branded">
-            <a class="section-header-branded__banner" href="#channel" aria-label="The Crime Desk">
-              <img class="section-header-branded__bg" src="../../assets/images/section-header-branded-crime-desk.jpg" alt="" />
-              <img class="section-header-branded__logo" src="images/logo-crime-desk.svg" alt="The Crime Desk" width="171" height="42" />
-              <span class="section-header-branded__arrow btn btn-tertiary-dark btn--sm btn--icon-only" aria-hidden="true"><span class="icon icon--arrow-right-light" aria-hidden="true"></span></span>
-            </a>
-          </header>
+        <div class="exp-panel" role="tabpanel" id="exp-panel-crime-desk" aria-labelledby="exp-tab-crime-desk">
+          <p class="exp-cell-label"><strong>195px</strong> — Half a mobile browser width (e.g. iPhone 390 ÷ 2)</p>
+          <div class="exp-cell" style="width: 195px">
+            <header class="section-header-branded">
+              <a class="section-header-branded__banner" href="#channel" aria-label="The Crime Desk">
+                <img class="section-header-branded__bg" src="../../assets/images/section-header-branded-crime-desk.jpg" alt="" />
+                <img class="section-header-branded__logo" src="../../assets/images/logo-the-crime-desk.svg" alt="The Crime Desk" width="171" height="42" />
+                <span class="section-header-branded__arrow btn btn-tertiary-dark btn--sm btn--icon-only" aria-hidden="true"><span class="icon icon--arrow-right-light" aria-hidden="true"></span></span>
+              </a>
+            </header>
+          </div>
+          <p class="exp-cell-label"><strong>332px</strong> — LG ≥1024 · Single (½ Alpha)</p>
+          <div class="exp-cell" style="width: 332px">
+            <header class="section-header-branded">
+              <a class="section-header-branded__banner" href="#channel" aria-label="The Crime Desk">
+                <img class="section-header-branded__bg" src="../../assets/images/section-header-branded-crime-desk.jpg" alt="" />
+                <img class="section-header-branded__logo" src="../../assets/images/logo-the-crime-desk.svg" alt="The Crime Desk" width="171" height="42" />
+                <span class="section-header-branded__arrow btn btn-tertiary-dark btn--sm btn--icon-only" aria-hidden="true"><span class="icon icon--arrow-right-light" aria-hidden="true"></span></span>
+              </a>
+            </header>
+          </div>
+          <p class="exp-cell-label"><strong>664px</strong> — LG ≥1024 · Double (Alpha)</p>
+          <div class="exp-cell" style="width: 664px">
+            <header class="section-header-branded">
+              <a class="section-header-branded__banner" href="#channel" aria-label="The Crime Desk">
+                <img class="section-header-branded__bg" src="../../assets/images/section-header-branded-crime-desk.jpg" alt="" />
+                <img class="section-header-branded__logo" src="../../assets/images/logo-the-crime-desk.svg" alt="The Crime Desk" width="171" height="42" />
+                <span class="section-header-branded__arrow btn btn-tertiary-dark btn--sm btn--icon-only" aria-hidden="true"><span class="icon icon--arrow-right-light" aria-hidden="true"></span></span>
+              </a>
+            </header>
+          </div>
+          <p class="exp-cell-label"><strong>996px</strong> — LG ≥1024 · Triple (Gamma)</p>
+          <div class="exp-cell" style="width: 996px">
+            <header class="section-header-branded">
+              <a class="section-header-branded__banner" href="#channel" aria-label="The Crime Desk">
+                <img class="section-header-branded__bg" src="../../assets/images/section-header-branded-crime-desk.jpg" alt="" />
+                <img class="section-header-branded__logo" src="../../assets/images/logo-the-crime-desk.svg" alt="The Crime Desk" width="171" height="42" />
+                <span class="section-header-branded__arrow btn btn-tertiary-dark btn--sm btn--icon-only" aria-hidden="true"><span class="icon icon--arrow-right-light" aria-hidden="true"></span></span>
+              </a>
+            </header>
+          </div>
         </div>
-        <p class="exp-cell-label"><strong>664px</strong> — LG ≥1024 · Double (Alpha)</p>
-        <div class="exp-cell" style="width: 664px">
-          <header class="section-header-branded">
-            <a class="section-header-branded__banner" href="#channel" aria-label="The Crime Desk">
-              <img class="section-header-branded__bg" src="../../assets/images/section-header-branded-crime-desk.jpg" alt="" />
-              <img class="section-header-branded__logo" src="images/logo-crime-desk.svg" alt="The Crime Desk" width="171" height="42" />
-              <span class="section-header-branded__arrow btn btn-tertiary-dark btn--sm btn--icon-only" aria-hidden="true"><span class="icon icon--arrow-right-light" aria-hidden="true"></span></span>
-            </a>
-          </header>
+        <div class="exp-panel" role="tabpanel" id="exp-panel-health" aria-labelledby="exp-tab-health" hidden>
+          <p class="exp-cell-label"><strong>195px</strong> — Half a mobile browser width (e.g. iPhone 390 ÷ 2)</p>
+          <div class="exp-cell" style="width: 195px">
+            <header class="section-header-branded">
+              <a class="section-header-branded__banner" href="#channel" aria-label="Health">
+                <img class="section-header-branded__bg" src="../../assets/images/section-header-branded-health.jpg" alt="" />
+                <img class="section-header-branded__logo" src="../../assets/images/logo-health.svg" alt="Health" width="89" height="26" />
+                <span class="section-header-branded__arrow btn btn-tertiary-dark btn--sm btn--icon-only" aria-hidden="true"><span class="icon icon--arrow-right-light" aria-hidden="true"></span></span>
+              </a>
+            </header>
+          </div>
+          <p class="exp-cell-label"><strong>332px</strong> — LG ≥1024 · Single (½ Alpha)</p>
+          <div class="exp-cell" style="width: 332px">
+            <header class="section-header-branded">
+              <a class="section-header-branded__banner" href="#channel" aria-label="Health">
+                <img class="section-header-branded__bg" src="../../assets/images/section-header-branded-health.jpg" alt="" />
+                <img class="section-header-branded__logo" src="../../assets/images/logo-health.svg" alt="Health" width="89" height="26" />
+                <span class="section-header-branded__arrow btn btn-tertiary-dark btn--sm btn--icon-only" aria-hidden="true"><span class="icon icon--arrow-right-light" aria-hidden="true"></span></span>
+              </a>
+            </header>
+          </div>
+          <p class="exp-cell-label"><strong>664px</strong> — LG ≥1024 · Double (Alpha)</p>
+          <div class="exp-cell" style="width: 664px">
+            <header class="section-header-branded">
+              <a class="section-header-branded__banner" href="#channel" aria-label="Health">
+                <img class="section-header-branded__bg" src="../../assets/images/section-header-branded-health.jpg" alt="" />
+                <img class="section-header-branded__logo" src="../../assets/images/logo-health.svg" alt="Health" width="89" height="26" />
+                <span class="section-header-branded__arrow btn btn-tertiary-dark btn--sm btn--icon-only" aria-hidden="true"><span class="icon icon--arrow-right-light" aria-hidden="true"></span></span>
+              </a>
+            </header>
+          </div>
+          <p class="exp-cell-label"><strong>996px</strong> — LG ≥1024 · Triple (Gamma)</p>
+          <div class="exp-cell" style="width: 996px">
+            <header class="section-header-branded">
+              <a class="section-header-branded__banner" href="#channel" aria-label="Health">
+                <img class="section-header-branded__bg" src="../../assets/images/section-header-branded-health.jpg" alt="" />
+                <img class="section-header-branded__logo" src="../../assets/images/logo-health.svg" alt="Health" width="89" height="26" />
+                <span class="section-header-branded__arrow btn btn-tertiary-dark btn--sm btn--icon-only" aria-hidden="true"><span class="icon icon--arrow-right-light" aria-hidden="true"></span></span>
+              </a>
+            </header>
+          </div>
         </div>
-        <p class="exp-cell-label"><strong>996px</strong> — LG ≥1024 · Triple (Gamma)</p>
-        <div class="exp-cell" style="width: 996px">
-          <header class="section-header-branded">
-            <a class="section-header-branded__banner" href="#channel" aria-label="The Crime Desk">
-              <img class="section-header-branded__bg" src="../../assets/images/section-header-branded-crime-desk.jpg" alt="" />
-              <img class="section-header-branded__logo" src="images/logo-crime-desk.svg" alt="The Crime Desk" width="171" height="42" />
-              <span class="section-header-branded__arrow btn btn-tertiary-dark btn--sm btn--icon-only" aria-hidden="true"><span class="icon icon--arrow-right-light" aria-hidden="true"></span></span>
-            </a>
-          </header>
+        <div class="exp-panel" role="tabpanel" id="exp-panel-sport" aria-labelledby="exp-tab-sport" hidden>
+          <p class="exp-cell-label"><strong>195px</strong> — Half a mobile browser width (e.g. iPhone 390 ÷ 2)</p>
+          <div class="exp-cell" style="width: 195px">
+            <header class="section-header-branded">
+              <a class="section-header-branded__banner" href="#channel" aria-label="Daily Mail Sport">
+                <img class="section-header-branded__bg" src="../../assets/images/section-header-branded-sport.jpg" alt="" />
+                <img class="section-header-branded__logo" src="../../assets/images/logo-dailymail-sport.svg" alt="Daily Mail Sport" width="187" height="26" />
+                <span class="section-header-branded__arrow btn btn-tertiary-dark btn--sm btn--icon-only" aria-hidden="true"><span class="icon icon--arrow-right-light" aria-hidden="true"></span></span>
+              </a>
+            </header>
+          </div>
+          <p class="exp-cell-label"><strong>332px</strong> — LG ≥1024 · Single (½ Alpha)</p>
+          <div class="exp-cell" style="width: 332px">
+            <header class="section-header-branded">
+              <a class="section-header-branded__banner" href="#channel" aria-label="Daily Mail Sport">
+                <img class="section-header-branded__bg" src="../../assets/images/section-header-branded-sport.jpg" alt="" />
+                <img class="section-header-branded__logo" src="../../assets/images/logo-dailymail-sport.svg" alt="Daily Mail Sport" width="187" height="26" />
+                <span class="section-header-branded__arrow btn btn-tertiary-dark btn--sm btn--icon-only" aria-hidden="true"><span class="icon icon--arrow-right-light" aria-hidden="true"></span></span>
+              </a>
+            </header>
+          </div>
+          <p class="exp-cell-label"><strong>664px</strong> — LG ≥1024 · Double (Alpha)</p>
+          <div class="exp-cell" style="width: 664px">
+            <header class="section-header-branded">
+              <a class="section-header-branded__banner" href="#channel" aria-label="Daily Mail Sport">
+                <img class="section-header-branded__bg" src="../../assets/images/section-header-branded-sport.jpg" alt="" />
+                <img class="section-header-branded__logo" src="../../assets/images/logo-dailymail-sport.svg" alt="Daily Mail Sport" width="187" height="26" />
+                <span class="section-header-branded__arrow btn btn-tertiary-dark btn--sm btn--icon-only" aria-hidden="true"><span class="icon icon--arrow-right-light" aria-hidden="true"></span></span>
+              </a>
+            </header>
+          </div>
+          <p class="exp-cell-label"><strong>996px</strong> — LG ≥1024 · Triple (Gamma)</p>
+          <div class="exp-cell" style="width: 996px">
+            <header class="section-header-branded">
+              <a class="section-header-branded__banner" href="#channel" aria-label="Daily Mail Sport">
+                <img class="section-header-branded__bg" src="../../assets/images/section-header-branded-sport.jpg" alt="" />
+                <img class="section-header-branded__logo" src="../../assets/images/logo-dailymail-sport.svg" alt="Daily Mail Sport" width="187" height="26" />
+                <span class="section-header-branded__arrow btn btn-tertiary-dark btn--sm btn--icon-only" aria-hidden="true"><span class="icon icon--arrow-right-light" aria-hidden="true"></span></span>
+              </a>
+            </header>
+          </div>
+        </div>
+        <div class="exp-panel" role="tabpanel" id="exp-panel-showbiz" aria-labelledby="exp-tab-showbiz" hidden>
+          <p class="exp-cell-label"><strong>195px</strong> — Half a mobile browser width (e.g. iPhone 390 ÷ 2)</p>
+          <div class="exp-cell" style="width: 195px">
+            <header class="section-header-branded">
+              <a class="section-header-branded__banner" href="#channel" aria-label="This is Showbiz">
+                <img class="section-header-branded__bg" src="../../assets/images/section-header-branded-showbiz.jpg" alt="" />
+                <img class="section-header-branded__logo" src="../../assets/images/logo-this-is-showbiz.svg" alt="This is Showbiz" width="168" height="21" />
+                <span class="section-header-branded__arrow btn btn-tertiary-dark btn--sm btn--icon-only" aria-hidden="true"><span class="icon icon--arrow-right-light" aria-hidden="true"></span></span>
+              </a>
+            </header>
+          </div>
+          <p class="exp-cell-label"><strong>332px</strong> — LG ≥1024 · Single (½ Alpha)</p>
+          <div class="exp-cell" style="width: 332px">
+            <header class="section-header-branded">
+              <a class="section-header-branded__banner" href="#channel" aria-label="This is Showbiz">
+                <img class="section-header-branded__bg" src="../../assets/images/section-header-branded-showbiz.jpg" alt="" />
+                <img class="section-header-branded__logo" src="../../assets/images/logo-this-is-showbiz.svg" alt="This is Showbiz" width="168" height="21" />
+                <span class="section-header-branded__arrow btn btn-tertiary-dark btn--sm btn--icon-only" aria-hidden="true"><span class="icon icon--arrow-right-light" aria-hidden="true"></span></span>
+              </a>
+            </header>
+          </div>
+          <p class="exp-cell-label"><strong>664px</strong> — LG ≥1024 · Double (Alpha)</p>
+          <div class="exp-cell" style="width: 664px">
+            <header class="section-header-branded">
+              <a class="section-header-branded__banner" href="#channel" aria-label="This is Showbiz">
+                <img class="section-header-branded__bg" src="../../assets/images/section-header-branded-showbiz.jpg" alt="" />
+                <img class="section-header-branded__logo" src="../../assets/images/logo-this-is-showbiz.svg" alt="This is Showbiz" width="168" height="21" />
+                <span class="section-header-branded__arrow btn btn-tertiary-dark btn--sm btn--icon-only" aria-hidden="true"><span class="icon icon--arrow-right-light" aria-hidden="true"></span></span>
+              </a>
+            </header>
+          </div>
+          <p class="exp-cell-label"><strong>996px</strong> — LG ≥1024 · Triple (Gamma)</p>
+          <div class="exp-cell" style="width: 996px">
+            <header class="section-header-branded">
+              <a class="section-header-branded__banner" href="#channel" aria-label="This is Showbiz">
+                <img class="section-header-branded__bg" src="../../assets/images/section-header-branded-showbiz.jpg" alt="" />
+                <img class="section-header-branded__logo" src="../../assets/images/logo-this-is-showbiz.svg" alt="This is Showbiz" width="168" height="21" />
+                <span class="section-header-branded__arrow btn btn-tertiary-dark btn--sm btn--icon-only" aria-hidden="true"><span class="icon icon--arrow-right-light" aria-hidden="true"></span></span>
+              </a>
+            </header>
+          </div>
         </div>
       </section>
       <section class="exp-row">
@@ -446,5 +595,16 @@
         </figure>
       </section>
     </main>
+    <script>
+      // Experiment only: the channel tabs in 1. show one panel at a time
+      document.querySelector('.tabs__list').addEventListener('click', (event) => {
+        const tab = event.target.closest('[role="tab"]');
+        if (!tab) return;
+        tab.parentElement.querySelectorAll('[role="tab"]').forEach((t) => {
+          t.setAttribute('aria-selected', String(t === tab));
+          document.getElementById(t.getAttribute('aria-controls')).hidden = t !== tab;
+        });
+      });
+    </script>
   </body>
 </html>
