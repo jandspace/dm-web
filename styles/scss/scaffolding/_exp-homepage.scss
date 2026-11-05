@@ -259,6 +259,58 @@
   }
 }
 
+// ── Test: SM card with preview text (index-3.html only) ───────────────────────
+// As on the live site: headline, then thumbnail + preview text, then metadata
+// across the card. Thumbnail 128 · LG 144 (library 120) · XL 152, 4:3; the
+// preview is cut to about its height (text-xxsm 18px lines: 5 · LG/XL 6).
+.homepage-sm-preview .article-card--sm-right:has(.article-card__preview) {
+  display: grid;
+  grid-template:
+    "headline headline"
+    "media preview"
+    "metadata metadata" / auto 1fr;
+  gap: var(--spacing-8) var(--spacing-12);
+
+  .article-card__body {
+    display: contents;
+  }
+
+  .article-headline {
+    grid-area: headline;
+  }
+
+  .article-card__media {
+    grid-area: media;
+
+    @include bp.respond-to(lg) {
+      width: 144px;
+    }
+
+    @include bp.respond-to(xl) {
+      width: 152px;
+    }
+  }
+
+  .article-card__preview {
+    grid-area: preview;
+    display: -webkit-box;
+    margin: 0;
+    font-size: var(--typography-font-size-text-xxsm);
+    color: var(--color-text-neutral-dark);
+    -webkit-line-clamp: 5;
+    line-clamp: 5;
+
+    @include bp.respond-to(lg) {
+      -webkit-line-clamp: 6;
+      line-clamp: 6;
+    }
+  }
+
+  .article-card__metadata {
+    grid-area: metadata;
+  }
+}
+
 // ── Test: Columnist data + regular metadata (index-2.html only) ───────────────
 // The columnist byline (name + role · photo) is its own block, without the
 // comment count; the regular metadata row (channel · comments) follows it.
