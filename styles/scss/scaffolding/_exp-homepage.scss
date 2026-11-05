@@ -262,7 +262,8 @@
 // ── Test: SM card with preview text (index-3.html only) ───────────────────────
 // As on the live site: headline, then thumbnail + preview text, then metadata
 // across the card. Thumbnail 128 · LG 144 (library 120) · XL 152, 4:3; the
-// preview is cut to about its height (text-xxsm 18px lines: 5 · LG/XL 6).
+// preview is cut to about its height (text-xxsm, narrower 13.44px lines:
+// 7 · LG/XL 8).
 .homepage-sm-preview .article-card--sm-right:has(.article-card__preview) {
   display: grid;
   grid-template:
@@ -296,13 +297,14 @@
     display: -webkit-box;
     margin: 0;
     font-size: var(--typography-font-size-text-xxsm);
+    line-height: var(--typography-line-height-narrower);
     color: var(--color-text-neutral-dark);
-    -webkit-line-clamp: 5;
-    line-clamp: 5;
+    -webkit-line-clamp: 7;
+    line-clamp: 7;
 
     @include bp.respond-to(lg) {
-      -webkit-line-clamp: 6;
-      line-clamp: 6;
+      -webkit-line-clamp: 8;
+      line-clamp: 8;
     }
   }
 
