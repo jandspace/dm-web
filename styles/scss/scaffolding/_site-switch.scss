@@ -1,0 +1,20 @@
+// ── Site switch — SCAFFOLDING ONLY ────────────────────────────────────────────
+// Three icon buttons above the logo in the left panels: Library (demo-nav.js),
+// Experiments and Projects (experiments/index.html, projects/index.html).
+// Button SM icon-only — current: Primary Neutral, others: Quaternary Neutral.
+// Each button names its Tooltip (aria-describedby) — scripts/modules/tooltip.js.
+// A keyline (Divider, end to end) sits under the buttons, 16px from each side.
+
+@use '../components/divider';
+
+.site-switch {
+  position: relative;
+  display: flex;
+  gap: var(--spacing-4);
+  margin-bottom: var(--spacing-16);
+  padding-bottom: var(--spacing-16);
+
+  &::after {
+    @include divider.divider(horizontal, false);
+  }
+}

@@ -58,7 +58,7 @@ The native `popover` attribute does the opening and closing (the button's `popov
 ```
 
 - H5 Semibold, padding 12 · 16, 240px at most (wraps).
-- The trigger names it with `aria-describedby`; the script shows it on mouse hover and keyboard focus (`:focus-visible`), hides it on leave, blur and Esc.
+- The trigger names it with `aria-describedby`; the script shows it on mouse hover after a 500ms rest (so passing over buttons does not flash bubbles) and at once on keyboard focus (`:focus-visible`), hides it on leave, blur and Esc.
 - **Flash** after an action: `Tooltip.flash(tooltip, trigger)` — 1.5s (e.g. Copy link → "Link copied", `role="status"`). The only tooltip that shows on touch, because it follows a tap.
 - **Not for results that matter.** A tooltip is small and next to the button, easy to miss, and cannot hold a button. Pick by what happened:
 

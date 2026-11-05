@@ -15,15 +15,21 @@
   <body>
     <div class="notes-layout">
       <nav class="notes-nav" aria-label="Projects">
-        <a class="notes-nav__logo" href="./">
+        <div class="site-switch">
+          <a class="btn btn-quaternary-neutral btn--sm btn--icon-only" href="../" aria-label="Library" aria-describedby="site-switch-library"><span class="icon icon--book-closed" aria-hidden="true"></span></a>
+          <a class="btn btn-quaternary-neutral btn--sm btn--icon-only" href="../experiments/" aria-label="Experiments" aria-describedby="site-switch-experiments"><span class="icon icon--tubes" aria-hidden="true"></span></a>
+          <a class="btn btn-neutral btn--sm btn--icon-only" href="./" aria-label="Projects" aria-describedby="site-switch-projects" aria-current="page"><span class="icon icon--flow" aria-hidden="true"></span></a>
+          <div class="tooltip" id="site-switch-library" role="tooltip" popover="manual" data-placement="bottom">Library</div>
+          <div class="tooltip" id="site-switch-experiments" role="tooltip" popover="manual" data-placement="bottom">Experiments</div>
+          <div class="tooltip" id="site-switch-projects" role="tooltip" popover="manual" data-placement="bottom">Projects</div>
+        </div>
+        <a class="demo-nav__logo" href="./">
           <img src="../assets/images/logo-dailymail.svg" alt="Daily Mail" width="140" height="29" />
-          <span class="notes-nav__strapline">Projects</span>
+          <span class="demo-nav__strapline">Projects</span>
         </a>
 
         <p class="notes-nav__heading" id="notes-year-label">Year</p>
         <ul class="notes-nav__menu" id="notes-year" aria-labelledby="notes-year-label"></ul>
-
-        <a class="notes-nav__back" href="../">← Web UI Kit</a>
       </nav>
 
       <main class="notes-main">
@@ -33,6 +39,7 @@
       </main>
     </div>
 
+    <script src="../scripts/modules/tooltip.js" defer></script>
     <script src="../scripts/scaffolding/notes-index.js"></script>
     <script>
       // ── Project notes ───────────────────────────────────────────────────────
@@ -49,74 +56,6 @@
       //   result   outcome, once there is one
       //   pages    [label, file in the folder, one-line description]
       const PROJECTS = [
-        {
-          id: '202611-prj-homepage',
-          date: '2026-11-03',
-          title: 'Homepage — page frame',
-          status: 'In progress',
-          notes: [
-            'DM homepage built from the library, one content block at a time.',
-            'Frame from Figma 8709:88370: Billboard › Masthead › Sticky Navbar › Navbar L2 › 3 empty sections › Footer.',
-            'All breakpoints (XS–XL), no viewport switch. Billboard MD 728×90 / LG 970×250 · Side Ads LG+ · mobile bottom bar <MD.',
-            'Side Ads: start 29px under the masthead top, stick at 64px, stop at the footer. 8px from the container (doc; Figma 0).',
-            'Sections: .homepage-slot placeholders. Styles: _prj-homepage.scss · behaviour: scripts/modules/masthead.js.',
-            '2026-11-03 — Masthead keylines (library): 16px inset, border/translucent-dark/pale.',
-            '2026-11-03 — Main page moved from web/ to the project folder.',
-            '2026-11-03 — Footer → shared page-footer.js (reveal underlay).',
-            '2026-11-04 — Navbar L2 (Home subchannels) as first child of <main>; page container moved inside <main>. Side Ads lift 185 (masthead 154 + L2 60 − 29).',
-            '2026-11-04 — Section 1: Banner Story, Lead Story only (News, 1.2k comments) — xlsx dm-home-cards-20261103-05 #2. Artwork: wide 964×544, xs 750×700. Dweb / Mweb headlines via .homepage-dweb / .homepage-mweb.',
-            '2026-11-04 — Side Ads on all of LG (library): cut at the window edge below 1350, no sideways scroll.',
-            '2026-11-04 — Billboard as an underlay (as The Washington Post): sticks at the top, masthead and <main> slide over it. Page styles only.',
-            '2026-11-04 — Masthead top edge: Elevation Lv-3 once scrolling starts (0 → 16px, scroll-driven CSS, no script; Lv-2 was too faint).',
-            '2026-11-04 — Billboard band: background lighter → light over the first 250px of scroll.',
-            '2026-11-04 — Fix: footer covers the billboard too (.homepage__footer — full-bleed lightest surface).',
-            '2026-11-03 — Mouse drag = swipe on sideways rows (demo-drag-swipe.js).',
-            '2026-11-04 — Banner artwork linked from i.dailymail.com (original addresses); local copies in images/ removed.',
-            '2026-11-04 — Section 2 (Figma 8742:80203): Alpha 7 rows + Beta Showbiz (Branded header, Channel Puff, MPU / DMPU). Default cards, placeholder content; Beta MD headlines h6.',
-            '2026-11-04 — Section 2: Alpha col 2 first 3 MD — no thumbnail, Columnist (Normal) metadata; play icons as Figma. Tablet (MD): <main> 768 wide. Article Card max widths removed (library).',
-            '2026-11-04 — Play icons now match Figma (icon layer on, not only the variant): + MD Vertical, XL, Beta MD 1st and after the MPU. Tablet: <main> surface spans the window, billboard no longer shows beside it.',
-            '2026-11-04 — Side Ads gap (library): 8px, shrinking to 0 below a 1332 window (0 from 1316).',
-            '2026-11-04 — Section 2 filled from the xlsx. Alpha: MD Vertical #21 · SM #40–60 · Columnist MD #25, #26, #37 · Image Only LG #97, #98 · XL #3. Beta (Showbiz only): Image Only MD #102 · MD #6, #9–12, #15 (XL Showbiz rows) · SM Right #71–76. Play icon = video article (xlsx Notes). Badges not yet.',
-            '2026-11-04 — Splash (MD Vertical, xlsx #21 updated): Trump midterms story, News, 5.1k — video player (Article Card Media › Video: in-card player, starts muted); article-card-media.js loaded.',
-            '2026-11-04 — Image Only LG #97 (I’m A Celeb): animated preview (MP4, poster = article image), News, 1.7k — xlsx updated.',
-            '2026-11-04 — Badges (sm, in the headline link): Breaking — Corbyn #44 · M+ — £15k debt #45 · M+ Exclusive — Jail threat #41.',
-            '2026-11-04 — Beta Image Only MD #102 → Cheryl meme queen story: animated preview (MP4) + poster. xlsx updated.',
-            '2026-11-04 — HTML reformatted one element per line (was one 35k-char line); manual edits kept.',
-            '2026-11-04 — Headline badges: margin removed (library), a space follows each badge.',
-            '2026-11-04 — Badge vertical position retuned per size (library). Projects home button icon → ico-menu-list.',
-            '2026-11-04 — Placeholder sections: no border, soft inset shadow (32px blur) in background/neutral/light.',
-            '2026-11-04 — Row 6 (Oxford Street ambulance, News 328): Image Only LG → XL card, animated preview (MP4 + poster) + play icon. No standfirst yet.',
-            '2026-11-04 — Alpha col 2 Columnist MD ×3 from Figma 8779:8999: Quentin Letts · Richard Kay · Liz Jones — M+ badge, serif (Lora) headline, own role, photos in assets/images/columnist-*.png. Photo kept in the metadata row (library); Figma puts it beside the headline.',
-            '2026-11-04 — Beta Showbiz branded header from Figma 8742:80314: background + This is Showbiz logo (assets/images/section-header-branded-showbiz.jpg, logo-this-is-showbiz.svg).',
-            '2026-11-04 — DMPU (Beta, 300×600) only from LG — left out on mobile and tablet (page styles).',
-            '2026-11-04 — Nav Sheet: the edition pill opens the Select Edition menu; pill = Button Tertiary Neutral XS, Pressed + chevron up while open (library).',
-            '2026-11-04 — Edition menus: picking an edition updates every Edition button (flag + code) and the Selected tick (library).',
-            '2026-11-04 — Section 3 placeholder → "Verticals module".',
-            '2026-11-04 — Midterms 2026 section under it (Figma 8709:101047): Section Header (icon ico-midterm2026-color + topic tabs) · Image Only Large full width · split joined: MD + Key Updates, MD, Columnist MD (M+ Opinion, serif) · Beta SM Right ×4.',
-            '2026-11-04 — Midterms Image Only: Trump midterms (#article-16263253), animated preview MP4 + poster, News 8.9k. Other cards: Figma placeholder content.',
-            '2026-11-04 — Badges: M+ Exclusive — Learjet (Image Only, signpost) · M+ — Oxford Street (XL), Henry Nowak (SM) · Breaking — Midterms Image Only (signpost).',
-            '2026-11-04 — Midterms Alpha: Live MD (Alaska race, News 5.7k, 2 key updates; play icon removed — not a video) · MD election calculator (no metadata) · Columnist Dan Hodges (M+ Opinion, 97; photo from Figma 8782:34574 → assets/images/columnist-dan-hodges.png). Beta still placeholder.',
-            '2026-11-04 — Live card metadata: Channel + Timestamp (News · 2m ago · 5.7k).',
-            '2026-11-04 — Midterms Beta: SM Right ×4, no metadata (as Section 2 Beta) — M+ Opinion McLaughlin · M+ Ossoff · Luna · Breaking News Speaker Johnson.',
-            '2026-11-04 — Money section (Figma 8804:238027): Branded header This is Money + Sponsored by Nationwide (Extra block from the Section Header Branded experiment — page styles until it is decided) · row of 3: SM Left (M+, 73) + Columnist MD (M+ Opinion, 287) · Image Only Medium (Simon Lambert inflation, animated preview MP4, no poster, 175) · SM Right ×2 + headline only (M+ Inside Story).',
-            '2026-11-04 — Money assets: section-header-branded-money.jpg, logo-this-is-money.svg, logo-nationwide.svg, columnist-money-housing.png (Figma 8804:238662). Columnist name still a placeholder.',
-            '2026-11-04 — Money: Budget tax calculator ↔ freehold swapped — Budget → SM Left (392 comments), freehold → SM Right (M+ xs, no metadata).',
-            '2026-11-04 — Femail section (Figma 8809:238984): Branded header with figures (experiment variant — page styles .homepage-figures / .homepage-figure) · split joined: Alpha Image Only Large (toilet trips, M+, 108) · Beta Columnist MD Charlotte Cripps (serif, no comments given) + SM Right ×2 with comments (Tracey Cox 7 · M+ anxiety cure 19).',
-            '2026-11-04 — Femail assets: section-header-branded-femail.jpg, -femail-left/right.png, logo-femail.svg, columnist-charlotte-cripps.png (Figma 8809:239453).',
-            '2026-11-04 — Femail Beta SM Right: metadata removed (as the other Betas).',
-            '2026-11-04 — Comment Only metadata reads "N comments" (doc Article Card § 6): Money Budget 392 · Money Image Only 175 · Femail Image Only 108.',
-            '2026-11-05 — index-2.html: headline length test — all 37 SM cards (Left + Right) rewritten to 132–146 characters (CMS limit 256), same story and thumbnail.',
-            '2026-11-05 — index-2.html: SM Left cards → Right Thumb (thumbnail right from LG, left below; headline stays H5).',
-            '2026-11-05 — index-2.html: SM metadata moved out of the body, full card width under thumbnail + headline (page class .homepage-sm-meta-full).',
-            '2026-11-05 — index-2.html: every card's comment count reads "N comments", columnist bylines excepted (with the channel too — test only; library rule: count alone next to a channel).',
-            '2026-11-05 — index-2.html: columnist cards (6) — byline block .article-card__columnist-data (name, role, photo; no comments) + regular metadata under it (channel · N comments). Channels: Letts News · Kay Royals · Jones Lifestyle · Hodges News · Money columnist Money · Cripps Femail (no count given).',
-          ],
-          result: '',
-          pages: [
-            ['Homepage', 'index.html', 'Banner Story, Section 2 (xlsx content), Midterms 2026, Money, Femail, all breakpoints.'],
-            ['Headline length test', 'index-2.html', 'Copy of index.html: SM card headlines 120–150 characters, all SM cards Right Thumb, metadata full width.'],
-          ],
-        },
       ];
 
       renderNotesIndex(PROJECTS);

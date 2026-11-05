@@ -122,6 +122,36 @@
     return a;
   };
 
+  // Site switch above the logo — Library (current) · Experiments · Projects, each
+  // named by a Tooltip (same buttons on experiments/ and projects/; styles:
+  // scaffolding/_site-switch.scss)
+  const siteSwitch = () => {
+    const box = el('div', { class: 'site-switch' });
+    [
+      ['Library', '', 'book-closed'],
+      ['Experiments', 'experiments/', 'tubes'],
+      ['Projects', 'projects/', 'flow'],
+    ].forEach(([label, path, icon]) => {
+      const id = `site-switch-${label.toLowerCase()}`;
+      const variant = path ? 'btn-quaternary-neutral' : 'btn-neutral';
+      const a = el('a', { class: `btn ${variant} btn--sm btn--icon-only`, href: new URL(path, root).href, 'aria-label': label, 'aria-describedby': id }, [
+        el('span', { class: `icon icon--${icon}`, 'aria-hidden': 'true' }),
+      ]);
+      if (!path) a.setAttribute('aria-current', 'page');
+      box.append(a, el('div', { class: 'tooltip', id, role: 'tooltip', popover: 'manual', 'data-placement': 'bottom', text: label }));
+    });
+    return box;
+  };
+
+  // Tooltip behaviour: init it if the page already has it, else load it
+  // (a page that loads it later inits the panel's tooltips itself)
+  const loadTooltip = () => {
+    if (window.Tooltip) window.Tooltip.init();
+    else if (!document.querySelector('script[src*="scripts/modules/tooltip.js"]')) {
+      document.head.append(el('script', { src: new URL('scripts/modules/tooltip.js', root).href }));
+    }
+  };
+
   // ── Side panel ──
   const buildNav = () => {
     const list = el('div', { class: 'demo-nav__groups' });
@@ -147,7 +177,7 @@
       el('button', { class: 'demo-nav__toggle', type: 'button', 'aria-label': 'Show demo list' }, [
         el('span', { 'aria-hidden': 'true', text: '+' }),
       ]),
-      el('div', { class: 'demo-nav__panel' }, [logo(), list]),
+      el('div', { class: 'demo-nav__panel' }, [siteSwitch(), logo(), list]),
     ]);
 
     // Click on the rail button pins the panel open until it is clicked again
@@ -156,6 +186,7 @@
     });
 
     document.body.prepend(nav);
+    loadTooltip();
     document.body.classList.add('demo-has-nav');
   };
 

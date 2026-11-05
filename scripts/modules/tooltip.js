@@ -3,8 +3,8 @@
 //
 //   .popover[popover]       opened by its button[popovertarget] (native: outside
 //                           click and Esc close it) — this script only places it
-//   .tooltip[popover]       shown on hover (mouse) / focus of the element whose
-//                           aria-describedby names it; hidden on leave, blur, Esc
+//   .tooltip[popover]       shown on hover (mouse, after 500ms) / focus of the element
+//                           whose aria-describedby names it; hidden on leave, blur, Esc
 //   Tooltip.flash(tooltip, trigger)   show it for 1.5s ("Link copied")
 //
 // Placing: on the data-placement side (default top), flipped to the other side
@@ -18,6 +18,7 @@
   const OFFSET = 16; // 12 tail + 4 gap
   const EDGE = 16; // kept inside the viewport
   const TAIL_END = 18; // tail centre, nearest an end can get
+  const HOVER_DELAY = 500; // mouse rests this long before a tooltip shows
   const FLIP = { top: 'bottom', bottom: 'top', left: 'right', right: 'left' };
   const ready = new WeakSet();
   const triggers = new Map(); // bubble → its trigger
@@ -91,11 +92,18 @@
     });
   };
 
-  // Tooltip: hover (mouse) and keyboard focus of the element that names it
+  // Tooltip: hover (mouse, after a short rest) and keyboard focus of the element
+  // that names it
   const setupTooltip = (tooltip) => {
     document.querySelectorAll(`[aria-describedby~="${tooltip.id}"]`).forEach((trigger) => {
-      trigger.addEventListener('pointerenter', (e) => e.pointerType === 'mouse' && show(tooltip, trigger));
-      trigger.addEventListener('pointerleave', () => hide(tooltip));
+      let timer;
+      trigger.addEventListener('pointerenter', (e) => {
+        if (e.pointerType === 'mouse') timer = setTimeout(() => show(tooltip, trigger), HOVER_DELAY);
+      });
+      trigger.addEventListener('pointerleave', () => {
+        clearTimeout(timer);
+        hide(tooltip);
+      });
       trigger.addEventListener('focus', () => trigger.matches(':focus-visible') && show(tooltip, trigger));
       trigger.addEventListener('blur', () => hide(tooltip));
     });

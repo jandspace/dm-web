@@ -38,7 +38,7 @@ Same format as experiments: `projects/YYYYMM-prj-<name>/`, main page `index.html
 ```
 projects/
 ├── index.html                 — Projects landing page (PROJECTS list)
-├── 202611-prj-homepage/
+├── YYYYMM-prj-<name>/
 │   └── index.html             — the project's main page
 └── ...
 ```
@@ -465,7 +465,7 @@ One-off tests and A/B variants live in `experiments/YYYYMM-exp-<name>/` (e.g. `2
 
 ## Projects
 
-Project prototypes (a page or flow built from the library, e.g. a homepage demo) live in `projects/YYYYMM-prj-<name>/` (e.g. `202611-prj-homepage/`) — the experiments naming, with `prj`. The main page is `index.html` right in the project folder — no platform subfolder; other pages sit beside it. Web pages cover every breakpoint unless the project says otherwise.
+Project prototypes (a page or flow built from the library, e.g. a homepage demo) live in `projects/YYYYMM-prj-<name>/` — the experiments naming, with `prj`. A page that still needs testing (e.g. the homepage, `experiments/202611-exp-homepage/`) stays in `experiments/` until it is settled. The main page is `index.html` right in the project folder — no platform subfolder; other pages sit beside it. Web pages cover every breakpoint unless the project says otherwise.
 
 - **Shared code only:** pages link `tokens/*.css` and `styles/css/main.css`, and use library classes and `scripts/modules/` as they are. No inline `<style>` — page styles go in `styles/scss/scaffolding/_prj-<name>.scss` (prototype-only, `@use` in `main.scss`). Behaviour a page needs that the library has only inline in a demo moves to `scripts/modules/` first (e.g. `masthead.js`), never copied.
 - **Images:** link the original image address (e.g. `https://i.dailymail.com/…`) when it can be linked — don't download a copy. Only images with no linkable source go in the project's own `images/` folder.
