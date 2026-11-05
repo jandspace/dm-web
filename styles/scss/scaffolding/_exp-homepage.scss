@@ -57,7 +57,7 @@
     }
 
     @include bp.respond-to(lg) {
-      max-width: none;
+      max-width: 100%; // not none, so the width can ease (see .container below)
       box-shadow: none;
       clip-path: none;
     }
@@ -121,6 +121,16 @@
   to {
     background-color: var(--color-background-neutral-light);
   }
+}
+
+// Containers ease to the next breakpoint width when the window is resized,
+// instead of jumping. Below LG the container just follows the window; the
+// step there is <main> (768 at MD), so it eases too.
+.homepage main,
+.homepage .container {
+  transition: max-width 0.3s ease-out;
+
+  @media (prefers-reduced-motion: reduce) { transition: none; }
 }
 
 // Side Ads stick under the Sticky Navbar (48 + 16). The rails start 29px below

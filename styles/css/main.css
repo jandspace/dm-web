@@ -12872,7 +12872,7 @@ body:not(.demo-frame) .demo-container-start {
 }
 @media (min-width: 1024px) {
   .homepage main {
-    max-width: none;
+    max-width: 100%;
     box-shadow: none;
     clip-path: none;
   }
@@ -12920,6 +12920,17 @@ body:not(.demo-frame) .demo-container-start {
     background-color: var(--color-background-neutral-light);
   }
 }
+.homepage main,
+.homepage .container {
+  transition: max-width 0.3s ease-out;
+}
+@media (prefers-reduced-motion: reduce) {
+  .homepage main,
+  .homepage .container {
+    transition: none;
+  }
+}
+
 .homepage__page {
   --ad-sticky-top: calc(var(--spacing-48) + var(--spacing-16));
 }
