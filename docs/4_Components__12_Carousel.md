@@ -12,7 +12,7 @@ Used by: Article Card carousel (Slide), Shorts Signpost (Row).
 
 | Type | In view | Shows there is more by | Dots |
 |---|---|---|---|
-| **Row** (default) | Several items, each its own width | The item **cut off on the right** — with a 16px fade on the edge | **No** |
+| **Row** (default) | Several items, each its own width | The item **cut off on the right** — a plain crop at the edge, no fade | **No** |
 | **Slide** (`.carousel--slide`) | One item fills the box | **Dots** — nothing else is in view | **Yes** |
 
 Rule: **if an item is cut off, no dots; if one item fills the box, dots.** On a Row the cut-off item already says "more"; dots would also be ambiguous there (one per item or per page? the number in view changes with the width). On a Slide there is no cut-off item, so the dots (and the arrows, at every width) are the sign.
@@ -23,7 +23,7 @@ Rule: **if an item is cut off, no dots; if one item fills the box, dots.** On a 
 ## 2. Structure
 
 ```html
-<div class="carousel [carousel--slide" data-theme="light"] [data-autoplay]>
+<div class="carousel [carousel--slide" data-theme="light"] [data-autoplay] [data-step="item"]>
   <div class="carousel__track">
     …items (any element: img, video, a card link)…
   </div>
@@ -36,10 +36,10 @@ Rule: **if an item is cut off, no dots; if one item fills the box, dots.** On a 
 
 | Part | Notes |
 |---|---|
-| `.carousel__track` | Scroll Row (no scrollbar, smooth paging, instant with reduced motion). `scroll-snap-type: x mandatory`: a swipe always stops with an item at the start. Its children are the items — no wrapper |
-| Row fade | `mask-image`, 16px on the right edge (Scroll Row `fade-end`), so the cut-off item fades out. None on a Slide |
+| `.carousel__track` | Scroll Row (no scrollbar, instant with reduced motion). An arrow or autoplay step glides **600ms, ease-in-out** (script; the browser's smooth scroll was too quick and can't be timed) — snap is held off while it moves (`[data-moving]`); a swipe keeps the browser's own scroll and snap. `scroll-snap-type: x mandatory`: a swipe always stops with an item at the start. Its children are the items — no wrapper |
+| Row edge | The cut-off item is cropped at the right edge — no fade (removed 2026-11-06: the gradient looked odd over pictures) |
 | Slide items | Each `flex-basis: 100%` (`min-width: 0`, so an image shrinks to the box). The module sizes the box |
-| `.carousel__nav` | **Slide: every width. Row: LG only** (§ 6). 40px tertiary icon-only button, 8px around it, at the vertical centre of the picture — with or without dots. No shadow (flat on the picture, not an Elevation level). 40% opacity, 100% while the carousel is hovered or the arrow focused. No Prev at the start, no Next at the end (`hidden`, set by script) |
+| `.carousel__nav` | **Slide: every width. Row: LG only** (§ 6). 40px tertiary icon-only button, 8px around it, at the vertical centre of the picture — with or without dots. No shadow (flat on the picture, not an Elevation level). 60% opacity, 100% while the carousel is hovered or the arrow focused. No Prev at the start, no Next at the end (`hidden`, set by script) |
 | `.carousel__dots` | **Inside the picture**, along its bottom edge, over a scrim (`effect/translucent-dark/clear` → `moderate`): centred, 8px gap, 16 × 20 padding (Figma: 8 around the Indicator + its own 8 × 12), no clicks (decorative). Never under the picture — in a card the headline follows the picture directly, and the arrows stay at its centre |
 | `.carousel__dot` | 8 × 8, `.is-active` 32 × 8 (width animates 200ms) |
 
@@ -79,7 +79,7 @@ One look only: dots always sit on the picture, over the dark scrim. (The Figma C
 | Step | The next slide | The item cut off on the right moves to the start (a page of items) |
 | Timing | The active dot's fill (CSS animation) — it shows the wait | A 5s timer in the script, started again whenever the row stops — nothing shows the wait |
 
-Both wait while the carousel is hovered with a mouse, has keyboard focus, or is less than half on screen; any move (arrow, swipe) starts the 5s again. None with `prefers-reduced-motion: reduce`.
+Both wait while the carousel is hovered with a mouse, has keyboard focus, or is less than half on screen — it does not start until the carousel is half on screen; any move (arrow, swipe) starts the 5s again. None with `prefers-reduced-motion: reduce`.
 
 ## 5. Behaviour
 
@@ -89,6 +89,7 @@ Both wait while the carousel is hovered with a mouse, has keyboard focus, or is 
 |---|---|
 | **Next** | The first item cut off on the right moves to the start. On a Slide that is the next slide |
 | **Prev** | The reverse: the row moves back until the item that was first is the one cut off on the right. Next then Prev returns to where it was |
+| **One item at a time** (`data-step="item"`, Row) | Next brings the item after the one at the start; Prev the one before it. Autoplay steps the same way. For rows where each item is a story of its own (e.g. a Deep Dive row of Image Only cards) |
 | **Swipe / trackpad** | Snaps an item to the start |
 | **Dots** | Follow the item at the start. Slide: the other slides get `aria-hidden` |
 | **`carousel:settle`** | Event on `.carousel` when the row stops; `detail.item` is the item at the start (or the one an arrow brought there). Shorts Signpost plays that card's preview |
@@ -103,7 +104,7 @@ Call `Carousel.init(root)` after adding carousels to the page.
 | **Row** | Arrows | No arrows — swipe |
 
 - **Desktop:** arrows on both — a mouse cannot swipe.
-- **Slide on touch:** a single picture gives no hint that it moves. The arrows (with the dots) tell the reader it is a slider, and are a way to move it besides swiping. They rest at 40% (there is no hover on touch) and come to 100% while tapped.
+- **Slide on touch:** a single picture gives no hint that it moves. The arrows (with the dots) tell the reader it is a slider, and are a way to move it besides swiping. They rest at 60% (there is no hover on touch) and come to 100% while tapped.
 - **Row on touch:** the item cut off on the right already says "swipe me", and arrows over a row of small cards would cover them. Swipe only.
 
 Code: `--carousel-nav` on `.carousel` — `none` below LG on a Row, `block` otherwise.

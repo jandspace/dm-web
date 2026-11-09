@@ -8,6 +8,7 @@ Run from the repo root:
 """
 
 HEADLINE = "Headline of Daily Mail article preview card - lorem ipsum dolor sit amet, con sectetur adipiscing jand"
+PREVIEW = "Preview Text - Lorem ipsum dolor sit amet, con sectetur ad ipiscing elit, quis que quis massa sit a met ex con sectetur dovi fermentum. Duis phare tra suscip zit."  # SM Left (built in); same short text the template uses for MD
 IMG = '<img src="../../assets/images/article-card-placeholder.jpg" alt="" />'
 IMG_PORTRAIT = '<img src="../../assets/images/article-card-placeholder-portrait.jpg" alt="" />'
 BADGE_SIZE = {2: "lg", 3: "md", 4: "md", 5: "sm", 6: "xs"}
@@ -17,7 +18,7 @@ META = ('<div class="article-card__metadata article-card-metadata">'
         '<a class="article-card-metadata__channel" href="#channel"><span class="article-card-metadata__channel-text">Channel</span></a>'
         '<a class="article-card-metadata__comments" href="#comments" aria-label="9.9k comments">'
         '<span class="icon icon--speechbubble-ellipsis article-card-metadata__comments-icon" aria-hidden="true"></span>'
-        '9.9k</a>'
+        '9.9k<span class="article-card-metadata__comments-word">comments</span></a>'
         '</div>')
 
 
@@ -68,11 +69,14 @@ def card(type_mod, level, kind=None, span=""):
             media,
             f'      {META}',
             '    </article>'])
+    # SM Left: thumbnail + preview come as one block (CMS), shown from LG — always in
+    preview = [f'        <p class="article-card__preview">{PREVIEW}</p>'] if type_mod == "sm-left" else []
     return "\n".join([
         f'    <article class="{cls}">',
         media,
         '      <div class="article-card__body">',
         headline(level, kind, 8),
+        *preview,
         f'        {META}',
         '      </div>',
         '    </article>'])
@@ -103,9 +107,9 @@ sections = [
      [card("md-vertical", 2, k) for k in trio]),
     ("MD", "1 column · media 358:215 · H4",
      [card("md", 4, k) for k in trio]),
-    ("SM: Left Thumb", "1 column · thumbnail 4:3 on the left (XL 152 · LG 120 · MD/SM-XS 128px) · H5",
+    ("SM: Left Thumb", "1 column · LG+: headline, then thumbnail 4:3 + preview text, then metadata · MD/SM-XS: thumbnail left, no preview (XL 152 · LG 144 · MD/SM-XS 128px) · H5",
      [card("sm-left", 5, k) for k in trio]),
-    ("SM: Right Thumb", "1 column · thumbnail 4:3 on the right from LG, on the left at MD and SM-XS · H6",
+    ("SM: Right Thumb (Puff)", "1 column · thumbnail 4:3 on the right from LG, on the left at MD and SM-XS · H6 · comment count without the word",
      [card("sm-right", 6, k) for k in trio]),
     ("Image Only (Large)", "2 columns · headline on the image · media 358:215 (SM-XS 15:16) · H3 · badge top-left",
      [image_only("large", 3, "demo-span-2")]),

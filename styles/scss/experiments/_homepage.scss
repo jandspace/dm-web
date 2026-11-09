@@ -1,0 +1,1224 @@
+// ── Experiment: Homepage (prototype only) ─────────────────────────────────────
+// Page styles for experiments/202611-exp-homepage/ — the DM homepage frame:
+// Billboard › Masthead › page container with Side Ads › Footer.
+//
+//   body.homepage
+//     main
+//       nav.navbar-l2                      full width, first child of <main>
+//       .container.ad-skin.homepage__page  page container; Side Ads beside it
+//         section.layout-full.homepage-slot  empty section, a placeholder until its
+//                                            content goes in (then drop the class)
+//     .container.homepage__footer        Footer — covers the billboard underlay
+//
+// Reference: Figma Web UI Kit › Homepage › Budget/Legacy - 1366x768 (8709:88370)
+
+@use "sass:map";
+@use "../foundation/breakpoints" as bp;
+@use "../components/divider";
+
+// SM-XS: room at the end of the page for the bottom ad bar (320×50 + 4px
+// padding top and bottom + its 1px keyline)
+.homepage {
+  padding-bottom: calc(50px + 2 * var(--spacing-4) + 1px);
+
+  @include bp.respond-to(md) {
+    padding-bottom: 0;
+  }
+}
+
+// Billboard: one slot, the creative for the breakpoint from <picture>
+.homepage .ad-billboard img {
+  display: block;
+  width: 100%;
+  height: 100%;
+}
+
+// Billboard as an underlay (as on The Washington Post): it stays at the top of
+// the window and the page — masthead (z 50) first, then <main> — slides over
+// it. <main> is positioned without a z-index, so it paints after the billboard
+// but makes no stacking context (the Side Ads keep their z-index over the
+// masthead), and carries the page surface to cover it.
+.homepage {
+  .ad-billboard {
+    position: sticky;
+    top: 0;
+  }
+
+  main {
+    position: relative;
+    background-color: var(--color-background-neutral-lightest);
+
+    // Tablet (MD): the page runs 768 wide, centred; its surface still spans
+    // the window (spread shadow, clipped to its height) so the billboard
+    // underlay never shows beside it
+    @include bp.respond-to(md) {
+      max-width: 768px;
+      margin-inline: auto;
+      box-shadow: 0 0 0 100vmax var(--color-background-neutral-lightest);
+      clip-path: inset(0 -100vmax);
+    }
+
+    @include bp.respond-to(lg) {
+      max-width: 100%; // not none, so the width can ease (see .container below)
+      box-shadow: none;
+      clip-path: none;
+    }
+  }
+}
+
+// The footer slides over the billboard too. Its container is 996 wide, so the
+// surface reaches the window edges with a spread shadow, clipped to its own
+// height (full-bleed background without a wrapper)
+.homepage__footer {
+  position: relative;
+  background-color: var(--color-background-neutral-lightest);
+  box-shadow: 0 0 0 100vmax var(--color-background-neutral-lightest);
+  clip-path: inset(0 -100vmax);
+}
+
+// The page lifts once it starts to scroll over the billboard: no shadow at the
+// top, Elevation Lv-3 above the masthead after the first 16px. Scroll-driven
+// (no script). Drawn by a pseudo-element the size of the masthead, clipped to
+// what lies above its top edge — so the shadow falls on the billboard only, not
+// on the page under the masthead, and the dropdown panels are not clipped.
+// Browsers without scroll timelines show no shadow.
+@supports (animation-timeline: scroll()) {
+  @include bp.respond-to(md) {
+    .homepage .masthead::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      clip-path: inset(-16px 0 100%);
+      pointer-events: none;
+      animation: homepage-lift linear both;
+      animation-timeline: scroll(root);
+      animation-range: 0 16px;
+    }
+
+    // The billboard band darkens as the page covers it: lighter → light over
+    // the first 250px (about the LG band's height)
+    .homepage .ad-billboard {
+      animation: homepage-sink linear both;
+      animation-timeline: scroll(root);
+      animation-range: 0 250px;
+    }
+  }
+}
+
+@keyframes homepage-lift {
+  from {
+    box-shadow: none;
+  }
+
+  to {
+    box-shadow: var(--elevation-3);
+  }
+}
+
+@keyframes homepage-sink {
+  from {
+    background-color: var(--color-background-neutral-lighter);
+  }
+
+  to {
+    background-color: var(--color-background-neutral-light);
+  }
+}
+
+// Containers ease to the next breakpoint width when the window is resized,
+// instead of jumping. Below LG the container just follows the window; the
+// step there is <main> (768 at MD), so it eases too.
+.homepage main,
+.homepage .container {
+  transition: max-width 0.3s ease-out;
+
+  @media (prefers-reduced-motion: reduce) {
+    transition: none;
+  }
+}
+
+// Side Ads stick under the Sticky Navbar (48 + 16). The rails start 29px below
+// the masthead top as in Figma, not at the container top: lifted by the
+// masthead (154) + Navbar L2 (60) minus 29, at LG/XL where Side Ads show —
+// update it if either changes height. They end with this container, so the
+// ads scroll up with the footer when it comes into view.
+.homepage__page {
+  --ad-sticky-top: calc(var(--spacing-48) + var(--spacing-16));
+
+  .ad-rail {
+    top: -185px;
+    z-index: 51; // over the masthead (50) beside it, under the Sticky Navbar (60)
+  }
+}
+
+// DMPU (300×600) only from LG, where Beta is a side rail; on mobile and
+// tablet Beta stacks under Alpha and the tall ad is left out
+.homepage .ad-slot--dmpu {
+  display: none;
+
+  @include bp.respond-to(lg) {
+    display: flex;
+  }
+}
+
+// ── Dweb / Mweb copy ──────────────────────────────────────────────────────────
+// Desktop and mobile are separate sites with their own headlines; this page
+// serves both, so a card can carry the two and show one per breakpoint.
+
+.homepage-dweb {
+  display: none;
+
+  @include bp.respond-to(md) {
+    display: inline;
+  }
+}
+
+.homepage-mweb {
+  @include bp.respond-to(md) {
+    display: none;
+  }
+}
+
+// ── Midterms 2026 header ──────────────────────────────────────────────────────
+// "2026" in alternating blue / red (Figma uses raw #0063de / #fc2d2d — no
+// tokens; the nearest text tokens: home-blue/base, showbiz-red/base)
+.homepage-midterms-year > span {
+  color: var(--color-text-home-blue-base);
+
+  &:nth-child(even) {
+    color: var(--color-text-showbiz-red-base);
+  }
+}
+
+// ── This is Money header (Figma 8804:238027) ──────────────────────────────────
+// From experiments/202611-exp-section-header-branded (In progress) — moves to
+// _section-header-branded.scss once that test is decided.
+//   · background: Figma crop (upper part of the photo)
+//   · Extra block: "Sponsored by" + sponsor logo under the banner
+.homepage-money .section-header-branded__bg {
+  object-position: 50% 29%;
+}
+
+.homepage-sponsor {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--spacing-4);
+  margin: 0;
+  padding-block: var(--spacing-4);
+  font-size: var(--typography-font-size-label-xsm);
+  line-height: var(--typography-line-height-narrow);
+  color: var(--color-text-neutral-dark);
+}
+
+// ── Femail header — figures (Figma 8809:238984) ───────────────────────────────
+// Same experiment (variant Figures). Cut-out photos beside the logo, 60px
+// tall, rising 8px above the banner; they move out from the logo as the
+// banner widens (gap 0 at 300 → 64 max). Hidden on a banner under 240px.
+.homepage-figures {
+  container-type: inline-size;
+
+  .section-header-branded__banner {
+    gap: clamp(0px, (100cqi - 300px) / 24, 64px);
+    overflow: visible;
+  }
+
+  .section-header-branded__banner::before {
+    border-radius: inherit;
+  }
+
+  // the banner no longer clips: the image clips itself
+  .section-header-branded__bg {
+    clip-path: inset(0 round var(--border-radius-8));
+  }
+
+  .section-header-branded__logo {
+    flex-shrink: 0;
+  }
+}
+
+.homepage-figure {
+  flex-shrink: 0;
+  align-self: flex-end;
+  width: auto;
+  height: 60px;
+  margin-bottom: calc(-1 * var(--spacing-4));
+  pointer-events: none;
+
+  @container (max-width: 240px) {
+    display: none;
+  }
+}
+
+// ── Original proposal (index.html only, body.homepage-original) ───────────────
+// The page as first proposed, kept on the current library:
+//   · SM Left Thumb keeps thumbnail left, headline + metadata right at LG+,
+//     thumbnail LG 120 · XL 152 (library LG+: headline across, then
+//     thumbnail 144 + preview text)
+//   · Columnist photo stays in the metadata, right of the byline
+//     (library: photo in the headline) — the byline styles as they were
+.homepage-original .article-card--sm-left {
+  @include bp.respond-to(lg) {
+    display: flex;
+
+    .article-card__body {
+      display: flex;
+    }
+
+    .article-card__media {
+      width: 120px;
+    }
+  }
+
+  @include bp.respond-to(xl) {
+    .article-card__media {
+      width: 152px;
+    }
+  }
+}
+
+.homepage-original .article-card-metadata__columnist {
+  display: flex;
+  align-items: flex-end;
+  gap: var(--spacing-16);
+  padding-top: var(--spacing-8);
+
+  .article-card-metadata__byline {
+    flex: 1 1 0;
+    min-width: 0;
+    padding: var(--spacing-4) 0;
+  }
+}
+
+// ── Test: SM metadata full width (index-2.html only) ──────────────────────────
+// The metadata row sits under the thumbnail + headline row (out of the body)
+// and spans the card. 8px above it, as inside the body.
+.homepage-sm-meta-full .article-card--sm-right {
+  flex-wrap: wrap;
+  row-gap: var(--spacing-8);
+
+  > .article-card__metadata {
+    flex-basis: 100%;
+    order: 2;
+  }
+}
+
+// ── Test: SM card with preview text (index-3.html only) ───────────────────────
+// As on the live site: headline, then thumbnail + preview text, then metadata
+// across the card. Thumbnail 128 · LG 144 (library 120) · XL 152, 4:3. The
+// preview type is the library SM size as it is (label-xxsm 12px, line-height
+// narrow 14.4px, grey-dark); only the line count follows the thumbnail
+// height: 96 → 6 lines · LG 108 / XL 114 → 7.
+.homepage-sm-preview .article-card--sm-right:has(.article-card__preview) {
+  display: grid;
+  grid-template:
+    "headline headline"
+    "media preview"
+    "metadata metadata" / auto 1fr;
+  gap: var(--spacing-8) var(--spacing-12);
+
+  .article-card__body {
+    display: contents;
+  }
+
+  .article-headline {
+    grid-area: headline;
+  }
+
+  .article-card__media {
+    grid-area: media;
+
+    @include bp.respond-to(lg) {
+      width: 144px;
+    }
+
+    @include bp.respond-to(xl) {
+      width: 152px;
+    }
+  }
+
+  .article-card__preview {
+    grid-area: preview;
+    display: -webkit-box;
+    margin: 0;
+    -webkit-line-clamp: 6;
+    line-clamp: 6;
+
+    @include bp.respond-to(lg) {
+      -webkit-line-clamp: 7;
+      line-clamp: 7;
+    }
+  }
+
+  .article-card__metadata {
+    grid-area: metadata;
+  }
+}
+
+// ── Test: Columnist data + regular metadata (index-2.html only) ───────────────
+// The columnist byline (name + role · photo) is its own block, without the
+// comment count; the regular metadata row (channel · comments) follows it.
+// Name and role keep their library styles (.article-card-metadata__author*).
+.article-card__columnist-data {
+  display: flex;
+  align-items: flex-end;
+  gap: var(--spacing-16);
+  padding-top: var(--spacing-8);
+  font-family: var(--typography-font-family-sans);
+  line-height: var(--typography-line-height-narrow);
+
+  .article-card-metadata__author {
+    padding-block: var(--spacing-4);
+  }
+
+  // above the stretched article link, like the metadata links
+  a {
+    position: relative;
+    z-index: 2;
+  }
+}
+
+// ── Test: MD card with Portrait media (index-b Money) ─────────────────────────
+// Article Card Media › Portrait (2:3, Vertical crop) on a plain MD card. The
+// library sets the ratio by card type (MD = Landscape), so the page sets it here.
+.homepage-media-portrait {
+  aspect-ratio: 2 / 3;
+}
+
+// ── Mid-page ad (index-a / index-b) ───────────────────────────────────────────
+// Figma 8917:54012: a full-width section between content blocks, label above,
+// 32px above and below. LG 970×250 (Billboard) · MD 728×90 (Leaderboard) ·
+// mobile 300×250 (MPU — the in-page unit on mobile, Advertisement doc).
+.homepage-ad {
+  padding-block: var(--spacing-32);
+
+  .ad-slot {
+    @include bp.respond-to(md) {
+      --ad-width: 728px;
+      --ad-height: 90px;
+    }
+
+    @include bp.respond-to(lg) {
+      --ad-width: 970px;
+      --ad-height: 250px;
+    }
+  }
+}
+
+// ── Deep Dive carousel (index-a / index-b) ────────────────────────────────────
+// Figma 8924:54208: a Carousel (Row) of Image Only Medium cards with no card
+// padding — 288 wide, 12 apart, 16 above and below. The row is clipped 16px in
+// from the section edges (the grid inset), so no card shows in the gutter; the
+// arrows sit at those edges too. One card per step (data-step="item").
+// Arrows from LG (Carousel); swipe below.
+.homepage-deep-dive {
+  --carousel-gap: var(--spacing-12);
+
+  padding: var(--spacing-16);
+
+  .article-card {
+    width: 288px;
+    padding: 0;
+  }
+
+  .carousel__nav--prev {
+    left: var(--spacing-16);
+  }
+
+  .carousel__nav--next {
+    right: var(--spacing-16);
+  }
+}
+
+// ── Deep Dive v2 (index-b) ────────────────────────────────────────────────────
+// Figma 8928:55652: a black box inside the 16px inset, 16 above and below the
+// row. The artwork sits fixed at the left (300 wide, full height, cropped as in
+// Figma) behind the row and fades out over the first 288px the row scrolls
+// (scroll-driven animation; without support it stays, under the cards). The
+// first item is a title block — logo, tagline, Discover — then the cards,
+// 288 wide, 12 apart.
+.homepage-deep-dive-intro {
+  --carousel-gap: var(--spacing-12);
+  --carousel-inset: var(--spacing-16); // a step stops the next item 16 in from the box
+  --carousel-end: var(--spacing-16); // and the last card ends 16 in from the right
+
+  margin: var(--spacing-16);
+  overflow: clip;
+  background-color: var(--color-background-neutral-black);
+  timeline-scope: --deep-dive-row;
+
+  // The 16px top / bottom space sits in the track (a scroll box clips both
+  // axes), so the cards' hover glow has room
+  .carousel__track {
+    padding-block: var(--spacing-16);
+    scroll-timeline: --deep-dive-row x;
+  }
+}
+
+// Figma crop: the photo 120% wide, 30px left of the box and 62px above it,
+// clipped back to 300 wide
+.homepage-deep-dive-intro__bg {
+  position: absolute;
+  top: -62px;
+  left: -30px;
+  width: 360px;
+  clip-path: inset(62px 30px 0);
+  animation: homepage-fade-out linear both;
+  animation-timeline: --deep-dive-row;
+  animation-range: 0 288px;
+}
+
+@keyframes homepage-fade-out {
+  to {
+    opacity: 0;
+  }
+}
+
+.homepage-deep-dive-intro__title {
+  position: relative; // over the artwork
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 50%;
+  padding-block: 96px;
+}
+
+.homepage-deep-dive-intro__logo {
+  display: flex;
+  margin: 0;
+}
+
+.homepage-deep-dive-intro__tagline {
+  margin: var(--spacing-12) 0 auto; // CTA at the bottom
+  font-size: var(--typography-font-size-label-lg);
+  font-weight: var(--typography-font-weight-semibold);
+  line-height: var(--typography-line-height-narrow);
+  text-align: center;
+  text-wrap: balance;
+  color: var(--color-text-neutral-lightest);
+  opacity: 0.8;
+}
+
+// Experimental card (Figma "Article Card - Image Only -v2", index-b only — not
+// in the library): a black card, radius 8, the image on top (308:329) fading
+// into the card over its last 64px, then the headline (H5, white, centred) and
+// the comment count, 16 in from the sides and bottom. The text area holds four
+// headline lines (Figma min height 128), so the cards line up.
+// Hover (Figma 8928:56963): the card surface — and the image fade with it —
+// goes from neutral/darker to black; the headline stays white. The surface is
+// one registered property, so card and fade ease together.
+@property --deep-dive-card-surface {
+  syntax: "<color>";
+  inherits: true;
+  initial-value: transparent;
+}
+
+.homepage-deep-dive-card {
+  --deep-dive-card-surface: var(--color-background-neutral-darker);
+
+  width: 288px;
+  padding: 0 0 var(--spacing-16);
+  gap: 0;
+  border-radius: var(--border-radius-8);
+  overflow: clip;
+  background-color: var(--deep-dive-card-surface);
+  transition:
+    --deep-dive-card-surface 0.15s,
+    box-shadow 0.15s;
+
+  &:has(.article-card__link:hover),
+  &:has(.article-card__link:focus-visible) {
+    --deep-dive-card-surface: var(--color-background-neutral-black);
+
+    .article-headline {
+      color: var(--color-text-neutral-white);
+    }
+  }
+
+  // Hover glow (in place of the Figma 8928:57048 border, which the image
+  // covered) — keyboard focus keeps the library's blue ring
+  &:has(.article-card__link:hover) {
+    box-shadow: 0 0 4px 1px var(--color-effect-translucent-light-moderate);
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    transition: none;
+  }
+
+  .article-card__media {
+    display: grid;
+    aspect-ratio: 308 / 329;
+    border-radius: 0;
+
+    > * {
+      grid-area: 1 / 1;
+    }
+
+    &::after {
+      content: "";
+      grid-area: 1 / 1;
+      align-self: end;
+      height: 64px;
+      background-image: linear-gradient(var(--color-effect-translucent-dark-clear), var(--deep-dive-card-surface));
+    }
+  }
+
+  .article-card__body {
+    padding-inline: var(--spacing-16);
+  }
+
+  .article-headline {
+    min-height: calc(4em * 1.32); // four H5 lines (compact line height)
+    text-align: center;
+    color: var(--color-text-neutral-white);
+    text-shadow: 0 0 32px var(--color-effect-translucent-dark-solid);
+  }
+
+  .article-card__metadata {
+    min-height: calc(20px + var(--spacing-8)); // Figma metadata row 20 high
+    padding: var(--spacing-8) var(--spacing-16) 0;
+  }
+
+  .article-card-metadata__comments {
+    color: var(--color-text-neutral-lightest);
+  }
+
+  .article-card-metadata__comments-icon {
+    --icon-color: var(--color-icon-neutral-lightest);
+  }
+}
+
+// ── Verticals (index-b) ───────────────────────────────────────────────────────
+// Figma 8788:36479 (LG) · 8928:58323 (mobile): four channel boxes, 2 across at
+// every width. Each box: the channel's subtlest tint, radius 8 — Section Header
+// Branded (no arrow; 16 above, none below), an MD card (image, H4, comments)
+// and a headline-only card (H5), keyline between (the card's own).
+// From MD: 16 padding all round, 16 apart, cards 16 inset. Below MD (a
+// max-width query from the breakpoint map — mobile only overrides): 16 top and
+// bottom, none at the sides, 2px apart, cards 8 / 16, image 4:3, headlines one
+// step down (H5 / H6).
+$homepage-below-md: "(width < #{map.get(bp.$breakpoints, md)})";
+
+.homepage-verticals {
+  padding: var(--spacing-16);
+
+  .section-header-branded {
+    padding: var(--spacing-16) var(--spacing-16) 0;
+    background: none;
+  }
+
+  .article-card {
+    background: none;
+  }
+
+  @media #{$homepage-below-md} {
+    padding-inline: 0;
+
+    .article-card {
+      padding-block: var(--spacing-8);
+    }
+
+    .article-card__media {
+      aspect-ratio: 4 / 3;
+    }
+
+    .h4 {
+      font-size: var(--typography-font-size-h5);
+      line-height: var(--typography-line-height-compact);
+    }
+
+    .h5 {
+      font-size: var(--typography-font-size-h6);
+    }
+  }
+}
+
+// The boxes' container: 2 across, 16 apart (2px below MD)
+.homepage-verticals__grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: var(--spacing-16);
+
+  @media #{$homepage-below-md} {
+    gap: 2px;
+  }
+}
+
+.homepage-vertical {
+  padding-bottom: var(--spacing-16);
+  border-radius: var(--border-radius-8);
+
+  &--money {
+    background-color: var(--color-background-money-purple-subtlest);
+  }
+
+  &--crime {
+    background-color: var(--color-background-crime-petrol-subtlest);
+  }
+
+  &--femail {
+    background-color: var(--color-background-lifestyle-azure-subtlest);
+  }
+
+  &--health {
+    background-color: var(--color-background-health-turquoise-subtlest);
+  }
+}
+
+// Verticals — Signpost B (index-b, Figma 8976:99192 LG+ · 8976:99661 below LG)
+// The same four boxes, now: box 8 side padding, Section Header Branded 8 from
+// the top; an Image Only card (358:395, headline H6 on the image, no Read
+// more) and a headline-only card (H6), each 8 above and below, a full-width
+// keyline between. No comments. Below LG: 2 × 2, 2px apart, section padding 2;
+// LG+: 4 across, 8 apart, section padding 16.
+
+.homepage-verticals--signpost {
+  padding: 2px;
+
+  .homepage-verticals__grid {
+    gap: 2px;
+  }
+
+  .homepage-vertical {
+    padding: 0 var(--spacing-8);
+  }
+
+  .section-header-branded {
+    padding: var(--spacing-8) 0 0;
+  }
+
+  .article-card {
+    padding: var(--spacing-8) 0;
+
+    &::after {
+      right: 0;
+      left: 0;
+    }
+  }
+
+  .article-card__media {
+    aspect-ratio: 358 / 395;
+  }
+
+  .article-card__overlay {
+    padding: var(--spacing-16);
+  }
+
+  @include bp.respond-to(lg) {
+    padding: var(--spacing-16);
+
+    .homepage-verticals__grid {
+      grid-template-columns: repeat(4, 1fr);
+      gap: var(--spacing-8);
+    }
+  }
+}
+
+// ── Placeholder section ───────────────────────────────────────────────────────
+// 320 high like the Figma frame: a box inside the 16px inset, a soft
+// background/neutral/light glow fading inward (inset shadow, 32px blur, no border)
+
+.homepage-slot {
+  display: flex;
+  min-height: 320px;
+  padding: var(--spacing-16);
+}
+
+.homepage-slot__label {
+  display: flex;
+  flex: 1;
+  align-items: center;
+  justify-content: center;
+  border-radius: var(--border-radius-4);
+  color: var(--color-text-neutral-grey-dark);
+  font-size: var(--typography-font-size-label-sm);
+  line-height: var(--typography-line-height-narrow);
+  box-shadow: inset 0 0 32px var(--color-background-neutral-light);
+}
+
+// ── For You (index-b) — personalisation test, not a library module ────────────
+// Figma 8909:52117. Header: description in text-md with the Edit button beside
+// it. Row of bordered cards (8 apart, 16 inset): 235 below LG, 4 to a view from
+// LG — arrows and autoplay move a view at a time. Dots under the row, one per
+// view (page script), dark on the page surface. Each card asks "More like this?":
+//   heart  hover / pressed: filled heart on darker (Primary Neutral); click =
+//          loading, then pressed (aria-pressed, page script)
+//   x      the card fades out (data-vote="dislike"), then the script removes it
+
+.homepage-for-you-intro {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: var(--spacing-8);
+  font-size: var(--typography-font-size-text-md);
+  letter-spacing: var(--typography-letter-spacing-normal);
+  color: var(--color-text-neutral-dark);
+}
+
+.homepage-for-you {
+  --carousel-gap: var(--spacing-8);
+  --carousel-inset: var(--spacing-16);
+  --carousel-end: var(--spacing-16);
+
+  padding-top: var(--spacing-16);
+
+  .carousel__track {
+    align-items: stretch;
+  }
+}
+
+.homepage-for-you-dots {
+  position: static;
+  padding: var(--spacing-24) 0;
+  background-image: none;
+
+  .carousel__dot {
+    background-color: var(--color-background-neutral-grey-light);
+
+    &.is-active {
+      background-color: var(--color-background-neutral-dark);
+    }
+  }
+}
+
+.homepage-for-you-card {
+  flex: 0 0 235px;
+  padding: var(--spacing-12);
+  border: 1px solid var(--color-border-neutral-light);
+  border-radius: var(--border-radius-8);
+  transition:
+    opacity 0.3s,
+    transform 0.3s;
+
+  @include bp.respond-to(lg) {
+    flex-basis: calc((100% - 3 * var(--carousel-gap)) / 4);
+  }
+
+  // Hover surface: the whole card (Figma), no keyline
+  &::before {
+    inset: 0;
+  }
+
+  &::after {
+    display: none;
+  }
+
+  .article-card__media {
+    aspect-ratio: 274 / 165;
+  }
+
+  .article-card__body {
+    flex: 1;
+  }
+
+  // Not interested: fades and shrinks, then the script removes it
+  &[data-vote="dislike"] {
+    opacity: 0;
+    transform: scale(0.8);
+    pointer-events: none;
+  }
+
+  // The card that takes its place at the end of the row grows in
+  &--new {
+    animation: homepage-for-you-in 0.3s ease-out;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    transition-duration: 0.01s; // still ends, so the card is removed
+    animation: none;
+  }
+}
+
+@keyframes homepage-for-you-in {
+  from {
+    opacity: 0;
+    transform: scale(0.8);
+  }
+}
+
+.homepage-for-you-card__ask {
+  position: relative;
+  z-index: 2; // above the card link
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-8);
+  margin-top: auto;
+
+  [data-vote="like"]:is(:hover, [aria-pressed="true"], .btn--loading) {
+    border-color: transparent;
+    background-color: var(--color-background-neutral-darker);
+    color: var(--color-text-neutral-lightest);
+
+    .icon {
+      --icon-file: url("../../assets/icons/ico-heart.svg");
+    }
+  }
+}
+
+.homepage-for-you-card__question {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  margin: 0;
+  font-size: var(--typography-font-size-label-xsm);
+  font-weight: var(--typography-font-weight-semibold);
+  line-height: var(--typography-line-height-narrow);
+  color: var(--color-text-neutral-dark);
+
+  span {
+    font-weight: var(--typography-font-weight-regular);
+  }
+}
+
+.homepage-for-you-card__play {
+  align-self: center;
+  width: 128px; // Figma 8946:17456
+  margin-top: auto;
+}
+
+// ── Billboard in the page (index-a / index-b) ─────────────────────────────────
+// An MPU slot (16 inset, label centred) that takes the billboard sizes from MD:
+// MD 728×90 · LG 970×250 — 970 fits the 996 container less its 16px insets
+// only just, so the slot's sides drop to 13 from LG. Not the page-top
+// .ad-billboard (that one is the sticky underlay).
+
+.homepage-billboard {
+  @include bp.respond-to(md) {
+    --ad-width: 728px;
+    --ad-height: 90px;
+  }
+
+  @include bp.respond-to(lg) {
+    --ad-width: 970px;
+    --ad-height: 250px;
+
+    padding-inline: 13px;
+  }
+
+  img {
+    display: block;
+    width: 100%;
+    height: 100%;
+  }
+}
+
+// ── Our Shopping Picks (index-a / index-b) ────────────────────────────────────
+// Figma 8953:17705 (a) · 8947:12706 (b). Header: description with the More
+// info button beside it (34 high, kept to the 21px text line). Cards: library
+// SM — a: Right Thumb with the thumbnail kept left at every width (Figma);
+// b: Left Thumb (headline · thumbnail + preview · metadata), preview in
+// label-xxsm. Shop Now: secondary brand SM in the CTA row — b sets it right.
+
+.homepage-shopping-intro {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+
+  .btn {
+    margin-block: -6.5px;
+  }
+}
+
+.homepage-shopping-card {
+  .article-card__media {
+    order: 0;
+  }
+}
+
+.homepage-shopping-card--preview {
+  .article-card__preview {
+    font-size: var(--typography-font-size-label-xxsm);
+  }
+
+  .article-card-metadata--cta {
+    justify-content: flex-end;
+  }
+}
+
+// ── UK Sport (index-b) — Figma 8955:19133 ─────────────────────────────────────
+// Library: section header + tabs, Image Only Large, SM cards, Shorts Signpost.
+// Page-only parts below (not in the library yet): live score bar, Sport Games
+// cards, podcast player.
+
+// Live score bar (Figma Live Score Board 1272:63792): 42px dark bar, a green
+// glow sweeping across; the items roll up one at a time (12s for three — the
+// list repeats the first item last, so the loop is seamless). Holds on hover
+// or focus; still with reduced motion.
+
+.homepage-score {
+  padding: var(--spacing-16) var(--spacing-16) 0;
+}
+
+.homepage-score__list {
+  height: 42px;
+  margin: 0;
+  padding: 0;
+  overflow: clip;
+  border-radius: var(--border-radius-4);
+  list-style: none;
+  background-image: linear-gradient(90deg, var(--color-background-neutral-darker) 28%, var(--color-background-sport-green-deep) 50%, var(--color-background-neutral-darker) 72%);
+  background-size: 400% 100%;
+  animation: homepage-score-sweep 6s linear infinite;
+}
+
+.homepage-score__item {
+  animation: homepage-score-roll 12s infinite;
+}
+
+.homepage-score__list:is(:hover, :focus-within) {
+  &,
+  .homepage-score__item {
+    animation-play-state: paused;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .homepage-score__list,
+  .homepage-score__item {
+    animation: none;
+  }
+}
+
+@keyframes homepage-score-sweep {
+  from {
+    background-position: 100% 0;
+  }
+
+  to {
+    background-position: 0 0;
+  }
+}
+
+@keyframes homepage-score-roll {
+  0%,
+  29% {
+    transform: translateY(0);
+  }
+
+  33%,
+  62% {
+    transform: translateY(-100%);
+  }
+
+  66%,
+  95% {
+    transform: translateY(-200%);
+  }
+
+  100% {
+    transform: translateY(-300%);
+  }
+}
+
+.homepage-score__link {
+  --icon-color: var(--color-icon-neutral-white);
+
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-8);
+  height: 42px;
+  padding: var(--spacing-4) var(--spacing-12);
+  color: var(--color-text-neutral-white);
+  font-size: var(--typography-font-size-label-sm);
+  font-weight: var(--typography-font-weight-semibold);
+  line-height: var(--typography-line-height-narrow);
+  text-decoration: none;
+
+  .icon {
+    flex-shrink: 0;
+    width: 14px;
+    height: 14px;
+  }
+
+  &:hover .homepage-score__text {
+    text-decoration: underline;
+  }
+}
+
+// League + 1px splitter (translucent-light/moderate, 15 high), 8px either side
+.homepage-score__league {
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-4);
+  font-weight: var(--typography-font-weight-bold);
+  white-space: nowrap;
+
+  &::after {
+    content: "";
+    width: 1px;
+    height: 15px;
+    margin-left: var(--spacing-4);
+    background-color: var(--color-effect-translucent-light-moderate);
+  }
+}
+
+.homepage-score__text {
+  flex: 1;
+  min-width: 0;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+// Sport Games (Figma Puzzle Unit): game-colour card — subtlest fill, subtle
+// line and a 3px solid shadow in the same colour; 64px artwork, title + text.
+// Hover: lifts 3px, the solid shadow grows to 6. Title in the serif (Figma: Literata ExtraBold — not
+// a project font). 1 column, 2 from MD.
+
+.homepage-games {
+  display: grid;
+  gap: var(--spacing-16);
+  padding: var(--spacing-16);
+
+  @include bp.respond-to(md) {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+.homepage-game {
+  display: grid;
+  grid-template-columns: 64px 1fr;
+  grid-template-rows: auto 1fr;
+  gap: var(--spacing-8) var(--spacing-12);
+  padding: var(--spacing-12);
+  border-radius: var(--border-radius-8);
+  background-color: var(--game-fill);
+  box-shadow: // Figma stroke is outside the layout — an inset line, not a border
+    inset 0 0 0 1px var(--game-line),
+    0 3px 0 var(--game-line);
+  color: var(--color-text-neutral-darker);
+  text-decoration: none;
+  transition:
+    transform 0.1s,
+    box-shadow 0.1s;
+
+  &:hover {
+    transform: translateY(-3px);
+    box-shadow:
+      inset 0 0 0 1px var(--game-line),
+      0 6px 0 var(--game-line);
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    transition: none;
+  }
+}
+
+.homepage-game--sport {
+  --game-fill: var(--color-background-sport-green-subtlest);
+  --game-line: var(--color-background-sport-green-subtle);
+}
+
+.homepage-game--quiz {
+  --game-fill: var(--color-background-quiz-green-subtlest);
+  --game-line: var(--color-background-quiz-green-subtle);
+}
+
+.homepage-game--word {
+  --game-fill: var(--color-background-word-orange-subtlest);
+  --game-line: var(--color-background-word-orange-subtle);
+}
+
+.homepage-game__thumb {
+  grid-row: span 2;
+  border-radius: var(--border-radius-4);
+}
+
+.homepage-game__title {
+  font-family: var(--typography-font-family-serif);
+  font-size: var(--typography-font-size-h4);
+  font-weight: var(--typography-font-weight-bold);
+  line-height: var(--typography-line-height-narrow);
+}
+
+.homepage-game__desc {
+  font-size: var(--typography-font-size-label-sm);
+  line-height: var(--typography-line-height-narrow);
+  color: var(--color-text-neutral-dark);
+}
+
+// Podcast player (Figma Podcast Player): title row, then a card on the cover
+// art blurred under translucent-dark/moderate — cover 78, episode title (2
+// lines), Listen (Primary Neutral inverse, full width). Keyline below.
+
+.homepage-podcast {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-8);
+  padding: var(--spacing-16);
+
+  &::after {
+    @include divider.divider;
+  }
+}
+
+.homepage-podcast__heading {
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-6);
+  margin: 0;
+  font-size: var(--typography-font-size-h5);
+  font-weight: var(--typography-font-weight-semibold);
+  line-height: var(--typography-line-height-compact);
+  color: var(--color-text-neutral-darker);
+
+  .icon {
+    width: 18px;
+    height: 18px;
+  }
+}
+
+.homepage-podcast__player {
+  position: relative;
+  display: grid;
+  grid-template-columns: 78px 1fr;
+  grid-template-rows: 1fr auto;
+  gap: var(--spacing-8) var(--spacing-12);
+  padding: var(--spacing-12);
+  overflow: clip;
+  border-radius: var(--border-radius-8);
+  isolation: isolate;
+  box-shadow: var(--elevation-1);
+  color: var(--color-text-neutral-white);
+  text-decoration: none;
+
+  &::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    z-index: -1;
+    background-color: var(--color-effect-translucent-dark-moderate);
+    backdrop-filter: blur(32px);
+  }
+}
+
+.homepage-podcast__bg {
+  position: absolute;
+  inset: 0;
+  z-index: -2;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.homepage-podcast__cover {
+  grid-row: span 2;
+  border-radius: var(--border-radius-4);
+  object-fit: cover;
+}
+
+.homepage-podcast__title {
+  display: -webkit-box;
+  overflow: hidden;
+  font-size: var(--typography-font-size-label-xsm);
+  font-weight: var(--typography-font-weight-semibold);
+  line-height: var(--typography-line-height-narrow);
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 2;
+}
+
+.homepage-podcast__listen {
+  width: 100%;
+}

@@ -82,7 +82,7 @@
             <div class="article-card-banner__metadata article-card-metadata">
               <a class="article-card-metadata__comments" href="#comments" aria-label="2.1k comments">
                 <span class="icon icon--speechbubble-ellipsis article-card-metadata__comments-icon" aria-hidden="true"></span>
-                2.1k comments
+                2.1k<span class="article-card-metadata__comments-word">comments</span>
               </a>
             </div>
           </div>
@@ -132,7 +132,7 @@
           const alt = picture.querySelector('img').alt;
           const video = (size) =>
             `<video class="article-card-banner__preview--${size}" src="../../assets/images/article-card-banner-preview-${size}.mp4#t=0.1" ` +
-            `poster="../../assets/images/article-card-banner-${size}.jpg" data-preview muted loop playsinline preload="metadata" aria-hidden="true"></video>`;
+            `poster="../../assets/images/article-card-banner-${size}.jpg" data-preview muted loop playsinline preload="none" aria-hidden="true"></video>`;
           picture.outerHTML = `<div class="article-card-banner__media" role="img" aria-label="${alt}">${video('wide')}${video('xs')}</div>`;
         }
 

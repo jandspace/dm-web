@@ -98,11 +98,10 @@
 }
 
 // One channel block split 2:1 (e.g. Showbiz) — no keyline between the columns
-.layout-split--joined {
-  .layout-alpha:not(:last-child)::after,
-  .layout-beta::before {
-    content: none;
-  }
+// side by side (LG+). Stacked below LG, Alpha keeps its bottom keyline: the
+// cards run on as one list, with a keyline between each
+.layout-split--joined .layout-beta::before {
+  content: none;
 }
 
 // A box with its own background (e.g. a tinted box in Beta) — one content

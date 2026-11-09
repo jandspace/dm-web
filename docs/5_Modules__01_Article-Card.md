@@ -13,9 +13,10 @@ The full-width top story is a separate block — see [Article Card — Banner St
 | Element | Description |
 |---|---|
 | **Media container** | Image or video at a fixed aspect ratio per card type. 4px corners (Image Only: 8px) |
-| **Headline** | Article Headline (`.article-headline`), H2–H6 by card type. Holds the article link and, optionally, an editorial badge inline at the start, followed by a space (§ Badge in the headline). Inter by default; Lora when Figma calls for it (e.g. a columnist's quote) — add `.serif` to the heading, nothing else changes |
+| **Headline** | Article Headline (`.article-headline`), H2–H6 by card type. Holds the article link and, optionally, an editorial badge inline at the start, followed by a space (§ Badge in the headline). Inter by default; Lora when Figma calls for it (e.g. a columnist's quote) — add `.serif` to the heading, nothing else changes. A columnist's quote headline carries the columnist's photo on its right (§ Quote Headline) |
 | **Preview text** *(optional)* | CMS-controlled summary under the headline |
 | **Live Key Updates** *(optional)* | Live articles only — replaces the preview text slot |
+| **Thumbnail + preview** *(SM: Left Thumb, LG+)* | Under the headline: 4:3 thumbnail with the preview text beside it (§ SM: Left Thumb) |
 | **Metadata** | Article Card Metadata row — info on the left, comment counter on the right |
 | **Keyline** | 1px bottom line, inset 16px — `color/border/translucent-dark/pale` (Divider). None on the last card of its column (`:last-child`, automatic); `.article-card--no-keyline` removes it anywhere else |
 
@@ -32,13 +33,52 @@ The card carries its own 16px inset; the column grid carries none (Foundation �
 | **XL (Triple)** | `--xl-triple` | 3 | 358:215, 50/50 from LG | H2 | lg |
 | **MD (Vertical Media)** | `--md-vertical` | 1 | 2:3, under the headline | H2 | lg |
 | **MD** | `--md` | 1 | 358:215 | H4 | md |
-| **SM: Left Thumb** | `--sm-left` | 1 | 4:3 thumb, left | H5 | sm |
-| **SM: Right Thumb** | `--sm-right` | 1 | 4:3 thumb, right from LG (left on MD / SM-XS) | H6 | xs |
+| **SM: Left Thumb** | `--sm-left` | 1 | 4:3 thumb — LG+: under the headline, beside the preview; MD / SM-XS: left | H5 | sm |
+| **SM: Right Thumb** (Puff) | `--sm-right` | 1 | 4:3 thumb, right from LG (left on MD / SM-XS) | H6 | xs |
 | **Image Only (Large)** | `--image-only --image-only-large` | 2 | 358:215 (SM-XS 15:16) | H3 | lg, top-left |
 | **Image Only (Medium)** | `--image-only --image-only-medium` | 1 | 15:16 | H4 | lg, top-left |
 
 - SM: Left Thumb is used in the main (left) columns; SM: Right Thumb in the right-hand sidebar, where metadata is usually dropped.
 - SM Thumb + Columnist metadata: the thumbnail is hidden (Columnist needs ≥300px of text width).
+- "Puff" in the team means SM: Right Thumb — the small card with the image on the right.
+
+### SM: Left Thumb
+
+| Breakpoint | Structure |
+|---|---|
+| LG / XL | Headline across the card → thumbnail + preview text (12px gap) → metadata across the card. 12px between rows |
+| MD / SM-XS | Thumbnail left, headline + metadata on the right. No preview text (the mobile headline is short) |
+
+- Thumbnail and preview are switched together in the CMS (Figma boolean "Thumbnail + Preview Text"). A thumbnail never stands alone; the preview can (it then runs across the card), or both go.
+- Thumbnail LG 144 × 108 · XL 152 × 114. The preview runs in full beside it — no truncation; a long preview makes the row taller than the thumbnail.
+- Markup is the usual card (media, then `.article-card__body` with headline, preview, metadata); from LG the card is a grid and the body steps aside (`display: contents`).
+
+### Headline length (Desktop / Mobile)
+
+The CMS keeps two headlines per article, each with its own character limit:
+
+| CMS field | Limit | Used at |
+|---|---|---|
+| Desktop homepage headline | 256 characters | LG, XL |
+| Mobile homepage headline | 100 characters | MD, SM, XS — every card type |
+
+The card holds one headline element; which text fills it is the article feed's job, not the card's. Write demo copy at the matching length (mobile headlines are short).
+
+### Quote Headline (columnist photo)
+
+A columnist's quote headline is always serif (`.serif`) and carries the columnist's photo on its right — the photo moved here from the Columnist metadata.
+
+- Columnist Profile Photo, Rectangle, linked to the author page (`tabindex="-1" aria-hidden="true"`, a duplicate of the name link), written after the article link inside the heading.
+- Top-aligned, 8px from the text. The cut-out head rises above the disc, so the disc drops by 13/80 of its size — the head lines up with the text top.
+- **Default size by level** (Figma Article Card Headline, Quote Headline = Yes, every breakpoint): H2 **xl 80** · H3–H5 **lg 64** · H6 **md 48**. Set with the size modifier in the markup. Whether editors may pick another size in the CMS is still open.
+- Live in the comments: the photo takes `columnist-photo--live` (green dot).
+
+```html
+<h4 class="h4 serif article-headline">
+  <a class="article-card__link" href="…">Headline…</a>
+  <a class="columnist-photo columnist-photo--lg" href="…" tabindex="-1" aria-hidden="true"><img class="columnist-photo__img" src="…" alt="Columnist Name" /></a>
+</h4>
+```
 
 ### Badge in the headline
 
@@ -59,7 +99,7 @@ No max width: the card fills the layout column it sits in (Foundation › Layout
 
 ### Thumbnail width (SM types)
 
-XL 152 · LG 120 · MD / SM-XS 128px
+XL 152 · LG 120 (SM: Left Thumb **144**, Figma 5209:5234) · MD / SM-XS 128px
 
 ---
 
@@ -68,8 +108,9 @@ XL 152 · LG 120 · MD / SM-XS 128px
 ### 3-A. Preview Text
 
 - **Editor-controlled.** Present in the HTML only when the editor switches it on. Never shipped and hidden with `display: none`.
-- **Viewport rule (CSS):** never shown at SM-XS — keeps mobile browsing fast. Never on SM thumbs.
-- Size: XL card → `text-sm` (14px); every other type → `text-xsm` (13px). Regular, line-height normal, `color/text/neutral/grey-dark`, 3 lines max with ellipsis.
+- **Viewport rule (CSS):** never shown at SM-XS — keeps mobile browsing fast. SM: Left Thumb shows it from LG only; SM: Right Thumb never.
+- Type: Label Regular, as Figma Article Card Preview Text (108:7210) — line-height narrow (1.2), letter-spacing normal, `color/text/neutral/dark`. Size by card: XL → LG `label-sm` (14px) · SM: Left Thumb → SM `label-xxsm` (12px) · every other type → MD `label-xsm` (13px). No page-level overrides.
+- **No truncation** — the text runs in full, exactly as the CMS feeds it, on every card type.
 
 ### 3-B. Live Key Updates
 
@@ -102,7 +143,7 @@ What else can fill the media — animated preview, a video the reader plays in t
 
 The headline sits on the image instead of below it.
 
-- **Overlay:** the bottom 60% of the image (no fixed height) — `color/effect/translucent-dark/thick` + 16px backdrop blur, faded in from the top with a cubic ease-out mask (alpha = 1 − (1 − t)³, stops every 20%: 0 · .488 · .784 · .936 · .992 · 1) — it builds up fast and stays dark for most of its height. The headline sits on it with a 32px solid-black text shadow. Deepens to `translucent-dark/solid` on article hover (pointer on the card, not on channel / comments).
+- **Overlay:** the bottom 40% of the image (no fixed height) — `color/effect/translucent-dark/thick` + 16px backdrop blur, faded in from the top with a cubic ease-out mask (alpha = 1 − (1 − t)³, stops every 20%: 0 · .488 · .784 · .936 · .992 · 1) — it builds up fast and stays dark for most of its height. The headline sits on it with a 32px solid-black text shadow. Deepens to `translucent-dark/solid` on article hover (pointer on the card, not on channel / comments).
 - **Headline:** white (`color/text/neutral/white`), centred. Stays white on hover.
 - **Read more:** Quaternary XS button on dark (`.btn-quaternary-dark .btn--xs`) with a trailing arrow. Decorative — the whole card is the link. On article hover a hover line grows under it (§5-C), no button hover. On channel / comments both Read more and overlay go back to rest, and return when the pointer is back on the card.
 - **Badge:** signposted top-left on the image, 16px inset, always lg — never inline in the headline.
@@ -155,12 +196,25 @@ The channel link turns `color/text/neutral/darker` on hover (rest: `neutral/dark
 
 Article Card Metadata (`.article-card__metadata.article-card-metadata`) — one type per card: Channel, Timestamp, Channel + Timestamp, Comment Only, Ad Feature, Sponsored, Affiliate Content, CTA or Columnist. Channel hover colour: §5-D.
 
-Comment Only: the count is followed by the word — "9.9k comments", or "1 comment" for one. Other types show the count alone.
+**Comment counter** — the count is followed by the word: "9.9k comments", "1 comment" for one. The word is always in the markup (`<span class="article-card-metadata__comments-word">`); CSS hides it where the count stands alone:
+
+| Where | Word |
+|---|---|
+| LG / XL — every card type and metadata type | shown |
+| MD / SM-XS — one info item (Channel or Timestamp), Ad Feature, Sponsored, Affiliate, Comment Only | shown |
+| MD / SM-XS — Channel + Timestamp | hidden |
+| SM: Right Thumb (Puff) — every breakpoint, every metadata type | hidden |
+| Columnist metadata narrower than 300px (container query) | hidden |
+
+Ad Feature, Sponsored and Affiliate rarely carry comments, but may.
 
 - **Columnist name** (link to the author page): on hover turns `color/text/interaction-primary/default` — the same colour as the headline on card hover — and gets an underline.
+- **Columnist byline:** name + role on the left, comments on the right, bottom-aligned, 12px apart, 8px above. The columnist's **photo is no longer in the metadata** — it sits in the headline (§2 Quote Headline).
 - **Columnist photo** is also a link to the author page: `<a class="columnist-photo" href="…" tabindex="-1" aria-hidden="true">` — a duplicate of the name link, so it is hidden from keyboard and screen readers. On hover: 3px outline, no offset, `color/effect/translucent-dark/subtle`, round with the disc. Outside a card (static) the photo stays a `<span>`.
 
 ### 6-A. Columnist Photo Colour
+
+Demo: `modules/columnist-profile-photo/` (sizes, Rectangle / Circle, every disc colour, Live).
 
 The disc behind the columnist photo is **editor-controlled per channel**, from the section's `/subtle` or `/base` background. Default: `color/background/home-blue/subtle` (no modifier).
 
@@ -199,6 +253,8 @@ The disc behind the columnist photo is **editor-controlled per channel**, from t
 | Card | `styles/scss/modules/_article-card.scss`, `_article-card-image-only.scss`, `_article-card-key-updates.scss`, `_article-card-video.scss` |
 | Video controls | `_video-player-controls.scss` — demo `modules/video-player-controls/index.html` |
 | Media | `_article-card-media.scss` (Video player, Carousel) · `scripts/modules/article-card-media.js` · Carousel component `components/_carousel.scss` + `scripts/modules/carousel.js` — demo `modules/article-card-media/index.html` |
-| Metadata | `_article-card-metadata.scss`, `_columnist-profile-photo.scss`, `_columnist-comment-announcement.scss` · section map `foundation/_sections.scss` |
-| Demo | `modules/article-card/index.html` (toolbar: Viewport · Badge · Preview · Metadata · Media — Image / Preview (Video in an article) / Video / Carousel), `viewports.html` (every type × breakpoint), `modules/article-card-metadata/index.html` |
-| Generators | `tools/demo-generators/` — the two `index.html` demo pages are generated |
+| Headline | `_article-headline.scss` — badge, Quote Headline (columnist photo) · demo `modules/article-headline/index.html` |
+| Metadata | `_article-card-metadata.scss` (comment word rules), `_columnist-comment-announcement.scss` — demo `modules/article-card-metadata/index.html` |
+| Columnist photo | `_columnist-profile-photo.scss` · section map `foundation/_sections.scss` — demo `modules/columnist-profile-photo/index.html` (sizes, Rectangle / Circle, disc colour, Live) |
+| Demo | `modules/article-card/index.html` (toolbar: Viewport · Badge · Preview · Metadata · Columnist (On: Metadata › Columnist · Normal + badge M+; other Metadata → badge None; badge M+ Opinion turns it on) · Media — Image / Preview (Video in an article) / Video / Carousel / No Media (MD, SM), `viewports.html` (every type × breakpoint) |
+| Generators | `tools/demo-generators/` — Article Card, Metadata and Columnist Profile Photo demo pages are generated |

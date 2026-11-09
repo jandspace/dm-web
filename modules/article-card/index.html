@@ -70,12 +70,12 @@
         </optgroup>
       </select>
       <span class="demo-vp-toolbar__divider" aria-hidden="true"></span>
-      <span id="demo-extra-switch-label">Preview</span>
-      <div class="demo-vp-toggle" role="group" aria-labelledby="demo-extra-switch-label" id="demo-extra-switch">
-        <button type="button" data-extra="off" aria-pressed="true">Off</button>
-        <button type="button" data-extra="text" aria-pressed="false">Text</button>
-        <button type="button" data-extra="keyupdates" aria-pressed="false">Key Update (Live only)</button>
-      </div>
+      <label for="demo-extra-select">Preview</label>
+      <select class="demo-vp-select" id="demo-extra-select" autocomplete="off">
+        <option value="off">Off</option>
+        <option value="text">Text</option>
+        <option value="keyupdates">Key Update (Live only)</option>
+      </select>
       <span class="demo-vp-toolbar__divider" aria-hidden="true"></span>
       <label for="demo-meta-select">Metadata</label>
       <select class="demo-vp-select" id="demo-meta-select">
@@ -98,12 +98,19 @@
         </optgroup>
       </select>
       <span class="demo-vp-toolbar__divider" aria-hidden="true"></span>
+      <span id="demo-columnist-switch-label">Columnist</span>
+      <div class="demo-vp-toggle" role="group" aria-labelledby="demo-columnist-switch-label" id="demo-columnist-switch">
+        <button type="button" data-columnist="off" aria-pressed="true">Off</button>
+        <button type="button" data-columnist="on" aria-pressed="false">On</button>
+      </div>
+      <span class="demo-vp-toolbar__divider" aria-hidden="true"></span>
       <label for="demo-media-select">Media</label>
       <select class="demo-vp-select" id="demo-media-select" autocomplete="off">
         <option value="image">Image</option>
         <option value="animated-preview">Preview (Video in an article)</option>
         <option value="video">Video (not SM / Image Only)</option>
         <option value="carousel">Carousel (not SM / Image Only)</option>
+        <option value="none">No Media (MD / SM only)</option>
       </select>
       </div>
     </div>
@@ -139,7 +146,7 @@
       <div class="article-card__media"><img src="../../assets/images/article-card-placeholder.jpg" alt="" /></div>
       <div class="article-card__body">
         <h2 class="h2 article-headline"><a class="article-card__link" href="#article">Headline of Daily Mail article preview card - lorem ipsum dolor sit amet, con sectetur adipiscing jand</a></h2>
-        <div class="article-card__metadata article-card-metadata"><a class="article-card-metadata__channel" href="#channel"><span class="article-card-metadata__channel-text">Channel</span></a><a class="article-card-metadata__comments" href="#comments" aria-label="9.9k comments"><span class="icon icon--speechbubble-ellipsis article-card-metadata__comments-icon" aria-hidden="true"></span>9.9k</a></div>
+        <div class="article-card__metadata article-card-metadata"><a class="article-card-metadata__channel" href="#channel"><span class="article-card-metadata__channel-text">Channel</span></a><a class="article-card-metadata__comments" href="#comments" aria-label="9.9k comments"><span class="icon icon--speechbubble-ellipsis article-card-metadata__comments-icon" aria-hidden="true"></span>9.9k<span class="article-card-metadata__comments-word">comments</span></a></div>
       </div>
     </article>
 
@@ -155,7 +162,7 @@
       <div class="article-card__media"><img src="../../assets/images/article-card-placeholder.jpg" alt="" /></div>
       <div class="article-card__body">
         <h3 class="h3 article-headline"><a class="article-card__link" href="#article">Headline of Daily Mail article preview card - lorem ipsum dolor sit amet, con sectetur adipiscing jand</a></h3>
-        <div class="article-card__metadata article-card-metadata"><a class="article-card-metadata__channel" href="#channel"><span class="article-card-metadata__channel-text">Channel</span></a><a class="article-card-metadata__comments" href="#comments" aria-label="9.9k comments"><span class="icon icon--speechbubble-ellipsis article-card-metadata__comments-icon" aria-hidden="true"></span>9.9k</a></div>
+        <div class="article-card__metadata article-card-metadata"><a class="article-card-metadata__channel" href="#channel"><span class="article-card-metadata__channel-text">Channel</span></a><a class="article-card-metadata__comments" href="#comments" aria-label="9.9k comments"><span class="icon icon--speechbubble-ellipsis article-card-metadata__comments-icon" aria-hidden="true"></span>9.9k<span class="article-card-metadata__comments-word">comments</span></a></div>
       </div>
     </article>
 
@@ -171,7 +178,7 @@
       <div class="article-card__media"><img src="../../assets/images/article-card-placeholder.jpg" alt="" /></div>
       <div class="article-card__body">
         <h2 class="h2 article-headline"><a class="article-card__link" href="#article">Headline of Daily Mail article preview card - lorem ipsum dolor sit amet, con sectetur adipiscing jand</a></h2>
-        <div class="article-card__metadata article-card-metadata"><a class="article-card-metadata__channel" href="#channel"><span class="article-card-metadata__channel-text">Channel</span></a><a class="article-card-metadata__comments" href="#comments" aria-label="9.9k comments"><span class="icon icon--speechbubble-ellipsis article-card-metadata__comments-icon" aria-hidden="true"></span>9.9k</a></div>
+        <div class="article-card__metadata article-card-metadata"><a class="article-card-metadata__channel" href="#channel"><span class="article-card-metadata__channel-text">Channel</span></a><a class="article-card-metadata__comments" href="#comments" aria-label="9.9k comments"><span class="icon icon--speechbubble-ellipsis article-card-metadata__comments-icon" aria-hidden="true"></span>9.9k<span class="article-card-metadata__comments-word">comments</span></a></div>
       </div>
     </article>
 
@@ -186,7 +193,7 @@
     <article class="article-card article-card--md-vertical">
       <h2 class="h2 article-headline"><a class="article-card__link" href="#article">Headline of Daily Mail article preview card - lorem ipsum dolor sit amet, con sectetur adipiscing jand</a></h2>
       <div class="article-card__media"><img src="../../assets/images/article-card-placeholder-portrait.jpg" alt="" /></div>
-      <div class="article-card__metadata article-card-metadata"><a class="article-card-metadata__channel" href="#channel"><span class="article-card-metadata__channel-text">Channel</span></a><a class="article-card-metadata__comments" href="#comments" aria-label="9.9k comments"><span class="icon icon--speechbubble-ellipsis article-card-metadata__comments-icon" aria-hidden="true"></span>9.9k</a></div>
+      <div class="article-card__metadata article-card-metadata"><a class="article-card-metadata__channel" href="#channel"><span class="article-card-metadata__channel-text">Channel</span></a><a class="article-card-metadata__comments" href="#comments" aria-label="9.9k comments"><span class="icon icon--speechbubble-ellipsis article-card-metadata__comments-icon" aria-hidden="true"></span>9.9k<span class="article-card-metadata__comments-word">comments</span></a></div>
     </article>
 
     <!-- ════════════════════════════════════════════════════
@@ -201,39 +208,40 @@
       <div class="article-card__media"><img src="../../assets/images/article-card-placeholder.jpg" alt="" /></div>
       <div class="article-card__body">
         <h4 class="h4 article-headline"><a class="article-card__link" href="#article">Headline of Daily Mail article preview card - lorem ipsum dolor sit amet, con sectetur adipiscing jand</a></h4>
-        <div class="article-card__metadata article-card-metadata"><a class="article-card-metadata__channel" href="#channel"><span class="article-card-metadata__channel-text">Channel</span></a><a class="article-card-metadata__comments" href="#comments" aria-label="9.9k comments"><span class="icon icon--speechbubble-ellipsis article-card-metadata__comments-icon" aria-hidden="true"></span>9.9k</a></div>
+        <div class="article-card__metadata article-card-metadata"><a class="article-card-metadata__channel" href="#channel"><span class="article-card-metadata__channel-text">Channel</span></a><a class="article-card-metadata__comments" href="#comments" aria-label="9.9k comments"><span class="icon icon--speechbubble-ellipsis article-card-metadata__comments-icon" aria-hidden="true"></span>9.9k<span class="article-card-metadata__comments-word">comments</span></a></div>
       </div>
     </article>
 
     <!-- ════════════════════════════════════════════════════
          SM: LEFT THUMB
-         1 column · thumbnail 4:3 on the left (XL 152 · LG 120 · MD/SM-XS 128px) · H5
+         1 column · LG+: headline, then thumbnail 4:3 + preview text, then metadata · MD/SM-XS: thumbnail left, no preview (XL 152 · LG 144 · MD/SM-XS 128px) · H5
     ════════════════════════════════════════════════════ -->
     <div class="demo-card-section demo-span-3">
       <div class="demo-card-section__title">SM: Left Thumb</div>
-      <p class="demo-card-section__note">1 column · thumbnail 4:3 on the left (XL 152 · LG 120 · MD/SM-XS 128px) · H5</p>
+      <p class="demo-card-section__note">1 column · LG+: headline, then thumbnail 4:3 + preview text, then metadata · MD/SM-XS: thumbnail left, no preview (XL 152 · LG 144 · MD/SM-XS 128px) · H5</p>
     </div>
     <article class="article-card article-card--sm-left">
       <div class="article-card__media"><img src="../../assets/images/article-card-placeholder.jpg" alt="" /></div>
       <div class="article-card__body">
         <h5 class="h5 article-headline"><a class="article-card__link" href="#article">Headline of Daily Mail article preview card - lorem ipsum dolor sit amet, con sectetur adipiscing jand</a></h5>
-        <div class="article-card__metadata article-card-metadata"><a class="article-card-metadata__channel" href="#channel"><span class="article-card-metadata__channel-text">Channel</span></a><a class="article-card-metadata__comments" href="#comments" aria-label="9.9k comments"><span class="icon icon--speechbubble-ellipsis article-card-metadata__comments-icon" aria-hidden="true"></span>9.9k</a></div>
+        <p class="article-card__preview">Preview Text - Lorem ipsum dolor sit amet, con sectetur ad ipiscing elit, quis que quis massa sit a met ex con sectetur dovi fermentum. Duis phare tra suscip zit.</p>
+        <div class="article-card__metadata article-card-metadata"><a class="article-card-metadata__channel" href="#channel"><span class="article-card-metadata__channel-text">Channel</span></a><a class="article-card-metadata__comments" href="#comments" aria-label="9.9k comments"><span class="icon icon--speechbubble-ellipsis article-card-metadata__comments-icon" aria-hidden="true"></span>9.9k<span class="article-card-metadata__comments-word">comments</span></a></div>
       </div>
     </article>
 
     <!-- ════════════════════════════════════════════════════
-         SM: RIGHT THUMB
-         1 column · thumbnail 4:3 on the right from LG, on the left at MD and SM-XS · H6
+         SM: RIGHT THUMB (PUFF)
+         1 column · thumbnail 4:3 on the right from LG, on the left at MD and SM-XS · H6 · comment count without the word
     ════════════════════════════════════════════════════ -->
     <div class="demo-card-section demo-span-3">
-      <div class="demo-card-section__title">SM: Right Thumb</div>
-      <p class="demo-card-section__note">1 column · thumbnail 4:3 on the right from LG, on the left at MD and SM-XS · H6</p>
+      <div class="demo-card-section__title">SM: Right Thumb (Puff)</div>
+      <p class="demo-card-section__note">1 column · thumbnail 4:3 on the right from LG, on the left at MD and SM-XS · H6 · comment count without the word</p>
     </div>
     <article class="article-card article-card--sm-right">
       <div class="article-card__media"><img src="../../assets/images/article-card-placeholder.jpg" alt="" /></div>
       <div class="article-card__body">
         <h6 class="h6 article-headline"><a class="article-card__link" href="#article">Headline of Daily Mail article preview card - lorem ipsum dolor sit amet, con sectetur adipiscing jand</a></h6>
-        <div class="article-card__metadata article-card-metadata"><a class="article-card-metadata__channel" href="#channel"><span class="article-card-metadata__channel-text">Channel</span></a><a class="article-card-metadata__comments" href="#comments" aria-label="9.9k comments"><span class="icon icon--speechbubble-ellipsis article-card-metadata__comments-icon" aria-hidden="true"></span>9.9k</a></div>
+        <div class="article-card__metadata article-card-metadata"><a class="article-card-metadata__channel" href="#channel"><span class="article-card-metadata__channel-text">Channel</span></a><a class="article-card-metadata__comments" href="#comments" aria-label="9.9k comments"><span class="icon icon--speechbubble-ellipsis article-card-metadata__comments-icon" aria-hidden="true"></span>9.9k<span class="article-card-metadata__comments-word">comments</span></a></div>
       </div>
     </article>
 
@@ -254,7 +262,7 @@
         </div>
         <div class="article-card__signpost"></div>
       </div>
-      <div class="article-card__metadata article-card-metadata"><a class="article-card-metadata__channel" href="#channel"><span class="article-card-metadata__channel-text">Channel</span></a><a class="article-card-metadata__comments" href="#comments" aria-label="9.9k comments"><span class="icon icon--speechbubble-ellipsis article-card-metadata__comments-icon" aria-hidden="true"></span>9.9k</a></div>
+      <div class="article-card__metadata article-card-metadata"><a class="article-card-metadata__channel" href="#channel"><span class="article-card-metadata__channel-text">Channel</span></a><a class="article-card-metadata__comments" href="#comments" aria-label="9.9k comments"><span class="icon icon--speechbubble-ellipsis article-card-metadata__comments-icon" aria-hidden="true"></span>9.9k<span class="article-card-metadata__comments-word">comments</span></a></div>
     </article>
 
     <!-- ════════════════════════════════════════════════════
@@ -274,7 +282,7 @@
         </div>
         <div class="article-card__signpost"></div>
       </div>
-      <div class="article-card__metadata article-card-metadata"><a class="article-card-metadata__channel" href="#channel"><span class="article-card-metadata__channel-text">Channel</span></a><a class="article-card-metadata__comments" href="#comments" aria-label="9.9k comments"><span class="icon icon--speechbubble-ellipsis article-card-metadata__comments-icon" aria-hidden="true"></span>9.9k</a></div>
+      <div class="article-card__metadata article-card-metadata"><a class="article-card-metadata__channel" href="#channel"><span class="article-card-metadata__channel-text">Channel</span></a><a class="article-card-metadata__comments" href="#comments" aria-label="9.9k comments"><span class="icon icon--speechbubble-ellipsis article-card-metadata__comments-icon" aria-hidden="true"></span>9.9k<span class="article-card-metadata__comments-word">comments</span></a></div>
     </article>
     </main>
     </div>
@@ -300,9 +308,14 @@
         const only = params.get('only');
 
         // Preview text is CMS-optional: the element exists only when switched on.
-        // SM Left / Right Thumb never take it.
+        // SM Right Thumb never takes it. SM Left Thumb has it from the start (built in
+        // by gen_card.py — thumbnail + preview come as one block, shown from LG) and
+        // keeps it, unless Columnist is on (see setPreview).
         const PREVIEW_TEXT =
-          'Preview Text, Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quisque quis massa sit amet ex con sectetur fermentum. Duis pharetra suscipit enim, vitae commodo enim aliquam et. Mauris sit amet lectus nisi. In id diam in odio luctus imperdiet et non nunc.';
+          'Preview Text - Lorem ipsum dolor sit amet, con sectetur ad ipiscing elit, quis que quis massa sit a met ex con sectetur dovi fermentum. Duis phare tra suscip zit. Enim vitae commodo enim. Mauris sit amet lectus nisi. In id diam in odio luctus imperdiet et non nunc.';
+        // MD and SM cards take a shorter preview
+        const PREVIEW_TEXT_SHORT =
+          'Preview Text - Lorem ipsum dolor sit amet, con sectetur ad ipiscing elit, quis que quis massa sit a met ex con sectetur dovi fermentum. Duis phare tra suscip zit.';
 
         // Extra-slot elements go right before the metadata; with Metadata › Off
         // they go at the end of the card's text area instead.
@@ -313,16 +326,22 @@
           else textArea(card).append(el);
         };
 
+        // SM Left keeps its preview whatever the select says — except with Columnist
+        // metadata, where the preview can be switched off like on other cards.
+        let previewOn = false;
         const setPreview = (on) => {
+          previewOn = on;
+          const columnist = Boolean(document.querySelector('.article-card-metadata--columnist'));
           document.querySelectorAll('.article-card').forEach((card) => {
-            if (card.matches('.article-card--sm-left, .article-card--sm-right, .article-card--image-only')) return;
+            if (card.matches('.article-card--sm-right, .article-card--image-only')) return;
+            const show = on || (card.matches('.article-card--sm-left') && !columnist);
             const existing = card.querySelector('.article-card__preview');
-            if (on && !existing) {
+            if (show && !existing) {
               const p = document.createElement('p');
               p.className = 'article-card__preview';
-              p.textContent = PREVIEW_TEXT;
+              p.textContent = card.matches('.article-card--md, .article-card--sm-left') ? PREVIEW_TEXT_SHORT : PREVIEW_TEXT;
               insertBeforeMeta(card, p);
-            } else if (!on && existing) {
+            } else if (!show && existing) {
               existing.remove();
             }
           });
@@ -418,11 +437,13 @@
 
         // Article Card Metadata — same markup as modules/article-card-metadata.
         // The element keeps the card's slot hook: "article-card__metadata article-card-metadata".
-        // Comment Only spells the word out after the count: "9.9k comments" ("1 comment").
-        const COMMENTS = (text = '9.9k') =>
+        // The word follows the count ("9.9k comments", "1 comment"); CSS hides it where
+        // the count stands alone (SM Right Thumb · Channel + Timestamp below LG ·
+        // Columnist metadata under 300px).
+        const COMMENTS =
           '<a class="article-card-metadata__comments" href="#comments" aria-label="9.9k comments">' +
           '<span class="icon icon--speechbubble-ellipsis article-card-metadata__comments-icon" aria-hidden="true"></span>' +
-          `${text}</a>`;
+          '9.9k<span class="article-card-metadata__comments-word">comments</span></a>';
         const CHANNEL =
           '<a class="article-card-metadata__channel" href="#channel"><span class="article-card-metadata__channel-text">Channel</span></a>';
         const TIME = '<time class="article-card-metadata__time" datetime="2026-10-20T11:30">30m ago</time>';
@@ -433,7 +454,7 @@
           '<span class="icon icon--square-arrow-up-right article-card-metadata__affiliate-icon" aria-hidden="true"></span></a>';
 
         const standard = (info) =>
-          `<div class="article-card__metadata article-card-metadata">${info}${COMMENTS(info ? '9.9k' : '9.9k comments')}</div>`;
+          `<div class="article-card__metadata article-card-metadata">${info}${COMMENTS}</div>`;
 
         const ANNOUNCE = {
           scheduled: ['', 'Join Columnist in the comments', 'From 2.30pm'],
@@ -455,18 +476,34 @@
             : '';
           return (
             '<div class="article-card__metadata article-card-metadata article-card-metadata--columnist">' +
-            '<div class="article-card-metadata__columnist"><div class="article-card-metadata__byline">' +
+            '<div class="article-card-metadata__byline">' +
             '<div class="article-card-metadata__author">' +
             '<a class="article-card-metadata__author-name" href="#author">Columnist Name</a>' +
             '<span class="article-card-metadata__author-role">Daily Mail Columnist</span></div>' +
-            COMMENTS() +
-            '</div>' +
-            `<a class="columnist-photo columnist-photo--lg${mode === 'live' ? ' columnist-photo--live' : ''}" href="#author" tabindex="-1" aria-hidden="true">` +
-            '<img class="columnist-photo__img" src="../../assets/images/columnist-placeholder.png" alt="Columnist Name" /></a>' +
+            COMMENTS +
             '</div>' +
             announce +
             '</div>'
           );
+        };
+
+        // Columnist → Quote Headline: serif, with the columnist's photo on the right
+        // (Article Headline › Columnist photo). Default size by level:
+        // H2 xl 80 · H3–H5 lg 64 · H6 md 48. Live adds the green dot. Not on Image Only.
+        const PHOTO_SIZE = { h2: 'xl', h3: 'lg', h4: 'lg', h5: 'lg', h6: 'md' };
+        const setQuote = (type) => {
+          const mode = type?.startsWith('columnist') ? type.replace(/^columnist-?/, '') || 'normal' : null;
+          document.querySelectorAll('.article-card:not(.article-card--image-only) .article-headline').forEach((h) => {
+            h.querySelector(':scope > .columnist-photo')?.remove();
+            h.classList.toggle('serif', Boolean(mode));
+            if (!mode) return;
+            const live = mode === 'live' ? ' columnist-photo--live' : '';
+            h.insertAdjacentHTML(
+              'beforeend',
+              `<a class="columnist-photo columnist-photo--${PHOTO_SIZE[h.tagName.toLowerCase()]}${live}" href="#author" tabindex="-1" aria-hidden="true">` +
+                '<img class="columnist-photo__img" src="../../assets/images/columnist-placeholder.png" alt="Columnist Name" /></a>',
+            );
+          });
         };
 
         const META_TYPES = {
@@ -499,6 +536,8 @@
             if (existing) existing.outerHTML = html;
             else textArea(card).insertAdjacentHTML('beforeend', html);
           });
+          setQuote(type);
+          setPreview(previewOn); // SM Left preview depends on Columnist metadata
         };
 
         setMeta(params.get('meta'));
@@ -512,10 +551,13 @@
         //                     icon; Image Only takes the preview, never the icon
         //   video          video player       — not on SM thumbs or Image Only
         //   carousel       5 slides, 3rd a preview — not on SM thumbs or Image Only
+        //   none           no media box at all — MD, SM Left and SM Right Thumb only
+        //                  (the media is CMS-optional there); other types keep the photo
         // Cards that cannot take a type keep the photo.
-        const MEDIA_TYPES = ['image', 'animated-preview', 'video', 'carousel'];
+        const MEDIA_TYPES = ['image', 'animated-preview', 'video', 'carousel', 'none'];
+        const NO_MEDIA_TYPES = '.article-card--md, .article-card--sm-left, .article-card--sm-right';
         const ASSETS = '../../assets/images/';
-        const PREVIEW_HTML = `<video src="${ASSETS}article-card-animated-preview.mp4#t=0.1" data-preview muted loop playsinline preload="metadata" aria-hidden="true"></video>`;
+        const PREVIEW_HTML = `<video src="${ASSETS}article-card-animated-preview.mp4#t=0.1" data-preview muted loop playsinline preload="none" aria-hidden="true"></video>`;
         const PLAY_HTML =
           '<span class="article-card__video" data-theme="light" aria-hidden="true">' +
           '<span class="video-play"><span class="icon icon--media-play" aria-hidden="true"></span></span></span>';
@@ -523,7 +565,7 @@
           `<button type="button" class="btn ${cls} btn--icon-only" ${attrs}><span class="icon icon--${icon}" aria-hidden="true"></span></button>`;
         const PLAYER_HTML =
           '<div class="article-card__media article-card-player" data-theme="light">' +
-          `<video src="${ASSETS}article-card-video.mp4#t=0.1" muted playsinline preload="metadata"></video>` +
+          `<video src="${ASSETS}article-card-video.mp4#t=0.1" muted playsinline preload="none"></video>` +
           '<button type="button" class="article-card-player__surface" aria-label="Play video"></button>' +
           '<span class="article-card-player__play" aria-hidden="true"><span class="video-play"><span class="icon icon--media-play" aria-hidden="true"></span></span><span class="video-timer">00:11</span></span>' +
           '<div class="article-card-player__actions">' +
@@ -559,11 +601,18 @@
           photos.forEach((photo, card) => {
             const small = card.matches('.article-card--sm-left, .article-card--sm-right');
             const imageOnly = card.matches('.article-card--image-only');
-            const t = (type === 'video' || type === 'carousel') && (small || imageOnly) ? 'image' : type;
+            let t = (type === 'video' || type === 'carousel') && (small || imageOnly) ? 'image' : type;
+            if (t === 'none' && !card.matches(NO_MEDIA_TYPES)) t = 'image';
 
             // Back to the photo first. Player and carousel replace the whole
             // media box (never on Image Only, whose overlay lives in it).
             let media = card.querySelector('.article-card__media');
+            if (!media) {
+              // back from No Media: the box goes first again (MD and SM types)
+              media = document.createElement('div');
+              media.className = 'article-card__media';
+              card.prepend(media);
+            }
             if (media.matches('.article-card-player, .article-card-carousel')) {
               const box = document.createElement('div');
               box.className = 'article-card__media';
@@ -583,6 +632,8 @@
               media.outerHTML = PLAYER_HTML;
             } else if (t === 'carousel') {
               media.outerHTML = CAROUSEL_HTML;
+            } else if (t === 'none') {
+              media.remove();
             }
             // On first load the media scripts (deferred) run after this and
             // initialise everything themselves
@@ -619,7 +670,7 @@
         };
 
         const toggle = document.getElementById('demo-vp-switch');
-        const extraToggle = document.getElementById('demo-extra-switch');
+        const extraSelect = document.getElementById('demo-extra-select');
         const badgeSelect = document.getElementById('demo-badge-select');
         const metaSelect = document.getElementById('demo-meta-select');
         const mediaSelect = document.getElementById('demo-media-select');
@@ -701,9 +752,7 @@
         const extraMode = () => (badge === 'live' ? 'keyupdates' : preview ? 'text' : 'off');
 
         const syncControls = () => {
-          extraToggle.querySelectorAll('button').forEach((b) => {
-            b.setAttribute('aria-pressed', String(b.dataset.extra === extraMode()));
-          });
+          extraSelect.value = extraMode();
           badgeSelect.value = badge;
         };
 
@@ -723,10 +772,8 @@
           if (current !== 'live') select(current); // re-render the frame with the new state
         };
 
-        extraToggle.addEventListener('click', (event) => {
-          const button = event.target.closest('button[data-extra]');
-          if (!button) return;
-          const mode = button.dataset.extra;
+        extraSelect.addEventListener('change', () => {
+          const mode = extraSelect.value;
           if (mode === 'keyupdates') {
             badge = 'live';
             preview = false;
@@ -740,19 +787,49 @@
         badgeSelect.addEventListener('change', () => {
           badge = badgeSelect.value;
           if (badge === 'live') preview = false;
+          // M+ Opinion is a columnist piece: Columnist on, Metadata › Columnist · Normal
+          if (badge === 'mplus-opinion' && !isColumnist()) applyMeta('columnist');
           applyState();
         });
 
-        metaSelect.addEventListener('change', () => {
-          meta = metaSelect.value;
+        // Metadata — any Columnist type turns the Columnist switch on and
+        // defaults the badge to M+; any other type defaults it to None.
+        const applyMeta = (value) => {
+          meta = value;
+          metaSelect.value = meta;
           setMeta(meta);
+          pressColumnist();
 
           const url = new URL(location.href);
           if (meta !== 'channel') url.searchParams.set('meta', meta);
           else url.searchParams.delete('meta');
           history.replaceState(null, '', url);
+        };
 
-          if (current !== 'live') select(current);
+        metaSelect.addEventListener('change', () => {
+          applyMeta(metaSelect.value);
+          badge = isColumnist() ? 'mplus' : '';
+          applyState(); // also re-renders the fixed-viewport frame
+        });
+
+        // Columnist switch — On: Metadata › Columnist · Normal (photo in the
+        // headline) with badge M+. Off: Metadata › Channel Only, no badge.
+        // It follows the Metadata select (any Columnist type = On).
+        const columnistToggle = document.getElementById('demo-columnist-switch');
+        const isColumnist = () => (meta || '').startsWith('columnist');
+        const pressColumnist = () =>
+          columnistToggle
+            .querySelectorAll('button')
+            .forEach((b) => b.setAttribute('aria-pressed', String((b.dataset.columnist === 'on') === isColumnist())));
+        pressColumnist();
+        columnistToggle.addEventListener('click', (event) => {
+          const button = event.target.closest('button[data-columnist]');
+          if (!button) return;
+          const on = button.dataset.columnist === 'on';
+          if (on === isColumnist()) return;
+          applyMeta(on ? 'columnist' : 'channel');
+          badge = on ? 'mplus' : '';
+          applyState();
         });
 
         mediaSelect.addEventListener('change', () => {

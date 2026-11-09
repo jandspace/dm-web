@@ -32,3 +32,27 @@
     &.badge--xs { --headline-badge-shift: -1px; } // H6
   }
 }
+
+// ── Columnist photo (Quote Headline) ──────────────────────────────────────────
+// A columnist's quote headline (always .serif) carries the columnist's photo on
+// its right — Columnist Profile Photo, Rectangle, linked to the author page:
+//   <h4 class="h4 serif article-headline">
+//     <a class="article-card__link" href="…">…</a>
+//     <a class="columnist-photo columnist-photo--lg" href="…" tabindex="-1" aria-hidden="true">…</a>
+//   </h4>
+// Size is a modifier in the markup. Defaults (Figma Article Card Headline,
+// Quote Headline=Yes): H2 xl 80 · H3–H5 lg 64 · H6 md 48.
+// Top-aligned, 8px from the text. The cut-out head rises 13/80 of the disc
+// above it, so the disc drops by that much — the head lines up with the text top.
+// Reference: Figma Web UI Kit › Article Card Headline (2591:38469)
+
+.article-headline:has(> .columnist-photo) {
+  display: flex;
+  align-items: flex-start;
+  gap: var(--spacing-8);
+}
+
+.article-headline > .columnist-photo {
+  margin-top: calc(var(--columnist-photo-size) * 13 / 80);
+  margin-left: auto;
+}

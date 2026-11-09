@@ -2,12 +2,12 @@
 // Items in a row that scrolls sideways and snaps an item to the start. Two types:
 //
 //   Row     (default)         items keep their own width, several in view; the
-//                             one cut off on the right (16px fade) shows there
+//                             one cut off on the right (plain crop, no fade) shows there
 //                             is more — no dots. E.g. Shorts Signpost
 //   Slide   .carousel--slide  one item fills the box; dots show there is more.
 //                             E.g. Article Card carousel
 //
-//   .carousel (.carousel--slide) ([data-autoplay])
+//   .carousel (.carousel--slide) ([data-autoplay]) ([data-step="item"])
 //     .carousel__track                      Scroll Row; its children are the items
 //     .carousel__nav.carousel__nav--prev    btn-tertiary-neutral, icon only,
 //     .carousel__nav.carousel__nav--next    vertically centred, no shadow
@@ -16,8 +16,11 @@
 //
 // Arrows: Slide at every width (a touch screen has nothing else that says "this
 // moves" on a single picture); Row from LG only — below it the cut-off item and
-// swipe are enough. At 40% until the carousel is hovered. No Prev at the start,
-// no Next at the end.
+// swipe are enough. At 60% until the carousel is hovered. No Prev at the start,
+// no Next at the end. A step glides 600ms (ease-in-out, script); swipes keep
+// the browser's own scroll and snap.
+// Step: Next / Prev move a view at a time (the first cut-off item comes to
+// the start); [data-step="item"] on a Row moves one item at a time.
 // Autoplay ([data-autoplay], Row or Slide): every 5s it moves as Next does;
 // after the end, back to the first. Slide: the active dot fills in 5s (below);
 // Row: a timer in the script. Waits while hovered, focused or off screen; none
@@ -51,7 +54,6 @@
 
 .carousel__track {
   @include scroll-row.row;
-  @include scroll-row.fade-end(16px);
 
   display: flex;
   gap: var(--carousel-gap, 0);
@@ -63,11 +65,17 @@
     flex: none;
     scroll-snap-align: start;
   }
+
+  // An arrow / autoplay step is animated by the script (600ms ease-in-out):
+  // no snap or smooth scroll pulling against it meanwhile
+  [data-moving] > & {
+    scroll-snap-type: none;
+    scroll-behavior: auto;
+  }
 }
 
 .carousel--slide .carousel__track {
   height: 100%;
-  mask-image: none; // nothing is cut off
 
   > * {
     flex-basis: 100%;
@@ -83,7 +91,7 @@
   top: 50%;
   padding: var(--spacing-8);
   transform: translateY(-50%);
-  opacity: 0.4;
+  opacity: 0.6;
   transition: opacity 150ms ease;
 
   &--prev {

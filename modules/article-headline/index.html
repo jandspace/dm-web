@@ -18,7 +18,9 @@
 
     <!-- Viewport filter: applies the typography token values of the chosen
          breakpoint (read from tokens/dm_typography_web_tokens.css) to the grid.
-         Live = the real window width. -->
+         Live = the real window width.
+         Photo: the columnist photo on every other H2–H6 headline (as a Quote
+         Headline: serif + photo), on or off (?photo=on). The Photo row always has it. -->
     <div class="demo-vp-toolbar demo-vp-toolbar--sticky">
       <span id="demo-type-vp-label">Viewport</span>
       <div class="demo-vp-toggle" role="group" aria-labelledby="demo-type-vp-label" id="demo-type-vp">
@@ -28,6 +30,12 @@
         <button type="button" data-vp="sm" aria-pressed="false">SM &lt;768</button>
       </div>
       <span class="demo-vp-status" id="demo-type-vp-status"></span>
+      <span class="demo-vp-toolbar__divider" aria-hidden="true"></span>
+      <span id="demo-photo-switch-label">Columnist photo</span>
+      <div class="demo-vp-toggle" role="group" aria-labelledby="demo-photo-switch-label" id="demo-photo-switch">
+        <button type="button" data-photo="off" aria-pressed="true">Off</button>
+        <button type="button" data-photo="on" aria-pressed="false">On</button>
+      </div>
     </div>
 
     <div class="demo-grid demo-grid--headline">
@@ -52,6 +60,47 @@
       <div class="demo-cell"><h4 class="h4 article-headline">Article Heading 4, lorem ipsum dolor sit amet con sectetur adipiscing elit pellus curs us</h4></div>
       <div class="demo-cell"><h5 class="h5 article-headline">Article Heading 5, lorem ipsum dolor sit amet con sectetur adipiscing elit pellus curs us</h5></div>
       <div class="demo-cell"><h6 class="h6 article-headline">Article Heading 6, lorem ipsum dolor sit amet con sectetur adipiscing elit pellus curs us</h6></div>
+
+      <!-- ════════════════════════════════════════════════════
+           QUOTE HEADLINE (COLUMNIST)
+           Serif only · Columnist Profile Photo (Rectangle) on the right, 8px gap, top
+           Default size: H2 xl 80 · H3–H5 lg 64 · H6 md 48 (no H1)
+           In a card the text is the article link (<a class="article-card__link">)
+      ════════════════════════════════════════════════════ -->
+      <div class="demo-group-header"><span class="demo-group-title">Quote Headline (Columnist)</span></div>
+
+      <div class="demo-row-label">Photo</div>
+      <div class="demo-cell"></div>
+      <div class="demo-cell">
+        <h2 class="h2 serif article-headline">
+          <span>Article Heading 2, lorem ipsum dolor sit amet con sectetur adipiscing elit pellus curs us</span>
+          <a class="columnist-photo columnist-photo--xl" href="#author" tabindex="-1" aria-hidden="true"><img class="columnist-photo__img" src="../../assets/images/columnist-placeholder.png" alt="" /></a>
+        </h2>
+      </div>
+      <div class="demo-cell">
+        <h3 class="h3 serif article-headline">
+          <span>Article Heading 3, lorem ipsum dolor sit amet con sectetur adipiscing elit pellus curs us</span>
+          <a class="columnist-photo columnist-photo--lg" href="#author" tabindex="-1" aria-hidden="true"><img class="columnist-photo__img" src="../../assets/images/columnist-placeholder.png" alt="" /></a>
+        </h3>
+      </div>
+      <div class="demo-cell">
+        <h4 class="h4 serif article-headline">
+          <span>Article Heading 4, lorem ipsum dolor sit amet con sectetur adipiscing elit pellus curs us</span>
+          <a class="columnist-photo columnist-photo--lg" href="#author" tabindex="-1" aria-hidden="true"><img class="columnist-photo__img" src="../../assets/images/columnist-placeholder.png" alt="" /></a>
+        </h4>
+      </div>
+      <div class="demo-cell">
+        <h5 class="h5 serif article-headline">
+          <span>Article Heading 5, lorem ipsum dolor sit amet con sectetur adipiscing elit pellus curs us</span>
+          <a class="columnist-photo columnist-photo--lg" href="#author" tabindex="-1" aria-hidden="true"><img class="columnist-photo__img" src="../../assets/images/columnist-placeholder.png" alt="" /></a>
+        </h5>
+      </div>
+      <div class="demo-cell">
+        <h6 class="h6 serif article-headline">
+          <span>Article Heading 6, lorem ipsum dolor sit amet con sectetur adipiscing elit pellus curs us</span>
+          <a class="columnist-photo columnist-photo--md" href="#author" tabindex="-1" aria-hidden="true"><img class="columnist-photo__img" src="../../assets/images/columnist-placeholder.png" alt="" /></a>
+        </h6>
+      </div>
 
       <!-- ════════════════════════════════════════════════════
            HIGHLIGHT
@@ -712,6 +761,49 @@
         });
         window.addEventListener('resize', () => mode === 'live' && apply());
         apply();
+      })();
+    </script>
+    <script>
+      // Scaffolding only — Columnist photo: adds the photo to every H2–H6 headline
+      // outside the Photo row (which always has it) and makes it a Quote
+      // Headline (serif). Default size by level: H2 xl · H3–H5 lg · H6 md.
+      (() => {
+        const toggle = document.getElementById('demo-photo-switch');
+        const SIZE = { H2: 'xl', H3: 'lg', H4: 'lg', H5: 'lg', H6: 'md' };
+        const headlines = [...document.querySelectorAll('.article-headline')].filter(
+          (h) => SIZE[h.tagName] && !h.querySelector(':scope > .columnist-photo'),
+        );
+        // Badge + text sit straight in the heading here; in a card they share the
+        // article link. Wrap them once in a span (stands in for the link) so the
+        // photo row's flex layout keeps them together.
+        headlines.forEach((h) => {
+          const text = document.createElement('span');
+          text.append(...h.childNodes);
+          h.append(text);
+        });
+        const apply = (on) => {
+          toggle.querySelectorAll('button').forEach((b) => b.setAttribute('aria-pressed', String((b.dataset.photo === 'on') === on)));
+          headlines.forEach((h) => {
+            h.querySelector(':scope > .columnist-photo')?.remove();
+            h.classList.toggle('serif', on);
+            if (on) {
+              h.insertAdjacentHTML(
+                'beforeend',
+                `<a class="columnist-photo columnist-photo--${SIZE[h.tagName]}" href="#author" tabindex="-1" aria-hidden="true">` +
+                  '<img class="columnist-photo__img" src="../../assets/images/columnist-placeholder.png" alt="" /></a>',
+              );
+            }
+          });
+          const url = new URL(location.href);
+          if (on) url.searchParams.set('photo', 'on');
+          else url.searchParams.delete('photo');
+          history.replaceState(null, '', url);
+        };
+        toggle.addEventListener('click', (event) => {
+          const button = event.target.closest('button[data-photo]');
+          if (button) apply(button.dataset.photo === 'on');
+        });
+        apply(new URLSearchParams(location.search).get('photo') === 'on');
       })();
     </script>
   </body>

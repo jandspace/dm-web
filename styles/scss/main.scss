@@ -75,6 +75,7 @@
 @use 'scaffolding/tooltip-demo';
 @use 'scaffolding/article-card-demo';
 @use 'scaffolding/article-card-metadata-demo';
+@use 'scaffolding/columnist-profile-photo-demo';
 @use 'scaffolding/article-card-media-demo';
 @use 'scaffolding/section-header-demo';
 @use 'scaffolding/navigation-demo';
@@ -84,4 +85,7 @@
 @use 'scaffolding/video-player-controls-demo';
 @use 'scaffolding/notes-index';
 @use 'scaffolding/site-switch';
-@use 'scaffolding/exp-homepage';
+
+// Experiments (A/B tests and page trials — prototype only, never shipped; a
+// settled change moves to components/ or modules/)
+@use 'experiments/homepage';

@@ -139,6 +139,7 @@
 // Secondary links/buttons stay clickable above the stretched article link
 .article-card__metadata a,
 .article-card__metadata button,
+.article-headline > .columnist-photo,
 .article-card-key-updates a {
   position: relative;
   z-index: 2;
@@ -176,33 +177,35 @@
 // Sits between headline and metadata (MD Vertical: between media and metadata).
 // Design rules handled here:
 //   · SM-XS (<768): never shown — keeps mobile browsing fast
-//   · SM Left / Right Thumb: never shown
-//   · Size: XL card → LG (text-sm 14px); every other type → MD (text-xsm 13px)
-//   · 3 lines max, ellipsis
+//   · SM Left Thumb: LG+ only, beside the thumbnail (see the card type below)
+//   · SM Right Thumb: never shown
+//   · Type (Figma Article Card Preview Text 108:7210 — Label Regular,
+//     line-height narrow 1.2, letter-spacing normal, text/neutral/dark):
+//     XL card → LG (label-sm 14px) · SM Left Thumb → SM (label-xxsm 12px)
+//     · every other type → MD (label-xsm 13px)
+//   · No truncation: the text runs in full, as the CMS feeds it
 
 .article-card__preview {
   display: none;
-  // Spacing as margin, not padding — overflow clips at the padding edge,
-  // so padding would let the top of a 4th line show through.
   margin: 0 0 var(--spacing-8);
-  overflow: hidden;
   font-family: var(--typography-font-family-sans);
-  font-size: var(--typography-font-size-text-xsm);
+  font-size: var(--typography-font-size-label-xsm);
   font-weight: var(--typography-font-weight-regular);
-  line-height: var(--typography-line-height-normal);
-  letter-spacing: var(--typography-letter-spacing-wide);
-  color: var(--color-text-neutral-grey-dark);
-  -webkit-box-orient: vertical;
-  -webkit-line-clamp: 3;
-  line-clamp: 3;
+  line-height: var(--typography-line-height-narrow);
+  letter-spacing: var(--typography-letter-spacing-normal);
+  color: var(--color-text-neutral-dark);
 
   @include bp.respond-to(md) {
-    display: -webkit-box;
+    display: block;
   }
 }
 
 .article-card--xl .article-card__preview {
-  font-size: var(--typography-font-size-text-sm);
+  font-size: var(--typography-font-size-label-sm);
+}
+
+.article-card--sm-left .article-card__preview {
+  font-size: var(--typography-font-size-label-xxsm);
 }
 
 .article-card--sm-left .article-card__preview,
@@ -305,7 +308,7 @@
 // Stacked: media (358:215) → headline → metadata. Base styles cover it.
 
 // ── Card type: SM (Left / Right Thumb) ────────────────────────────────────────
-// Row: 4:3 thumbnail + text. Thumb width — SM-XS/MD 128 · LG 120 · XL 152.
+// Row: 4:3 thumbnail + text. Thumb width — SM-XS/MD 128 · LG 120 (Left Thumb 144) · XL 152.
 
 .article-card--sm-left,
 .article-card--sm-right {
@@ -325,6 +328,53 @@
     }
 
     @include bp.respond-to(xl) {
+      width: 152px;
+    }
+  }
+}
+
+// LG+ Left Thumb: headline across the card, then thumbnail + preview text,
+// then metadata across the card. No thumbnail without the preview (the CMS
+// switches them together); the preview alone runs across the card. Thumbnail
+// LG 144 × 108 (Figma 5209:5234) · XL 152; the preview runs in full beside it.
+// MD and SM-XS keep the row above, no preview (mobile headlines are short).
+.article-card--sm-left {
+  @include bp.respond-to(lg) {
+    display: grid;
+    grid-template-columns: auto 1fr;
+    gap: var(--spacing-12);
+
+    .article-card__body {
+      display: contents;
+    }
+
+    .article-headline,
+    .article-card__metadata {
+      grid-column: 1 / -1;
+    }
+
+    .article-headline {
+      order: -1;
+    }
+
+    .article-card__media {
+      width: 144px;
+    }
+
+    .article-card__preview {
+      display: block;
+      margin: 0;
+    }
+
+    // No thumbnail (none in the markup, or dropped for Columnist metadata below)
+    &:not(:has(.article-card__media)) .article-card__preview,
+    &:has(.article-card-metadata--columnist) .article-card__preview {
+      grid-column: 1 / -1;
+    }
+  }
+
+  @include bp.respond-to(xl) {
+    .article-card__media {
       width: 152px;
     }
   }

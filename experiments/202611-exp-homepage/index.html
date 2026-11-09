@@ -20,8 +20,8 @@
   <!-- Homepage frame — Figma Web UI Kit › Homepage › Budget/Legacy - 1366x768 (8709:88370).
        Billboard › Masthead › page container (Side Ads beside it) › Footer. The three
        .layout-full sections are placeholders: content goes in one section at a time.
-       Styles: styles/scss/scaffolding/_exp-homepage.scss -->
-  <body class="homepage">
+       Styles: styles/scss/experiments/_homepage.scss -->
+  <body class="homepage homepage-original">
     <svg style="display: none" aria-hidden="true">
       <svg style="display: none" aria-hidden="true">
         <symbol id="logo-mplus-wordmark" viewBox="0 0 114 20">
@@ -849,7 +849,7 @@
                       </a>
                     </h2>
                     <div class="article-card__media article-card-player" data-theme="light">
-                      <video src="https://video.dailymail.com/video/mol/2026/11/04/3207538016250644002/640x360_MP4_3207538016250644002.mp4#t=0.1" muted playsinline preload="metadata"></video>
+                      <video src="https://video.dailymail.com/video/mol/2026/11/04/3207538016250644002/640x360_MP4_3207538016250644002.mp4#t=0.1" muted playsinline preload="none"></video>
                       <button type="button" class="article-card-player__surface" aria-label="Play video"></button>
                       <span class="article-card-player__play" aria-hidden="true">
                         <span class="video-play"><span class="icon icon--media-play" aria-hidden="true"></span></span>
@@ -868,6 +868,7 @@
                         <span class="video-progress__remaining">-00:00</span>
                       </div>
                     </div>
+                    <p class="article-card__preview">Democrats took both chambers of Congress as voters punished the White House over prices and tariffs, flipping seats from Arizona to Pennsylvania. Trump's allies are now bracing for a wave of investigations, with House Democrats promising subpoenas within weeks of taking control in January.</p>
                     <div class="article-card__metadata article-card-metadata">
                       <a class="article-card-metadata__channel" href="#news"><span class="article-card-metadata__channel-text">News</span></a>
                       <a class="article-card-metadata__comments" href="#comments-16263253" aria-label="5.1k comments">
@@ -1109,7 +1110,7 @@
                 <div class="layout-col">
                   <article class="article-card article-card--image-only article-card--image-only-large">
                     <div class="article-card__media">
-                      <video src="https://video.dailymail.com/video/mol/2026/11/02/5703903552505887941/1024x576_MP4_5703903552505887941.mp4" poster="https://i.dailymail.com/1s/2026/11/03/21/112280551-0-image-a-48_1793740758517.jpg" data-preview muted loop playsinline preload="metadata" aria-hidden="true"></video>
+                      <video src="https://video.dailymail.com/video/mol/2026/11/02/5703903552505887941/1024x576_MP4_5703903552505887941.mp4" poster="https://i.dailymail.com/1s/2026/11/03/21/112280551-0-image-a-48_1793740758517.jpg" data-preview muted loop playsinline preload="none" aria-hidden="true"></video>
                       <div class="article-card__overlay">
                         <h3 class="h3 article-headline"><a class="article-card__link" href="#article-16258627">Debris from doomed Learjet scattered for miles across Palm Beach</a></h3>
                         <span class="btn btn-quaternary-dark btn--xs article-card__read-more" aria-hidden="true">
@@ -1299,7 +1300,7 @@
                 <div class="layout-col">
                   <article class="article-card article-card--xl">
                     <div class="article-card__media">
-                      <video src="https://video.dailymail.com/preview/mol/2026/11/04/7829736517742277654/636x382_MP4_7829736517742277654.mp4" poster="https://video.dailymail.com/preview/mol/2026/11/04/7829736517742277654/636x382_JPG-SINGLE_7829736517742277654.jpg" data-preview muted loop playsinline preload="metadata" aria-hidden="true"></video>
+                      <video src="https://video.dailymail.com/preview/mol/2026/11/04/7829736517742277654/636x382_MP4_7829736517742277654.mp4" poster="https://video.dailymail.com/preview/mol/2026/11/04/7829736517742277654/636x382_JPG-SINGLE_7829736517742277654.jpg" data-preview muted loop playsinline preload="none" aria-hidden="true"></video>
                       <span class="article-card__video" data-theme="light" aria-hidden="true">
                         <span class="video-play"><span class="icon icon--media-play" aria-hidden="true"></span></span>
                       </span>
@@ -1404,7 +1405,7 @@
                 <div class="channel-puff__inner">
                   <article class="article-card article-card--image-only article-card--image-only-medium">
                     <div class="article-card__media">
-                      <video src="https://video.dailymail.com/video/mol/2026/10/28/1024063888129768565/640x360_MP4_1024063888129768565.mp4" poster="https://i.dailymail.com/1s/2026/10/28/11/112142127-16245161-image-a-59_1793185678595.jpg" data-preview muted loop playsinline preload="metadata" aria-hidden="true"></video>
+                      <video src="https://video.dailymail.com/video/mol/2026/10/28/1024063888129768565/640x360_MP4_1024063888129768565.mp4" poster="https://i.dailymail.com/1s/2026/10/28/11/112142127-16245161-image-a-59_1793185678595.jpg" data-preview muted loop playsinline preload="none" aria-hidden="true"></video>
                       <div class="article-card__overlay">
                         <h3 class="h5 article-headline">
                           <a class="article-card__link" href="#article-16245161">Cheryl is branded the 'undisputed meme queen'</a>
@@ -1566,7 +1567,7 @@
           </header>
           <article class="article-card article-card--image-only article-card--image-only-large">
             <div class="article-card__media">
-              <video src="https://video.dailymail.com/preview/mol/2026/10/28/3634354985952034943/636x382_MP4_3634354985952034943.mp4" poster="https://video.dailymail.com/preview/mol/2026/10/28/3634354985952034943/636x382_JPG-SINGLE_3634354985952034943.jpg" data-preview muted loop playsinline preload="metadata" aria-hidden="true"></video>
+              <video src="https://video.dailymail.com/preview/mol/2026/10/28/3634354985952034943/636x382_MP4_3634354985952034943.mp4" poster="https://video.dailymail.com/preview/mol/2026/10/28/3634354985952034943/636x382_JPG-SINGLE_3634354985952034943.jpg" data-preview muted loop playsinline preload="none" aria-hidden="true"></video>
               <div class="article-card__overlay">
                 <h3 class="h3 article-headline">
                   <a class="article-card__link" href="#article-16263253">Trump suffers crushing midterms defeat as Democrats seize control of the House and Senate</a>
@@ -1624,7 +1625,7 @@
                 <div class="layout-col">
                   <article class="article-card article-card--image-only article-card--image-only-medium">
                     <div class="article-card__media">
-                      <video src="https://video.dailymail.com/video/mol/2026/11/04/1724049268429901701/640x360_MP4_1724049268429901701.mp4" poster="https://i.dailymail.com/1s/2026/11/04/11/1793790862314_4842727534754024.jpg" data-preview muted loop playsinline preload="metadata" aria-hidden="true"></video>
+                      <video src="https://video.dailymail.com/video/mol/2026/11/04/1724049268429901701/640x360_MP4_1724049268429901701.mp4" poster="https://i.dailymail.com/1s/2026/11/04/11/1793790862314_4842727534754024.jpg" data-preview muted loop playsinline preload="none" aria-hidden="true"></video>
                       <div class="article-card__overlay">
                         <h4 class="h4 article-headline">
                           <a class="article-card__link" href="#article-midterms-defeat-video">Trump suffers crushing midterms defeat as Democrats seize control of the House and Senate</a>
@@ -1756,15 +1757,15 @@
                     <div class="article-card-metadata__columnist">
                       <div class="article-card-metadata__byline">
                         <div class="article-card-metadata__author">
-                          <a class="article-card-metadata__author-name" href="#author-columnist">Columnist Name</a>
-                          <span class="article-card-metadata__author-role">Daily Mail Columnist</span>
+                          <a class="article-card-metadata__author-name" href="#author-ed-magnus">Ed Magnus</a>
+                          <span class="article-card-metadata__author-role">Senior This is Money Reporter</span>
                         </div>
                         <a class="article-card-metadata__comments" href="#comments-housing-crash" aria-label="287 comments">
                           <span class="icon icon--speechbubble-ellipsis article-card-metadata__comments-icon" aria-hidden="true"></span>
                           287
                         </a>
                       </div>
-                      <a class="columnist-photo columnist-photo--lg" href="#author-columnist" tabindex="-1" aria-hidden="true"><img class="columnist-photo__img" src="../../assets/images/columnist-money-housing.png" alt="Columnist Name" /></a>
+                      <a class="columnist-photo columnist-photo--lg" href="#author-ed-magnus" tabindex="-1" aria-hidden="true"><img class="columnist-photo__img" src="../../assets/images/columnist-ed-magnus.png" alt="Ed Magnus" /></a>
                     </div>
                   </div>
                 </div>
@@ -1773,7 +1774,7 @@
             <div class="layout-col">
               <article class="article-card article-card--image-only article-card--image-only-medium">
                 <div class="article-card__media">
-                  <video src="https://video.dailymail.com/video/mol/2026/10/22/4362111916158042335/1024x576_MP4_4362111916158042335.mp4" data-preview muted loop playsinline preload="metadata" aria-hidden="true"></video>
+                  <video src="https://video.dailymail.com/video/mol/2026/10/22/4362111916158042335/1024x576_MP4_4362111916158042335.mp4" data-preview muted loop playsinline preload="none" aria-hidden="true"></video>
                   <div class="article-card__overlay">
                     <h3 class="h4 article-headline">
                       <a class="article-card__link" href="#article-inflation-simon-lambert">Inflation is surging again - here's how to stop it ravaging your finances: SIMON LAMBERT</a>

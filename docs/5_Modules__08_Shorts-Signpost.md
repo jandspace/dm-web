@@ -4,7 +4,7 @@ A row of Shorts cards that scrolls sideways. Each card shows the Short's cover f
 
 Figma: Web UI Kit › Shorts › Shorts Signpost (151:3722) · card: Shorts Signpost - Carousel Card (151:3475).
 Code: `styles/scss/modules/_shorts-signpost.scss` · behaviour `scripts/modules/carousel.js` + `scripts/modules/shorts-signpost.js` · demo `modules/shorts-signpost/`.
-The row is a **Carousel, Row type** (`docs/4_Components__12_Carousel.md`): arrows, swipe, snap and the 16px fade on the cut-off card come from the component; no dots.
+The row is a **Carousel, Row type** (`docs/4_Components__12_Carousel.md`): arrows, swipe, snap and the cropped cut-off card come from the component; no dots.
 
 ---
 

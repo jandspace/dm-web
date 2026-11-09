@@ -1,17 +1,21 @@
 // ── Article Card Metadata ─────────────────────────────────────────────────────
-// Bottom row of the article card. Identical at every breakpoint.
+// Bottom row of the article card. Same at every breakpoint, except where the
+// comment word shows (see "Comment word" below).
 //
 //   [ info item(s) ……………………………………………………… comments ]
 //
 // Everything sits straight in the row; the comments link pushes itself to the
 // right (margin-left: auto). Info — one of:
 //   Channel (link) · Timestamp · Channel + Timestamp · Ad Feature · Sponsored
-//   · Affiliate Content (link) · nothing (Comment Only — the count reads "9.9k comments", "1 comment")
-// Comments slot — speech-bubble icon + count (link to comments).
+//   · Affiliate Content (link) · nothing (Comment Only)
+// Comments slot — speech-bubble icon + count + word (link to comments), see
+// "Comment word" below for where the word shows.
 // CTA type replaces the whole row with an XS brand button (see _button.scss).
 // Columnist type uses Columnist Profile Photo + Columnist Comment Announcement.
 //
 // Reference: Figma Web UI Kit › Article Card Metadata (108:7232)
+
+@use '../foundation/breakpoints' as bp;
 
 
 .article-card-metadata {
@@ -160,35 +164,61 @@
   --icon-color: var(--color-icon-interaction-primary-default);
 }
 
+// ── Comment word ──────────────────────────────────────────────────────────────
+// The word follows the count in the markup — "9.9k comments", "1 comment":
+//   <a class="article-card-metadata__comments" …>icon 9.9k<span class="article-card-metadata__comments-word">comments</span></a>
+// Shown by default. Hidden — the count stands alone:
+//   · SM Right Thumb (Puff), every breakpoint
+//   · Channel + Timestamp below LG (MD, SM-XS)
+//   · Columnist metadata narrower than 300px
+// 2px from the count (Figma), inside the link's 4px gap.
+
+.article-card-metadata__comments-word {
+  margin-left: calc(var(--spacing-2) - var(--spacing-4));
+}
+
+// :where() keeps this at one class, so the SM Right Thumb rule below still wins at LG+
+:where(.article-card-metadata__channel + .article-card-metadata__time ~ .article-card-metadata__comments) .article-card-metadata__comments-word {
+  display: none;
+
+  @include bp.respond-to(lg) {
+    display: inline;
+  }
+}
+
+.article-card--sm-right .article-card-metadata__comments-word {
+  display: none;
+}
+
+@container (max-width: 299px) {
+  .article-card-metadata--columnist .article-card-metadata__comments-word {
+    display: none;
+  }
+}
+
 // ── Columnist type ────────────────────────────────────────────────────────────
-// Byline row (name + role · comments · LG profile photo) with an optional
-// Columnist Comment Announcement underneath. Four modes:
-//   Normal    — photo without dot, no announcement
-//   Scheduled — photo without dot, announcement --scheduled
-//   Live      — photo --live (green dot), announcement --live
-//   Ended     — photo without dot, announcement --ended
+// Byline row (name + role · comments) with an optional Columnist Comment
+// Announcement underneath. The columnist's photo sits in the headline (Article
+// Headline › Columnist photo). Four modes:
+//   Normal    — no announcement
+//   Scheduled — announcement --scheduled
+//   Live      — announcement --live (headline photo --live: green dot)
+//   Ended     — announcement --ended
+// Container (inline size) for the comment word rule above.
 
 .article-card-metadata--columnist {
   flex-direction: column;
   align-items: stretch;
   gap: var(--spacing-8);
+  container-type: inline-size;
 }
 
-.article-card-metadata__columnist {
-  display: flex;
-  align-items: flex-end;
-  gap: var(--spacing-16);
-  padding-top: var(--spacing-8);
-}
-
-// Name/role + comments share the space left of the photo, bottom-aligned
+// Name/role + comments, bottom-aligned
 .article-card-metadata__byline {
   display: flex;
-  flex: 1 1 0;
   align-items: flex-end;
   gap: var(--spacing-12);
-  min-width: 0;
-  padding: var(--spacing-4) 0;
+  padding-top: var(--spacing-8);
 }
 
 .article-card-metadata__author {

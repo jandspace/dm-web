@@ -5,13 +5,15 @@ Run from the repo root:
 """
 
 COMMENTS = '''<a class="article-card-metadata__comments" href="#comments" aria-label="{n} {word}"
-            ><span class="icon icon--speechbubble-ellipsis article-card-metadata__comments-icon" aria-hidden="true"></span>{text}</a
+            ><span class="icon icon--speechbubble-ellipsis article-card-metadata__comments-icon" aria-hidden="true"></span>{n}<span class="article-card-metadata__comments-word">{word}</span></a
           >'''
 
-def comments(n, spelled=False):
-    # Comment Only spells the word out after the count: "9.9k comments", "1 comment"
+def comments(n):
+    # The word always follows the count ("9.9k comments", "1 comment"); CSS hides it
+    # where the count stands alone (SM Right Thumb · Channel + Timestamp below LG ·
+    # Columnist under 300px)
     word = 'comment' if n == '1' else 'comments'
-    return COMMENTS.format(n=n, word=word, text=f'{n} {word}' if spelled else n)
+    return COMMENTS.format(n=n, word=word)
 
 def channel(t):
     return f'<a class="article-card-metadata__channel" href="#channel"><span class="article-card-metadata__channel-text">{t}</span></a>'
@@ -25,7 +27,7 @@ def row(info, n='9.9k'):
     # info items sit straight in the row; the comments link pushes itself right
     info_html = f'{info}\n          ' if info else ''
     return f'''<div class="article-card-metadata">
-          {info_html}{comments(n, spelled=not info)}
+          {info_html}{comments(n)}
         </div>'''
 
 CTA = '''<div class="article-card-metadata article-card-metadata--cta">
@@ -36,8 +38,8 @@ CTA = '''<div class="article-card-metadata article-card-metadata--cta">
 TYPES = [
   ('Channel Only', 'Channel links to its section', row(channel('Channel')), row(channel('Royal Family News'), '12.3k')),
   ('Timestamp Only', '', row(time('30m ago')), row(time('Updated 2 hours ago'), '12.3k')),
-  ('Channel + Timestamp', '4px disc separator', row(channel('Channel') + time('30m ago')), row(channel('Royal Family News') + time('30m ago'), '12.3k')),
-  ('Comment Only', 'Info slot empty · count + comment(s)', row('', '1'), row('', '12.3k')),
+  ('Channel + Timestamp', '4px disc separator · below LG the count stands alone', row(channel('Channel') + time('30m ago')), row(channel('Royal Family News') + time('30m ago'), '12.3k')),
+  ('Comment Only', 'Info slot empty', row('', '1'), row('', '12.3k')),
   ('Ad Feature', '', row(label('Ad Feature')), row(label('Ad Feature'), '12.3k')),
   ('Sponsored', '', row(label('Sponsored')), row(label('Sponsored by Brand Partner'), '12.3k')),
   ('Affiliate Content', 'External link', row(affiliate('Affiliate Content')), row(affiliate('Affiliate Content'), '12.3k')),
@@ -52,19 +54,14 @@ ANNOUNCE = {
 }
 
 def columnist(mode, name='Columnist Name', role='Daily Mail Columnist', n='9.9k'):
-    live = ' columnist-photo--live' if mode == 'live' else ''
+    # The photo sits in the headline (Article Headline › Columnist photo), not here
     out = f'''<div class="article-card-metadata article-card-metadata--columnist">
-          <div class="article-card-metadata__columnist">
-            <div class="article-card-metadata__byline">
-              <div class="article-card-metadata__author">
-                <a class="article-card-metadata__author-name" href="#author">{name}</a>
-                <span class="article-card-metadata__author-role">{role}</span>
-              </div>
-              {comments(n)}
+          <div class="article-card-metadata__byline">
+            <div class="article-card-metadata__author">
+              <a class="article-card-metadata__author-name" href="#author">{name}</a>
+              <span class="article-card-metadata__author-role">{role}</span>
             </div>
-            <a class="columnist-photo columnist-photo--lg{live}" href="#author" tabindex="-1" aria-hidden="true"
-              ><img class="columnist-photo__img" src="../../assets/images/columnist-placeholder.png" alt="{name}"
-            /></a>
+            {comments(n)}
           </div>'''
     if mode in ANNOUNCE:
         badge, text, action = ANNOUNCE[mode]
@@ -99,65 +96,17 @@ for name, note, a, b in TYPES:
 
 rows.append(f'''      <!-- Columnist (Normal) — full set of modes in the Columnist group below -->
       <div class="demo-row-label">Columnist</div>
-{cell(columnist('normal'), 358, 'Normal mode shown. See the Columnist section below for Scheduled, Live and Ended.')}''')
+{cell(columnist('normal'), 358, 'Normal mode shown. See the Columnist section below for Scheduled, Live and Ended. The photo sits in the headline — see Columnist Profile Photo.')}''')
+
+rows.append(f'''      <!-- Columnist under 300px — the count stands alone -->
+      <div class="demo-row-label">Columnist &lt;300px</div>
+{cell(columnist('normal'), 280, 'Narrower than 300px: count without the word.')}''')
 
 rows.append('      <div class="demo-group-header"><span class="demo-group-title">Columnist</span></div>')
 for name, a, b in COLUMNIST:
     rows.append(f'''      <!-- Columnist · {name} -->
       <div class="demo-row-label">{name}</div>
 {cell(a, 358)}''')
-
-SIZES = [('xs', 20), ('sm', 32), ('md', 48), ('lg', 64), ('xl', 80), ('xxl', 96), ('xxxl', 112)]
-def photos(kind):
-    img = 'columnist-placeholder-circle.png' if kind == 'circle' else 'columnist-placeholder.png'
-    mod = ' columnist-photo--circle' if kind == 'circle' else ''
-    return '\n'.join(f'''          <figure class="demo-photo">
-            <span class="columnist-photo columnist-photo--{s}{mod}"
-              ><img class="columnist-photo__img" src="../../assets/images/{img}" alt=""
-            /></span>
-            <figcaption class="demo-photo__size">{s.upper()} - {px}</figcaption>
-          </figure>''' for s, px in SIZES)
-
-# Author profiles' background (Figma) — label → section modifier → background/{token}/subtle.
-# Figma hex values match the tokens except Crime Desk (#6B7B8C vs crime-petrol/subtle #678893).
-PHOTO_COLOURS = [
-    ('', 'Columnist and x-channel writers', 'home-blue'),
-    ('news', 'News', 'news-cyan'),
-    ('showbiz', 'Showbiz', 'showbiz-red'),
-    ('sport', 'Sport', 'sport-green'),
-    ('royals', 'Royal', 'royals-violet'),
-    ('money', 'TiM', 'money-purple'),
-    ('lifestyle', 'Lifestyle', 'lifestyle-azure'),
-    ('health', 'Health', 'health-turquoise'),
-    ('science', 'Science', 'science-orange'),
-    ('crime', 'Crime Desk', 'crime-petrol'),
-]
-COLOUR_OPTIONS = '\n'.join(f'        <option value="{v}">{label} — {token}/subtle</option>' for v, label, token in PHOTO_COLOURS)
-
-PHOTO_SECTION = f'''
-    <h2 class="demo-section-title">Columnist Profile Photo</h2>
-    <p class="demo-metadata-note">Sizes xs 20 · sm 32 · md 48 · lg 64 (default) · xl 80 · xxl 96 · xxxl 112 — Rectangle (top) and Circle (bottom). Live adds the green dot (.columnist-photo--live).</p>
-    <!-- Disc colour per channel (author profiles' background): .columnist-photo--{{section}} → background/{{section}}/subtle -->
-    <div class="demo-vp-toolbar">
-      <label for="demo-photo-colour">Background</label>
-      <select class="demo-vp-select" id="demo-photo-colour" autocomplete="off">
-{COLOUR_OPTIONS}
-      </select>
-      <span class="demo-vp-toolbar__divider" aria-hidden="true"></span>
-      <span id="demo-photo-live-label">Live</span>
-      <div class="demo-vp-toggle" role="group" aria-labelledby="demo-photo-live-label" id="demo-photo-live">
-        <button type="button" data-live="off" aria-pressed="true">Off</button>
-        <button type="button" data-live="on" aria-pressed="false">On</button>
-      </div>
-    </div>
-    <div class="demo-photo-rows" id="demo-photo-rows">
-      <div class="demo-photo-row">
-{photos('rect')}
-      </div>
-      <div class="demo-photo-row">
-{photos('circle')}
-      </div>
-    </div>'''
 
 body = "\n\n".join(rows)
 print(f'''<!doctype html>
@@ -180,6 +129,7 @@ print(f'''<!doctype html>
     <p class="demo-page-intro">
       Bottom row of the article card — info on the left, comment counter on the right. Same at every breakpoint.
       Columnist rows show the four live-comment modes: Normal, Scheduled, Live and Ended.
+      The columnist's photo has its own page (Columnist Profile Photo) and sits in the headline.
     </p>
 
     <!-- Structure:
@@ -190,29 +140,5 @@ print(f'''<!doctype html>
     <div class="demo-grid demo-grid--metadata">
 {body}
     </div>
-{PHOTO_SECTION}
-
-    <script>
-      // Scaffolding only — Background swaps the disc colour modifier, Live toggles
-      // the live dot, on every photo above.
-      (() => {{
-        const select = document.getElementById('demo-photo-colour');
-        const live = document.getElementById('demo-photo-live');
-        const photos = document.querySelectorAll('#demo-photo-rows .columnist-photo');
-        live.addEventListener('click', (event) => {{
-          const button = event.target.closest('button[data-live]');
-          if (!button) return;
-          live.querySelectorAll('button').forEach((b) => b.setAttribute('aria-pressed', String(b === button)));
-          photos.forEach((photo) => photo.classList.toggle('columnist-photo--live', button.dataset.live === 'on'));
-        }});
-        const sections = [...select.options].map((o) => o.value).filter(Boolean);
-        select.addEventListener('change', () => {{
-          photos.forEach((photo) => {{
-            sections.forEach((s) => photo.classList.remove(`columnist-photo--${{s}}`));
-            if (select.value) photo.classList.add(`columnist-photo--${{select.value}}`);
-          }});
-        }});
-      }})();
-    </script>
   </body>
 </html>''')

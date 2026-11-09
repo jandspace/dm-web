@@ -3,7 +3,7 @@
 // whole-card link, metadata all shared). What is specific to Image Only:
 //
 //   · Headline sits on the image — white, centred, over a blurred dark scrim
-//     (bottom 60% of the image, cubic ease-out fade)
+//     (bottom 40% of the image, cubic ease-out fade)
 //   · "Read more" quaternary button under the headline (decorative — the whole
 //     card is the link); on card hover a line grows under it (no button hover)
 //   · Editorial badge signposted top-left on the image (not inline), size lg
@@ -61,7 +61,7 @@
 
 // ── Scrim ─────────────────────────────────────────────────────────────────────
 // Drawn by the media box itself (::after, in the same grid cell) — no element.
-// translucent-dark-thick with a 16px backdrop blur over the bottom 60% of the
+// translucent-dark-thick with a 16px backdrop blur over the bottom 40% of the
 // image, faded in from the top with a cubic ease-out mask
 // (alpha = 1 − (1 − t)³): it builds up fast and stays dark for most of its
 // height. Stops sample the curve every 20%. Mask colours carry alpha only.
@@ -79,7 +79,7 @@
   content: '';
   grid-area: 1 / 1;
   align-self: end;
-  height: 60%;
+  height: 40%;
   background-color: var(--color-effect-translucent-dark-thick);
   -webkit-backdrop-filter: blur(16px);
   backdrop-filter: blur(16px);

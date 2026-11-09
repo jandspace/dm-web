@@ -399,7 +399,7 @@ The column grid above is the unit. Pages are built from a small set of named lay
 | `.layout-split` | — | Alpha + Beta side by side from **LG** (2/3 + 1/3 = 8 + 4 columns). **Below LG they stack**: Beta under Alpha, both full width |
 | `.layout-alpha` | Alpha | Main column (664 at LG · 816 at XL) |
 | `.layout-beta` | Beta | Right rail (332 at LG · 408 at XL). No padding of its own |
-| `.layout-split--joined` | — | One channel block split 2:1 (e.g. Showbiz, Lifestyle): no keyline between Alpha and Beta |
+| `.layout-split--joined` | — | One channel block split 2:1 (e.g. Showbiz, Lifestyle): no keyline between Alpha and Beta side by side (LG+). Stacked below LG, Alpha keeps its bottom keyline — the cards run on as one list |
 | `.layout-row` | Row | Columns of equal width from **MD** — 2 children = Col 1-2, 3 = Col 1-3, 4 = 1/4. **Below MD (SM-XS) the columns stack**, full width, with a keyline between them |
 | `.layout-col` | Col 1-n | One column; its cards stack vertically and each column keeps its own height |
 | `.layout-inset` | inner container | Wraps a box with its own background (e.g. a tinted box in Beta) — without it the box would run edge to edge. Counts as one content block, like a card: 16px inset all round and the bottom keyline (none when last) |
@@ -430,7 +430,7 @@ No gaps and no padding on any layout class. Every card and block carries its own
 - 1px `color/border/translucent-dark/pale`, 16px in from each side, so neighbouring keylines never touch.
 - A section (`layout-full`), a row (`layout-row`) and every card or content block (incl. `layout-inset`) draw their own bottom keyline.
 - **The last child of its parent has none.** Each part removes its own with `:last-child` — so cards in a column sit directly in `layout-col`, never one wrapper per card (each card would then be a last child and lose its keyline).
-- Beta has a vertical keyline on its left from LG (none with `--joined`), 16px in from the top and bottom — the same rule as the horizontal keylines. Stacked below LG, Alpha gets a bottom keyline instead.
+- Beta has a vertical keyline on its left from LG (none with `--joined`), 16px in from the top and bottom — the same rule as the horizontal keylines. Stacked below LG, Alpha gets a bottom keyline instead — `--joined` too, so the last card of Alpha and the first of Beta are never glued together.
 
 ### **5-D. Card choice by column**
 

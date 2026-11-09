@@ -63,6 +63,7 @@
         { name: 'Article Card Metadata', path: 'modules/article-card-metadata/' },
         { name: 'Article Editorial Badge', path: 'modules/editorial-badge/' },
         { name: 'Article Headline', path: 'modules/article-headline/' },
+        { name: 'Columnist Profile Photo', path: 'modules/columnist-profile-photo/' },
         { name: 'Footer', path: 'modules/footer/' },
         { name: 'Navigation', path: 'modules/navigation/', pages: [['Anatomy', 'anatomy.html']] },
         { name: 'Section Header', path: 'modules/section-header/' },

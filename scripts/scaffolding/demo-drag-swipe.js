@@ -11,7 +11,9 @@
 //   release  a row that snaps (Carousel): the item nearest the start snaps
 //            there; a drag of more than 40px goes at least one item on, in that
 //            direction. Other rows stay where they were let go
-//   click    a drag is not a click — links and the card click-through don't fire
+//   click    a drag is not a click — links and the card click-through don't fire.
+//            The pointer is captured only once it has moved 5px, so a plain
+//            click still lands on a button inside the row (e.g. a card's vote)
 //
 // Delegated from the document, so rows added later work too.
 
@@ -32,6 +34,7 @@
   let startX = 0;
   let startScroll = 0;
   let moved = false;
+  let pointer = null; // captured once the drag starts, so a plain click still reaches its button
 
   const overflows = (row) => row.scrollWidth > row.clientWidth + 1;
 
@@ -53,7 +56,7 @@
     startX = event.clientX;
     startScroll = row.scrollLeft;
     moved = false;
-    row.setPointerCapture(event.pointerId);
+    pointer = event.pointerId;
   });
 
   document.addEventListener('pointermove', (event) => {
@@ -63,6 +66,7 @@
     if (!moved) {
       moved = true;
       track.toggleAttribute('data-dragging', true);
+      track.setPointerCapture(pointer);
     }
     track.scrollLeft = startScroll - dx;
   });

@@ -1,10 +1,15 @@
 // ── Article Card Media — behaviour ────────────────────────────────────────────
 // Prototype script for styles/scss/modules/_article-card-media.scss.
 //
+//   Lazy load               every video here is preload="none" in the markup:
+//                           its first frame loads only when it comes within a
+//                           screen of the viewport
 //   video[data-preview]     animated preview: muted loop, plays only while at
 //                           least half on screen; never with reduced motion
 //   .article-card-player    Video: ready → playing ⇄ paused, muted at start,
-//                           controls fade after 3s (touch: first tap shows them)
+//                           controls fade after 3s (touch: first tap shows them).
+//                           Pauses when less than half on screen; plays again
+//                           on return only if scrolling paused it
 //   .article-card-carousel  a click on a slide opens the article. Arrows,
 //                           dots and autoplay: scripts/modules/carousel.js
 //
@@ -20,6 +25,22 @@
     const t = Math.max(0, Math.floor(s || 0));
     return `${String(Math.floor(t / 60)).padStart(2, '0')}:${String(t % 60).padStart(2, '0')}`;
   };
+
+  // ── Lazy load ─────────────────────────────────────────────────────────────
+
+  // Near the viewport (one screen ahead): fetch the metadata and first frame
+  const nearObserver = new IntersectionObserver(
+    (entries) => {
+      entries.forEach(({ target, isIntersecting }) => {
+        if (!isIntersecting) return;
+        nearObserver.unobserve(target);
+        if (target.preload !== 'none') return;
+        target.preload = 'metadata';
+        if (target.readyState === 0) target.load();
+      });
+    },
+    { rootMargin: '100% 0px' },
+  );
 
   // ── Animated preview ──────────────────────────────────────────────────────
 
@@ -38,10 +59,28 @@
     video.muted = true; // autoplay needs muted set as a property too
     video.loop = true;
     video.playsInline = true;
+    nearObserver.observe(video);
     previewObserver.observe(video);
   };
 
   // ── Video player ──────────────────────────────────────────────────────────
+
+  // Off screen: pause. Back on screen: play again only the ones paused here
+  const pausedOffScreen = new WeakSet();
+  const playerObserver = new IntersectionObserver(
+    (entries) => {
+      entries.forEach(({ target, isIntersecting }) => {
+        if (!target.isConnected) return playerObserver.unobserve(target); // taken off the page
+        if (!isIntersecting && !target.paused) {
+          pausedOffScreen.add(target);
+          target.pause();
+        } else if (isIntersecting && pausedOffScreen.delete(target)) {
+          target.play().catch(() => {});
+        }
+      });
+    },
+    { threshold: 0.5 },
+  );
 
   const initPlayer = (player) => {
     const video = player.querySelector('video');
@@ -83,6 +122,8 @@
 
     video.muted = true;
     video.playsInline = true;
+    nearObserver.observe(video);
+    playerObserver.observe(video);
     video.addEventListener('loadedmetadata', () => {
       timer.textContent = clock(video.duration);
       update();
@@ -106,6 +147,7 @@
         wake();
         return;
       }
+      pausedOffScreen.delete(video);
       if (video.paused) video.play().catch(() => {});
       else video.pause();
     });

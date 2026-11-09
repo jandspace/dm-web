@@ -17,7 +17,11 @@
 // Clickable: use <a class="columnist-photo" href="…"> (to the author page) —
 // hover ring, see below. Static: <span>.
 //
+// In an article card it sits in the headline (Article Headline › Quote Headline):
+// H2 xl · H3–H5 lg · H6 md.
+//
 // Reference: Figma Web UI Kit › Columnist Profile Photo (5417:3916)
+// Demo: modules/columnist-profile-photo/
 
 @use '../foundation/sections';
 

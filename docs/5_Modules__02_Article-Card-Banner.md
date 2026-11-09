@@ -28,7 +28,7 @@ Figma: Web UI Kit › Article Card - Banner (`8138:232841`)
         <a class="article-card-banner__link" href="…">Headline</a>
       </h2>
       <div class="article-card-banner__metadata article-card-metadata">
-        <a class="article-card-metadata__comments" href="…">…2.1k comments</a>
+        <a class="article-card-metadata__comments" href="…">…2.1k<span class="article-card-metadata__comments-word">comments</span></a>
       </div>
     </div>
   </div>
@@ -102,8 +102,8 @@ The artwork can be an **animated preview** instead (Article Card Media › Previ
 
 ```html
 <div class="article-card-banner__media" role="img" aria-label="TIGER MAUL VICTIM">
-  <video class="article-card-banner__preview--wide" src="…-wide.mp4" poster="…-wide.jpg" data-preview muted loop playsinline preload="metadata" aria-hidden="true"></video>
-  <video class="article-card-banner__preview--xs" src="…-xs.mp4" poster="…-xs.jpg" data-preview muted loop playsinline preload="metadata" aria-hidden="true"></video>
+  <video class="article-card-banner__preview--wide" src="…-wide.mp4" poster="…-wide.jpg" data-preview muted loop playsinline preload="none" aria-hidden="true"></video>
+  <video class="article-card-banner__preview--xs" src="…-xs.mp4" poster="…-xs.jpg" data-preview muted loop playsinline preload="none" aria-hidden="true"></video>
 </div>
 ```
 

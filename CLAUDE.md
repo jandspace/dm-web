@@ -190,7 +190,7 @@ Page layout uses named classes on the column grid (12 columns from LG, 6 below, 
 | Class | Figma | Role |
 | ----- | ----- | ---- |
 | `.layout-full` | Fullwidth | One section (a module, a split or a row; optional section header on top) |
-| `.layout-split` (+ `--joined`) | — | Alpha 2/3 + Beta 1/3 from LG; **stacked below LG** (Beta under Alpha). `--joined`: one channel block, no keyline between |
+| `.layout-split` (+ `--joined`) | — | Alpha 2/3 + Beta 1/3 from LG; **stacked below LG** (Beta under Alpha). `--joined`: one channel block, no keyline between side by side (stacked, Alpha keeps its bottom keyline) |
 | `.layout-alpha` / `.layout-beta` | Alpha / Beta | Main column / right rail (332 at LG — fits an MPU). Beta has no padding |
 | `.layout-row` > `.layout-col` | Row / Col 1-n | Equal-width columns from MD (2 → 1/2, 3 → 1/3, 4 → 1/4); **stacked below MD** (SM-XS: cards run in one column). Cards stack in each column. Replaces the old nested `column-splitter` |
 | `.layout-inset` | inner container | Wraps a box with its own background (e.g. a tinted box in Beta): one content block — 16px inset and a keyline |
@@ -371,7 +371,8 @@ iOS and Android use the same four steps (`typography-ios/letter-spacing/*`, `typ
 - Mobile landscape handled with `orientation: landscape`, not px breakpoints.
 - Typography does not change on mobile landscape — layout and padding only.
 - **Images:** photos are JPEG (quality ~82). PNG only when real transparency is needed (e.g. columnist cut-out photos). Figma often exports opaque photos as RGBA PNG — check the alpha before keeping PNG. Icons are SVG. Image and video boxes use Media (`.media` + a CMS crop ratio: `--banner`, `--portrait-banner`, `--large`, `--puff`, `--small`, `--302`, `--video` 16:9, `--vertical` 2:3, `--shorts` 9:16 (video only) — photo or video in the other ratios — doc `docs/4_Components__05_Media.md`); the card sets the corner radius.
-- **Article Card metadata — Comment Only** (comments with no channel, timestamp or byline): the count is followed by the word — `392 comments`, `1 comment` for one. With a channel or other metadata, the count stands alone. Doc `docs/5_Modules__01_Article-Card.md` § 6.
+- **Article Card comment counter:** the count is followed by the word — `392 comments`, `1 comment` for one — written in the markup as `<span class="article-card-metadata__comments-word">`. CSS hides it (count alone) on SM Right Thumb (Puff), on Channel + Timestamp below LG, and on Columnist metadata under 300px wide. Doc `docs/5_Modules__01_Article-Card.md` § 6.
+- **Columnist photo** sits in the headline (Quote Headline, serif only), not in the metadata — H2 xl · H3–H5 lg · H6 md. Doc § 2.
 - **Icons come from `assets/icons/`** — SVG only on Web, exported from the Figma icon library (DailyMail Icons, file `171vKuCduz2EW3XrK12IQT`, frame 24:2253) with visible layers only, 32 × 32, black. Browse them at `foundation/iconography/` (Legacy there = files no longer in Figma); doc `docs/3_Foundation__07_Iconography.md`. Don't draw new SVGs or re-export icons from Figma into a page or experiment folder — if an icon isn't in `assets/icons/`, add it there first (Figma original, `ico-*.svg`), run `python3 tools/icon-build/build_icon_list.py > styles/scss/foundation/_icon-list.scss`, then build. **Single-colour icons use `.icon`**: `<span class="icon icon--{name} [icon--16|20|32]" aria-hidden="true"></span>` (the file as a CSS mask, `styles/scss/foundation/_icon.scss`) — colour with `--icon-color: var(--color-icon-…)` (default `icon/neutral/black`; dark mode flips it). Never pass the file in from inline style (`style="--icon: url(…)"`) — browsers resolve that path differently. Channel colour icons (`*-color`) and national flags (`ico-flag-*`) keep their colours: `<img src="../../assets/icons/ico-ch-uk-showbiz-color.svg" alt="" />`.
 - British English for UI copy and documentation.
 - American English for token names, CSS variable names, and code.
@@ -428,6 +429,8 @@ All token files share the same version string (currently `1.0.4`). Update the `v
 - `components/` — **PRODUCT** styles for Components, one file per component (`_button.scss`) — these would ship to the real DM site
 - `modules/` — **PRODUCT** styles for Modules, one file per module or module part (`_article-card.scss`, `_editorial-badge.scss`, …) — these would ship too
 - `scaffolding/` — **PROTOTYPE-ONLY** styles for demo pages: grid layout, section headers, side panel, token tooltips. Never shipped to production. Clearly separated from `components/` and `modules/` so the real CSS can be handed off cleanly to developers.
+- `experiments/` — **PROTOTYPE-ONLY** page styles for `experiments/` pages (`_homepage.scss` for `202611-exp-homepage/`). Never shipped. A change that is settled there moves to `components/` or `modules/` (and `docs/`)
+- `projects/` — **PROTOTYPE-ONLY** page styles for `projects/` pages (`_<name>.scss`). Never shipped
 - `main.scss` — entry point, `@use` only, no actual styles written here
 
 ### Rules
@@ -454,6 +457,7 @@ One-off tests and A/B variants live in `experiments/YYYYMM-exp-<name>/` (e.g. `2
 
 - **A (control)** — links the shared `tokens/*.css` and `styles/css/main.css` only. Inline `<style>` is allowed for page layout (grid, widths) — never for component styles.
 - **B (variant)** — same links, plus an inline `<style>` that overrides only the changed parts. Shared SCSS/CSS/JS is never edited for a variant, so A is unaffected.
+- **Page styles:** an experiment that builds whole pages (e.g. `202611-exp-homepage/`) keeps its styles in `styles/scss/experiments/_<name>.scss` (`@use` in `main.scss`), not in `scaffolding/` and not inline.
 - **Fixed breakpoint:** when a test targets one breakpoint, the page frames itself in an iframe of that width (e.g. 1024px for LG) instead of being responsive.
 - **Images:** link the original image address when it can be linked — don't download a copy. Only images with no linkable source go in the experiment's own `images/` folder.
 - **Experiments home button:** every experiment page loads `<script src="../../scripts/scaffolding/home-button.js" data-home="experiments" defer></script>` in `<head>` — a round button bottom-left (ico-tubes, "Experiments" on hover — the side-panel switch icon) back to `experiments/`.
@@ -461,13 +465,13 @@ One-off tests and A/B variants live in `experiments/YYYYMM-exp-<name>/` (e.g. `2
 - **Landing page:** `experiments/index.html` — the list and cards come from the shared `scripts/scaffolding/notes-index.js` (`renderNotesIndex(EXPERIMENTS)`) and `styles/scss/scaffolding/_notes-index.scss` (no inline `<style>`); the page holds only the `EXPERIMENTS` list.
 - **Notes style (experiments and projects):** short lines, not prose — one fact per line, no explanation of why unless it decides something. First lines say what it is; each later change is one line starting with its date (`2026-11-03 — …`). Page descriptions are a few words. On the landing page the page links show first (grey block) and long notes scroll inside the card.
 - **Experiment notes — always:** whenever you create or change files in `experiments/`, add or update that experiment's entry in `experiments/index.html` (the `EXPERIMENTS` list, newest first) in the same turn, without being asked: `id` (folder), `date` (start date), `title`, `status` (In progress / Decided / Archived), `notes` (what is tested — short lines, see Notes style), `result` (once decided), `pages` (label, file, one-line description for each test page). The year filter (All / YYYY) is built from `date`.
-- **After the test:** move the winning change into `styles/scss/components/` or `modules/` and `docs/`; keep or delete the folder.
+- **After the test:** move the winning change (from the inline `<style>` or `styles/scss/experiments/`) into `styles/scss/components/` or `modules/` and `docs/`; keep or delete the folder.
 
 ## Projects
 
 Project prototypes (a page or flow built from the library, e.g. a homepage demo) live in `projects/YYYYMM-prj-<name>/` — the experiments naming, with `prj`. A page that still needs testing (e.g. the homepage, `experiments/202611-exp-homepage/`) stays in `experiments/` until it is settled. The main page is `index.html` right in the project folder — no platform subfolder; other pages sit beside it. Web pages cover every breakpoint unless the project says otherwise.
 
-- **Shared code only:** pages link `tokens/*.css` and `styles/css/main.css`, and use library classes and `scripts/modules/` as they are. No inline `<style>` — page styles go in `styles/scss/scaffolding/_prj-<name>.scss` (prototype-only, `@use` in `main.scss`). Behaviour a page needs that the library has only inline in a demo moves to `scripts/modules/` first (e.g. `masthead.js`), never copied.
+- **Shared code only:** pages link `tokens/*.css` and `styles/css/main.css`, and use library classes and `scripts/modules/` as they are. No inline `<style>` — page styles go in `styles/scss/projects/_<name>.scss` (prototype-only, `@use` in `main.scss`). Behaviour a page needs that the library has only inline in a demo moves to `scripts/modules/` first (e.g. `masthead.js`), never copied.
 - **Images:** link the original image address (e.g. `https://i.dailymail.com/…`) when it can be linked — don't download a copy. Only images with no linkable source go in the project's own `images/` folder.
 - **Projects home button:** every project page loads `<script src="../../scripts/scaffolding/home-button.js" data-home="projects" defer></script>` in `<head>` — a round button bottom-left (ico-flow, "Projects" on hover) back to `projects/` — plus `page-footer.js` (see Experiments › Footer).
 - **Landing page:** `projects/index.html` — same page as the experiments one (`notes-index.js` + `_notes-index.scss`), holding only the `PROJECTS` list.

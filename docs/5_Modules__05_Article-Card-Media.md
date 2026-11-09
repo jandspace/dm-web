@@ -20,7 +20,8 @@ The aspect ratio comes from the card type (see Article Card § 2 and Media). Cor
 ## 1. Image
 
 - **Photo** — `<img>` straight in `.article-card__media`.
-- **Animated preview** — `<video data-preview muted loop playsinline preload="metadata">` in place of the image: 5–7 seconds, no sound, no controls. It plays while at least half of it is on screen and pauses off screen (as on the live site). With *Reduce motion* on it does not play and shows its first frame.
+- **Animated preview** — `<video data-preview muted loop playsinline preload="none">` in place of the image: 5–7 seconds, no sound, no controls. It plays while at least half of it is on screen and pauses off screen (as on the live site). With *Reduce motion* on it does not play and shows its first frame.
+- **Lazy load** — every video here (preview and Video) is `preload="none"` in the markup, so nothing downloads at page load. The script fetches its first frame once it comes within one screen of the viewport; playing starts only once half of it is on screen, and pausing off screen stops the download too.
 - **Video articles** add the play icon (Article Card § 3-C) — an indicator only; the card link takes the click. Works the same on a photo or a preview.
 
 ## 2. Video
@@ -29,7 +30,7 @@ The aspect ratio comes from the card type (see Article Card § 2 and Media). Cor
 
 | Part | Class | Notes |
 |---|---|---|
-| Video | `video` | `muted playsinline preload="metadata"`, `src` with `#t=0.1` so the first frame shows as the still |
+| Video | `video` | `muted playsinline preload="none"`, `src` with `#t=0.1` so the first frame shows as the still (loaded a screen ahead — see Lazy load) |
 | Surface | `button.article-card-player__surface` | Covers the media: play / pause. `aria-label` follows the state |
 | Centre | `.article-card-player__play` | Video Player Controls `.video-play` lg 56 + `.video-timer` 8px below. Decorative |
 | Actions | `.article-card-player__actions` | Right edge, 29px above the bottom: Full screen (`arrows-expand`) · Sound (`speaker-off` / `speaker-on`) · Share (`sharing-android`) — `.btn.btn-tertiary-light.btn--icon-only`, 16px gap (8px when the media is under 215px high) |
@@ -49,6 +50,7 @@ At the end the video goes back to `ready`.
 
 - **Mouse:** the actions and progress fade out (300ms) after 3s without the pointer moving, and come back when it moves.
 - **Touch:** while the controls are hidden, the first tap only brings them back; a tap while they show pauses.
+- **Off screen:** a playing video pauses when less than half of it is on screen, and plays on when it comes back. One the reader paused stays paused.
 - **Keyboard:** controls stay while keyboard focus is inside the player (`:focus-visible` — the focus a mouse click leaves does not count).
 - Paused or ready: always shown.
 
@@ -77,7 +79,7 @@ What the card adds (`.article-card-carousel`):
 | Dots | From the component: inside the picture, over the dark scrim (Figma 5279:14017) — nothing added here |
 | Click | A click on a slide opens the article (script) |
 
-**Arrows at every width** (Carousel rule for a Slide): on touch screens they rest at 40% — with the dots they tell the reader the picture moves — and swipe works as well.
+**Arrows at every width** (Carousel rule for a Slide): on touch screens they rest at 60% — with the dots they tell the reader the picture moves — and swipe works as well.
 
 **Autoplay.** The active dot fills in 5s, then the next slide; after the last, the first. It waits while the mouse is over the media, keyboard focus is in it, or it is less than half on screen. Any slide change restarts the fill. None with `prefers-reduced-motion: reduce`.
 

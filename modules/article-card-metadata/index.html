@@ -18,6 +18,7 @@
     <p class="demo-page-intro">
       Bottom row of the article card — info on the left, comment counter on the right. Same at every breakpoint.
       Columnist rows show the four live-comment modes: Normal, Scheduled, Live and Ended.
+      The columnist's photo has its own page (Columnist Profile Photo) and sits in the headline.
     </p>
 
     <!-- Structure:
@@ -35,7 +36,7 @@
         <div class="article-card-metadata">
           <a class="article-card-metadata__channel" href="#channel"><span class="article-card-metadata__channel-text">Channel</span></a>
           <a class="article-card-metadata__comments" href="#comments" aria-label="9.9k comments"
-            ><span class="icon icon--speechbubble-ellipsis article-card-metadata__comments-icon" aria-hidden="true"></span>9.9k</a
+            ><span class="icon icon--speechbubble-ellipsis article-card-metadata__comments-icon" aria-hidden="true"></span>9.9k<span class="article-card-metadata__comments-word">comments</span></a
           >
         </div>
         </div>
@@ -48,7 +49,7 @@
         <div class="article-card-metadata">
           <time class="article-card-metadata__time" datetime="2026-10-20T11:30">30m ago</time>
           <a class="article-card-metadata__comments" href="#comments" aria-label="9.9k comments"
-            ><span class="icon icon--speechbubble-ellipsis article-card-metadata__comments-icon" aria-hidden="true"></span>9.9k</a
+            ><span class="icon icon--speechbubble-ellipsis article-card-metadata__comments-icon" aria-hidden="true"></span>9.9k<span class="article-card-metadata__comments-word">comments</span></a
           >
         </div>
         </div>
@@ -61,7 +62,7 @@
         <div class="article-card-metadata">
           <a class="article-card-metadata__channel" href="#channel"><span class="article-card-metadata__channel-text">Channel</span></a><time class="article-card-metadata__time" datetime="2026-10-20T11:30">30m ago</time>
           <a class="article-card-metadata__comments" href="#comments" aria-label="9.9k comments"
-            ><span class="icon icon--speechbubble-ellipsis article-card-metadata__comments-icon" aria-hidden="true"></span>9.9k</a
+            ><span class="icon icon--speechbubble-ellipsis article-card-metadata__comments-icon" aria-hidden="true"></span>9.9k<span class="article-card-metadata__comments-word">comments</span></a
           >
         </div>
         </div>
@@ -73,7 +74,7 @@
         <div class="demo-metadata-sample demo-metadata-sample--358">
         <div class="article-card-metadata">
           <a class="article-card-metadata__comments" href="#comments" aria-label="1 comment"
-            ><span class="icon icon--speechbubble-ellipsis article-card-metadata__comments-icon" aria-hidden="true"></span>1 comment</a
+            ><span class="icon icon--speechbubble-ellipsis article-card-metadata__comments-icon" aria-hidden="true"></span>1<span class="article-card-metadata__comments-word">comment</span></a
           >
         </div>
         </div>
@@ -86,7 +87,7 @@
         <div class="article-card-metadata">
           <span class="article-card-metadata__label">Ad Feature</span>
           <a class="article-card-metadata__comments" href="#comments" aria-label="9.9k comments"
-            ><span class="icon icon--speechbubble-ellipsis article-card-metadata__comments-icon" aria-hidden="true"></span>9.9k</a
+            ><span class="icon icon--speechbubble-ellipsis article-card-metadata__comments-icon" aria-hidden="true"></span>9.9k<span class="article-card-metadata__comments-word">comments</span></a
           >
         </div>
         </div>
@@ -99,7 +100,7 @@
         <div class="article-card-metadata">
           <span class="article-card-metadata__label">Sponsored</span>
           <a class="article-card-metadata__comments" href="#comments" aria-label="9.9k comments"
-            ><span class="icon icon--speechbubble-ellipsis article-card-metadata__comments-icon" aria-hidden="true"></span>9.9k</a
+            ><span class="icon icon--speechbubble-ellipsis article-card-metadata__comments-icon" aria-hidden="true"></span>9.9k<span class="article-card-metadata__comments-word">comments</span></a
           >
         </div>
         </div>
@@ -112,7 +113,7 @@
         <div class="article-card-metadata">
           <a class="article-card-metadata__affiliate" href="#affiliate" rel="sponsored noopener" target="_blank"><span class="article-card-metadata__affiliate-text">Affiliate Content</span><span class="icon icon--square-arrow-up-right article-card-metadata__affiliate-icon" aria-hidden="true"></span></a>
           <a class="article-card-metadata__comments" href="#comments" aria-label="9.9k comments"
-            ><span class="icon icon--speechbubble-ellipsis article-card-metadata__comments-icon" aria-hidden="true"></span>9.9k</a
+            ><span class="icon icon--speechbubble-ellipsis article-card-metadata__comments-icon" aria-hidden="true"></span>9.9k<span class="article-card-metadata__comments-word">comments</span></a
           >
         </div>
         </div>
@@ -133,23 +134,37 @@
       <div class="demo-cell">
         <div class="demo-metadata-sample demo-metadata-sample--358">
         <div class="article-card-metadata article-card-metadata--columnist">
-          <div class="article-card-metadata__columnist">
-            <div class="article-card-metadata__byline">
-              <div class="article-card-metadata__author">
-                <a class="article-card-metadata__author-name" href="#author">Columnist Name</a>
-                <span class="article-card-metadata__author-role">Daily Mail Columnist</span>
-              </div>
-              <a class="article-card-metadata__comments" href="#comments" aria-label="9.9k comments"
-            ><span class="icon icon--speechbubble-ellipsis article-card-metadata__comments-icon" aria-hidden="true"></span>9.9k</a
-          >
+          <div class="article-card-metadata__byline">
+            <div class="article-card-metadata__author">
+              <a class="article-card-metadata__author-name" href="#author">Columnist Name</a>
+              <span class="article-card-metadata__author-role">Daily Mail Columnist</span>
             </div>
-            <a class="columnist-photo columnist-photo--lg" href="#author" tabindex="-1" aria-hidden="true"
-              ><img class="columnist-photo__img" src="../../assets/images/columnist-placeholder.png" alt="Columnist Name"
-            /></a>
+            <a class="article-card-metadata__comments" href="#comments" aria-label="9.9k comments"
+            ><span class="icon icon--speechbubble-ellipsis article-card-metadata__comments-icon" aria-hidden="true"></span>9.9k<span class="article-card-metadata__comments-word">comments</span></a
+          >
           </div>
         </div>
         </div>
-        <p class="demo-metadata-note demo-metadata-note--aside">Normal mode shown. See the Columnist section below for Scheduled, Live and Ended.</p>
+        <p class="demo-metadata-note demo-metadata-note--aside">Normal mode shown. See the Columnist section below for Scheduled, Live and Ended. The photo sits in the headline — see Columnist Profile Photo.</p>
+      </div>
+
+      <!-- Columnist under 300px — the count stands alone -->
+      <div class="demo-row-label">Columnist &lt;300px</div>
+      <div class="demo-cell">
+        <div class="demo-metadata-sample demo-metadata-sample--280">
+        <div class="article-card-metadata article-card-metadata--columnist">
+          <div class="article-card-metadata__byline">
+            <div class="article-card-metadata__author">
+              <a class="article-card-metadata__author-name" href="#author">Columnist Name</a>
+              <span class="article-card-metadata__author-role">Daily Mail Columnist</span>
+            </div>
+            <a class="article-card-metadata__comments" href="#comments" aria-label="9.9k comments"
+            ><span class="icon icon--speechbubble-ellipsis article-card-metadata__comments-icon" aria-hidden="true"></span>9.9k<span class="article-card-metadata__comments-word">comments</span></a
+          >
+          </div>
+        </div>
+        </div>
+        <p class="demo-metadata-note demo-metadata-note--aside">Narrower than 300px: count without the word.</p>
       </div>
 
       <div class="demo-group-header"><span class="demo-group-title">Columnist</span></div>
@@ -159,19 +174,14 @@
       <div class="demo-cell">
         <div class="demo-metadata-sample demo-metadata-sample--358">
         <div class="article-card-metadata article-card-metadata--columnist">
-          <div class="article-card-metadata__columnist">
-            <div class="article-card-metadata__byline">
-              <div class="article-card-metadata__author">
-                <a class="article-card-metadata__author-name" href="#author">Columnist Name</a>
-                <span class="article-card-metadata__author-role">Daily Mail Columnist</span>
-              </div>
-              <a class="article-card-metadata__comments" href="#comments" aria-label="9.9k comments"
-            ><span class="icon icon--speechbubble-ellipsis article-card-metadata__comments-icon" aria-hidden="true"></span>9.9k</a
-          >
+          <div class="article-card-metadata__byline">
+            <div class="article-card-metadata__author">
+              <a class="article-card-metadata__author-name" href="#author">Columnist Name</a>
+              <span class="article-card-metadata__author-role">Daily Mail Columnist</span>
             </div>
-            <a class="columnist-photo columnist-photo--lg" href="#author" tabindex="-1" aria-hidden="true"
-              ><img class="columnist-photo__img" src="../../assets/images/columnist-placeholder.png" alt="Columnist Name"
-            /></a>
+            <a class="article-card-metadata__comments" href="#comments" aria-label="9.9k comments"
+            ><span class="icon icon--speechbubble-ellipsis article-card-metadata__comments-icon" aria-hidden="true"></span>9.9k<span class="article-card-metadata__comments-word">comments</span></a
+          >
           </div>
         </div>
         </div>
@@ -182,19 +192,14 @@
       <div class="demo-cell">
         <div class="demo-metadata-sample demo-metadata-sample--358">
         <div class="article-card-metadata article-card-metadata--columnist">
-          <div class="article-card-metadata__columnist">
-            <div class="article-card-metadata__byline">
-              <div class="article-card-metadata__author">
-                <a class="article-card-metadata__author-name" href="#author">Columnist Name</a>
-                <span class="article-card-metadata__author-role">Daily Mail Columnist</span>
-              </div>
-              <a class="article-card-metadata__comments" href="#comments" aria-label="9.9k comments"
-            ><span class="icon icon--speechbubble-ellipsis article-card-metadata__comments-icon" aria-hidden="true"></span>9.9k</a
-          >
+          <div class="article-card-metadata__byline">
+            <div class="article-card-metadata__author">
+              <a class="article-card-metadata__author-name" href="#author">Columnist Name</a>
+              <span class="article-card-metadata__author-role">Daily Mail Columnist</span>
             </div>
-            <a class="columnist-photo columnist-photo--lg" href="#author" tabindex="-1" aria-hidden="true"
-              ><img class="columnist-photo__img" src="../../assets/images/columnist-placeholder.png" alt="Columnist Name"
-            /></a>
+            <a class="article-card-metadata__comments" href="#comments" aria-label="9.9k comments"
+            ><span class="icon icon--speechbubble-ellipsis article-card-metadata__comments-icon" aria-hidden="true"></span>9.9k<span class="article-card-metadata__comments-word">comments</span></a
+          >
           </div>
           <a class="columnist-announcement columnist-announcement--scheduled" href="#comments"
             ><span class="columnist-announcement__text">Join Columnist in the comments</span
@@ -209,19 +214,14 @@
       <div class="demo-cell">
         <div class="demo-metadata-sample demo-metadata-sample--358">
         <div class="article-card-metadata article-card-metadata--columnist">
-          <div class="article-card-metadata__columnist">
-            <div class="article-card-metadata__byline">
-              <div class="article-card-metadata__author">
-                <a class="article-card-metadata__author-name" href="#author">Columnist Name</a>
-                <span class="article-card-metadata__author-role">Daily Mail Columnist</span>
-              </div>
-              <a class="article-card-metadata__comments" href="#comments" aria-label="9.9k comments"
-            ><span class="icon icon--speechbubble-ellipsis article-card-metadata__comments-icon" aria-hidden="true"></span>9.9k</a
-          >
+          <div class="article-card-metadata__byline">
+            <div class="article-card-metadata__author">
+              <a class="article-card-metadata__author-name" href="#author">Columnist Name</a>
+              <span class="article-card-metadata__author-role">Daily Mail Columnist</span>
             </div>
-            <a class="columnist-photo columnist-photo--lg columnist-photo--live" href="#author" tabindex="-1" aria-hidden="true"
-              ><img class="columnist-photo__img" src="../../assets/images/columnist-placeholder.png" alt="Columnist Name"
-            /></a>
+            <a class="article-card-metadata__comments" href="#comments" aria-label="9.9k comments"
+            ><span class="icon icon--speechbubble-ellipsis article-card-metadata__comments-icon" aria-hidden="true"></span>9.9k<span class="article-card-metadata__comments-word">comments</span></a
+          >
           </div>
           <a class="columnist-announcement columnist-announcement--live" href="#comments"
             ><span class="columnist-announcement__text"><span class="badge badge--xs badge--highlight columnist-announcement__badge"><span class="badge__label"><span class="badge__live" aria-hidden="true"></span>Live</span></span>Columnist is in the comments</span
@@ -236,19 +236,14 @@
       <div class="demo-cell">
         <div class="demo-metadata-sample demo-metadata-sample--358">
         <div class="article-card-metadata article-card-metadata--columnist">
-          <div class="article-card-metadata__columnist">
-            <div class="article-card-metadata__byline">
-              <div class="article-card-metadata__author">
-                <a class="article-card-metadata__author-name" href="#author">Columnist Name</a>
-                <span class="article-card-metadata__author-role">Daily Mail Columnist</span>
-              </div>
-              <a class="article-card-metadata__comments" href="#comments" aria-label="9.9k comments"
-            ><span class="icon icon--speechbubble-ellipsis article-card-metadata__comments-icon" aria-hidden="true"></span>9.9k</a
-          >
+          <div class="article-card-metadata__byline">
+            <div class="article-card-metadata__author">
+              <a class="article-card-metadata__author-name" href="#author">Columnist Name</a>
+              <span class="article-card-metadata__author-role">Daily Mail Columnist</span>
             </div>
-            <a class="columnist-photo columnist-photo--lg" href="#author" tabindex="-1" aria-hidden="true"
-              ><img class="columnist-photo__img" src="../../assets/images/columnist-placeholder.png" alt="Columnist Name"
-            /></a>
+            <a class="article-card-metadata__comments" href="#comments" aria-label="9.9k comments"
+            ><span class="icon icon--speechbubble-ellipsis article-card-metadata__comments-icon" aria-hidden="true"></span>9.9k<span class="article-card-metadata__comments-word">comments</span></a
+          >
           </div>
           <a class="columnist-announcement columnist-announcement--ended" href="#comments"
             ><span class="columnist-announcement__text">Columnist logged off</span
@@ -258,143 +253,5 @@
         </div>
       </div>
     </div>
-
-    <h2 class="demo-section-title">Columnist Profile Photo</h2>
-    <p class="demo-metadata-note">Sizes xs 20 · sm 32 · md 48 · lg 64 (default) · xl 80 · xxl 96 · xxxl 112 — Rectangle (top) and Circle (bottom). Live adds the green dot (.columnist-photo--live).</p>
-    <!-- Disc colour per channel (author profiles' background): .columnist-photo--{section} → background/{section}/subtle -->
-    <div class="demo-vp-toolbar">
-      <label for="demo-photo-colour">Background</label>
-      <select class="demo-vp-select" id="demo-photo-colour" autocomplete="off">
-        <option value="">Columnist and x-channel writers — home-blue/subtle</option>
-        <option value="news">News — news-cyan/subtle</option>
-        <option value="showbiz">Showbiz — showbiz-red/subtle</option>
-        <option value="sport">Sport — sport-green/subtle</option>
-        <option value="royals">Royal — royals-violet/subtle</option>
-        <option value="money">TiM — money-purple/subtle</option>
-        <option value="lifestyle">Lifestyle — lifestyle-azure/subtle</option>
-        <option value="health">Health — health-turquoise/subtle</option>
-        <option value="science">Science — science-orange/subtle</option>
-        <option value="crime">Crime Desk — crime-petrol/subtle</option>
-      </select>
-      <span class="demo-vp-toolbar__divider" aria-hidden="true"></span>
-      <span id="demo-photo-live-label">Live</span>
-      <div class="demo-vp-toggle" role="group" aria-labelledby="demo-photo-live-label" id="demo-photo-live">
-        <button type="button" data-live="off" aria-pressed="true">Off</button>
-        <button type="button" data-live="on" aria-pressed="false">On</button>
-      </div>
-    </div>
-    <div class="demo-photo-rows" id="demo-photo-rows">
-      <div class="demo-photo-row">
-          <figure class="demo-photo">
-            <span class="columnist-photo columnist-photo--xs"
-              ><img class="columnist-photo__img" src="../../assets/images/columnist-placeholder.png" alt=""
-            /></span>
-            <figcaption class="demo-photo__size">XS - 20</figcaption>
-          </figure>
-          <figure class="demo-photo">
-            <span class="columnist-photo columnist-photo--sm"
-              ><img class="columnist-photo__img" src="../../assets/images/columnist-placeholder.png" alt=""
-            /></span>
-            <figcaption class="demo-photo__size">SM - 32</figcaption>
-          </figure>
-          <figure class="demo-photo">
-            <span class="columnist-photo columnist-photo--md"
-              ><img class="columnist-photo__img" src="../../assets/images/columnist-placeholder.png" alt=""
-            /></span>
-            <figcaption class="demo-photo__size">MD - 48</figcaption>
-          </figure>
-          <figure class="demo-photo">
-            <span class="columnist-photo columnist-photo--lg"
-              ><img class="columnist-photo__img" src="../../assets/images/columnist-placeholder.png" alt=""
-            /></span>
-            <figcaption class="demo-photo__size">LG - 64</figcaption>
-          </figure>
-          <figure class="demo-photo">
-            <span class="columnist-photo columnist-photo--xl"
-              ><img class="columnist-photo__img" src="../../assets/images/columnist-placeholder.png" alt=""
-            /></span>
-            <figcaption class="demo-photo__size">XL - 80</figcaption>
-          </figure>
-          <figure class="demo-photo">
-            <span class="columnist-photo columnist-photo--xxl"
-              ><img class="columnist-photo__img" src="../../assets/images/columnist-placeholder.png" alt=""
-            /></span>
-            <figcaption class="demo-photo__size">XXL - 96</figcaption>
-          </figure>
-          <figure class="demo-photo">
-            <span class="columnist-photo columnist-photo--xxxl"
-              ><img class="columnist-photo__img" src="../../assets/images/columnist-placeholder.png" alt=""
-            /></span>
-            <figcaption class="demo-photo__size">XXXL - 112</figcaption>
-          </figure>
-      </div>
-      <div class="demo-photo-row">
-          <figure class="demo-photo">
-            <span class="columnist-photo columnist-photo--xs columnist-photo--circle"
-              ><img class="columnist-photo__img" src="../../assets/images/columnist-placeholder-circle.png" alt=""
-            /></span>
-            <figcaption class="demo-photo__size">XS - 20</figcaption>
-          </figure>
-          <figure class="demo-photo">
-            <span class="columnist-photo columnist-photo--sm columnist-photo--circle"
-              ><img class="columnist-photo__img" src="../../assets/images/columnist-placeholder-circle.png" alt=""
-            /></span>
-            <figcaption class="demo-photo__size">SM - 32</figcaption>
-          </figure>
-          <figure class="demo-photo">
-            <span class="columnist-photo columnist-photo--md columnist-photo--circle"
-              ><img class="columnist-photo__img" src="../../assets/images/columnist-placeholder-circle.png" alt=""
-            /></span>
-            <figcaption class="demo-photo__size">MD - 48</figcaption>
-          </figure>
-          <figure class="demo-photo">
-            <span class="columnist-photo columnist-photo--lg columnist-photo--circle"
-              ><img class="columnist-photo__img" src="../../assets/images/columnist-placeholder-circle.png" alt=""
-            /></span>
-            <figcaption class="demo-photo__size">LG - 64</figcaption>
-          </figure>
-          <figure class="demo-photo">
-            <span class="columnist-photo columnist-photo--xl columnist-photo--circle"
-              ><img class="columnist-photo__img" src="../../assets/images/columnist-placeholder-circle.png" alt=""
-            /></span>
-            <figcaption class="demo-photo__size">XL - 80</figcaption>
-          </figure>
-          <figure class="demo-photo">
-            <span class="columnist-photo columnist-photo--xxl columnist-photo--circle"
-              ><img class="columnist-photo__img" src="../../assets/images/columnist-placeholder-circle.png" alt=""
-            /></span>
-            <figcaption class="demo-photo__size">XXL - 96</figcaption>
-          </figure>
-          <figure class="demo-photo">
-            <span class="columnist-photo columnist-photo--xxxl columnist-photo--circle"
-              ><img class="columnist-photo__img" src="../../assets/images/columnist-placeholder-circle.png" alt=""
-            /></span>
-            <figcaption class="demo-photo__size">XXXL - 112</figcaption>
-          </figure>
-      </div>
-    </div>
-
-    <script>
-      // Scaffolding only — Background swaps the disc colour modifier, Live toggles
-      // the live dot, on every photo above.
-      (() => {
-        const select = document.getElementById('demo-photo-colour');
-        const live = document.getElementById('demo-photo-live');
-        const photos = document.querySelectorAll('#demo-photo-rows .columnist-photo');
-        live.addEventListener('click', (event) => {
-          const button = event.target.closest('button[data-live]');
-          if (!button) return;
-          live.querySelectorAll('button').forEach((b) => b.setAttribute('aria-pressed', String(b === button)));
-          photos.forEach((photo) => photo.classList.toggle('columnist-photo--live', button.dataset.live === 'on'));
-        });
-        const sections = [...select.options].map((o) => o.value).filter(Boolean);
-        select.addEventListener('change', () => {
-          photos.forEach((photo) => {
-            sections.forEach((s) => photo.classList.remove(`columnist-photo--${s}`));
-            if (select.value) photo.classList.add(`columnist-photo--${select.value}`);
-          });
-        });
-      })();
-    </script>
   </body>
 </html>
