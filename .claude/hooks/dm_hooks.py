@@ -175,7 +175,10 @@ def changed_this_turn(data):
     try:
         before = json.load(open(snap_path(data)))
     except Exception:
-        return sorted(now)  # no snapshot: treat every dirty file as this turn's
+        # No snapshot (hooks loaded mid-session): this turn's changes can't be told apart
+        # from older uncommitted work, so save one now and check from the next turn.
+        json.dump(now, open(snap_path(data), "w"))
+        return []
     return sorted(p for p, h in now.items() if before.get(p) != h)
 
 
