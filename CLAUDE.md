@@ -1,496 +1,98 @@
-# CLAUDE.md
+# DM Design System — prototyping workspace
 
-This file provides guidance to Claude Code (claude.ai/code) when working with code in this repository.
+Daily Mail Design System library for **Web**: Figma-exported tokens → CSS custom properties → SCSS components and modules, plus project prototypes and experiments.
 
----
-
-## Repository Purpose
-
-This is the **DM (Daily Mail) Design System** prototyping workspace. It stores design tokens exported from Figma variables, converted to CSS custom properties, and serves as the base for component and project prototyping across Web, iOS, and Android.
-
-No framework or test runner. The only build step is compiling SCSS to CSS (Sass, see Styles Architecture). Tokens come from Figma export; everything else is maintained by hand or by the demo generators in `tools/`.
-Design system documentation is stored in `docs/` and must be read before any component work begins.
+Detailed rules load automatically from `.claude/rules/` when you touch matching files (SCSS, HTML, tokens, experiments, projects). This file holds only what applies to every task.
 
 ---
 
-## Directory Structure
+## Hard rules
 
-```
-tokens/           — Design token source files (JSON + CSS)
-styles/           — SCSS source (styles/scss/) and compiled CSS (styles/css/main.css)
-index.html        — Demo index (Components / Modules), same list as the demo side panel
-foundation/       — Foundation: reference pages (Colour, Typography, Spacing, Border Radius — read live from tokens/; Elevation; Layout & Grid; Iconography — every file in assets/icons/, single-colour ones as .icon)
-components/       — Components: base UI elements (Button, Input, Tabs…) — one demo folder each
-modules/          — Modules: editorial / product blocks built from components (Article Card, Video Player Controls…)
-scripts/          — JS: scripts/scaffolding/ (demo only: side panel + index), scripts/modules/ (behaviour shared by pages — Article Card Media, Carousel, Masthead, Scroll Row, Shorts Signpost, Toast, Tooltip; never copy it into a page)
-projects/         — Project-specific prototypes: YYYYMM-prj-<name>/ (main page index.html), listed on projects/index.html
-experiments/      — A/B tests and one-off experiments (self-contained, never imported elsewhere)
-assets/           — Icons (Figma SVG originals) and images
-docs/             — Design system documentation (read before component work)
-tools/            — Generators: demo pages (tools/demo-generators/), token CSS (tools/token-build/), icon list (tools/icon-build/)
-CLAUDE.md         — This file
-```
+1. **Colour:** semantic tokens only (`var(--color-…)`). Never raw hex, never `--primitive-colors-*`.
+2. **Line height (web):** unitless token multipliers only. Never px.
+3. **No `!important`.** Win by specificity and source order. If truly unavoidable, comment why.
+4. **Breakpoints:** mobile-first `min-width` via `@include bp.respond-to(…)`. Never hand-written media queries.
+5. **Never edit generated files:** `styles/css/main.css`, `tokens/dm_tokens.css`, `styles/scss/foundation/_icon-list.scss`, generated demo pages (`tools/demo-generators/README.md`). Edit the source and rebuild.
+6. **No `<style>` in HTML.** Only exception: experiment pages (see experiments rules).
+7. **Product vs prototype styles stay apart:** `components/` and `modules/` SCSS ship to production. Demo, experiment and project styling goes in `scaffolding/`, `experiments/` or `projects/` SCSS. Never mix.
+8. **Every new SCSS file** is added to `styles/scss/main.scss` with `@use`.
+9. **Minimal code:** fewest elements, fewest rules, least JS. Before adding anything, check whether an existing element, class, mixin, token or native feature already does it.
+10. **Language:** British English for UI copy and docs (colour, grey). American English for tokens, variables, class names and code (color, gray, center).
+11. **Same-turn bookkeeping:** changing files in `experiments/` or `projects/` means updating that folder's `index.html` notes in the same turn, unasked.
+12. **Typefaces:** Inter and Lora only. Never two typefaces inside one text element. Inside one component, only the listed cases (see typography rules); anything else is flagged, even if Figma shows it.
 
-### Project Folder Convention
-
-Same format as experiments: `projects/YYYYMM-prj-<name>/`, main page `index.html` right in the folder — see **Projects** below.
-
-```
-projects/
-├── index.html                 — Projects landing page (PROJECTS list)
-├── YYYYMM-prj-<name>/
-│   └── index.html             — the project's main page
-└── ...
-```
-
-### Components vs Modules
-
-Folders follow the Figma UI Kit and design system taxonomy: **Foundation › Components › Modules**. The demo folders (`components/`, `modules/`) and the SCSS folders (`styles/scss/components/`, `styles/scss/modules/`) mirror each other.
-
-- **Component** — a base UI element listed under Figma "DM Web ::: Components" (Button, Divider, Dropdown Menu, Input, Loading, Modal, Pagination, Tabs, Toast, Toggle, Tooltip…). Also **Carousel** — its Figma page is under Modules, but it has no content of its own and modules are built with it.
-- **Module** — a block listed under Figma "DM Web ::: Modules" (Article Card, Article Editorial Badge, Breadcrumbs, Navigation, Video Player Controls…). Parts of a module (e.g. Article Card Metadata, Columnist Profile Photo) live in `modules/` too.
-- When unsure, check which Figma page the frame lives on.
-- `projects/` → project-specific screens and flows, split by platform
+Hooks in `.claude/settings.json` check rules 1–6, 8 and 11 automatically (rules 1–4 and 6 on the lines you add, so older code doesn't block you). If a hook blocks you, fix the cause. Do not work around it. Rules 7, 9, 10 and 12 are yours to check.
 
 ---
 
-## Token Files
+## Before you start
 
-| File                            | Format | Purpose                                                              |
-| ------------------------------- | ------ | -------------------------------------------------------------------- |
-| `dm_tokens.json`                | JSON   | Figma variable export — colour, spacing and border-radius tokens     |
-| `dm_tokens.css`                 | CSS    | CSS custom properties for the above (`--color-*`, `--number-*`)      |
-| `dm_typography_web_tokens.json` | JSON   | Figma variable export — web typography                               |
-| `dm_typography_web_tokens.css`  | CSS    | CSS custom properties for web typography                             |
-| `dm_typography_app_tokens.json` | JSON   | Figma variable export — app typography (iOS/Android)                 |
-
-`dm_tokens.css` is **generated** from `dm_tokens.json` — never edit it by hand. After a Figma export, run `python3 tools/token-build/build_dm_tokens.py > tokens/dm_tokens.css` (groups tokens by path: category › context › variant, in the Colour Tokens doc order). Typography (font family, weights, sizes) lives only in `dm_typography_web_tokens.css`.
-
-SCSS aliases: use `--spacing-N` and `--border-radius-N` in component files — they map to `--number-spacing-N` / `--number-border-radius-N` (`styles/scss/foundation/_spacing.scss`, `_border-radius.scss`). Shadows: `var(--elevation-1)` … `--elevation-5` (`_elevation.scss`, from the Figma effect styles Elevation Lv-1…5) — never a raw `rgba()` shadow. Pick the level by role, not by eye (doc `docs/3_Foundation__06_Elevation.md` § 2):
-
-| Level | Role | Examples |
-| ----- | ---- | -------- |
-| 0 (none) | Page — scrolls with it, split by keylines | Page, Article Card |
-| 1 | Sticky — stuck to an edge | Sticky Navbar |
-| 2 | Floating control | Carousel arrows, back-to-top |
-| 3 | Floating panel — stays while reading | Mini video player |
-| 4 | Temporary — closes on outside click or by itself | Dropdown Menu, Nav Panel, Tooltip, Toast |
-| 5 | Modal — blocks the page, over a scrim | Modal |
-
-Border radius — everyday steps are **0, 4, 8, 16 and Full**; every other step is rarely used, so reach for one of these first:
-
-| Token | Use |
-| ----- | --- |
-| `--border-radius-0` | Sharp corners, full-bleed modules |
-| `--border-radius-4` | Thumbnails |
-| `--border-radius-8` | Image-based cards (Image Only, image carousel items) |
-| `--border-radius-16` | Modals |
-| `--border-radius-full` | Pill buttons, avatars (token value 999px) |
+- **Component or module work → read its doc first** (`docs/4_Components__NN_<Name>.md`, `docs/5_Modules__NN_<Name>.md`). Glob by name (`docs/*Elevation*.md`), don't assume the number. Otherwise read only the docs the task needs, not all of `docs/`.
+- **Precedence when sources disagree:** token files (`tokens/`) > `docs/` > `.claude/rules/` > Figma. Flag the conflict instead of picking silently.
+- **Figma is not perfect.** Designers rarely touch the codebase. Layer names, stray widths and App values copied into Web frames (e.g. the `border/neutral/light` keyline) are often mistakes. Read Figma for intent, cross-check with docs, flag what looks wrong.
+- **Figma layers are not HTML structure.** Auto-layout frames and wrappers exist to draw in Figma, not to be copied into markup.
+- **New library element → find look-alikes first.** Search `projects/` and `experiments/` for something similar already built. Settle the differences, list the pages that should switch to the library version, and **ask before replacing**. Experiments marked Decided or Archived may need to stay as tested. After replacing, update the notes in the matching `index.html`.
 
 ---
 
-## Token Architecture
+## Where things go
 
-### Two-Layer System
+| Path | What |
+|---|---|
+| `tokens/` | Figma variable exports (JSON) and token CSS |
+| `styles/scss/` | SCSS source: `foundation/`, `components/`, `modules/` (product) · `scaffolding/`, `experiments/`, `projects/` (prototype only) · `main.scss` (`@use` only) |
+| `styles/css/main.css` | Compiled output. Generated |
+| `index.html` | Demo index (Components / Modules), same list as the side panel |
+| `foundation/` | Reference pages: Colour, Typography, Spacing, Border Radius, Elevation, Layout & Grid, Iconography |
+| `components/<name>/` | One demo folder per component |
+| `modules/<name>/` | One demo folder per module or module part |
+| `scripts/modules/` | Shared behaviour (Article Card Media, Carousel, Masthead, Scroll Row, Shorts Signpost, Toast, Tooltip). Never copy into a page |
+| `scripts/scaffolding/` | Demo-only JS (side panel, index, footer, home button, drag-swipe) |
+| `projects/YYYYMM-prj-<name>/` | Project prototypes. Main page `index.html` in the folder, no platform subfolders |
+| `experiments/YYYYMM-exp-<name>/` | A/B tests and one-offs. Self-contained, never imported elsewhere |
+| `assets/icons/` | Icon SVGs (Figma originals). The only icon source |
+| `docs/` | Design system documentation |
+| `tools/` | Generators: `demo-generators/`, `token-build/`, `icon-build/` |
 
-**Foundation (Primitive)** — raw values, not for direct use in UI:
-
-- CSS naming: `--primitive-colors-{hue}-{scale}` (e.g. `--primitive-colors-blue-500`)
-- JSON path: `Foundation > Primitive Colors/{Hue}/{Scale}`
-
-**Semantic** — contextual aliases that reference primitive tokens:
-
-- CSS naming: `--color-{category}-{context}-{variant}` (e.g. `--color-background-neutral-white`)
-- JSON: `isAlias: true` with a reference to the Foundation collection
-
-**Always use semantic tokens in UI code. Never reference primitive tokens directly. Never use raw hex values.**
-
-### Colour Token Categories
-
-```
-color/background/*   — surface fills
-color/text/*         — foreground/text colours
-color/border/*       — stroke colours
-color/icon/*         — icon colours
-```
-
-### Editorial Section → Colour Mapping
-
-| Section   | Colour      |
-| --------- | ----------- |
-| Home      | Blue        |
-| News      | Cyan        |
-| Showbiz   | Red         |
-| Sport     | Green       |
-| Royals    | Violet      |
-| Money     | Purple      |
-| Lifestyle | Azure       |
-| Health    | Turquoise   |
-| TV        | Magenta     |
-| Travel    | Navy        |
-| Shopping  | Indigo      |
-| Crime     | Petrol      |
-| Property  | Fuchsia     |
-| Podcasts  | Yellow      |
-| Games     | Ultramarine |
-| Science   | Orange      |
-
-Within each section, variants follow the pattern: `base`, `base-darker`, `subtle`, `subtlest`, `deep`. Token example: `--color-text-showbiz-red-base`.
-
-`dm_tokens.css` also defines game colours (Quiz green, Sudoku blue, Word orange, Number pink, Brain purple) — not editorial sections.
-
-### Light & Dark Modes
-
-- Light mode: `:root, [data-theme="light"]`
-- Dark mode: `[data-theme="dark"]`
+**Component or module?** Follows the Figma UI Kit page.
+- Component = listed under Figma "DM Web ::: Components" (Button, Divider, Dropdown Menu, Input, Loading, Modal, Pagination, Tabs, Toast, Toggle, Tooltip…). Carousel is also a component: its Figma page is under Modules, but it has no content of its own and modules are built with it.
+- Module = listed under "DM Web ::: Modules" (Article Card, Article Editorial Badge, Breadcrumbs, Navigation, Video Player Controls…). Module parts (Article Card Metadata, Columnist Profile Photo) live in `modules/` too.
+- Unsure → check which Figma page the frame sits on.
 
 ---
 
-## Figma Sources
+## Commands
 
-- **App UI Kit (iOS/iPadOS):** https://www.figma.com/design/9GGfDhItlg4swrRaewmhlm/
-- **Web UI Kit (Dweb & Mweb):** https://www.figma.com/design/vB97J7hRY6OcmcnKJOOlHj/
+| Task | Command |
+|---|---|
+| Build CSS | `npm run build` (Node 20: `nvm use 20`; older Node fails with `globalThis is not defined`) |
+| Watch | `npm run watch` |
+| Rebuild token CSS after a Figma export | `python3 tools/token-build/build_dm_tokens.py > tokens/dm_tokens.css` |
+| Rebuild icon list after adding an icon | `python3 tools/icon-build/build_icon_list.py > styles/scss/foundation/_icon-list.scss` |
+| Regenerate demo pages | See `tools/demo-generators/README.md` |
 
-When working with a specific component, use the direct frame URL in the prompt. File-level URLs are for reference only.
+`node_modules/` is committed for now (Sass only, small). Untrack it and add it to `.gitignore` if it grows large.
 
----
-
-## Breakpoints
-
-DM is currently **adaptive**, not fully responsive. Desktop and mobile are served as separate sites.
-
-### Desktop Web
-
-| Token | Value   | Container | Context         |
-| ----- | ------- | --------- | --------------- |
-| SM    | ≥640px  | 720px     | Phone landscape, foldables |
-| MD    | ≥768px  | 960px     | Tablet portrait |
-| LG    | ≥1024px | 996px     | Desktop         |
-| XL    | ≥1580px | 1224px    | Wide desktop (room for Side Ads) |
-
-Source of truth: `styles/scss/foundation/_breakpoints.scss` — use `@include bp.respond-to(md)` etc., never hard-coded media queries. Side Ads (160×600 beside the container) show from LG; fully in view from 1350px (996 + 2 × 168 + a 17px scrollbar), narrower they are cut at the window edge — `overflow-x: clip` on the body, never a sideways scroll. XL starts at 1580 so the 1224 container leaves room for them too. Typography tokens still switch at 768 / 1024 only.
-
-### Mobile Web
-
-- **Base (Portrait):** default, no px breakpoint needed
-- **Landscape:** `@include bp.phone-landscape` (`(orientation: landscape) and (max-height: 500px)`, so tablets are excluded) — adjust layout columns and padding only. Do not change typography.
-
-> A responsive (unified) build is not currently planned. Update this section if that changes.
-
-### Demo viewport switches
-
-Viewport buttons on demo pages name the **breakpoint**, never a device width — `XL ≥1580 · LG ≥1024 · MD ≥768 · SM-XS <768` (or `SM ≥640 · XS <640` when they differ), the Figma variant names. The preview width (e.g. 1440) shows only in the status text as `1440px preview`, so nobody reads it as a breakpoint.
+**Local preview:** `http://localhost:3001/` (also `/components/<name>/`, `/modules/<name>/`). The user starts it with `dmon` and stops it with Ctrl+C or `dmoff`. If it is down while you work, run `dmon` in the Terminal panel (`run_in_terminal`, tab "dm-web server"); if that fails, `python3 -m http.server 3001` from the repo root. Not via `preview_start` (macOS blocks it from `~/Documents`), not via npm (python fails to spawn under npm). No cache headers: tell the user to hard-refresh (Cmd+Shift+R) after a build.
 
 ---
 
-## Layout
-
-Page layout uses named classes on the column grid (12 columns from LG, 6 below, no gutters) — `styles/scss/foundation/_layout.scss`, demo `foundation/layout/`, doc `docs/3_Foundation__05_Layout-and-Grid.md` § 5. Names match the Figma page frames:
-
-| Class | Figma | Role |
-| ----- | ----- | ---- |
-| `.layout-full` | Fullwidth | One section (a module, a split or a row; optional section header on top) |
-| `.layout-split` (+ `--joined`) | — | Alpha 2/3 + Beta 1/3 from LG; **stacked below LG** (Beta under Alpha). `--joined`: one channel block, no keyline between side by side (stacked, Alpha keeps its bottom keyline) |
-| `.layout-alpha` / `.layout-beta` | Alpha / Beta | Main column / right rail (332 at LG — fits an MPU). Beta has no padding |
-| `.layout-row` > `.layout-col` | Row / Col 1-n | Equal-width columns from MD (2 → 1/2, 3 → 1/3, 4 → 1/4); **stacked below MD** (SM-XS: cards run in one column). Cards stack in each column. Replaces the old nested `column-splitter` |
-| `.layout-inset` | inner container | Wraps a box with its own background (e.g. a tinted box in Beta): one content block — 16px inset and a keyline |
-
-- **No gaps or padding on layout classes** — every card / block carries its own 16px inset (neighbours sit 32px apart).
-- **Keylines** (`border/translucent-dark/pale`, 1px) sit 16px in from each end — horizontal and Beta's vertical one. Sections, rows and cards each draw their own; **the last child of its parent has none** (`:last-child`, no override classes). So put cards straight into `.layout-col` — never one wrapper per card.
-- **SM cards:** Left Thumb in Alpha and other main columns, Right Thumb in Beta.
-- Hiding or reordering a block at a breakpoint is a page decision, not a layout class.
-
----
-
-## Typography
-
-### Typefaces
-
-| Role              | Family | Usage                                                              |
-| ----------------- | ------ | ------------------------------------------------------------------ |
-| Sans (default)    | Inter  | All UI, body copy, labels, metadata — **and article headlines on Web** |
-| Serif (editorial) | Lora   | Article headlines on **App** (iOS/Android), featured content, quotes |
-
-**Article headlines:** Inter on Web and Lora on App (iOS/Android) by default. On Web a headline may switch to Lora case by case (e.g. a columnist's quote) — follow Figma; in code add `.serif` to the heading (`<h4 class="h4 serif article-headline">`), size / weight / line height stay as the level sets them, and the rest of the card stays Inter.
-
-Never mix typefaces within a single UI component.
-
-### Type Scale — Role + Level Model
-
-- **Heading** → H1–H6 (web), Large Title–Subhead (iOS), Display Small–Title Small (Android)
-- **Text** → Body copy, long-form editorial
-- **Label** → Buttons, badges, navigation, metadata
-- **Display** → High-impact surfaces only (hero, splash). Use sparingly.
-
-Token naming convention: `--typography-{property}-{role}-{level}`
-e.g. `--typography-font-size-h1`, `--typography-font-weight-bold`
-
-### Font Weights
-
-| Weight   | Value | Usage                                               |
-| -------- | ----- | --------------------------------------------------- |
-| Regular  | 400   | Body copy, secondary metadata                       |
-| Semibold | 600   | Default emphasis — headings, buttons, labels        |
-| Bold     | 700   | Display only, or H1–H2 where extra impact is needed |
-
-Italic variants are for editorial inline use only. The italic weight tokens (`--typography-font-weight-*-italic`) set the weight only — add `font-style: italic` alongside, or the text stays upright. Never apply italic to buttons or functional UI. Exception (per Figma): the commercial labels in Article Card Metadata — Ad Feature, Sponsored, Affiliate.
-
-### Responsive Font Sizes (Web only)
-
-Mobile-first. The `:root` value is the SM-XS one (<768px — XS <640 and SM 640–767 share it).
-
-| Style      | SM-XS (<768px) | MD (≥768px) | LG (≥1024px) |
-| ---------- | ----------- | ----------- | ------------ |
-| display-lg | 42px        | 54px        | 64px         |
-| display-md | 38px        | 48px        | 56px         |
-| display-sm | 34px        | 42px        | 48px         |
-| h1         | 26px        | 30px        | 36px         |
-| h2         | 22px        | 24px        | 28px         |
-| h3         | 20px        | 21px        | 22px         |
-| h4         | 18px        | 18px        | 18px         |
-| h5         | 16px        | 16px        | 16px         |
-| h6         | 14px        | 14px        | 14px         |
-
-Text and Label are fixed across all breakpoints (except label-xl: SM-XS/MD 19px, LG 20px).
-
-> Confirmed against three independent sources (Figma variables, `tokens/dm_typography_web_tokens.css`, and Zeroheight docs) as of 2026-06-24. An earlier version of the docs/ markdown had incorrect SM values for h1 (28→26), h2 (24→22), display-lg (40→42), and display-md (36→38) — corrected here.
-
-### Semantic Style vs Semantic Token
-
-These two terms look similar but operate at different layers of the system.
-
-**Semantic Token** — a single named CSS custom property that resolves to one value per viewport mode:
-
-```css
---typography-font-size-h2: 22px;          /* SM: root */
---typography-font-size-h2: 24px;          /* MD: ≥768px */
---typography-font-size-h2: 28px;          /* LG: ≥1024px */
-```
-
-**Semantic Style** — a Figma-only construct that bundles multiple tokens into one selectable package:
-
-```
-dmw_sans/h2/Semibold
-  → font-family:    typography-font-family-sans
-  → font-size:      typography-font-size-h2      (responsive)
-  → font-weight:    typography-font-weight-semibold
-  → line-height:    typography-line-height-narrow
-  → letter-spacing: typography-letter-spacing-compact
-```
-
-**Who uses which:**
-
-- Designers select **Semantic Styles** in the Figma text panel (one click sets all five attributes)
-- Engineers reference **Semantic Tokens** individually in CSS (`var(--typography-font-size-h2)` etc.)
-
-**Why our CSS classes bundle tokens:** The `.h2` utility class in `styles/scss/foundation/_typography.scss` applies font-size, weight, line-height, and letter-spacing together — it is the code-side equivalent of the Figma Semantic Style, ensuring a single class applies the full correct treatment without requiring engineers to assemble the tokens manually.
-
----
-
-## Line Height
-
-### Web — Unitless Multipliers Only
-
-Never use px for line-height on web.
-
-```
-line-height = font-size × multiplier
-```
-
-| Token                               | Multiplier | Applied To             |
-| ----------------------------------- | ---------- | ---------------------- |
-| `--typography-line-height-narrower` | 1.12       | Display (all levels)   |
-| `--typography-line-height-narrow`   | 1.20       | H1–H4, Label (all)     |
-| `--typography-line-height-compact`  | 1.32       | H5–H6                  |
-| `--typography-line-height-normal`   | 1.50       | Text/Body (all)        |
-| `--typography-line-height-wide`     | 1.75       | Special editorial only |
-
-Line height values do not change across breakpoints.
-
-### iOS
-
-Structured on Apple HIG Dynamic Type (Large Title … Caption 2), with DM's own values: fixed leading in `pt` per style and per Dynamic Type size — `typography-ios/leading/*` in `dm_typography_app_tokens.json` (modes: Large (Default), Small, xxxLarge). Use these token values, not the system defaults.
-
-### Android
-
-M3 role names with DM's own values (override the M3 defaults). Font size and line height in `sp`, never `dp` — `typography-android/size/*` and `typography-android/line-height/*` (modes: Default 1.0x, Small 0.9x, xxxLarge 1.35x; minimum 11sp). Role names follow the token file (e.g. 28sp = Headline Medium, 22sp = Headline Small, 20sp = Title Large, 17sp = Title Medium).
-
----
-
-## Letter Spacing
-
-| Token   | Value  | Applied To           |
-| ------- | ------ | -------------------- |
-| narrow  | -0.5%  | Display, H1          |
-| compact | -0.2%  | H2–H3                |
-| normal  | 0      | H4–H5, text-lg–md, Label |
-| wide    | +0.25% | H6, text-sm–xxsm, small metadata |
-
-iOS and Android use the same four steps (`typography-ios/letter-spacing/*`, `typography-android/letter-spacing/*`: -0.5 / -0.2 / 0 / 0.25 — percent of the font size, as in Figma).
-
----
-
-## Minimal Code — HTML, CSS and JS
-
-**This is a core rule.** The library is shared with developers, who study, extend and ship it. A component that is complex at the base becomes harder to change at every level built on it, so keep each layer as small as it can be.
-
-**HTML — fewest elements**
-- Add an element only when it does a job: semantics (heading, link, button, list), a layout or style that cannot sit on an existing element, or behaviour.
-- **Figma layers are not the HTML structure.** Auto-layout frames, wrappers and slots exist to draw in Figma; read them for intent and leave them out of the markup. Example: Section Header has no row or label wrappers — the header, title and link lay out their children themselves.
-- Put the class on the element itself instead of wrapping it (`<span class="icon icon--x section-header__icon">`, not a span around the icon).
-- Optional parts are left out of the HTML when not used — never present and hidden.
-
-**CSS — fewest rules**
-- Use tokens and existing components / mixins as they are (Button, Divider, Scroll Row, `.icon`…) before writing new rules.
-- Keep selectors short and specificity low — one class where one class does it; no deep descendant chains, no `!important`.
-- One layout method per element (flex or grid), with `gap` rather than margins between siblings.
-- Custom properties for values a variant changes (e.g. `--toggle-width`), so variants override one value instead of repeating rules.
-
-**JS — least behaviour**
-- Prefer HTML and CSS (native elements, `:hover`, `:focus-visible`, `scroll-snap`, `<details>`) over script.
-- Script sets state (an attribute or class, e.g. `aria-checked`, `data-state`); CSS draws it. No styles written from JS.
-- One small script per behaviour, no libraries, no wrapper abstractions.
-
-**HTML formatting — one element per line**
-- Every HTML file, generated or hand-written, is written out with **one block element per line, children indented two spaces** (the way a person would write it). A short element holding only inline content (a link, a span, an img) may stay on one line.
-- Never write a section, card list or page as one long line — editors stop syntax colouring on very long lines (VS Code past 20,000 characters) and nobody can find or edit the content. When a script builds markup, it formats it before writing.
-- Write text as plain characters (`'`, `"`, `£`), not character references (`&#x27;`), so it can be searched as it reads; escape only `&`, `<` and `>` where needed.
-
-**Before adding anything, ask:** can an existing element, class, token or native feature already do this? If yes, use it.
-
-## Coding Rules
-
-- **Never use raw hex values.** Always use semantic colour tokens via CSS custom properties.
-- **Never use px for line-height on web.** Use unitless multipliers only.
-- **Avoid `!important`.** These are the base module styles — an `!important` here invites more `!important` to override it later. Win by matching the selector's specificity and source order (e.g. a `prefers-reduced-motion` block at the end of the file repeating the same selectors), or restructure so no override is needed. Use it only when there is truly no other way, and say why in a comment.
-- **Content keylines:** drawn by the block itself as a pseudo-element with the Divider mixin (`@include divider.divider` — `styles/scss/components/_divider.scss`; args `vertical`, `$inset: false`), never an `<hr>`. `--color-border-translucent-dark-pale` is the default for keylines (a border token — not `effect/translucent-dark/pale`, which is for fills and shadows) between content cards and blocks — it is translucent, so it still reads on tinted surfaces (e.g. a pink box). Only on dark surfaces use a light keyline. Figma sometimes carries the App keyline (`border/neutral/light`) into Web frames — treat that as a mistake.
-- **Backgrounds:** use the background tokens directly — Figma's Surface layers (and Surface to darker) map 1:1 to tokens, so there is no Surface component in code. Stack several backgrounds with one CSS `background` or a pseudo-element. Map: `docs/3_Foundation__02_Colour.md` § 8.
-- **Figma strokes and padding.** In an auto-layout frame, check *Strokes* under Advanced layout settings (`strokesIncludedInLayout`). **Included in layout** (preferred — it behaves like CSS): use a plain `border` + the Figma padding. **Excluded** (Figma's default): the stroke takes no space but a CSS `border` would, so draw it as `box-shadow: inset …` and keep the padding — or ask the designer to switch it to Included.
-- **Keep the code simple** — see *Minimal Code* above. Pick the plainest way that meets the design.
-- Mobile-first CSS: XS as the base (no media query), scale up with `min-width` breakpoints.
-- Mobile landscape handled with `orientation: landscape`, not px breakpoints.
-- Typography does not change on mobile landscape — layout and padding only.
-- **Images:** photos are JPEG (quality ~82). PNG only when real transparency is needed (e.g. columnist cut-out photos). Figma often exports opaque photos as RGBA PNG — check the alpha before keeping PNG. Icons are SVG. Image and video boxes use Media (`.media` + a CMS crop ratio: `--banner`, `--portrait-banner`, `--large`, `--puff`, `--small`, `--302`, `--video` 16:9, `--vertical` 2:3, `--shorts` 9:16 (video only) — photo or video in the other ratios — doc `docs/4_Components__05_Media.md`); the card sets the corner radius.
-- **Article Card comment counter:** the count is followed by the word — `392 comments`, `1 comment` for one — written in the markup as `<span class="article-card-metadata__comments-word">`. CSS hides it (count alone) on SM Right Thumb (Puff), on Channel + Timestamp below LG, and on Columnist metadata under 300px wide. Doc `docs/5_Modules__01_Article-Card.md` § 6.
-- **Columnist photo** sits in the headline (Quote Headline, serif only), not in the metadata — H2 xl · H3–H5 lg · H6 md. Doc § 2.
-- **Icons come from `assets/icons/`** — SVG only on Web, exported from the Figma icon library (DailyMail Icons, file `171vKuCduz2EW3XrK12IQT`, frame 24:2253) with visible layers only, 32 × 32, black. Browse them at `foundation/iconography/` (Legacy there = files no longer in Figma); doc `docs/3_Foundation__07_Iconography.md`. Don't draw new SVGs or re-export icons from Figma into a page or experiment folder — if an icon isn't in `assets/icons/`, add it there first (Figma original, `ico-*.svg`), run `python3 tools/icon-build/build_icon_list.py > styles/scss/foundation/_icon-list.scss`, then build. **Single-colour icons use `.icon`**: `<span class="icon icon--{name} [icon--16|20|32]" aria-hidden="true"></span>` (the file as a CSS mask, `styles/scss/foundation/_icon.scss`) — colour with `--icon-color: var(--color-icon-…)` (default `icon/neutral/black`; dark mode flips it). Never pass the file in from inline style (`style="--icon: url(…)"`) — browsers resolve that path differently. Channel colour icons (`*-color`) and national flags (`ico-flag-*`) keep their colours: `<img src="../../assets/icons/ico-ch-uk-showbiz-color.svg" alt="" />`.
-- British English for UI copy and documentation.
-- American English for token names, CSS variable names, and code.
-
----
-
-## JSON Token Schema
-
-```json
-{
-  "version": "1.0.4",
-  "collections": [
-    {
-      "name": "Collection Name",
-      "modes": [
-        {
-          "name": "Mode Name",
-          "variables": [
-            {
-              "name": "token/path/name",
-              "type": "color | string | float",
-              "isAlias": true,
-              "value": "<raw value> | { collection, name }"
-            }
-          ]
-        }
-      ]
-    }
-  ]
-}
-```
-
-## Versioning
-
-All token files share the same version string (currently `1.0.4`). Update the `version` field in JSON files and the CSS comment header together when making changes — for `dm_tokens.css` the generator writes the header from the JSON `version`.
-
-## Styles Architecture
-
-- SCSS source: `styles/scss/`
-- Compiled CSS: `styles/css/main.css` (auto-generated — do not edit manually)
-- Compile once: `npm run build`
-- Watch mode (auto-recompile on save): `npm run watch`
-- Requires Node 20 (`nvm use 20`). Older Node fails with `globalThis is not defined`.
-- `node_modules/` is committed for now (Sass only, small). Untrack it and add it to `.gitignore` if it grows large.
-
-### Local Preview
-
-- `http://localhost:3001/` (index) or `/components/<name>/`, `/modules/<name>/` — served by `python3 -m http.server 3001` from the repo root. The user starts it in a terminal with `dmon` (alias in `~/.zshrc`) and stops it with Ctrl+C or `dmoff`. If it is down while Claude works, Claude starts it in the Terminal panel — not with `preview_start` (macOS blocks the app's own process from `~/Documents`) and not through npm (python fails to spawn under npm)
-- The server sends no cache headers, so hard-refresh (Cmd+Shift+R) after every build or the old `main.css` is shown.
-
-### SCSS Structure
-
-- `foundation/` — reset, breakpoints, typography utilities, spacing, border radius, elevation, icon, layout
-- `components/` — **PRODUCT** styles for Components, one file per component (`_button.scss`) — these would ship to the real DM site
-- `modules/` — **PRODUCT** styles for Modules, one file per module or module part (`_article-card.scss`, `_editorial-badge.scss`, …) — these would ship too
-- `scaffolding/` — **PROTOTYPE-ONLY** styles for demo pages: grid layout, section headers, side panel, token tooltips. Never shipped to production. Clearly separated from `components/` and `modules/` so the real CSS can be handed off cleanly to developers.
-- `experiments/` — **PROTOTYPE-ONLY** page styles for `experiments/` pages (`_homepage.scss` for `202611-exp-homepage/`). Never shipped. A change that is settled there moves to `components/` or `modules/` (and `docs/`)
-- `projects/` — **PROTOTYPE-ONLY** page styles for `projects/` pages (`_<name>.scss`). Never shipped
-- `main.scss` — entry point, `@use` only, no actual styles written here
-
-### Rules
-
-- Never write `<style>` blocks inside HTML files (only exception: experiment pages in `experiments/`, see below)
-- New components go in `styles/scss/components/_[name].scss` (demo: `components/[name]/`); new modules in `styles/scss/modules/_[name].scss` (demo: `modules/[name]/`)
-- New demo/prototype-only styling always goes in `styles/scss/scaffolding/_[name].scss` — never mix into `components/` or `modules/`
-- Demo pages use `<body class="demo-page-body">` — background `color/background/neutral/lighter` for every page in `components/`, `modules/` and the index. Keep it unless asked otherwise; put light/dark surfaces on the samples, not on the page.
-- Pages in `experiments/` and `projects/` keep the base body background `color/background/neutral/lightest` (set in `foundation/_reset.scss`) — don't paint a different page background unless asked.
-- Every new demo page loads the side panel (`<script src="../../scripts/scaffolding/demo-nav.js" defer></script>`) and gets an entry in `scripts/scaffolding/demo-nav.js`
-- **Mouse drag = swipe (demo only):** swipe stays a touch gesture in the product, but every demo and project page with a row that scrolls sideways (Carousel track, Scroll Row — Tabs, Section Header tabs, Navbar L1, Sticky Navbar, Navbar L2) loads `<script src="../../scripts/scaffolding/demo-drag-swipe.js" defer></script>`, so a mouse can drag the row to try the mobile swipe on a desktop (Carousel snaps as a swipe does; a drag is not a click). Never product behaviour — on the site a mouse uses the arrows / chevron edges. A new kind of scrolling row goes into the script's `ROWS` list (styles: `scaffolding/_demo-drag-swipe.scss`). Experiments marked Decided or Archived stay as they were tested.
-- Always add new files to `main.scss` via `@use`
-- Always use semantic colour tokens (`var(--color-...)`) and typography tokens (`var(--typography-...)`) — never raw hex or px line-height
-
-### Demo Generators
-
-Some demo pages are generated — edit the generator in `tools/demo-generators/`, not the HTML, then regenerate. See `tools/demo-generators/README.md` for the list and commands.
-
----
-
-## Experiments
-
-One-off tests and A/B variants live in `experiments/YYYYMM-exp-<name>/` (e.g. `202610-exp-preview-hover/`). Nothing outside the folder may import from it.
-
-- **A (control)** — links the shared `tokens/*.css` and `styles/css/main.css` only. Inline `<style>` is allowed for page layout (grid, widths) — never for component styles.
-- **B (variant)** — same links, plus an inline `<style>` that overrides only the changed parts. Shared SCSS/CSS/JS is never edited for a variant, so A is unaffected.
-- **Page styles:** an experiment that builds whole pages (e.g. `202611-exp-homepage/`) keeps its styles in `styles/scss/experiments/_<name>.scss` (`@use` in `main.scss`), not in `scaffolding/` and not inline.
-- **Fixed breakpoint:** when a test targets one breakpoint, the page frames itself in an iframe of that width (e.g. 1024px for LG) instead of being responsive.
-- **Images:** link the original image address when it can be linked — don't download a copy. Only images with no linkable source go in the experiment's own `images/` folder.
-- **Experiments home button:** every experiment page loads `<script src="../../scripts/scaffolding/home-button.js" data-home="experiments" defer></script>` in `<head>` — a round button bottom-left (ico-tubes, "Experiments" on hover — the side-panel switch icon) back to `experiments/`.
-- **Footer:** every experiment and project page loads `scripts/scaffolding/page-footer.js` (defer, in `<head>`) — the copyright line as a reveal underlay: fixed to the window bottom on `background/neutral/light`, behind the page (body = raised lightest layer with a shadow), shown when scrolled to the end. The two landing pages use the library footer instead (`<footer class="demo-footer">` at the end of `.notes-main`), because of their fixed left panel.
-- **Landing page:** `experiments/index.html` — the list and cards come from the shared `scripts/scaffolding/notes-index.js` (`renderNotesIndex(EXPERIMENTS)`) and `styles/scss/scaffolding/_notes-index.scss` (no inline `<style>`); the page holds only the `EXPERIMENTS` list.
-- **Notes style (experiments and projects):** short lines, not prose — one fact per line, no explanation of why unless it decides something. First lines say what it is; each later change is one line starting with its date (`2026-11-03 — …`). Page descriptions are a few words. On the landing page the page links show first (grey block) and long notes scroll inside the card.
-- **Experiment notes — always:** whenever you create or change files in `experiments/`, add or update that experiment's entry in `experiments/index.html` (the `EXPERIMENTS` list, newest first) in the same turn, without being asked: `id` (folder), `date` (start date), `title`, `status` (In progress / Decided / Archived), `notes` (what is tested — short lines, see Notes style), `result` (once decided), `pages` (label, file, one-line description for each test page). The year filter (All / YYYY) is built from `date`.
-- **After the test:** move the winning change (from the inline `<style>` or `styles/scss/experiments/`) into `styles/scss/components/` or `modules/` and `docs/`; keep or delete the folder.
-
-## Projects
-
-Project prototypes (a page or flow built from the library, e.g. a homepage demo) live in `projects/YYYYMM-prj-<name>/` — the experiments naming, with `prj`. A page that still needs testing (e.g. the homepage, `experiments/202611-exp-homepage/`) stays in `experiments/` until it is settled. The main page is `index.html` right in the project folder — no platform subfolder; other pages sit beside it. Web pages cover every breakpoint unless the project says otherwise.
-
-- **Shared code only:** pages link `tokens/*.css` and `styles/css/main.css`, and use library classes and `scripts/modules/` as they are. No inline `<style>` — page styles go in `styles/scss/projects/_<name>.scss` (prototype-only, `@use` in `main.scss`). Behaviour a page needs that the library has only inline in a demo moves to `scripts/modules/` first (e.g. `masthead.js`), never copied.
-- **Images:** link the original image address (e.g. `https://i.dailymail.com/…`) when it can be linked — don't download a copy. Only images with no linkable source go in the project's own `images/` folder.
-- **Projects home button:** every project page loads `<script src="../../scripts/scaffolding/home-button.js" data-home="projects" defer></script>` in `<head>` — a round button bottom-left (ico-flow, "Projects" on hover) back to `projects/` — plus `page-footer.js` (see Experiments › Footer).
-- **Landing page:** `projects/index.html` — same page as the experiments one (`notes-index.js` + `_notes-index.scss`), holding only the `PROJECTS` list.
-- **Project notes — always:** whenever you create or change files in `projects/`, add or update that project's entry in `projects/index.html` (the `PROJECTS` list, newest first) in the same turn, without being asked: `id` (folder), `date` (start date), `title`, `status` (In progress / Done / Archived), `notes` (what is built, then each later step — short lines, see Notes style), `result` (once done), `pages` (label, file path in the folder, one-line description for each page). The year filter (All / YYYY) is built from `date`.
+## Figma
+
+- Web UI Kit (Dweb & Mweb): https://www.figma.com/design/vB97J7hRY6OcmcnKJOOlHj/
+- Icon library (DailyMail Icons): file `171vKuCduz2EW3XrK12IQT`, frame `24:2253`
+- File URLs are reference only. For component work, the user gives a frame URL.
+- Desktop MCP server reads only the file open in the active Figma tab ("node not found" otherwise). Remote server works from the fileKey in the URL.
 
 ---
 
 ## Git
 
-- Commit directly to `main`. Message format: `update: <Component> - <change>` (e.g. `update: Article Card - hover surface`).
-- `.DS_Store` and `.claude/settings.local.json` are ignored (`.gitignore`).
+- Commit straight to `main`: `update: <Component> - <change>` (e.g. `update: Article Card - hover surface`).
+- Ignored: `.DS_Store`, `.claude/settings.local.json`.
 
 ---
 
-## Working Rules
+## TODO
 
-- Before starting any task, read all `.md` files in the `docs/` folder
-- Apply DM Design System rules and conventions from `docs/` throughout all work
-- When working on a specific component, read its doc first. Docs are named `docs/<section>_<Group>__<NN>_<Name>.md` (e.g. `docs/4_Components__01_Button.md`, `docs/5_Modules__01_Article-Card.md`)
-- **New library elements replace look-alikes.** When adding an element the library does not define yet (a component, module or foundation item), first search `projects/` and `experiments/` for a similar one already built there. Compare it with the new element and settle the differences. Then list the pages to switch to the library element (its classes / mixins) and **ask before replacing** — an experiment marked Decided or Archived records what the test looked like, so it may need to stay as it is. After replacing, every use stays consistent; update the notes in `experiments/index.html` / `projects/index.html` too.
-- **Figma is not perfect.** Designers rarely work in the codebase, so layer names, stray widths or copied App values (e.g. keylines) can be human error. Read Figma for intent, cross-check it against the docs and the rest of the file, and flag what looks wrong instead of copying it.
-- Figma MCP: the desktop server only reads the file open in the active Figma tab ("node not found" otherwise); the remote server works from the fileKey in the URL
+- Demo generators: write a `GENERATED` comment at the top of each generated page, then let the hooks read that marker instead of the path lists in `.claude/hooks/dm_hooks.py`.
