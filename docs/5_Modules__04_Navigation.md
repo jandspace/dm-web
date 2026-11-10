@@ -12,7 +12,7 @@ Code: `styles/scss/modules/_masthead.scss`, `_masthead-sheet.scss`, `_navbar-l2.
 ## 1. Rules
 
 - **Full width, always.** The masthead spans the whole browser width at every breakpoint. Its content sits in the page container (720 · 960 · 996 · 1224) with a 16px inset.
-- **Channel colour.** `.masthead--{section}` sets the page's channel (sections map, CLAUDE.md › Editorial Section → Colour Mapping). It drives the Topbar channel bar and, on Mweb, the whole masthead background.
+- **Channel colour.** `.masthead--{section}` sets the page's channel (sections map: Colour § 2-B, `docs/3_Foundation__02_Colour.md`). It drives the Topbar channel bar and, on Mweb, the whole masthead background.
 - **Mweb (<768) turns the masthead into the channel colour** (`color/background/{channel}/base`): white logo, white labels, Subscribe pill and round login. The Topbar is hidden; the burger opens the Nav Sheet.
 
 ## 2. Structure

@@ -40,7 +40,9 @@ image required
 - Default to Sans (Inter) for all functional and UI-related content
 - Use Serif (Lora) only where editorial emphasis is required
 - **Article headlines:** Article headlines use Inter on Web and Lora on App (iOS/Android) by default. On Web, a headline may switch to Lora case by case (e.g. a columnist's quote) — follow Figma. In code: add `.serif` to the heading (`<h4 class="h4 serif article-headline">`); size, weight, line height and letter spacing stay as the level sets them. Only the headline changes; the rest of the card (metadata, badges) stays Inter.
-- Avoid mixing typefaces within the same UI component
+- Never mix typefaces within a single text element (a heading, label or paragraph)
+- Use one typeface per UI component, except in these agreed cases: an Article Card headline set in Lora (`.serif`), a columnist's quote headline, and the Section Header Branded name. Any other mix is raised for review before it is built, even when it appears in Figma
+- Third-party typefaces are used only where agreed. Currently Literata, the typeface of the external games module, for game titles on the homepage experiment
 - Prioritise readability and consistency over stylistic variation
 - Not all content requires editorial styling. Use Serif only where it adds clear value.
 

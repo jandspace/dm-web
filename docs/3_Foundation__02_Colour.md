@@ -20,6 +20,19 @@ At the heart of our identity is 'Home Blue (`#004DB3`)'. We use this hue as the 
 
 Each of our editorial channels (e.g. Showbiz, Sport or Royals) has its own distinct brand colour. To keep the system tidy and predictable, every channel follows the exact same scaling logic that we use for Home Blue.
 
+| Section | Colour | Section | Colour |
+|---|---|---|---|
+| Home | Blue | Travel | Navy |
+| News | Cyan | Shopping | Indigo |
+| Showbiz | Red | Crime | Petrol |
+| Sport | Green | Property | Fuchsia |
+| Royals | Violet | Podcasts | Yellow |
+| Money | Purple | Games | Ultramarine |
+| Lifestyle | Azure | Science | Orange |
+| Health | Turquoise | TV | Magenta |
+
+Each channel has five variants: `base`, `base-darker`, `subtle`, `subtlest` and `deep` (e.g. `--color-text-showbiz-red-base`). The game colours (Quiz green, Sudoku blue, Word orange, Number pink, Brain purple) are not editorial sections.
+
 = = = = = = = = = = = = = = = = = = = = = = = = = = = = = =
 image required
 = = = = = = = = = = = = = = = = = = = = = = = = = = = = = =
