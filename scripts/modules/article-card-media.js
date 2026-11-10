@@ -9,7 +9,9 @@
 //   .article-card-player    Video: ready → playing ⇄ paused, muted at start,
 //                           controls fade after 3s (touch: first tap shows them).
 //                           Pauses when less than half on screen; plays again
-//                           on return only if scrolling paused it
+//                           on return only if scrolling paused it. Seek: press
+//                           or drag on the progress track (role="slider"),
+//                           or arrow keys (±5s) / Home / End when it has focus
 //   .article-card-carousel  a click on a slide opens the article. Arrows,
 //                           dots and autoplay: scripts/modules/carousel.js
 //
@@ -87,7 +89,7 @@
     const surface = player.querySelector('.article-card-player__surface');
     const timer = player.querySelector('.video-timer');
     const progress = player.querySelector('.video-progress');
-    const bar = progress.querySelector('[role="progressbar"]');
+    const bar = progress.querySelector('.video-progress__track');
     const elapsed = player.querySelector('.video-progress__elapsed');
     const remaining = player.querySelector('.video-progress__remaining');
     const sound = player.querySelector('[data-action="sound"]');
@@ -116,9 +118,40 @@
       const pct = video.duration ? (video.currentTime / video.duration) * 100 : 0;
       progress.style.setProperty('--video-progress', `${pct}%`);
       bar.setAttribute('aria-valuenow', Math.round(pct));
+      bar.setAttribute('aria-valuetext', `${clock(video.currentTime)} of ${clock(video.duration)}`);
       elapsed.textContent = clock(video.currentTime);
       remaining.textContent = `-${clock(video.duration - video.currentTime)}`;
     };
+
+    // Seek — the track follows the pointer at once; the video catches up
+    const seek = (time) => {
+      if (!video.duration) return;
+      video.currentTime = Math.min(video.duration, Math.max(0, time));
+      progress.style.setProperty('--video-progress', `${(video.currentTime / video.duration) * 100}%`);
+      wake();
+    };
+    const seekAt = (x) => {
+      const box = bar.getBoundingClientRect();
+      seek(((x - box.left) / box.width) * video.duration);
+    };
+    const stopScrub = () => delete progress.dataset.scrubbing;
+
+    bar.addEventListener('pointerdown', (e) => {
+      if (e.button !== 0) return;
+      e.preventDefault(); // no text selection while dragging
+      bar.setPointerCapture(e.pointerId);
+      progress.dataset.scrubbing = '';
+      seekAt(e.clientX);
+    });
+    bar.addEventListener('pointermove', (e) => bar.hasPointerCapture(e.pointerId) && seekAt(e.clientX));
+    bar.addEventListener('pointerup', stopScrub);
+    bar.addEventListener('lostpointercapture', stopScrub);
+    bar.addEventListener('keydown', (e) => {
+      const to = { ArrowLeft: -5, ArrowRight: 5, Home: -Infinity, End: Infinity }[e.key];
+      if (to === undefined) return;
+      e.preventDefault();
+      seek(Number.isFinite(to) ? video.currentTime + to : to < 0 ? 0 : video.duration);
+    });
 
     video.muted = true;
     video.playsInline = true;

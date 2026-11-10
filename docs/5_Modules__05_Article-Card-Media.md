@@ -30,11 +30,11 @@ The aspect ratio comes from the card type (see Article Card § 2 and Media). Cor
 
 | Part | Class | Notes |
 |---|---|---|
-| Video | `video` | `muted playsinline preload="none"`, `src` with `#t=0.1` so the first frame shows as the still (loaded a screen ahead — see Lazy load) |
+| Video | `video` | `muted playsinline preload="none"`, `src` with `#t=0.1` so the first frame shows as the still (loaded a screen ahead — see Lazy load). Another time (`#t=13`) shows that frame as the still — and play starts there |
 | Surface | `button.article-card-player__surface` | Covers the media: play / pause. `aria-label` follows the state |
 | Centre | `.article-card-player__play` | Video Player Controls `.video-play` lg 56 + `.video-timer` 8px below. Decorative |
 | Actions | `.article-card-player__actions` | Right edge, 29px above the bottom: Full screen (`arrows-expand`) · Sound (`speaker-off` / `speaker-on`) · Share (`sharing-android`) — `.btn.btn-tertiary-light.btn--icon-only`, 16px gap (8px when the media is under 215px high) |
-| Progress | `.video-progress.video-progress--inline` | Elapsed · 8px track · remaining, one row, 8 / 16 padding, on the dark gradient |
+| Progress | `.video-progress.video-progress--inline` | Elapsed · 8px track · remaining, one row, 8 / 16 padding, on the dark gradient. The track is the seek slider: `role="slider" aria-label="Seek" tabindex="0"` (see Seek) |
 
 ### States (`data-state`)
 
@@ -53,6 +53,13 @@ At the end the video goes back to `ready`.
 - **Off screen:** a playing video pauses when less than half of it is on screen, and plays on when it comes back. One the reader paused stays paused.
 - **Keyboard:** controls stay while keyboard focus is inside the player (`:focus-visible` — the focus a mouse click leaves does not count).
 - Paused or ready: always shown.
+
+### Seek
+
+- **Hover (mouse):** a 24px `background/home-blue/base` thumb shows at the play position on the track (Video Player Controls › Progress bar). The track's hit area is 24px high, so the 8px bar is easy to catch.
+- **Press / drag:** a press anywhere on the track jumps there; dragging moves the thumb and the video with the pointer (pointer capture — the drag keeps going off the track). The thumb stays while dragging (`.video-progress[data-scrubbing]`), touch included. A seek does not start or stop playback.
+- **Keyboard:** with focus on the track, ← / → move 5s, Home / End go to the start / end. `aria-valuetext` reads "00:57 of 01:49".
+- Seeking keeps the controls awake (resets the 3s fade).
 
 ### Sharing
 

@@ -474,13 +474,16 @@
   }
 }
 
+// Figma 8928:55674: logo · tagline (12 below) at the top, Discover more
+// (Secondary on dark, SM) at the bottom, 64 from each edge; the XL arrow
+// button (steps the row on) midway between them — equal auto margins.
 .homepage-deep-dive-intro__title {
   position: relative; // over the artwork
   display: flex;
   flex-direction: column;
   align-items: center;
   width: 50%;
-  padding-block: 96px;
+  padding-block: var(--spacing-64);
 }
 
 .homepage-deep-dive-intro__logo {
@@ -489,7 +492,7 @@
 }
 
 .homepage-deep-dive-intro__tagline {
-  margin: var(--spacing-12) 0 auto; // CTA at the bottom
+  margin: var(--spacing-12) 0 auto; // the arrow button sits midway to Discover more
   font-size: var(--typography-font-size-label-lg);
   font-weight: var(--typography-font-weight-semibold);
   line-height: var(--typography-line-height-narrow);
@@ -497,6 +500,10 @@
   text-wrap: balance;
   color: var(--color-text-neutral-lightest);
   opacity: 0.8;
+}
+
+.homepage-deep-dive-intro__more {
+  margin-top: auto; // at the bottom of the block
 }
 
 // Experimental card (Figma "Article Card - Image Only -v2", index-b only — not
@@ -680,6 +687,8 @@ $homepage-below-md: "(width < #{map.get(bp.$breakpoints, md)})";
   }
 
   .homepage-vertical {
+    display: flex;
+    flex-direction: column;
     padding: 0 var(--spacing-8);
   }
 
@@ -702,6 +711,19 @@ $homepage-below-md: "(width < #{map.get(bp.$breakpoints, md)})";
 
   .article-card__overlay {
     padding: var(--spacing-16);
+  }
+
+  // Headline-only card: grows to the box bottom (boxes in a row share a
+  // height); no side padding here, so the hover surface (and the stretched
+  // link) reach out to the box's edges — from the keyline to the box bottom,
+  // the full box width — instead of the default 8px inset
+  .article-card--md {
+    flex-grow: 1;
+  }
+
+  .article-card--md::before,
+  .article-card--md .article-card__link::after {
+    inset: 0 calc(-1 * var(--spacing-8));
   }
 
   @include bp.respond-to(lg) {

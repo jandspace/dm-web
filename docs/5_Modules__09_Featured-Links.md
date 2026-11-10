@@ -59,7 +59,7 @@ Drawn by the item's `::after` with the Divider mixin; `:last-child` drops it —
 
 ## 4. Hover and focus
 
-- Hover: the Article Card hover surface (`article-card.hover-surface` mixins — black at 4%, inset 8px, 8px corners, zooms from 0.4), MD+ with a mouse only. The heading keeps its colour (Figma shows the surface only).
+- Hover: the Article Card hover surface (`article-card.hover-surface` mixins — black at 4%, inset 8px, 8px corners, zooms from 0.4), MD+ with a mouse only. The heading turns `text/interaction-primary/default`, as the Article Card headline does (all breakpoints).
 - Keyboard focus: 2px `border/home/blue/base` ring inside the item, and the surface.
 
 ## 5. Notes

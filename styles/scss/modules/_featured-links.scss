@@ -20,7 +20,8 @@
 //   row      a vertical keyline on the right of every item but the last
 //            (16px in from the top and bottom)
 //
-// Hover: the Article Card hover surface (MD+, mouse only).
+// Hover / focus: the title turns text/interaction-primary/default, as on
+// Article Card, plus the Article Card hover surface (MD+, mouse only).
 //
 // Reference: Figma Web UI Kit › Featured Links (6514:79008) · Featured Link
 //            Items (6514:79024) · Homepage block (8963:98140)
@@ -103,6 +104,12 @@
 .featured-link__title {
   font-weight: var(--typography-font-weight-bold);
   color: var(--color-text-neutral-darker);
+
+  // Hover / focus — same as the Article Card headline
+  .featured-link:hover &,
+  .featured-link:focus-visible & {
+    color: var(--color-text-interaction-primary-default);
+  }
 }
 
 .featured-link__text {
