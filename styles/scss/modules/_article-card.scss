@@ -16,25 +16,17 @@
 @use '../foundation/breakpoints' as bp;
 @use '../components/divider';
 
-// ── Base ──────────────────────────────────────────────────────────────────────
+// ── Hover surface ─────────────────────────────────────────────────────────────
+// Figma "Article Card - Hover effect" — background/neutral/black, inset 8px
+// (half the card padding), 8px corners, on the block's ::before. At rest it is
+// scaled down to 0.4 and transparent; on hover / focus it zooms to 1 at 4%.
+// MD+ with a pointing device only — touch / mobile gets no hover surface.
+// The block needs position: relative and isolation: isolate (the surface sits
+// at z-index -1, under the content). Also used by Featured Links.
+//   .block { @include article-card.hover-surface; }
+//   .block:hover { @include article-card.hover-surface-on; }
 
-.article-card {
-  position: relative;
-  display: flex;
-  flex-direction: column;
-  gap: var(--spacing-12);
-  width: 100%;
-  padding: var(--spacing-16);
-  background-color: var(--color-background-neutral-lightest);
-
-  // Own stacking context so the hover surface (z-index -1) sits above the
-  // card background but below the content
-  isolation: isolate;
-
-  // Hover surface (Figma "Article Card - Hover effect") — background/neutral/black,
-  // inset 8px (half the card padding), 8px corners. At rest it is scaled down
-  // to 0.4 and transparent; on article hover / focus it zooms to 1 at 4%.
-  // MD+ with a pointing device only — touch / mobile gets no hover surface.
+@mixin hover-surface {
   &::before {
     content: '';
     position: absolute;
@@ -58,6 +50,36 @@
       transition: none;
     }
   }
+}
+
+@mixin hover-surface-on {
+  @include bp.respond-to(md) {
+    @media (hover: hover) {
+      &::before {
+        opacity: 0.04;
+        transform: scale(1);
+      }
+    }
+  }
+}
+
+// ── Base ──────────────────────────────────────────────────────────────────────
+
+.article-card {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-12);
+  width: 100%;
+  padding: var(--spacing-16);
+  background-color: var(--color-background-neutral-lightest);
+
+  // Own stacking context so the hover surface (z-index -1) sits above the
+  // card background but below the content
+  isolation: isolate;
+
+  // Hover surface (mixin below)
+  @include hover-surface;
 
   // Keyline — inset to match the 16px content edge
   &::after {
@@ -121,14 +143,7 @@
 // moving from the headline onto channel / comments never flickers the surface.
 .article-card:has(a:hover, button:hover),
 .article-card:has(.article-card__link:focus-visible) {
-  @include bp.respond-to(md) {
-    @media (hover: hover) {
-      &::before {
-        opacity: 0.04;
-        transform: scale(1);
-      }
-    }
-  }
+  @include hover-surface-on;
 }
 
 .article-card:has(.article-card__link:focus-visible) {

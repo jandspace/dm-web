@@ -1,0 +1,111 @@
+// ── Featured Links ────────────────────────────────────────────────────────────
+// A short list of links (2 or 3) to featured pages — a thumbnail, a heading
+// and a line of text each. Usually under a Section Header in a full-width
+// section.
+//
+//   .featured-links                       the list: stacked below SM, a row from SM
+//     a.featured-link                     one item — the whole item is the link
+//       .media.featured-link__thumb       64 × 64 thumbnail, 4px corners
+//       .featured-link__body              heading + text, 8px apart
+//         h3.h4.featured-link__title
+//         p.label-sm.featured-link__text
+//
+// Breakpoints (Figma Featured Link Items):
+//   XS <640    stacked, full width — thumbnail beside the text
+//   SM ≥640    a row — thumbnail above the text
+//   MD ≥768    a row — thumbnail beside the text (Figma variant LG)
+//
+// Keylines follow the layout, never the last item:
+//   stacked  a bottom keyline under every item but the last (16px in)
+//   row      a vertical keyline on the right of every item but the last
+//            (16px in from the top and bottom)
+//
+// Hover: the Article Card hover surface (MD+, mouse only).
+//
+// Reference: Figma Web UI Kit › Featured Links (6514:79008) · Featured Link
+//            Items (6514:79024) · Homepage block (8963:98140)
+
+@use '../foundation/breakpoints' as bp;
+@use '../components/divider';
+@use 'article-card';
+
+.featured-links {
+  display: flex;
+  flex-direction: column;
+
+  @include bp.respond-to(sm) {
+    flex-direction: row;
+  }
+}
+
+.featured-link {
+  position: relative;
+  isolation: isolate; // the hover surface sits under the content
+  display: flex;
+  flex: 1 1 0;
+  gap: var(--spacing-12);
+  min-width: 0;
+  padding: var(--spacing-16);
+  color: inherit;
+  text-decoration: none;
+
+  @include article-card.hover-surface;
+
+  &:hover,
+  &:focus-visible {
+    @include article-card.hover-surface-on;
+  }
+
+  &:focus-visible {
+    outline: 2px solid var(--color-border-home-blue-base);
+    outline-offset: -2px;
+  }
+
+  // Stacked: keyline below
+  &:not(:last-child)::after {
+    @include divider.divider;
+  }
+
+  @include bp.respond-to(sm) {
+    flex-direction: column;
+
+    // Row: the keyline turns vertical, on the right edge
+    &:not(:last-child)::after {
+      @include divider.divider(vertical);
+      right: 0;
+      left: auto;
+      height: auto;
+    }
+  }
+
+  @include bp.respond-to(md) {
+    flex-direction: row;
+  }
+}
+
+.featured-link__thumb {
+  flex-shrink: 0;
+  align-self: flex-start; // keeps 1:1 — never stretched to the text height
+  width: 64px;
+  aspect-ratio: 1;
+  border-radius: var(--border-radius-4);
+}
+
+.featured-link__body {
+  display: flex;
+  flex: 1 1 0;
+  flex-direction: column;
+  gap: var(--spacing-8);
+  min-width: 0;
+}
+
+// H4 Bold (Figma dmw_sans/h4/Bold — confirmed 2026-11-10)
+.featured-link__title {
+  font-weight: var(--typography-font-weight-bold);
+  color: var(--color-text-neutral-darker);
+}
+
+.featured-link__text {
+  font-weight: var(--typography-font-weight-regular);
+  color: var(--color-text-neutral-dark);
+}

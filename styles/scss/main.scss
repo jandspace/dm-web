@@ -50,6 +50,7 @@
 @use 'modules/footer';
 @use 'modules/advertisement';
 @use 'modules/shorts-signpost';
+@use 'modules/featured-links';
 
 // Scaffolding (prototype/demo only — never shipped to production)
 @use 'scaffolding/demo-grid';
@@ -82,6 +83,7 @@
 @use 'scaffolding/footer-demo';
 @use 'scaffolding/advertisement-demo';
 @use 'scaffolding/shorts-signpost-demo';
+@use 'scaffolding/featured-links-demo';
 @use 'scaffolding/video-player-controls-demo';
 @use 'scaffolding/notes-index';
 @use 'scaffolding/site-switch';

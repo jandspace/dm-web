@@ -1,0 +1,180 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Featured Links</title>
+    <link rel="icon" href="../../assets/favicon.svg" type="image/svg+xml" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&family=Lora:ital,wght@0,400;0,500;0,600;0,700;1,400&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="../../tokens/dm_tokens.css" />
+    <link rel="stylesheet" href="../../tokens/dm_typography_web_tokens.css" />
+    <link rel="stylesheet" href="../../styles/css/main.css" />
+    <script src="../../scripts/scaffolding/demo-nav.js" defer></script>
+  </head>
+  <body class="demo-page-body demo-fl-page">
+
+    <h1 class="demo-page-h1">Featured Links</h1>
+    <p class="demo-page-intro">
+      Figma: Web UI Kit › Featured Links (6514:79008) · homepage block (8963:98140). Two or three links, each a thumbnail
+      (64 × 64), a heading and a line of text; the whole item is the link. XS &lt;640: stacked, thumbnail beside the text,
+      a bottom keyline under every item but the last. SM ≥640: a row, thumbnail above the text. MD ≥768: a row, thumbnail
+      beside the text. In a row the keyline turns vertical, on the right of every item but the last. Hover: the Article
+      Card hover surface (MD+, mouse). Shown here Fullwidth under a Section Header. Doc: <code>docs/5_Modules__09_Featured-Links.md</code>.
+    </p>
+
+    <div class="demo-vp-toolbar demo-vp-toolbar--sticky">
+      <div class="demo-vp-toolbar__row">
+        <span id="demo-vp-switch-label">Viewport</span>
+        <div class="demo-vp-toggle" role="group" aria-labelledby="demo-vp-switch-label" id="demo-vp-switch">
+          <button type="button" data-vp="live" aria-pressed="true">Live</button>
+          <button type="button" data-vp="lg" aria-pressed="false">LG ≥1024</button>
+          <button type="button" data-vp="md" aria-pressed="false">MD ≥768</button>
+          <button type="button" data-vp="sm" aria-pressed="false">SM ≥640</button>
+          <button type="button" data-vp="xs" aria-pressed="false">XS &lt;640</button>
+        </div>
+        <span class="demo-vp-toolbar__divider"></span>
+        <span id="demo-items-label">Items</span>
+        <div class="demo-vp-toggle" role="group" aria-labelledby="demo-items-label" id="demo-items">
+          <button type="button" data-items="3" aria-pressed="true">3</button>
+          <button type="button" data-items="2" aria-pressed="false">2</button>
+        </div>
+        <span class="demo-vp-status" id="demo-vp-status"></span>
+      </div>
+    </div>
+
+    <div class="demo-fl container">
+      <section class="layout-full">
+        <header class="section-header">
+          <h2 class="section-header__title"><span class="icon icon--squares-plus section-header__icon" aria-hidden="true"></span>Featured</h2>
+        </header>
+        <div class="featured-links">
+          <a class="featured-link" href="#featured-1">
+            <span class="media featured-link__thumb"><img src="../../assets/images/featured-link-thumb.jpg" alt="" /></span>
+            <div class="featured-link__body">
+              <h3 class="h4 featured-link__title">Featured Items Heading</h3>
+              <p class="label-sm featured-link__text">Lorem ipsum dolor sit amet, consectetur adipiscing elit phasell us</p>
+            </div>
+          </a>
+          <a class="featured-link" href="#featured-2">
+            <span class="media featured-link__thumb"><img src="../../assets/images/featured-link-thumb.jpg" alt="" /></span>
+            <div class="featured-link__body">
+              <h3 class="h4 featured-link__title">Featured Items Heading</h3>
+              <p class="label-sm featured-link__text">Lorem ipsum dolor sit amet, consectetur adipiscing elit phasell us</p>
+            </div>
+          </a>
+          <a class="featured-link" href="#featured-3">
+            <span class="media featured-link__thumb"><img src="../../assets/images/featured-link-thumb.jpg" alt="" /></span>
+            <div class="featured-link__body">
+              <h3 class="h4 featured-link__title">Featured Items Heading</h3>
+              <p class="label-sm featured-link__text">Lorem ipsum dolor sit amet, consectetur adipiscing elit phasell us</p>
+            </div>
+          </a>
+        </div>
+      </section>
+    </div>
+
+    <!-- Fixed-viewport preview: this page rendered in an iframe at the chosen width -->
+    <div class="demo-vp-stage" id="demo-vp-stage" hidden></div>
+
+    <script>
+      // Scaffolding only — viewport preview + items filter.
+      //   ?frame              page without chrome (rendered inside the viewport stage)
+      //   ?vp=lg|md|sm|xs     preview at a fixed viewport width
+      //   ?items=2            two links (default three)
+      (() => {
+        const params = new URLSearchParams(location.search);
+
+        // Items › 2: the third link is removed, not hidden — the keylines follow
+        const items = params.get('items') === '2' ? '2' : '3';
+        if (items === '2') document.querySelectorAll('.featured-link:nth-child(3)').forEach((el) => el.remove());
+
+        if (params.has('frame')) {
+          document.body.classList.add('demo-frame');
+          document.querySelectorAll('.demo-page-h1, .demo-page-intro, .demo-vp-toolbar').forEach((el) => el.remove());
+          return;
+        }
+
+        const VIEWPORTS = {
+          lg: { label: 'LG ≥1024', width: 1024 },
+          md: { label: 'MD ≥768', width: 768 },
+          sm: { label: 'SM ≥640', width: 640 },
+          xs: { label: 'XS <640', width: 390 },
+        };
+
+        const toggle = document.getElementById('demo-vp-switch');
+        const status = document.getElementById('demo-vp-status');
+        const content = [...document.querySelectorAll('.demo-fl')];
+        const stage = document.getElementById('demo-vp-stage');
+        let iframe = null;
+        let width = 0;
+
+        const fit = () => {
+          if (!iframe || !iframe.contentDocument) return;
+          const scale = Math.min(1, (stage.parentElement.clientWidth - 80) / width);
+          const height = iframe.contentDocument.documentElement.scrollHeight;
+          iframe.height = height;
+          iframe.style.transform = `scale(${scale})`;
+          stage.style.width = `${width * scale}px`;
+          stage.style.height = `${height * scale}px`;
+          status.textContent = `${width}px preview · ${Math.round(scale * 100)}%`;
+        };
+
+        const select = (key) => {
+          const vp = VIEWPORTS[key];
+          toggle.querySelectorAll('button').forEach((b) => {
+            b.setAttribute('aria-pressed', String(b.dataset.vp === (vp ? key : 'live')));
+          });
+          const url = new URL(location.href);
+          if (vp) url.searchParams.set('vp', key);
+          else url.searchParams.delete('vp');
+          history.replaceState(null, '', url);
+
+          if (!vp) {
+            stage.hidden = true;
+            stage.replaceChildren();
+            iframe = null;
+            content.forEach((el) => (el.hidden = false));
+            status.textContent = '';
+            return;
+          }
+
+          width = vp.width;
+          content.forEach((el) => (el.hidden = true));
+          stage.hidden = false;
+          status.textContent = 'Loading…';
+          iframe = document.createElement('iframe');
+          iframe.src = `index.html?frame${items === '2' ? '&items=2' : ''}`;
+          iframe.width = width;
+          iframe.title = `Featured Links at ${vp.label}`;
+          iframe.addEventListener('load', async () => {
+            await iframe.contentDocument.fonts.ready;
+            fit();
+          });
+          stage.replaceChildren(iframe);
+        };
+
+        toggle.addEventListener('click', (event) => {
+          const button = event.target.closest('button[data-vp]');
+          if (button) select(button.dataset.vp);
+        });
+
+        // Items filter: reload with the new setting
+        const itemsToggle = document.getElementById('demo-items');
+        itemsToggle.querySelectorAll('button').forEach((b) => b.setAttribute('aria-pressed', String(b.dataset.items === items)));
+        itemsToggle.addEventListener('click', (event) => {
+          const button = event.target.closest('button[data-items]');
+          if (!button) return;
+          const url = new URL(location.href);
+          if (button.dataset.items === '2') url.searchParams.set('items', '2');
+          else url.searchParams.delete('items');
+          location.href = url;
+        });
+
+        window.addEventListener('resize', fit);
+        select(params.get('vp') || 'live');
+      })();
+    </script>
+  </body>
+</html>

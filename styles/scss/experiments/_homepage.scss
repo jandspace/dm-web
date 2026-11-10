@@ -1125,10 +1125,13 @@ $homepage-below-md: "(width < #{map.get(bp.$breakpoints, md)})";
   border-radius: var(--border-radius-4);
 }
 
+// Game titles in Literata (Google Fonts, loaded in the page <head> with Inter
+// and Lora). No token: Literata is not in the type tokens — page styles only.
+// Weight 800 (ExtraBold) set by hand: the weight tokens stop at Bold 700.
 .homepage-game__title {
-  font-family: var(--typography-font-family-serif);
+  font-family: 'Literata', Georgia, serif;
   font-size: var(--typography-font-size-h4);
-  font-weight: var(--typography-font-weight-bold);
+  font-weight: 800;
   line-height: var(--typography-line-height-narrow);
 }
 
@@ -1140,7 +1143,8 @@ $homepage-below-md: "(width < #{map.get(bp.$breakpoints, md)})";
 
 // Podcast player (Figma Podcast Player): title row, then a card on the cover
 // art blurred under translucent-dark/moderate — cover 78, episode title (2
-// lines), Listen (Primary Neutral inverse, full width). Keyline below.
+// lines), Listen (Primary Neutral inverse, full width). Keyline below, none
+// when it is the last block of its column (Layout keyline rule).
 
 .homepage-podcast {
   position: relative;
@@ -1149,7 +1153,7 @@ $homepage-below-md: "(width < #{map.get(bp.$breakpoints, md)})";
   gap: var(--spacing-8);
   padding: var(--spacing-16);
 
-  &::after {
+  &:not(:last-child)::after {
     @include divider.divider;
   }
 }
@@ -1209,8 +1213,11 @@ $homepage-below-md: "(width < #{map.get(bp.$breakpoints, md)})";
   object-fit: cover;
 }
 
+// align-self: start — the grid row is taller than two lines; stretched, the
+// box would show the top of the third line under the ellipsis.
 .homepage-podcast__title {
   display: -webkit-box;
+  align-self: start;
   overflow: hidden;
   font-size: var(--typography-font-size-label-xsm);
   font-weight: var(--typography-font-weight-semibold);

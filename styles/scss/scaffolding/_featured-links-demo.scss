@@ -1,0 +1,12 @@
+// ── Featured Links demo — SCAFFOLDING ONLY ────────────────────────────────────
+// Layout for modules/featured-links/. Never ships to production.
+// The block Fullwidth in a .container, on the page surface.
+
+.demo-fl {
+  background-color: var(--color-background-neutral-lightest);
+}
+
+// Inside the viewport stage (?frame): the page edge to edge, as on the site
+.demo-frame.demo-fl-page {
+  padding: 0;
+}
