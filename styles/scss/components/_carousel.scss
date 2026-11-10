@@ -10,13 +10,13 @@
 //   .carousel (.carousel--slide) ([data-autoplay]) ([data-step="item"])
 //     .carousel__track                      Scroll Row; its children are the items
 //     .carousel__nav.carousel__nav--prev    btn-tertiary-neutral, icon only,
-//     .carousel__nav.carousel__nav--next    vertically centred, no shadow
+//     .carousel__nav.carousel__nav--next    vertically centred, Elevation Lv-2
 //     .carousel__dots                       Slide only, ≤ 7 items, inside the picture
 //       .carousel__dot × n                  active 32 × 8, others 8 × 8
 //
 // Arrows: Slide at every width (a touch screen has nothing else that says "this
 // moves" on a single picture); Row from LG only — below it the cut-off item and
-// swipe are enough. At 60% until the carousel is hovered. No Prev at the start,
+// swipe are enough. At 80% until the carousel is hovered. No Prev at the start,
 // no Next at the end. A step glides 600ms (ease-in-out, script); swipes keep
 // the browser's own scroll and snap.
 // Step: Next / Prev move a view at a time (the first cut-off item comes to
@@ -91,7 +91,7 @@
   top: 50%;
   padding: var(--spacing-8);
   transform: translateY(-50%);
-  opacity: 0.6;
+  opacity: 0.8;
   transition: opacity 150ms ease;
 
   &--prev {
@@ -110,6 +110,12 @@
 .carousel:hover .carousel__nav,
 .carousel__nav:focus-within {
   opacity: 1;
+}
+
+// Floating control (Elevation Lv-2) on the button, not the 8px box around it.
+// Pressed keeps Button's inset shadow.
+.carousel__nav .btn:not(:active) {
+  box-shadow: var(--elevation-2);
 }
 
 // ── Dots ──────────────────────────────────────────────────────────────────────

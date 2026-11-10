@@ -95,7 +95,7 @@ Sub-channels or topics in one row that scrolls sideways.
 | Part | Class | Notes |
 |---|---|---|
 | Container | `.section-header-branded` | lightest; padding 20 top · 8 bottom · 16 sides; 4px gap |
-| Banner | `a.section-header-branded__banner` | **The whole banner is the link.** 52px, 8px corners, 4px / 48px padding |
+| Banner | `a.section-header-branded__banner` | **The whole banner is the link.** 52px, 8px corners, 4px / 48px padding. A header that leads nowhere (e.g. Don't miss) uses a `<div>`: no arrow, no hover |
 | Background | `img.section-header-branded__bg` | The graphic team's artwork as it is — cover, no blur |
 | Surface | banner `::before` | `color/effect/translucent-dark/clear` → `translucent-dark/moderate` on hover / focus |
 | Name / Logo | `span.section-header-branded__name` or `img.section-header-branded__logo` | Straight in the banner (no slot wrapper) — channel name or logo, centred. Logo keeps its ratio: max 44px tall, max 240px wide (give the `<img>` its width and height) |
@@ -109,7 +109,7 @@ Sub-channels or topics in one row that scrolls sideways.
 
 - The slot takes either text (the channel name in the serif face) or a logo image (SVG/PNG, white on the dark surface).
 - No blur: the artwork comes from the graphic design team ready to use (contrast for the white name / logo included). Figma removed it (2026-11-05). Artwork lives in `assets/images/section-header-branded-<channel>.jpg`.
-- Hover / focus: the surface goes from `translucent-dark/clear` (nothing) to `translucent-dark/moderate`, 0.2s; no transition with reduced motion.
+- Hover / focus: the surface goes from `translucent-dark/clear` (nothing) to `translucent-dark/moderate`, 0.2s; no transition with reduced motion. Only on a link (`[href]`) — a `<div>` banner stays clear.
 - Narrow banner (under 240px — e.g. 195, half a phone): still a link, the arrow is hidden and the side padding drops 48 → 16, so the logo gets the room. The header is the size container (`container-type: inline-size`; its content box is the banner width).
 
 ### 2-C. Figures (variant)

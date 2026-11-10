@@ -2805,7 +2805,7 @@ html:has(body > .loading-page:not([hidden])) {
   top: 50%;
   padding: var(--spacing-8);
   transform: translateY(-50%);
-  opacity: 0.6;
+  opacity: 0.8;
   transition: opacity 150ms ease;
 }
 .carousel__nav--prev {
@@ -2821,6 +2821,10 @@ html:has(body > .loading-page:not([hidden])) {
 .carousel:hover .carousel__nav,
 .carousel__nav:focus-within {
   opacity: 1;
+}
+
+.carousel__nav .btn:not(:active) {
+  box-shadow: var(--elevation-2);
 }
 
 .carousel__dots {
@@ -6415,7 +6419,7 @@ a.section-header__link:focus-visible {
   background-color: var(--color-effect-translucent-dark-clear);
   transition: background-color 0.2s;
 }
-.section-header-branded__banner:hover::before, .section-header-branded__banner:focus-visible::before {
+.section-header-branded__banner[href]:hover::before, .section-header-branded__banner:focus-visible::before {
   background-color: var(--color-effect-translucent-dark-moderate);
 }
 .section-header-branded__banner:focus-visible {

@@ -30,7 +30,7 @@ Ask one question: **how far does it sit from the page, and how much does it stop
 | :---- | :---- | :---- | :---- |
 | 0 | Page | Scrolls with the page. Content is split by keylines, not shadows. | Page, Article Card, sections, Beta boxes |
 | 1 | Sticky | Stuck to an edge of the page; content scrolls underneath. | Sticky Navbar |
-| 2 | Floating control | A small control resting on top of content. | Back-to-top button |
+| 2 | Floating control | A small control resting on top of content. | Carousel arrows, back-to-top button |
 | 3 | Floating panel | A panel that floats over the page and stays while the reader carries on. | Mini video player |
 | 4 | Temporary | Appears for a moment — opened by the reader or by the system — and closes on an outside click or by itself. | Dropdown Menu, Nav Panel, Tooltip, Toast |
 | 5 | Modal | Blocks the page until it is dealt with; always over a scrim (`color/background/shade/moderate`). The top layer. | Modal |

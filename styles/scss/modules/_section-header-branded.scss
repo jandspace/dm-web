@@ -1,10 +1,11 @@
 // ── Section Header — Branded ──────────────────────────────────────────────────
 // Section header for branded channels / verticals: a 52px banner with a
 // background image and a centred slot for the channel name (text) or logo
-// (image). The whole banner is the link.
+// (image). The whole banner is the link — or, for a header that leads nowhere,
+// a <div> with no arrow and no hover.
 //
 //   .section-header-branded           lightest surface, 20px top · 8px bottom · 16px sides
-//     a.section-header-branded__banner      52px, 8px corners, 48px side padding
+//     a.section-header-branded__banner      52px, 8px corners, 48px side padding (div: no link)
 //       img.section-header-branded__bg      background artwork (cover)
 //       .section-header-branded__name       channel name (text) — or img.section-header-branded__logo
 //       .section-header-branded__arrow      tertiary icon-only button on dark (34 · 14)
@@ -24,7 +25,7 @@
 //
 // Surface over the artwork (banner ::before): translucent-dark/clear at rest
 // (nothing shows) → translucent-dark/moderate on hover / focus — the whole banner
-// is the link.
+// is the link. A <div> banner (no href) keeps it clear.
 //
 // Reference: Figma Web UI Kit › Section Header - Branded (6416:109910)
 
@@ -63,7 +64,7 @@
     transition: background-color 0.2s;
   }
 
-  &:hover::before,
+  &[href]:hover::before,
   &:focus-visible::before {
     background-color: var(--color-effect-translucent-dark-moderate);
   }

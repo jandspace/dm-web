@@ -79,7 +79,7 @@ What the card adds (`.article-card-carousel`):
 | Dots | From the component: inside the picture, over the dark scrim (Figma 5279:14017) — nothing added here |
 | Click | A click on a slide opens the article (script) |
 
-**Arrows at every width** (Carousel rule for a Slide): on touch screens they rest at 60% — with the dots they tell the reader the picture moves — and swipe works as well.
+**Arrows at every width** (Carousel rule for a Slide): on touch screens they rest at 80% — with the dots they tell the reader the picture moves — and swipe works as well.
 
 **Autoplay.** The active dot fills in 5s, then the next slide; after the last, the first. It waits while the mouse is over the media, keyboard focus is in it, or it is less than half on screen. Any slide change restarts the fill. None with `prefers-reduced-motion: reduce`.
 

@@ -72,7 +72,7 @@ SCSS aliases: use `--spacing-N` and `--border-radius-N` in component files — t
 | ----- | ---- | -------- |
 | 0 (none) | Page — scrolls with it, split by keylines | Page, Article Card |
 | 1 | Sticky — stuck to an edge | Sticky Navbar |
-| 2 | Floating control | Back-to-top |
+| 2 | Floating control | Carousel arrows, back-to-top |
 | 3 | Floating panel — stays while reading | Mini video player |
 | 4 | Temporary — closes on outside click or by itself | Dropdown Menu, Nav Panel, Tooltip, Toast |
 | 5 | Modal — blocks the page, over a scrim | Modal |

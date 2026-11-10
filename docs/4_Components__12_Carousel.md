@@ -39,7 +39,7 @@ Rule: **if an item is cut off, no dots; if one item fills the box, dots.** On a 
 | `.carousel__track` | Scroll Row (no scrollbar, instant with reduced motion). An arrow or autoplay step glides **600ms, ease-in-out** (script; the browser's smooth scroll was too quick and can't be timed) — snap is held off while it moves (`[data-moving]`); a swipe keeps the browser's own scroll and snap. `scroll-snap-type: x mandatory`: a swipe always stops with an item at the start. Its children are the items — no wrapper |
 | Row edge | The cut-off item is cropped at the right edge — no fade (removed 2026-11-06: the gradient looked odd over pictures) |
 | Slide items | Each `flex-basis: 100%` (`min-width: 0`, so an image shrinks to the box). The module sizes the box |
-| `.carousel__nav` | **Slide: every width. Row: LG only** (§ 6). 40px tertiary icon-only button, 8px around it, at the vertical centre of the picture — with or without dots. No shadow (flat on the picture, not an Elevation level). 60% opacity, 100% while the carousel is hovered or the arrow focused. No Prev at the start, no Next at the end (`hidden`, set by script) |
+| `.carousel__nav` | **Slide: every width. Row: LG only** (§ 6). 40px tertiary icon-only button, 8px around it, at the vertical centre of the picture — with or without dots. Elevation Lv-2 (floating control) on the button; pressed keeps Button's inset shadow (2026-11-10: was flat at 60% — too easy to miss). 80% opacity, 100% while the carousel is hovered or the arrow focused. No Prev at the start, no Next at the end (`hidden`, set by script) |
 | `.carousel__dots` | **Inside the picture**, along its bottom edge, over a scrim (`effect/translucent-dark/clear` → `moderate`): centred, 8px gap, 16 × 20 padding (Figma: 8 around the Indicator + its own 8 × 12), no clicks (decorative). Never under the picture — in a card the headline follows the picture directly, and the arrows stay at its centre |
 | `.carousel__dot` | 8 × 8, `.is-active` 32 × 8 (width animates 200ms) |
 
@@ -104,7 +104,7 @@ Call `Carousel.init(root)` after adding carousels to the page.
 | **Row** | Arrows | No arrows — swipe |
 
 - **Desktop:** arrows on both — a mouse cannot swipe.
-- **Slide on touch:** a single picture gives no hint that it moves. The arrows (with the dots) tell the reader it is a slider, and are a way to move it besides swiping. They rest at 60% (there is no hover on touch) and come to 100% while tapped.
+- **Slide on touch:** a single picture gives no hint that it moves. The arrows (with the dots) tell the reader it is a slider, and are a way to move it besides swiping. They rest at 80% (there is no hover on touch) and come to 100% while tapped.
 - **Row on touch:** the item cut off on the right already says "swipe me", and arrows over a row of small cards would cover them. Swipe only.
 
 Code: `--carousel-nav` on `.carousel` — `none` below LG on a Row, `block` otherwise.
