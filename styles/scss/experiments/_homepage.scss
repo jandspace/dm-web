@@ -586,11 +586,18 @@
     padding: var(--spacing-8) var(--spacing-16) 0;
   }
 
+  // Comments light on the dark card, at rest and on hover, with a light hover
+  // line — as the library Banner panel does (_article-card-banner.scss)
   .article-card-metadata__comments {
     color: var(--color-text-neutral-lightest);
+
+    &::before {
+      background: var(--color-effect-translucent-light-deep);
+    }
   }
 
-  .article-card-metadata__comments-icon {
+  .article-card-metadata__comments-icon,
+  .article-card-metadata__comments:hover .article-card-metadata__comments-icon {
     --icon-color: var(--color-icon-neutral-lightest);
   }
 }
