@@ -5,7 +5,7 @@ Pagination moves between the pages of a long list (search results, a section arc
 | | Pattern | Why |
 |---|---|---|
 | **LG ≥1024** | Numbered — `« ‹ 1 … 4 5 6 … 999 › »` | Room to show where you are and jump a few pages at once |
-| **MD, SM-XS <1024** | Page picker — `‹ [ 2 ⌄ ] of 999 ›` | Fits a phone; the native picker scrolls through any number of pages; 44px touch targets |
+| **MD, SM-XS <1024** | Page picker — `‹ [ 2 ⌄ ] of 999 ›` | Fits a phone; the native picker scrolls through any number of pages; 44px arrows |
 
 Figma: Web UI Kit › Pagination (`214:7642`) — Pagination, pageination-item
 
@@ -22,10 +22,10 @@ Figma: Web UI Kit › Pagination (`214:7642`) — Pagination, pageination-item
 | **Arrow** | `a.__item.__item--arrow` | « ‹ › » — as a page on `background/neutral/light`, `ico-chevron-*` 14px. `aria-label` First / Previous / Next / Last page |
 | **Ellipsis** | `span.__ellipsis` | 40 × 40, `ico-dots-horizontal` 14px. Not a link |
 | **Page picker** | `.__compact` | Below LG. Arrows 44 × 44, 12px apart |
-| **Select** | `.__select > select` | Native `<select>` in the Input look: `background/neutral/white`, 1px `border/neutral/light`, 8px corners, 44px min, padding 8 × 16; text-md. `ico-chevron-down` 14px on the right |
+| **Select** | `.input.input--select > select` | Input › Native Select, MD (`docs/4_Components__13_Input.md`): 40px, 1px `border/neutral/grey-light`, 8px corners, 16px side inset, text-md, `ico-chevron-down` 16px. Its states (Focus, Disabled) come from Input |
 | **Total** | `.__total` | "of" in `text/neutral/grey-dark`, the number in `text/neutral/dark`; text-md |
 
-The select will move onto the Input component once it exists.
+The select is the Input component's Native Select; Pagination adds no styles of its own to it.
 
 ---
 
@@ -87,10 +87,9 @@ The page picker shows ‹ and › by the same rule, never « ».
   <div class="pagination__compact">
     <a class="pagination__item pagination__item--arrow" href="?page=4" aria-label="Previous page"><span class="icon icon--chevron-left" aria-hidden="true"></span></a>
     <div class="pagination__picker">
-      <label class="pagination__select">
-        <select aria-label="Page">…</select>
-        <span class="icon icon--chevron-down" aria-hidden="true"></span>
-      </label>
+      <div class="input input--select">
+        <select class="input__control" aria-label="Page">…</select>
+      </div>
       <span class="pagination__total">of <span>999</span></span>
     </div>
     <a class="pagination__item pagination__item--arrow" href="?page=6" aria-label="Next page"><span class="icon icon--chevron-right" aria-hidden="true"></span></a>

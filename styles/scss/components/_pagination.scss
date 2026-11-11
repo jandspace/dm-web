@@ -9,7 +9,7 @@
 //       li.pagination__ellipsis         gap in the numbers, not a link
 //     .pagination__compact              below LG: ‹ [ 2 ⌄ ] of 999 ›
 //       a.pagination__item--arrow       44px square
-//       .pagination__select > select    native picker (Input look)
+//       .input.input--select > select   page picker — Input Native Select, MD
 //       .pagination__total              "of 999"
 //
 // Numbers: always 7 slots — first and last always shown, the current page in the
@@ -126,36 +126,6 @@
   gap: var(--spacing-8);
   font-size: var(--typography-font-size-text-md);
   line-height: var(--typography-line-height-normal);
-}
-
-// Native <select> in the Input look: white, keyline border, 8px corners, 44px.
-// The chevron is an .icon over it (the select can't hold one).
-.pagination__select {
-  position: relative;
-
-  > select {
-    min-width: 32px;
-    min-height: 44px;
-    padding: var(--spacing-8) calc(var(--spacing-16) + 14px + var(--spacing-4)) var(--spacing-8) var(--spacing-16);
-    border: 1px solid var(--color-border-neutral-light);
-    border-radius: var(--border-radius-8);
-    background-color: var(--color-background-neutral-white);
-    font: inherit;
-    text-align: center;
-    color: var(--color-text-neutral-darker);
-    appearance: none;
-    cursor: pointer;
-  }
-
-  > .icon {
-    position: absolute;
-    top: 50%;
-    right: var(--spacing-16);
-    width: 14px;
-    height: 14px;
-    margin-top: -7px;
-    pointer-events: none;
-  }
 }
 
 .pagination__total {

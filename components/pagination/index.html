@@ -46,7 +46,7 @@
 
       <h2 class="demo-pagination__set">Page picker — MD and SM-XS &lt;1024</h2>
       <p class="demo-pagination__note">
-        A native <code>&lt;select&gt;</code> in the Input look — on phones it opens the system picker. 44px arrows.
+        The Input component's Native Select (MD, 40px) — on phones it opens the system picker. 44px arrows.
       </p>
       <div class="demo-pagination__panel demo-pagination--compact" data-examples="1 2 999"></div>
 
@@ -102,7 +102,7 @@
         const compact =
           (current > 1 ? arrow(current - 1, 'chevron-left', 'Previous page') : '') +
           `<div class="pagination__picker">` +
-          `<label class="pagination__select"><select aria-label="Page">${options}</select><span class="icon icon--chevron-down" aria-hidden="true"></span></label>` +
+          `<div class="input input--select"><select class="input__control" aria-label="Page">${options}</select></div>` +
           `<span class="pagination__total">of <span>${total}</span></span>` +
           `</div>` +
           (current < total ? arrow(current + 1, 'chevron-right', 'Next page') : '');
