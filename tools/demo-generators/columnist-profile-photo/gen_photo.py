@@ -11,9 +11,9 @@ def photos(kind):
     img = 'columnist-placeholder-circle.png' if kind == 'circle' else 'columnist-placeholder.png'
     mod = ' columnist-photo--circle' if kind == 'circle' else ''
     return '\n'.join(f'''        <figure class="demo-photo">
-          <span class="columnist-photo columnist-photo--{s}{mod}"
+          <a class="columnist-photo columnist-photo--{s}{mod}" href="#author"
             ><img class="columnist-photo__img" src="../../assets/images/{img}" alt=""
-          /></span>
+          /></a>
           <figcaption class="demo-photo__size">{s.upper()} - {px}</figcaption>
         </figure>''' for s, px in SIZES)
 
@@ -55,6 +55,7 @@ print(f'''<!doctype html>
       The columnist's cut-out portrait on a channel-coloured disc. In an article card it sits on the right of a
       columnist's quote headline (Article Headline › Quote Headline) — default size by level: H2 xl 80 · H3–H5 lg 64 · H6 md 48.
       Rectangle (head rises above the disc) is the default; Circle clips a square portrait. Live adds the green dot.
+      The photos here are links, as in a card — hover: a grey ring spreads out.
     </p>
 
     <!-- Markup:
