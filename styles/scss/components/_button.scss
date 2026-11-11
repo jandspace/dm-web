@@ -622,6 +622,15 @@
   }
 }
 
+// ── Disabled ──────────────────────────────────────────────────────────────────
+// Every style fades to 20% and takes no hover or press (Figma Button
+// State=disabled). First used by Input Group (Read-only / Disabled, Apply before a code).
+
+.btn:disabled {
+  opacity: 0.2;
+  pointer-events: none;
+}
+
 // ── Size modifiers ────────────────────────────────────────────────────────────
 
 .btn--xs {

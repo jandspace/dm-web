@@ -2688,6 +2688,11 @@ html:has(body > .loading-page:not([hidden])) {
   backdrop-filter: blur(8px);
 }
 
+.btn:disabled {
+  opacity: 0.2;
+  pointer-events: none;
+}
+
 .btn--xs {
   --btn-spinner: 16px;
   height: 28px;
@@ -3241,7 +3246,7 @@ html:has(body > .loading-page:not([hidden])) {
 .input--select:has(> select)::after {
   margin-right: var(--input-end);
 }
-.input--select:has(> select):is(.input--success, .input--loading, :has(> [aria-invalid=true], > :disabled)) > select {
+.input--select:has(> select):is(.input--success, .input--loading, :has(> [aria-invalid=true], > .input__control:disabled)) > select {
   padding-right: calc(var(--input-end) + var(--input-icon) + var(--input-gap));
 }
 
@@ -3331,19 +3336,58 @@ span.input__control:empty::before {
   content: "";
 }
 
-.input:has(> :disabled),
+.input:has(> .input__control:disabled),
 .input:disabled {
   --input-status: url('../../assets/icons/ico-slash-circle.svg');
   background-color: var(--color-background-neutral-light);
   cursor: not-allowed;
 }
-.input:has(> :disabled) > :is(.icon, .input__control),
+.input:has(> .input__control:disabled) > :is(.icon, .input__control),
 .input:disabled > :is(.icon, .input__control) {
   opacity: 0.4;
 }
-.input:has(> :disabled)::after,
+.input:has(> .input__control:disabled)::after,
 .input:disabled::after {
   content: "";
+}
+
+.input-group {
+  --input-height: 46px;
+  --input-radius: var(--border-radius-full);
+  --input-btn-inset: 2px;
+}
+.input-group:has(> .input__control ~ .btn) {
+  padding-right: var(--input-btn-inset);
+}
+.input-group > .input__control ~ .btn {
+  order: 3;
+  margin-left: var(--spacing-8);
+}
+.input-group:has(> .btn ~ .input__control) {
+  padding-left: var(--input-btn-inset);
+}
+.input-group > .btn:has(~ .input__control) {
+  margin-right: var(--spacing-8);
+}
+.input-group > .dropdown-menu {
+  position: absolute;
+  top: calc(100% + var(--spacing-4));
+  left: 0;
+  z-index: 10;
+  max-height: 164px;
+}
+
+.input-group.input--select:has(> select) {
+  grid-template-columns: 1fr auto;
+  padding-right: var(--input-btn-inset);
+}
+.input-group.input--select:has(> select) > .btn {
+  grid-area: 1/2;
+  margin-left: 0;
+}
+
+.input-group > .btn[aria-expanded=true] > .icon--chevron-down {
+  transform: rotate(180deg);
 }
 
 .media {
@@ -11758,6 +11802,67 @@ main.demo-input > .demo-input__set:first-child {
   color: var(--color-text-neutral-grey-dark);
 }
 
+.demo-input-group {
+  max-width: 1224px;
+}
+
+.demo-input-group__set {
+  margin: var(--spacing-48) 0 var(--spacing-8);
+  font-family: var(--typography-font-family-serif);
+  font-size: 18px;
+  font-weight: 600;
+  color: var(--color-text-neutral-darker);
+}
+.demo-input-group__set:first-child {
+  margin-top: 0;
+}
+
+.demo-input-group__note {
+  max-width: 760px;
+  margin: 0 0 var(--spacing-16);
+  font-family: var(--typography-font-family-serif);
+  font-size: 13px;
+  line-height: 1.5;
+  color: var(--color-text-neutral-grey-dark);
+}
+
+.demo-input-group__panel {
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-24);
+  max-width: 420px;
+  padding: var(--spacing-24);
+  border-radius: var(--border-radius-8);
+  background-color: var(--color-background-neutral-lightest);
+}
+
+.demo-input-group__kind {
+  margin: var(--spacing-16) 0 0;
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  color: var(--color-text-neutral-dark);
+}
+.demo-input-group__kind:first-child {
+  margin-top: 0;
+}
+
+.demo-grid--input-group {
+  grid-template-columns: 120px repeat(3, minmax(320px, 360px));
+  overflow-x: auto;
+}
+.demo-grid--input-group .demo-cell {
+  flex-direction: column;
+  align-items: stretch;
+  justify-content: center;
+}
+
+.demo-input-group__na {
+  font-size: 12px;
+  color: var(--color-text-neutral-grey-dark);
+}
+
 .demo-loading {
   max-width: 1224px;
 }
@@ -13883,7 +13988,11 @@ body:not(.demo-frame) .demo-container-start {
 .homepage-deep-dive-card .article-card-metadata__comments {
   color: var(--color-text-neutral-lightest);
 }
-.homepage-deep-dive-card .article-card-metadata__comments-icon {
+.homepage-deep-dive-card .article-card-metadata__comments::before {
+  background: var(--color-effect-translucent-light-deep);
+}
+.homepage-deep-dive-card .article-card-metadata__comments-icon,
+.homepage-deep-dive-card .article-card-metadata__comments:hover .article-card-metadata__comments-icon {
   --icon-color: var(--color-icon-neutral-lightest);
 }
 

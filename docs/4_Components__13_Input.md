@@ -137,20 +137,21 @@ The box draws every state from the control's own attributes where HTML has one, 
 | Styles | `styles/scss/components/_input.scss` |
 | Behaviour | `scripts/modules/input.js` — Clear, Show / hide, Dropdown Select |
 | Demo | `components/input/` |
-| Used by | Pagination (page picker = Native Select, MD) |
+| Used by | Pagination (page picker = Native Select, MD) · Input Group (`docs/4_Components__14_Input-Group.md`) |
 
 ---
 
 ## 6. Figma notes
 
-Decisions taken in code — to be fed back to Figma on request.
+Decisions taken in code. Fed back to Figma on 2026-11-11 where marked **(Figma fixed)**.
 
-- **Height vs padding:** Figma's padding plus line height doesn't add up to the box height (MD: 8 + 24 + 8 + 2 = 42 in a 40 box). Code fixes the height to the Button heights and centres the text; the side insets are evened out to 12 · 16 · 20 (Figma 13 · 16 · 19).
-- **Rectangle corners:** Figma uses 8 at every size; code follows the Rectangular Button (6 · 8 · 10) so a field and a button side by side match.
-- **2px states:** Figma swaps a 1px border for a 2px one, which moves the content 1px. Code adds an inset ring instead.
-- **Textarea:** default border `border/neutral/light` → `border/neutral/grey-light` (as Input; `neutral/light` keylines in Web frames are App values). Placeholder 50% → 40% (as Input). Error background white → `semantic-error/subtlest` (as Input). The separate `focus` (soft glow) and `active` states are one Focus state on the Web. Padding 12 × 16 now includes the border, as Input.
+- **Side insets** **(Figma fixed):** were 12 · 15 · 18; now 12 · 16 · 20 (`spacing/12 · 16 · 20`) in Input and Selectbox. Heights (34 · 40 · 46) were already right — Figma strokes sit outside the layout, so the 1px border doesn't add to the padding.
+- **Rectangle corners** **(Figma fixed):** were 8 at every size; now 6 · 8 · 10 (`border-radius/6 · 8 · 10`), as the Rectangular Button.
+- **2px states** **(Figma fixed):** Focus / Valid / Error strokes were centred (1px spilling outside the box); now inside, as code (1px border + 1px inset ring).
+- **Textarea** **(Figma fixed):** border `border/neutral/light` → `border/neutral/grey-light`; placeholder and disabled text 50% → 40%; loading text full strength (as Input); error background white → `semantic-error/subtlest`. Padding 12 × 16 was already right.
+- **Textarea focus (open):** Input-TextArea still has a separate `focus` (soft glow, `Textarea/focused`) next to `active`. On the Web they are one Focus state; removing the glow variant is left to design, since instances may use it.
 - **Select:** Selectbox has no Valid / Error states in Figma; code applies Input's.
-- **State names:** Input uses Title Case, Textarea lower case; this doc uses Input's names (Default · Focus · Valid · Error · Loading · Read-only · Disabled).
+- **State names (open):** Input uses Title Case, Textarea lower case; this doc uses Input's names (Default · Focus · Valid · Error · Loading · Read-only · Disabled). Not renamed in Figma: renaming variants changes what designers pick, so it is left to design.
 - **Auto-complete:** the inline grey completion ("Input Text|complete") needs a data source and is not built; Clear is.
 - **Placeholder contrast:** 40% of `neutral/darker` on white is about 2.6:1, under AA for text. Kept as Figma for now — flag for design.
 - Checkbox and Radio icons are in Form Icons but have no component frames yet.

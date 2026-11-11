@@ -2,8 +2,9 @@
 // Behaviour for the Input component (docs/4_Components__13_Input.md):
 //   · Clear (button.input__clear) empties the control and keeps focus in it
 //   · Show / hide (button.input__reveal) flips a password field to text and back
-//   · Dropdown Select (.input-select) opens its Dropdown Menu, picks an option,
-//     closes on outside click or Esc; ↑ ↓ move through the options
+//   · Dropdown Select (.input-select) and the menu button of an Input Group
+//     (.input-group > .btn[aria-haspopup]) open their Dropdown Menu, pick an
+//     option, close on outside click or Esc; ↑ ↓ move through the options
 // The script only sets state (value, type, aria-*, hidden); CSS draws it.
 
 (() => {
@@ -34,12 +35,21 @@
     }
   });
 
-  // ── Dropdown Select ─────────────────────────────────────────────────────────
-  const selects = [...document.querySelectorAll('.input-select')].map((root) => ({
-    root,
-    trigger: root.querySelector('.input'),
-    menu: root.querySelector('.dropdown-menu'),
-  }));
+  // ── Dropdown Select · Input Group menu button ──────────────────────────────
+  const selects = [
+    ...[...document.querySelectorAll('.input-select')].map((root) => ({ root, trigger: root.querySelector('.input') })),
+    ...[...document.querySelectorAll('.input-group > .btn[aria-haspopup]')].map((trigger) => ({ root: trigger.parentElement, trigger })),
+  ].map((select) => ({ ...select, menu: select.root.querySelector('.dropdown-menu') }));
+
+  // Dropdown Select shows the option's text in its value span; a menu button
+  // swaps its own text for the option's short label (data-label)
+  const showChoice = (trigger, option) => {
+    const value = trigger.querySelector('.input__control');
+    if (value) return (value.textContent = option.textContent.trim());
+    const label = option.dataset.label || option.textContent.trim();
+    [...trigger.childNodes].find((node) => node.nodeType === Node.TEXT_NODE && node.nodeValue.trim()).nodeValue = label;
+    trigger.setAttribute('aria-label', trigger.getAttribute('aria-label').replace(/:.*$/, `: ${label}`));
+  };
 
   const options = (select) => [...select.menu.querySelectorAll('[role="option"]:not(:disabled)')];
 
@@ -62,12 +72,15 @@
       const option = e.target.closest('[role="option"]');
       if (!option || option.disabled) return;
       menu.querySelectorAll('[role="option"]').forEach((item) => item.setAttribute('aria-selected', String(item === option)));
-      trigger.querySelector('.input__control').textContent = option.textContent.trim();
+      showChoice(trigger, option);
       setOpen(select, false);
       trigger.focus();
     });
 
+    // keys only while the trigger or its menu has focus (an Input Group's root
+    // also holds the text field, where ↑ ↓ must stay the field's own)
     select.root.addEventListener('keydown', (e) => {
+      if (!trigger.contains(e.target) && !menu.contains(e.target)) return;
       if (e.key === 'Escape' && !menu.hidden) {
         setOpen(select, false);
         trigger.focus();

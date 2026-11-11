@@ -496,7 +496,11 @@ Typical visual cues include: Surface opacity change, Subtle tonal shift, Depth o
 
 *Apply `box-shadow: inset 0 1px 1px 0 var(--color-effect-translucent-dark-moderate);`*
 
-### 6-D. Button Tokens by States
+### 6-D. Disabled
+
+Every button style fades to **20%** when it can't be used, and takes no hover or press (`:disabled`; Figma Button › `State=disabled`, opacity 20%). Prefer hiding an action that never applies; disable one that will apply once the user does something first — e.g. **Apply** in an Input Group waits until a code is typed.
+
+### 6-E. Button Tokens by States
 
 #### Primary Button Tokens
 

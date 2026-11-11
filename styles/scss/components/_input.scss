@@ -259,7 +259,7 @@
   }
 
   // a status icon too: room for two icons
-  &:is(.input--success, .input--loading, :has(> [aria-invalid='true'], > :disabled)) > select {
+  &:is(.input--success, .input--loading, :has(> [aria-invalid='true'], > .input__control:disabled)) > select {
     padding-right: calc(var(--input-end) + var(--input-icon) + var(--input-gap));
   }
 }
@@ -355,7 +355,7 @@ span.input__control {
   }
 }
 
-.input:has(> :disabled),
+.input:has(> .input__control:disabled), // not a disabled button in an Input Group
 .input:disabled {
   --input-status: url('../../assets/icons/ico-slash-circle.svg');
 

@@ -1,0 +1,311 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Input Group</title>
+    <link rel="icon" href="../../assets/favicon.svg" type="image/svg+xml" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&family=Lora:wght@400;600;700&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="../../tokens/dm_tokens.css" />
+    <link rel="stylesheet" href="../../tokens/dm_typography_web_tokens.css" />
+    <link rel="stylesheet" href="../../styles/css/main.css" />
+    <script src="../../scripts/scaffolding/demo-nav.js" defer></script>
+    <script src="../../scripts/modules/input.js" defer></script>
+  </head>
+  <body class="demo-page-body">
+    <h1 class="demo-page-h1">Input Group</h1>
+    <p class="demo-page-intro">
+      A field and a Button in one box — the action reads as part of the field. Built from Input (box, states, Clear,
+      Show / hide) and Button. One size: 46 high, MD text, MD button, Pill. Figma: Web UI Kit › Input Group
+      (<code>5075:1727</code>). Doc: <code>docs/4_Components__14_Input-Group.md</code>.
+    </p>
+
+    <!-- ════════════════════════════════════════════════════
+         INPUT GROUP
+         .input.input-group > .input__control ~ .btn           Input + Button
+         .input.input-group > .btn[aria-haspopup] + .dropdown-menu ~ .input__control   Button + Input
+         .input.input-group.input--select > select ~ .btn      Select + Button
+         States come from Input; Read-only / Disabled also disable the button.
+    ════════════════════════════════════════════════════ -->
+    <main class="demo-input-group">
+      <h2 class="demo-input-group__set">Try it</h2>
+      <p class="demo-input-group__note">
+        Figma's Variation Demo, live. Enter runs the action (a <code>&lt;form&gt;</code> with a submit button). Apply and
+        Verify wait until something is typed; GBP opens the currency menu.
+      </p>
+      <div class="demo-input-group__panel">
+        <h3 class="demo-input-group__kind">Action trigger — Input + Button</h3>
+        <form class="input input-group" onsubmit="return false">
+          <input class="input__control" type="email" placeholder="email.address@website.com" aria-label="Email address" />
+          <button type="submit" class="btn btn-brand">Sign up</button>
+        </form>
+        <form class="input-field" onsubmit="return false">
+          <label class="input-field__label" for="demo-subscribe">Email address</label>
+          <div class="input input-group">
+            <span class="icon icon--envelop-outline" aria-hidden="true"></span>
+            <input class="input__control" id="demo-subscribe" type="email" value="email.address@website.c" aria-invalid="true" aria-describedby="demo-subscribe-hint" />
+            <button type="submit" class="btn btn-neutral">Subscribe</button>
+          </div>
+          <p class="input-field__hint" id="demo-subscribe-hint">Wrong email address</p>
+        </form>
+        <form class="input-field" onsubmit="return false">
+          <label class="input-field__label" for="demo-message">Tell us more about it</label>
+          <div class="input input-group">
+            <input class="input__control" id="demo-message" placeholder="Leave a message" />
+            <button type="submit" class="btn btn-neutral">Send<span class="icon icon--paper-plane-outline" aria-hidden="true"></span></button>
+          </div>
+        </form>
+        <form class="input-field" role="search" onsubmit="return false">
+          <div class="input input-group">
+            <input class="input__control" type="search" placeholder="Search" value="Donald Trump" aria-label="Search" aria-describedby="demo-search-hint" />
+            <button type="button" class="input__clear" aria-label="Clear"><span class="icon icon--xmark-circle" aria-hidden="true"></span></button>
+            <button type="submit" class="btn btn-tertiary-neutral"><span class="icon icon--magnifier" aria-hidden="true"></span>Search</button>
+          </div>
+          <p class="input-field__hint" id="demo-search-hint">e.g. Donald Trump, Arsenal, Mortgage</p>
+        </form>
+        <form class="input-field" onsubmit="return false">
+          <label class="input-field__label" for="demo-promo">Do you have a promo code?</label>
+          <div class="input input-group">
+            <input class="input__control" id="demo-promo" placeholder="Enter promo code" aria-describedby="demo-promo-hint" data-demo-enables />
+            <button type="submit" class="btn btn-brand" disabled>Apply</button>
+          </div>
+          <p class="input-field__hint" id="demo-promo-hint">You can find it in your inbox. Apply waits until you type.</p>
+        </form>
+
+        <h3 class="demo-input-group__kind">Field modifier — Show / hide, Clear</h3>
+        <form class="input-field" onsubmit="return false">
+          <label class="input-field__label" for="demo-code">Enter verification code</label>
+          <div class="input input-group">
+            <span class="icon icon--padlock" aria-hidden="true"></span>
+            <input class="input__control" id="demo-code" type="password" placeholder="••••••" data-demo-enables />
+            <button type="button" class="input__reveal" aria-label="Show password" aria-pressed="false"><span class="icon icon--eye-close" aria-hidden="true"></span></button>
+            <button type="submit" class="btn btn-tertiary-neutral" disabled>Verify</button>
+          </div>
+        </form>
+
+        <h3 class="demo-input-group__kind">Context setter — Button + Input</h3>
+        <div class="input-field">
+          <div class="input input-group">
+            <button type="button" class="btn btn-tertiary-neutral" aria-haspopup="listbox" aria-expanded="false" aria-label="Currency: GBP">GBP<span class="icon icon--chevron-down" aria-hidden="true"></span></button>
+            <div class="dropdown-menu" hidden>
+              <div class="dropdown-menu__list" role="listbox" aria-label="Currency">
+                <button type="button" class="dropdown-menu__item" role="option" aria-selected="true" data-label="GBP"><img src="../../assets/icons/ico-flag-united-kingdom.svg" alt="" />GBP — British pound<span class="icon icon--tick dropdown-menu__tick" aria-hidden="true"></span></button>
+                <button type="button" class="dropdown-menu__item" role="option" aria-selected="false" data-label="USD"><img src="../../assets/icons/ico-flag-united-states.svg" alt="" />USD — US dollar<span class="icon icon--tick dropdown-menu__tick" aria-hidden="true"></span></button>
+                <button type="button" class="dropdown-menu__item" role="option" aria-selected="false" data-label="AUD"><img src="../../assets/icons/ico-flag-australia.svg" alt="" />AUD — Australian dollar<span class="icon icon--tick dropdown-menu__tick" aria-hidden="true"></span></button>
+                <button type="button" class="dropdown-menu__item" role="option" aria-selected="false" data-label="EUR"><img src="../../assets/icons/ico-flag-ireland.svg" alt="" />EUR — Euro<span class="icon icon--tick dropdown-menu__tick" aria-hidden="true"></span></button>
+              </div>
+            </div>
+            <input class="input__control" inputmode="decimal" placeholder="000.00" aria-label="Amount" aria-describedby="demo-amount-hint" />
+          </div>
+          <p class="input-field__hint" id="demo-amount-hint">Select your currency</p>
+        </div>
+
+        <h3 class="demo-input-group__kind">Select + Button</h3>
+        <form class="input-field" onsubmit="return false">
+          <label class="input-field__label" for="demo-edition">Edition</label>
+          <div class="input input-group input--select">
+            <select class="input__control" id="demo-edition">
+              <option value="" disabled selected>Select</option>
+              <option>UK</option>
+              <option>US</option>
+              <option>Australia</option>
+            </select>
+            <button type="submit" class="btn btn-brand">Go</button>
+          </div>
+        </form>
+      </div>
+
+      <h2 class="demo-input-group__set">States</h2>
+      <p class="demo-input-group__note">
+        All from Input. Read-only and Disabled disable the button too (Button › Disabled, 20%). Focus is shown here with
+        <code>.is-focus</code>.
+      </p>
+    </main>
+    <div class="demo-grid demo-grid--input-group">
+      <div class="demo-col-header"></div>
+      <div class="demo-col-header">Input + Button<small>action trigger</small></div>
+      <div class="demo-col-header">Button + Input<small>context setter</small></div>
+      <div class="demo-col-header">Select + Button<small>Native Select</small></div>
+
+      <div class="demo-row-label">Enabled</div>
+      <div class="demo-cell">
+        <div class="input input-group">
+          <input class="input__control" placeholder="Input text" aria-label="Input + Button, Enabled" />
+          <button type="button" class="btn btn-brand">Button</button>
+        </div>
+      </div>
+      <div class="demo-cell">
+        <div class="input input-group">
+          <button type="button" class="btn btn-tertiary-neutral">Button<span class="icon icon--chevron-down" aria-hidden="true"></span></button>
+          <input class="input__control" placeholder="Input text" aria-label="Button + Input, Enabled" />
+        </div>
+      </div>
+      <div class="demo-cell">
+        <div class="input input-group input--select">
+          <select class="input__control" aria-label="Select + Button, Enabled">
+            <option value="" disabled selected>Select</option>
+            <option>Option selected</option>
+            <option>Another option</option>
+          </select>
+          <button type="button" class="btn btn-brand">Button</button>
+        </div>
+      </div>
+
+      <div class="demo-row-label">Focus</div>
+      <div class="demo-cell">
+        <div class="input input-group is-focus">
+          <input class="input__control" placeholder="Input text" aria-label="Input + Button, Focus" />
+          <button type="button" class="btn btn-brand">Button</button>
+        </div>
+      </div>
+      <div class="demo-cell">
+        <div class="input input-group is-focus">
+          <button type="button" class="btn btn-tertiary-neutral">Button<span class="icon icon--chevron-down" aria-hidden="true"></span></button>
+          <input class="input__control" placeholder="Input text" aria-label="Button + Input, Focus" />
+        </div>
+      </div>
+      <div class="demo-cell">
+        <div class="input input-group input--select is-focus">
+          <select class="input__control" aria-label="Select + Button, Focus">
+            <option value="" disabled selected>Select</option>
+            <option>Option selected</option>
+            <option>Another option</option>
+          </select>
+          <button type="button" class="btn btn-brand">Button</button>
+        </div>
+      </div>
+
+      <div class="demo-row-label">Typing</div>
+      <div class="demo-cell">
+        <div class="input input-group is-focus">
+          <input class="input__control" placeholder="Input text" value="Input text" aria-label="Input + Button, Typing" />
+          <button type="button" class="input__clear" aria-label="Clear"><span class="icon icon--xmark-circle" aria-hidden="true"></span></button>
+          <button type="button" class="btn btn-brand">Button</button>
+        </div>
+      </div>
+      <div class="demo-cell">
+        <div class="input input-group is-focus">
+          <button type="button" class="btn btn-tertiary-neutral">Button<span class="icon icon--chevron-down" aria-hidden="true"></span></button>
+          <input class="input__control" placeholder="Input text" value="Input text" aria-label="Button + Input, Typing" />
+          <button type="button" class="input__clear" aria-label="Clear"><span class="icon icon--xmark-circle" aria-hidden="true"></span></button>
+        </div>
+      </div>
+      <div class="demo-cell">
+        <div class="input input-group input--select is-focus">
+          <select class="input__control" aria-label="Select + Button, Typing">
+            <option>Option selected</option>
+            <option>Another option</option>
+          </select>
+          <button type="button" class="btn btn-brand">Button</button>
+        </div>
+      </div>
+
+      <div class="demo-row-label">Entered</div>
+      <div class="demo-cell">
+        <div class="input input-group">
+          <input class="input__control" placeholder="Input text" value="Input text" aria-label="Input + Button, Entered" />
+          <button type="button" class="btn btn-brand">Button</button>
+        </div>
+      </div>
+      <div class="demo-cell">
+        <div class="input input-group">
+          <button type="button" class="btn btn-tertiary-neutral">Button<span class="icon icon--chevron-down" aria-hidden="true"></span></button>
+          <input class="input__control" placeholder="Input text" value="Input text" aria-label="Button + Input, Entered" />
+        </div>
+      </div>
+      <div class="demo-cell">
+        <div class="input input-group input--select">
+          <select class="input__control" aria-label="Select + Button, Entered">
+            <option>Option selected</option>
+            <option>Another option</option>
+          </select>
+          <button type="button" class="btn btn-brand">Button</button>
+        </div>
+      </div>
+
+      <div class="demo-row-label">Valid</div>
+      <div class="demo-cell">
+        <div class="input input-group input--success">
+          <input class="input__control" placeholder="Input text" value="Input text" aria-label="Input + Button, Valid" />
+          <button type="button" class="btn btn-brand">Button</button>
+        </div>
+      </div>
+      <div class="demo-cell">
+        <div class="input input-group input--success">
+          <button type="button" class="btn btn-tertiary-neutral">Button<span class="icon icon--chevron-down" aria-hidden="true"></span></button>
+          <input class="input__control" placeholder="Input text" value="Input text" aria-label="Button + Input, Valid" />
+        </div>
+      </div>
+      <div class="demo-cell">
+        <span class="demo-input-group__na">— not in Figma</span>
+      </div>
+
+      <div class="demo-row-label">Error</div>
+      <div class="demo-cell">
+        <div class="input input-group">
+          <input class="input__control" placeholder="Input text" value="Input text" aria-invalid="true" aria-label="Input + Button, Error" />
+          <button type="button" class="btn btn-brand">Button</button>
+        </div>
+      </div>
+      <div class="demo-cell">
+        <div class="input input-group">
+          <button type="button" class="btn btn-tertiary-neutral">Button<span class="icon icon--chevron-down" aria-hidden="true"></span></button>
+          <input class="input__control" placeholder="Input text" value="Input text" aria-invalid="true" aria-label="Button + Input, Error" />
+        </div>
+      </div>
+      <div class="demo-cell">
+        <span class="demo-input-group__na">— not in Figma</span>
+      </div>
+
+      <div class="demo-row-label">Read-only</div>
+      <div class="demo-cell">
+        <div class="input input-group">
+          <input class="input__control" placeholder="Input text" value="Input text" readonly aria-label="Input + Button, Read-only" />
+          <button type="button" class="btn btn-brand" disabled>Button</button>
+        </div>
+      </div>
+      <div class="demo-cell">
+        <div class="input input-group">
+          <button type="button" class="btn btn-tertiary-neutral" disabled>Button<span class="icon icon--chevron-down" aria-hidden="true"></span></button>
+          <input class="input__control" placeholder="Input text" value="Input text" readonly aria-label="Button + Input, Read-only" />
+        </div>
+      </div>
+      <div class="demo-cell">
+        <span class="demo-input-group__na">— no read-only &lt;select&gt;</span>
+      </div>
+
+      <div class="demo-row-label">Disabled</div>
+      <div class="demo-cell">
+        <div class="input input-group">
+          <input class="input__control" placeholder="Input text" value="Input text" disabled aria-label="Input + Button, Disabled" />
+          <button type="button" class="btn btn-brand" disabled>Button</button>
+        </div>
+      </div>
+      <div class="demo-cell">
+        <div class="input input-group">
+          <button type="button" class="btn btn-tertiary-neutral" disabled>Button<span class="icon icon--chevron-down" aria-hidden="true"></span></button>
+          <input class="input__control" placeholder="Input text" value="Input text" disabled aria-label="Button + Input, Disabled" />
+        </div>
+      </div>
+      <div class="demo-cell">
+        <div class="input input-group input--select">
+          <select class="input__control" aria-label="Select + Button, Disabled" disabled>
+            <option>Option selected</option>
+            <option>Another option</option>
+          </select>
+          <button type="button" class="btn btn-brand" disabled>Button</button>
+        </div>
+      </div>
+    </div>
+
+    <script>
+      // Scaffolding only — Apply / Verify wait until their field has a value.
+      document.querySelectorAll('[data-demo-enables]').forEach((field) => {
+        const button = field.parentElement.querySelector('.btn');
+        field.addEventListener('input', () => (button.disabled = !field.value));
+      });
+    </script>
+  </body>
+</html>

@@ -1,0 +1,64 @@
+// ── Input Group ───────────────────────────────────────────────────────────────
+// A field and a Button in one Input box. Everything else — states, Clear,
+// Show / hide, status icon, Native Select — comes from Input (_input.scss).
+//
+//   .input.input-group                 Pill, 46 high, MD text
+//     .input__control ~ .btn           Input + Button  (action trigger)
+//     .btn ~ .input__control           Button + Input  (context setter, opens .dropdown-menu)
+//     .input--select > select ~ .btn   Select + Button
+//
+// The button is MD (40) and sits 3px from the box edge (1px border + 2px),
+// 16px from the text. One size only: LG text is too long for narrow columns.
+//
+// Reference: Figma Web UI Kit › Input Group (5075:1727)
+
+.input-group {
+  --input-height: 46px;
+  --input-radius: var(--border-radius-full);
+  --input-btn-inset: 2px; // + the 1px border = 3
+
+  // Input + Button: the button last, after the status icon
+  &:has(> .input__control ~ .btn) {
+    padding-right: var(--input-btn-inset);
+  }
+
+  > .input__control ~ .btn {
+    order: 3;
+    margin-left: var(--spacing-8); // + the gap = 16 from the text
+  }
+
+  // Button + Input
+  &:has(> .btn ~ .input__control) {
+    padding-left: var(--input-btn-inset);
+  }
+
+  > .btn:has(~ .input__control) {
+    margin-right: var(--spacing-8);
+  }
+
+  // Button + Input: its Dropdown Menu, under the box, left-aligned
+  > .dropdown-menu {
+    position: absolute;
+    top: calc(100% + var(--spacing-4));
+    left: 0;
+    z-index: 10;
+    max-height: 164px;
+  }
+}
+
+// Select + Button: the native <select> fills the first column (Input), the
+// button takes the second; the chevron and status icon stay over the select
+.input-group.input--select:has(> select) {
+  grid-template-columns: 1fr auto;
+  padding-right: var(--input-btn-inset);
+
+  > .btn {
+    grid-area: 1 / 2;
+    margin-left: 0; // the chevron's inset already parts them
+  }
+}
+
+// Menu button chevron turns up while its menu is open (as Dropdown Select)
+.input-group > .btn[aria-expanded='true'] > .icon--chevron-down {
+  transform: rotate(180deg);
+}
