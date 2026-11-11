@@ -38,7 +38,8 @@
         nearObserver.unobserve(target);
         if (target.preload !== 'none') return;
         target.preload = 'metadata';
-        if (target.readyState === 0) target.load();
+        // Not while play() is already loading it: load() would abort the play
+        if (target.readyState === 0 && target.paused) target.load();
       });
     },
     { rootMargin: '100% 0px' },
