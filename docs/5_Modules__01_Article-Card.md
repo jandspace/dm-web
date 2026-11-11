@@ -177,12 +177,12 @@ Two states, by what is under the pointer (inside the 8px-inset surface area):
 
 ### 5-C. Hover Line (links in the card)
 
-Channel, comment counter, affiliate link and Read more share one pattern — a line that grows from the left. No `text-decoration` underline.
+Channel, comment counter, affiliate link, columnist name and Read more share one pattern — a line that grows from the left. No `text-decoration` underline.
 
 | Property | Value |
 |---|---|
 | Element | `::before` on the link (the link is the positioning container) |
-| Size / position | 1px high, `bottom: -2px`, full link width (icon included) |
+| Size / position | 1px high, `bottom: -2px` (columnist name: `bottom: 0`, it clips its own overflow), full link width (icon included) |
 | Colour | `color/effect/translucent-dark/deep` — on dark surfaces `translucent-light/deep` |
 | Motion | `transform: scaleX(0)` → `scaleX(1)`, `transform-origin: left`, `transition: transform 0.2s` |
 
@@ -208,7 +208,7 @@ Article Card Metadata (`.article-card__metadata.article-card-metadata`) — one 
 
 Ad Feature, Sponsored and Affiliate rarely carry comments, but may.
 
-- **Columnist name** (link to the author page): on hover turns `color/text/interaction-primary/default` — the same colour as the headline on card hover — and gets an underline.
+- **Columnist name** (link to the author page): on hover turns `color/text/interaction-primary/default` — the same colour as the headline on card hover — with the hover line (§5-C).
 - **Columnist byline:** name + role on the left, comments on the right, bottom-aligned, 12px apart, 8px above. The columnist's **photo is no longer in the metadata** — it sits in the headline (§2 Quote Headline).
 - **Columnist photo** is also a link to the author page: `<a class="columnist-photo" href="…" tabindex="-1" aria-hidden="true">` — a duplicate of the name link, so it is hidden from keyboard and screen readers. On hover: 3px outline, no offset, `color/effect/translucent-dark/subtle`, round with the disc. Outside a card (static) the photo stays a `<span>`.
 

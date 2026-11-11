@@ -40,13 +40,14 @@
 }
 
 // ── Hover line ────────────────────────────────────────────────────────────────
-// Channel, comments and affiliate links: a 1px line under the whole link that
+// Channel, comments, affiliate and columnist name links: a 1px line under the whole link that
 // grows from the left on hover (replaces text underline). The link is the
 // positioning container, so the line spans its full width (icon included).
 
 .article-card-metadata__channel,
 .article-card-metadata__comments,
-.article-card-metadata__affiliate {
+.article-card-metadata__affiliate,
+.article-card-metadata__author-name {
   position: relative;
 
   &::before {
@@ -71,7 +72,8 @@
 @media (prefers-reduced-motion: reduce) {
   .article-card-metadata__channel::before,
   .article-card-metadata__comments::before,
-  .article-card-metadata__affiliate::before {
+  .article-card-metadata__affiliate::before,
+  .article-card-metadata__author-name::before {
     transition: none;
   }
 }
@@ -230,6 +232,7 @@
 }
 
 .article-card-metadata__author-name {
+  align-self: flex-start; // shrink to the name, so the hover line ends with it
   overflow: hidden;
   font-size: var(--typography-font-size-label-lg);
   font-weight: var(--typography-font-weight-semibold);
@@ -238,10 +241,15 @@
   text-overflow: ellipsis;
   text-decoration: none;
 
-  // Same colour as the headline on card hover, plus an underline
+  // The name truncates itself (overflow: hidden), so the hover line sits
+  // inside the box instead of 2px below it
+  &::before {
+    bottom: 0;
+  }
+
+  // Same colour as the headline on card hover, plus the hover line
   &:hover {
     color: var(--color-text-interaction-primary-default);
-    text-decoration: underline;
   }
 }
 
