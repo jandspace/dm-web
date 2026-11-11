@@ -36,7 +36,7 @@
   flex-shrink: 0;
   width: var(--columnist-photo-size);
   height: var(--columnist-photo-size);
-  border-radius: var(--border-radius-full); // outline follows the disc
+  border-radius: var(--border-radius-full); // hover ring follows the disc
 
   // Disc behind the portrait
   &::before {
@@ -49,10 +49,17 @@
 }
 
 // Linked photo (<a class="columnist-photo">, to the author page): on hover a
-// 3px ring hugging the disc. The cut-out head may break out over it, like the disc.
-a.columnist-photo:hover,
-a.columnist-photo:focus-visible {
-  outline: 3px solid var(--color-effect-translucent-dark-subtle);
+// 3px ring hugging the disc, spreading out from 0. A spread shadow, not an
+// outline: it grows smoothly (outline width snaps to whole pixels). The cut-out
+// head may break out over it, like the disc.
+a.columnist-photo {
+  box-shadow: 0 0 0 0 var(--color-effect-translucent-dark-subtle);
+  transition: box-shadow 0.2s;
+
+  &:hover,
+  &:focus-visible {
+    box-shadow: 0 0 0 3px var(--color-effect-translucent-dark-subtle);
+  }
 }
 
 @each $section, $colour in sections.$sections {
@@ -120,6 +127,10 @@ a.columnist-photo:focus-visible {
 @media (prefers-reduced-motion: reduce) {
   .columnist-photo--live::after {
     animation: none;
+  }
+
+  a.columnist-photo {
+    transition: none;
   }
 }
 

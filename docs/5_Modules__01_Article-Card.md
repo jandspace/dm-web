@@ -210,7 +210,7 @@ Ad Feature, Sponsored and Affiliate rarely carry comments, but may.
 
 - **Columnist name** (link to the author page): on hover turns `color/text/interaction-primary/default` — the same colour as the headline on card hover — with the hover line (§5-C).
 - **Columnist byline:** name + role on the left, comments on the right, bottom-aligned, 12px apart, 8px above. The columnist's **photo is no longer in the metadata** — it sits in the headline (§2 Quote Headline).
-- **Columnist photo** is also a link to the author page: `<a class="columnist-photo" href="…" tabindex="-1" aria-hidden="true">` — a duplicate of the name link, so it is hidden from keyboard and screen readers. On hover: 3px outline, no offset, `color/effect/translucent-dark/subtle`, round with the disc. Outside a card (static) the photo stays a `<span>`.
+- **Columnist photo** is also a link to the author page: `<a class="columnist-photo" href="…" tabindex="-1" aria-hidden="true">` — a duplicate of the name link, so it is hidden from keyboard and screen readers. On hover: a 3px ring (spread `box-shadow`) that spreads out from 0 in 0.2s — not an outline, whose width snaps to whole pixels — `color/effect/translucent-dark/subtle`, round with the disc. Outside a card (static) the photo stays a `<span>`.
 
 ### 6-A. Columnist Photo Colour
 

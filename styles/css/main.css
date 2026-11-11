@@ -6053,9 +6053,12 @@ button.video-play {
   background-color: var(--columnist-photo-color);
 }
 
-a.columnist-photo:hover,
-a.columnist-photo:focus-visible {
-  outline: 3px solid var(--color-effect-translucent-dark-subtle);
+a.columnist-photo {
+  box-shadow: 0 0 0 0 var(--color-effect-translucent-dark-subtle);
+  transition: box-shadow 0.2s;
+}
+a.columnist-photo:hover, a.columnist-photo:focus-visible {
+  box-shadow: 0 0 0 3px var(--color-effect-translucent-dark-subtle);
 }
 
 .columnist-photo--home {
@@ -6227,6 +6230,9 @@ a.columnist-photo:focus-visible {
 @media (prefers-reduced-motion: reduce) {
   .columnist-photo--live::after {
     animation: none;
+  }
+  a.columnist-photo {
+    transition: none;
   }
 }
 .columnist-photo--xs {
