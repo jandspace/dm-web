@@ -42,6 +42,7 @@
         { name: 'Button', path: 'components/button/', pages: [['Generator', 'button-gen.html']] },
         { name: 'Carousel', path: 'components/carousel/' },
         { name: 'Dropdown Menu', path: 'components/dropdown-menu/' },
+        { name: 'Input', path: 'components/input/' },
         { name: 'Keyline (Divider)', path: 'components/keyline/' },
         { name: 'Loading', path: 'components/loading/' },
         { name: 'Media', path: 'components/media/' },

@@ -1,0 +1,867 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Input</title>
+    <link rel="icon" href="../../assets/favicon.svg" type="image/svg+xml" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&family=Lora:wght@400;600;700&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="../../tokens/dm_tokens.css" />
+    <link rel="stylesheet" href="../../tokens/dm_typography_web_tokens.css" />
+    <link rel="stylesheet" href="../../styles/css/main.css" />
+    <script src="../../scripts/scaffolding/demo-nav.js" defer></script>
+    <script src="../../scripts/modules/input.js" defer></script>
+  </head>
+  <body class="demo-page-body">
+    <h1 class="demo-page-h1">Input</h1>
+    <p class="demo-page-intro">
+      Form fields — Input, Select and Textarea share one box, three sizes (Button heights 34 · 40 · 46), two shapes and one
+      set of states. Colours follow the semantic rules: focus <code>semantic-info</code>, valid <code>semantic-success</code>,
+      error <code>semantic-error</code>. Figma: Web UI Kit › Input (<code>210:6470</code>). Doc: <code>docs/4_Components__13_Input.md</code>.
+    </p>
+
+    <!-- ════════════════════════════════════════════════════
+         INPUT
+         .input-field > label.input-field__label + .input + p.input-field__hint
+         .input > .icon + .input__control + button.input__clear | button.input__reveal
+           .input--sm / --lg    34 / 46 (MD 40)
+           .input--pill         full corners
+           .input--select       chevron; native <select> or button[role=combobox] + Dropdown Menu
+           .input--textarea     three lines, resizable
+         States: :focus-within · .input--success · [aria-invalid] · .input--loading · [readonly] · :disabled
+    ════════════════════════════════════════════════════ -->
+    <main class="demo-input">
+      <h2 class="demo-input__set">Try it</h2>
+      <p class="demo-input__note">
+        Type in Username to see Clear; the eye shows the password. Country is a Native Select (text only — the system picker
+        on phones); Sort by is a Dropdown Select, because its options carry icons.
+      </p>
+      <div class="demo-input__panel">
+        <div class="input-field">
+          <label class="input-field__label" for="demo-username">Username</label>
+          <div class="input">
+            <span class="icon icon--person" aria-hidden="true"></span>
+            <input class="input__control" id="demo-username" placeholder="Enter your username" aria-describedby="demo-username-hint" />
+            <button type="button" class="input__clear" aria-label="Clear"><span class="icon icon--xmark-circle" aria-hidden="true"></span></button>
+          </div>
+          <p class="input-field__hint" id="demo-username-hint">Letters and numbers only.</p>
+        </div>
+        <div class="input-field">
+          <label class="input-field__label" for="demo-password">Password</label>
+          <div class="input">
+            <span class="icon icon--padlock" aria-hidden="true"></span>
+            <input class="input__control" id="demo-password" type="password" value="dailymail" />
+            <button type="button" class="input__reveal" aria-label="Show password" aria-pressed="false"><span class="icon icon--eye-close" aria-hidden="true"></span></button>
+          </div>
+        </div>
+        <div class="input-field">
+          <label class="input-field__label" for="demo-email">Email</label>
+          <div class="input">
+            <span class="icon icon--envelop-outline" aria-hidden="true"></span>
+            <input class="input__control" id="demo-email" type="email" value="name@dailymail" aria-invalid="true" aria-describedby="demo-email-hint" />
+          </div>
+          <p class="input-field__hint" id="demo-email-hint">Enter a full email address, like name@example.com.</p>
+        </div>
+        <div class="input-field">
+          <label class="input-field__label" for="demo-country">Country</label>
+          <div class="input input--select">
+            <select class="input__control" id="demo-country">
+              <option value="" disabled selected>Select your country</option>
+              <option>United Kingdom</option>
+              <option>United States</option>
+              <option>Australia</option>
+              <option>Ireland</option>
+            </select>
+          </div>
+          <p class="input-field__hint">Native Select — options are text only.</p>
+        </div>
+        <div class="input-field">
+          <span class="input-field__label" id="demo-sort-label">Sort by</span>
+          <div class="input-select">
+            <button type="button" class="input input--select" role="combobox" aria-haspopup="listbox" aria-expanded="false" aria-labelledby="demo-sort-label">
+              <span class="icon icon--funnel" aria-hidden="true"></span>
+              <span class="input__control" data-placeholder="Select"></span>
+            </button>
+            <div class="dropdown-menu" hidden>
+              <div class="dropdown-menu__list" role="listbox" aria-labelledby="demo-sort-label">
+                <button type="button" class="dropdown-menu__item" role="option" aria-selected="false"><span class="icon icon--clock" aria-hidden="true"></span>Latest<span class="icon icon--tick dropdown-menu__tick" aria-hidden="true"></span></button>
+                <button type="button" class="dropdown-menu__item" role="option" aria-selected="false"><span class="icon icon--fire-flame" aria-hidden="true"></span>Most read<span class="icon icon--tick dropdown-menu__tick" aria-hidden="true"></span></button>
+                <button type="button" class="dropdown-menu__item" role="option" aria-selected="false"><span class="icon icon--thumbup-outline" aria-hidden="true"></span>Most liked<span class="icon icon--tick dropdown-menu__tick" aria-hidden="true"></span></button>
+                <button type="button" class="dropdown-menu__item" role="option" aria-selected="false" disabled><span class="icon icon--star" aria-hidden="true"></span>Editor's pick<span class="icon icon--tick dropdown-menu__tick" aria-hidden="true"></span></button>
+                <button type="button" class="dropdown-menu__item" role="option" aria-selected="false"><span class="icon icon--compass" aria-hidden="true"></span>Nearby<span class="icon icon--tick dropdown-menu__tick" aria-hidden="true"></span></button>
+              </div>
+            </div>
+          </div>
+          <p class="input-field__hint">Dropdown Select — options carry an icon.</p>
+        </div>
+        <div class="input-field">
+          <label class="input-field__label" for="demo-comment">Comment</label>
+          <div class="input input--textarea">
+            <textarea class="input__control" id="demo-comment" placeholder="Leave your comment"></textarea>
+          </div>
+        </div>
+      </div>
+
+      <h2 class="demo-input__set">Input — sizes, shapes and states</h2>
+      <p class="demo-input__note">
+        Figma order: SM · MD · LG, Rectangle then Pill. Focus, Valid and Error draw a 2px border (1px border + 1px inset ring),
+        so nothing moves. Error is the only state with a tinted background. Focus is shown here with <code>.is-focus</code>.
+      </p>
+    </main>
+    <div class="demo-grid demo-grid--input">
+      <div class="demo-col-header"></div>
+      <div class="demo-col-header">SM · Rectangle<small>34px · .input--sm</small></div>
+      <div class="demo-col-header">MD · Rectangle<small>40px</small></div>
+      <div class="demo-col-header">LG · Rectangle<small>46px · .input--lg</small></div>
+      <div class="demo-col-header">SM · Pill<small>34px · .input--sm · .input--pill</small></div>
+      <div class="demo-col-header">MD · Pill<small>40px · .input--pill</small></div>
+      <div class="demo-col-header">LG · Pill<small>46px · .input--lg · .input--pill</small></div>
+
+      <div class="demo-row-label">Placeholder</div>
+      <div class="demo-cell">
+        <div class="input input--sm">
+          <span class="icon icon--square-dashed" aria-hidden="true"></span>
+          <input class="input__control" placeholder="Input text" aria-label="Placeholder" />
+        </div>
+      </div>
+      <div class="demo-cell">
+        <div class="input">
+          <span class="icon icon--square-dashed" aria-hidden="true"></span>
+          <input class="input__control" placeholder="Input text" aria-label="Placeholder" />
+        </div>
+      </div>
+      <div class="demo-cell">
+        <div class="input input--lg">
+          <span class="icon icon--square-dashed" aria-hidden="true"></span>
+          <input class="input__control" placeholder="Input text" aria-label="Placeholder" />
+        </div>
+      </div>
+      <div class="demo-cell">
+        <div class="input input--sm input--pill">
+          <span class="icon icon--square-dashed" aria-hidden="true"></span>
+          <input class="input__control" placeholder="Input text" aria-label="Placeholder" />
+        </div>
+      </div>
+      <div class="demo-cell">
+        <div class="input input--pill">
+          <span class="icon icon--square-dashed" aria-hidden="true"></span>
+          <input class="input__control" placeholder="Input text" aria-label="Placeholder" />
+        </div>
+      </div>
+      <div class="demo-cell">
+        <div class="input input--lg input--pill">
+          <span class="icon icon--square-dashed" aria-hidden="true"></span>
+          <input class="input__control" placeholder="Input text" aria-label="Placeholder" />
+        </div>
+      </div>
+
+      <div class="demo-row-label">Focus</div>
+      <div class="demo-cell">
+        <div class="input input--sm is-focus">
+          <span class="icon icon--square-dashed" aria-hidden="true"></span>
+          <input class="input__control" placeholder="Input text" aria-label="Focus" />
+        </div>
+      </div>
+      <div class="demo-cell">
+        <div class="input is-focus">
+          <span class="icon icon--square-dashed" aria-hidden="true"></span>
+          <input class="input__control" placeholder="Input text" aria-label="Focus" />
+        </div>
+      </div>
+      <div class="demo-cell">
+        <div class="input input--lg is-focus">
+          <span class="icon icon--square-dashed" aria-hidden="true"></span>
+          <input class="input__control" placeholder="Input text" aria-label="Focus" />
+        </div>
+      </div>
+      <div class="demo-cell">
+        <div class="input input--sm input--pill is-focus">
+          <span class="icon icon--square-dashed" aria-hidden="true"></span>
+          <input class="input__control" placeholder="Input text" aria-label="Focus" />
+        </div>
+      </div>
+      <div class="demo-cell">
+        <div class="input input--pill is-focus">
+          <span class="icon icon--square-dashed" aria-hidden="true"></span>
+          <input class="input__control" placeholder="Input text" aria-label="Focus" />
+        </div>
+      </div>
+      <div class="demo-cell">
+        <div class="input input--lg input--pill is-focus">
+          <span class="icon icon--square-dashed" aria-hidden="true"></span>
+          <input class="input__control" placeholder="Input text" aria-label="Focus" />
+        </div>
+      </div>
+
+      <div class="demo-row-label">Typing</div>
+      <div class="demo-cell">
+        <div class="input input--sm is-focus">
+          <span class="icon icon--square-dashed" aria-hidden="true"></span>
+          <input class="input__control" value="Input text" placeholder="Input text" aria-label="Typing" />
+          <button type="button" class="input__clear" aria-label="Clear"><span class="icon icon--xmark-circle" aria-hidden="true"></span></button>
+        </div>
+      </div>
+      <div class="demo-cell">
+        <div class="input is-focus">
+          <span class="icon icon--square-dashed" aria-hidden="true"></span>
+          <input class="input__control" value="Input text" placeholder="Input text" aria-label="Typing" />
+          <button type="button" class="input__clear" aria-label="Clear"><span class="icon icon--xmark-circle" aria-hidden="true"></span></button>
+        </div>
+      </div>
+      <div class="demo-cell">
+        <div class="input input--lg is-focus">
+          <span class="icon icon--square-dashed" aria-hidden="true"></span>
+          <input class="input__control" value="Input text" placeholder="Input text" aria-label="Typing" />
+          <button type="button" class="input__clear" aria-label="Clear"><span class="icon icon--xmark-circle" aria-hidden="true"></span></button>
+        </div>
+      </div>
+      <div class="demo-cell">
+        <div class="input input--sm input--pill is-focus">
+          <span class="icon icon--square-dashed" aria-hidden="true"></span>
+          <input class="input__control" value="Input text" placeholder="Input text" aria-label="Typing" />
+          <button type="button" class="input__clear" aria-label="Clear"><span class="icon icon--xmark-circle" aria-hidden="true"></span></button>
+        </div>
+      </div>
+      <div class="demo-cell">
+        <div class="input input--pill is-focus">
+          <span class="icon icon--square-dashed" aria-hidden="true"></span>
+          <input class="input__control" value="Input text" placeholder="Input text" aria-label="Typing" />
+          <button type="button" class="input__clear" aria-label="Clear"><span class="icon icon--xmark-circle" aria-hidden="true"></span></button>
+        </div>
+      </div>
+      <div class="demo-cell">
+        <div class="input input--lg input--pill is-focus">
+          <span class="icon icon--square-dashed" aria-hidden="true"></span>
+          <input class="input__control" value="Input text" placeholder="Input text" aria-label="Typing" />
+          <button type="button" class="input__clear" aria-label="Clear"><span class="icon icon--xmark-circle" aria-hidden="true"></span></button>
+        </div>
+      </div>
+
+      <div class="demo-row-label">Entered</div>
+      <div class="demo-cell">
+        <div class="input input--sm">
+          <span class="icon icon--square-dashed" aria-hidden="true"></span>
+          <input class="input__control" value="Input text" aria-label="Entered" />
+        </div>
+      </div>
+      <div class="demo-cell">
+        <div class="input">
+          <span class="icon icon--square-dashed" aria-hidden="true"></span>
+          <input class="input__control" value="Input text" aria-label="Entered" />
+        </div>
+      </div>
+      <div class="demo-cell">
+        <div class="input input--lg">
+          <span class="icon icon--square-dashed" aria-hidden="true"></span>
+          <input class="input__control" value="Input text" aria-label="Entered" />
+        </div>
+      </div>
+      <div class="demo-cell">
+        <div class="input input--sm input--pill">
+          <span class="icon icon--square-dashed" aria-hidden="true"></span>
+          <input class="input__control" value="Input text" aria-label="Entered" />
+        </div>
+      </div>
+      <div class="demo-cell">
+        <div class="input input--pill">
+          <span class="icon icon--square-dashed" aria-hidden="true"></span>
+          <input class="input__control" value="Input text" aria-label="Entered" />
+        </div>
+      </div>
+      <div class="demo-cell">
+        <div class="input input--lg input--pill">
+          <span class="icon icon--square-dashed" aria-hidden="true"></span>
+          <input class="input__control" value="Input text" aria-label="Entered" />
+        </div>
+      </div>
+
+      <div class="demo-row-label">Valid</div>
+      <div class="demo-cell">
+        <div class="input input--sm input--success">
+          <span class="icon icon--square-dashed" aria-hidden="true"></span>
+          <input class="input__control" value="Input text" aria-label="Valid" />
+        </div>
+      </div>
+      <div class="demo-cell">
+        <div class="input input--success">
+          <span class="icon icon--square-dashed" aria-hidden="true"></span>
+          <input class="input__control" value="Input text" aria-label="Valid" />
+        </div>
+      </div>
+      <div class="demo-cell">
+        <div class="input input--lg input--success">
+          <span class="icon icon--square-dashed" aria-hidden="true"></span>
+          <input class="input__control" value="Input text" aria-label="Valid" />
+        </div>
+      </div>
+      <div class="demo-cell">
+        <div class="input input--sm input--pill input--success">
+          <span class="icon icon--square-dashed" aria-hidden="true"></span>
+          <input class="input__control" value="Input text" aria-label="Valid" />
+        </div>
+      </div>
+      <div class="demo-cell">
+        <div class="input input--pill input--success">
+          <span class="icon icon--square-dashed" aria-hidden="true"></span>
+          <input class="input__control" value="Input text" aria-label="Valid" />
+        </div>
+      </div>
+      <div class="demo-cell">
+        <div class="input input--lg input--pill input--success">
+          <span class="icon icon--square-dashed" aria-hidden="true"></span>
+          <input class="input__control" value="Input text" aria-label="Valid" />
+        </div>
+      </div>
+
+      <div class="demo-row-label">Error</div>
+      <div class="demo-cell">
+        <div class="input input--sm">
+          <span class="icon icon--square-dashed" aria-hidden="true"></span>
+          <input class="input__control" value="Input text" aria-invalid="true" aria-label="Error" />
+        </div>
+      </div>
+      <div class="demo-cell">
+        <div class="input">
+          <span class="icon icon--square-dashed" aria-hidden="true"></span>
+          <input class="input__control" value="Input text" aria-invalid="true" aria-label="Error" />
+        </div>
+      </div>
+      <div class="demo-cell">
+        <div class="input input--lg">
+          <span class="icon icon--square-dashed" aria-hidden="true"></span>
+          <input class="input__control" value="Input text" aria-invalid="true" aria-label="Error" />
+        </div>
+      </div>
+      <div class="demo-cell">
+        <div class="input input--sm input--pill">
+          <span class="icon icon--square-dashed" aria-hidden="true"></span>
+          <input class="input__control" value="Input text" aria-invalid="true" aria-label="Error" />
+        </div>
+      </div>
+      <div class="demo-cell">
+        <div class="input input--pill">
+          <span class="icon icon--square-dashed" aria-hidden="true"></span>
+          <input class="input__control" value="Input text" aria-invalid="true" aria-label="Error" />
+        </div>
+      </div>
+      <div class="demo-cell">
+        <div class="input input--lg input--pill">
+          <span class="icon icon--square-dashed" aria-hidden="true"></span>
+          <input class="input__control" value="Input text" aria-invalid="true" aria-label="Error" />
+        </div>
+      </div>
+
+      <div class="demo-row-label">Loading</div>
+      <div class="demo-cell">
+        <div class="input input--sm input--loading">
+          <span class="icon icon--square-dashed" aria-hidden="true"></span>
+          <input class="input__control" value="Input text" aria-label="Loading" />
+        </div>
+      </div>
+      <div class="demo-cell">
+        <div class="input input--loading">
+          <span class="icon icon--square-dashed" aria-hidden="true"></span>
+          <input class="input__control" value="Input text" aria-label="Loading" />
+        </div>
+      </div>
+      <div class="demo-cell">
+        <div class="input input--lg input--loading">
+          <span class="icon icon--square-dashed" aria-hidden="true"></span>
+          <input class="input__control" value="Input text" aria-label="Loading" />
+        </div>
+      </div>
+      <div class="demo-cell">
+        <div class="input input--sm input--pill input--loading">
+          <span class="icon icon--square-dashed" aria-hidden="true"></span>
+          <input class="input__control" value="Input text" aria-label="Loading" />
+        </div>
+      </div>
+      <div class="demo-cell">
+        <div class="input input--pill input--loading">
+          <span class="icon icon--square-dashed" aria-hidden="true"></span>
+          <input class="input__control" value="Input text" aria-label="Loading" />
+        </div>
+      </div>
+      <div class="demo-cell">
+        <div class="input input--lg input--pill input--loading">
+          <span class="icon icon--square-dashed" aria-hidden="true"></span>
+          <input class="input__control" value="Input text" aria-label="Loading" />
+        </div>
+      </div>
+
+      <div class="demo-row-label">Read-only</div>
+      <div class="demo-cell">
+        <div class="input input--sm">
+          <span class="icon icon--square-dashed" aria-hidden="true"></span>
+          <input class="input__control" value="Input text" readonly aria-label="Read-only" />
+        </div>
+      </div>
+      <div class="demo-cell">
+        <div class="input">
+          <span class="icon icon--square-dashed" aria-hidden="true"></span>
+          <input class="input__control" value="Input text" readonly aria-label="Read-only" />
+        </div>
+      </div>
+      <div class="demo-cell">
+        <div class="input input--lg">
+          <span class="icon icon--square-dashed" aria-hidden="true"></span>
+          <input class="input__control" value="Input text" readonly aria-label="Read-only" />
+        </div>
+      </div>
+      <div class="demo-cell">
+        <div class="input input--sm input--pill">
+          <span class="icon icon--square-dashed" aria-hidden="true"></span>
+          <input class="input__control" value="Input text" readonly aria-label="Read-only" />
+        </div>
+      </div>
+      <div class="demo-cell">
+        <div class="input input--pill">
+          <span class="icon icon--square-dashed" aria-hidden="true"></span>
+          <input class="input__control" value="Input text" readonly aria-label="Read-only" />
+        </div>
+      </div>
+      <div class="demo-cell">
+        <div class="input input--lg input--pill">
+          <span class="icon icon--square-dashed" aria-hidden="true"></span>
+          <input class="input__control" value="Input text" readonly aria-label="Read-only" />
+        </div>
+      </div>
+
+      <div class="demo-row-label">Disabled</div>
+      <div class="demo-cell">
+        <div class="input input--sm">
+          <span class="icon icon--square-dashed" aria-hidden="true"></span>
+          <input class="input__control" value="Input text" disabled aria-label="Disabled" />
+        </div>
+      </div>
+      <div class="demo-cell">
+        <div class="input">
+          <span class="icon icon--square-dashed" aria-hidden="true"></span>
+          <input class="input__control" value="Input text" disabled aria-label="Disabled" />
+        </div>
+      </div>
+      <div class="demo-cell">
+        <div class="input input--lg">
+          <span class="icon icon--square-dashed" aria-hidden="true"></span>
+          <input class="input__control" value="Input text" disabled aria-label="Disabled" />
+        </div>
+      </div>
+      <div class="demo-cell">
+        <div class="input input--sm input--pill">
+          <span class="icon icon--square-dashed" aria-hidden="true"></span>
+          <input class="input__control" value="Input text" disabled aria-label="Disabled" />
+        </div>
+      </div>
+      <div class="demo-cell">
+        <div class="input input--pill">
+          <span class="icon icon--square-dashed" aria-hidden="true"></span>
+          <input class="input__control" value="Input text" disabled aria-label="Disabled" />
+        </div>
+      </div>
+      <div class="demo-cell">
+        <div class="input input--lg input--pill">
+          <span class="icon icon--square-dashed" aria-hidden="true"></span>
+          <input class="input__control" value="Input text" disabled aria-label="Disabled" />
+        </div>
+      </div>
+    </div>
+
+    <section class="demo-input">
+      <h2 class="demo-input__set">Select</h2>
+      <p class="demo-input__note">
+        Native when the options are text only; Dropdown (Dropdown Menu) when they need an icon or more. A native
+        <code>&lt;select&gt;</code> has no read-only mode — a read-only choice uses the Dropdown Select with
+        <code>aria-readonly="true"</code>.
+      </p>
+    </section>
+    <div class="demo-grid demo-grid--input">
+      <div class="demo-col-header"></div>
+      <div class="demo-col-header">Native · SM<small>&lt;select&gt; — text only</small></div>
+      <div class="demo-col-header">Native · MD<small>&lt;select&gt; — text only</small></div>
+      <div class="demo-col-header">Native · LG<small>&lt;select&gt; — text only</small></div>
+      <div class="demo-col-header">Dropdown · SM<small>button + Dropdown Menu</small></div>
+      <div class="demo-col-header">Dropdown · MD<small>button + Dropdown Menu</small></div>
+      <div class="demo-col-header">Dropdown · LG<small>button + Dropdown Menu</small></div>
+
+      <div class="demo-row-label">Placeholder</div>
+      <div class="demo-cell">
+        <div class="input input--sm input--select">
+          <select class="input__control" aria-label="Country">
+            <option value="" disabled selected>Select</option>
+            <option>United Kingdom</option>
+            <option>United States</option>
+            <option>Australia</option>
+          </select>
+        </div>
+      </div>
+      <div class="demo-cell">
+        <div class="input input--select">
+          <select class="input__control" aria-label="Country">
+            <option value="" disabled selected>Select</option>
+            <option>United Kingdom</option>
+            <option>United States</option>
+            <option>Australia</option>
+          </select>
+        </div>
+      </div>
+      <div class="demo-cell">
+        <div class="input input--lg input--select">
+          <select class="input__control" aria-label="Country">
+            <option value="" disabled selected>Select</option>
+            <option>United Kingdom</option>
+            <option>United States</option>
+            <option>Australia</option>
+          </select>
+        </div>
+      </div>
+      <div class="demo-cell">
+        <button type="button" class="input input--sm input--select" role="combobox" aria-haspopup="listbox" aria-expanded="false" aria-label="Sort by">
+          <span class="icon icon--funnel" aria-hidden="true"></span>
+          <span class="input__control" data-placeholder="Select"></span>
+        </button>
+      </div>
+      <div class="demo-cell">
+        <button type="button" class="input input--select" role="combobox" aria-haspopup="listbox" aria-expanded="false" aria-label="Sort by">
+          <span class="icon icon--funnel" aria-hidden="true"></span>
+          <span class="input__control" data-placeholder="Select"></span>
+        </button>
+      </div>
+      <div class="demo-cell">
+        <button type="button" class="input input--lg input--select" role="combobox" aria-haspopup="listbox" aria-expanded="false" aria-label="Sort by">
+          <span class="icon icon--funnel" aria-hidden="true"></span>
+          <span class="input__control" data-placeholder="Select"></span>
+        </button>
+      </div>
+
+      <div class="demo-row-label">Focus</div>
+      <div class="demo-cell">
+        <div class="input input--sm input--select is-focus">
+          <select class="input__control" aria-label="Country">
+            <option>United Kingdom</option>
+            <option>United States</option>
+            <option>Australia</option>
+          </select>
+        </div>
+      </div>
+      <div class="demo-cell">
+        <div class="input input--select is-focus">
+          <select class="input__control" aria-label="Country">
+            <option>United Kingdom</option>
+            <option>United States</option>
+            <option>Australia</option>
+          </select>
+        </div>
+      </div>
+      <div class="demo-cell">
+        <div class="input input--lg input--select is-focus">
+          <select class="input__control" aria-label="Country">
+            <option>United Kingdom</option>
+            <option>United States</option>
+            <option>Australia</option>
+          </select>
+        </div>
+      </div>
+      <div class="demo-cell">
+        <button type="button" class="input input--sm input--select is-focus" role="combobox" aria-haspopup="listbox" aria-expanded="false" aria-label="Sort by">
+          <span class="icon icon--funnel" aria-hidden="true"></span>
+          <span class="input__control" data-placeholder="Select">Latest</span>
+        </button>
+      </div>
+      <div class="demo-cell">
+        <button type="button" class="input input--select is-focus" role="combobox" aria-haspopup="listbox" aria-expanded="false" aria-label="Sort by">
+          <span class="icon icon--funnel" aria-hidden="true"></span>
+          <span class="input__control" data-placeholder="Select">Latest</span>
+        </button>
+      </div>
+      <div class="demo-cell">
+        <button type="button" class="input input--lg input--select is-focus" role="combobox" aria-haspopup="listbox" aria-expanded="false" aria-label="Sort by">
+          <span class="icon icon--funnel" aria-hidden="true"></span>
+          <span class="input__control" data-placeholder="Select">Latest</span>
+        </button>
+      </div>
+
+      <div class="demo-row-label">Selected</div>
+      <div class="demo-cell">
+        <div class="input input--sm input--select">
+          <select class="input__control" aria-label="Country">
+            <option>United Kingdom</option>
+            <option>United States</option>
+            <option>Australia</option>
+          </select>
+        </div>
+      </div>
+      <div class="demo-cell">
+        <div class="input input--select">
+          <select class="input__control" aria-label="Country">
+            <option>United Kingdom</option>
+            <option>United States</option>
+            <option>Australia</option>
+          </select>
+        </div>
+      </div>
+      <div class="demo-cell">
+        <div class="input input--lg input--select">
+          <select class="input__control" aria-label="Country">
+            <option>United Kingdom</option>
+            <option>United States</option>
+            <option>Australia</option>
+          </select>
+        </div>
+      </div>
+      <div class="demo-cell">
+        <button type="button" class="input input--sm input--select" role="combobox" aria-haspopup="listbox" aria-expanded="false" aria-label="Sort by">
+          <span class="icon icon--funnel" aria-hidden="true"></span>
+          <span class="input__control" data-placeholder="Select">Latest</span>
+        </button>
+      </div>
+      <div class="demo-cell">
+        <button type="button" class="input input--select" role="combobox" aria-haspopup="listbox" aria-expanded="false" aria-label="Sort by">
+          <span class="icon icon--funnel" aria-hidden="true"></span>
+          <span class="input__control" data-placeholder="Select">Latest</span>
+        </button>
+      </div>
+      <div class="demo-cell">
+        <button type="button" class="input input--lg input--select" role="combobox" aria-haspopup="listbox" aria-expanded="false" aria-label="Sort by">
+          <span class="icon icon--funnel" aria-hidden="true"></span>
+          <span class="input__control" data-placeholder="Select">Latest</span>
+        </button>
+      </div>
+
+      <div class="demo-row-label">Error</div>
+      <div class="demo-cell">
+        <div class="input input--sm input--select">
+          <select class="input__control" aria-label="Country" aria-invalid="true">
+            <option>United Kingdom</option>
+            <option>United States</option>
+            <option>Australia</option>
+          </select>
+        </div>
+      </div>
+      <div class="demo-cell">
+        <div class="input input--select">
+          <select class="input__control" aria-label="Country" aria-invalid="true">
+            <option>United Kingdom</option>
+            <option>United States</option>
+            <option>Australia</option>
+          </select>
+        </div>
+      </div>
+      <div class="demo-cell">
+        <div class="input input--lg input--select">
+          <select class="input__control" aria-label="Country" aria-invalid="true">
+            <option>United Kingdom</option>
+            <option>United States</option>
+            <option>Australia</option>
+          </select>
+        </div>
+      </div>
+      <div class="demo-cell">
+        <button type="button" class="input input--sm input--select" role="combobox" aria-haspopup="listbox" aria-expanded="false" aria-label="Sort by" aria-invalid="true">
+          <span class="icon icon--funnel" aria-hidden="true"></span>
+          <span class="input__control" data-placeholder="Select">Latest</span>
+        </button>
+      </div>
+      <div class="demo-cell">
+        <button type="button" class="input input--select" role="combobox" aria-haspopup="listbox" aria-expanded="false" aria-label="Sort by" aria-invalid="true">
+          <span class="icon icon--funnel" aria-hidden="true"></span>
+          <span class="input__control" data-placeholder="Select">Latest</span>
+        </button>
+      </div>
+      <div class="demo-cell">
+        <button type="button" class="input input--lg input--select" role="combobox" aria-haspopup="listbox" aria-expanded="false" aria-label="Sort by" aria-invalid="true">
+          <span class="icon icon--funnel" aria-hidden="true"></span>
+          <span class="input__control" data-placeholder="Select">Latest</span>
+        </button>
+      </div>
+
+      <div class="demo-row-label">Read-only</div>
+      <div class="demo-cell">
+        <span class="demo-input__na">— no read-only &lt;select&gt;</span>
+      </div>
+      <div class="demo-cell">
+        <span class="demo-input__na">— no read-only &lt;select&gt;</span>
+      </div>
+      <div class="demo-cell">
+        <span class="demo-input__na">— no read-only &lt;select&gt;</span>
+      </div>
+      <div class="demo-cell">
+        <button type="button" class="input input--sm input--select" role="combobox" aria-haspopup="listbox" aria-expanded="false" aria-label="Sort by" aria-readonly="true">
+          <span class="icon icon--funnel" aria-hidden="true"></span>
+          <span class="input__control" data-placeholder="Select">Latest</span>
+        </button>
+      </div>
+      <div class="demo-cell">
+        <button type="button" class="input input--select" role="combobox" aria-haspopup="listbox" aria-expanded="false" aria-label="Sort by" aria-readonly="true">
+          <span class="icon icon--funnel" aria-hidden="true"></span>
+          <span class="input__control" data-placeholder="Select">Latest</span>
+        </button>
+      </div>
+      <div class="demo-cell">
+        <button type="button" class="input input--lg input--select" role="combobox" aria-haspopup="listbox" aria-expanded="false" aria-label="Sort by" aria-readonly="true">
+          <span class="icon icon--funnel" aria-hidden="true"></span>
+          <span class="input__control" data-placeholder="Select">Latest</span>
+        </button>
+      </div>
+
+      <div class="demo-row-label">Disabled</div>
+      <div class="demo-cell">
+        <div class="input input--sm input--select">
+          <select class="input__control" aria-label="Country" disabled>
+            <option>United Kingdom</option>
+            <option>United States</option>
+            <option>Australia</option>
+          </select>
+        </div>
+      </div>
+      <div class="demo-cell">
+        <div class="input input--select">
+          <select class="input__control" aria-label="Country" disabled>
+            <option>United Kingdom</option>
+            <option>United States</option>
+            <option>Australia</option>
+          </select>
+        </div>
+      </div>
+      <div class="demo-cell">
+        <div class="input input--lg input--select">
+          <select class="input__control" aria-label="Country" disabled>
+            <option>United Kingdom</option>
+            <option>United States</option>
+            <option>Australia</option>
+          </select>
+        </div>
+      </div>
+      <div class="demo-cell">
+        <button type="button" class="input input--sm input--select" role="combobox" aria-haspopup="listbox" aria-expanded="false" aria-label="Sort by" disabled>
+          <span class="icon icon--funnel" aria-hidden="true"></span>
+          <span class="input__control" data-placeholder="Select">Latest</span>
+        </button>
+      </div>
+      <div class="demo-cell">
+        <button type="button" class="input input--select" role="combobox" aria-haspopup="listbox" aria-expanded="false" aria-label="Sort by" disabled>
+          <span class="icon icon--funnel" aria-hidden="true"></span>
+          <span class="input__control" data-placeholder="Select">Latest</span>
+        </button>
+      </div>
+      <div class="demo-cell">
+        <button type="button" class="input input--lg input--select" role="combobox" aria-haspopup="listbox" aria-expanded="false" aria-label="Sort by" disabled>
+          <span class="icon icon--funnel" aria-hidden="true"></span>
+          <span class="input__control" data-placeholder="Select">Latest</span>
+        </button>
+      </div>
+    </div>
+
+    <section class="demo-input">
+      <h2 class="demo-input__set">Textarea</h2>
+      <p class="demo-input__note">
+        Three lines high (96px), drag the corner to make it taller. Same box and states as Input — Error has the same pink
+        background. The status icon sits bottom right.
+      </p>
+      <div class="demo-input__samples">
+        <figure class="demo-input__sample">
+          <div class="input input--textarea">
+            <textarea class="input__control" aria-label="Placeholder" placeholder="Leave your comment"></textarea>
+          </div>
+          <figcaption>Placeholder</figcaption>
+        </figure>
+        <figure class="demo-input__sample">
+          <div class="input input--textarea is-focus">
+            <textarea class="input__control" aria-label="Focus" placeholder="Leave your comment"></textarea>
+          </div>
+          <figcaption>Focus</figcaption>
+        </figure>
+        <figure class="demo-input__sample">
+          <div class="input input--textarea">
+            <textarea class="input__control" aria-label="Entered" placeholder="Leave your comment">Hello, Daily Mail?</textarea>
+          </div>
+          <figcaption>Entered</figcaption>
+        </figure>
+        <figure class="demo-input__sample">
+          <div class="input input--textarea input--success">
+            <textarea class="input__control" aria-label="Valid" placeholder="Leave your comment">This is valid</textarea>
+          </div>
+          <figcaption>Valid</figcaption>
+        </figure>
+        <figure class="demo-input__sample">
+          <div class="input input--textarea">
+            <textarea class="input__control" aria-label="Error" placeholder="Leave your comment" aria-invalid="true">This is an error</textarea>
+          </div>
+          <figcaption>Error</figcaption>
+        </figure>
+        <figure class="demo-input__sample">
+          <div class="input input--textarea input--loading">
+            <textarea class="input__control" aria-label="Loading" placeholder="Leave your comment">Hello, Daily Mail?</textarea>
+          </div>
+          <figcaption>Loading</figcaption>
+        </figure>
+        <figure class="demo-input__sample">
+          <div class="input input--textarea">
+            <textarea class="input__control" aria-label="Read-only" placeholder="Leave your comment" readonly>This field is locked</textarea>
+          </div>
+          <figcaption>Read-only</figcaption>
+        </figure>
+        <figure class="demo-input__sample">
+          <div class="input input--textarea">
+            <textarea class="input__control" aria-label="Disabled" placeholder="Leave your comment" disabled>Disabled field</textarea>
+          </div>
+          <figcaption>Disabled</figcaption>
+        </figure>
+      </div>
+
+      <h2 class="demo-input__set">With Button</h2>
+      <p class="demo-input__note">
+        Same heights as Button, so a field and a button line up in a row. Rectangle corners follow the Rectangular Button
+        (6 · 8 · 10).
+      </p>
+      <div class="demo-input__pairs">
+        <div class="demo-input__row">
+          <div class="input input--sm input--pill">
+            <span class="icon icon--magnifier" aria-hidden="true"></span>
+            <input class="input__control" type="search" placeholder="Search" aria-label="Search SM" />
+          </div>
+          <button type="button" class="btn btn-brand btn--sm">Search</button>
+          <span class="demo-input__size">SM · 34</span>
+        </div>
+        <div class="demo-input__row">
+          <div class="input input--sm">
+            <input class="input__control" type="email" placeholder="Email address" aria-label="Email SM" />
+          </div>
+          <button type="button" class="btn btn-brand btn--rect btn--sm">Subscribe</button>
+          <span class="demo-input__size">SM · Rectangle</span>
+        </div>
+        <div class="demo-input__row">
+          <div class="input input--pill">
+            <span class="icon icon--magnifier" aria-hidden="true"></span>
+            <input class="input__control" type="search" placeholder="Search" aria-label="Search MD" />
+          </div>
+          <button type="button" class="btn btn-brand">Search</button>
+          <span class="demo-input__size">MD · 40</span>
+        </div>
+        <div class="demo-input__row">
+          <div class="input">
+            <input class="input__control" type="email" placeholder="Email address" aria-label="Email MD" />
+          </div>
+          <button type="button" class="btn btn-brand btn--rect">Subscribe</button>
+          <span class="demo-input__size">MD · Rectangle</span>
+        </div>
+        <div class="demo-input__row">
+          <div class="input input--lg input--pill">
+            <span class="icon icon--magnifier" aria-hidden="true"></span>
+            <input class="input__control" type="search" placeholder="Search" aria-label="Search LG" />
+          </div>
+          <button type="button" class="btn btn-brand btn--lg">Search</button>
+          <span class="demo-input__size">LG · 46</span>
+        </div>
+        <div class="demo-input__row">
+          <div class="input input--lg">
+            <input class="input__control" type="email" placeholder="Email address" aria-label="Email LG" />
+          </div>
+          <button type="button" class="btn btn-brand btn--rect btn--lg">Subscribe</button>
+          <span class="demo-input__size">LG · Rectangle</span>
+        </div>
+      </div>
+    </section>
+  </body>
+</html>

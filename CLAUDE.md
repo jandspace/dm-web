@@ -46,7 +46,7 @@ Hooks in `.claude/settings.json` check rules 1–6, 8 and 11 automatically (rule
 | `foundation/` | Reference pages: Colour, Typography, Spacing, Border Radius, Elevation, Layout & Grid, Iconography |
 | `components/<name>/` | One demo folder per component |
 | `modules/<name>/` | One demo folder per module or module part |
-| `scripts/modules/` | Shared behaviour (Article Card Media, Carousel, Masthead, Scroll Row, Shorts Signpost, Toast, Tooltip). Never copy into a page |
+| `scripts/modules/` | Shared behaviour (Article Card Media, Carousel, Input, Masthead, Scroll Row, Shorts Signpost, Toast, Tooltip). Never copy into a page |
 | `scripts/scaffolding/` | Demo-only JS (side panel, index, footer, home button, drag-swipe) |
 | `projects/YYYYMM-prj-<name>/` | Project prototypes. Main page `index.html` in the folder, no platform subfolders |
 | `experiments/YYYYMM-exp-<name>/` | A/B tests and one-offs. Self-contained, never imported elsewhere |

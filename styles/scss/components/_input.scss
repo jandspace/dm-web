@@ -1,0 +1,372 @@
+// ── Input ─────────────────────────────────────────────────────────────────────
+// Form fields — Input, Select and Textarea share one box, sizes and states.
+//
+//   .input-field                       optional: label + box + hint, 8px apart
+//     label.input-field__label         label-sm Semibold
+//     .input                           the box
+//       .icon                          leading icon (optional)
+//       .input__control                <input> · <select> · <textarea> · <span> (Dropdown Select value)
+//       button.input__clear            ico-xmark-circle — with focus and a value only
+//       button.input__reveal           ico-eye-close / -open — password
+//       ::after                        status icon, drawn by the state
+//     p.input-field__hint              text-sm, takes the status colour
+//
+//   .input--sm · .input--lg            34 / 46 high (MD 40) — Button heights
+//   .input--pill                       full corners
+//   .input--select                     chevron (::before); a native <select> fills the box
+//   .input--textarea                   three lines, resizable in height
+//   .input-select                      Dropdown Select: button.input.input--select[role=combobox] + .dropdown-menu
+//
+// States — from the control where HTML has an attribute:
+//   Focus      :focus-within                 2px semantic-info
+//   Valid      .input--success               2px semantic-success + tick-circle
+//   Error      [aria-invalid="true"]         2px semantic-error + error/subtlest + triangle
+//                                           (on the control, or the Dropdown Select combobox)
+//   Loading    .input--loading               neutral/light + Loading ring
+//   Read-only  [readonly] / [aria-readonly]  neutral/lighter + padlock
+//   Disabled   :disabled                     neutral/light + slash-circle, text 40%
+// 2px = the 1px border + a 1px inset ring, so the content never moves.
+//
+// Behaviour (Clear, Show / hide, Dropdown Select): scripts/modules/input.js
+// Reference: Figma Web UI Kit › Input (210:6470)
+
+@use 'loading';
+
+// ── Field ─────────────────────────────────────────────────────────────────────
+
+.input-field {
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-8);
+  font-family: var(--typography-font-family-sans);
+}
+
+.input-field__label {
+  font-size: var(--typography-font-size-label-sm);
+  font-weight: var(--typography-font-weight-semibold);
+  line-height: var(--typography-line-height-narrow);
+  color: var(--color-text-neutral-darker);
+}
+
+.input-field__hint {
+  margin: 0;
+  font-size: var(--typography-font-size-text-sm);
+  line-height: var(--typography-line-height-normal);
+  letter-spacing: var(--typography-letter-spacing-wide);
+  color: var(--color-text-neutral-grey-dark);
+}
+
+.input-field:has(.input--success) > .input-field__hint {
+  color: var(--color-text-semantic-success-base);
+}
+
+.input-field:has([aria-invalid='true']) > .input-field__hint {
+  color: var(--color-text-semantic-error-base);
+}
+
+// ── Box ───────────────────────────────────────────────────────────────────────
+
+.input {
+  --input-height: 40px;
+  --input-inset: var(--spacing-16); // side inset, border included
+  --input-gap: var(--spacing-8);
+  --input-icon: 16px;
+  --input-spinner: 24px;
+  --input-radius: var(--border-radius-8);
+  --input-border: var(--color-border-neutral-grey-light);
+  --input-ring: 0px; // inset ring that makes the border 2px
+  --input-pad: calc(var(--input-inset) - 1px);
+
+  position: relative;
+  display: flex;
+  align-items: center;
+  gap: var(--input-gap);
+  min-height: var(--input-height);
+  padding: 0 var(--input-pad);
+  border: 1px solid var(--input-border);
+  border-radius: var(--input-radius);
+  box-shadow: inset 0 0 0 var(--input-ring) var(--input-border);
+  background-color: var(--color-background-neutral-white);
+  font-family: var(--typography-font-family-sans);
+  font-size: var(--typography-font-size-text-md);
+  font-weight: var(--typography-font-weight-regular);
+  line-height: var(--typography-line-height-normal);
+  letter-spacing: var(--typography-letter-spacing-normal);
+  text-align: start;
+  color: var(--color-text-neutral-darker);
+
+  > .icon {
+    --icon-color: var(--color-icon-neutral-grey-dark);
+
+    width: var(--input-icon);
+    height: var(--input-icon);
+  }
+
+  // Status icon — a state sets --input-status (and its colour) to show it
+  &::after {
+    flex-shrink: 0;
+    order: 1;
+    width: var(--input-icon);
+    height: var(--input-icon);
+    background-color: var(--input-status-color, var(--color-icon-neutral-grey-dark));
+    -webkit-mask: var(--input-status) center / contain no-repeat; // Chrome < 120
+    mask: var(--input-status) center / contain no-repeat;
+  }
+}
+
+.input__control {
+  flex: 1 1 0;
+  align-self: stretch;
+  min-width: 0;
+  margin: 0;
+  padding: 0;
+  border: 0;
+  outline: none; // the box shows focus
+  background: none;
+  font: inherit;
+  letter-spacing: inherit;
+  color: inherit;
+  text-overflow: ellipsis;
+
+  &::placeholder {
+    color: inherit;
+    opacity: 0.4;
+  }
+}
+
+// Clear and Show / hide — bare icon buttons in the box
+.input__clear,
+.input__reveal {
+  display: flex;
+  flex-shrink: 0;
+  padding: 0;
+  border: 0;
+  border-radius: var(--border-radius-full);
+  background: none;
+  cursor: pointer;
+
+  > .icon {
+    --icon-color: var(--color-icon-neutral-grey-dark);
+
+    width: var(--input-icon);
+    height: var(--input-icon);
+  }
+}
+
+// Clear only while typing: the box has focus and the control a value
+.input:not(:focus-within, .is-focus) > .input__clear,
+.input:has(> :placeholder-shown) > .input__clear {
+  display: none;
+}
+
+// ── Size and shape ────────────────────────────────────────────────────────────
+
+.input--sm {
+  --input-height: 34px;
+  --input-inset: var(--spacing-12);
+  --input-gap: var(--spacing-6);
+  --input-icon: 14px;
+  --input-spinner: 20px;
+  --input-radius: var(--border-radius-6);
+
+  font-size: var(--typography-font-size-text-sm);
+  letter-spacing: var(--typography-letter-spacing-wide);
+}
+
+.input--lg {
+  --input-height: 46px;
+  --input-inset: var(--spacing-20);
+  --input-gap: var(--spacing-10);
+  --input-icon: 18px;
+  --input-spinner: 28px;
+  --input-radius: var(--border-radius-10);
+
+  font-size: var(--typography-font-size-text-lg);
+}
+
+.input--pill {
+  --input-radius: var(--border-radius-full);
+}
+
+// ── Textarea ──────────────────────────────────────────────────────────────────
+
+.input--textarea {
+  align-items: flex-end;
+  padding-block: calc(var(--spacing-12) - 1px);
+
+  > .input__control {
+    min-height: calc(3em * var(--typography-line-height-normal)); // three lines → 96 box
+    resize: vertical;
+  }
+}
+
+// ── Select ────────────────────────────────────────────────────────────────────
+
+.input--select {
+  cursor: pointer;
+
+  &::before {
+    content: '';
+    flex-shrink: 0;
+    order: 2;
+    width: var(--input-icon);
+    height: var(--input-icon);
+    background-color: var(--color-icon-neutral-darker);
+    -webkit-mask: url('../../assets/icons/ico-chevron-down.svg') center / contain no-repeat;
+    mask: url('../../assets/icons/ico-chevron-down.svg') center / contain no-repeat;
+  }
+
+  &[aria-expanded='true']::before {
+    -webkit-mask-image: url('../../assets/icons/ico-chevron-up.svg');
+    mask-image: url('../../assets/icons/ico-chevron-up.svg');
+  }
+}
+
+// Native <select>: it fills the whole box (so all of it opens the picker) and
+// the chevron and status icon sit over its right end
+.input--select:has(> select) {
+  --input-end: calc(var(--input-pad) + var(--input-icon) + var(--input-gap));
+
+  display: grid;
+  padding: 0;
+
+  > select {
+    grid-area: 1 / 1;
+    padding: 0 var(--input-end) 0 var(--input-pad);
+    appearance: none;
+    cursor: inherit;
+  }
+
+  // nothing chosen yet: a disabled first <option> is the placeholder
+  > select:has(> option:checked:disabled) {
+    opacity: 0.4;
+  }
+
+  &::before,
+  &::after {
+    grid-area: 1 / 1;
+    justify-self: end;
+    align-self: center;
+    pointer-events: none;
+  }
+
+  &::before {
+    margin-right: var(--input-pad);
+  }
+
+  &::after {
+    margin-right: var(--input-end);
+  }
+
+  // a status icon too: room for two icons
+  &:is(.input--success, .input--loading, :has(> [aria-invalid='true'], > :disabled)) > select {
+    padding-right: calc(var(--input-end) + var(--input-icon) + var(--input-gap));
+  }
+}
+
+// Dropdown Select: a button box + Dropdown Menu under it, full width
+.input-select {
+  position: relative;
+
+  > .input {
+    width: 100%;
+  }
+
+  > .dropdown-menu {
+    position: absolute;
+    top: calc(100% + var(--spacing-4));
+    right: 0;
+    left: 0;
+    z-index: 10;
+    max-height: 164px;
+  }
+}
+
+// Dropdown Select value — a <span> in the button box
+span.input__control {
+  align-self: center;
+  overflow: hidden;
+  white-space: nowrap;
+
+  &:empty::before {
+    content: attr(data-placeholder);
+    opacity: 0.4;
+  }
+}
+
+// ── States ────────────────────────────────────────────────────────────────────
+// Source order sets the winner: Error over Focus; Read-only and Disabled last.
+
+.input:focus-within,
+.input[aria-expanded='true'],
+.input.is-focus { // .is-focus: static demo sample
+  --input-border: var(--color-border-semantic-info-base);
+  --input-ring: 1px;
+}
+
+.input--success {
+  --input-border: var(--color-border-semantic-success-base);
+  --input-ring: 1px;
+  --input-status: url('../../assets/icons/ico-tick-circle.svg');
+  --input-status-color: var(--color-icon-semantic-success-base);
+
+  &::after {
+    content: '';
+  }
+}
+
+.input:has(> [aria-invalid='true']),
+.input[aria-invalid='true'] {
+  --input-border: var(--color-border-semantic-error-base);
+  --input-ring: 1px;
+  --input-status: url('../../assets/icons/ico-exclamation-mark-triangle.svg');
+  --input-status-color: var(--color-icon-semantic-error-base);
+
+  background-color: var(--color-background-semantic-error-subtlest);
+
+  &::after {
+    content: '';
+  }
+}
+
+.input--loading {
+  --input-status: url('../../assets/icons/ico-loading.svg');
+  --input-status-color: var(--color-icon-home-blue-base);
+
+  background-color: var(--color-background-neutral-light);
+
+  &::after {
+    @include loading.ring;
+    content: '';
+    width: var(--input-spinner);
+    height: var(--input-spinner);
+  }
+}
+
+.input:has(> [readonly]),
+.input[aria-readonly='true'] {
+  --input-status: url('../../assets/icons/ico-padlock.svg');
+
+  background-color: var(--color-background-neutral-lighter);
+  cursor: default;
+
+  &::after {
+    content: '';
+  }
+}
+
+.input:has(> :disabled),
+.input:disabled {
+  --input-status: url('../../assets/icons/ico-slash-circle.svg');
+
+  background-color: var(--color-background-neutral-light);
+  cursor: not-allowed;
+
+  > :is(.icon, .input__control) {
+    opacity: 0.4;
+  }
+
+  &::after {
+    content: '';
+  }
+}
