@@ -583,7 +583,7 @@
   }
 
   .article-headline {
-    min-height: calc(4em * 1.32); // four H5 lines (compact line height)
+    min-height: calc(4em * var(--typography-line-height-narrow)); // four H5 lines
     text-align: center;
     color: var(--color-text-neutral-white);
     text-shadow: 0 0 32px var(--color-effect-translucent-dark-solid);

@@ -183,7 +183,7 @@
 .article-card__body {
   display: flex;
   flex-direction: column;
-  gap: var(--spacing-8);
+  gap: var(--spacing-12);
   min-width: 0;
 }
 
@@ -202,7 +202,7 @@
 
 .article-card__preview {
   display: none;
-  margin: 0 0 var(--spacing-8);
+  margin: 0;
   font-family: var(--typography-font-family-sans);
   font-size: var(--typography-font-size-label-xsm);
   font-weight: var(--typography-font-weight-regular);
@@ -332,6 +332,7 @@
 
   .article-card__body {
     flex: 1 1 0;
+    gap: var(--spacing-8); // SM rows 8 (other cards 12); image ↔ text 12 is the card gap
   }
 
   .article-card__media {
@@ -357,7 +358,7 @@
   @include bp.respond-to(lg) {
     display: grid;
     grid-template-columns: auto 1fr;
-    gap: var(--spacing-8);
+    gap: var(--spacing-8) var(--spacing-12); // rows 8 · thumbnail ↔ preview 12
 
     .article-card__body {
       display: contents;
@@ -378,7 +379,6 @@
 
     .article-card__preview {
       display: block;
-      margin: 0;
     }
 
     // No thumbnail (none in the markup, or dropped for Columnist metadata below)

@@ -14,7 +14,7 @@ The full-width top story is a separate block — see [Article Card — Banner St
 |---|---|
 | **Media container** | Image or video at a fixed aspect ratio per card type. 4px corners (Image Only: 8px) |
 | **Headline** | Article Headline (`.article-headline`), H2–H6 by card type. Holds the article link and, optionally, an editorial badge inline at the start, followed by a space (§ Badge in the headline). Inter by default; Lora when Figma calls for it (e.g. a columnist's quote) — add `.serif` to the heading, nothing else changes. A columnist's quote headline carries the columnist's photo on its right (§ Quote Headline) |
-| **Preview text** *(optional)* | CMS-controlled summary under the headline |
+| **Preview text** *(optional)* | CMS-controlled summary under the headline. No margin of its own: 12px to the headline and to the metadata come from the card gap |
 | **Live Key Updates** *(optional)* | Live articles only — replaces the preview text slot |
 | **Thumbnail + preview** *(SM: Left Thumb, LG+)* | Under the headline: 4:3 thumbnail with the preview text beside it (§ SM: Left Thumb) |
 | **Metadata** | Article Card Metadata row — info on the left, comment counter on the right |
@@ -46,8 +46,10 @@ The card carries its own 16px inset; the column grid carries none (Foundation �
 
 | Breakpoint | Structure |
 |---|---|
-| LG / XL | Headline across the card → thumbnail + preview text (8px gap) → metadata across the card. 8px between rows |
-| MD / SM-XS | Thumbnail left, headline + metadata on the right. No preview text (the mobile headline is short) |
+| LG / XL | Headline across the card → thumbnail + preview text (12px gap) → metadata across the card. 8px between rows |
+| MD / SM-XS | Thumbnail left (12px to the text), headline + metadata on the right, 8px apart. No preview text (the mobile headline is short) |
+
+XL, XL Horizontal, XL Triple, MD (Vertical Media) and MD keep 12px between headline, preview / key updates and metadata (`.article-card__body` gap). SM: Left Thumb and SM: Right Thumb (Puff) use 8px between rows and 12px between image and text, at every breakpoint.
 
 - Thumbnail and preview are switched together in the CMS (Figma boolean "Thumbnail + Preview Text"). A thumbnail never stands alone; the preview can (it then runs across the card), or both go.
 - Thumbnail LG 144 × 108 · XL 152 × 114. The preview runs in full beside it — no truncation; a long preview makes the row taller than the thumbnail.
