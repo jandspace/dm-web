@@ -53,46 +53,35 @@ h1, h2, h3, h4, h5, h6 {
   font-size: var(--typography-font-size-display-sm);
 }
 
-.h4, .h3, .h2, .h1 {
+.h6, .h5, .h4, .h3, .h2, .h1 {
   font-family: var(--typography-font-family-sans);
   font-weight: var(--typography-font-weight-semibold);
   line-height: var(--typography-line-height-narrow);
-}
-
-.h6, .h5 {
-  font-family: var(--typography-font-family-sans);
-  font-weight: var(--typography-font-weight-semibold);
-  line-height: var(--typography-line-height-compact);
+  letter-spacing: var(--typography-letter-spacing-normal);
 }
 
 .h1 {
   font-size: var(--typography-font-size-h1);
-  letter-spacing: var(--typography-letter-spacing-narrow);
 }
 
 .h2 {
   font-size: var(--typography-font-size-h2);
-  letter-spacing: var(--typography-letter-spacing-compact);
 }
 
 .h3 {
   font-size: var(--typography-font-size-h3);
-  letter-spacing: var(--typography-letter-spacing-compact);
 }
 
 .h4 {
   font-size: var(--typography-font-size-h4);
-  letter-spacing: var(--typography-letter-spacing-normal);
 }
 
 .h5 {
   font-size: var(--typography-font-size-h5);
-  letter-spacing: var(--typography-letter-spacing-normal);
 }
 
 .h6 {
   font-size: var(--typography-font-size-h6);
-  letter-spacing: var(--typography-letter-spacing-wide);
 }
 
 .text-xxsm, .text-xsm, .text-sm, .text-md, .text-lg {
@@ -4219,7 +4208,7 @@ html:has(.modal[open]) {
   overflow: hidden;
   font-size: var(--typography-font-size-h5);
   font-weight: var(--typography-font-weight-semibold);
-  line-height: var(--typography-line-height-compact);
+  line-height: var(--typography-line-height-narrow);
   text-overflow: ellipsis;
   white-space: nowrap;
 }
@@ -4511,7 +4500,7 @@ html:has(.modal[open]) {
   padding-right: var(--spacing-16);
   font-size: var(--typography-font-size-h5);
   font-weight: var(--typography-font-weight-semibold);
-  line-height: var(--typography-line-height-compact);
+  line-height: var(--typography-line-height-narrow);
 }
 
 .popover__description {
@@ -5174,7 +5163,7 @@ button.video-play {
   .article-card--sm-left {
     display: grid;
     grid-template-columns: auto 1fr;
-    gap: var(--spacing-12);
+    gap: var(--spacing-8) var(--spacing-12);
   }
   .article-card--sm-left .article-card__body {
     display: contents;
@@ -5332,7 +5321,7 @@ button.video-play {
   font-family: var(--typography-font-family-sans);
   font-size: var(--typography-font-size-h5);
   font-weight: var(--typography-font-weight-bold);
-  line-height: var(--typography-line-height-compact);
+  line-height: var(--typography-line-height-narrow);
   letter-spacing: var(--typography-letter-spacing-normal);
   color: var(--color-text-neutral-darker);
 }
@@ -5703,7 +5692,7 @@ button.video-play {
   font-size: var(--typography-font-size-h2);
   font-weight: var(--typography-font-weight-semibold);
   line-height: var(--typography-line-height-narrow);
-  letter-spacing: var(--typography-letter-spacing-compact);
+  letter-spacing: var(--typography-letter-spacing-normal);
   color: var(--color-text-neutral-lightest);
   text-align: center;
 }
@@ -5830,7 +5819,7 @@ button.video-play {
   font-family: var(--typography-font-family-sans);
   font-size: var(--typography-font-size-h5);
   font-weight: var(--typography-font-weight-semibold);
-  line-height: var(--typography-line-height-compact);
+  line-height: var(--typography-line-height-narrow);
   color: var(--color-text-neutral-lightest);
 }
 
@@ -6491,7 +6480,7 @@ a.columnist-photo:hover, a.columnist-photo:focus-visible {
   font-size: var(--typography-font-size-h3);
   font-weight: var(--typography-font-weight-bold);
   line-height: var(--typography-line-height-narrow);
-  letter-spacing: var(--typography-letter-spacing-compact);
+  letter-spacing: var(--typography-letter-spacing-normal);
   color: var(--color-text-neutral-darker);
 }
 
@@ -6620,7 +6609,6 @@ a.section-header__link:focus-visible {
 
 .section-header--sm .section-header__title {
   font-size: var(--typography-font-size-h4);
-  letter-spacing: var(--typography-letter-spacing-normal);
 }
 .section-header--sm .section-header__title,
 .section-header--sm .section-header__link {
@@ -9237,8 +9225,7 @@ html:has(.masthead-sheet:not([hidden])) {
   list-style: none;
   font-size: var(--typography-font-size-h6);
   font-weight: var(--typography-font-weight-bold);
-  line-height: var(--typography-line-height-compact);
-  letter-spacing: var(--typography-letter-spacing-wide);
+  line-height: var(--typography-line-height-narrow);
 }
 .footer__heading::-webkit-details-marker {
   display: none;
@@ -14042,7 +14029,6 @@ body:not(.demo-frame) .demo-container-start {
   }
   .homepage-verticals .h4 {
     font-size: var(--typography-font-size-h5);
-    line-height: var(--typography-line-height-compact);
   }
   .homepage-verticals .h5 {
     font-size: var(--typography-font-size-h6);
@@ -14482,7 +14468,7 @@ body:not(.demo-frame) .demo-container-start {
   margin: 0;
   font-size: var(--typography-font-size-h5);
   font-weight: var(--typography-font-weight-semibold);
-  line-height: var(--typography-line-height-compact);
+  line-height: var(--typography-line-height-narrow);
   color: var(--color-text-neutral-darker);
 }
 .homepage-podcast__heading .icon {

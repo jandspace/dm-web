@@ -256,8 +256,8 @@ The system uses five multipliers, each assigned to a specific role and level:
 | Name | Multiplier | Applied to |
 |---|---|---|
 | Narrower | 1.12 | Display (all levels) |
-| Narrow | 1.20 | Heading H1–H4, Label (all levels) |
-| Compact | 1.32 | Heading H5–H6 |
+| Narrow | 1.20 | Heading H1–H6, Label (all levels) |
+| Compact | 1.32 | Not used by headings (since 2026-11-24) |
 | Normal | 1.50 | Text / Body (all levels) |
 | Wide | 1.75 | Special editorial use cases only |
 
@@ -332,12 +332,12 @@ All values are defined as percentages and applied on web only. iOS and Android f
 
 | Token | Value | Applied To |
 |---|---|---|
-| `narrow` | -0.5% | Display, H1 — tight tracking reinforces visual impact at large scale |
-| `compact` | -0.2% | H2–H3 — slight tightening improves headline density |
-| `normal` | 0 | H4–H5, Text lg–md, Label — default; no adjustment |
-| `wide` | +0.25% | H6, Text sm–xxsm, small metadata — opens up tracking at smaller sizes for legibility |
+| `narrow` | -0.5% | Display — tight tracking reinforces visual impact at large scale |
+| `compact` | -0.2% | Not used by headings (since 2026-11-24) |
+| `normal` | 0 | H1–H6, Text lg–md, Label — default; no adjustment |
+| `wide` | +0.25% | Text sm–xxsm, small metadata — opens up tracking at smaller sizes for legibility |
 
-Tracking steps down with the size: the larger the text, the tighter.
+Headings H1–H6 share one line height (narrow 1.2) and one letter spacing (normal 0); only the size changes (feedback, 2026-11-24).
 
 Sufficient line height and paragraph spacing allow the eye to move through content without effort. Each paragraph feels distinct, reducing cognitive load across longer reading sessions.
 
@@ -431,6 +431,8 @@ Source: `tokens/dm_typography_web_tokens.css`. Utility classes (`.h1`–`.h6`, `
 Checked against the Figma text styles (`dmw_sans/…`, `dmw_serif/…`, Web UI Kit › Typography) and the token styles in `dm_typography_web_tokens.json` on 2026-10-27. Sizes, line heights, letter spacing and font families match. Notes:
 
 Letter spacing per style now follows the token styles (resolved 2026-10-27: H1 narrow, H4 normal, H6 and Text sm–xxsm wide).
+
+2026-11-24 — H1–H6 changed to one value for all levels: line height narrow (1.2), letter spacing normal (0). The Figma `dmw_*/h1`–`h6` styles still carry the old values (H1 −0.5%, H2–H3 −0.2%, H6 +0.25%, H5–H6 1.32) and need updating.
 
 - In Figma only font size and font family are bound to variables; line height and letter spacing are raw values in each style, so they can drift from the tokens.
 - `dmw_sans/text-xxsm/Bold` is bound to `label-xxsm` (same 12px today) — should be `text-xxsm`.

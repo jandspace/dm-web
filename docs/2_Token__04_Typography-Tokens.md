@@ -50,8 +50,8 @@ To ensure a harmonious visual rhythm across all screen sizes, we utilise a Relat
 
 All line-heights are defined as unitless ratios to ensure a harmonious vertical rhythm that scales proportionally with the font size, adhering to the principle: `line-height = font-size * multiplier (1.12, 1.2, 1.32, 1.5, or 1.75)`
 
-- **Narrow (1.2) and Narrower (1.12):** Applied to high-impact Display styles, Headings (H1–H4), and Labels. These lower ratios keep large-scale text and UI elements compact and powerful.
-- **Compact (1.32):** Used for Sub-headings (H5–H6) and tighter UI components to maintain a balanced, professional density.
+- **Narrow (1.2) and Narrower (1.12):** Applied to high-impact Display styles, Headings (H1–H6), and Labels. These lower ratios keep large-scale text and UI elements compact and powerful.
+- **Compact (1.32):** Used for tighter UI components (no longer for H5–H6, since 2026-11-24) to maintain a balanced, professional density.
 - **Normal (1.5):** The default standard for comfortable, long-form Body Copy. This ratio is optimised for maximum legibility and reading endurance.
 - **Wide (1.75):** Reserved for special editorial use cases requiring additional breathing room.
 

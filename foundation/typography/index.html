@@ -16,7 +16,7 @@
   <body class="demo-page-body">
     <h1 class="demo-page-h1">Typography</h1>
     <p class="demo-page-intro">
-      Web type system: two typefaces, four roles (Display · Heading · Text · Label) and a size suffix per role. Every
+      Web type system: two typefaces, four roles (Heading · Display · Text · Label) and a size suffix per role. Every
       value on this page is read live — sizes from <code>tokens/dm_typography_web_tokens.css</code>, and weight, line
       height and letter spacing from the utility classes in <code>styles/scss/foundation/_typography.scss</code> — so it
       shows what the code does. Figma: Web UI Kit › Typography (page 12:3), text styles <code>dmw_sans/…</code> and
@@ -46,7 +46,7 @@
       <p class="demo-type__note">
         Role + level: the class is the code side of the Figma style (<code>.h2</code> = <code>dmw_sans/h2/Semibold</code>).
         The sample renders at this window's breakpoint (<strong id="demo-type-bp"></strong>); the size columns show all three.
-        Only Display, H1–H3 and label-xl change with the breakpoint.
+        Only H1–H3, Display and label-xl change with the breakpoint.
       </p>
       <div class="demo-type__scroll">
         <table class="demo-type__table" id="demo-type-scale">
@@ -99,8 +99,8 @@
         const lg = { ...md, ...at(1024) };
 
         const ROLES = [
-          ['Display', ['display-lg', 'display-md', 'display-sm']],
           ['Heading', ['h1', 'h2', 'h3', 'h4', 'h5', 'h6']],
+          ['Display', ['display-lg', 'display-md', 'display-sm']],
           ['Text', ['text-lg', 'text-md', 'text-sm', 'text-xsm', 'text-xxsm']],
           ['Label', ['label-xl', 'label-lg', 'label-md', 'label-sm', 'label-xsm', 'label-xxsm']],
         ];
@@ -159,16 +159,16 @@
         };
         fill('demo-type-line-height', 'typography-line-height-', {
           narrower: 'Display',
-          narrow: 'H1–H4, Label',
-          compact: 'H5–H6',
+          narrow: 'H1–H6, Label',
+          compact: 'Not used by headings',
           normal: 'Text',
           wide: 'Special editorial only',
         });
         fill('demo-type-letter-spacing', 'typography-letter-spacing-', {
-          narrow: 'Display, H1',
-          compact: 'H2–H3',
-          normal: 'H4–H5, Text lg–md, Label',
-          wide: 'H6, Text sm–xxsm, small metadata',
+          narrow: 'Display',
+          compact: 'Not used by headings',
+          normal: 'H1–H6, Text lg–md, Label',
+          wide: 'Text sm–xxsm, small metadata',
         });
         fill('demo-type-weight', 'typography-font-weight-', {
           regular: 'Text, secondary metadata',

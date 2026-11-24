@@ -84,8 +84,8 @@ Text and Label are fixed at all breakpoints, except label-xl: 19px (SM-XS, MD), 
 | Token | Value | Applied to |
 |---|---|---|
 | `--typography-line-height-narrower` | 1.12 | Display |
-| `--typography-line-height-narrow` | 1.20 | H1–H4, Label |
-| `--typography-line-height-compact` | 1.32 | H5–H6 |
+| `--typography-line-height-narrow` | 1.20 | H1–H6, Label |
+| `--typography-line-height-compact` | 1.32 | Not for headings |
 | `--typography-line-height-normal` | 1.50 | Text / body |
 | `--typography-line-height-wide` | 1.75 | Special editorial only |
 
@@ -93,7 +93,9 @@ Text and Label are fixed at all breakpoints, except label-xl: 19px (SM-XS, MD), 
 
 | Token | Value | Applied to |
 |---|---|---|
-| narrow | -0.5% | Display, H1 |
-| compact | -0.2% | H2–H3 |
-| normal | 0 | H4–H5, text-lg–md, Label |
-| wide | +0.25% | H6, text-sm–xxsm, small metadata |
+| narrow | -0.5% | Display |
+| compact | -0.2% | Not for headings |
+| normal | 0 | H1–H6, text-lg–md, Label |
+| wide | +0.25% | text-sm–xxsm, small metadata |
+
+Every heading, `.h1`–`.h6` or hand-built at a heading size (card titles, section titles, toast/popover titles), uses line height narrow and letter spacing normal.

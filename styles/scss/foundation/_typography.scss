@@ -6,11 +6,7 @@
 
 // Role–weight–line-height–letter-spacing mapping (token styles, Figma dmw_*):
 //   Display   → Bold (700)     | Narrower (1.12) | narrow  (-0.5%)
-//   H1        → Semibold (600) | Narrow   (1.20) | narrow  (-0.5%)
-//   H2–H3     → Semibold (600) | Narrow   (1.20) | compact (-0.2%)
-//   H4        → Semibold (600) | Narrow   (1.20) | normal  (0)
-//   H5        → Semibold (600) | Compact  (1.32) | normal  (0)
-//   H6        → Semibold (600) | Compact  (1.32) | wide    (+0.25%)
+//   H1–H6     → Semibold (600) | Narrow   (1.20) | normal  (0)
 //   Text lg–md→ Regular (400)  | Normal   (1.50) | normal  (0)
 //   Text sm–xxsm → Regular     | Normal   (1.50) | wide    (+0.25%)
 //   Label     → Semibold (600) | Narrow   (1.20) | normal  (0)
@@ -71,26 +67,21 @@ h1, h2, h3, h4, h5, h6 {
 // ── Heading ───────────────────────────────────────────────
 // Structural content hierarchy. Sans default; add .serif for editorial headlines.
 // Bold (700) is permitted for H1–H2 where editorial impact demands it.
-// Line height: narrow for H1–H4, compact for H5–H6. Letter spacing steps down
-// with the size: H1 narrow · H2–H3 compact · H4–H5 normal · H6 wide.
-%type-heading-h1-h4 {
+// One line height and letter spacing for every level (2026-11-24):
+// narrow 1.2, letter spacing normal (0). Only the size changes.
+%type-heading-base {
   font-family: var(--typography-font-family-sans);
   font-weight: var(--typography-font-weight-semibold);
   line-height: var(--typography-line-height-narrow);
+  letter-spacing: var(--typography-letter-spacing-normal);
 }
 
-%type-heading-h5-h6 {
-  font-family: var(--typography-font-family-sans);
-  font-weight: var(--typography-font-weight-semibold);
-  line-height: var(--typography-line-height-compact);
-}
-
-.h1 { @extend %type-heading-h1-h4; font-size: var(--typography-font-size-h1); letter-spacing: var(--typography-letter-spacing-narrow); }
-.h2 { @extend %type-heading-h1-h4; font-size: var(--typography-font-size-h2); letter-spacing: var(--typography-letter-spacing-compact); }
-.h3 { @extend %type-heading-h1-h4; font-size: var(--typography-font-size-h3); letter-spacing: var(--typography-letter-spacing-compact); }
-.h4 { @extend %type-heading-h1-h4; font-size: var(--typography-font-size-h4); letter-spacing: var(--typography-letter-spacing-normal); }
-.h5 { @extend %type-heading-h5-h6; font-size: var(--typography-font-size-h5); letter-spacing: var(--typography-letter-spacing-normal); }
-.h6 { @extend %type-heading-h5-h6; font-size: var(--typography-font-size-h6); letter-spacing: var(--typography-letter-spacing-wide); }
+.h1 { @extend %type-heading-base; font-size: var(--typography-font-size-h1); }
+.h2 { @extend %type-heading-base; font-size: var(--typography-font-size-h2); }
+.h3 { @extend %type-heading-base; font-size: var(--typography-font-size-h3); }
+.h4 { @extend %type-heading-base; font-size: var(--typography-font-size-h4); }
+.h5 { @extend %type-heading-base; font-size: var(--typography-font-size-h5); }
+.h6 { @extend %type-heading-base; font-size: var(--typography-font-size-h6); }
 
 // ── Text ──────────────────────────────────────────────────
 // Long-form reading — article body paragraphs, descriptions, editorial passages.
