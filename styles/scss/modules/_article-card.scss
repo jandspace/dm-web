@@ -357,7 +357,7 @@
   @include bp.respond-to(lg) {
     display: grid;
     grid-template-columns: auto 1fr;
-    gap: var(--spacing-8) var(--spacing-12); // rows 8 · thumbnail ↔ preview 12
+    gap: var(--spacing-8);
 
     .article-card__body {
       display: contents;

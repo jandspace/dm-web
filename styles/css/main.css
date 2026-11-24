@@ -5163,7 +5163,7 @@ button.video-play {
   .article-card--sm-left {
     display: grid;
     grid-template-columns: auto 1fr;
-    gap: var(--spacing-8) var(--spacing-12);
+    gap: var(--spacing-8);
   }
   .article-card--sm-left .article-card__body {
     display: contents;

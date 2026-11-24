@@ -46,7 +46,7 @@ The card carries its own 16px inset; the column grid carries none (Foundation �
 
 | Breakpoint | Structure |
 |---|---|
-| LG / XL | Headline across the card → thumbnail + preview text (12px gap) → metadata across the card. 8px between rows |
+| LG / XL | Headline across the card → thumbnail + preview text (8px gap) → metadata across the card. 8px between rows |
 | MD / SM-XS | Thumbnail left, headline + metadata on the right. No preview text (the mobile headline is short) |
 
 - Thumbnail and preview are switched together in the CMS (Figma boolean "Thumbnail + Preview Text"). A thumbnail never stands alone; the preview can (it then runs across the card), or both go.
