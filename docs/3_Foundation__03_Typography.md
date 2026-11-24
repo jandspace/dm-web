@@ -34,6 +34,7 @@ image required
 |---|---|---|
 | **Sans (Inter)** | Primary | Used for the majority of UI and content. Body text and paragraphs, UI components (buttons, labels, navigation), metadata and supporting text, and article headlines on Web (by default). Inter is optimised for screen readability and should be used as the default typeface across all platforms. |
 | **Serif (Lora)** | Editorial | Used selectively for editorial emphasis. Article headlines and story titles on App (iOS/Android), Web article headlines where Figma calls for it (e.g. a columnist's quote), content cards and featured sections, author comments and quotes. Lora introduces a sense of authority and distinction, and should only be used in editorial contexts. |
+| **Slab (DM Slab)** | Brand | Daily Mail's own slab (DM Slab Beton SH, Extra Bold Condensed). Used only for the text name in Section Header Branded — 30px, line height 1, letter spacing 0, fixed at every breakpoint. Self-hosted (`assets/fonts/`), family `--typography-font-family-slab` (set in `foundation/_typography.scss`, not yet a Figma token). |
 
 ### 2-B. Usage Principles
 

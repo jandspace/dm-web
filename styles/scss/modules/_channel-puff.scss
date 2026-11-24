@@ -55,6 +55,12 @@
     background-color: transparent;
   }
 
+  // An MPU in the block: the block's 16px inset is the ad's side room, so the
+  // slot drops its own — Beta 332 − 2 × 16 = the 300 ad, unscaled
+  .ad-slot--mpu {
+    padding-inline: 0;
+  }
+
   // Article hover on the channel surface: no interaction blue — the headline
   // keeps its resting neutral/darker (Image Only stays white)
   .article-card:not(.article-card--image-only):has(.article-card__link:hover, .article-card__link:focus-visible) .article-headline {

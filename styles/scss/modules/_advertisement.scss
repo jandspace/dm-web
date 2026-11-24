@@ -48,10 +48,12 @@
     line-height: var(--typography-line-height-narrow);
   }
 
+  // Fixed IAB size — never scaled to the container. A slot narrower than the
+  // ad (a 320 phone) lets it run into its padding, centred.
   > * {
     display: block;
+    flex-shrink: 0;
     width: var(--ad-width);
-    max-width: 100%;
     height: var(--ad-height);
     border: 0;
     background-color: var(--color-background-neutral-lighter);

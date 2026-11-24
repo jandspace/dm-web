@@ -20,12 +20,13 @@ Token naming: `--typography-{property}-{role}-{level}` (e.g. `--typography-font-
 
 ## Typefaces
 
-Inter and Lora are the DM Web typefaces. No other typeface without the user's confirmation first.
+Inter and Lora are the DM Web typefaces, plus DM Slab for one brand use (below). No other typeface without the user's confirmation first.
 
 | Family | Use |
 |---|---|
 | Inter (sans, default) | All UI, body, labels, metadata, and article headlines on Web |
-| Lora (serif) | Editorial emphasis: Web headlines where Figma calls for it, quotes, branded names |
+| Lora (serif) | Editorial emphasis: Web headlines where Figma calls for it, quotes |
+| DM Slab (`--typography-font-family-slab`) | Section Header Branded text name only. DM Slab Beton SH Extra Bold Condensed (800), self-hosted (`assets/fonts/`, `@font-face` in `foundation/_typography.scss`). Fixed 30px, line height 1, letter spacing 0 — no type token |
 
 ### Mixing — hard rule
 
@@ -33,7 +34,7 @@ Inter and Lora are the DM Web typefaces. No other typeface without the user's co
 - **One component = one typeface**, except these cases:
   1. Article Card headline with `.serif` (`<h4 class="h4 serif article-headline">`). Size, weight and line height stay as the level sets them; the rest of the card stays Inter.
   2. Columnist quote headline (always `.serif`, with the columnist photo).
-  3. Section Header Branded: the text name in Lora (`dmw_serif/h2/Semibold`), the rest Inter.
+  3. Section Header Branded: the text name in DM Slab (30 / 1 / 0, weight 800), the rest Inter.
 - Any other mix is flagged to the user, **even if Figma shows it**. Don't build it until confirmed.
 - Demo chrome in `styles/scss/scaffolding/` (side panel, labels, monospace code) is not product UI and is out of scope.
 

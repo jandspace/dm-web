@@ -52,7 +52,7 @@ A page that still needs testing (e.g. `experiments/202611-exp-homepage/`) stays 
 
 ## Notes — update in the same turn, unasked
 
-Any change in an experiment or project folder → add or update its entry in the landing list, newest first:
+Any change in an experiment or project folder → add or update its entry in the landing list. The page sorts entries by last update (the latest dated note line) and shows it as "Updated" next to the start date, so the dated note line is what moves an entry up:
 
 | Field | Value |
 |---|---|

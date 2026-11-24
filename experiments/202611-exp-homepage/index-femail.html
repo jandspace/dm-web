@@ -1,0 +1,2570 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Lifestyle — Daily Mail</title>
+    <link rel="icon" href="../../assets/favicon.svg" type="image/svg+xml" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&family=Lora:ital,wght@0,400;0,500;0,600;0,700;1,400&family=Literata:ital,opsz,wght@0,7..72,200..900;1,7..72,200..900&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="../../tokens/dm_tokens.css" />
+    <link rel="stylesheet" href="../../tokens/dm_typography_web_tokens.css" />
+    <link rel="stylesheet" href="../../styles/css/main.css" />
+    <script src="../../scripts/modules/scroll-row.js" defer></script>
+    <script src="../../scripts/modules/article-card-media.js" defer></script>
+    <script src="../../scripts/modules/carousel.js" defer></script>
+    <script src="../../scripts/modules/shorts-signpost.js" defer></script>
+    <script src="../../scripts/modules/tooltip.js" defer></script>
+    <script src="../../scripts/scaffolding/demo-drag-swipe.js" defer></script>
+    <script src="../../scripts/scaffolding/home-button.js" data-home="experiments" defer></script>
+    <script src="../../scripts/scaffolding/page-footer.js" defer></script>
+  </head>
+  <!-- Homepage frame — Figma Web UI Kit › Homepage › Budget/Legacy - 1366x768 (8709:88370).
+       Billboard › Masthead › page container (Side Ads beside it) › Footer. The three
+       .layout-full sections are placeholders: content goes in one section at a time.
+       Styles: styles/scss/experiments/_homepage.scss -->
+  <body class="homepage">
+    <svg style="display: none" aria-hidden="true">
+      <svg style="display: none" aria-hidden="true">
+        <symbol id="logo-mplus-wordmark" viewBox="0 0 114 20">
+          <path d="M89.695 2.13381C91.3769 1.61916 93.281 1.04513 94.9352 0.50673C95.4152 0.348377 95.5382 0.431512 95.5382 0.81156V14.0538
+            C95.5382 14.3626 95.5659 14.4299 95.7682 14.5368L97.1963 15.3088C97.4343 15.4473 97.3788 15.5978 97.2281 15.7086C96.3911 16.3302 95.6016 16.9438 94.7567 17.6366
+            C93.2612 16.9279 91.6863 16.2589 90.1908 15.673C89.9488 15.578 89.9488 15.4473 90.1234 15.285L90.8612 14.6002V4.04988
+            C90.8612 3.10372 90.524 2.68013 89.6751 2.47031C89.4728 2.41884 89.453 2.20903 89.7029 2.13381H89.695ZM84.058 2.42676
+            C84.0818 1.15994 84.9149 0.150435 86.2557 0.186065C87.3743 0.217736 88.0686 0.938242 88.0289 2.18131C87.9813 3.74109 86.22 4.78622 85.26 4.72684
+            C84.6729 4.69121 84.0342 3.74505 84.058 2.42676ZM87.6838 14.0499C87.6838 14.3587 87.7115 14.426 87.9138 14.5329L89.3419 15.3048
+            C89.5839 15.4355 89.5244 15.5938 89.3736 15.7047C88.5366 16.3262 87.7472 16.9398 86.9023 17.6326C85.4068 16.924 83.8319 16.2549 82.3364 15.669
+            C82.0944 15.574 82.0944 15.4434 82.269 15.2811L83.0068 14.5962V8.55503C83.0068 8.24624 82.979 8.17894 82.7767 8.07205L81.3487 7.29612
+            C81.1067 7.16548 81.1622 7.00317 81.3169 6.89628C82.1262 6.32621 83.0981 5.61362 83.9033 4.96833C85.375 5.68092 86.8111 6.31433 88.3542 6.93191
+            C88.5961 7.03088 88.5961 7.15756 88.4216 7.31987L87.6838 8.00475V14.0459V14.0499ZM75.1484 14.901V8.55899C75.1484 8.27791 75.1286 8.16706 74.9184 8.07601
+            L72.8834 7.04671C71.7528 7.71576 70.896 8.87965 70.896 10.5899C70.896 13.7886 73.5577 15.4592 75.1445 14.901H75.1484ZM74.7478 15.6295
+            C73.9385 16.2114 72.9191 17.015 72.1733 17.6405C70.3684 17.6405 67.3377 16.2352 67.3377 12.9968C67.3377 8.93903 71.6021 6.09264 75.9339 4.97229
+            C77.4294 5.68092 79.0042 6.34996 80.4997 6.93587C80.7417 7.03088 80.7417 7.16152 80.5672 7.32383L79.8294 8.00871V14.0499
+            C79.8294 14.3587 79.8571 14.426 80.0594 14.5329L81.4875 15.3048C81.7295 15.4355 81.67 15.5938 81.5192 15.7047C80.6822 16.3262 79.8928 16.9398 79.0479 17.6326
+            C77.7666 17.0269 76.1283 16.2154 74.7478 15.6215V15.6295ZM57.5514 10.8195V14.0499C57.5514 14.3587 57.5752 14.4378 57.7815 14.5329L58.0988 14.6833V10.8155
+            H57.5514V10.8195ZM57.5514 2.92557V7.51781H58.0988V2.76722C58.0076 2.73555 57.9322 2.71971 57.8806 2.71971C57.6942 2.71971 57.603 2.81473 57.5474 2.92557H57.5514
+            ZM50.2999 14.707V2.77118C50.2047 2.73951 50.1294 2.71971 50.0818 2.71971C49.8953 2.71971 49.8001 2.81473 49.7486 2.92557V14.0499
+            C49.7486 14.3587 49.7763 14.426 49.9786 14.5329L50.2999 14.707ZM50.5657 10.8195V14.8496L51.4067 15.3048C51.6447 15.4434 51.5892 15.5938 51.4384 15.7047
+            C50.6014 16.3262 49.812 16.9398 48.9671 17.6326C47.5152 16.9992 45.623 16.2154 44.1711 15.669C43.9291 15.574 43.9053 15.4196 44.0997 15.2811L45.0676 14.5962
+            V4.21219C45.0676 3.9034 45.0399 3.8361 44.8376 3.72922L42.9216 2.69596C42.6796 2.56532 42.7391 2.40697 42.8898 2.29612
+            C43.7268 1.67458 45.0042 0.696754 45.8531 0C47.2693 0.716548 48.6339 1.34996 49.9429 1.88836C50.9862 1.34204 52.0771 0.728424 53.1878 0
+            C54.5167 0.787807 56.0122 1.57561 57.2459 2.15756C58.3963 1.51227 59.638 0.783848 60.8201 0C62.3037 0.847189 64.1959 1.78939 65.5724 2.40301
+            C65.8104 2.5099 65.8144 2.62866 65.6398 2.79097L65.3582 3.04038V12.6564C65.3582 14.1251 65.62 14.6952 66.4094 14.9921
+            C66.6157 15.0713 66.6117 15.2375 66.465 15.3405C65.62 15.9501 64.3506 16.8844 63.343 17.6405C61.1295 17.1615 60.6773 16.061 60.6773 13.5154V4.46952
+            C60.6773 4.16073 60.6416 4.10531 60.4472 3.98258C59.999 3.7015 58.9993 3.13935 58.3686 2.87015V7.51386H60.3877L58.3686 10.7799V14.806L59.4317 15.3048
+            C59.6816 15.4236 59.6181 15.5978 59.4634 15.7047C58.6264 16.2787 57.7101 16.9359 56.7739 17.6326C55.2784 16.924 53.7035 16.2549 52.208 15.669
+            C51.966 15.574 51.966 15.4434 52.1406 15.2811L52.8784 14.5962V10.8155H50.5657V10.8195ZM50.5657 2.87411V10.1069L52.2041 7.51781H52.8705V4.47348
+            C52.8705 4.16469 52.8348 4.10926 52.6404 3.98654C52.1921 3.70546 51.1925 3.14331 50.5657 2.87411ZM113.73 6.59145H108.665V1.5479
+            C108.665 1.40143 108.546 1.2787 108.395 1.2787H104.321C104.174 1.2787 104.051 1.39747 104.051 1.5479V6.59145H98.9774
+            C98.8307 6.59145 98.7077 6.71021 98.7077 6.86065V10.9343C98.7077 11.0808 98.8267 11.2035 98.9774 11.2035H104.051V16.2708
+            C104.051 16.4173 104.17 16.54 104.321 16.54H108.395C108.542 16.54 108.665 16.4212 108.665 16.2708V11.2035H113.73C113.877 11.2035 114 11.0847 114 10.9343V6.86065
+            C114 6.71417 113.881 6.59145 113.73 6.59145ZM4.62934 16.54H0V1.2787H4.39926C8.11226 1.2787 10.6868 3.39272 10.6868 8.61045V9.23199
+            C10.6868 14.1211 8.63192 16.5439 4.62537 16.5439L4.62934 16.54ZM9.42132 8.71338C9.42132 4.48931 7.6164 2.27237 4.33579 2.27237H1.22576V15.5701H4.75231
+            C7.82267 15.5701 9.42132 13.6025 9.42132 9.12906V8.71338ZM19.9613 16.54L19.878 14.4497C19.3583 15.8591 17.7399 16.6865 15.9151 16.6865
+            C13.6341 16.6865 11.7221 15.4434 11.7221 12.7118V12.5059C11.7221 10.2059 13.3842 8.50752 16.1214 8.50752C17.7597 8.50752 19.1719 9.1924 19.8582 10.4949V7.98892
+            C19.8582 6.78939 19.1322 5.62945 16.8076 5.62945C15.3954 5.62945 13.9634 6.02138 13.174 6.45685V5.44339C13.9436 5.02771 15.2923 4.67538 16.9703 4.67538
+            C19.9177 4.67538 21.0165 6.35392 21.0165 7.90578V16.5439H19.9573L19.9613 16.54ZM19.8542 12.3357C19.8542 10.8432 18.4618 9.3943 16.3038 9.3943
+            C14.2926 9.3943 12.9003 10.6374 12.9003 12.3555V12.6643C12.9003 14.715 14.3125 15.772 16.3038 15.772C18.5451 15.772 19.8542 14.323 19.8542 12.6445V12.3357Z
+            M23.3133 3.61837V1.85669H24.8683V3.61837H23.3133ZM23.4998 16.54V4.92082H24.7255V16.54H23.4998ZM26.9192 16.54V1.2787H28.1212V16.5439H26.9192V16.54ZM34.0675 20
+            H32.8655L34.4444 16.4371L29.5254 4.98416H30.7909L35.1267 15.0911L39.5061 4.98416H40.7081L34.0675 20Z" fill="currentColor" />
+        </symbol>
+        <symbol id="logo-mplus-lozenge" viewBox="0 0 28 12">
+          <path d="M10.1094 7.36271V9.55932C10.1094 9.76814 10.1258 9.82237 10.2651 9.89017L10.4836 9.99322V7.36271H10.1094ZM10.1094 1.99593V5.11729H10.4836V1.88746
+            C10.4208 1.86576 10.3689 1.85492 10.3361 1.85492C10.2078 1.85492 10.1449 1.91729 10.1094 1.99593ZM5.15274 1.89017C5.0872 1.86847 5.03804 1.85763 5.00254 1.85763
+            C4.87418 1.85763 4.81137 1.92 4.77587 1.99864V9.56475C4.77587 9.77356 4.79499 9.81966 4.93153 9.89559L5.15274 10.0149V1.89017ZM5.33299 7.36271V10.1044
+            L5.90922 10.4136C6.07035 10.5058 6.03484 10.6115 5.93107 10.6875C5.35757 11.1105 4.81956 11.5254 4.2406 12C3.24926 11.5688 1.95478 11.0373 0.960711 10.663
+            C0.794122 10.598 0.780467 10.4922 0.914284 10.4L1.57791 9.93356V2.86915C1.57791 2.66034 1.55879 2.61424 1.42224 2.5383L0.11138 1.83593
+            C-0.0524775 1.74644 -0.014244 1.64068 0.0895327 1.56203C0.663035 1.13898 1.53421 0.474576 2.11591 0C3.08267 0.485424 4.01939 0.919322 4.90969 1.28542
+            C5.62247 0.913898 6.36802 0.496271 7.12723 0C8.03664 0.534237 9.05802 1.07119 9.90189 1.46983C10.6884 1.03051 11.5377 0.536949 12.3461 0
+            C13.362 0.577627 14.6538 1.21763 15.596 1.63525C15.7598 1.70847 15.7625 1.78983 15.6424 1.89831L15.4485 2.06644V8.60474
+            C15.4485 9.60271 15.626 9.99322 16.1667 10.1939C16.3087 10.2454 16.3033 10.3593 16.205 10.4325C15.6287 10.8475 14.7575 11.482 14.0721 11.9973
+            C12.5591 11.6719 12.2505 10.9234 12.2505 9.19051V3.04C12.2505 2.83119 12.2259 2.79322 12.0949 2.70915C11.789 2.51661 11.1035 2.13424 10.6748 1.95254V5.11186
+            H12.0539L10.6748 7.33288V10.0719L11.4012 10.4108C11.5705 10.4895 11.5295 10.6115 11.423 10.6847C10.8523 11.0753 10.2269 11.5227 9.5851 11.9973
+            C8.56099 11.5173 7.48499 11.0617 6.46361 10.6603C6.29702 10.5953 6.29702 10.5058 6.41718 10.3973L6.91968 9.93085V7.36H5.34391L5.33299 7.36271ZM5.33299 1.95797
+            V6.87729L6.45268 5.11729H6.90875V3.04542C6.90875 2.83661 6.88418 2.79864 6.75309 2.71458C6.44722 2.52203 5.76448 2.14237 5.33299 1.95797Z" fill="currentColor" />
+          <path d="M27.8116 4.40407H24.3023V0.927463C24.3023 0.824412 24.2203 0.740344 24.1138 0.740344H21.2927C21.189 0.740344 21.1043 0.8217 21.1043 0.927463V4.40407H17.5896
+            C17.4858 4.40407 17.4011 4.48543 17.4011 4.59119V7.39797C17.4011 7.50102 17.4831 7.58509 17.5896 7.58509H21.1043V11.078
+            C21.1043 11.181 21.1862 11.2651 21.2927 11.2651H24.1138C24.2176 11.2651 24.3023 11.1837 24.3023 11.078V7.58509H27.8116C27.9153 7.58509 28 7.50373 28 7.39797
+            V4.59119C28 4.48814 27.9181 4.40407 27.8116 4.40407Z" fill="currentColor" />
+        </symbol>
+      </svg>
+    </svg>
+
+    <!-- ── Nav Sheet (Mweb) — opened by the burger ──────────────────────────── -->
+    <div class="masthead-sheet-backdrop" id="masthead-sheet-backdrop" hidden></div>
+    <div class="masthead-sheet" id="masthead-sheet" role="dialog" aria-modal="true" aria-label="Menu" hidden>
+      <div class="masthead-sheet__bar">
+        <button type="button" class="masthead-sheet__close" aria-label="Close menu"><span class="icon icon--xmark-light" aria-hidden="true"></span></button>
+      </div>
+      <div class="masthead-sheet__top">
+        <div class="masthead-sheet__home">
+          <a class="masthead-sheet__home-link" href="#">
+            <img src="../../assets/icons/ico-ch-home-color.svg" alt="" />
+            Home
+          </a>
+          <div class="masthead-sheet__edition-wrap">
+            <button type="button" class="btn btn-tertiary-neutral btn--xs masthead-sheet__edition" aria-expanded="false" aria-controls="masthead-sheet-edition-menu">
+              <img src="../../assets/icons/ico-flag-united-kingdom.svg" alt="" />
+              UK
+              <span class="icon icon--chevron-down" aria-hidden="true"></span>
+            </button>
+            <div class="dropdown-menu masthead-edition-menu masthead-sheet__edition-menu" id="masthead-sheet-edition-menu" hidden>
+              <ul class="dropdown-menu__list">
+                <li class="dropdown-menu__group">Select Edition</li>
+                <li>
+                  <a class="dropdown-menu__item" href="#uk" aria-current="true"><img src="../../assets/icons/ico-flag-united-kingdom.svg" alt="" />UK<span class="icon icon--tick dropdown-menu__tick" aria-hidden="true"></span></a>
+                </li>
+                <li>
+                  <a class="dropdown-menu__item" href="#us"><img src="../../assets/icons/ico-flag-united-states.svg" alt="" />US<span class="icon icon--tick dropdown-menu__tick" aria-hidden="true"></span></a>
+                </li>
+                <li>
+                  <a class="dropdown-menu__item" href="#au"><img src="../../assets/icons/ico-flag-australia.svg" alt="" />AU<span class="icon icon--tick dropdown-menu__tick" aria-hidden="true"></span></a>
+                </li>
+                <li>
+                  <a class="dropdown-menu__item" href="#ie"><img src="../../assets/icons/ico-flag-ireland.svg" alt="" />IE<span class="icon icon--tick dropdown-menu__tick" aria-hidden="true"></span></a>
+                </li>
+              </ul>
+            </div>
+          </div>
+        </div>
+        <a class="masthead-sheet__login" href="#login">
+          <span class="icon icon--person-outline" aria-hidden="true"></span>
+          Login
+        </a>
+      </div>
+      <div class="masthead-sheet__body">
+        <label class="masthead-sheet__search">
+          <span class="icon icon--magnifier" aria-hidden="true"></span>
+          <input type="search" placeholder="Search" aria-label="Search" />
+        </label>
+        <ul class="masthead-sheet__playlists">
+          <li>
+            <a class="masthead-sheet__playlist" href="#live">
+              <span class="masthead-sheet__playlist-icon"><span class="masthead-sheet__live"></span></span>
+              Live
+            </a>
+          </li>
+          <li>
+            <a class="masthead-sheet__playlist" href="#todays-pick">
+              <span class="masthead-sheet__playlist-icon"><span class="icon icon--spotlight" aria-hidden="true"></span></span>
+              Today’s Pick
+            </a>
+          </li>
+          <li>
+            <a class="masthead-sheet__playlist" href="#podcasts">
+              <span class="masthead-sheet__playlist-icon"><span class="icon icon--headphone-audiowave" aria-hidden="true"></span></span>
+              Podcasts
+            </a>
+          </li>
+          <li>
+            <a class="masthead-sheet__playlist" href="#deep-dive">
+              <span class="masthead-sheet__playlist-icon"><span class="icon icon--arrow-down-waves" aria-hidden="true"></span></span>
+              Deep-Dive
+            </a>
+          </li>
+        </ul>
+        <ul class="masthead-sheet__channels">
+          <li class="masthead-sheet__channel masthead-sheet__channel--home">
+            <div class="masthead-sheet__channel-row">
+              <a class="masthead-sheet__channel-link" href="#">
+                <span class="masthead-sheet__channel-icons">
+                  <span class="icon icon--ch-home masthead-sheet__channel-icon" aria-hidden="true"></span>
+                  <img class="masthead-sheet__channel-icon masthead-sheet__channel-icon--color" src="../../assets/icons/ico-ch-home-color.svg" alt="" />
+                </span>
+                <span class="masthead-sheet__channel-label">Home</span>
+              </a>
+              <button type="button" class="masthead-sheet__expand" aria-expanded="false" aria-controls="sheet-sub-home" aria-label="Show Home sections"><span class="icon icon--chevron-down" aria-hidden="true"></span></button>
+            </div>
+            <div class="masthead-sheet__panel" id="sheet-sub-home">
+              <div class="masthead-sheet__panel-inner">
+                <ul class="masthead-sheet__subchannels">
+                  <li><a href="#">Latest Headlines</a></li>
+                  <li><a href="#">Deep Dive</a></li>
+                  <li><a href="#">Video</a></li>
+                  <li><a href="#">Podcasts</a></li>
+                  <li><a href="#">Columnists</a></li>
+                  <li><a href="#">University Guide</a></li>
+                  <li><a href="#">Kim Kardashian</a></li>
+                </ul>
+              </div>
+            </div>
+          </li>
+          <li class="masthead-sheet__channel masthead-sheet__channel--mplus">
+            <div class="masthead-sheet__channel-row">
+              <a class="masthead-sheet__channel-link" href="#"><img class="masthead-sheet__mplus-logo" src="../../assets/images/logo-dailymail-plus.svg" alt="Daily Mail+" /></a>
+            </div>
+          </li>
+          <li class="masthead-sheet__channel masthead-sheet__channel--news">
+            <div class="masthead-sheet__channel-row">
+              <a class="masthead-sheet__channel-link" href="#">
+                <span class="masthead-sheet__channel-icons">
+                  <span class="icon icon--ch-news masthead-sheet__channel-icon" aria-hidden="true"></span>
+                  <img class="masthead-sheet__channel-icon masthead-sheet__channel-icon--color" src="../../assets/icons/ico-ch-news-color.svg" alt="" />
+                </span>
+                <span class="masthead-sheet__channel-label">News</span>
+              </a>
+              <button type="button" class="masthead-sheet__expand" aria-expanded="false" aria-controls="sheet-sub-news" aria-label="Show News sections"><span class="icon icon--chevron-down" aria-hidden="true"></span></button>
+            </div>
+            <div class="masthead-sheet__panel" id="sheet-sub-news">
+              <div class="masthead-sheet__panel-inner">
+                <ul class="masthead-sheet__subchannels">
+                  <li class="masthead-sheet__subchannel-home"><a href="#">News Home</a></li>
+                  <li><a href="#">Latest Headlines</a></li>
+                  <li><a href="#">Science</a></li>
+                  <li><a href="#">Australia</a></li>
+                  <li><a href="#">Scotland</a></li>
+                  <li><a href="#">Voting Intention</a></li>
+                  <li><a href="#">World News</a></li>
+                  <li><a href="#">Debate</a></li>
+                  <li><a href="#">Weather</a></li>
+                  <li><a href="#">The Harry Trial</a></li>
+                </ul>
+              </div>
+            </div>
+          </li>
+          <li class="masthead-sheet__channel masthead-sheet__channel--royals">
+            <div class="masthead-sheet__channel-row">
+              <a class="masthead-sheet__channel-link" href="#">
+                <span class="masthead-sheet__channel-icons">
+                  <span class="icon icon--ch-royals masthead-sheet__channel-icon" aria-hidden="true"></span>
+                  <img class="masthead-sheet__channel-icon masthead-sheet__channel-icon--color" src="../../assets/icons/ico-ch-royals-color.svg" alt="" />
+                </span>
+                <span class="masthead-sheet__channel-label">Royals</span>
+              </a>
+              <button type="button" class="masthead-sheet__expand" aria-expanded="false" aria-controls="sheet-sub-royals" aria-label="Show Royals sections"><span class="icon icon--chevron-down" aria-hidden="true"></span></button>
+            </div>
+            <div class="masthead-sheet__panel" id="sheet-sub-royals">
+              <div class="masthead-sheet__panel-inner">
+                <ul class="masthead-sheet__subchannels">
+                  <li class="masthead-sheet__subchannel-home"><a href="#">Royals Home</a></li>
+                  <li><a href="#">King Charles III</a></li>
+                  <li><a href="#">Prince William</a></li>
+                  <li><a href="#">Kate Middleton</a></li>
+                  <li><a href="#">Prince Harry</a></li>
+                  <li><a href="#">Meghan Markle</a></li>
+                  <li><a href="#">Newsletter</a></li>
+                </ul>
+              </div>
+            </div>
+          </li>
+          <li class="masthead-sheet__channel masthead-sheet__channel--home">
+            <div class="masthead-sheet__channel-row">
+              <a class="masthead-sheet__channel-link" href="#">
+                <span class="masthead-sheet__channel-icons">
+                  <span class="icon icon--ch-us-flag masthead-sheet__channel-icon" aria-hidden="true"></span>
+                  <img class="masthead-sheet__channel-icon masthead-sheet__channel-icon--color" src="../../assets/icons/ico-ch-us-flag-color.svg" alt="" />
+                </span>
+                <span class="masthead-sheet__channel-label">US</span>
+              </a>
+              <button type="button" class="masthead-sheet__expand" aria-expanded="false" aria-controls="sheet-sub-us" aria-label="Show US sections"><span class="icon icon--chevron-down" aria-hidden="true"></span></button>
+            </div>
+            <div class="masthead-sheet__panel" id="sheet-sub-us">
+              <div class="masthead-sheet__panel-inner">
+                <ul class="masthead-sheet__subchannels">
+                  <li class="masthead-sheet__subchannel-home"><a href="#">US Home</a></li>
+                  <li><a href="#">Latest Headlines</a></li>
+                  <li><a href="#">Podcasts</a></li>
+                  <li><a href="#">Video</a></li>
+                </ul>
+              </div>
+            </div>
+          </li>
+          <li class="masthead-sheet__channel masthead-sheet__channel--sport">
+            <div class="masthead-sheet__channel-row">
+              <a class="masthead-sheet__channel-link" href="#">
+                <span class="masthead-sheet__channel-icons">
+                  <span class="icon icon--ch-sport masthead-sheet__channel-icon" aria-hidden="true"></span>
+                  <img class="masthead-sheet__channel-icon masthead-sheet__channel-icon--color" src="../../assets/icons/ico-ch-sport-color.svg" alt="" />
+                </span>
+                <span class="masthead-sheet__channel-label">Sport</span>
+              </a>
+              <button type="button" class="masthead-sheet__expand" aria-expanded="false" aria-controls="sheet-sub-sport" aria-label="Show Sport sections"><span class="icon icon--chevron-down" aria-hidden="true"></span></button>
+            </div>
+            <div class="masthead-sheet__panel" id="sheet-sub-sport">
+              <div class="masthead-sheet__panel-inner">
+                <ul class="masthead-sheet__subchannels">
+                  <li class="masthead-sheet__subchannel-home"><a href="#">Sport Home</a></li>
+                  <li><a href="#">Football</a></li>
+                  <li><a href="#">Premier League</a></li>
+                  <li><a href="#">Transfer News</a></li>
+                  <li><a href="#">M+ Sport</a></li>
+                  <li><a href="#">Racing</a></li>
+                  <li><a href="#">Golf</a></li>
+                  <li><a href="#">F1</a></li>
+                  <li><a href="#">Tennis</a></li>
+                  <li><a href="#">Boxing</a></li>
+                  <li><a href="#">Cricket</a></li>
+                  <li><a href="#">Rugby</a></li>
+                  <li><a href="#">US Sports</a></li>
+                  <li><a href="#">More</a></li>
+                </ul>
+              </div>
+            </div>
+          </li>
+          <li class="masthead-sheet__channel masthead-sheet__channel--showbiz">
+            <div class="masthead-sheet__channel-row">
+              <a class="masthead-sheet__channel-link" href="#">
+                <span class="masthead-sheet__channel-icons">
+                  <span class="icon icon--ch-uk-showbiz masthead-sheet__channel-icon" aria-hidden="true"></span>
+                  <img class="masthead-sheet__channel-icon masthead-sheet__channel-icon--color" src="../../assets/icons/ico-ch-uk-showbiz-color.svg" alt="" />
+                </span>
+                <span class="masthead-sheet__channel-label">Showbiz</span>
+              </a>
+              <button type="button" class="masthead-sheet__expand" aria-expanded="false" aria-controls="sheet-sub-showbiz" aria-label="Show Showbiz sections"><span class="icon icon--chevron-down" aria-hidden="true"></span></button>
+            </div>
+            <div class="masthead-sheet__panel" id="sheet-sub-showbiz">
+              <div class="masthead-sheet__panel-inner">
+                <ul class="masthead-sheet__subchannels">
+                  <li class="masthead-sheet__subchannel-home"><a href="#">Showbiz Home</a></li>
+                  <li><a href="#">Headlines</a></li>
+                  <li><a href="#">Showbiz</a></li>
+                  <li><a href="#">Newsletter</a></li>
+                  <li><a href="#">TV Guide</a></li>
+                  <li><a href="#">Best Shows</a></li>
+                </ul>
+              </div>
+            </div>
+          </li>
+          <li class="masthead-sheet__channel masthead-sheet__channel--lifestyle">
+            <div class="masthead-sheet__channel-row">
+              <a class="masthead-sheet__channel-link" href="#">
+                <span class="masthead-sheet__channel-icons">
+                  <span class="icon icon--ch-lifestyle masthead-sheet__channel-icon" aria-hidden="true"></span>
+                  <img class="masthead-sheet__channel-icon masthead-sheet__channel-icon--color" src="../../assets/icons/ico-ch-lifestyle-color.svg" alt="" />
+                </span>
+                <span class="masthead-sheet__channel-label">Lifestyle</span>
+              </a>
+              <button type="button" class="masthead-sheet__expand" aria-expanded="false" aria-controls="sheet-sub-lifestyle" aria-label="Show Lifestyle sections"><span class="icon icon--chevron-down" aria-hidden="true"></span></button>
+            </div>
+            <div class="masthead-sheet__panel" id="sheet-sub-lifestyle">
+              <div class="masthead-sheet__panel-inner">
+                <ul class="masthead-sheet__subchannels">
+                  <li class="masthead-sheet__subchannel-home"><a href="#">Lifestyle Home</a></li>
+                  <li><a href="#">You Mag</a></li>
+                  <li><a href="#">Femail</a></li>
+                  <li><a href="#">Health</a></li>
+                  <li><a href="#">Food &amp; Drink</a></li>
+                  <li><a href="#">Horoscopes</a></li>
+                  <li><a href="#">Gardening</a></li>
+                  <li><a href="#">Fitness &amp; Wellbeing</a></li>
+                  <li><a href="#">Homes</a></li>
+                  <li><a href="#">Fashion</a></li>
+                  <li><a href="#">Beauty</a></li>
+                  <li><a href="#">Love &amp; Sex</a></li>
+                  <li><a href="#">Books</a></li>
+                  <li><a href="#">Cars</a></li>
+                  <li><a href="#">Mail Shop</a></li>
+                </ul>
+              </div>
+            </div>
+          </li>
+          <li class="masthead-sheet__channel masthead-sheet__channel--money">
+            <div class="masthead-sheet__channel-row">
+              <a class="masthead-sheet__channel-link" href="#">
+                <span class="masthead-sheet__channel-icons">
+                  <span class="icon icon--ch-money masthead-sheet__channel-icon" aria-hidden="true"></span>
+                  <img class="masthead-sheet__channel-icon masthead-sheet__channel-icon--color" src="../../assets/icons/ico-ch-money-color.svg" alt="" />
+                </span>
+                <span class="masthead-sheet__channel-label">Money</span>
+              </a>
+              <button type="button" class="masthead-sheet__expand" aria-expanded="false" aria-controls="sheet-sub-money" aria-label="Show Money sections"><span class="icon icon--chevron-down" aria-hidden="true"></span></button>
+            </div>
+            <div class="masthead-sheet__panel" id="sheet-sub-money">
+              <div class="masthead-sheet__panel-inner">
+                <ul class="masthead-sheet__subchannels">
+                  <li class="masthead-sheet__subchannel-home"><a href="#">Money Home</a></li>
+                  <li><a href="#">Money</a></li>
+                  <li><a href="#">Business</a></li>
+                  <li><a href="#">Saving &amp; banking</a></li>
+                  <li><a href="#">Investing</a></li>
+                  <li><a href="#">Bills</a></li>
+                  <li><a href="#">Cars</a></li>
+                  <li><a href="#">Cards &amp; loans</a></li>
+                  <li><a href="#">Pensions</a></li>
+                  <li><a href="#">Mortgages</a></li>
+                  <li><a href="#">Buy-to-let</a></li>
+                </ul>
+              </div>
+            </div>
+          </li>
+          <li class="masthead-sheet__channel masthead-sheet__channel--crime">
+            <div class="masthead-sheet__channel-row">
+              <a class="masthead-sheet__channel-link" href="#">
+                <span class="masthead-sheet__channel-icons"><span class="icon icon--ch-crime masthead-sheet__channel-icon" aria-hidden="true"></span></span>
+                <span class="masthead-sheet__channel-label">Crime Desk</span>
+              </a>
+            </div>
+          </li>
+          <li class="masthead-sheet__channel masthead-sheet__channel--games">
+            <div class="masthead-sheet__channel-row">
+              <a class="masthead-sheet__channel-link" href="#">
+                <span class="masthead-sheet__channel-icons">
+                  <span class="icon icon--ch-game masthead-sheet__channel-icon" aria-hidden="true"></span>
+                  <img class="masthead-sheet__channel-icon masthead-sheet__channel-icon--color" src="../../assets/icons/ico-ch-game-color.svg" alt="" />
+                </span>
+                <span class="masthead-sheet__channel-label">Games</span>
+              </a>
+              <button type="button" class="masthead-sheet__expand" aria-expanded="false" aria-controls="sheet-sub-games" aria-label="Show Games sections"><span class="icon icon--chevron-down" aria-hidden="true"></span></button>
+            </div>
+            <div class="masthead-sheet__panel" id="sheet-sub-games">
+              <div class="masthead-sheet__panel-inner">
+                <ul class="masthead-sheet__subchannels">
+                  <li class="masthead-sheet__subchannel-home"><a href="#">Games Home</a></li>
+                  <li><a href="#">Arcade Games</a></li>
+                </ul>
+              </div>
+            </div>
+          </li>
+          <li class="masthead-sheet__channel masthead-sheet__channel--travel">
+            <div class="masthead-sheet__channel-row">
+              <a class="masthead-sheet__channel-link" href="#">
+                <span class="masthead-sheet__channel-icons">
+                  <span class="icon icon--ch-travel masthead-sheet__channel-icon" aria-hidden="true"></span>
+                  <img class="masthead-sheet__channel-icon masthead-sheet__channel-icon--color" src="../../assets/icons/ico-ch-travel-color.svg" alt="" />
+                </span>
+                <span class="masthead-sheet__channel-label">Travel</span>
+              </a>
+              <button type="button" class="masthead-sheet__expand" aria-expanded="false" aria-controls="sheet-sub-travel" aria-label="Show Travel sections"><span class="icon icon--chevron-down" aria-hidden="true"></span></button>
+            </div>
+            <div class="masthead-sheet__panel" id="sheet-sub-travel">
+              <div class="masthead-sheet__panel-inner">
+                <ul class="masthead-sheet__subchannels">
+                  <li class="masthead-sheet__subchannel-home"><a href="#">Travel Home</a></li>
+                  <li><a href="#">Latest Headlines</a></li>
+                  <li><a href="#">Escape</a></li>
+                  <li><a href="#">Destinations</a></li>
+                  <li><a href="#">Holiday Types</a></li>
+                  <li><a href="#">Holidays</a></li>
+                  <li><a href="#">Expert Reviews</a></li>
+                </ul>
+              </div>
+            </div>
+          </li>
+          <li class="masthead-sheet__channel masthead-sheet__channel--shopping">
+            <div class="masthead-sheet__channel-row">
+              <a class="masthead-sheet__channel-link" href="#">
+                <span class="masthead-sheet__channel-icons">
+                  <span class="icon icon--ch-shopping masthead-sheet__channel-icon" aria-hidden="true"></span>
+                  <img class="masthead-sheet__channel-icon masthead-sheet__channel-icon--color" src="../../assets/icons/ico-ch-shopping-color.svg" alt="" />
+                </span>
+                <span class="masthead-sheet__channel-label">Buyline</span>
+              </a>
+              <button type="button" class="masthead-sheet__expand" aria-expanded="false" aria-controls="sheet-sub-buyline" aria-label="Show Buyline sections"><span class="icon icon--chevron-down" aria-hidden="true"></span></button>
+            </div>
+            <div class="masthead-sheet__panel" id="sheet-sub-buyline">
+              <div class="masthead-sheet__panel-inner">
+                <ul class="masthead-sheet__subchannels">
+                  <li class="masthead-sheet__subchannel-home"><a href="#">Buyline Home</a></li>
+                  <li><a href="#">Beauty</a></li>
+                  <li><a href="#">Fashion</a></li>
+                  <li><a href="#">Home and Garden</a></li>
+                  <li><a href="#">Amazon Prime Day</a></li>
+                </ul>
+              </div>
+            </div>
+          </li>
+          <li class="masthead-sheet__channel masthead-sheet__channel--home">
+            <div class="masthead-sheet__channel-row">
+              <a class="masthead-sheet__channel-link" href="#">
+                <span class="masthead-sheet__channel-icons"><span class="icon icon--ch-columnist masthead-sheet__channel-icon" aria-hidden="true"></span></span>
+                <span class="masthead-sheet__channel-label">Comment</span>
+              </a>
+            </div>
+          </li>
+        </ul>
+      </div>
+    </div>
+
+    <!-- ── Billboard (MD+) — 728×90 at MD, 970×250 from LG ─────────────────── -->
+    <div class="ad-billboard">
+      <aside class="ad-slot" aria-label="Advertisement">
+        <picture>
+          <source media="(min-width: 1024px)" srcset="../../assets/images/ad-placeholder-970x250.jpg" />
+          <img src="../../assets/images/ad-placeholder-728x90.jpg" alt="" />
+        </picture>
+      </aside>
+    </div>
+
+    <header class="masthead masthead--lifestyle">
+      <div class="masthead__inner">
+        <div class="masthead-topbar">
+          <p class="masthead-topbar__id">
+            <span class="masthead-topbar__channel">Lifestyle</span>
+            <span class="masthead-topbar__updated">
+              Last updated:
+              <time datetime="2026-10-22T16:14">16:14 BST, 22 October 2026</time>
+            </span>
+          </p>
+          <div class="masthead-topbar__actions">
+            <!-- Mail+ Subscribe: every page except Home and Daily Mail+ home (.masthead--landing) -->
+            <div class="masthead-topbar__action masthead-topbar__subscribe">
+              <a class="masthead-topbar-subscribe" href="#subscribe"><svg aria-label="Daily Mail+"><use href="#logo-mplus-wordmark" /></svg>Subscribe</a>
+            </div>
+            <div class="masthead-topbar__action">
+              <button type="button" class="masthead-action masthead-edition" aria-expanded="false" aria-controls="masthead-edition-menu">
+                <img src="../../assets/icons/ico-flag-united-kingdom.svg" alt="" />UK Edition<span class="icon icon--chevron-down masthead-edition__chevron" aria-hidden="true"></span>
+              </button>
+              <div class="dropdown-menu masthead-edition-menu" id="masthead-edition-menu" hidden>
+                <ul class="dropdown-menu__list">
+                  <li class="dropdown-menu__group">Select Edition</li>
+                  <li><a class="dropdown-menu__item" href="#uk" aria-current="true"><img src="../../assets/icons/ico-flag-united-kingdom.svg" alt="" />UK<span class="icon icon--tick dropdown-menu__tick" aria-hidden="true"></span></a></li>
+                  <li><a class="dropdown-menu__item" href="#us"><img src="../../assets/icons/ico-flag-united-states.svg" alt="" />US<span class="icon icon--tick dropdown-menu__tick" aria-hidden="true"></span></a></li>
+                  <li><a class="dropdown-menu__item" href="#au"><img src="../../assets/icons/ico-flag-australia.svg" alt="" />AU<span class="icon icon--tick dropdown-menu__tick" aria-hidden="true"></span></a></li>
+                  <li><a class="dropdown-menu__item" href="#ie"><img src="../../assets/icons/ico-flag-ireland.svg" alt="" />IE<span class="icon icon--tick dropdown-menu__tick" aria-hidden="true"></span></a></li>
+                </ul>
+              </div>
+            </div>
+            <div class="masthead-topbar__action">
+              <a class="masthead-action" href="#login">
+                <span class="icon icon--person-outline" aria-hidden="true"></span>
+                Login
+              </a>
+            </div>
+            <div class="masthead-topbar__action">
+              <button type="button" class="masthead-action">
+                <span class="icon icon--magnifier" aria-hidden="true"></span>
+                Search
+              </button>
+            </div>
+          </div>
+        </div>
+
+        <div class="masthead-branding">
+          <a class="masthead-branding__logo" href="#home" aria-label="Daily Mail home">
+            <img class="masthead-branding__logo-dark" src="../../assets/images/logo-dailymail.svg" alt="Daily Mail" />
+            <img class="masthead-branding__logo-light" src="../../assets/images/logo-dailymail-white.svg" alt="Daily Mail" />
+            <svg class="masthead-branding__logo-mplus" aria-label="Daily Mail+"><use href="#logo-mplus-wordmark" /></svg>
+          </a>
+          <!-- Slot: Subscribe on Home and Daily Mail+ home only (.masthead--landing) — any branding element can go here -->
+          <div class="masthead-branding__slot">
+            <a class="masthead-subscribe" href="#subscribe">
+              <svg aria-label="Daily Mail+"><use href="#logo-mplus-wordmark" /></svg>
+              Subscribe
+            </a>
+          </div>
+          <div class="masthead-branding__mobile">
+            <a class="masthead-subscribe-pill" href="#subscribe">
+              <span class="icon icon--ch-mailplus" aria-hidden="true"></span>
+              Subscribe
+            </a>
+            <a class="masthead-login-round" href="#login" aria-label="Login"><span class="icon icon--person-outline" aria-hidden="true"></span></a>
+          </div>
+        </div>
+
+        <nav class="masthead-nav" aria-label="Channels">
+          <button type="button" class="masthead-nav__trigger" aria-label="Menu and search" aria-controls="masthead-sheet" aria-expanded="false">
+            <span class="icon icon--three-lines-magnifier" aria-hidden="true"></span>
+          </button>
+          <div class="masthead-nav__scroller">
+            <ul class="masthead-nav__list">
+              <li class="masthead-nav__item masthead-nav__item--home masthead-nav__item--has-panel" data-channel="home" data-label="Home">
+                <a class="masthead-nav__link" href="#">Home</a>
+                <div class="masthead-nav__panel">
+                  <a class="masthead-nav__panel-channel" href="#">
+                    Home
+                    <span class="icon icon--arrow-right-light" aria-hidden="true"></span>
+                  </a>
+                  <ul class="masthead-nav__panel-topics">
+                    <li><a class="masthead-nav__panel-topic" href="#">Latest Headlines</a></li>
+                    <li><a class="masthead-nav__panel-topic" href="#">Deep Dive</a></li>
+                    <li><a class="masthead-nav__panel-topic" href="#">Video</a></li>
+                    <li><a class="masthead-nav__panel-topic" href="#">Podcasts</a></li>
+                    <li><a class="masthead-nav__panel-topic" href="#">Columnists</a></li>
+                    <li><a class="masthead-nav__panel-topic" href="#">University Guide</a></li>
+                    <li><a class="masthead-nav__panel-topic" href="#">Kim Kardashian</a></li>
+                  </ul>
+                </div>
+              </li>
+              <li class="masthead-nav__item masthead-nav__item--news masthead-nav__item--has-panel" data-channel="news" data-label="News">
+                <a class="masthead-nav__link" href="#">News</a>
+                <div class="masthead-nav__panel">
+                  <a class="masthead-nav__panel-channel" href="#">
+                    News
+                    <span class="icon icon--arrow-right-light" aria-hidden="true"></span>
+                  </a>
+                  <ul class="masthead-nav__panel-topics">
+                    <li><a class="masthead-nav__panel-topic" href="#">Latest Headlines</a></li>
+                    <li><a class="masthead-nav__panel-topic" href="#">Science</a></li>
+                    <li><a class="masthead-nav__panel-topic" href="#">Australia</a></li>
+                    <li><a class="masthead-nav__panel-topic" href="#">Scotland</a></li>
+                    <li><a class="masthead-nav__panel-topic" href="#">Voting Intention</a></li>
+                    <li><a class="masthead-nav__panel-topic" href="#">World News</a></li>
+                    <li><a class="masthead-nav__panel-topic" href="#">Debate</a></li>
+                    <li><a class="masthead-nav__panel-topic" href="#">Weather</a></li>
+                    <li><a class="masthead-nav__panel-topic" href="#">The Harry Trial</a></li>
+                  </ul>
+                </div>
+              </li>
+              <li class="masthead-nav__item masthead-nav__item--royals masthead-nav__item--has-panel" data-channel="royals" data-label="Royals">
+                <a class="masthead-nav__link" href="#">Royals</a>
+                <div class="masthead-nav__panel">
+                  <a class="masthead-nav__panel-channel" href="#">
+                    Royals
+                    <span class="icon icon--arrow-right-light" aria-hidden="true"></span>
+                  </a>
+                  <ul class="masthead-nav__panel-topics">
+                    <li><a class="masthead-nav__panel-topic" href="#">King Charles III</a></li>
+                    <li><a class="masthead-nav__panel-topic" href="#">Prince William</a></li>
+                    <li><a class="masthead-nav__panel-topic" href="#">Kate Middleton</a></li>
+                    <li><a class="masthead-nav__panel-topic" href="#">Prince Harry</a></li>
+                    <li><a class="masthead-nav__panel-topic" href="#">Meghan Markle</a></li>
+                    <li><a class="masthead-nav__panel-topic" href="#">Newsletter</a></li>
+                  </ul>
+                </div>
+              </li>
+              <li class="masthead-nav__item masthead-nav__item--home masthead-nav__item--has-panel" data-channel="home" data-label="US">
+                <a class="masthead-nav__link" href="#">US</a>
+                <div class="masthead-nav__panel">
+                  <a class="masthead-nav__panel-channel" href="#">
+                    US
+                    <span class="icon icon--arrow-right-light" aria-hidden="true"></span>
+                  </a>
+                  <ul class="masthead-nav__panel-topics">
+                    <li><a class="masthead-nav__panel-topic" href="#">Latest Headlines</a></li>
+                    <li><a class="masthead-nav__panel-topic" href="#">Podcasts</a></li>
+                    <li><a class="masthead-nav__panel-topic" href="#">Video</a></li>
+                  </ul>
+                </div>
+              </li>
+              <li class="masthead-nav__item masthead-nav__item--sport masthead-nav__item--has-panel" data-channel="sport" data-label="Sport">
+                <a class="masthead-nav__link" href="#">Sport</a>
+                <div class="masthead-nav__panel">
+                  <a class="masthead-nav__panel-channel" href="#">
+                    Sport
+                    <span class="icon icon--arrow-right-light" aria-hidden="true"></span>
+                  </a>
+                  <ul class="masthead-nav__panel-topics">
+                    <li><a class="masthead-nav__panel-topic" href="#">Football</a></li>
+                    <li><a class="masthead-nav__panel-topic" href="#">Premier League</a></li>
+                    <li><a class="masthead-nav__panel-topic" href="#">Transfer News</a></li>
+                    <li><a class="masthead-nav__panel-topic" href="#">M+ Sport</a></li>
+                    <li><a class="masthead-nav__panel-topic" href="#">Racing</a></li>
+                    <li><a class="masthead-nav__panel-topic" href="#">Golf</a></li>
+                    <li><a class="masthead-nav__panel-topic" href="#">F1</a></li>
+                    <li><a class="masthead-nav__panel-topic" href="#">Tennis</a></li>
+                    <li><a class="masthead-nav__panel-topic" href="#">Boxing</a></li>
+                    <li><a class="masthead-nav__panel-topic" href="#">Cricket</a></li>
+                    <li><a class="masthead-nav__panel-topic" href="#">Rugby</a></li>
+                    <li><a class="masthead-nav__panel-topic" href="#">US Sports</a></li>
+                    <li><a class="masthead-nav__panel-topic" href="#">More</a></li>
+                  </ul>
+                </div>
+              </li>
+              <li class="masthead-nav__item masthead-nav__item--showbiz masthead-nav__item--has-panel" data-channel="showbiz" data-label="Showbiz">
+                <a class="masthead-nav__link" href="#">Showbiz</a>
+                <div class="masthead-nav__panel">
+                  <a class="masthead-nav__panel-channel" href="#">
+                    Showbiz
+                    <span class="icon icon--arrow-right-light" aria-hidden="true"></span>
+                  </a>
+                  <ul class="masthead-nav__panel-topics">
+                    <li><a class="masthead-nav__panel-topic" href="#">Headlines</a></li>
+                    <li><a class="masthead-nav__panel-topic" href="#">Showbiz</a></li>
+                    <li><a class="masthead-nav__panel-topic" href="#">Newsletter</a></li>
+                    <li><a class="masthead-nav__panel-topic" href="#">TV Guide</a></li>
+                    <li><a class="masthead-nav__panel-topic" href="#">Best Shows</a></li>
+                  </ul>
+                </div>
+              </li>
+              <li class="masthead-nav__item masthead-nav__item--lifestyle masthead-nav__item--has-panel" data-channel="lifestyle" data-label="Lifestyle">
+                <a class="masthead-nav__link" href="#" aria-current="page">Lifestyle</a>
+                <div class="masthead-nav__panel">
+                  <a class="masthead-nav__panel-channel" href="#">
+                    Lifestyle
+                    <span class="icon icon--arrow-right-light" aria-hidden="true"></span>
+                  </a>
+                  <ul class="masthead-nav__panel-topics">
+                    <li><a class="masthead-nav__panel-topic" href="#">You Mag</a></li>
+                    <li><a class="masthead-nav__panel-topic" href="#">Femail</a></li>
+                    <li><a class="masthead-nav__panel-topic" href="#">Health</a></li>
+                    <li><a class="masthead-nav__panel-topic" href="#">Food &amp; Drink</a></li>
+                    <li><a class="masthead-nav__panel-topic" href="#">Horoscopes</a></li>
+                    <li><a class="masthead-nav__panel-topic" href="#">Gardening</a></li>
+                    <li><a class="masthead-nav__panel-topic" href="#">Fitness &amp; Wellbeing</a></li>
+                    <li><a class="masthead-nav__panel-topic" href="#">Homes</a></li>
+                    <li><a class="masthead-nav__panel-topic" href="#">Fashion</a></li>
+                    <li><a class="masthead-nav__panel-topic" href="#">Beauty</a></li>
+                    <li><a class="masthead-nav__panel-topic" href="#">Love &amp; Sex</a></li>
+                    <li><a class="masthead-nav__panel-topic" href="#">Books</a></li>
+                    <li><a class="masthead-nav__panel-topic" href="#">Cars</a></li>
+                    <li><a class="masthead-nav__panel-topic" href="#">Mail Shop</a></li>
+                  </ul>
+                </div>
+              </li>
+              <li class="masthead-nav__item masthead-nav__item--money masthead-nav__item--has-panel" data-channel="money" data-label="Money">
+                <a class="masthead-nav__link" href="#">Money</a>
+                <div class="masthead-nav__panel">
+                  <a class="masthead-nav__panel-channel" href="#">
+                    Money
+                    <span class="icon icon--arrow-right-light" aria-hidden="true"></span>
+                  </a>
+                  <ul class="masthead-nav__panel-topics">
+                    <li><a class="masthead-nav__panel-topic" href="#">Money</a></li>
+                    <li><a class="masthead-nav__panel-topic" href="#">Business</a></li>
+                    <li><a class="masthead-nav__panel-topic" href="#">Saving &amp; banking</a></li>
+                    <li><a class="masthead-nav__panel-topic" href="#">Investing</a></li>
+                    <li><a class="masthead-nav__panel-topic" href="#">Bills</a></li>
+                    <li><a class="masthead-nav__panel-topic" href="#">Cars</a></li>
+                    <li><a class="masthead-nav__panel-topic" href="#">Cards &amp; loans</a></li>
+                    <li><a class="masthead-nav__panel-topic" href="#">Pensions</a></li>
+                    <li><a class="masthead-nav__panel-topic" href="#">Mortgages</a></li>
+                    <li><a class="masthead-nav__panel-topic" href="#">Buy-to-let</a></li>
+                  </ul>
+                </div>
+              </li>
+              <li class="masthead-nav__item masthead-nav__item--crime" data-channel="crime" data-label="Crime Desk">
+                <a class="masthead-nav__link" href="#">Crime Desk</a>
+              </li>
+              <li class="masthead-nav__item masthead-nav__item--games masthead-nav__item--has-panel" data-channel="games" data-label="Games">
+                <a class="masthead-nav__link" href="#">Games</a>
+                <div class="masthead-nav__panel masthead-nav__panel--end">
+                  <a class="masthead-nav__panel-channel" href="#">
+                    Games
+                    <span class="icon icon--arrow-right-light" aria-hidden="true"></span>
+                  </a>
+                  <ul class="masthead-nav__panel-topics">
+                    <li><a class="masthead-nav__panel-topic" href="#">Arcade Games</a></li>
+                  </ul>
+                </div>
+              </li>
+              <li class="masthead-nav__item masthead-nav__item--travel masthead-nav__item--has-panel" data-channel="travel" data-label="Travel">
+                <a class="masthead-nav__link" href="#">Travel</a>
+                <div class="masthead-nav__panel masthead-nav__panel--end">
+                  <a class="masthead-nav__panel-channel" href="#">
+                    Travel
+                    <span class="icon icon--arrow-right-light" aria-hidden="true"></span>
+                  </a>
+                  <ul class="masthead-nav__panel-topics">
+                    <li><a class="masthead-nav__panel-topic" href="#">Latest Headlines</a></li>
+                    <li><a class="masthead-nav__panel-topic" href="#">Escape</a></li>
+                    <li><a class="masthead-nav__panel-topic" href="#">Destinations</a></li>
+                    <li><a class="masthead-nav__panel-topic" href="#">Holiday Types</a></li>
+                    <li><a class="masthead-nav__panel-topic" href="#">Holidays</a></li>
+                    <li><a class="masthead-nav__panel-topic" href="#">Expert Reviews</a></li>
+                  </ul>
+                </div>
+              </li>
+              <li class="masthead-nav__item masthead-nav__item--shopping masthead-nav__item--has-panel" data-channel="shopping" data-label="Buyline">
+                <a class="masthead-nav__link" href="#">Buyline</a>
+                <div class="masthead-nav__panel masthead-nav__panel--end">
+                  <a class="masthead-nav__panel-channel" href="#">
+                    Buyline
+                    <span class="icon icon--arrow-right-light" aria-hidden="true"></span>
+                  </a>
+                  <ul class="masthead-nav__panel-topics">
+                    <li><a class="masthead-nav__panel-topic" href="#">Beauty</a></li>
+                    <li><a class="masthead-nav__panel-topic" href="#">Fashion</a></li>
+                    <li><a class="masthead-nav__panel-topic" href="#">Home and Garden</a></li>
+                    <li><a class="masthead-nav__panel-topic" href="#">Amazon Prime Day</a></li>
+                  </ul>
+                </div>
+              </li>
+              <li class="masthead-nav__item masthead-nav__item--home masthead-nav__mplus masthead-nav__item--has-panel" data-channel="home" data-label="Daily Mail+">
+                <a class="masthead-nav__link" href="#" aria-label="Daily Mail+">
+                  <svg class="masthead-nav__mplus-wordmark" aria-hidden="true"><use href="#logo-mplus-wordmark" /></svg><svg class="masthead-nav__mplus-lozenge" aria-hidden="true"><use href="#logo-mplus-lozenge" /></svg>
+                </a>
+                <div class="masthead-nav__panel masthead-nav__panel--end">
+                  <a class="masthead-nav__panel-channel" href="#">
+                    Daily Mail+
+                    <span class="icon icon--arrow-right-light" aria-hidden="true"></span>
+                  </a>
+                  <ul class="masthead-nav__panel-topics">
+                    <li><a class="masthead-nav__panel-topic" href="#">Puzzles</a></li>
+                  </ul>
+                </div>
+              </li>
+            </ul>
+          </div>
+        </nav>
+      </div>
+    </header>
+
+    <div class="masthead-sticky masthead--lifestyle" id="masthead-sticky">
+      <div class="masthead-sticky__left">
+        <a class="masthead-sticky__logo" href="#home" aria-label="Daily Mail home">
+          <img class="masthead-sticky__logo-dm" src="../../assets/images/logo-dailymail-white.svg" alt="" />
+          <svg class="masthead-sticky__logo-mplus" aria-hidden="true"><use href="#logo-mplus-wordmark" /></svg>
+        </a>
+      </div>
+      <nav class="masthead-sticky__center" aria-label="Channels">
+        <button type="button" class="masthead-sticky__edge masthead-sticky__edge--prev" aria-label="Scroll channels left" hidden><span class="icon icon--chevron-left" aria-hidden="true"></span></button>
+        <ul class="masthead-sticky__list">
+          <li><a class="masthead-sticky__link" href="#">Home</a></li>
+          <li><a class="masthead-sticky__link" href="#">News</a></li>
+          <li><a class="masthead-sticky__link" href="#">Royals</a></li>
+          <li><a class="masthead-sticky__link" href="#">US</a></li>
+          <li><a class="masthead-sticky__link" href="#">Sport</a></li>
+          <li><a class="masthead-sticky__link" href="#">Showbiz</a></li>
+          <li><a class="masthead-sticky__link" href="#" aria-current="page">Lifestyle</a></li>
+          <li><a class="masthead-sticky__link" href="#">Money</a></li>
+          <li><a class="masthead-sticky__link" href="#">Crime Desk</a></li>
+          <li><a class="masthead-sticky__link" href="#">Games</a></li>
+          <li><a class="masthead-sticky__link" href="#">Travel</a></li>
+          <li><a class="masthead-sticky__link" href="#">Buyline</a></li>
+          <li>
+            <a class="masthead-sticky__link" href="#" aria-label="Daily Mail+">
+              <svg class="masthead-sticky__mplus" aria-hidden="true"><use href="#logo-mplus-lozenge" /></svg>
+            </a>
+          </li>
+        </ul>
+        <button type="button" class="masthead-sticky__edge masthead-sticky__edge--next" aria-label="Scroll channels right" hidden><span class="icon icon--chevron-right" aria-hidden="true"></span></button>
+      </nav>
+      <div class="masthead-sticky__right">
+        <a class="masthead-sticky__btn masthead-sticky__btn--light masthead-sticky__btn--subscribe" href="#subscribe">
+          <span class="icon icon--ch-mailplus" aria-hidden="true"></span>
+          Subscribe
+        </a>
+        <div class="masthead-sticky__edition-wrap">
+          <button type="button" class="masthead-sticky__round masthead-sticky__edition" aria-label="Edition: UK" aria-expanded="false" aria-controls="masthead-sticky-edition-menu">
+            <img src="../../assets/icons/ico-flag-united-kingdom.svg" alt="" />
+            <span class="icon icon--chevron-down" aria-hidden="true"></span>
+          </button>
+          <div class="dropdown-menu masthead-edition-menu" id="masthead-sticky-edition-menu" hidden>
+            <ul class="dropdown-menu__list">
+              <li class="dropdown-menu__group">Select Edition</li>
+              <li>
+                <a class="dropdown-menu__item" href="#uk" aria-current="true">
+                  <img src="../../assets/icons/ico-flag-united-kingdom.svg" alt="" />
+                  UK
+                  <span class="icon icon--tick dropdown-menu__tick" aria-hidden="true"></span>
+                </a>
+              </li>
+              <li>
+                <a class="dropdown-menu__item" href="#us">
+                  <img src="../../assets/icons/ico-flag-united-states.svg" alt="" />
+                  US
+                  <span class="icon icon--tick dropdown-menu__tick" aria-hidden="true"></span>
+                </a>
+              </li>
+              <li>
+                <a class="dropdown-menu__item" href="#au">
+                  <img src="../../assets/icons/ico-flag-australia.svg" alt="" />
+                  AU
+                  <span class="icon icon--tick dropdown-menu__tick" aria-hidden="true"></span>
+                </a>
+              </li>
+              <li>
+                <a class="dropdown-menu__item" href="#ie">
+                  <img src="../../assets/icons/ico-flag-ireland.svg" alt="" />
+                  IE
+                  <span class="icon icon--tick dropdown-menu__tick" aria-hidden="true"></span>
+                </a>
+              </li>
+            </ul>
+          </div>
+        </div>
+        <a class="masthead-sticky__round" href="#login" aria-label="Login"><span class="icon icon--person-outline" aria-hidden="true"></span></a>
+      </div>
+    </div>
+
+    <main>
+      <!-- ── Navbar L2 — first child of <main>, full width; Lifestyle subchannels ── -->
+      <nav class="navbar-l2 navbar-l2--lifestyle" aria-label="Lifestyle">
+        <div class="navbar-l2__inner">
+          <ul class="navbar-l2__list">
+            <li><a class="navbar-l2__link" href="#">You Mag</a></li>
+            <li><a class="navbar-l2__link" href="#">Femail</a></li>
+            <li><a class="navbar-l2__link" href="#">Health</a></li>
+            <li><a class="navbar-l2__link" href="#">Food &amp; Drink</a></li>
+            <li><a class="navbar-l2__link" href="#">Horoscopes</a></li>
+            <li><a class="navbar-l2__link" href="#">Gardening</a></li>
+            <li><a class="navbar-l2__link" href="#">Fitness &amp; Wellbeing</a></li>
+            <li><a class="navbar-l2__link" href="#">Homes</a></li>
+            <li><a class="navbar-l2__link" href="#">Fashion</a></li>
+            <li><a class="navbar-l2__link" href="#">Beauty</a></li>
+            <li><a class="navbar-l2__link" href="#">Love &amp; Sex</a></li>
+            <li><a class="navbar-l2__link" href="#">Books</a></li>
+            <li><a class="navbar-l2__link" href="#">Cars</a></li>
+            <li><a class="navbar-l2__link" href="#">Mail Shop</a></li>
+          </ul>
+          <button type="button" class="navbar-l2__edge navbar-l2__edge--prev" aria-label="Scroll subchannels left" hidden><span class="icon icon--chevron-left" aria-hidden="true"></span></button>
+          <button type="button" class="navbar-l2__edge navbar-l2__edge--next" aria-label="Scroll subchannels right" hidden><span class="icon icon--chevron-right" aria-hidden="true"></span></button>
+        </div>
+      </nav>
+
+      <!-- ── Page — Side Ads (≥1350) run beside it and stop where the footer starts ── -->
+      <div class="container ad-skin homepage__page">
+        <div class="ad-rail ad-rail--left">
+          <aside class="ad-slot ad-slot--side" aria-label="Advertisement"><img src="../../assets/images/ad-placeholder-160x600.jpg" alt="" /></aside>
+        </div>
+        <div class="ad-rail ad-rail--right">
+          <aside class="ad-slot ad-slot--side" aria-label="Advertisement"><img src="../../assets/images/ad-placeholder-160x600.jpg" alt="" /></aside>
+        </div>
+
+        <!-- Banner Story — image from Figma 39186:15030 (Lab › Channel Page Layouts), downloaded to images/; Dweb shows the standfirst, Mweb the short headline -->
+        <section class="layout-full">
+          <article class="article-card-banner">
+            <div class="article-card-banner__panel">
+              <div class="article-card-banner__media"><img src="images/femail-banner-sophia-bush.jpg" alt="Sophia recalls being 'groped'" /></div>
+              <div class="article-card-banner__content">
+                <h2 class="article-card-banner__headline">
+                  <a class="article-card-banner__link" href="#article-16241811">
+                    <span class="homepage-dweb">The actress rose to fame with her role in the hit teen drama, but has now shared that she feared being 'fired' from the show if she spoke out about her ordeal</span>
+                    <span class="homepage-mweb">Sophia recalls being 'groped'</span>
+                  </a>
+                </h2>
+                <div class="article-card-banner__metadata article-card-metadata">
+                  <a class="article-card-metadata__comments" href="#comments-16241811" aria-label="13 comments">
+                    <span class="icon icon--speechbubble-ellipsis article-card-metadata__comments-icon" aria-hidden="true"></span>
+                    13<span class="article-card-metadata__comments-word">comments</span>
+                  </a>
+                </div>
+              </div>
+            </div>
+          </article>
+        </section>
+
+        <!-- Section 2 — Femail channel export 2026-11-16: Alpha (splash + video columns, Image Only, XL, rows of SM Left with preview) + Beta (Showbiz: branded header + Channel Puff with MPU / DMPU) -->
+        <section class="layout-full">
+          <div class="layout-split">
+            <div class="layout-alpha">
+              <div class="layout-row">
+                <div class="layout-col">
+                  <article class="article-card article-card--md-vertical">
+                    <h2 class="h2 article-headline"><a class="article-card__link" href="#article-16241591">Alexa Chung poses in lingerie and a swimsuit as she shows off 'haunted' engagement ring in a new shoot after confirming she is set to marry Tom Sturridge</a></h2>
+                    <div class="article-card__media"><img src="https://i.dailymail.com/1s/2026/10/27/11/112118019-0-image-m-1_1793100814267.jpg" alt="" /></div>
+                    <div class="article-card__metadata article-card-metadata">
+                      <a class="article-card-metadata__channel" href="#showbiz"><span class="article-card-metadata__channel-text">Showbiz</span></a>
+                      <a class="article-card-metadata__comments" href="#comments-16241591" aria-label="57 comments">
+                        <span class="icon icon--speechbubble-ellipsis article-card-metadata__comments-icon" aria-hidden="true"></span>
+                        57<span class="article-card-metadata__comments-word">comments</span>
+                      </a>
+                    </div>
+                  </article>
+                  <article class="article-card article-card--sm-left">
+                    <div class="article-card__media"><img src="https://i.dailymail.com/1s/2026/10/12/17/111808421-0-image-a-15_1791822368603.jpg" alt="" /></div>
+                    <div class="article-card__body">
+                      <h5 class="h5 article-headline"><a class="article-card__link" href="#article-16202661">Trump's DC golf course makeover hit with major setback by irate judge after secret tree clearing</a></h5>
+                      <p class="article-card__preview">A Joe Biden-appointed federal judge tore into the Trump administration's efforts to 'beautify' the East Potomac Golf Course in Washington, DC, starting with secretive tree removals.</p>
+                      <div class="article-card__metadata article-card-metadata">
+                        <a class="article-card-metadata__channel" href="#news"><span class="article-card-metadata__channel-text">News</span></a>
+                        <a class="article-card-metadata__comments" href="#comments-16202661" aria-label="260 comments">
+                          <span class="icon icon--speechbubble-ellipsis article-card-metadata__comments-icon" aria-hidden="true"></span>
+                          260<span class="article-card-metadata__comments-word">comments</span>
+                        </a>
+                      </div>
+                    </div>
+                  </article>
+                  <article class="article-card article-card--sm-left">
+                    <div class="article-card__media"><img src="https://i.dailymail.com/1s/2026/11/14/21/112512059-0-image-a-7_1794690691704.jpg" alt="" /></div>
+                    <div class="article-card__body">
+                      <h5 class="h5 article-headline"><a class="article-card__link" href="#article-16293067">PETER HITCHENS: Careless politicians have distorted the true meaning of the Remembrance Poppy</a></h5>
+                      <p class="article-card__preview">What does it mean when we wear a Remembrance Poppy? On Friday I laid mine aside, having - as usual - managed to sing that granite-like hymn O God Our Help In Ages Past on Sunday.</p>
+                      <div class="article-card__metadata article-card-metadata">
+                        <a class="article-card-metadata__channel" href="#debate"><span class="article-card-metadata__channel-text">Debate</span></a>
+                        <a class="article-card-metadata__comments" href="#comments-16293067" aria-label="255 comments">
+                          <span class="icon icon--speechbubble-ellipsis article-card-metadata__comments-icon" aria-hidden="true"></span>
+                          255<span class="article-card-metadata__comments-word">comments</span>
+                        </a>
+                      </div>
+                    </div>
+                  </article>
+                  <article class="article-card article-card--sm-left">
+                    <div class="article-card__media">
+                      <img src="https://i.dailymail.com/1s/2026/11/16/13/112536943-0-image-a-7_1794834855400.jpg" alt="" />
+                      <span class="article-card__video" data-theme="light" aria-hidden="true">
+                        <span class="video-play"><span class="icon icon--media-play" aria-hidden="true"></span></span>
+                      </span>
+                    </div>
+                    <div class="article-card__body">
+                      <h5 class="h5 article-headline"><a class="article-card__link" href="#article-16296259">New York's woke mayor Mamdani disbands elite police unit and launches new 'civilian friendly' approach to rowdy protesters</a></h5>
+                      <p class="article-card__preview">New York City Mayor Zohran Mamdani has disbanded the NYPD's elite Strategic Response Group and is instead launching a new 'civilian-led approach' to protesters.</p>
+                      <div class="article-card__metadata article-card-metadata">
+                        <a class="article-card-metadata__channel" href="#news"><span class="article-card-metadata__channel-text">News</span></a>
+                        <a class="article-card-metadata__comments" href="#comments-16296259" aria-label="1.5k comments">
+                          <span class="icon icon--speechbubble-ellipsis article-card-metadata__comments-icon" aria-hidden="true"></span>
+                          1.5k<span class="article-card-metadata__comments-word">comments</span>
+                        </a>
+                      </div>
+                    </div>
+                  </article>
+                </div>
+                <div class="layout-col">
+                  <article class="article-card article-card--md-vertical">
+                    <div class="article-card__media article-card-player" data-theme="light">
+                      <video src="https://video.dailymail.com/video/mol/2026/11/16/6867024268314364383/1024x576_MP4_6867024268314364383.mp4" poster="https://i.dailymail.com/1s/2026/11/16/13/1794835184204_6231881368719219.jpg" muted playsinline preload="none"></video>
+                      <button type="button" class="article-card-player__surface" aria-label="Play video"></button>
+                      <span class="article-card-player__play" aria-hidden="true">
+                        <span class="video-play"><span class="icon icon--media-play" aria-hidden="true"></span></span>
+                        <span class="video-timer">00:00</span>
+                      </span>
+                      <div class="article-card-player__actions">
+                        <button type="button" class="btn btn-tertiary-light btn--icon-only" data-action="expand" aria-label="Full screen"><span class="icon icon--arrows-expand" aria-hidden="true"></span></button>
+                        <button type="button" class="btn btn-tertiary-light btn--icon-only" data-action="sound" aria-label="Unmute"><span class="icon icon--speaker-off" aria-hidden="true"></span></button>
+                        <button type="button" class="btn btn-tertiary-light btn--icon-only" data-action="share" aria-label="Share"><span class="icon icon--sharing-android" aria-hidden="true"></span></button>
+                      </div>
+                      <div class="video-progress video-progress--inline">
+                        <span class="video-progress__elapsed">00:00</span>
+                        <div class="video-progress__track" role="slider" aria-label="Seek" tabindex="0" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0">
+                          <div class="video-progress__bar"></div>
+                        </div>
+                        <span class="video-progress__remaining">-00:00</span>
+                      </div>
+                    </div>
+                  </article>
+                  <article class="article-card article-card--sm-left">
+                    <div class="article-card__media"><img src="https://i.dailymail.co.uk/1s/2024/10/15/12/90870427-0-image-a-14_1728991986271.jpg" alt="" /></div>
+                    <div class="article-card__body">
+                      <h5 class="h5 article-headline">
+                        <a class="article-card__link" href="#article-13961451">
+                          <span class="badge badge--sm article-headline__badge"><img class="badge__mplus" src="../../assets/images/mail-plus-lozenge.svg" alt="M+" /></span>
+                          Who's the REAL bully in Meghan's royal psychodrama?
+                        </a>
+                      </h5>
+                      <p class="article-card__preview">Never shy of stealing the limelight, Meghan Markle talked to a group of young girls at an event focussing on their empowerment about what it's like to be 'one of the most bullied people in the world'.</p>
+                      <div class="article-card__metadata article-card-metadata">
+                        <a class="article-card-metadata__channel" href="#royals"><span class="article-card-metadata__channel-text">Royals</span></a>
+                        <a class="article-card-metadata__comments" href="#comments-13961451" aria-label="1.5k comments">
+                          <span class="icon icon--speechbubble-ellipsis article-card-metadata__comments-icon" aria-hidden="true"></span>
+                          1.5k<span class="article-card-metadata__comments-word">comments</span>
+                        </a>
+                      </div>
+                    </div>
+                  </article>
+                  <article class="article-card article-card--sm-left">
+                    <div class="article-card__media"><img src="https://i.dailymail.co.uk/1s/2024/10/15/08/90861013-0-image-a-31_1728977318648.jpg" alt="" /></div>
+                    <div class="article-card__body">
+                      <h5 class="h5 article-headline"><a class="article-card__link" href="#article-13960811">Sir David Jason reveals which famous actors he blamed</a></h5>
+                      <p class="article-card__preview">The actor, 84, who is best known for playing Derek 'Del Boy' Trotter on Only Fools And Horses, also hoped to make an impact on the big screen.</p>
+                      <div class="article-card__metadata article-card-metadata">
+                        <a class="article-card-metadata__channel" href="#showbiz"><span class="article-card-metadata__channel-text">Showbiz</span></a>
+                        <a class="article-card-metadata__comments" href="#comments-13960811" aria-label="980 comments">
+                          <span class="icon icon--speechbubble-ellipsis article-card-metadata__comments-icon" aria-hidden="true"></span>
+                          980<span class="article-card-metadata__comments-word">comments</span>
+                        </a>
+                      </div>
+                    </div>
+                  </article>
+                  <article class="article-card article-card--sm-left">
+                    <div class="article-card__media"><img src="https://i.dailymail.com/1s/2026/11/14/20/112485483-0-image-m-28_1794688638165.jpg" alt="" /></div>
+                    <div class="article-card__body">
+                      <h5 class="h5 article-headline"><a class="article-card__link" href="#article-16293001">SARAH VINE: I don't fear the digital doomsday one bit. In fact, it'll be pure bliss</a></h5>
+                      <p class="article-card__preview">Friday November 13, 2026 was supposed to be Doomsday - or at least that was according to Austrian- American physicist Heinz von Foerster.</p>
+                      <div class="article-card__metadata article-card-metadata">
+                        <a class="article-card-metadata__channel" href="#debate"><span class="article-card-metadata__channel-text">Debate</span></a>
+                        <a class="article-card-metadata__comments" href="#comments-16293001" aria-label="7 comments">
+                          <span class="icon icon--speechbubble-ellipsis article-card-metadata__comments-icon" aria-hidden="true"></span>
+                          7<span class="article-card-metadata__comments-word">comments</span>
+                        </a>
+                      </div>
+                    </div>
+                  </article>
+                  <article class="article-card article-card--sm-left">
+                    <div class="article-card__media"><img src="https://i.dailymail.co.uk/1s/2024/10/15/10/90864867-0-image-m-13_1728985213464.jpg" alt="" /></div>
+                    <div class="article-card__body">
+                      <h5 class="h5 article-headline"><a class="article-card__link" href="#article-13961213">I took the £3 'Ozempic for drinking' pill and finally quit booze</a></h5>
+                      <p class="article-card__preview">Costing a mere £2 to £3 a pill the drug, called naltrexone, helps interrupt the chemical signals in the brain that lead to addiction occurring giving rise to the nickname 'Ozempic for drinking'.</p>
+                      <div class="article-card__metadata article-card-metadata">
+                        <a class="article-card-metadata__channel" href="#health"><span class="article-card-metadata__channel-text">Health</span></a>
+                        <a class="article-card-metadata__comments" href="#comments-13961213" aria-label="221 comments">
+                          <span class="icon icon--speechbubble-ellipsis article-card-metadata__comments-icon" aria-hidden="true"></span>
+                          221<span class="article-card-metadata__comments-word">comments</span>
+                        </a>
+                      </div>
+                    </div>
+                  </article>
+                  <article class="article-card article-card--sm-left">
+                    <div class="article-card__media"><img src="https://i.dailymail.co.uk/1s/2024/10/14/14/90825835-0-image-a-11_1728912591521.jpg" alt="" /></div>
+                    <div class="article-card__body">
+                      <h5 class="h5 article-headline"><a class="article-card__link" href="#article-13957983">Simple tweak to cancer treatment cuts death risk by 'remarkable' 40 per cent</a></h5>
+                      <p class="article-card__preview">The approach, combined with the standard treatment, can also lower the risk of the disease returning by more than a third.</p>
+                      <div class="article-card__metadata article-card-metadata">
+                        <a class="article-card-metadata__channel" href="#health"><span class="article-card-metadata__channel-text">Health</span></a>
+                        <a class="article-card-metadata__comments" href="#comments-13957983" aria-label="99 comments">
+                          <span class="icon icon--speechbubble-ellipsis article-card-metadata__comments-icon" aria-hidden="true"></span>
+                          99<span class="article-card-metadata__comments-word">comments</span>
+                        </a>
+                      </div>
+                    </div>
+                  </article>
+                </div>
+              </div>
+              <div class="layout-row">
+                <div class="layout-col">
+                  <article class="article-card article-card--image-only article-card--image-only-large">
+                    <div class="article-card__media">
+                      <img src="https://i.dailymail.co.uk/1s/2024/10/14/18/90837775-0-image-a-12_1728928663354.jpg" alt="" />
+                      <div class="article-card__overlay">
+                        <h3 class="h3 article-headline"><a class="article-card__link" href="#article-13958243">NADINE DORRIES: I now realise 'having it all' is a lie, and a ticket to a guilt-filled, joyless life</a></h3>
+                        <span class="btn btn-quaternary-dark btn--xs article-card__read-more" aria-hidden="true">
+                          Read more
+                          <span class="icon icon--arrow-right-light" aria-hidden="true"></span>
+                        </span>
+                      </div>
+                      <div class="article-card__signpost"><span class="badge badge--lg"><img class="badge__mplus" src="../../assets/images/mail-plus-lozenge.svg" alt="M+" /></span></div>
+                    </div>
+                    <div class="article-card__metadata article-card-metadata">
+                      <a class="article-card-metadata__channel" href="#debate"><span class="article-card-metadata__channel-text">Debate</span></a>
+                      <a class="article-card-metadata__comments" href="#comments-13958243" aria-label="160 comments">
+                        <span class="icon icon--speechbubble-ellipsis article-card-metadata__comments-icon" aria-hidden="true"></span>
+                        160<span class="article-card-metadata__comments-word">comments</span>
+                      </a>
+                    </div>
+                  </article>
+                </div>
+              </div>
+              <div class="layout-row">
+                <div class="layout-col">
+                  <article class="article-card article-card--sm-left">
+                    <div class="article-card__media"><img src="https://i.dailymail.co.uk/1s/2024/10/14/18/90836475-0-image-a-14_1728926320103.jpg" alt="" /></div>
+                    <div class="article-card__body">
+                      <h5 class="h5 article-headline">
+                        <a class="article-card__link" href="#article-13958247">
+                          <span class="badge badge--sm article-headline__badge"><img class="badge__mplus" src="../../assets/images/mail-plus-lozenge.svg" alt="M+" /></span>
+                          If you are tired all the time, worrying things could REALLY be going on with your health. These five people had a VERY surprising diagnosis
+                        </a>
+                      </h5>
+                      <p class="article-card__preview">As many as one in eight of us feels 'tired all the time', according to a 2022 YouGov survey, with a quarter of Britons saying they feel tired 'most' of the time.</p>
+                      <div class="article-card__metadata article-card-metadata">
+                        <a class="article-card-metadata__channel" href="#health"><span class="article-card-metadata__channel-text">Health</span></a>
+                        <a class="article-card-metadata__comments" href="#comments-13958247" aria-label="138 comments">
+                          <span class="icon icon--speechbubble-ellipsis article-card-metadata__comments-icon" aria-hidden="true"></span>
+                          138<span class="article-card-metadata__comments-word">comments</span>
+                        </a>
+                      </div>
+                    </div>
+                  </article>
+                  <article class="article-card article-card--sm-left">
+                    <div class="article-card__media"><img src="https://i.dailymail.co.uk/1s/2024/10/15/06/90835509-0-Chancellor_Rachel_Reeves_claimed_1_225_on_her_Parliamentary_expe-a-4_1728971310201.jpg" alt="" /></div>
+                    <div class="article-card__body">
+                      <h5 class="h5 article-headline">
+                        <a class="article-card__link" href="#article-13958239">
+                          <span class="badge badge--sm article-headline__badge"><img class="badge__mplus" src="../../assets/images/mail-plus-lozenge.svg" alt="M+" /></span>
+                          RICHARD LITTLEJOHN: How can we trust a Chancellor who doesn't even fill in her own tax return?
+                        </a>
+                      </h5>
+                      <p class="article-card__preview">Of all the revelations about Labour's free-loading, free frocks, free glasses, free tickets, free holidays, etc, one story jumped out at me.</p>
+                      <div class="article-card__metadata article-card-metadata">
+                        <a class="article-card-metadata__channel" href="#debate"><span class="article-card-metadata__channel-text">Debate</span></a>
+                        <a class="article-card-metadata__comments" href="#comments-13958239" aria-label="441 comments">
+                          <span class="icon icon--speechbubble-ellipsis article-card-metadata__comments-icon" aria-hidden="true"></span>
+                          441<span class="article-card-metadata__comments-word">comments</span>
+                        </a>
+                      </div>
+                    </div>
+                  </article>
+                </div>
+                <div class="layout-col">
+                  <article class="article-card article-card--sm-left">
+                    <div class="article-card__media"><img src="https://i.dailymail.co.uk/1s/2024/10/15/12/90869839-0-Sara_Sharif_began_to_wear_a_hijab_to_school_to_conceal_the_appal-a-15_1728991604614.jpg" alt="" /></div>
+                    <div class="article-card__body">
+                      <h5 class="h5 article-headline"><a class="article-card__link" href="#article-13961633">Sara Sharif was forced to wear a hijab to 'conceal' her injuries</a></h5>
+                      <p class="article-card__preview">Urfan Sharif is accused of battering his 10-year-old daughter Sara to death before fleeing to Pakistan last August after subjecting the schoolgirl to weeks of brutal abuse.</p>
+                      <div class="article-card__metadata article-card-metadata">
+                        <a class="article-card-metadata__channel" href="#news"><span class="article-card-metadata__channel-text">News</span></a>
+                      </div>
+                    </div>
+                  </article>
+                  <article class="article-card article-card--sm-left">
+                    <div class="article-card__media"><img src="https://i.dailymail.co.uk/1s/2024/10/15/10/90865099-0-image-a-4_1728984160721.jpg" alt="" /></div>
+                    <div class="article-card__body">
+                      <h5 class="h5 article-headline"><a class="article-card__link" href="#article-13961159">Boyfriend of Finland's first ever openly gay ice hockey player confesses</a></h5>
+                      <p class="article-card__preview">Janne Puhakka, 29, died in the home he shared with his Norwegian veterinarian partner, Rolf Nordmo, 66, in Henttaa, Espoo, on Sunday evening.</p>
+                      <div class="article-card__metadata article-card-metadata">
+                        <a class="article-card-metadata__channel" href="#lifestyle"><span class="article-card-metadata__channel-text">Lifestyle</span></a>
+                      </div>
+                    </div>
+                  </article>
+                </div>
+              </div>
+              <div class="layout-row">
+                <div class="layout-col">
+                  <article class="article-card article-card--xl">
+                    <div class="article-card__media"><img src="https://i.dailymail.co.uk/1s/2024/10/14/10/90820717-0-image-a-4_1728898312878.jpg" alt="" /></div>
+                    <div class="article-card__body">
+                      <h2 class="h2 article-headline">
+                        <a class="article-card__link" href="#article-13957133">
+                          <span class="badge badge--lg article-headline__badge"><img class="badge__mplus" src="../../assets/images/mail-plus-lozenge.svg" alt="M+" /></span>
+                          I know what it's like to be in a coma - and remember hearing medics who thought I was brain dead wanting to turn off my life support
+                        </a>
+                      </h2>
+                      <div class="article-card__metadata article-card-metadata">
+                        <a class="article-card-metadata__channel" href="#health"><span class="article-card-metadata__channel-text">Health</span></a>
+                        <a class="article-card-metadata__comments" href="#comments-13957133" aria-label="157 comments">
+                          <span class="icon icon--speechbubble-ellipsis article-card-metadata__comments-icon" aria-hidden="true"></span>
+                          157<span class="article-card-metadata__comments-word">comments</span>
+                        </a>
+                      </div>
+                    </div>
+                  </article>
+                </div>
+              </div>
+              <div class="layout-row">
+                <div class="layout-col">
+                  <article class="article-card article-card--sm-left">
+                    <div class="article-card__media">
+                      <img src="https://i.dailymail.com/1s/2026/11/16/15/112539351-0-image-m-17_1794843649457.jpg" alt="" />
+                      <span class="article-card__video" data-theme="light" aria-hidden="true">
+                        <span class="video-play"><span class="icon icon--media-play" aria-hidden="true"></span></span>
+                      </span>
+                    </div>
+                    <div class="article-card__body">
+                      <h5 class="h5 article-headline"><a class="article-card__link" href="#article-16295383">Lindsay Clancy will face first-degree murder charges again in new trial for her three children's deaths</a></h5>
+                      <p class="article-card__preview">The mom-of-three returned to court on Monday morning for a critical hearing in her criminal case, just days after the judge struck down her final efforts to avoid a retrial.</p>
+                      <div class="article-card__metadata article-card-metadata">
+                        <a class="article-card-metadata__channel" href="#crime-desk"><span class="article-card-metadata__channel-text">Crime Desk</span></a>
+                        <a class="article-card-metadata__comments" href="#comments-16295383" aria-label="222 comments">
+                          <span class="icon icon--speechbubble-ellipsis article-card-metadata__comments-icon" aria-hidden="true"></span>
+                          222<span class="article-card-metadata__comments-word">comments</span>
+                        </a>
+                      </div>
+                    </div>
+                  </article>
+                  <article class="article-card article-card--sm-left">
+                    <div class="article-card__media"><img src="https://i.dailymail.co.uk/1s/2024/10/15/11/90867711-0-image-m-15_1728988626789.jpg" alt="" /></div>
+                    <div class="article-card__body">
+                      <h5 class="h5 article-headline"><a class="article-card__link" href="#article-13961455">Pensioner, 78, died in hospital after heart monitor alert was 'silenced' by staff member</a></h5>
+                      <p class="article-card__preview">John Follon died after a lead from the machine became disconnected, triggering an alarm at the nurses' station which was then switched off, a coroner was told.</p>
+                      <div class="article-card__metadata article-card-metadata">
+                        <a class="article-card-metadata__channel" href="#news"><span class="article-card-metadata__channel-text">News</span></a>
+                        <a class="article-card-metadata__comments" href="#comments-13961455" aria-label="221 comments">
+                          <span class="icon icon--speechbubble-ellipsis article-card-metadata__comments-icon" aria-hidden="true"></span>
+                          221<span class="article-card-metadata__comments-word">comments</span>
+                        </a>
+                      </div>
+                    </div>
+                  </article>
+                </div>
+                <div class="layout-col">
+                  <article class="article-card article-card--sm-left">
+                    <div class="article-card__media"><img src="https://i.dailymail.com/1s/2026/11/16/10/112533297-0-image-a-66_1794824421163.jpg" alt="" /></div>
+                    <div class="article-card__body">
+                      <h5 class="h5 article-headline"><a class="article-card__link" href="#article-16295851">First snow of autumn! Flurries begin ahead of blizzards and 60mph winds after Britain's coldest night of the season as temperature drops to -7.7C</a></h5>
+                      <p class="article-card__preview">The Met Office has issued an 11-hour yellow warning for snow running from 12am to 11am tomorrow which stretches from the West Midlands to southern Scotland.</p>
+                      <div class="article-card__metadata article-card-metadata">
+                        <a class="article-card-metadata__channel" href="#news"><span class="article-card-metadata__channel-text">News</span></a>
+                        <a class="article-card-metadata__comments" href="#comments-16295851" aria-label="181 comments">
+                          <span class="icon icon--speechbubble-ellipsis article-card-metadata__comments-icon" aria-hidden="true"></span>
+                          181<span class="article-card-metadata__comments-word">comments</span>
+                        </a>
+                      </div>
+                    </div>
+                  </article>
+                  <article class="article-card article-card--sm-left">
+                    <div class="article-card__media"><img src="https://i.dailymail.co.uk/1s/2024/10/15/11/90865525-0-image-a-7_1728989032416.jpg" alt="" /></div>
+                    <div class="article-card__body">
+                      <h5 class="h5 article-headline"><a class="article-card__link" href="#article-13961509">Chancellor has to find £100m extra in the Budget for pensioners</a></h5>
+                      <p class="article-card__preview">The small but costly upward revision to next year's state pension is because a crunch earnings growth figure was reassessed from 4% to 4.1%.</p>
+                      <div class="article-card__metadata article-card-metadata">
+                        <a class="article-card-metadata__channel" href="#money"><span class="article-card-metadata__channel-text">Money</span></a>
+                        <a class="article-card-metadata__comments" href="#comments-13961509" aria-label="597 comments">
+                          <span class="icon icon--speechbubble-ellipsis article-card-metadata__comments-icon" aria-hidden="true"></span>
+                          597<span class="article-card-metadata__comments-word">comments</span>
+                        </a>
+                      </div>
+                    </div>
+                  </article>
+                </div>
+              </div>
+              <div class="layout-row">
+                <div class="layout-col">
+                  <article class="article-card article-card--image-only article-card--image-only-large">
+                    <div class="article-card__media">
+                      <img src="https://i.dailymail.co.uk/1s/2024/10/14/17/90835109-0-image-a-15_1728923610305.jpg" alt="" />
+                      <div class="article-card__overlay">
+                        <h3 class="h3 article-headline"><a class="article-card__link" href="#article-13958287">Sleep divorce cost me my marriage: We started sleeping separately, it led to an affair and a REAL divorce</a></h3>
+                        <span class="btn btn-quaternary-dark btn--xs article-card__read-more" aria-hidden="true">
+                          Read more
+                          <span class="icon icon--arrow-right-light" aria-hidden="true"></span>
+                        </span>
+                      </div>
+                      <div class="article-card__signpost"><span class="badge badge--lg"><img class="badge__mplus" src="../../assets/images/mail-plus-lozenge.svg" alt="M+" /></span></div>
+                    </div>
+                    <div class="article-card__metadata article-card-metadata">
+                      <a class="article-card-metadata__channel" href="#lifestyle"><span class="article-card-metadata__channel-text">Lifestyle</span></a>
+                      <a class="article-card-metadata__comments" href="#comments-13958287" aria-label="152 comments">
+                        <span class="icon icon--speechbubble-ellipsis article-card-metadata__comments-icon" aria-hidden="true"></span>
+                        152<span class="article-card-metadata__comments-word">comments</span>
+                      </a>
+                    </div>
+                  </article>
+                </div>
+              </div>
+              <div class="layout-row">
+                <div class="layout-col">
+                  <article class="article-card article-card--sm-left">
+                    <div class="article-card__media"><img src="https://i.dailymail.com/1s/2026/11/16/09/112532565-0-image-m-172_1794822155227.jpg" alt="" /></div>
+                    <div class="article-card__body">
+                      <h5 class="h5 article-headline"><a class="article-card__link" href="#article-16295853">Will Grand Theft Auto 6 break the internet? Broadband operators warn the imminent release will trigger 'unprecedented' demand for data in the UK</a></h5>
+                      <p class="article-card__preview">Broadband operators are warning that the imminent release of Grand Theft Auto 6 (GTA VI) could bring the internet to its knees.</p>
+                      <div class="article-card__metadata article-card-metadata">
+                        <a class="article-card-metadata__channel" href="#science"><span class="article-card-metadata__channel-text">Science</span></a>
+                        <a class="article-card-metadata__comments" href="#comments-16295853" aria-label="378 comments">
+                          <span class="icon icon--speechbubble-ellipsis article-card-metadata__comments-icon" aria-hidden="true"></span>
+                          378<span class="article-card-metadata__comments-word">comments</span>
+                        </a>
+                      </div>
+                    </div>
+                  </article>
+                  <article class="article-card article-card--sm-left">
+                    <div class="article-card__media"><img src="https://i.dailymail.com/1s/2026/11/16/12/112535967-0-image-a-4_1794831135626.jpg" alt="" /></div>
+                    <div class="article-card__body">
+                      <h5 class="h5 article-headline"><a class="article-card__link" href="#article-16296179">Star Wars and Batman actress Tina Simmons dies as 'devastated' former Bond girl Madeline Smith leads tributes to her friend of 60 years</a></h5>
+                      <p class="article-card__preview">Star Wars actress Tina Simmons has died, with friends and colleagues paying tribute to the 'truly beloved figure'.</p>
+                      <div class="article-card__metadata article-card-metadata">
+                        <a class="article-card-metadata__channel" href="#showbiz"><span class="article-card-metadata__channel-text">Showbiz</span></a>
+                        <a class="article-card-metadata__comments" href="#comments-16296179" aria-label="21 comments">
+                          <span class="icon icon--speechbubble-ellipsis article-card-metadata__comments-icon" aria-hidden="true"></span>
+                          21<span class="article-card-metadata__comments-word">comments</span>
+                        </a>
+                      </div>
+                    </div>
+                  </article>
+                </div>
+                <div class="layout-col">
+                  <article class="article-card article-card--sm-left">
+                    <div class="article-card__media"><img src="https://i.dailymail.com/1s/2026/11/16/14/74038201-0-image-m-158_1794839357209.jpg" alt="" /></div>
+                    <div class="article-card__body">
+                      <h5 class="h5 article-headline"><a class="article-card__link" href="#article-16296561">Prince William and Harry's former nanny Jessie Webb who came out of retirement to help care for George as a baby, dies aged 84</a></h5>
+                      <p class="article-card__preview">Royal nanny Jessie Webb will be best remembered for shielding the young princes from their parents Charles and Diana's bitter divorce during a turbulent period in the 1990s.</p>
+                      <div class="article-card__metadata article-card-metadata">
+                        <a class="article-card-metadata__channel" href="#royals"><span class="article-card-metadata__channel-text">Royals</span></a>
+                        <a class="article-card-metadata__comments" href="#comments-16296561" aria-label="28 comments">
+                          <span class="icon icon--speechbubble-ellipsis article-card-metadata__comments-icon" aria-hidden="true"></span>
+                          28<span class="article-card-metadata__comments-word">comments</span>
+                        </a>
+                      </div>
+                    </div>
+                  </article>
+                  <article class="article-card article-card--sm-left">
+                    <div class="article-card__media"><img src="https://i.dailymail.com/1s/2026/11/16/15/112490285-0-image-m-36_1794841924056.jpg" alt="" /></div>
+                    <div class="article-card__body">
+                      <h5 class="h5 article-headline"><a class="article-card__link" href="#article-16296573">Eye-watering eleven-figure sum Jensen Huang's wife could get if she divorces husband over Nvidia cheating scandal</a></h5>
+                      <p class="article-card__preview">Huang, 63, abruptly left his role last Thursday as the leader of the one of the world's largest companies, amid reports of multiple extramarital affairs including with a suspected Chinese spy.</p>
+                      <div class="article-card__metadata article-card-metadata">
+                        <a class="article-card-metadata__channel" href="#news"><span class="article-card-metadata__channel-text">News</span></a>
+                        <a class="article-card-metadata__comments" href="#comments-16296573" aria-label="88 comments">
+                          <span class="icon icon--speechbubble-ellipsis article-card-metadata__comments-icon" aria-hidden="true"></span>
+                          88<span class="article-card-metadata__comments-word">comments</span>
+                        </a>
+                      </div>
+                    </div>
+                  </article>
+                </div>
+              </div>
+            </div>
+            <aside class="layout-beta">
+              <header class="section-header-branded">
+                <a class="section-header-branded__banner" href="#showbiz" aria-label="Showbiz">
+                  <img class="section-header-branded__bg" src="../../assets/images/section-header-branded-showbiz.jpg" alt="" />
+                  <span class="section-header-branded__name">SHOWBIZ</span>
+                  <span class="section-header-branded__arrow btn btn-tertiary-dark btn--sm btn--icon-only" aria-hidden="true"><span class="icon icon--arrow-right-light" aria-hidden="true"></span></span>
+                </a>
+              </header>
+              <div class="channel-puff channel-puff--showbiz">
+                <div class="channel-puff__inner">
+                  <article class="article-card article-card--md">
+                    <div class="article-card__media"><img src="https://i.dailymail.com/1s/2026/11/11/15/112445495-0-image-a-171_1794412745237.jpg" alt="" /></div>
+                    <div class="article-card__body">
+                      <h3 class="h5 article-headline"><a class="article-card__link" href="#article-16284473">Anything you can do: Rachel Weisz, 56, gives James Bond star husband Daniel Craig a run for his money as she performs daring stunts for The Mummy reboot</a></h3>
+                    </div>
+                  </article>
+                  <article class="article-card article-card--md">
+                    <div class="article-card__media"><img src="https://i.dailymail.com/1s/2026/11/11/22/112453097-0-image-a-24_1794436617567.jpg" alt="" /></div>
+                    <div class="article-card__body">
+                      <h3 class="h5 article-headline"><a class="article-card__link" href="#article-16285429">Daniel Radcliffe takes a swipe at the HBO Harry Potter TV series as he admits he 'isn't planning on watching'</a></h3>
+                    </div>
+                  </article>
+                  <article class="article-card article-card--md">
+                    <div class="article-card__media"><img src="https://i.dailymail.com/1s/2026/11/10/12/112417549-0-image-a-34_1794313533484.jpg" alt="" /></div>
+                    <div class="article-card__body">
+                      <h3 class="h5 article-headline"><a class="article-card__link" href="#article-16281129">Tammy Hembrow shares cancer battle that started with a tiny dot and threatened to spread to her blood and bones: 'You don't think it's going to happen to you'</a></h3>
+                    </div>
+                  </article>
+                  <article class="article-card article-card--md">
+                    <div class="article-card__media"><img src="https://i.dailymail.com/1s/2026/11/11/19/112449421-0-image-a-10_1794425401789.jpg" alt="" /></div>
+                    <div class="article-card__body">
+                      <h3 class="h5 article-headline"><a class="article-card__link" href="#article-16285201">Love Island's Anna Vakili splits from her boyfriend 'Cowslick' after four years of dating and devastating miscarriage</a></h3>
+                    </div>
+                  </article>
+                  <aside class="ad-slot ad-slot--mpu" aria-label="Advertisement"><img src="../../assets/images/ad-placeholder-300x250.jpg" alt="" /></aside>
+                  <article class="article-card article-card--md">
+                    <div class="article-card__media"><img src="https://i.dailymail.co.uk/1s/2026/03/28/00/107485561-0-image-a-24_1774656072902.jpg" alt=""></div>
+                    <div class="article-card__body">
+                      <h4 class="h5 article-headline">
+                        <a class="article-card__link" href="#article-kylie-jenner">
+                          <span class="badge badge--xs article-headline__badge"><img class="badge__mplus" src="../../assets/images/mail-plus-lozenge.svg" alt="M+"></span>
+                          Kylie Jenner scintillates as she bares cleavage in VERY low-cut dress after listing mansion for over $20million
+                        </a>
+                      </h4>
+                    </div>
+                  </article>
+                  <article class="article-card article-card--sm-right">
+                    <div class="article-card__media"><img src="https://i.dailymail.com/1s/2026/11/11/14/112443167-0-image-a-18_1794407340867.jpg" alt="" /></div>
+                    <div class="article-card__body">
+                      <h3 class="h6 article-headline"><a class="article-card__link" href="#article-16284431">Mariella Frostrup and Jack Skipper touch down in Australia for I'm A Celeb amid weather warning</a></h3>
+                    </div>
+                  </article>
+                  <article class="article-card article-card--sm-right">
+                    <div class="article-card__media">
+                      <img src="https://i.dailymail.com/1s/2026/11/11/15/112444791-0-image-a-9_1794411467768.jpg" alt="" />
+                      <span class="article-card__video" data-theme="light" aria-hidden="true">
+                        <span class="video-play"><span class="icon icon--media-play" aria-hidden="true"></span></span>
+                      </span>
+                    </div>
+                    <div class="article-card__body">
+                      <h3 class="h6 article-headline"><a class="article-card__link" href="#article-16284617">Amy Childs reveals husband Billy Delbosq planned 'every single detail' of their entire wedding</a></h3>
+                    </div>
+                  </article>
+                  <article class="article-card article-card--sm-right">
+                    <div class="article-card__media"><img src="https://i.dailymail.com/1s/2026/11/10/18/112424983-0-image-a-3_1794334475320.jpg" alt="" /></div>
+                    <div class="article-card__body">
+                      <h3 class="h6 article-headline"><a class="article-card__link" href="#article-16282017">I'm A Celeb's Joanna Page is 'embracing her natural self' after doctors told her she was overweight</a></h3>
+                    </div>
+                  </article>
+                  <article class="article-card article-card--sm-right">
+                    <div class="article-card__media"><img src="https://i.dailymail.com/1s/2026/11/11/08/112436143-0-image-a-1_1794385498346.jpg" alt="" /></div>
+                    <div class="article-card__body">
+                      <h3 class="h6 article-headline"><a class="article-card__link" href="#article-16283599">David Walliams' upcoming movie Fing! is dropped by Sky after sexual assault allegations</a></h3>
+                    </div>
+                  </article>
+                  <aside class="ad-slot ad-slot--mpu ad-slot--dmpu" aria-label="Advertisement"><img src="../../assets/images/ad-placeholder-300x600.jpg" alt="" /></aside>
+                  <article class="article-card article-card--md">
+                    <div class="article-card__media"><img src="https://i.dailymail.com/1s/2026/11/16/15/55255465-0-image-a-19_1794843798309.jpg" alt="" /></div>
+                    <div class="article-card__body">
+                      <h3 class="h5 article-headline"><a class="article-card__link" href="#article-10604795">EDEN CONFIDENTIAL: Furious history buff Suzannah 'tracks down phone mugger'</a></h3>
+                    </div>
+                  </article>
+                  <article class="article-card article-card--sm-right">
+                    <div class="article-card__media">
+                      <img src="https://i.dailymail.com/1s/2026/11/16/03/112528855-0-image-a-54_1794799425876.jpg" alt="" />
+                      <span class="article-card__video" data-theme="light" aria-hidden="true">
+                        <span class="video-play"><span class="icon icon--media-play" aria-hidden="true"></span></span>
+                      </span>
+                    </div>
+                    <div class="article-card__body">
+                      <h3 class="h6 article-headline"><a class="article-card__link" href="#article-16295389">Charlize Theron, Zendaya and Olivia Wilde lead best-dressed stars at 17th Governors Awards</a></h3>
+                    </div>
+                  </article>
+                  <article class="article-card article-card--sm-right">
+                    <div class="article-card__media"><img src="https://i.dailymail.com/1s/2026/11/16/15/112521517-0-Ken_Urker_s_cause_of_death_has_been_revealed_weeks_after_his_ex_-m-24_1794842565541.jpg" alt="" /></div>
+                    <div class="article-card__body">
+                      <h3 class="h6 article-headline"><a class="article-card__link" href="#article-16296857">Gypsy Rose Blanchard's ex Ken Urker's cause of death revealed... after ex-con denied he died by suicide</a></h3>
+                    </div>
+                  </article>
+                  <article class="article-card article-card--sm-right">
+                    <div class="article-card__media">
+                      <img src="https://i.dailymail.com/1s/2026/11/16/14/112538243-0-image-a-3_1794840656685.jpg" alt="" />
+                      <span class="article-card__video" data-theme="light" aria-hidden="true">
+                        <span class="video-play"><span class="icon icon--media-play" aria-hidden="true"></span></span>
+                      </span>
+                    </div>
+                    <div class="article-card__body">
+                      <h3 class="h6 article-headline"><a class="article-card__link" href="#article-16296475b">Grammy nominations 2027: Madonna, Taylor Swift, and late Dolly Parton lead music's biggest night</a></h3>
+                    </div>
+                  </article>
+                  <article class="article-card article-card--sm-right">
+                    <div class="article-card__media">
+                      <img src="https://i.dailymail.com/1s/2026/11/11/09/112437455-0-image-a-12_1794390290499.jpg" alt="" />
+                      <span class="article-card__video" data-theme="light" aria-hidden="true">
+                        <span class="video-play"><span class="icon icon--media-play" aria-hidden="true"></span></span>
+                      </span>
+                    </div>
+                    <div class="article-card__body">
+                      <h3 class="h6 article-headline">
+                        <a class="article-card__link" href="#article-16283767">
+                          <span class="badge badge--xs badge--highlight article-headline__badge"><span class="badge__label">Exclusive</span></span>
+                          Phoebe Burgess shares her dire financial situation after divorce: 'My car is the only thing I own'
+                        </a>
+                      </h3>
+                    </div>
+                  </article>
+                  <article class="article-card article-card--md">
+                    <div class="article-card__media">
+                      <img src="https://i.dailymail.com/1s/2026/11/16/15/112539729-0-image-a-32_1794843759399.jpg" alt="" />
+                      <span class="article-card__video" data-theme="light" aria-hidden="true">
+                        <span class="video-play"><span class="icon icon--media-play" aria-hidden="true"></span></span>
+                      </span>
+                    </div>
+                    <div class="article-card__body">
+                      <h3 class="h5 article-headline"><a class="article-card__link" href="#article-16295863">Moment a bus-load of scantily clad young women descend on Leonardo DiCaprio's 52nd birthday party</a></h3>
+                    </div>
+                  </article>
+                  <article class="article-card article-card--sm-right">
+                    <div class="article-card__media"><img src="https://i.dailymail.com/1s/2026/11/15/23/112526173-0-image-a-12_1794786355133.jpg" alt="" /></div>
+                    <div class="article-card__body">
+                      <h3 class="h6 article-headline"><a class="article-card__link" href="#article-16295111">Rihanna breaks her silence on rumored feud with EJ Johnson after Paris Fashion Week clapback</a></h3>
+                    </div>
+                  </article>
+                  <article class="article-card article-card--sm-right">
+                    <div class="article-card__media"><img src="https://i.dailymail.com/1s/2026/11/16/12/112536525-0-image-a-4_1794833052514.jpg" alt="" /></div>
+                    <div class="article-card__body">
+                      <h3 class="h6 article-headline"><a class="article-card__link" href="#article-16296305b">James Blunt on 'deeply troubling' claims he was singer who Hayden Panettiere was put into bed with</a></h3>
+                    </div>
+                  </article>
+                  <article class="article-card article-card--sm-right">
+                    <div class="article-card__media"><img src="https://i.dailymail.com/1s/2026/11/16/13/112537357-0-image-a-7_1794836933499.jpg" alt="" /></div>
+                    <div class="article-card__body">
+                      <h3 class="h6 article-headline"><a class="article-card__link" href="#article-16296227">Victoria Smurfit, 52, opens up on Rivals sex scenes and thanks directors for editing out 'ugly bits'</a></h3>
+                    </div>
+                  </article>
+                </div>
+              </div>
+            </aside>
+          </div>
+        </section>
+
+        <!-- Verticals — three channel boxes (row of 3 from MD): branded header with the channel logo (SVG as on the site) + Image Only Medium -->
+        <section class="layout-full homepage-channel-row">
+          <div class="layout-row">
+            <div class="layout-col">
+              <header class="section-header-branded">
+                <a class="section-header-branded__banner" href="#crime-desk" aria-label="The Crime Desk">
+                  <img class="section-header-branded__bg" src="../../assets/images/section-header-branded-crime-desk.jpg" alt="" />
+                  <img class="section-header-branded__logo" src="../../assets/images/logo-the-crime-desk.svg" alt="The Crime Desk" width="163" height="40" />
+                  <span class="section-header-branded__arrow btn btn-tertiary-dark btn--sm btn--icon-only" aria-hidden="true"><span class="icon icon--arrow-right-light" aria-hidden="true"></span></span>
+                </a>
+              </header>
+              <article class="article-card article-card--image-only article-card--image-only-medium">
+                <div class="article-card__media">
+                  <img src="https://i.dailymail.com/1s/2026/10/13/10/111826367-0-image-a-2_1791885081093.jpg" alt="" />
+                  <div class="article-card__overlay">
+                    <h4 class="h4 article-headline"><a class="article-card__link" href="#article-16203095">The rise and fall of Britain's Al Capone</a></h4>
+                    <span class="btn btn-quaternary-dark btn--xs article-card__read-more" aria-hidden="true">
+                      Read more
+                      <span class="icon icon--arrow-right-light" aria-hidden="true"></span>
+                    </span>
+                  </div>
+                </div>
+                <div class="article-card__metadata article-card-metadata">
+                  <a class="article-card-metadata__channel" href="#crime-desk"><span class="article-card-metadata__channel-text">Crime Desk</span></a>
+                  <a class="article-card-metadata__comments" href="#comments-16203095" aria-label="18 comments">
+                    <span class="icon icon--speechbubble-ellipsis article-card-metadata__comments-icon" aria-hidden="true"></span>
+                    18<span class="article-card-metadata__comments-word">comments</span>
+                  </a>
+                </div>
+              </article>
+            </div>
+            <div class="layout-col">
+              <header class="section-header-branded">
+                <a class="section-header-branded__banner" href="#sport" aria-label="Daily Mail Sport">
+                  <img class="section-header-branded__bg" src="../../assets/images/section-header-branded-sport.jpg" alt="" />
+                  <img class="section-header-branded__logo" src="../../assets/images/logo-dailymail-sport.svg" alt="Daily Mail Sport" width="187" height="26" />
+                  <span class="section-header-branded__arrow btn btn-tertiary-dark btn--sm btn--icon-only" aria-hidden="true"><span class="icon icon--arrow-right-light" aria-hidden="true"></span></span>
+                </a>
+              </header>
+              <article class="article-card article-card--image-only article-card--image-only-medium">
+                <div class="article-card__media">
+                  <img src="https://i.dailymail.com/1s/2026/11/16/10/112533409-0-image-a-4_1794824381803.jpg" alt="" />
+                  <div class="article-card__overlay">
+                    <h4 class="h4 article-headline"><a class="article-card__link" href="#article-16295969">Lamine Yamal's sly jibe at Elliot Anderson</a></h4>
+                    <span class="btn btn-quaternary-dark btn--xs article-card__read-more" aria-hidden="true">
+                      Read more
+                      <span class="icon icon--arrow-right-light" aria-hidden="true"></span>
+                    </span>
+                  </div>
+                </div>
+                <div class="article-card__metadata article-card-metadata">
+                  <a class="article-card-metadata__channel" href="#sport"><span class="article-card-metadata__channel-text">Sport</span></a>
+                  <a class="article-card-metadata__comments" href="#comments-16295969" aria-label="522 comments">
+                    <span class="icon icon--speechbubble-ellipsis article-card-metadata__comments-icon" aria-hidden="true"></span>
+                    522<span class="article-card-metadata__comments-word">comments</span>
+                  </a>
+                </div>
+              </article>
+            </div>
+            <div class="layout-col">
+              <header class="section-header-branded">
+                <a class="section-header-branded__banner" href="#royals" aria-label="Palace Confidential">
+                  <img class="section-header-branded__bg" src="../../assets/images/section-header-branded-palace-confidential.jpg" alt="" />
+                  <img class="section-header-branded__logo" src="../../assets/images/logo-palace-confidential.svg" alt="Palace Confidential" width="77" height="36" />
+                  <span class="section-header-branded__arrow btn btn-tertiary-dark btn--sm btn--icon-only" aria-hidden="true"><span class="icon icon--arrow-right-light" aria-hidden="true"></span></span>
+                </a>
+              </header>
+              <article class="article-card article-card--image-only article-card--image-only-medium">
+                <div class="article-card__media">
+                  <img src="https://i.dailymail.com/1s/2026/11/12/14/112467885-0-image-a-16_1794493642583.jpg" alt="" />
+                  <div class="article-card__overlay">
+                    <h4 class="h4 article-headline"><a class="article-card__link" href="#article-16287205">Peter Phillips finally finds his feet at 49</a></h4>
+                    <span class="btn btn-quaternary-dark btn--xs article-card__read-more" aria-hidden="true">
+                      Read more
+                      <span class="icon icon--arrow-right-light" aria-hidden="true"></span>
+                    </span>
+                  </div>
+                </div>
+                <div class="article-card__metadata article-card-metadata">
+                  <a class="article-card-metadata__channel" href="#royals"><span class="article-card-metadata__channel-text">Royals</span></a>
+                  <a class="article-card-metadata__comments" href="#comments-16287205" aria-label="461 comments">
+                    <span class="icon icon--speechbubble-ellipsis article-card-metadata__comments-icon" aria-hidden="true"></span>
+                    461<span class="article-card-metadata__comments-word">comments</span>
+                  </a>
+                </div>
+              </article>
+            </div>
+          </div>
+        </section>
+
+        <!-- Billboard in the page — LG 970×250 · MD 728×90 · below MD an MPU 300×250 (page styles) -->
+        <section class="layout-full">
+          <aside class="ad-slot ad-slot--mpu homepage-billboard" aria-label="Advertisement">
+            <picture>
+              <source media="(min-width: 1024px)" srcset="../../assets/images/ad-placeholder-970x250.jpg" />
+              <source media="(min-width: 768px)" srcset="../../assets/images/ad-placeholder-728x90.jpg" />
+              <img src="../../assets/images/ad-placeholder-300x250.jpg" alt="" />
+            </picture>
+          </aside>
+        </section>
+
+        <!-- Midterms 2026 — Section Header (as index-b) › split joined: Alpha Image Only Large + Beta M+ Opinion puffs -->
+        <section class="layout-full">
+          <header class="section-header">
+            <h2 class="section-header__title">
+              <img class="section-header__icon" src="../../assets/icons/ico-midterm2026-color.svg" alt="" />
+              Midterms <span class="homepage-midterms-year"><span>2</span><span>0</span><span>2</span><span>6</span></span>
+            </h2>
+            <nav class="section-header-tabs" aria-label="Midterms 2026 topics">
+              <button type="button" class="section-header-tabs__edge section-header-tabs__edge--prev" aria-label="Scroll left" tabindex="-1"><span class="icon icon--chevron-left" aria-hidden="true"></span></button>
+              <ul class="section-header-tabs__list">
+                <li><a class="section-header-tabs__item" href="#midterms">Trending races</a></li>
+                <li><a class="section-header-tabs__item" href="#midterms">Polls</a></li>
+                <li><a class="section-header-tabs__item" href="#midterms">Latest coverage</a></li>
+                <li><a class="section-header-tabs__item" href="#midterms">Newsletter</a></li>
+                <li><a class="section-header-tabs__item" href="#midterms">Trump News</a></li>
+                <li><a class="section-header-tabs__item" href="#midterms">Paxton v Talarico</a></li>
+                <li><a class="section-header-tabs__item" href="#midterms">Analysis</a></li>
+              </ul>
+              <button type="button" class="section-header-tabs__edge section-header-tabs__edge--next" aria-label="Scroll right" tabindex="-1"><span class="icon icon--chevron-right" aria-hidden="true"></span></button>
+            </nav>
+          </header>
+          <div class="layout-split layout-split--joined">
+            <div class="layout-alpha">
+              <article class="article-card article-card--image-only article-card--image-only-large">
+                <div class="article-card__media">
+                  <img src="https://i.dailymail.com/1s/2026/11/02/04/112238665-0-image-a-29_1793594944915.jpg" alt="" />
+                  <div class="article-card__overlay">
+                    <h3 class="h3 article-headline"><a class="article-card__link" href="#article-16257353">Trump finishes sprint to midterm elections with Kansas rally just hours after taking stage in Iowa as new poll predicts 'blue tsunami' on the horizon</a></h3>
+                    <span class="btn btn-quaternary-dark btn--xs article-card__read-more" aria-hidden="true">
+                      Read more
+                      <span class="icon icon--arrow-right-light" aria-hidden="true"></span>
+                    </span>
+                  </div>
+                </div>
+                <div class="article-card__metadata article-card-metadata">
+                  <a class="article-card-metadata__channel" href="#news"><span class="article-card-metadata__channel-text">News</span></a>
+                  <a class="article-card-metadata__comments" href="#comments-16257353" aria-label="1.2k comments">
+                    <span class="icon icon--speechbubble-ellipsis article-card-metadata__comments-icon" aria-hidden="true"></span>
+                    1.2k<span class="article-card-metadata__comments-word">comments</span>
+                  </a>
+                </div>
+              </article>
+            </div>
+            <aside class="layout-beta">
+              <article class="article-card article-card--sm-right">
+                <div class="article-card__media"><img src="https://i.dailymail.com/1s/2026/10/30/19/112202881-0-image-a-41_1793390213151.jpg" alt="" /></div>
+                <div class="article-card__body">
+                  <h3 class="h6 article-headline">
+                    <a class="article-card__link" href="#article-16253371">
+                      <span class="badge badge--xs badge--highlight article-headline__badge"><img class="badge__mplus" src="../../assets/images/mail-plus-lozenge.svg" alt="M+" /><span class="badge__label">Opinion</span></span>
+                      Republicans are abandoning private polling... and blindly turning to desperate eleventh-hour tactic
+                    </a>
+                  </h3>
+                </div>
+              </article>
+              <article class="article-card article-card--sm-right">
+                <div class="article-card__media"><img src="https://i.dailymail.com/1s/2026/10/29/19/112178813-0-image-a-13_1793301919762.jpg" alt="" /></div>
+                <div class="article-card__body">
+                  <h3 class="h6 article-headline">
+                    <a class="article-card__link" href="#article-16246899">
+                      <span class="badge badge--xs badge--highlight article-headline__badge"><img class="badge__mplus" src="../../assets/images/mail-plus-lozenge.svg" alt="M+" /><span class="badge__label">Opinion</span></span>
+                      Everyone's predicting a Blue Tsunami... but I'm the pollster politicians hire for the MOST accurate data
+                    </a>
+                  </h3>
+                </div>
+              </article>
+              <article class="article-card article-card--sm-right">
+                <div class="article-card__media"><img src="https://i.dailymail.com/1s/2026/10/28/16/112150653-0-image-a-26_1793206270039.jpg" alt="" /></div>
+                <div class="article-card__body">
+                  <h3 class="h6 article-headline">
+                    <a class="article-card__link" href="#article-16246289">
+                      <span class="badge badge--xs badge--highlight article-headline__badge"><img class="badge__mplus" src="../../assets/images/mail-plus-lozenge.svg" alt="M+" /><span class="badge__label">Opinion</span></span>
+                      Obama's appalling new low and his cabal of Democrat idiots have just tipped this election on its head: MAUREEN CALLAHAN
+                    </a>
+                  </h3>
+                </div>
+              </article>
+            </aside>
+          </div>
+        </section>
+
+        <!-- The Crime Desk — branded header (logo) › split joined: Alpha row (MD with preview · vertical video) + Beta puffs -->
+        <section class="layout-full">
+          <header class="section-header-branded">
+            <a class="section-header-branded__banner" href="#crime-desk" aria-label="The Crime Desk">
+              <img class="section-header-branded__bg" src="../../assets/images/section-header-branded-crime-desk.jpg" alt="" />
+              <img class="section-header-branded__logo" src="../../assets/images/logo-the-crime-desk.svg" alt="The Crime Desk" width="163" height="40" />
+              <span class="section-header-branded__arrow btn btn-tertiary-dark btn--sm btn--icon-only" aria-hidden="true"><span class="icon icon--arrow-right-light" aria-hidden="true"></span></span>
+            </a>
+          </header>
+          <div class="layout-split layout-split--joined">
+            <div class="layout-alpha">
+              <div class="layout-row">
+                <div class="layout-col">
+                  <article class="article-card article-card--md">
+                    <div class="article-card__media"><img src="https://i.dailymail.com/1s/2026/11/06/14/112347901-0-image-a-6_1793974908100.jpg" alt="" /></div>
+                    <div class="article-card__body">
+                      <h3 class="h4 article-headline">
+                        <a class="article-card__link" href="#article-16259605">
+                          <span class="badge badge--md article-headline__badge"><img class="badge__mplus" src="../../assets/images/mail-plus-lozenge.svg" alt="M+" /></span>
+                          I covered every day of the Russell Brand trial... no amount of prayers were ever going to save him
+                        </a>
+                      </h3>
+                      <p class="article-card__preview">In the end, no amount of prayers could save 51-year-old Brand from his own big mouth in the witness box.</p>
+                      <div class="article-card__metadata article-card-metadata">
+                        <a class="article-card-metadata__channel" href="#crime-desk"><span class="article-card-metadata__channel-text">Crime Desk</span></a>
+                        <a class="article-card-metadata__comments" href="#comments-16259605" aria-label="6 comments">
+                          <span class="icon icon--speechbubble-ellipsis article-card-metadata__comments-icon" aria-hidden="true"></span>
+                          6<span class="article-card-metadata__comments-word">comments</span>
+                        </a>
+                      </div>
+                    </div>
+                  </article>
+                </div>
+                <div class="layout-col">
+                  <article class="article-card article-card--md-vertical">
+                    <div class="article-card__media article-card-player" data-theme="light">
+                      <video src="https://video.dailymail.com/video/mol/2026/11/13/4819713544877489974/1024x576_MP4_4819713544877489974.mp4" poster="https://i.dailymail.com/1s/2026/11/13/17/1794589723211_7857028709280360.jpg" muted playsinline preload="none"></video>
+                      <button type="button" class="article-card-player__surface" aria-label="Play video"></button>
+                      <span class="article-card-player__play" aria-hidden="true">
+                        <span class="video-play"><span class="icon icon--media-play" aria-hidden="true"></span></span>
+                        <span class="video-timer">00:00</span>
+                      </span>
+                      <div class="article-card-player__actions">
+                        <button type="button" class="btn btn-tertiary-light btn--icon-only" data-action="expand" aria-label="Full screen"><span class="icon icon--arrows-expand" aria-hidden="true"></span></button>
+                        <button type="button" class="btn btn-tertiary-light btn--icon-only" data-action="sound" aria-label="Unmute"><span class="icon icon--speaker-off" aria-hidden="true"></span></button>
+                        <button type="button" class="btn btn-tertiary-light btn--icon-only" data-action="share" aria-label="Share"><span class="icon icon--sharing-android" aria-hidden="true"></span></button>
+                      </div>
+                      <div class="video-progress video-progress--inline">
+                        <span class="video-progress__elapsed">00:00</span>
+                        <div class="video-progress__track" role="slider" aria-label="Seek" tabindex="0" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0">
+                          <div class="video-progress__bar"></div>
+                        </div>
+                        <span class="video-progress__remaining">-00:00</span>
+                      </div>
+                    </div>
+                  </article>
+                </div>
+              </div>
+            </div>
+            <aside class="layout-beta">
+              <article class="article-card article-card--sm-right">
+                <div class="article-card__media"><img src="https://i.dailymail.com/1s/2026/10/30/12/112192421-0-image-a-3_1793362283165.jpg" alt="" /></div>
+                <div class="article-card__body">
+                  <h3 class="h6 article-headline"><a class="article-card__link" href="#article-16035867">How a father stabbed a man to death in Germany... and then hid in suburban Yorkshire for 25 years</a></h3>
+                </div>
+              </article>
+              <article class="article-card article-card--sm-right">
+                <div class="article-card__media"><img src="https://i.dailymail.com/1s/2026/11/16/13/112537377-0-image-m-6_1794837576938.jpg" alt="" /></div>
+                <div class="article-card__body">
+                  <h3 class="h6 article-headline"><a class="article-card__link" href="#article-16296565">Sonia Exelby murder trial: Follow every day of the disturbing case with The Trial podcast</a></h3>
+                </div>
+              </article>
+              <article class="article-card article-card--sm-right">
+                <div class="article-card__media">
+                  <img src="https://i.dailymail.com/1s/2026/06/02/10/109032393-0-image-a-24_1780392211523.jpg" alt="" />
+                  <span class="article-card__video" data-theme="light" aria-hidden="true">
+                    <span class="video-play"><span class="icon icon--media-play" aria-hidden="true"></span></span>
+                  </span>
+                </div>
+                <div class="article-card__body">
+                  <h3 class="h6 article-headline"><a class="article-card__link" href="#article-15882113">The mystery of the missing village schoolboy and the 'Warlock' paedophile</a></h3>
+                </div>
+              </article>
+            </aside>
+          </div>
+        </section>
+
+        <!-- News run — split: Alpha (Image Only, rows of SM Left, Image Only, XL with preview, rows) + Beta "More Don't Miss" (SM Right, DMPU) -->
+        <section class="layout-full">
+          <div class="layout-split">
+            <div class="layout-alpha">
+              <div class="layout-row">
+                <div class="layout-col">
+                  <article class="article-card article-card--image-only article-card--image-only-large">
+                    <div class="article-card__media">
+                      <video src="https://video.dailymail.com/preview/mol/2026/11/16/3377699050342497465/636x382_MP4_3377699050342497465.mp4" poster="https://video.dailymail.com/preview/mol/2026/11/16/3377699050342497465/636x382_JPG-SINGLE_3377699050342497465.jpg" data-preview muted loop playsinline preload="none" aria-hidden="true"></video>
+                      <div class="article-card__overlay">
+                        <h3 class="h3 article-headline"><a class="article-card__link" href="#article-16296515">Moment 12kg of cocaine is found hidden in smugglers' luggage after they landed at Gatwick - as gang are jailed for importing £8m of drug into UK from Caribbean</a></h3>
+                        <span class="btn btn-quaternary-dark btn--xs article-card__read-more" aria-hidden="true">
+                          Read more
+                          <span class="icon icon--arrow-right-light" aria-hidden="true"></span>
+                        </span>
+                      </div>
+                    </div>
+                    <div class="article-card__metadata article-card-metadata">
+                      <a class="article-card-metadata__channel" href="#news"><span class="article-card-metadata__channel-text">News</span></a>
+                      <a class="article-card-metadata__comments" href="#comments-16296515" aria-label="678 comments">
+                        <span class="icon icon--speechbubble-ellipsis article-card-metadata__comments-icon" aria-hidden="true"></span>
+                        678<span class="article-card-metadata__comments-word">comments</span>
+                      </a>
+                    </div>
+                  </article>
+                </div>
+              </div>
+              <div class="layout-row">
+                <div class="layout-col">
+                  <article class="article-card article-card--sm-left">
+                    <div class="article-card__media">
+                      <img src="https://i.dailymail.com/1s/2026/11/16/12/112535891-0-image-m-17_1794831239019.jpg" alt="" />
+                      <span class="article-card__video" data-theme="light" aria-hidden="true">
+                        <span class="video-play"><span class="icon icon--media-play" aria-hidden="true"></span></span>
+                      </span>
+                    </div>
+                    <div class="article-card__body">
+                      <h5 class="h5 article-headline"><a class="article-card__link" href="#article-16296219">Labour minister claims to be a fan of 'Razzles' crisps as he claims EU deal won't affect flavours</a></h5>
+                      <p class="article-card__preview">Hamish Falconer repeatedly used the wrong name for the popular snacks while condemning 'misinformation' about proposals from Brussels.</p>
+                      <div class="article-card__metadata article-card-metadata">
+                        <a class="article-card-metadata__channel" href="#news"><span class="article-card-metadata__channel-text">News</span></a>
+                        <a class="article-card-metadata__comments" href="#comments-16296219" aria-label="1.3k comments">
+                          <span class="icon icon--speechbubble-ellipsis article-card-metadata__comments-icon" aria-hidden="true"></span>
+                          1.3k<span class="article-card-metadata__comments-word">comments</span>
+                        </a>
+                      </div>
+                    </div>
+                  </article>
+                  <article class="article-card article-card--sm-left">
+                    <div class="article-card__media"><img src="https://i.dailymail.com/1s/2026/11/16/12/112536525-0-image-a-4_1794833052514.jpg" alt="" /></div>
+                    <div class="article-card__body">
+                      <h5 class="h5 article-headline"><a class="article-card__link" href="#article-16296305">'It's deeply troubling to be caught up in it': James Blunt weighs in on claims he was 'famous British singer' who actress Hayden Panettiere was put into bed with when she was 18</a></h5>
+                      <p class="article-card__preview">The Celebrity Traitors star described the rumours as 'deeply troubling' and said internet sleuths pointing the finger at him had 'no interest in detail or truth'.</p>
+                      <div class="article-card__metadata article-card-metadata">
+                        <a class="article-card-metadata__channel" href="#showbiz"><span class="article-card-metadata__channel-text">Showbiz</span></a>
+                        <a class="article-card-metadata__comments" href="#comments-16296305" aria-label="162 comments">
+                          <span class="icon icon--speechbubble-ellipsis article-card-metadata__comments-icon" aria-hidden="true"></span>
+                          162<span class="article-card-metadata__comments-word">comments</span>
+                        </a>
+                      </div>
+                    </div>
+                  </article>
+                </div>
+                <div class="layout-col">
+                  <article class="article-card article-card--sm-left">
+                    <div class="article-card__media"><img src="https://i.dailymail.com/1s/2026/11/15/22/112525133-0-image-a-39_1794782984920.jpg" alt="" /></div>
+                    <div class="article-card__body">
+                      <h5 class="h5 article-headline">
+                        <a class="article-card__link" href="#article-16288683">
+                          <span class="badge badge--sm badge--highlight article-headline__badge"><img class="badge__mplus" src="../../assets/images/mail-plus-lozenge.svg" alt="M+" /><span class="badge__label">Exclusive</span></span>
+                          Shocking reinvention of Chris Watts' jilted jail 'wife' as he calls off wedding amid gay prison sex revelations: 'There is so much more to it,' she says in tell-all interview after being dumped
+                        </a>
+                      </h5>
+                      <p class="article-card__preview">Earlier this year, the Daily Mail revealed how former real estate agent Lizzie Henderson, 39, and Chris Watts, 41, were attempting to wed while he served five consecutive life sentences.</p>
+                      <div class="article-card__metadata article-card-metadata">
+                        <a class="article-card-metadata__channel" href="#crime-desk"><span class="article-card-metadata__channel-text">Crime Desk</span></a>
+                        <a class="article-card-metadata__comments" href="#comments-16288683" aria-label="170 comments">
+                          <span class="icon icon--speechbubble-ellipsis article-card-metadata__comments-icon" aria-hidden="true"></span>
+                          170<span class="article-card-metadata__comments-word">comments</span>
+                        </a>
+                      </div>
+                    </div>
+                  </article>
+                  <article class="article-card article-card--sm-left">
+                    <div class="article-card__media">
+                      <img src="https://i.dailymail.com/1s/2026/11/16/15/112476633-0-image-m-13_1794841388659.jpg" alt="" />
+                      <span class="article-card__video" data-theme="light" aria-hidden="true">
+                        <span class="video-play"><span class="icon icon--media-play" aria-hidden="true"></span></span>
+                      </span>
+                    </div>
+                    <div class="article-card__body">
+                      <h5 class="h5 article-headline"><a class="article-card__link" href="#article-16296759">Trump says Nvidia ex-CEO Jensen Huang should be reinstated after Chinese spy honeypot scandal: 'That's a beautiful woman'</a></h5>
+                      <p class="article-card__preview">President Donald Trump has thrown his support behind reinstating Nvidia CEO Jensen Huang.</p>
+                      <div class="article-card__metadata article-card-metadata">
+                        <a class="article-card-metadata__channel" href="#news"><span class="article-card-metadata__channel-text">News</span></a>
+                        <a class="article-card-metadata__comments" href="#comments-16296759" aria-label="547 comments">
+                          <span class="icon icon--speechbubble-ellipsis article-card-metadata__comments-icon" aria-hidden="true"></span>
+                          547<span class="article-card-metadata__comments-word">comments</span>
+                        </a>
+                      </div>
+                    </div>
+                  </article>
+                </div>
+              </div>
+              <div class="layout-row">
+                <div class="layout-col">
+                  <article class="article-card article-card--image-only article-card--image-only-large">
+                    <div class="article-card__media">
+                      <img src="https://i.dailymail.com/1s/2026/11/16/11/112534547-0-image-a-2_1794827916855.jpg" alt="" />
+                      <div class="article-card__overlay">
+                        <h3 class="h3 article-headline"><a class="article-card__link" href="#article-16295865">Neighbours of China's mega embassy struggle to sell their flats: Homeowners slash prices by up to £75K over fears of spying, protests and terror attacks</a></h3>
+                        <span class="btn btn-quaternary-dark btn--xs article-card__read-more" aria-hidden="true">
+                          Read more
+                          <span class="icon icon--arrow-right-light" aria-hidden="true"></span>
+                        </span>
+                      </div>
+                    </div>
+                    <div class="article-card__metadata article-card-metadata">
+                      <a class="article-card-metadata__channel" href="#news"><span class="article-card-metadata__channel-text">News</span></a>
+                      <a class="article-card-metadata__comments" href="#comments-16295865" aria-label="218 comments">
+                        <span class="icon icon--speechbubble-ellipsis article-card-metadata__comments-icon" aria-hidden="true"></span>
+                        218<span class="article-card-metadata__comments-word">comments</span>
+                      </a>
+                    </div>
+                  </article>
+                </div>
+              </div>
+              <div class="layout-row">
+                <div class="layout-col">
+                  <article class="article-card article-card--sm-left">
+                    <div class="article-card__media"><img src="https://i.dailymail.com/1s/2026/11/16/15/112537063-0-image-a-61_1794842832390.jpg" alt="" /></div>
+                    <div class="article-card__body">
+                      <h5 class="h5 article-headline"><a class="article-card__link" href="#article-16296559">Is this the key to curing hair loss? Scientists invent an electric comb that promotes rapid growth in mice - and they say it could work in humans too</a></h5>
+                      <p class="article-card__preview">If you're one of the millions battling thinning hair, you might be using your comb less often these days. But a new invention could soon give you a reason to pick it up again.</p>
+                      <div class="article-card__metadata article-card-metadata">
+                        <a class="article-card-metadata__channel" href="#science"><span class="article-card-metadata__channel-text">Science</span></a>
+                        <a class="article-card-metadata__comments" href="#comments-16296559" aria-label="54 comments">
+                          <span class="icon icon--speechbubble-ellipsis article-card-metadata__comments-icon" aria-hidden="true"></span>
+                          54<span class="article-card-metadata__comments-word">comments</span>
+                        </a>
+                      </div>
+                    </div>
+                  </article>
+                  <article class="article-card article-card--sm-left">
+                    <div class="article-card__media"><img src="https://i.dailymail.com/1s/2026/11/16/12/112536273-0-image-m-33_1794832304250.jpg" alt="" /></div>
+                    <div class="article-card__body">
+                      <h5 class="h5 article-headline"><a class="article-card__link" href="#article-16296323">Father of teen killed in A66 crash who assaulted celebrant at son's funeral admits carrying drugs and stealing alcohol, food and sweets in shoplifting raid</a></h5>
+                      <p class="article-card__preview">Gye Worthy, the father of one of the young men killed in the horror A66 crash, appeared in court today for attacking a civil celebrant as he delivered the eulogy at his son's funeral in September.</p>
+                      <div class="article-card__metadata article-card-metadata">
+                        <a class="article-card-metadata__channel" href="#news"><span class="article-card-metadata__channel-text">News</span></a>
+                      </div>
+                    </div>
+                  </article>
+                </div>
+                <div class="layout-col">
+                  <article class="article-card article-card--sm-left">
+                    <div class="article-card__media"><img src="https://i.dailymail.com/1s/2026/11/16/15/112539135-0-image-m-11_1794842773369.jpg" alt="" /></div>
+                    <div class="article-card__body">
+                      <h5 class="h5 article-headline"><a class="article-card__link" href="#article-16296583">Police release image of two women of interest after suspected 'cash counting scam' at Tesco superstore</a></h5>
+                      <p class="article-card__preview">Greater Manchester Police received reports of two women taking £630 worth of items to the till at a Gorton Tesco and 'confusing the cashier'.</p>
+                      <div class="article-card__metadata article-card-metadata">
+                        <a class="article-card-metadata__channel" href="#news"><span class="article-card-metadata__channel-text">News</span></a>
+                        <a class="article-card-metadata__comments" href="#comments-16296583" aria-label="16 comments">
+                          <span class="icon icon--speechbubble-ellipsis article-card-metadata__comments-icon" aria-hidden="true"></span>
+                          16<span class="article-card-metadata__comments-word">comments</span>
+                        </a>
+                      </div>
+                    </div>
+                  </article>
+                  <article class="article-card article-card--sm-left">
+                    <div class="article-card__media"><img src="https://i.dailymail.com/1s/2026/11/15/22/112524795-0-image-a-100_1794782021075.jpg" alt="" /></div>
+                    <div class="article-card__body">
+                      <h5 class="h5 article-headline">
+                        <a class="article-card__link" href="#article-16295029">
+                          <span class="badge badge--sm badge--highlight article-headline__badge"><span class="badge__label">Exclusive</span></span>
+                          David Beckham kicks up a £30million stink after finding his perfume for sale in Poundland
+                        </a>
+                      </h5>
+                      <p class="article-card__preview">Sir David Beckham's ability to sell - anything - has made him a billionaire.</p>
+                      <div class="article-card__metadata article-card-metadata">
+                        <a class="article-card-metadata__channel" href="#showbiz"><span class="article-card-metadata__channel-text">Showbiz</span></a>
+                        <a class="article-card-metadata__comments" href="#comments-16295029" aria-label="2.1k comments">
+                          <span class="icon icon--speechbubble-ellipsis article-card-metadata__comments-icon" aria-hidden="true"></span>
+                          2.1k<span class="article-card-metadata__comments-word">comments</span>
+                        </a>
+                      </div>
+                    </div>
+                  </article>
+                </div>
+              </div>
+              <div class="layout-row">
+                <div class="layout-col">
+                  <article class="article-card article-card--xl">
+                    <div class="article-card__media">
+                      <img src="https://i.dailymail.com/1s/2026/11/16/16/112540681-0-image-a-16_1794845903105.jpg" alt="" />
+                      <span class="article-card__video" data-theme="light" aria-hidden="true">
+                        <span class="video-play"><span class="icon icon--media-play" aria-hidden="true"></span></span>
+                      </span>
+                    </div>
+                    <div class="article-card__body">
+                      <h2 class="h2 article-headline"><a class="article-card__link" href="#article-16296887">'It's Robert's cinematic world and we're just living in it': Bond fans react to Batman star Pattinson's casting as 007 and praise 'one of the finest actors of a generation'</a></h2>
+                      <p class="article-card__preview">James Bond fans have been quick to react to Batman star Robert Pattinson's casting as 007 and praised him as 'one of the finest actors of a generation'.</p>
+                      <div class="article-card__metadata article-card-metadata">
+                        <a class="article-card-metadata__channel" href="#showbiz"><span class="article-card-metadata__channel-text">Showbiz</span></a>
+                        <a class="article-card-metadata__comments" href="#comments-16296887" aria-label="414 comments">
+                          <span class="icon icon--speechbubble-ellipsis article-card-metadata__comments-icon" aria-hidden="true"></span>
+                          414<span class="article-card-metadata__comments-word">comments</span>
+                        </a>
+                      </div>
+                    </div>
+                  </article>
+                </div>
+              </div>
+              <div class="layout-row">
+                <div class="layout-col">
+                  <article class="article-card article-card--sm-left">
+                    <div class="article-card__media"><img src="https://i.dailymail.com/1s/2026/11/16/10/112532245-0-image-a-8_1794824247397.jpg" alt="" /></div>
+                    <div class="article-card__body">
+                      <h5 class="h5 article-headline"><a class="article-card__link" href="#article-16295727">Brigitte Macron, 73, says her husband 'ought to be psychoanalysed' and 'never replaced his beloved grandmother', new biography claims</a></h5>
+                      <p class="article-card__preview">In the book, political journalist Catherine Nay chronicles Macron's peculiar childhood, from his relationship with his grandmother to his romance with his teacher when he was 15.</p>
+                      <div class="article-card__metadata article-card-metadata">
+                        <a class="article-card-metadata__channel" href="#news"><span class="article-card-metadata__channel-text">News</span></a>
+                        <a class="article-card-metadata__comments" href="#comments-16295727" aria-label="300 comments">
+                          <span class="icon icon--speechbubble-ellipsis article-card-metadata__comments-icon" aria-hidden="true"></span>
+                          300<span class="article-card-metadata__comments-word">comments</span>
+                        </a>
+                      </div>
+                    </div>
+                  </article>
+                  <article class="article-card article-card--sm-left">
+                    <div class="article-card__media">
+                      <img src="https://i.dailymail.com/1s/2026/11/16/14/112538243-0-image-a-3_1794840656685.jpg" alt="" />
+                      <span class="article-card__video" data-theme="light" aria-hidden="true">
+                        <span class="video-play"><span class="icon icon--media-play" aria-hidden="true"></span></span>
+                      </span>
+                    </div>
+                    <div class="article-card__body">
+                      <h5 class="h5 article-headline"><a class="article-card__link" href="#article-16296475">Grammy nominations 2027: Madonna, Taylor Swift, and late Dolly Parton lead female charge as they make the cut for music's biggest night</a></h5>
+                      <p class="article-card__preview">The star-studded list of Grammy nominations for the 2027 ceremony was announced on Monday.</p>
+                      <div class="article-card__metadata article-card-metadata">
+                        <a class="article-card-metadata__channel" href="#showbiz"><span class="article-card-metadata__channel-text">Showbiz</span></a>
+                        <a class="article-card-metadata__comments" href="#comments-16296475" aria-label="194 comments">
+                          <span class="icon icon--speechbubble-ellipsis article-card-metadata__comments-icon" aria-hidden="true"></span>
+                          194<span class="article-card-metadata__comments-word">comments</span>
+                        </a>
+                      </div>
+                    </div>
+                  </article>
+                </div>
+                <div class="layout-col">
+                  <article class="article-card article-card--sm-left">
+                    <div class="article-card__media"><img src="https://i.dailymail.com/1s/2026/11/16/16/112540159-0-image-m-37_1794847038825.jpg" alt="" /></div>
+                    <div class="article-card__body">
+                      <h5 class="h5 article-headline"><a class="article-card__link" href="#article-16296229">Top film and TV lawyer claimed he was discriminated against by Jewish bosses because he is Christian after he was sacked over affair with junior colleague</a></h5>
+                      <p class="article-card__preview">Kamir Naghdi was a department head at a London law firm before he was fired amid concerns about the impact his behaviour would have on the firm's reputation, a tribunal heard.</p>
+                      <div class="article-card__metadata article-card-metadata">
+                        <a class="article-card-metadata__channel" href="#news"><span class="article-card-metadata__channel-text">News</span></a>
+                        <a class="article-card-metadata__comments" href="#comments-16296229" aria-label="3 comments">
+                          <span class="icon icon--speechbubble-ellipsis article-card-metadata__comments-icon" aria-hidden="true"></span>
+                          3<span class="article-card-metadata__comments-word">comments</span>
+                        </a>
+                      </div>
+                    </div>
+                  </article>
+                  <article class="article-card article-card--sm-left">
+                    <div class="article-card__media"><img src="https://i.dailymail.com/1s/2026/11/16/10/112531999-0-image-m-78_1794825561690.jpg" alt="" /></div>
+                    <div class="article-card__body">
+                      <h5 class="h5 article-headline"><a class="article-card__link" href="#article-16295803">Three sisters win bitter £1.6million inheritance battle against 'entitled' brother who grabbed half of their father's fortune and hid £500,000 of the family's gold bars</a></h5>
+                      <p class="article-card__preview">Sonny Grover (pictured) was appointed administrator of his father's estate and - his sisters say - instructed to 'look after' them by their father on his death bed by splitting the family fortune equally.</p>
+                      <div class="article-card__metadata article-card-metadata">
+                        <a class="article-card-metadata__channel" href="#news"><span class="article-card-metadata__channel-text">News</span></a>
+                        <a class="article-card-metadata__comments" href="#comments-16295803" aria-label="297 comments">
+                          <span class="icon icon--speechbubble-ellipsis article-card-metadata__comments-icon" aria-hidden="true"></span>
+                          297<span class="article-card-metadata__comments-word">comments</span>
+                        </a>
+                      </div>
+                    </div>
+                  </article>
+                </div>
+              </div>
+            </div>
+            <aside class="layout-beta">
+              <header class="section-header section-header--sm">
+                <h2 class="section-header__title">
+                  <a class="section-header__link" href="#dont-miss"><span class="section-header__text"
+                    >More Don't Miss<span class="section-header__arrow btn btn-quaternary-neutral btn--icon-only" aria-hidden="true"><span class="icon icon--arrow-right-light" aria-hidden="true"></span></span
+                  ></span></a>
+                </h2>
+              </header>
+              <article class="article-card article-card--md">
+                <div class="article-card__media"><img src="https://i.dailymail.com/1s/2026/11/10/14/112420639-0-image-a-2_1794322572181.jpg" alt="" /></div>
+                <div class="article-card__body">
+                  <h3 class="h5 article-headline"><a class="article-card__link" href="#article-16280185">Stanley Cup champion Bobby Sheehan dead at 77 as New York Rangers pay tribute weeks after death of his teammate Ron Duguay</a></h3>
+                </div>
+              </article>
+              <article class="article-card article-card--sm-right">
+                <div class="article-card__media"><img src="https://i.dailymail.com/1s/2026/11/10/23/112416603-0-image-m-22_1794351909723.jpg" alt="" /></div>
+                <div class="article-card__body">
+                  <h3 class="h6 article-headline">
+                    <a class="article-card__link" href="#article-16281021">
+                      <span class="badge badge--xs article-headline__badge"><img class="badge__mplus" src="../../assets/images/mail-plus-lozenge.svg" alt="M+" /></span>
+                      AMANDA PLATELL: There's something else about Brand and his wife's behaviour that has sickened me
+                    </a>
+                  </h3>
+                </div>
+              </article>
+              <article class="article-card article-card--sm-right">
+                <div class="article-card__media"><img src="https://i.dailymail.com/1s/2026/11/10/12/112417743-0-image-m-93_1794314381611.jpg" alt="" /></div>
+                <div class="article-card__body">
+                  <h3 class="h6 article-headline"><a class="article-card__link" href="#article-16281243">David Walliams live updates: Comedian says 'I am not a sexual predator' as he's dropped by agent and BBC removes shows</a></h3>
+                </div>
+              </article>
+              <article class="article-card article-card--sm-right">
+                <div class="article-card__media"><img src="https://i.dailymail.com/1s/2026/11/23/23/112686227-0-image-a-87_1795475117521.jpg" alt="" /></div>
+                <div class="article-card__body">
+                  <h3 class="h6 article-headline"><a class="article-card__link" href="#article-16316647">Sheridan Smith debuts new look as she shows off striking auburn hair at the International Emmy Awards in NYC</a></h3>
+                </div>
+              </article>
+              <article class="article-card article-card--sm-right">
+                <div class="article-card__media">
+                  <img src="https://i.dailymail.com/1s/2026/10/08/00/111718189-0-image-m-59_1791414398020.jpg" alt="" />
+                  <span class="article-card__video" data-theme="light" aria-hidden="true">
+                    <span class="video-play"><span class="icon icon--media-play" aria-hidden="true"></span></span>
+                  </span>
+                </div>
+                <div class="article-card__body">
+                  <h3 class="h6 article-headline"><a class="article-card__link" href="#article-16186247">Violent 'traveller burglary squads' suspected of 50 house break-ins as Met Police accused of failing to tackle crime spree</a></h3>
+                </div>
+              </article>
+              <aside class="ad-slot ad-slot--mpu ad-slot--dmpu" aria-label="Advertisement"><img src="../../assets/images/ad-placeholder-300x600.jpg" alt="" /></aside>
+              <article class="article-card article-card--md">
+                <div class="article-card__media"><img src="https://i.dailymail.com/1s/2026/10/12/06/111801897-0-image-a-15_1791781906515.jpg" alt="" /></div>
+                <div class="article-card__body">
+                  <h3 class="h5 article-headline">
+                    <a class="article-card__link" href="#article-16201011">
+                      <span class="badge badge--sm badge--highlight article-headline__badge"><img class="badge__mplus" src="../../assets/images/mail-plus-lozenge.svg" alt="M+" /><span class="badge__label">Exclusive</span></span>
+                      After a $1.8billion collapse, failed pub baron Jon Adgemis resurfaces among Sydney's elite at socialite's Icebergs party... with a mystery blonde by his side
+                    </a>
+                  </h3>
+                </div>
+              </article>
+              <article class="article-card article-card--sm-right">
+                <div class="article-card__media"><img src="https://i.dailymail.com/1s/2026/07/16/20/110069825-0-image-a-16_1784229636089.jpg" alt="" /></div>
+                <div class="article-card__body">
+                  <h3 class="h6 article-headline">
+                    <a class="article-card__link" href="#article-15969361">
+                      <span class="badge badge--xs badge--highlight article-headline__badge"><img class="badge__mplus" src="../../assets/images/mail-plus-lozenge.svg" alt="M+" /><span class="badge__label">Exclusive</span></span>
+                      Bella Hadid's 'very conservative' Christian cowboy: Inside liberal model's romance with Nathan Lacy
+                    </a>
+                  </h3>
+                </div>
+              </article>
+              <article class="article-card article-card--sm-right">
+                <div class="article-card__media"><img src="https://i.dailymail.com/1s/2026/05/11/19/108530005-0-image-m-9_1778523904279.jpg" alt="" /></div>
+                <div class="article-card__body">
+                  <h3 class="h6 article-headline"><a class="article-card__link" href="#article-15808835">I'm a stock-picker and here are my five rules for investing in shares: JOANNE HART shares her tips for success</a></h3>
+                </div>
+              </article>
+              <article class="article-card article-card--sm-right">
+                <div class="article-card__media"><img src="https://i.dailymail.com/1s/2026/11/16/16/112538055-0-image-m-27_1794845300319.jpg" alt="" /></div>
+                <div class="article-card__body">
+                  <h3 class="h6 article-headline"><a class="article-card__link" href="#article-16296463">Horror as three Catholic high school students are killed in fiery crash after car whacked curb and burst into flames</a></h3>
+                </div>
+              </article>
+              <article class="article-card article-card--sm-right">
+                <div class="article-card__media"><img src="https://i.dailymail.com/1s/2026/11/23/20/112683607-0-image-m-13_1795464965231.jpg" alt="" /></div>
+                <div class="article-card__body">
+                  <h3 class="h6 article-headline"><a class="article-card__link" href="#article-16316277">RICHARD EDEN: Legal battle simmering for Gordon Ramsay's mum-in-law</a></h3>
+                </div>
+              </article>
+              <aside class="ad-slot ad-slot--mpu" aria-label="Advertisement"><img src="../../assets/images/ad-placeholder-300x250.jpg" alt="" /></aside>
+              <article class="article-card article-card--md">
+                <div class="article-card__media"><img src="https://i.dailymail.com/1s/2026/11/16/16/112540677-0-image-a-54_1794845858030.jpg" alt="" /></div>
+                <div class="article-card__body">
+                  <h3 class="h5 article-headline"><a class="article-card__link" href="#article-16296927">Andy Burnham faces growing revolt against Rosebank as Labour donor Dale Vince warns he'll bankroll a legal challenge against North Sea oilfield</a></h3>
+                </div>
+              </article>
+              <article class="article-card article-card--sm-right">
+                <div class="article-card__media"><img src="https://i.dailymail.com/1s/2026/11/16/16/112540159-0-image-m-37_1794847038825.jpg" alt="" /></div>
+                <div class="article-card__body">
+                  <h3 class="h6 article-headline"><a class="article-card__link" href="#article-16296229b">Christian lawyer claimed he was discriminated against by Jewish bosses after sack over affair</a></h3>
+                </div>
+              </article>
+              <article class="article-card article-card--sm-right">
+                <div class="article-card__media"><img src="https://i.dailymail.com/1s/2026/11/16/16/112540575-0-image-m-40_1794845939978.jpg" alt="" /></div>
+                <div class="article-card__body">
+                  <h3 class="h6 article-headline"><a class="article-card__link" href="#article-16296557">Tanker's broken steering system caused it to crash into cruise ship on Mississippi River, officials say</a></h3>
+                </div>
+              </article>
+            </aside>
+          </div>
+        </section>
+
+        <!-- Billboard in the page — LG 970×250 · MD 728×90 · below MD an MPU 300×250 (page styles) -->
+        <section class="layout-full">
+          <aside class="ad-slot ad-slot--mpu homepage-billboard" aria-label="Advertisement">
+            <picture>
+              <source media="(min-width: 1024px)" srcset="../../assets/images/ad-placeholder-970x250.jpg" />
+              <source media="(min-width: 768px)" srcset="../../assets/images/ad-placeholder-728x90.jpg" />
+              <img src="../../assets/images/ad-placeholder-300x250.jpg" alt="" />
+            </picture>
+          </aside>
+        </section>
+
+        <!-- Daily Mail Life — Section Header (Lifestyle icon, link) › split joined: Alpha XL + row of 2 MD with preview · Beta MD with preview + puffs -->
+        <section class="layout-full">
+          <header class="section-header">
+            <h2 class="section-header__title">
+              <a class="section-header__link" href="#lifestyle">
+                <img class="section-header__icon" src="../../assets/icons/ico-ch-lifestyle-color.svg" alt="" />
+                <span class="section-header__text"
+                  >Daily Mail Life<span class="section-header__arrow btn btn-quaternary-neutral btn--icon-only" aria-hidden="true"><span class="icon icon--arrow-right-light" aria-hidden="true"></span></span
+                ></span>
+              </a>
+            </h2>
+          </header>
+          <div class="layout-split layout-split--joined">
+            <div class="layout-alpha">
+              <div class="layout-row">
+                <div class="layout-col">
+                  <article class="article-card article-card--xl">
+                    <div class="article-card__media"><img src="https://i.dailymail.com/1s/2026/11/17/09/112554335-0-image-a-2_1794908461348.jpg" alt="" /></div>
+                    <div class="article-card__body">
+                      <h2 class="h2 article-headline"><a class="article-card__link" href="#article-16296939">David Beckham is suing after finding his fragrance on sale at Poundland next to these £3 dupes - but are any worth buying?</a></h2>
+                      <div class="article-card__metadata article-card-metadata">
+                        <a class="article-card-metadata__channel" href="#lifestyle"><span class="article-card-metadata__channel-text">Lifestyle</span></a>
+                        <a class="article-card-metadata__comments" href="#comments-16296939" aria-label="141 comments">
+                          <span class="icon icon--speechbubble-ellipsis article-card-metadata__comments-icon" aria-hidden="true"></span>
+                          141<span class="article-card-metadata__comments-word">comments</span>
+                        </a>
+                      </div>
+                    </div>
+                  </article>
+                </div>
+              </div>
+              <div class="layout-row">
+                <div class="layout-col">
+                  <article class="article-card article-card--sm-left">
+                    <div class="article-card__media"><img src="https://i.dailymail.com/1s/2026/11/15/16/112520851-0-image-m-15_1794760192313.jpg" alt="" /></div>
+                    <div class="article-card__body">
+                      <h5 class="h5 article-headline">
+                        <a class="article-card__link" href="#article-16294161">
+                          <span class="badge badge--sm badge--highlight article-headline__badge"><img class="badge__mplus" src="../../assets/images/mail-plus-lozenge.svg" alt="M+" /><span class="badge__label">Exclusive</span></span>
+                          COLEEN NOLAN opens up on new life with partner 14 years her junior, how he won her over
+                        </a>
+                      </h5>
+                      <p class="article-card__preview">Much of my life, has been played out in public. I've had to be tough to weather two failed marriages and the tragic loss of two sisters. But now, the news is much happier: at 61, I'm in love.</p>
+                      <div class="article-card__metadata article-card-metadata">
+                        <a class="article-card-metadata__channel" href="#lifestyle"><span class="article-card-metadata__channel-text">Lifestyle</span></a>
+                        <a class="article-card-metadata__comments" href="#comments-16294161" aria-label="173 comments">
+                          <span class="icon icon--speechbubble-ellipsis article-card-metadata__comments-icon" aria-hidden="true"></span>
+                          173<span class="article-card-metadata__comments-word">comments</span>
+                        </a>
+                      </div>
+                    </div>
+                  </article>
+                </div>
+                <div class="layout-col">
+                  <article class="article-card article-card--sm-left">
+                    <div class="article-card__media"><img src="https://i.dailymail.com/1s/2026/11/16/20/112545523-0-image-a-11_1794862596323.jpg" alt="" /></div>
+                    <div class="article-card__body">
+                      <h5 class="h5 article-headline"><a class="article-card__link" href="#article-16297677">Influencer Madeleine White suffers further heartbreak as cat mauled to death by coyotes... just months after tragic passing of dog</a></h5>
+                      <p class="article-card__preview">The 30-year-old, a British model who grew up in Los Angeles, California, was recently left devastated over the death of her dog. But she is now mourning another loss.</p>
+                      <div class="article-card__metadata article-card-metadata">
+                        <a class="article-card-metadata__channel" href="#lifestyle"><span class="article-card-metadata__channel-text">Lifestyle</span></a>
+                        <a class="article-card-metadata__comments" href="#comments-16297677" aria-label="15 comments">
+                          <span class="icon icon--speechbubble-ellipsis article-card-metadata__comments-icon" aria-hidden="true"></span>
+                          15<span class="article-card-metadata__comments-word">comments</span>
+                        </a>
+                      </div>
+                    </div>
+                  </article>
+                </div>
+              </div>
+            </div>
+            <aside class="layout-beta">
+              <article class="article-card article-card--md">
+                <div class="article-card__media"><img src="https://i.dailymail.com/1s/2026/11/12/13/112466539-0-image-a-82_1794490869218.jpg" alt="" /></div>
+                <div class="article-card__body">
+                  <h3 class="h4 article-headline"><a class="article-card__link" href="#article-16284177">What NOT to wear to a Christmas party: Fashion Editor Dinah van Tulleken reveals the festive faux pas to avoid, especially if you're over 50 - and the high street dresses to choose instead</a></h3>
+                </div>
+              </article>
+              <article class="article-card article-card--sm-right">
+                <div class="article-card__media"><img src="https://i.dailymail.com/1s/2026/11/15/23/112525979-0-image-a-10_1794785822915.jpg" alt="" /></div>
+                <div class="article-card__body">
+                  <h3 class="h6 article-headline"><a class="article-card__link" href="#article-16191783">This groundbreaking new cancer treatment with no needles or surgery is changing lives</a></h3>
+                </div>
+              </article>
+              <article class="article-card article-card--sm-right">
+                <div class="article-card__media"><img src="https://i.dailymail.com/1s/2026/11/12/21/112476755-0-image-a-8_1794519172012.jpg" alt="" /></div>
+                <div class="article-card__body">
+                  <h3 class="h6 article-headline">
+                    <a class="article-card__link" href="#article-16288205">
+                      <span class="badge badge--xs article-headline__badge"><img class="badge__mplus" src="../../assets/images/mail-plus-lozenge.svg" alt="M+" /></span>
+                      One flick through my DMs is enough to destroy at least a dozen marriages. See the screenshots: JANA HOCKING
+                    </a>
+                  </h3>
+                </div>
+              </article>
+            </aside>
+          </div>
+        </section>
+
+        <!-- Daily Mail Sport — branded header (logo) › split joined: Alpha Image Only Large + Football Games (page styles, as UK Sport) · Beta puffs -->
+        <section class="layout-full">
+          <header class="section-header-branded">
+            <a class="section-header-branded__banner" href="#sport" aria-label="Daily Mail Sport">
+              <img class="section-header-branded__bg" src="../../assets/images/section-header-branded-sport.jpg" alt="" />
+              <img class="section-header-branded__logo" src="../../assets/images/logo-dailymail-sport.svg" alt="Daily Mail Sport" width="187" height="26" />
+              <span class="section-header-branded__arrow btn btn-tertiary-dark btn--sm btn--icon-only" aria-hidden="true"><span class="icon icon--arrow-right-light" aria-hidden="true"></span></span>
+            </a>
+          </header>
+          <div class="layout-split layout-split--joined">
+            <div class="layout-alpha">
+              <article class="article-card article-card--image-only article-card--image-only-large">
+                <div class="article-card__media">
+                  <img src="https://i.dailymail.com/1s/2026/11/16/14/112538021-0-image-a-90_1794839116904.jpg" alt="" />
+                  <div class="article-card__overlay">
+                    <h3 class="h3 article-headline"><a class="article-card__link" href="#article-16290277">England's evolution: James Trafford and two other stars chisel their names into the XI, Thomas Tuchel learning from Argentina and Jude Bellingham playing like a captain!</a></h3>
+                    <span class="btn btn-quaternary-dark btn--xs article-card__read-more" aria-hidden="true">
+                      Read more
+                      <span class="icon icon--arrow-right-light" aria-hidden="true"></span>
+                    </span>
+                  </div>
+                </div>
+                <div class="article-card__metadata article-card-metadata">
+                  <a class="article-card-metadata__channel" href="#sport"><span class="article-card-metadata__channel-text">Sport</span></a>
+                  <a class="article-card-metadata__comments" href="#comments-16290277" aria-label="256 comments">
+                    <span class="icon icon--speechbubble-ellipsis article-card-metadata__comments-icon" aria-hidden="true"></span>
+                    256<span class="article-card-metadata__comments-word">comments</span>
+                  </a>
+                </div>
+              </article>
+              <header class="section-header section-header--sm">
+                <h3 class="section-header__title">
+                  <a class="section-header__link" href="#football-games">
+                    <span class="section-header__text"
+                      >Football Games<span class="section-header__arrow btn btn-quaternary-neutral btn--icon-only" aria-hidden="true"><span class="icon icon--arrow-right-light" aria-hidden="true"></span></span
+                    ></span>
+                  </a>
+                </h3>
+              </header>
+              <div class="homepage-games">
+                <a class="homepage-game homepage-game--sport" href="#game-football-quiz">
+                  <img class="homepage-game__thumb" src="images/sport-game-football-quiz.png" alt="" width="64" height="64" />
+                  <span class="homepage-game__title">Football Quiz</span>
+                  <span class="homepage-game__desc">Put your PL knowledge to the test. Updated every Friday.</span>
+                </a>
+                <a class="homepage-game homepage-game--sport" href="#game-legends">
+                  <img class="homepage-game__thumb" src="images/sport-game-legends.png" alt="" width="64" height="64" />
+                  <span class="homepage-game__title">Legends</span>
+                  <span class="homepage-game__desc">Play and collect a PL great. Updated every Monday.</span>
+                </a>
+              </div>
+            </div>
+            <aside class="layout-beta">
+              <article class="article-card article-card--sm-right">
+                <div class="article-card__media"><img src="https://i.dailymail.com/1s/2026/11/16/12/112536443-0-image-m-39_1794832887936.jpg" alt="" /></div>
+                <div class="article-card__body">
+                  <h3 class="h6 article-headline"><a class="article-card__link" href="#article-16296357">Drake Maye 'feared to have suffered season-ending injury' in devastating update for the New England Patriots</a></h3>
+                </div>
+              </article>
+              <article class="article-card article-card--sm-right">
+                <div class="article-card__media"><img src="https://i.dailymail.com/1s/2026/11/16/11/112534141-0-image-a-10_1794826901431.jpg" alt="" /></div>
+                <div class="article-card__body">
+                  <h3 class="h6 article-headline">
+                    <a class="article-card__link" href="#article-16296059">
+                      <span class="badge badge--xs badge--highlight article-headline__badge"><span class="badge__label">Exclusive</span></span>
+                      Steve Thompson and his wife Steph on World Cup winner's dementia agony
+                    </a>
+                  </h3>
+                </div>
+              </article>
+              <article class="article-card article-card--sm-right">
+                <div class="article-card__media"><img src="https://i.dailymail.com/1s/2026/11/15/00/112513659-0-image-a-1_1794700915580.jpg" alt="" /></div>
+                <div class="article-card__body">
+                  <h3 class="h6 article-headline"><a class="article-card__link" href="#article-16290257">Key lessons for Man United from incoming boss Mauricio Pochettino's 6-0 USA masterclass</a></h3>
+                </div>
+              </article>
+              <article class="article-card article-card--sm-right">
+                <div class="article-card__media">
+                  <img src="https://i.dailymail.com/1s/2026/11/16/13/112537431-0-image-a-22_1794837273064.jpg" alt="" />
+                  <span class="article-card__video" data-theme="light" aria-hidden="true">
+                    <span class="video-play"><span class="icon icon--media-play" aria-hidden="true"></span></span>
+                  </span>
+                </div>
+                <div class="article-card__body">
+                  <h3 class="h6 article-headline"><a class="article-card__link" href="#article-16296403">Crying Rory McIlroy's pain for his sick father: How golf superstar is driven on by his dad's double-lung transplant</a></h3>
+                </div>
+              </article>
+            </aside>
+          </div>
+        </section>
+      </div>
+    </main>
+
+    <div class="container homepage__footer">
+      <footer class="footer">
+        <div class="footer__top">
+          <a class="footer__logo" href="/" aria-label="Daily Mail home"></a>
+          <div class="footer__social">
+            <p class="footer__follow">Follow us on:</p>
+            <a class="btn btn-secondary-neutral btn--icon-only" href="#" aria-label="Facebook"><span class="icon icon--sn-facebook" aria-hidden="true"></span></a>
+            <a class="btn btn-secondary-neutral btn--icon-only" href="#" aria-label="TikTok"><span class="icon icon--sn-tiktok" aria-hidden="true"></span></a>
+            <a class="btn btn-secondary-neutral btn--icon-only" href="#" aria-label="Instagram"><span class="icon icon--sn-instagram" aria-hidden="true"></span></a>
+            <a class="btn btn-secondary-neutral btn--icon-only" href="#" aria-label="Snapchat"><span class="icon icon--sn-snapchat" aria-hidden="true"></span></a>
+            <a class="btn btn-secondary-neutral btn--icon-only" href="#" aria-label="YouTube"><span class="icon icon--sn-youtube" aria-hidden="true"></span></a>
+          </div>
+          <a class="btn btn-quaternary-neutral btn--sm" href="#top">
+            Back to top
+            <span class="icon icon--chevron-up" aria-hidden="true"></span>
+          </a>
+        </div>
+
+        <div class="footer__menus">
+          <details class="footer__menu">
+            <summary class="footer__heading">
+              Company
+              <span class="icon icon--chevron-down" aria-hidden="true"></span>
+            </summary>
+            <ul class="footer__links">
+              <li><a href="#">DMG Media</a></li>
+              <li><a href="#">Leadership Team</a></li>
+              <li><a href="#">This is Money</a></li>
+              <li><a href="#">Metro</a></li>
+              <li><a href="#">Newzit</a></li>
+              <li><a href="#">Mail Travel</a></li>
+              <li><a href="#">About Daily Mail</a></li>
+            </ul>
+          </details>
+          <details class="footer__menu">
+            <summary class="footer__heading">
+              Channels
+              <span class="icon icon--chevron-down" aria-hidden="true"></span>
+            </summary>
+            <ul class="footer__links">
+              <li><a href="#">Home</a></li>
+              <li><a href="#">News</a></li>
+              <li><a href="#">Royals</a></li>
+              <li><a href="#">Showbiz</a></li>
+              <li><a href="#">Sport</a></li>
+              <li><a href="#">TV</a></li>
+              <li><a href="#">Femail</a></li>
+              <li><a href="#">Health</a></li>
+              <li><a href="#">Science</a></li>
+              <li><a href="#">Money</a></li>
+              <li><a href="#">Travel</a></li>
+              <li><a href="#">Podcasts</a></li>
+              <li><a href="#">Shopping</a></li>
+              <li><a href="#">DailyMail+</a></li>
+            </ul>
+          </details>
+          <details class="footer__menu">
+            <summary class="footer__heading">
+              Terms of Use
+              <span class="icon icon--chevron-down" aria-hidden="true"></span>
+            </summary>
+            <ul class="footer__links">
+              <li><a href="#">Website Terms</a></li>
+              <li><a href="#">Privacy Settings</a></li>
+              <li><a href="#">Privacy Policy</a></li>
+              <li><a href="#">Subscription Terms &amp; Conditions</a></li>
+              <li><a href="#">Do Not Sell My Information</a></li>
+              <li><a href="#">CA Privacy</a></li>
+              <li><a href="#">Text-Based Site</a></li>
+              <li><a href="#">Contributors</a></li>
+            </ul>
+          </details>
+          <details class="footer__menu">
+            <summary class="footer__heading">
+              Get in Touch
+              <span class="icon icon--chevron-down" aria-hidden="true"></span>
+            </summary>
+            <ul class="footer__links">
+              <li><a href="#">Contact Us</a></li>
+              <li><a href="#">How to Complain</a></li>
+              <li><a href="#">Work With Us</a></li>
+              <li><a href="#">Advertise With Us</a></li>
+              <li><a href="#">Mail Subscriptions Help &amp; FAQs</a></li>
+            </ul>
+          </details>
+          <details class="footer__menu">
+            <summary class="footer__heading">
+              More
+              <span class="icon icon--chevron-down" aria-hidden="true"></span>
+            </summary>
+            <ul class="footer__links">
+              <li><a href="#">Site Map</a></li>
+              <li><a href="#">RSS</a></li>
+              <li><a href="#">Archive</a></li>
+              <li><a href="#">Video Archive</a></li>
+              <li><a href="#">Authors</a></li>
+              <li><a href="#">Topic Index</a></li>
+            </ul>
+          </details>
+        </div>
+
+        <p class="footer__copyright">© 2025 Associated Newspapers Limited</p>
+      </footer>
+    </div>
+
+    <!-- ── Mobile (SM-XS) — bottom bar ─────────────────────────────────────── -->
+    <div class="ad-sticky-bottom">
+      <aside class="ad-slot ad-slot--mobile" aria-label="Advertisement"><img src="../../assets/images/ad-placeholder-320x50.jpg" alt="" /></aside>
+    </div>
+
+    <script src="../../scripts/modules/masthead.js"></script>
+    <script>
+      // Deep Dive (experiment): the round arrow button steps the row on, as its Next arrow does — the first card comes to the start
+      document.querySelector(".homepage-deep-dive-intro__next").addEventListener("click", event => {
+        event.currentTarget.closest(".carousel").querySelector(".carousel__nav--next button").click();
+      });
+    </script>
+    <script>
+      // For You (experiment)
+      //   Tooltips: 500ms hover delay as the library, also on the cards added later.
+      //   Heart: loading for a moment, then pressed (aria-pressed) — a second click clears it.
+      //   X: the card fades and shrinks (data-vote="dislike"), leaves the row, and the next
+      //      card from #for-you-more joins at the end.
+      //   Dots: one per view of the row (the library's are one per item), from the scroll.
+      (() => {
+        const track = document.querySelector(".homepage-for-you .carousel__track");
+        const dots = document.querySelector(".homepage-for-you-dots");
+        const more = [...document.getElementById("for-you-more").content.children];
+        const tip = button => document.getElementById(button.getAttribute("aria-describedby"));
+
+        const updateDots = () => {
+          const n = Math.max(1, Math.ceil((track.scrollWidth - 1) / track.clientWidth));
+          if (dots.children.length !== n) dots.innerHTML = '<span class="carousel__dot"></span>'.repeat(n);
+          const max = track.scrollWidth - track.clientWidth;
+          const active = max > 0 ? Math.round((track.scrollLeft / max) * (n - 1)) : 0;
+          [...dots.children].forEach((dot, i) => dot.classList.toggle("is-active", i === active));
+        };
+        track.addEventListener("scroll", updateDots, { passive: true });
+        new ResizeObserver(updateDots).observe(track);
+
+        // Cards added later have no library tooltip handlers — same 500ms hover delay here
+        let tipTimer;
+        track.addEventListener("pointerover", event => {
+          const button = event.target.closest("[data-vote]");
+          if (!button || event.pointerType !== "mouse" || button.contains(event.relatedTarget)) return;
+          clearTimeout(tipTimer);
+          tipTimer = setTimeout(() => window.Tooltip?.show(tip(button), button), 500);
+        });
+        track.addEventListener("pointerout", event => {
+          const button = event.target.closest("[data-vote]");
+          if (!button || button.contains(event.relatedTarget)) return;
+          clearTimeout(tipTimer);
+          window.Tooltip?.hide(tip(button));
+        });
+        track.addEventListener("focusin", event => {
+          const button = event.target.closest("[data-vote]");
+          if (button?.matches(":focus-visible")) window.Tooltip?.show(tip(button), button);
+        });
+        track.addEventListener("focusout", event => {
+          const button = event.target.closest("[data-vote]");
+          if (button) window.Tooltip?.hide(tip(button));
+        });
+
+        track.addEventListener("click", event => {
+          const button = event.target.closest("[data-vote]");
+          if (!button) return;
+          const card = button.closest(".article-card");
+          const prompt = card.querySelector(".homepage-for-you-card__question span");
+          clearTimeout(tipTimer);
+          window.Tooltip?.hide(tip(button));
+          if (button.dataset.vote === "dislike") {
+            card.dataset.vote = "dislike";
+            const leave = end => {
+              if (end.target !== card) return; // not a button's own transition
+              card.removeEventListener("transitionend", leave);
+              card.remove();
+              if (more.length) track.append(more.shift());
+              updateDots();
+            };
+            card.addEventListener("transitionend", leave);
+            return;
+          }
+          if (button.getAttribute("aria-pressed") === "true") {
+            button.setAttribute("aria-pressed", "false");
+            prompt.textContent = "More like this?";
+            return;
+          }
+          button.classList.add("btn--loading");
+          setTimeout(() => {
+            button.classList.remove("btn--loading");
+            button.setAttribute("aria-pressed", "true");
+            prompt.textContent = "Showing more";
+          }, 800);
+        });
+      })();
+    </script>
+  </body>
+</html>

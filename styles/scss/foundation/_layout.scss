@@ -90,9 +90,12 @@
     min-width: 0;
 
     // Left keyline, 16px in from the top and bottom (as the bottom keylines
-    // are from the sides)
+    // are from the sides). Above the cards: they are positioned and carry the
+    // lightest surface, so without z-index they paint over it
     &::before {
       @include divider.divider(vertical);
+
+      z-index: 1;
     }
   }
 }

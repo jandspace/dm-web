@@ -53,7 +53,7 @@ No billboard below MD; no bottom bar from MD.
 | Label | "Advertisement" drawn by `::before` — label-xxsm (12) regular, `text/neutral/grey-dark`. Its alt text is empty, so screen readers read the slot's `aria-label` once. Above the ad; Side Ads: below, 8px gap; none in the bottom bar |
 | `.ad-billboard` | `background/neutral/lighter` band (Figma: light — changed to lighter), full window width; 8 top · 16 sides · 16 bottom. Label at the ad's left |
 | `.ad-skin` · `.ad-rail` | Each rail runs the container's height, 8px outside it. The slot sticks at `--ad-sticky-top` (default 16; a page with the sticky masthead sets 48 + 16) and stops at the end of the container. `body:has(.ad-skin)` gets `overflow-x: clip`, so rails past the window edge never add a sideways scroll (clip, not hidden — sticky keeps working) |
-| `.ad-slot--mpu` | 16px padding; card keyline below unless last child |
+| `.ad-slot--mpu` | 16px padding (none at the sides inside a Channel Puff, whose 16px inset already holds it); card keyline below unless last child. The creative keeps its IAB size — never scaled to the container |
 | `.ad-slot--sticky` | Keeps a 300×600 space; the 300×250 ad sticks at `--ad-sticky-top` within it |
 | `.ad-sticky-bottom` | Fixed to the bottom: `effect/translucent-light/moderate` + 16px blur, 1px `border/translucent-dark/pale` on top, 4 × 16 padding. The page keeps room for it at its end |
 

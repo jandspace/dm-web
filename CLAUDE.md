@@ -19,7 +19,7 @@ Detailed rules load automatically from `.claude/rules/` when you touch matching 
 9. **Minimal code:** fewest elements, fewest rules, least JS. Before adding anything, check whether an existing element, class, mixin, token or native feature already does it.
 10. **Language:** British English for UI copy and docs (colour, grey). American English for tokens, variables, class names and code (color, gray, center).
 11. **Same-turn bookkeeping:** changing files in `experiments/` or `projects/` means updating that folder's `index.html` notes in the same turn, unasked.
-12. **Typefaces:** Inter and Lora only. Never two typefaces inside one text element. Inside one component, only the listed cases (see typography rules); anything else is flagged, even if Figma shows it.
+12. **Typefaces:** Inter and Lora, plus DM Slab for the Section Header Branded text name only. Never two typefaces inside one text element. Inside one component, only the listed cases (see typography rules); anything else is flagged, even if Figma shows it.
 
 Hooks in `.claude/settings.json` check rules 1–6, 8 and 11 automatically (rules 1–4 and 6 on the lines you add, so older code doesn't block you). If a hook blocks you, fix the cause. Do not work around it. Rules 7, 9, 10 and 12 are yours to check.
 

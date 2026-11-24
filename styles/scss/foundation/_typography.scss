@@ -18,6 +18,22 @@
 // Font family: sans (Inter) is the default for all roles.
 // For editorial article headlines, add .serif to override.
 
+// ── DM Slab ────────────────────────────────────────────────
+// Daily Mail's own slab (DM Slab Beton SH, Extra Bold Condensed — the only cut
+// we have), self-hosted. Brand use only: the text name in Section Header
+// Branded. Not a Figma type token yet, so the family is set here.
+@font-face {
+  font-family: 'DM Slab';
+  src: url('../../assets/fonts/DMSlabBetonSH_XBoldCond.woff2') format('woff2');
+  font-weight: 800;
+  font-style: normal;
+  font-display: swap;
+}
+
+:root {
+  --typography-font-family-slab: 'DM Slab', Georgia, serif;
+}
+
 // ── Native heading reset ───────────────────────────────────
 // Sets font-family and removes browser default margin only.
 // Visual size (Level) is applied via .h1–.h6 classes, not bare tag selectors,

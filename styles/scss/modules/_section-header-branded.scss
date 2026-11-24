@@ -7,7 +7,7 @@
 //   .section-header-branded           lightest surface, 20px top · 8px bottom · 16px sides
 //     a.section-header-branded__banner      52px, 8px corners, 48px side padding (div: no link)
 //       img.section-header-branded__bg      background artwork (cover)
-//       .section-header-branded__name       channel name (text) — or img.section-header-branded__logo
+//       .section-header-branded__name       channel name (text, DM Slab) — or img.section-header-branded__logo
 //       .section-header-branded__arrow      tertiary icon-only button on dark (34 · 14)
 //     .section-header-tabs                  optional sub-items (see _section-header.scss)
 //     p.section-header-branded__sponsor     optional Extra block — "Sponsored by" + partner logo
@@ -103,16 +103,26 @@
   max-height: 100%;
 }
 
-// Text name — dmw_serif/h2/Semibold, white
+// Text name — DM Slab (Extra Bold Condensed), white. A brand size, fixed at
+// every breakpoint (no type token): 30px, line height 1, no letter spacing
 .section-header-branded__name {
   min-width: 0; // ellipsis inside the banner
-  margin: 0;
+  margin-inline: 0;
   overflow: hidden;
-  font-family: var(--typography-font-family-serif);
-  font-size: var(--typography-font-size-h2);
-  font-weight: var(--typography-font-weight-semibold);
-  line-height: var(--typography-line-height-narrow);
-  letter-spacing: var(--typography-letter-spacing-compact);
+  font-family: var(--typography-font-family-slab);
+  font-size: 30px;
+  font-weight: 800;
+  line-height: 1;
+  letter-spacing: 0;
+  // Trim the line box to cap height and baseline, so the banner centres the
+  // letters, not the font's empty descender room (DM Slab: ascent 0.75 em,
+  // descent 0.21 em; names are capitals — they sat ~3px high). Browsers
+  // without text-box (Firefox) keep the untrimmed box
+  text-box: trim-both cap alphabetic;
+  // Round letters (O, S) overshoot the cap line and baseline by ~0.4px; 1px of
+  // padding keeps them out of the ellipsis clip, the margin takes it back
+  padding-block: 1px;
+  margin-block: -1px;
   color: var(--color-text-neutral-white);
   text-align: center;
   white-space: nowrap;

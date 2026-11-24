@@ -43,7 +43,8 @@
     <script src="../scripts/scaffolding/notes-index.js"></script>
     <script>
       // ── Experiment notes ────────────────────────────────────────────────────
-      // One entry per experiment, newest first. Claude Code adds or updates the
+      // One entry per experiment, shown most recently updated first (latest
+      // dated note line, sorted by notes-index.js). Claude Code adds or updates the
       // entry whenever it creates or changes files in experiments/ (CLAUDE.md ›
       // Experiments). Page and cards: scripts/scaffolding/notes-index.js +
       // styles/scss/scaffolding/_notes-index.scss. The year menu is built from `date`.
@@ -254,6 +255,26 @@
             '2026-11-10 — index-b Deep Dive intro (Figma 8928:55674): Discover → XL round arrow (Primary inverse, icon only) that steps the row on; new Discover more (Secondary dark SM) at the bottom → dailymail.com/news/deep-dive/; padding 64.',
             '2026-11-10 — index-b Deep Dive intro: arrow button midway between tagline and Discover more (Figma update, equal gaps).',
             '2026-11-10 — index-b Verticals: headline-only card hover surface fills the box (keyline to bottom, full box width).',
+            '2026-11-24 — Feedback: Beta ads keep their IAB size (library: creative no longer scales to the container; an MPU inside a Channel Puff drops its side padding — 300 in Beta at LG, was 268).',
+            '2026-11-24 — First header in Beta (LG+): top padding 20 → 16, level with Alpha\'s first card (page styles). index-a / index-b: Showbiz Beta MD cards H6 → H5 (16px).',
+            '2026-11-24 — DM Slab installed (library: assets/fonts/DMSlabBetonSH_XBoldCond.woff2, --typography-font-family-slab); Section Header Branded text name now DM Slab 30 / 1 / 0. index-a / index-b: Beta header "Don\'t miss" logo → SHOWBIZ text.',
+            '2026-11-24 — DM Slab name optically centred: text-box trim to cap height + baseline (was ~3px high from the font\'s descender room).',
+            '2026-11-24 — index-a / index-b Verticals: the four header logos → DM Slab text names, left to right MONEY · TRUE CRIME · LIFE · HEALTH (banner labels Money, True Crime, Life, Health).',
+            '2026-11-24 — index-a / index-b: Money, Femail and Health section headers → DM Slab names MONEY · LIFE · HEALTH (Femail figures and the figures class removed; Nationwide sponsor line kept).',
+            '2026-11-24 — index-a / index-b: Billboard in the page added between Midterms 2026 and Money (same block as the others: LG 970×250 · MD 728×90 · below MD MPU 300×250).',
+            '2026-11-24 — index-a reverted to its 11-11 markup (logos, Don\'t miss, H6 Beta MD cards, no Midterms billboard); the 11-24 HTML changes stay in index-b only. Shared CSS still applies to index-a: ads at IAB size, first Beta header top 16.',
+            '2026-11-24 — index-b MONEY · LIFE · HEALTH headers: arrow → Follow button (plus) beside the banner link, over its right end; library tooltip "Follow MONEY" etc.; click → loading 0.8s → tick, aria-pressed, tooltip "Following …"; a second click unfollows (as Save article in the Tooltip demo).',
+            '2026-11-24 — index-femail.html (from index-b): Femail channel page from the pasted live HTML + screenshot — banner image from Figma Lab 39186:15030 (images/femail-banner-sophia-bush.jpg), Section 2 same layout as index-b (32 SM Left with preview, splash, vertical video, 2 Image Only, XL) + Showbiz Channel Puff; Verticals as a row of 3 (Crime Desk, Sport logos; Palace Confidential logo linked from the DM site); Midterms; The Crime Desk; News run with More Don\'t Miss; Daily Mail Life; Daily Mail Sport + Football Games. M+ = empty is-paywalled span; Beta puffs without metadata.',
+            '2026-11-24 — index-femail fixes: banner metadata Comment Only (no channel, as the Banner component); Palace Confidential logo + artwork from the DM site (assets/images/logo-palace-confidential.svg, section-header-branded-palace-confidential.jpg); Crime Desk puffs → short mobile headlines; More Don\'t Miss header SM. Library: Beta left keyline z-index 1 (cards painted over it). First Beta header rule now covers plain headers too (16 top).',
+            '2026-11-24 — index-femail: Lifestyle landing instead of Home — masthead and Sticky Navbar .masthead--lifestyle (azure), Lifestyle current in L1 and the sticky bar, topbar channel "Lifestyle" + Mail+ Subscribe in the topbar (not a landing), Navbar L2 Lifestyle subchannels (You Mag … Mail Shop); title "Lifestyle".',
+            '2026-11-24 — index-femail: Edition (GEO) switch added to the topbar, as the Navigation demo (UK · US · AU · IE, masthead.js).',
+            '2026-11-24 — index-femail Daily Mail Life: Coleen Nolan and Madeleine White MD → SM Left (H5, preview, metadata).',
+            '2026-11-24 — index-femail: The Crime Desk logo 146×36 → 163×40 (40 high), both headers.',
+            '2026-11-24 — index-femail: Palace Confidential logo 86×40 → 77×36 (more room above and below).',
+        '2026-11-24 — index-femail: Verticals header-to-card gap 24 → 8 (card under the header: top padding 0; header keeps its 8; .homepage-channel-row).',
+        '2026-11-24 — index-femail: Beta "More Don\'t Miss" header is a link with the arrow.',
+        '2026-11-24 — index-femail: MPU 300×250 under the Richard Eden puff (More Don\'t Miss).',
+        '2026-11-24 — index-femail: Billboard (as index-b: LG 970×250 · MD 728×90 · MPU below MD) above Midterms 2026 and above Daily Mail Life.',
           ],
           result: '',
           pages: [
@@ -262,6 +283,7 @@
             ['SM preview text test', 'index-3.html', 'Copy of index-2.html: SM cards headline → thumbnail + preview text → metadata.'],
             ['A — short headlines', 'index-a.html', 'index.html with live Section 2 SM content: mobile short headlines, no preview.'],
             ['B — live alpha content', 'index-b.html', 'index-4.html with live Section 2 SM content: desktop headlines + preview text.'],
+            ['Lifestyle landing', 'index-femail.html', 'Copy of index-b as the Lifestyle landing, content from the Femail channel page export (2026-11-16): banner, Section 2 + Showbiz puff, 3 verticals, Midterms, Crime Desk, News run, Daily Mail Life, Sport.'],
             ['Article Card update', 'index-4.html', 'Copy of index-3.html on the library Article Card (Nov 2026): SM Left Thumb preview, Quote Headline photo, comment word.'],
           ],
         },

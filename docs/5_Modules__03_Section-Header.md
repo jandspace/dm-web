@@ -99,7 +99,7 @@ Sub-channels or topics in one row that scrolls sideways.
 | Background | `img.section-header-branded__bg` | The graphic team's artwork as it is — cover, no blur |
 | Surface | banner `::before` | `color/effect/translucent-dark/clear` → `translucent-dark/moderate` on hover / focus |
 | Name / Logo | `span.section-header-branded__name` or `img.section-header-branded__logo` | Straight in the banner (no slot wrapper) — channel name or logo, centred. Logo keeps its ratio: max 44px tall, max 240px wide (give the `<img>` its width and height) |
-| Name (text) | `.section-header-branded__name` | dmw_serif/h2/Semibold, white |
+| Name (text) | `.section-header-branded__name` | DM Slab (Extra Bold Condensed, 800), 30px, line height 1, letter spacing 0 — fixed at every breakpoint, no type token; white. `text-box: trim-both cap alphabetic` trims the line box to cap height and baseline, so the capitals sit optically centred in the banner (the font's descender room no longer pushes them up; Firefox, without `text-box`, keeps the untrimmed box) |
 | Arrow | `.section-header-branded__arrow` | `.btn.btn-tertiary-dark.btn--sm.btn--icon-only` (34, icon 14), 8px from the right, decorative |
 | Sub-items | `.section-header-tabs` | Optional, as in 1-D |
 | Extra block | `p.section-header-branded__sponsor` | Optional, under the banner: "Sponsored by" (label-xsm Regular, neutral/dark) + partner logo `<img>` 16px tall, 4px gap, centred; wraps when narrow |

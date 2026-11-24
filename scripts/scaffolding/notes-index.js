@@ -5,7 +5,8 @@
 //   renderNotesIndex(ENTRIES)
 //
 // The page provides #notes-year (year menu <ul>) and #notes-list (cards).
-// Entry fields (newest first) — CLAUDE.md › Experiments · Projects:
+// Entry fields — CLAUDE.md › Experiments · Projects. The list is sorted by
+// last update: the latest dated note line ('YYYY-MM-DD — …'), else `date`.
 //
 //   id       folder name (YYYYMM-exp-<name> · YYYYMM-prj-<name>)
 //   date     'YYYY-MM-DD' — when the work started; the year menu is built from it
@@ -16,6 +17,12 @@
 //   pages    [label, file in the folder, one-line description]
 
 window.renderNotesIndex = (entries) => {
+  // Last update = latest dated note line; most recently updated first
+  entries.forEach((e) => {
+    e.updated = e.notes.map((p) => p.match(/^\d{4}-\d{2}-\d{2}/)?.[0]).filter(Boolean).concat(e.date).sort().pop();
+  });
+  entries.sort((a, b) => b.updated.localeCompare(a.updated));
+
   const list = document.getElementById('notes-list');
   const menu = document.getElementById('notes-year');
   const years = [...new Set(entries.map((e) => e.date.slice(0, 4)))].sort().reverse();
@@ -27,7 +34,7 @@ window.renderNotesIndex = (entries) => {
     return node;
   };
 
-  // Accordion card: <details> head = date · status · folder · title
+  // Accordion card: <details> head = date · updated · status · folder · title
   const card = (e, open) => {
     const status = e.status.toLowerCase().replace(/\s+/g, '-'); // 'In progress' → in-progress
     const item = el('details', `notes-card notes-card--${status}`);
@@ -35,7 +42,7 @@ window.renderNotesIndex = (entries) => {
 
     const head = el('summary', 'notes-card__head');
     const meta = el('div', 'notes-card__meta');
-    meta.append(el('span', '', e.date), el('span', `notes-card__status notes-card__status--${status}`, e.status), el('code', '', e.id));
+    meta.append(el('span', '', e.date), el('span', '', `Updated ${e.updated}`), el('span', `notes-card__status notes-card__status--${status}`, e.status), el('code', '', e.id));
     head.append(meta, el('h3', 'notes-card__title', e.title));
 
     // Body: page links on top (grey block), then the notes — they scroll
