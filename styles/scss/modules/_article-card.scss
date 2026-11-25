@@ -281,7 +281,8 @@
 }
 
 // ── Card type: XL (Triple) ────────────────────────────────────────────────────
-// SM-XS: stacked. MD: same split as Horizontal. LG+: equal halves, 32px gap.
+// SM-XS: stacked. MD: same split as Horizontal. LG+: equal halves, 32px gap,
+// 16px between headline and metadata (Figma 5209:5051; 12 below LG).
 
 .article-card--xl-triple {
   @include bp.respond-to(md) {
@@ -301,6 +302,10 @@
 
   @include bp.respond-to(lg) {
     gap: var(--spacing-32);
+
+    .article-card__body {
+      gap: var(--spacing-16);
+    }
 
     .article-card__media {
       flex: 1 1 0;

@@ -5122,6 +5122,9 @@ button.video-play {
   .article-card--xl-triple {
     gap: var(--spacing-32);
   }
+  .article-card--xl-triple .article-card__body {
+    gap: var(--spacing-16);
+  }
   .article-card--xl-triple .article-card__media {
     flex: 1 1 0;
     width: auto;
