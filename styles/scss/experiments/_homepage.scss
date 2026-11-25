@@ -1276,6 +1276,12 @@ $homepage-below-md: "(width < #{map.get(bp.$breakpoints, md)})";
 
 // index-femail Verticals (row of 3): the card under the header loses its top
 // padding, so the header's own 8px bottom padding is the gap (was 8 + 16).
+// Its hover surface keeps the usual 8px ring by reaching up into that padding
+// (the card paints over the header's background).
 .homepage-channel-row .section-header-branded + .article-card {
   padding-top: 0;
+
+  &::before {
+    top: calc(-1 * var(--spacing-8));
+  }
 }

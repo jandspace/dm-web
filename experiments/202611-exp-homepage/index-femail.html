@@ -486,21 +486,17 @@
       </aside>
     </div>
 
-    <header class="masthead masthead--lifestyle">
+    <header class="masthead masthead--home masthead--landing">
       <div class="masthead__inner">
         <div class="masthead-topbar">
           <p class="masthead-topbar__id">
-            <span class="masthead-topbar__channel">Lifestyle</span>
+            <span class="masthead-topbar__channel">Home</span>
             <span class="masthead-topbar__updated">
               Last updated:
               <time datetime="2026-10-22T16:14">16:14 BST, 22 October 2026</time>
             </span>
           </p>
           <div class="masthead-topbar__actions">
-            <!-- Mail+ Subscribe: every page except Home and Daily Mail+ home (.masthead--landing) -->
-            <div class="masthead-topbar__action masthead-topbar__subscribe">
-              <a class="masthead-topbar-subscribe" href="#subscribe"><svg aria-label="Daily Mail+"><use href="#logo-mplus-wordmark" /></svg>Subscribe</a>
-            </div>
             <div class="masthead-topbar__action">
               <button type="button" class="masthead-action masthead-edition" aria-expanded="false" aria-controls="masthead-edition-menu">
                 <img src="../../assets/icons/ico-flag-united-kingdom.svg" alt="" />UK Edition<span class="icon icon--chevron-down masthead-edition__chevron" aria-hidden="true"></span>
@@ -559,7 +555,7 @@
           <div class="masthead-nav__scroller">
             <ul class="masthead-nav__list">
               <li class="masthead-nav__item masthead-nav__item--home masthead-nav__item--has-panel" data-channel="home" data-label="Home">
-                <a class="masthead-nav__link" href="#">Home</a>
+                <a class="masthead-nav__link" href="#" aria-current="page">Home</a>
                 <div class="masthead-nav__panel">
                   <a class="masthead-nav__panel-channel" href="#">
                     Home
@@ -668,7 +664,7 @@
                 </div>
               </li>
               <li class="masthead-nav__item masthead-nav__item--lifestyle masthead-nav__item--has-panel" data-channel="lifestyle" data-label="Lifestyle">
-                <a class="masthead-nav__link" href="#" aria-current="page">Lifestyle</a>
+                <a class="masthead-nav__link" href="#">Lifestyle</a>
                 <div class="masthead-nav__panel">
                   <a class="masthead-nav__panel-channel" href="#">
                     Lifestyle
@@ -780,7 +776,7 @@
       </div>
     </header>
 
-    <div class="masthead-sticky masthead--lifestyle" id="masthead-sticky">
+    <div class="masthead-sticky masthead--home" id="masthead-sticky">
       <div class="masthead-sticky__left">
         <a class="masthead-sticky__logo" href="#home" aria-label="Daily Mail home">
           <img class="masthead-sticky__logo-dm" src="../../assets/images/logo-dailymail-white.svg" alt="" />
@@ -790,13 +786,13 @@
       <nav class="masthead-sticky__center" aria-label="Channels">
         <button type="button" class="masthead-sticky__edge masthead-sticky__edge--prev" aria-label="Scroll channels left" hidden><span class="icon icon--chevron-left" aria-hidden="true"></span></button>
         <ul class="masthead-sticky__list">
-          <li><a class="masthead-sticky__link" href="#">Home</a></li>
+          <li><a class="masthead-sticky__link" href="#" aria-current="page">Home</a></li>
           <li><a class="masthead-sticky__link" href="#">News</a></li>
           <li><a class="masthead-sticky__link" href="#">Royals</a></li>
           <li><a class="masthead-sticky__link" href="#">US</a></li>
           <li><a class="masthead-sticky__link" href="#">Sport</a></li>
           <li><a class="masthead-sticky__link" href="#">Showbiz</a></li>
-          <li><a class="masthead-sticky__link" href="#" aria-current="page">Lifestyle</a></li>
+          <li><a class="masthead-sticky__link" href="#">Lifestyle</a></li>
           <li><a class="masthead-sticky__link" href="#">Money</a></li>
           <li><a class="masthead-sticky__link" href="#">Crime Desk</a></li>
           <li><a class="masthead-sticky__link" href="#">Games</a></li>
@@ -859,24 +855,17 @@
     </div>
 
     <main>
-      <!-- ── Navbar L2 — first child of <main>, full width; Lifestyle subchannels ── -->
-      <nav class="navbar-l2 navbar-l2--lifestyle" aria-label="Lifestyle">
+      <!-- ── Navbar L2 — first child of <main>, full width; Home subchannels ── -->
+      <nav class="navbar-l2 navbar-l2--home" aria-label="Home">
         <div class="navbar-l2__inner">
           <ul class="navbar-l2__list">
-            <li><a class="navbar-l2__link" href="#">You Mag</a></li>
-            <li><a class="navbar-l2__link" href="#">Femail</a></li>
-            <li><a class="navbar-l2__link" href="#">Health</a></li>
-            <li><a class="navbar-l2__link" href="#">Food &amp; Drink</a></li>
-            <li><a class="navbar-l2__link" href="#">Horoscopes</a></li>
-            <li><a class="navbar-l2__link" href="#">Gardening</a></li>
-            <li><a class="navbar-l2__link" href="#">Fitness &amp; Wellbeing</a></li>
-            <li><a class="navbar-l2__link" href="#">Homes</a></li>
-            <li><a class="navbar-l2__link" href="#">Fashion</a></li>
-            <li><a class="navbar-l2__link" href="#">Beauty</a></li>
-            <li><a class="navbar-l2__link" href="#">Love &amp; Sex</a></li>
-            <li><a class="navbar-l2__link" href="#">Books</a></li>
-            <li><a class="navbar-l2__link" href="#">Cars</a></li>
-            <li><a class="navbar-l2__link" href="#">Mail Shop</a></li>
+            <li><a class="navbar-l2__link" href="#">Latest Headlines</a></li>
+            <li><a class="navbar-l2__link" href="#">Deep Dive</a></li>
+            <li><a class="navbar-l2__link" href="#">Video</a></li>
+            <li><a class="navbar-l2__link" href="#">Podcasts</a></li>
+            <li><a class="navbar-l2__link" href="#">Columnists</a></li>
+            <li><a class="navbar-l2__link" href="#">University Guide</a></li>
+            <li><a class="navbar-l2__link" href="#">Kim Kardashian</a></li>
           </ul>
           <button type="button" class="navbar-l2__edge navbar-l2__edge--prev" aria-label="Scroll subchannels left" hidden><span class="icon icon--chevron-left" aria-hidden="true"></span></button>
           <button type="button" class="navbar-l2__edge navbar-l2__edge--next" aria-label="Scroll subchannels right" hidden><span class="icon icon--chevron-right" aria-hidden="true"></span></button>
@@ -1009,7 +998,7 @@
                       <h5 class="h5 article-headline">
                         <a class="article-card__link" href="#article-13961451">
                           <span class="badge badge--sm article-headline__badge"><img class="badge__mplus" src="../../assets/images/mail-plus-lozenge.svg" alt="M+" /></span>
-                          Who's the REAL bully in Meghan's royal psychodrama?
+                          'Duchess Difficult' Meghan should ask who the REAL bully is, says AMANDA PLATELL 
                         </a>
                       </h5>
                       <p class="article-card__preview">Never shy of stealing the limelight, Meghan Markle talked to a group of young girls at an event focussing on their empowerment about what it's like to be 'one of the most bullied people in the world'.</p>
@@ -1025,7 +1014,7 @@
                   <article class="article-card article-card--sm-left">
                     <div class="article-card__media"><img src="https://i.dailymail.co.uk/1s/2024/10/15/08/90861013-0-image-a-31_1728977318648.jpg" alt="" /></div>
                     <div class="article-card__body">
-                      <h5 class="h5 article-headline"><a class="article-card__link" href="#article-13960811">Sir David Jason reveals which famous actors he blamed</a></h5>
+                      <h5 class="h5 article-headline"><a class="article-card__link" href="#article-13960811">Sir David Jason reveals which famous actors he blamed for his Hollywood film career not working out</a></h5>
                       <p class="article-card__preview">The actor, 84, who is best known for playing Derek 'Del Boy' Trotter on Only Fools And Horses, also hoped to make an impact on the big screen.</p>
                       <div class="article-card__metadata article-card-metadata">
                         <a class="article-card-metadata__channel" href="#showbiz"><span class="article-card-metadata__channel-text">Showbiz</span></a>
@@ -1053,7 +1042,7 @@
                   <article class="article-card article-card--sm-left">
                     <div class="article-card__media"><img src="https://i.dailymail.co.uk/1s/2024/10/15/10/90864867-0-image-m-13_1728985213464.jpg" alt="" /></div>
                     <div class="article-card__body">
-                      <h5 class="h5 article-headline"><a class="article-card__link" href="#article-13961213">I took the £3 'Ozempic for drinking' pill and finally quit booze</a></h5>
+                      <h5 class="h5 article-headline"><a class="article-card__link" href="#article-13961213">I took the £3 'Ozempic for drinking' pill and finally quit booze - but you have to use a specific method</a></h5>
                       <p class="article-card__preview">Costing a mere £2 to £3 a pill the drug, called naltrexone, helps interrupt the chemical signals in the brain that lead to addiction occurring giving rise to the nickname 'Ozempic for drinking'.</p>
                       <div class="article-card__metadata article-card-metadata">
                         <a class="article-card-metadata__channel" href="#health"><span class="article-card-metadata__channel-text">Health</span></a>
@@ -1067,7 +1056,7 @@
                   <article class="article-card article-card--sm-left">
                     <div class="article-card__media"><img src="https://i.dailymail.co.uk/1s/2024/10/14/14/90825835-0-image-a-11_1728912591521.jpg" alt="" /></div>
                     <div class="article-card__body">
-                      <h5 class="h5 article-headline"><a class="article-card__link" href="#article-13957983">Simple tweak to cancer treatment cuts death risk by 'remarkable' 40 per cent</a></h5>
+                      <h5 class="h5 article-headline"><a class="article-card__link" href="#article-13957983">Simple tweak to cancer treatment cuts death risk by 'remarkable' 40 per cent - so experts call for NHS roll out</a></h5>
                       <p class="article-card__preview">The approach, combined with the standard treatment, can also lower the risk of the disease returning by more than a third.</p>
                       <div class="article-card__metadata article-card-metadata">
                         <a class="article-card-metadata__channel" href="#health"><span class="article-card-metadata__channel-text">Health</span></a>
@@ -1149,7 +1138,7 @@
                   <article class="article-card article-card--sm-left">
                     <div class="article-card__media"><img src="https://i.dailymail.co.uk/1s/2024/10/15/12/90869839-0-Sara_Sharif_began_to_wear_a_hijab_to_school_to_conceal_the_appal-a-15_1728991604614.jpg" alt="" /></div>
                     <div class="article-card__body">
-                      <h5 class="h5 article-headline"><a class="article-card__link" href="#article-13961633">Sara Sharif was forced to wear a hijab to 'conceal' her injuries</a></h5>
+                      <h5 class="h5 article-headline"><a class="article-card__link" href="#article-13961633">Sara Sharif 'had a plastic home-made hood taped over her head', was 'hit with a cricket bat' and 'left unable to walk' after being 'beaten black' by father</a></h5>
                       <p class="article-card__preview">Urfan Sharif is accused of battering his 10-year-old daughter Sara to death before fleeing to Pakistan last August after subjecting the schoolgirl to weeks of brutal abuse.</p>
                       <div class="article-card__metadata article-card-metadata">
                         <a class="article-card-metadata__channel" href="#news"><span class="article-card-metadata__channel-text">News</span></a>
@@ -1159,7 +1148,7 @@
                   <article class="article-card article-card--sm-left">
                     <div class="article-card__media"><img src="https://i.dailymail.co.uk/1s/2024/10/15/10/90865099-0-image-a-4_1728984160721.jpg" alt="" /></div>
                     <div class="article-card__body">
-                      <h5 class="h5 article-headline"><a class="article-card__link" href="#article-13961159">Boyfriend of Finland's first ever openly gay ice hockey player confesses</a></h5>
+                      <h5 class="h5 article-headline"><a class="article-card__link" href="#article-13961159">Boyfriend of Finland's first ever openly gay ice hockey player confesses to killing lover 37 years his junior 'using a hunting gun'</a></h5>
                       <p class="article-card__preview">Janne Puhakka, 29, died in the home he shared with his Norwegian veterinarian partner, Rolf Nordmo, 66, in Henttaa, Espoo, on Sunday evening.</p>
                       <div class="article-card__metadata article-card-metadata">
                         <a class="article-card-metadata__channel" href="#lifestyle"><span class="article-card-metadata__channel-text">Lifestyle</span></a>
@@ -1244,7 +1233,7 @@
                   <article class="article-card article-card--sm-left">
                     <div class="article-card__media"><img src="https://i.dailymail.co.uk/1s/2024/10/15/11/90865525-0-image-a-7_1728989032416.jpg" alt="" /></div>
                     <div class="article-card__body">
-                      <h5 class="h5 article-headline"><a class="article-card__link" href="#article-13961509">Chancellor has to find £100m extra in the Budget for pensioners</a></h5>
+                      <h5 class="h5 article-headline"><a class="article-card__link" href="#article-13961509">Chancellor has to find £100m extra in the Budget for pensioners after key figure is revised meaning state pension boost to £11,975 per year</a></h5>
                       <p class="article-card__preview">The small but costly upward revision to next year's state pension is because a crunch earnings growth figure was reassessed from 4% to 4.1%.</p>
                       <div class="article-card__metadata article-card-metadata">
                         <a class="article-card-metadata__channel" href="#money"><span class="article-card-metadata__channel-text">Money</span></a>
@@ -1918,12 +1907,21 @@
                     </div>
                   </article>
                   <article class="article-card article-card--sm-left">
-                    <div class="article-card__media"><img src="https://i.dailymail.com/1s/2026/11/16/12/112536273-0-image-m-33_1794832304250.jpg" alt="" /></div>
+                    <div class="article-card__media"><img src="https://i.dailymail.com/1s/2026/11/15/22/112524795-0-image-a-100_1794782021075.jpg" alt="" /></div>
                     <div class="article-card__body">
-                      <h5 class="h5 article-headline"><a class="article-card__link" href="#article-16296323">Father of teen killed in A66 crash who assaulted celebrant at son's funeral admits carrying drugs and stealing alcohol, food and sweets in shoplifting raid</a></h5>
-                      <p class="article-card__preview">Gye Worthy, the father of one of the young men killed in the horror A66 crash, appeared in court today for attacking a civil celebrant as he delivered the eulogy at his son's funeral in September.</p>
+                      <h5 class="h5 article-headline">
+                        <a class="article-card__link" href="#article-16295029">
+                          <span class="badge badge--sm badge--highlight article-headline__badge"><span class="badge__label">Exclusive</span></span>
+                          David Beckham kicks up a £30million stink after finding his perfume for sale in Poundland
+                        </a>
+                      </h5>
+                      <p class="article-card__preview">Sir David Beckham's ability to sell - anything - has made him a billionaire.</p>
                       <div class="article-card__metadata article-card-metadata">
-                        <a class="article-card-metadata__channel" href="#news"><span class="article-card-metadata__channel-text">News</span></a>
+                        <a class="article-card-metadata__channel" href="#showbiz"><span class="article-card-metadata__channel-text">Showbiz</span></a>
+                        <a class="article-card-metadata__comments" href="#comments-16295029" aria-label="2.1k comments">
+                          <span class="icon icon--speechbubble-ellipsis article-card-metadata__comments-icon" aria-hidden="true"></span>
+                          2.1k<span class="article-card-metadata__comments-word">comments</span>
+                        </a>
                       </div>
                     </div>
                   </article>
@@ -1944,21 +1942,12 @@
                     </div>
                   </article>
                   <article class="article-card article-card--sm-left">
-                    <div class="article-card__media"><img src="https://i.dailymail.com/1s/2026/11/15/22/112524795-0-image-a-100_1794782021075.jpg" alt="" /></div>
+                    <div class="article-card__media"><img src="https://i.dailymail.com/1s/2026/11/16/12/112536273-0-image-m-33_1794832304250.jpg" alt="" /></div>
                     <div class="article-card__body">
-                      <h5 class="h5 article-headline">
-                        <a class="article-card__link" href="#article-16295029">
-                          <span class="badge badge--sm badge--highlight article-headline__badge"><span class="badge__label">Exclusive</span></span>
-                          David Beckham kicks up a £30million stink after finding his perfume for sale in Poundland
-                        </a>
-                      </h5>
-                      <p class="article-card__preview">Sir David Beckham's ability to sell - anything - has made him a billionaire.</p>
+                      <h5 class="h5 article-headline"><a class="article-card__link" href="#article-16296323">Father of teen killed in A66 crash who assaulted celebrant at son's funeral admits carrying drugs and stealing alcohol, food and sweets in shoplifting raid</a></h5>
+                      <p class="article-card__preview">Gye Worthy, the father of one of the young men killed in the horror A66 crash, appeared in court today for attacking a civil celebrant as he delivered the eulogy at his son's funeral in September.</p>
                       <div class="article-card__metadata article-card-metadata">
-                        <a class="article-card-metadata__channel" href="#showbiz"><span class="article-card-metadata__channel-text">Showbiz</span></a>
-                        <a class="article-card-metadata__comments" href="#comments-16295029" aria-label="2.1k comments">
-                          <span class="icon icon--speechbubble-ellipsis article-card-metadata__comments-icon" aria-hidden="true"></span>
-                          2.1k<span class="article-card-metadata__comments-word">comments</span>
-                        </a>
+                        <a class="article-card-metadata__channel" href="#news"><span class="article-card-metadata__channel-text">News</span></a>
                       </div>
                     </div>
                   </article>

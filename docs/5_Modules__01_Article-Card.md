@@ -46,10 +46,10 @@ The card carries its own 16px inset; the column grid carries none (Foundation �
 
 | Breakpoint | Structure |
 |---|---|
-| LG / XL | Headline across the card → thumbnail + preview text (12px gap) → metadata across the card. 8px between rows |
+| LG / XL | Headline across the card → thumbnail + preview text (8px gap) → metadata across the card. 8px between rows |
 | MD / SM-XS | Thumbnail left (12px to the text), headline + metadata on the right, 8px apart. No preview text (the mobile headline is short) |
 
-XL, XL Horizontal, XL Triple, MD (Vertical Media) and MD keep 12px between headline, preview / key updates and metadata (`.article-card__body` gap). SM: Left Thumb and SM: Right Thumb (Puff) use 8px between rows and 12px between image and text, at every breakpoint.
+XL, XL Horizontal, XL Triple, MD (Vertical Media) and MD keep 12px between headline, preview / key updates and metadata (`.article-card__body` gap). SM: Left Thumb and SM: Right Thumb (Puff) use 8px between rows. Image ↔ text: 12px up to MD, 8px from LG.
 
 - Thumbnail and preview are switched together in the CMS (Figma boolean "Thumbnail + Preview Text"). A thumbnail never stands alone; the preview can (it then runs across the card), or both go.
 - Thumbnail LG 144 × 108 · XL 152 × 114. The preview runs in full beside it — no truncation; a long preview makes the row taller than the thumbnail.

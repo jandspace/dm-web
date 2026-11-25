@@ -330,9 +330,14 @@
   flex-direction: row;
   align-items: flex-start;
 
+  // Image ↔ text: the card gap — 12 up to MD, 8 from LG
+  @include bp.respond-to(lg) {
+    gap: var(--spacing-8);
+  }
+
   .article-card__body {
     flex: 1 1 0;
-    gap: var(--spacing-8); // SM rows 8 (other cards 12); image ↔ text 12 is the card gap
+    gap: var(--spacing-8); // SM rows 8 (other cards 12)
   }
 
   .article-card__media {
@@ -358,7 +363,7 @@
   @include bp.respond-to(lg) {
     display: grid;
     grid-template-columns: auto 1fr;
-    gap: var(--spacing-8) var(--spacing-12); // rows 8 · thumbnail ↔ preview 12
+    gap: var(--spacing-8); // rows 8 · thumbnail ↔ preview 8
 
     .article-card__body {
       display: contents;
