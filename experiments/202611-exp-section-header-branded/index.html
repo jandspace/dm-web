@@ -235,20 +235,245 @@
   <body>
     <main class="exp-page">
       <h1 class="exp-page__title">Section Header — Branded: extras</h1>
-      <p class="exp-page__meta">Figma: Web UI Kit › Section Header - Branded example (8794:8073). Widths as in Figma, each with where it is used. Under a 240px banner (195) the arrow is hidden; the banner stays a link. Hover a banner for the library hover.</p>
+      <p class="exp-page__meta">Figma: Web UI Kit › Section Header - Branded example (8794:8073); sections follow the overview (7571:118581): Text, Logo, Extra variation. Widths as in Figma, each with where it is used. Under a 240px banner (195) the arrow is hidden; the banner stays a link. Hover a banner for the library hover.</p>
 
       <section class="exp-row">
-        <h2 class="exp-row__title">1. Logo only</h2>
-        <p class="exp-row__caption">Library as it is, plus: no arrow under a 240px banner. Pick a channel.</p>
+        <h2 class="exp-row__title">1. Text — DM Slab</h2>
+        <p class="exp-row__caption">The channel name as text: .section-header-branded__name (DM Slab, 28px, written in capitals). No arrow under a 240px banner. Pick a channel.</p>
         <div class="tabs">
-          <div class="tabs__list" role="tablist" aria-label="Channel">
-            <button class="tabs__tab" type="button" role="tab" id="exp-tab-crime-desk" aria-controls="exp-panel-crime-desk" aria-selected="true">Crime Desk</button>
-            <button class="tabs__tab" type="button" role="tab" id="exp-tab-health" aria-controls="exp-panel-health" aria-selected="false">Health</button>
-            <button class="tabs__tab" type="button" role="tab" id="exp-tab-sport" aria-controls="exp-panel-sport" aria-selected="false">Sport</button>
-            <button class="tabs__tab" type="button" role="tab" id="exp-tab-showbiz" aria-controls="exp-panel-showbiz" aria-selected="false">This is Showbiz</button>
+          <div class="tabs__list" role="tablist" aria-label="Text — DM Slab">
+            <button class="tabs__tab" type="button" role="tab" id="exp-tab-text-showbiz" aria-controls="exp-panel-text-showbiz" aria-selected="true">Showbiz</button>
+            <button class="tabs__tab" type="button" role="tab" id="exp-tab-text-sport" aria-controls="exp-panel-text-sport" aria-selected="false">UK Sport</button>
+            <button class="tabs__tab" type="button" role="tab" id="exp-tab-text-money" aria-controls="exp-panel-text-money" aria-selected="false">Money</button>
+            <button class="tabs__tab" type="button" role="tab" id="exp-tab-text-femail" aria-controls="exp-panel-text-femail" aria-selected="false">Femail</button>
+            <button class="tabs__tab" type="button" role="tab" id="exp-tab-text-health" aria-controls="exp-panel-text-health" aria-selected="false">Health</button>
           </div>
         </div>
-        <div class="exp-panel" role="tabpanel" id="exp-panel-crime-desk" aria-labelledby="exp-tab-crime-desk">
+        <div class="exp-panel" role="tabpanel" id="exp-panel-text-showbiz" aria-labelledby="exp-tab-text-showbiz">
+          <p class="exp-cell-label"><strong>195px</strong> — Half a mobile browser width (e.g. iPhone 390 ÷ 2)</p>
+          <div class="exp-cell" style="width: 195px">
+            <header class="section-header-branded">
+              <h2 class="section-header-branded__title"><a class="section-header-branded__banner" href="#channel" aria-label="Showbiz">
+                <img class="section-header-branded__bg" src="../../assets/images/section-header-branded-showbiz.jpg" alt="" />
+                <span class="section-header-branded__name">SHOWBIZ</span>
+                <span class="section-header-branded__arrow btn btn-tertiary-dark btn--sm btn--icon-only" aria-hidden="true"><span class="icon icon--arrow-right-light" aria-hidden="true"></span></span>
+              </a></h2>
+            </header>
+          </div>
+          <p class="exp-cell-label"><strong>332px</strong> — LG ≥1024 · Single (½ Alpha)</p>
+          <div class="exp-cell" style="width: 332px">
+            <header class="section-header-branded">
+              <h2 class="section-header-branded__title"><a class="section-header-branded__banner" href="#channel" aria-label="Showbiz">
+                <img class="section-header-branded__bg" src="../../assets/images/section-header-branded-showbiz.jpg" alt="" />
+                <span class="section-header-branded__name">SHOWBIZ</span>
+                <span class="section-header-branded__arrow btn btn-tertiary-dark btn--sm btn--icon-only" aria-hidden="true"><span class="icon icon--arrow-right-light" aria-hidden="true"></span></span>
+              </a></h2>
+            </header>
+          </div>
+          <p class="exp-cell-label"><strong>664px</strong> — LG ≥1024 · Double (Alpha)</p>
+          <div class="exp-cell" style="width: 664px">
+            <header class="section-header-branded">
+              <h2 class="section-header-branded__title"><a class="section-header-branded__banner" href="#channel" aria-label="Showbiz">
+                <img class="section-header-branded__bg" src="../../assets/images/section-header-branded-showbiz.jpg" alt="" />
+                <span class="section-header-branded__name">SHOWBIZ</span>
+                <span class="section-header-branded__arrow btn btn-tertiary-dark btn--sm btn--icon-only" aria-hidden="true"><span class="icon icon--arrow-right-light" aria-hidden="true"></span></span>
+              </a></h2>
+            </header>
+          </div>
+          <p class="exp-cell-label"><strong>996px</strong> — LG ≥1024 · Triple (Gamma)</p>
+          <div class="exp-cell" style="width: 996px">
+            <header class="section-header-branded">
+              <h2 class="section-header-branded__title"><a class="section-header-branded__banner" href="#channel" aria-label="Showbiz">
+                <img class="section-header-branded__bg" src="../../assets/images/section-header-branded-showbiz.jpg" alt="" />
+                <span class="section-header-branded__name">SHOWBIZ</span>
+                <span class="section-header-branded__arrow btn btn-tertiary-dark btn--sm btn--icon-only" aria-hidden="true"><span class="icon icon--arrow-right-light" aria-hidden="true"></span></span>
+              </a></h2>
+            </header>
+          </div>
+        </div>
+        <div class="exp-panel" role="tabpanel" id="exp-panel-text-sport" aria-labelledby="exp-tab-text-sport" hidden>
+          <p class="exp-cell-label"><strong>195px</strong> — Half a mobile browser width (e.g. iPhone 390 ÷ 2)</p>
+          <div class="exp-cell" style="width: 195px">
+            <header class="section-header-branded">
+              <h2 class="section-header-branded__title"><a class="section-header-branded__banner" href="#channel" aria-label="UK Sport">
+                <img class="section-header-branded__bg" src="../../assets/images/section-header-branded-sport.jpg" alt="" />
+                <span class="section-header-branded__name">UK SPORT</span>
+                <span class="section-header-branded__arrow btn btn-tertiary-dark btn--sm btn--icon-only" aria-hidden="true"><span class="icon icon--arrow-right-light" aria-hidden="true"></span></span>
+              </a></h2>
+            </header>
+          </div>
+          <p class="exp-cell-label"><strong>332px</strong> — LG ≥1024 · Single (½ Alpha)</p>
+          <div class="exp-cell" style="width: 332px">
+            <header class="section-header-branded">
+              <h2 class="section-header-branded__title"><a class="section-header-branded__banner" href="#channel" aria-label="UK Sport">
+                <img class="section-header-branded__bg" src="../../assets/images/section-header-branded-sport.jpg" alt="" />
+                <span class="section-header-branded__name">UK SPORT</span>
+                <span class="section-header-branded__arrow btn btn-tertiary-dark btn--sm btn--icon-only" aria-hidden="true"><span class="icon icon--arrow-right-light" aria-hidden="true"></span></span>
+              </a></h2>
+            </header>
+          </div>
+          <p class="exp-cell-label"><strong>664px</strong> — LG ≥1024 · Double (Alpha)</p>
+          <div class="exp-cell" style="width: 664px">
+            <header class="section-header-branded">
+              <h2 class="section-header-branded__title"><a class="section-header-branded__banner" href="#channel" aria-label="UK Sport">
+                <img class="section-header-branded__bg" src="../../assets/images/section-header-branded-sport.jpg" alt="" />
+                <span class="section-header-branded__name">UK SPORT</span>
+                <span class="section-header-branded__arrow btn btn-tertiary-dark btn--sm btn--icon-only" aria-hidden="true"><span class="icon icon--arrow-right-light" aria-hidden="true"></span></span>
+              </a></h2>
+            </header>
+          </div>
+          <p class="exp-cell-label"><strong>996px</strong> — LG ≥1024 · Triple (Gamma)</p>
+          <div class="exp-cell" style="width: 996px">
+            <header class="section-header-branded">
+              <h2 class="section-header-branded__title"><a class="section-header-branded__banner" href="#channel" aria-label="UK Sport">
+                <img class="section-header-branded__bg" src="../../assets/images/section-header-branded-sport.jpg" alt="" />
+                <span class="section-header-branded__name">UK SPORT</span>
+                <span class="section-header-branded__arrow btn btn-tertiary-dark btn--sm btn--icon-only" aria-hidden="true"><span class="icon icon--arrow-right-light" aria-hidden="true"></span></span>
+              </a></h2>
+            </header>
+          </div>
+        </div>
+        <div class="exp-panel" role="tabpanel" id="exp-panel-text-money" aria-labelledby="exp-tab-text-money" hidden>
+          <p class="exp-cell-label"><strong>195px</strong> — Half a mobile browser width (e.g. iPhone 390 ÷ 2)</p>
+          <div class="exp-cell" style="width: 195px">
+            <header class="section-header-branded">
+              <h2 class="section-header-branded__title"><a class="section-header-branded__banner" href="#channel" aria-label="Money">
+                <img class="section-header-branded__bg" src="../../assets/images/section-header-branded-money.jpg" alt="" style="object-position: 50% 29%" />
+                <span class="section-header-branded__name">MONEY</span>
+                <span class="section-header-branded__arrow btn btn-tertiary-dark btn--sm btn--icon-only" aria-hidden="true"><span class="icon icon--arrow-right-light" aria-hidden="true"></span></span>
+              </a></h2>
+            </header>
+          </div>
+          <p class="exp-cell-label"><strong>332px</strong> — LG ≥1024 · Single (½ Alpha)</p>
+          <div class="exp-cell" style="width: 332px">
+            <header class="section-header-branded">
+              <h2 class="section-header-branded__title"><a class="section-header-branded__banner" href="#channel" aria-label="Money">
+                <img class="section-header-branded__bg" src="../../assets/images/section-header-branded-money.jpg" alt="" style="object-position: 50% 29%" />
+                <span class="section-header-branded__name">MONEY</span>
+                <span class="section-header-branded__arrow btn btn-tertiary-dark btn--sm btn--icon-only" aria-hidden="true"><span class="icon icon--arrow-right-light" aria-hidden="true"></span></span>
+              </a></h2>
+            </header>
+          </div>
+          <p class="exp-cell-label"><strong>664px</strong> — LG ≥1024 · Double (Alpha)</p>
+          <div class="exp-cell" style="width: 664px">
+            <header class="section-header-branded">
+              <h2 class="section-header-branded__title"><a class="section-header-branded__banner" href="#channel" aria-label="Money">
+                <img class="section-header-branded__bg" src="../../assets/images/section-header-branded-money.jpg" alt="" style="object-position: 50% 29%" />
+                <span class="section-header-branded__name">MONEY</span>
+                <span class="section-header-branded__arrow btn btn-tertiary-dark btn--sm btn--icon-only" aria-hidden="true"><span class="icon icon--arrow-right-light" aria-hidden="true"></span></span>
+              </a></h2>
+            </header>
+          </div>
+          <p class="exp-cell-label"><strong>996px</strong> — LG ≥1024 · Triple (Gamma)</p>
+          <div class="exp-cell" style="width: 996px">
+            <header class="section-header-branded">
+              <h2 class="section-header-branded__title"><a class="section-header-branded__banner" href="#channel" aria-label="Money">
+                <img class="section-header-branded__bg" src="../../assets/images/section-header-branded-money.jpg" alt="" style="object-position: 50% 29%" />
+                <span class="section-header-branded__name">MONEY</span>
+                <span class="section-header-branded__arrow btn btn-tertiary-dark btn--sm btn--icon-only" aria-hidden="true"><span class="icon icon--arrow-right-light" aria-hidden="true"></span></span>
+              </a></h2>
+            </header>
+          </div>
+        </div>
+        <div class="exp-panel" role="tabpanel" id="exp-panel-text-femail" aria-labelledby="exp-tab-text-femail" hidden>
+          <p class="exp-cell-label"><strong>195px</strong> — Half a mobile browser width (e.g. iPhone 390 ÷ 2)</p>
+          <div class="exp-cell" style="width: 195px">
+            <header class="section-header-branded">
+              <h2 class="section-header-branded__title"><a class="section-header-branded__banner" href="#channel" aria-label="Femail">
+                <img class="section-header-branded__bg" src="../../assets/images/section-header-branded-femail.jpg" alt="" />
+                <span class="section-header-branded__name">FEMAIL</span>
+                <span class="section-header-branded__arrow btn btn-tertiary-dark btn--sm btn--icon-only" aria-hidden="true"><span class="icon icon--arrow-right-light" aria-hidden="true"></span></span>
+              </a></h2>
+            </header>
+          </div>
+          <p class="exp-cell-label"><strong>332px</strong> — LG ≥1024 · Single (½ Alpha)</p>
+          <div class="exp-cell" style="width: 332px">
+            <header class="section-header-branded">
+              <h2 class="section-header-branded__title"><a class="section-header-branded__banner" href="#channel" aria-label="Femail">
+                <img class="section-header-branded__bg" src="../../assets/images/section-header-branded-femail.jpg" alt="" />
+                <span class="section-header-branded__name">FEMAIL</span>
+                <span class="section-header-branded__arrow btn btn-tertiary-dark btn--sm btn--icon-only" aria-hidden="true"><span class="icon icon--arrow-right-light" aria-hidden="true"></span></span>
+              </a></h2>
+            </header>
+          </div>
+          <p class="exp-cell-label"><strong>664px</strong> — LG ≥1024 · Double (Alpha)</p>
+          <div class="exp-cell" style="width: 664px">
+            <header class="section-header-branded">
+              <h2 class="section-header-branded__title"><a class="section-header-branded__banner" href="#channel" aria-label="Femail">
+                <img class="section-header-branded__bg" src="../../assets/images/section-header-branded-femail.jpg" alt="" />
+                <span class="section-header-branded__name">FEMAIL</span>
+                <span class="section-header-branded__arrow btn btn-tertiary-dark btn--sm btn--icon-only" aria-hidden="true"><span class="icon icon--arrow-right-light" aria-hidden="true"></span></span>
+              </a></h2>
+            </header>
+          </div>
+          <p class="exp-cell-label"><strong>996px</strong> — LG ≥1024 · Triple (Gamma)</p>
+          <div class="exp-cell" style="width: 996px">
+            <header class="section-header-branded">
+              <h2 class="section-header-branded__title"><a class="section-header-branded__banner" href="#channel" aria-label="Femail">
+                <img class="section-header-branded__bg" src="../../assets/images/section-header-branded-femail.jpg" alt="" />
+                <span class="section-header-branded__name">FEMAIL</span>
+                <span class="section-header-branded__arrow btn btn-tertiary-dark btn--sm btn--icon-only" aria-hidden="true"><span class="icon icon--arrow-right-light" aria-hidden="true"></span></span>
+              </a></h2>
+            </header>
+          </div>
+        </div>
+        <div class="exp-panel" role="tabpanel" id="exp-panel-text-health" aria-labelledby="exp-tab-text-health" hidden>
+          <p class="exp-cell-label"><strong>195px</strong> — Half a mobile browser width (e.g. iPhone 390 ÷ 2)</p>
+          <div class="exp-cell" style="width: 195px">
+            <header class="section-header-branded">
+              <h2 class="section-header-branded__title"><a class="section-header-branded__banner" href="#channel" aria-label="Health">
+                <img class="section-header-branded__bg" src="../../assets/images/section-header-branded-health.jpg" alt="" />
+                <span class="section-header-branded__name">HEALTH</span>
+                <span class="section-header-branded__arrow btn btn-tertiary-dark btn--sm btn--icon-only" aria-hidden="true"><span class="icon icon--arrow-right-light" aria-hidden="true"></span></span>
+              </a></h2>
+            </header>
+          </div>
+          <p class="exp-cell-label"><strong>332px</strong> — LG ≥1024 · Single (½ Alpha)</p>
+          <div class="exp-cell" style="width: 332px">
+            <header class="section-header-branded">
+              <h2 class="section-header-branded__title"><a class="section-header-branded__banner" href="#channel" aria-label="Health">
+                <img class="section-header-branded__bg" src="../../assets/images/section-header-branded-health.jpg" alt="" />
+                <span class="section-header-branded__name">HEALTH</span>
+                <span class="section-header-branded__arrow btn btn-tertiary-dark btn--sm btn--icon-only" aria-hidden="true"><span class="icon icon--arrow-right-light" aria-hidden="true"></span></span>
+              </a></h2>
+            </header>
+          </div>
+          <p class="exp-cell-label"><strong>664px</strong> — LG ≥1024 · Double (Alpha)</p>
+          <div class="exp-cell" style="width: 664px">
+            <header class="section-header-branded">
+              <h2 class="section-header-branded__title"><a class="section-header-branded__banner" href="#channel" aria-label="Health">
+                <img class="section-header-branded__bg" src="../../assets/images/section-header-branded-health.jpg" alt="" />
+                <span class="section-header-branded__name">HEALTH</span>
+                <span class="section-header-branded__arrow btn btn-tertiary-dark btn--sm btn--icon-only" aria-hidden="true"><span class="icon icon--arrow-right-light" aria-hidden="true"></span></span>
+              </a></h2>
+            </header>
+          </div>
+          <p class="exp-cell-label"><strong>996px</strong> — LG ≥1024 · Triple (Gamma)</p>
+          <div class="exp-cell" style="width: 996px">
+            <header class="section-header-branded">
+              <h2 class="section-header-branded__title"><a class="section-header-branded__banner" href="#channel" aria-label="Health">
+                <img class="section-header-branded__bg" src="../../assets/images/section-header-branded-health.jpg" alt="" />
+                <span class="section-header-branded__name">HEALTH</span>
+                <span class="section-header-branded__arrow btn btn-tertiary-dark btn--sm btn--icon-only" aria-hidden="true"><span class="icon icon--arrow-right-light" aria-hidden="true"></span></span>
+              </a></h2>
+            </header>
+          </div>
+        </div>
+      </section>
+
+      <section class="exp-row">
+        <h2 class="exp-row__title">2. Logo — SVG</h2>
+        <p class="exp-row__caption">The channel logo as an image: img.section-header-branded__logo (its own ratio, max 44px tall, 240px wide). No arrow under a 240px banner. Pick a channel.</p>
+        <div class="tabs">
+          <div class="tabs__list" role="tablist" aria-label="Logo — SVG">
+            <button class="tabs__tab" type="button" role="tab" id="exp-tab-logo-crime-desk" aria-controls="exp-panel-logo-crime-desk" aria-selected="true">The Crime Desk</button>
+            <button class="tabs__tab" type="button" role="tab" id="exp-tab-logo-sport" aria-controls="exp-panel-logo-sport" aria-selected="false">Daily Mail Sport</button>
+            <button class="tabs__tab" type="button" role="tab" id="exp-tab-logo-money" aria-controls="exp-panel-logo-money" aria-selected="false">This is Money</button>
+            <button class="tabs__tab" type="button" role="tab" id="exp-tab-logo-femail" aria-controls="exp-panel-logo-femail" aria-selected="false">Femail</button>
+            <button class="tabs__tab" type="button" role="tab" id="exp-tab-logo-palace" aria-controls="exp-panel-logo-palace" aria-selected="false">Palace Confidential</button>
+          </div>
+        </div>
+        <div class="exp-panel" role="tabpanel" id="exp-panel-logo-crime-desk" aria-labelledby="exp-tab-logo-crime-desk">
           <p class="exp-cell-label"><strong>195px</strong> — Half a mobile browser width (e.g. iPhone 390 ÷ 2)</p>
           <div class="exp-cell" style="width: 195px">
             <header class="section-header-branded">
@@ -290,49 +515,7 @@
             </header>
           </div>
         </div>
-        <div class="exp-panel" role="tabpanel" id="exp-panel-health" aria-labelledby="exp-tab-health" hidden>
-          <p class="exp-cell-label"><strong>195px</strong> — Half a mobile browser width (e.g. iPhone 390 ÷ 2)</p>
-          <div class="exp-cell" style="width: 195px">
-            <header class="section-header-branded">
-              <h2 class="section-header-branded__title"><a class="section-header-branded__banner" href="#channel" aria-label="Health">
-                <img class="section-header-branded__bg" src="../../assets/images/section-header-branded-health.jpg" alt="" />
-                <img class="section-header-branded__logo" src="../../assets/images/logo-health.svg" alt="Health" width="89" height="26" />
-                <span class="section-header-branded__arrow btn btn-tertiary-dark btn--sm btn--icon-only" aria-hidden="true"><span class="icon icon--arrow-right-light" aria-hidden="true"></span></span>
-              </a></h2>
-            </header>
-          </div>
-          <p class="exp-cell-label"><strong>332px</strong> — LG ≥1024 · Single (½ Alpha)</p>
-          <div class="exp-cell" style="width: 332px">
-            <header class="section-header-branded">
-              <h2 class="section-header-branded__title"><a class="section-header-branded__banner" href="#channel" aria-label="Health">
-                <img class="section-header-branded__bg" src="../../assets/images/section-header-branded-health.jpg" alt="" />
-                <img class="section-header-branded__logo" src="../../assets/images/logo-health.svg" alt="Health" width="89" height="26" />
-                <span class="section-header-branded__arrow btn btn-tertiary-dark btn--sm btn--icon-only" aria-hidden="true"><span class="icon icon--arrow-right-light" aria-hidden="true"></span></span>
-              </a></h2>
-            </header>
-          </div>
-          <p class="exp-cell-label"><strong>664px</strong> — LG ≥1024 · Double (Alpha)</p>
-          <div class="exp-cell" style="width: 664px">
-            <header class="section-header-branded">
-              <h2 class="section-header-branded__title"><a class="section-header-branded__banner" href="#channel" aria-label="Health">
-                <img class="section-header-branded__bg" src="../../assets/images/section-header-branded-health.jpg" alt="" />
-                <img class="section-header-branded__logo" src="../../assets/images/logo-health.svg" alt="Health" width="89" height="26" />
-                <span class="section-header-branded__arrow btn btn-tertiary-dark btn--sm btn--icon-only" aria-hidden="true"><span class="icon icon--arrow-right-light" aria-hidden="true"></span></span>
-              </a></h2>
-            </header>
-          </div>
-          <p class="exp-cell-label"><strong>996px</strong> — LG ≥1024 · Triple (Gamma)</p>
-          <div class="exp-cell" style="width: 996px">
-            <header class="section-header-branded">
-              <h2 class="section-header-branded__title"><a class="section-header-branded__banner" href="#channel" aria-label="Health">
-                <img class="section-header-branded__bg" src="../../assets/images/section-header-branded-health.jpg" alt="" />
-                <img class="section-header-branded__logo" src="../../assets/images/logo-health.svg" alt="Health" width="89" height="26" />
-                <span class="section-header-branded__arrow btn btn-tertiary-dark btn--sm btn--icon-only" aria-hidden="true"><span class="icon icon--arrow-right-light" aria-hidden="true"></span></span>
-              </a></h2>
-            </header>
-          </div>
-        </div>
-        <div class="exp-panel" role="tabpanel" id="exp-panel-sport" aria-labelledby="exp-tab-sport" hidden>
+        <div class="exp-panel" role="tabpanel" id="exp-panel-logo-sport" aria-labelledby="exp-tab-logo-sport" hidden>
           <p class="exp-cell-label"><strong>195px</strong> — Half a mobile browser width (e.g. iPhone 390 ÷ 2)</p>
           <div class="exp-cell" style="width: 195px">
             <header class="section-header-branded">
@@ -374,13 +557,13 @@
             </header>
           </div>
         </div>
-        <div class="exp-panel" role="tabpanel" id="exp-panel-showbiz" aria-labelledby="exp-tab-showbiz" hidden>
+        <div class="exp-panel" role="tabpanel" id="exp-panel-logo-money" aria-labelledby="exp-tab-logo-money" hidden>
           <p class="exp-cell-label"><strong>195px</strong> — Half a mobile browser width (e.g. iPhone 390 ÷ 2)</p>
           <div class="exp-cell" style="width: 195px">
             <header class="section-header-branded">
-              <h2 class="section-header-branded__title"><a class="section-header-branded__banner" href="#channel" aria-label="This is Showbiz">
-                <img class="section-header-branded__bg" src="../../assets/images/section-header-branded-showbiz.jpg" alt="" />
-                <img class="section-header-branded__logo" src="../../assets/images/logo-this-is-showbiz.svg" alt="This is Showbiz" width="168" height="21" />
+              <h2 class="section-header-branded__title"><a class="section-header-branded__banner" href="#channel" aria-label="This is Money">
+                <img class="section-header-branded__bg" src="../../assets/images/section-header-branded-money.jpg" alt="" style="object-position: 50% 29%" />
+                <img class="section-header-branded__logo" src="images/logo-thisismoney.svg" alt="This is Money" width="196" height="20" />
                 <span class="section-header-branded__arrow btn btn-tertiary-dark btn--sm btn--icon-only" aria-hidden="true"><span class="icon icon--arrow-right-light" aria-hidden="true"></span></span>
               </a></h2>
             </header>
@@ -388,9 +571,9 @@
           <p class="exp-cell-label"><strong>332px</strong> — LG ≥1024 · Single (½ Alpha)</p>
           <div class="exp-cell" style="width: 332px">
             <header class="section-header-branded">
-              <h2 class="section-header-branded__title"><a class="section-header-branded__banner" href="#channel" aria-label="This is Showbiz">
-                <img class="section-header-branded__bg" src="../../assets/images/section-header-branded-showbiz.jpg" alt="" />
-                <img class="section-header-branded__logo" src="../../assets/images/logo-this-is-showbiz.svg" alt="This is Showbiz" width="168" height="21" />
+              <h2 class="section-header-branded__title"><a class="section-header-branded__banner" href="#channel" aria-label="This is Money">
+                <img class="section-header-branded__bg" src="../../assets/images/section-header-branded-money.jpg" alt="" style="object-position: 50% 29%" />
+                <img class="section-header-branded__logo" src="images/logo-thisismoney.svg" alt="This is Money" width="196" height="20" />
                 <span class="section-header-branded__arrow btn btn-tertiary-dark btn--sm btn--icon-only" aria-hidden="true"><span class="icon icon--arrow-right-light" aria-hidden="true"></span></span>
               </a></h2>
             </header>
@@ -398,9 +581,9 @@
           <p class="exp-cell-label"><strong>664px</strong> — LG ≥1024 · Double (Alpha)</p>
           <div class="exp-cell" style="width: 664px">
             <header class="section-header-branded">
-              <h2 class="section-header-branded__title"><a class="section-header-branded__banner" href="#channel" aria-label="This is Showbiz">
-                <img class="section-header-branded__bg" src="../../assets/images/section-header-branded-showbiz.jpg" alt="" />
-                <img class="section-header-branded__logo" src="../../assets/images/logo-this-is-showbiz.svg" alt="This is Showbiz" width="168" height="21" />
+              <h2 class="section-header-branded__title"><a class="section-header-branded__banner" href="#channel" aria-label="This is Money">
+                <img class="section-header-branded__bg" src="../../assets/images/section-header-branded-money.jpg" alt="" style="object-position: 50% 29%" />
+                <img class="section-header-branded__logo" src="images/logo-thisismoney.svg" alt="This is Money" width="196" height="20" />
                 <span class="section-header-branded__arrow btn btn-tertiary-dark btn--sm btn--icon-only" aria-hidden="true"><span class="icon icon--arrow-right-light" aria-hidden="true"></span></span>
               </a></h2>
             </header>
@@ -408,9 +591,93 @@
           <p class="exp-cell-label"><strong>996px</strong> — LG ≥1024 · Triple (Gamma)</p>
           <div class="exp-cell" style="width: 996px">
             <header class="section-header-branded">
-              <h2 class="section-header-branded__title"><a class="section-header-branded__banner" href="#channel" aria-label="This is Showbiz">
-                <img class="section-header-branded__bg" src="../../assets/images/section-header-branded-showbiz.jpg" alt="" />
-                <img class="section-header-branded__logo" src="../../assets/images/logo-this-is-showbiz.svg" alt="This is Showbiz" width="168" height="21" />
+              <h2 class="section-header-branded__title"><a class="section-header-branded__banner" href="#channel" aria-label="This is Money">
+                <img class="section-header-branded__bg" src="../../assets/images/section-header-branded-money.jpg" alt="" style="object-position: 50% 29%" />
+                <img class="section-header-branded__logo" src="images/logo-thisismoney.svg" alt="This is Money" width="196" height="20" />
+                <span class="section-header-branded__arrow btn btn-tertiary-dark btn--sm btn--icon-only" aria-hidden="true"><span class="icon icon--arrow-right-light" aria-hidden="true"></span></span>
+              </a></h2>
+            </header>
+          </div>
+        </div>
+        <div class="exp-panel" role="tabpanel" id="exp-panel-logo-femail" aria-labelledby="exp-tab-logo-femail" hidden>
+          <p class="exp-cell-label"><strong>195px</strong> — Half a mobile browser width (e.g. iPhone 390 ÷ 2)</p>
+          <div class="exp-cell" style="width: 195px">
+            <header class="section-header-branded">
+              <h2 class="section-header-branded__title"><a class="section-header-branded__banner" href="#channel" aria-label="Femail">
+                <img class="section-header-branded__bg" src="../../assets/images/section-header-branded-femail.jpg" alt="" />
+                <img class="section-header-branded__logo" src="images/logo-femail.svg" alt="Femail" width="89" height="28" />
+                <span class="section-header-branded__arrow btn btn-tertiary-dark btn--sm btn--icon-only" aria-hidden="true"><span class="icon icon--arrow-right-light" aria-hidden="true"></span></span>
+              </a></h2>
+            </header>
+          </div>
+          <p class="exp-cell-label"><strong>332px</strong> — LG ≥1024 · Single (½ Alpha)</p>
+          <div class="exp-cell" style="width: 332px">
+            <header class="section-header-branded">
+              <h2 class="section-header-branded__title"><a class="section-header-branded__banner" href="#channel" aria-label="Femail">
+                <img class="section-header-branded__bg" src="../../assets/images/section-header-branded-femail.jpg" alt="" />
+                <img class="section-header-branded__logo" src="images/logo-femail.svg" alt="Femail" width="89" height="28" />
+                <span class="section-header-branded__arrow btn btn-tertiary-dark btn--sm btn--icon-only" aria-hidden="true"><span class="icon icon--arrow-right-light" aria-hidden="true"></span></span>
+              </a></h2>
+            </header>
+          </div>
+          <p class="exp-cell-label"><strong>664px</strong> — LG ≥1024 · Double (Alpha)</p>
+          <div class="exp-cell" style="width: 664px">
+            <header class="section-header-branded">
+              <h2 class="section-header-branded__title"><a class="section-header-branded__banner" href="#channel" aria-label="Femail">
+                <img class="section-header-branded__bg" src="../../assets/images/section-header-branded-femail.jpg" alt="" />
+                <img class="section-header-branded__logo" src="images/logo-femail.svg" alt="Femail" width="89" height="28" />
+                <span class="section-header-branded__arrow btn btn-tertiary-dark btn--sm btn--icon-only" aria-hidden="true"><span class="icon icon--arrow-right-light" aria-hidden="true"></span></span>
+              </a></h2>
+            </header>
+          </div>
+          <p class="exp-cell-label"><strong>996px</strong> — LG ≥1024 · Triple (Gamma)</p>
+          <div class="exp-cell" style="width: 996px">
+            <header class="section-header-branded">
+              <h2 class="section-header-branded__title"><a class="section-header-branded__banner" href="#channel" aria-label="Femail">
+                <img class="section-header-branded__bg" src="../../assets/images/section-header-branded-femail.jpg" alt="" />
+                <img class="section-header-branded__logo" src="images/logo-femail.svg" alt="Femail" width="89" height="28" />
+                <span class="section-header-branded__arrow btn btn-tertiary-dark btn--sm btn--icon-only" aria-hidden="true"><span class="icon icon--arrow-right-light" aria-hidden="true"></span></span>
+              </a></h2>
+            </header>
+          </div>
+        </div>
+        <div class="exp-panel" role="tabpanel" id="exp-panel-logo-palace" aria-labelledby="exp-tab-logo-palace" hidden>
+          <p class="exp-cell-label"><strong>195px</strong> — Half a mobile browser width (e.g. iPhone 390 ÷ 2)</p>
+          <div class="exp-cell" style="width: 195px">
+            <header class="section-header-branded">
+              <h2 class="section-header-branded__title"><a class="section-header-branded__banner" href="#channel" aria-label="Palace Confidential">
+                <img class="section-header-branded__bg" src="../../assets/images/section-header-branded-palace-confidential.jpg" alt="" />
+                <img class="section-header-branded__logo" src="../../assets/images/logo-palace-confidential.svg" alt="Palace Confidential" width="77" height="36" />
+                <span class="section-header-branded__arrow btn btn-tertiary-dark btn--sm btn--icon-only" aria-hidden="true"><span class="icon icon--arrow-right-light" aria-hidden="true"></span></span>
+              </a></h2>
+            </header>
+          </div>
+          <p class="exp-cell-label"><strong>332px</strong> — LG ≥1024 · Single (½ Alpha)</p>
+          <div class="exp-cell" style="width: 332px">
+            <header class="section-header-branded">
+              <h2 class="section-header-branded__title"><a class="section-header-branded__banner" href="#channel" aria-label="Palace Confidential">
+                <img class="section-header-branded__bg" src="../../assets/images/section-header-branded-palace-confidential.jpg" alt="" />
+                <img class="section-header-branded__logo" src="../../assets/images/logo-palace-confidential.svg" alt="Palace Confidential" width="77" height="36" />
+                <span class="section-header-branded__arrow btn btn-tertiary-dark btn--sm btn--icon-only" aria-hidden="true"><span class="icon icon--arrow-right-light" aria-hidden="true"></span></span>
+              </a></h2>
+            </header>
+          </div>
+          <p class="exp-cell-label"><strong>664px</strong> — LG ≥1024 · Double (Alpha)</p>
+          <div class="exp-cell" style="width: 664px">
+            <header class="section-header-branded">
+              <h2 class="section-header-branded__title"><a class="section-header-branded__banner" href="#channel" aria-label="Palace Confidential">
+                <img class="section-header-branded__bg" src="../../assets/images/section-header-branded-palace-confidential.jpg" alt="" />
+                <img class="section-header-branded__logo" src="../../assets/images/logo-palace-confidential.svg" alt="Palace Confidential" width="77" height="36" />
+                <span class="section-header-branded__arrow btn btn-tertiary-dark btn--sm btn--icon-only" aria-hidden="true"><span class="icon icon--arrow-right-light" aria-hidden="true"></span></span>
+              </a></h2>
+            </header>
+          </div>
+          <p class="exp-cell-label"><strong>996px</strong> — LG ≥1024 · Triple (Gamma)</p>
+          <div class="exp-cell" style="width: 996px">
+            <header class="section-header-branded">
+              <h2 class="section-header-branded__title"><a class="section-header-branded__banner" href="#channel" aria-label="Palace Confidential">
+                <img class="section-header-branded__bg" src="../../assets/images/section-header-branded-palace-confidential.jpg" alt="" />
+                <img class="section-header-branded__logo" src="../../assets/images/logo-palace-confidential.svg" alt="Palace Confidential" width="77" height="36" />
                 <span class="section-header-branded__arrow btn btn-tertiary-dark btn--sm btn--icon-only" aria-hidden="true"><span class="icon icon--arrow-right-light" aria-hidden="true"></span></span>
               </a></h2>
             </header>
@@ -418,7 +685,7 @@
         </div>
       </section>
       <section class="exp-row">
-        <h2 class="exp-row__title">2. Extra block — This is Money + Sponsored by</h2>
+        <h2 class="exp-row__title">3. Extra variation — This is Money + Sponsored by</h2>
         <p class="exp-row__caption">New: .section-header-branded__sponsor under the banner (label-xsm Regular, neutral/dark, 4px gap). Header gap 4 + padding 4 = Figma Extra block 24px.</p>
         <p class="exp-cell-label"><strong>195px</strong> — Half a mobile browser width (e.g. iPhone 390 ÷ 2)</p>
         <div class="exp-cell" style="width: 195px">
@@ -466,8 +733,8 @@
         </div>
       </section>
       <section class="exp-row">
-        <h2 class="exp-row__title">3. Figures — Femail</h2>
-        <p class="exp-row__caption">New: .section-header-branded--figures + img.section-header-branded__figure. Figures sit on the banner bottom and rise 8px above it (60px tall); they spill into the 48px side padding at 332, as in Figma, and move out from the logo as the banner widens (gap up to 64px). Logo centred on the banner. Hidden when the banner is under 240px.</p>
+        <h2 class="exp-row__title">4. Figures — Femail</h2>
+        <p class="exp-row__caption">Likely to be dropped. New: .section-header-branded--figures + img.section-header-branded__figure. Figures sit on the banner bottom and rise 8px above it (60px tall); they spill into the 48px side padding at 332, as in Figma, and move out from the logo as the banner widens (gap up to 64px). Logo centred on the banner. Hidden when the banner is under 240px.</p>
         <p class="exp-cell-label"><strong>195px</strong> — Half a mobile browser width (e.g. iPhone 390 ÷ 2)</p>
         <div class="exp-cell" style="width: 195px">
           <header class="section-header-branded section-header-branded--figures">
@@ -518,7 +785,7 @@
         </div>
       </section>
       <section class="exp-row">
-        <h2 class="exp-row__title">4. Don't</h2>
+        <h2 class="exp-row__title">5. Don't</h2>
         <p class="exp-row__caption">What breaks when Figures are pushed past their limits. The limits are switched off on these samples, over a section above.</p>
         <figure class="exp-dont">
           <div class="exp-cell exp-unguarded" style="width: 664px">
@@ -590,21 +857,21 @@
           </div>
           <figcaption class="exp-dont__reason">
             <strong class="exp-dont__label">Don't — A photo with a background</strong>
-            The same two figures as in 3, but with the photo's background left in. Only cut-outs (transparent PNG) can rise above the banner: a background turns each figure into a box that covers the banner and reads as a broken image.
+            The same two figures as in 4, but with the photo's background left in. Only cut-outs (transparent PNG) can rise above the banner: a background turns each figure into a box that covers the banner and reads as a broken image.
           </figcaption>
         </figure>
       </section>
     </main>
     <script>
-      // Experiment only: the channel tabs in 1. show one panel at a time
-      document.querySelector('.tabs__list').addEventListener('click', (event) => {
+      // Experiment only: the channel tabs in 1. and 2. show one panel at a time
+      document.querySelectorAll('.tabs__list').forEach((list) => list.addEventListener('click', (event) => {
         const tab = event.target.closest('[role="tab"]');
         if (!tab) return;
         tab.parentElement.querySelectorAll('[role="tab"]').forEach((t) => {
           t.setAttribute('aria-selected', String(t === tab));
           document.getElementById(t.getAttribute('aria-controls')).hidden = t !== tab;
         });
-      });
+      }));
     </script>
   </body>
 </html>
