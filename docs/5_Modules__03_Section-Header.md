@@ -96,7 +96,7 @@ Sub-channels or topics in one row that scrolls sideways.
 |---|---|---|
 | Container | `.section-header-branded` | lightest; padding 20 top · 8 bottom · 16 sides; 4px gap |
 | Title | `h2.section-header-branded__title` | Wraps the banner, as `h2 > a` in Section Header: every section header is an `h2`, text name or logo alike (Typography 3-G). Its text is the name, or the logo's `alt` |
-| Banner | `a.section-header-branded__banner` | **The whole banner is the link.** 52px, 8px corners, 4px / 48px padding. A header that leads nowhere (e.g. Don't miss) uses a `<span>` (an `h2` holds no `<div>`): no arrow, no hover |
+| Banner | `a.section-header-branded__banner` | **The whole banner is the link.** 52px, 8px corners, 4px / 48px padding. A header that leads nowhere (e.g. Don't miss) uses a `<span>` (an `h2` holds no `<div>`): no arrow, no hover. Always `data-theme="light"` — **Theme Pinned**: the artwork does not change with the theme, so the name / logo, arrow and hover surface keep the light look in dark mode. The header around it (background, sub-items, sponsor line) follows the theme |
 | Background | `img.section-header-branded__bg` | The graphic team's artwork as it is — cover, no blur |
 | Surface | banner `::before` | `color/effect/translucent-dark/clear` → `translucent-dark/moderate` on hover / focus |
 | Name / Logo | `span.section-header-branded__name` or `img.section-header-branded__logo` | Straight in the banner (no slot wrapper) — channel name or logo, centred. Logo keeps its ratio: max 44px tall, max 240px wide (give the `<img>` its width and height) |

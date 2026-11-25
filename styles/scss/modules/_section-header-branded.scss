@@ -24,6 +24,11 @@
 // The background is the graphic team's artwork used as it is — no blur. The
 // artwork carries its own contrast for the white name / logo.
 //
+// Theme Pinned: the banner always carries data-theme="light" — the artwork
+// does not change with the theme, so the white name / logo, the arrow and the
+// hover surface must not either. The header around it (lightest, sub-items,
+// sponsor line) follows the theme.
+//
 // Surface over the artwork (banner ::before): translucent-dark/clear at rest
 // (nothing shows) → translucent-dark/moderate on hover / focus — the whole banner
 // is the link. A <span> banner (no href) keeps it clear.
