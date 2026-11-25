@@ -10307,16 +10307,6 @@ body:has(.ad-skin) {
   height: 16px;
   fill: currentColor;
 }
-.dropdown-menu__item > .demo-theme__glyph {
-  width: 18px;
-  height: 18px;
-}
-
-.demo-theme__menu {
-  position: absolute;
-  top: calc(100% + var(--spacing-8));
-  right: 0;
-}
 
 .demo-footer {
   margin-top: var(--spacing-64);

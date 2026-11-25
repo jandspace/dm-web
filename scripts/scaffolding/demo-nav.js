@@ -13,7 +13,7 @@
 // Not shown inside frames (viewport previews load pages in iframes).
 //
 // Also adds, on every page:
-//   · Theme menu (top right) — Light (default) / Dark: <html data-theme="dark">,
+//   · Theme toggle (top right) — Light (default) ↔ Dark per click: <html data-theme="dark">,
 //     kept per browser in localStorage. Frames follow it too (applied before
 //     the frame check; the storage event updates open frames).
 //   · Footer — copyright and contact line at the bottom of the page.
@@ -194,8 +194,8 @@
     document.body.classList.add('demo-has-nav');
   };
 
-  // ── Theme menu: glyph button → Dropdown Menu (Light / Dark), opens on hover ──
-  // Sun / moon glyphs for this menu only (not in the icon library)
+  // ── Theme toggle: one round button, each click switches Light ↔ Dark ──
+  // Sun / moon glyphs for this button only (not in the icon library)
   const GLYPHS = {
     light: ['0 0 512 512', 'M275.7 19.7C275.7 8.8 266.9 0 256 0s-19.7 8.8-19.7 19.7v52.5c0 10.9 8.8 19.7 19.7 19.7s19.7-8.8 19.7-19.7zM102.8 75c-7.7-7.7-20.2-7.7-27.8 0s-7.7 20.2 0 27.8l37.1 37.1c7.7 7.7 20.2 7.7 27.8 0 7.7-7.7 7.7-20.2 0-27.8zM437 102.8c7.7-7.7 7.7-20.2 0-27.8-7.7-7.7-20.2-7.7-27.8 0L372 112.1c-7.7 7.7-7.7 20.2 0 27.8 7.7 7.7 20.2 7.7 27.8 0zM19.7 236.3C8.8 236.3 0 245.1 0 256s8.8 19.7 19.7 19.7h52.5c10.9 0 19.7-8.8 19.7-19.7s-8.8-19.7-19.7-19.7zm420.1 0c-10.9 0-19.7 8.8-19.7 19.7s8.8 19.7 19.7 19.7h52.5c10.9 0 19.7-8.8 19.7-19.7s-8.8-19.7-19.7-19.7zM140 399.9c7.7-7.7 7.7-20.2 0-27.9s-20.2-7.7-27.8 0L75 409.2c-7.7 7.7-7.7 20.2 0 27.9s20.2 7.7 27.8 0zM399.9 372c-7.7-7.7-20.2-7.7-27.9 0s-7.7 20.2 0 27.9l37.1 37.1c7.7 7.7 20.2 7.7 27.9 0s7.7-20.2 0-27.9zm-124.2 67.8c0-10.9-8.8-19.7-19.7-19.7s-19.7 8.8-19.7 19.7v52.5c0 10.9 8.8 19.7 19.7 19.7s19.7-8.8 19.7-19.7zM118.2 256c0-76.1 61.7-137.8 137.8-137.8S393.8 179.9 393.8 256 332.1 393.8 256 393.8 118.2 332.1 118.2 256'],
     dark: ['0 0 32 32', 'M30.706 19.721a1 1 0 0 0-1.042-.234A13.423 13.423 0 0 1 12.513 2.335a1 1 0 0 0-1.276-1.278A15.2 15.2 0 0 0 5.51 4.68a15.422 15.422 0 0 0 21.81 21.81 15.2 15.2 0 0 0 3.623-5.728 1 1 0 0 0-.237-1.041'],
@@ -207,69 +207,25 @@
     return wrap.firstChild;
   };
 
-  const buildThemeMenu = () => {
-    const THEMES = [
-      ['light', 'Light'],
-      ['dark', 'Dark'],
-    ];
+  const buildThemeToggle = () => {
     let current = readTheme() === 'dark' ? 'dark' : 'light';
+    const trigger = el('button', { class: 'demo-theme__trigger', type: 'button' });
 
-    const trigger = el('button', { class: 'demo-theme__trigger', type: 'button', 'aria-haspopup': 'listbox', 'aria-expanded': 'false' });
-    const items = THEMES.map(([value, label]) =>
-      el('button', { class: 'dropdown-menu__item', type: 'button', role: 'option', 'data-value': value }, [
-        glyph(value),
-        label,
-        el('span', { class: 'icon icon--tick dropdown-menu__tick', 'aria-hidden': 'true' }),
-      ]),
-    );
-    const menu = el('div', { class: 'dropdown-menu demo-theme__menu', hidden: '' }, [
-      el('div', { class: 'dropdown-menu__list', role: 'listbox', 'aria-label': 'Theme' }, items),
-    ]);
-
+    // The glyph shows the theme a click switches to: moon in light, sun in dark
     const render = () => {
-      const label = THEMES.find(([value]) => value === current)[1];
-      trigger.replaceChildren(glyph(current));
-      trigger.setAttribute('aria-label', `Theme: ${label}`);
-      menu.querySelectorAll('[data-value]').forEach((b) => b.setAttribute('aria-selected', String(b.dataset.value === current)));
+      const next = current === 'dark' ? 'light' : 'dark';
+      trigger.replaceChildren(glyph(next));
+      trigger.setAttribute('aria-label', `Switch to ${next} mode`);
     };
-    const open = (show) => {
-      menu.hidden = !show;
-      trigger.setAttribute('aria-expanded', String(show));
-    };
-
-    // Hover opens it (a short delay on leave crosses the gap to the menu);
-    // click / keyboard open it too (no hover on touch). Outside click or Esc closes.
-    let closing;
-    const wrap = el('div', { class: 'demo-theme' }, [trigger, menu]);
-    wrap.addEventListener('mouseenter', () => {
-      clearTimeout(closing);
-      open(true);
-    });
-    wrap.addEventListener('mouseleave', () => {
-      closing = setTimeout(() => open(false), 200);
-    });
-    trigger.addEventListener('click', () => open(true));
-    menu.addEventListener('click', (e) => {
-      const b = e.target.closest('[data-value]');
-      if (!b) return;
-      current = b.dataset.value;
+    trigger.addEventListener('click', () => {
+      current = current === 'dark' ? 'light' : 'dark';
       applyTheme(current);
       try {
         localStorage.setItem(THEME_KEY, current);
       } catch {} // frames on the page follow through the storage event
       render();
-      open(false);
-      trigger.focus();
     });
-    document.addEventListener('click', (e) => {
-      if (!e.target.closest('.demo-theme')) open(false);
-    });
-    document.addEventListener('keydown', (e) => {
-      if (e.key === 'Escape' && !menu.hidden) {
-        open(false);
-        trigger.focus();
-      }
-    });
+    const wrap = el('div', { class: 'demo-theme' }, [trigger]);
 
     render();
     document.body.append(wrap);
@@ -305,7 +261,7 @@
 
   const start = () => {
     buildNav();
-    buildThemeMenu();
+    buildThemeToggle();
     buildFooter();
     const index = document.getElementById('demo-index');
     if (index) buildIndex(index);
