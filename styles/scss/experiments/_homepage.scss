@@ -1274,7 +1274,7 @@ $homepage-below-md: "(width < #{map.get(bp.$breakpoints, md)})";
   pointer-events: auto;
 }
 
-// index-femail Verticals (row of 3): the card under the header loses its top
+// index-b-test Verticals (row of 3): the card under the header loses its top
 // padding, so the header's own 8px bottom padding is the gap (was 8 + 16).
 // Its hover surface keeps the usual 8px ring by reaching up into that padding
 // (the card paints over the header's background).
