@@ -6755,12 +6755,15 @@ a.section-header__link:focus-visible {
   container-type: inline-size;
 }
 
+.section-header-branded__title {
+  flex-shrink: 0;
+}
+
 .section-header-branded__banner {
   position: relative;
   display: flex;
   align-items: center;
   justify-content: center;
-  flex-shrink: 0;
   height: 52px;
   padding: var(--spacing-4) var(--spacing-48);
   overflow: hidden;
@@ -6813,7 +6816,7 @@ a.section-header__link:focus-visible {
   margin-inline: 0;
   overflow: hidden;
   font-family: var(--typography-font-family-slab);
-  font-size: 30px;
+  font-size: 28px;
   font-weight: 800;
   line-height: 1;
   text-box: trim-both cap alphabetic;

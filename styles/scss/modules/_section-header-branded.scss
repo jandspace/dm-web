@@ -2,10 +2,11 @@
 // Section header for branded channels / verticals: a 52px banner with a
 // background image and a centred slot for the channel name (text) or logo
 // (image). The whole banner is the link — or, for a header that leads nowhere,
-// a <div> with no arrow and no hover.
+// a <span> with no arrow and no hover.
 //
 //   .section-header-branded           lightest surface, 20px top · 8px bottom · 16px sides
-//     a.section-header-branded__banner      52px, 8px corners, 48px side padding (div: no link)
+//     h2.section-header-branded__title      the section heading, around the banner (as h2 > a in Section Header)
+//     a.section-header-branded__banner      52px, 8px corners, 48px side padding (span: no link)
 //       img.section-header-branded__bg      background artwork (cover)
 //       .section-header-branded__name       channel name (text, DM Slab) — or img.section-header-branded__logo
 //       .section-header-branded__arrow      tertiary icon-only button on dark (34 · 14)
@@ -25,7 +26,7 @@
 //
 // Surface over the artwork (banner ::before): translucent-dark/clear at rest
 // (nothing shows) → translucent-dark/moderate on hover / focus — the whole banner
-// is the link. A <div> banner (no href) keeps it clear.
+// is the link. A <span> banner (no href) keeps it clear.
 //
 // Reference: Figma Web UI Kit › Section Header - Branded (6416:109910)
 
@@ -39,12 +40,17 @@
   container-type: inline-size;
 }
 
+// Heading — every section header is an h2 (Typography 3-G), text name or logo
+// alike: its text is the name, or the logo's alt
+.section-header-branded__title {
+  flex-shrink: 0; // stays 52px when sub-items follow (their flex-basis is 100%)
+}
+
 .section-header-branded__banner {
   position: relative;
   display: flex;
   align-items: center;
   justify-content: center;
-  flex-shrink: 0; // stays 52px when sub-items follow (their flex-basis is 100%)
   height: 52px;
   padding: var(--spacing-4) var(--spacing-48);
   overflow: hidden;
@@ -104,13 +110,13 @@
 }
 
 // Text name — DM Slab (Extra Bold Condensed), white. A brand size, fixed at
-// every breakpoint (no type token): 30px, line height 1, no letter spacing
+// every breakpoint (no type token): 28px, line height 1, no letter spacing
 .section-header-branded__name {
   min-width: 0; // ellipsis inside the banner
   margin-inline: 0;
   overflow: hidden;
   font-family: var(--typography-font-family-slab);
-  font-size: 30px;
+  font-size: 28px;
   font-weight: 800;
   line-height: 1;
   // Trim the line box to cap height and baseline, so the banner centres the
