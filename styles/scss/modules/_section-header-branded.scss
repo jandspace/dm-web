@@ -124,10 +124,12 @@
   // descent 0.21 em; names are capitals — they sat ~3px high). Browsers
   // without text-box (Firefox) keep the untrimmed box
   text-box: trim-both cap alphabetic;
-  // Round letters (O, S) overshoot the cap line and baseline by ~0.4px; 1px of
-  // padding keeps them out of the ellipsis clip, the margin takes it back
-  padding-block: 1px;
-  margin-block: -1px;
+  // The ellipsis clip (overflow) would cut what pokes out of the trimmed box:
+  // round letters (O, S) overshoot the cap line by ~0.4px, descenders (g, y, p)
+  // drop below the baseline by up to the font's descent (0.21 em). Padding
+  // widens the clip to cover both, the margin takes it back (centring unchanged)
+  padding-block: 1px 0.25em;
+  margin-block: -1px -0.25em;
   color: var(--color-text-neutral-white);
   text-align: center;
   white-space: nowrap;

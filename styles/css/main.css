@@ -6820,8 +6820,8 @@ a.section-header__link:focus-visible {
   font-weight: 800;
   line-height: 1;
   text-box: trim-both cap alphabetic;
-  padding-block: 1px;
-  margin-block: -1px;
+  padding-block: 1px 0.25em;
+  margin-block: -1px -0.25em;
   color: var(--color-text-neutral-white);
   text-align: center;
   white-space: nowrap;
