@@ -46,7 +46,7 @@ The footer sits **inside `.container`**, after the last content section — it e
 | Logo | `.footer__logo` | `assets/images/logo-dailymail.svg` as a mask in `icon/neutral/black`, so it turns white in dark mode. 160 × 33 · 195 × 40 from MD |
 | Social | `.footer__social` | Button secondary-neutral, icon only (40, round) with a `border/neutral/light` border and an 18px icon (Figma Footer Social Link). "Follow us on:" label-sm semibold, MD+ only |
 | Back to top | `.btn.btn-quaternary-neutral.btn--sm` | Label + `chevron-up`. `href="#top"` scrolls to the top without script |
-| Menus | `.footer__menus` › `details.footer__menu` | Heading h6 bold, compact line height, wide letter spacing. Links label-xsm regular `text/neutral/grey-dark`, 24px rows, 8px apart (as on the live site). Hover: 60% opacity, no underline, `opacity 0.3s ease-in-out` (none with reduced motion) |
+| Menus | `.footer__menus` › `details.footer__menu` | Heading h6 bold, compact line height. Links label-xsm regular `text/neutral/grey-dark`, 24px rows, 8px apart (as on the live site). Hover: 60% opacity, no underline, `opacity 0.3s ease-in-out` (none with reduced motion) |
 | Copyright | `.footer__copyright` | text-xsm semibold, `text/neutral/darker`, 16px top / bottom padding |
 
 ## 3. Breakpoints

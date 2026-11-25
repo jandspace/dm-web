@@ -25,15 +25,15 @@ META = ('<div class="article-card__metadata article-card-metadata">'
 def headline(level, kind, indent):
     pad = " " * indent
     if kind is None:
-        return f'{pad}<h{level} class="h{level} article-headline"><a class="article-card__link" href="#article">{HEADLINE}</a></h{level}>'
+        return f'{pad}<h3 class="h{level} article-headline"><a class="article-card__link" href="#article">{HEADLINE}</a></h3>'
     size = BADGE_SIZE[level]
     mplus = MPLUS if kind == "mplus" else ""
     return "\n".join([
-        f'{pad}<h{level} class="h{level} article-headline">',
+        f'{pad}<h3 class="h{level} article-headline">',
         f'{pad}  <span class="badge badge--{size} badge--highlight article-headline__badge"',
         f'{pad}    >{mplus}<span class="badge__label">Exclusive</span></span',
         f'{pad}  > {HEADLINE}',
-        f'{pad}</h{level}>',
+        f'{pad}</h3>',
     ])
 
 
@@ -49,7 +49,7 @@ def image_only(scale, level, span=""):
         '      <div class="article-card__media">',
         f'        {img}',
         '        <div class="article-card__overlay">',
-        f'          <h{level} class="h{level} article-headline"><a class="article-card__link" href="#article">{IMAGE_ONLY_HEADLINE}</a></h{level}>',
+        f'          <h3 class="h{level} article-headline"><a class="article-card__link" href="#article">{IMAGE_ONLY_HEADLINE}</a></h3>',
         '          <span class="btn btn-quaternary-dark btn--xs article-card__read-more" aria-hidden="true">Read more<span class="icon icon--arrow-right-light" aria-hidden="true"></span></span>',
         '        </div>',
         '        <div class="article-card__signpost"></div>',

@@ -13,7 +13,7 @@ The full-width top story is a separate block — see [Article Card — Banner St
 | Element | Description |
 |---|---|
 | **Media container** | Image or video at a fixed aspect ratio per card type. 4px corners (Image Only: 8px) |
-| **Headline** | Article Headline (`.article-headline`), H2–H6 by card type. Holds the article link and, optionally, an editorial badge inline at the start, followed by a space (§ Badge in the headline). Inter by default; Lora when Figma calls for it (e.g. a columnist's quote) — add `.serif` to the heading, nothing else changes. A columnist's quote headline carries the columnist's photo on its right (§ Quote Headline) |
+| **Headline** | Article Headline (`.article-headline`). Tag always `<h3>`; size by card type with the `.h2`–`.h6` class (Foundation › Typography 3-G). Holds the article link and, optionally, an editorial badge inline at the start, followed by a space (§ Badge in the headline). Inter by default; Lora when Figma calls for it (e.g. a columnist's quote) — add `.serif` to the heading, nothing else changes. A columnist's quote headline carries the columnist's photo on its right (§ Quote Headline) |
 | **Preview text** *(optional)* | CMS-controlled summary under the headline. No margin of its own: 12px to the headline and to the metadata come from the card gap |
 | **Live Key Updates** *(optional)* | Live articles only — replaces the preview text slot |
 | **Thumbnail + preview** *(SM: Left Thumb, LG+)* | Under the headline: 4:3 thumbnail with the preview text beside it (§ SM: Left Thumb) |
@@ -77,10 +77,10 @@ A columnist's quote headline is always serif (`.serif`) and carries the columnis
 - Live in the comments: the photo takes `columnist-photo--live` (green dot).
 
 ```html
-<h4 class="h4 serif article-headline">
+<h3 class="h4 serif article-headline">
   <a class="article-card__link" href="…">Headline…</a>
   <a class="columnist-photo columnist-photo--lg" href="…" tabindex="-1" aria-hidden="true"><img class="columnist-photo__img" src="…" alt="Columnist Name" /></a>
-</h4>
+</h3>
 ```
 
 ### Badge in the headline
@@ -93,7 +93,7 @@ The editorial badge sits inside the article link, at the start of the headline t
 - **Vertical position:** `vertical-align: middle`, then a per-size nudge so the badge centre sits on the centre of the headline's capitals — `--headline-badge-shift` in `_article-headline.scss`: xl −3 · lg −2 · md −2 · sm −1 · xs −1px (measured at XS, MD and LG, all within ±0.5px). Retune one size by changing its value, in whole pixels.
 
 ```html
-<h5 class="h5 article-headline"><a class="article-card__link" href="…"><span class="badge badge--sm badge--highlight article-headline__badge"><span class="badge__label">Breaking</span></span> Corbyn joins Left's demands…</a></h5>
+<h3 class="h5 article-headline"><a class="article-card__link" href="…"><span class="badge badge--sm badge--highlight article-headline__badge"><span class="badge__label">Breaking</span></span> Corbyn joins Left's demands…</a></h3>
 ```
 
 ### Max width by breakpoint
@@ -112,7 +112,7 @@ XL 152 · LG 120 (SM: Left Thumb **144**, Figma 5209:5234) · MD / SM-XS 128px
 
 - **Editor-controlled.** Present in the HTML only when the editor switches it on. Never shipped and hidden with `display: none`.
 - **Viewport rule (CSS):** never shown at SM-XS — keeps mobile browsing fast. SM: Left Thumb shows it from LG only; SM: Right Thumb never.
-- Type: Label Regular, as Figma Article Card Preview Text (108:7210) — line-height narrow (1.2), letter-spacing normal, `color/text/neutral/dark`. Size by card: XL → LG `label-sm` (14px) · SM: Left Thumb → SM `label-xxsm` (12px) · every other type → MD `label-xsm` (13px). No page-level overrides.
+- Type: Label Regular, as Figma Article Card Preview Text (108:7210) — line-height narrow (1.2), `color/text/neutral/dark`. Size by card: XL → LG `label-sm` (14px) · SM: Left Thumb → SM `label-xxsm` (12px) · every other type → MD `label-xsm` (13px). No page-level overrides.
 - **No truncation** — the text runs in full, exactly as the CMS feeds it, on every card type.
 
 ### 3-B. Live Key Updates

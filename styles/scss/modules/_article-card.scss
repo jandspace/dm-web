@@ -195,7 +195,7 @@
 //   · SM Left Thumb: LG+ only, beside the thumbnail (see the card type below)
 //   · SM Right Thumb: never shown
 //   · Type (Figma Article Card Preview Text 108:7210 — Label Regular,
-//     line-height narrow 1.2, letter-spacing normal, text/neutral/dark):
+//     line-height narrow 1.2, text/neutral/dark):
 //     XL card → LG (label-sm 14px) · SM Left Thumb → SM (label-xxsm 12px)
 //     · every other type → MD (label-xsm 13px)
 //   · No truncation: the text runs in full, as the CMS feeds it
@@ -207,7 +207,6 @@
   font-size: var(--typography-font-size-label-xsm);
   font-weight: var(--typography-font-weight-regular);
   line-height: var(--typography-line-height-narrow);
-  letter-spacing: var(--typography-letter-spacing-normal);
   color: var(--color-text-neutral-dark);
 
   @include bp.respond-to(md) {

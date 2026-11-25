@@ -56,7 +56,6 @@
   font-size: var(--typography-font-size-h3);
   font-weight: var(--typography-font-weight-bold);
   line-height: var(--typography-line-height-narrow);
-  letter-spacing: var(--typography-letter-spacing-normal);
   color: var(--color-text-neutral-darker);
 }
 
@@ -204,7 +203,6 @@ a.section-header__link:focus-visible {
   font-size: var(--typography-font-size-text-sm);
   font-weight: var(--typography-font-weight-regular);
   line-height: var(--typography-line-height-normal);
-  letter-spacing: var(--typography-letter-spacing-wide);
   color: var(--color-text-neutral-grey-dark);
 }
 

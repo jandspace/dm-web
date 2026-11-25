@@ -134,7 +134,7 @@ Semantic Styles, such as `dmw_sans-label-md-Semibold`, are the high-level identi
 
 A Semantic Style is a curated combination of typographic attributes. This system ensures that core brand identity remains consistent while providing the technical flexibility needed for a modern news platform.
 
-- **Bundled Logic:** Each package automatically includes a specific font-size, line-height, and letter-spacing mapped to the current viewport.
+- **Bundled Logic:** Each package automatically includes a specific font-size and line-height mapped to the current viewport.
 - **Responsive Intelligence:** When you apply a style like `h1`, the system adjusts the underlying token values based on the viewport, scaling from 36px on Desktop down to 26px on Mobile.
 - **Systemic Consistency:** Using these packages removes the guesswork and ensures that 'Clarity at Scale' is maintained across every digital touchpoint without manual input.
 
@@ -209,12 +209,7 @@ The following table outlines the core Semantic Tokens available for Web.
 
 **Letter spacing**
 
-| Token Name | Value |
-|---|---|
-| `typography-letter-spacing-narrow` | -0.5 |
-| `typography-letter-spacing-compact` | -0.2 |
-| `typography-letter-spacing-normal` | 0 |
-| `typography-letter-spacing-wide` | 0.25 |
+None on Web. The `typography-letter-spacing-*` tokens were removed 2026-11-25 (tokens 1.0.5); text uses the browser default (the font's own spacing).
 
 ---
 

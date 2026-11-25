@@ -23,7 +23,7 @@
 //   XS <640   (phone portrait)   stacked · media 360:336 · full bleed
 //   SM ≥640   (phone landscape)  media left (50%, 360:336), text right, centred
 //   MD ≥768+                     stacked · media 964:544 · 16px inset
-// Headline h2 at every breakpoint (token: XS/SM 22 · MD 24 · LG+ 28).
+// Headline: h3 tag (every card headline is an h3), H2 size at every breakpoint (token: XS/SM 22 · MD 24 · LG+ 28).
 //
 // Hover (after Image Only): the whole panel is the link; on hover the image
 // dims (translucent-dark clear → pale) and the text stays white.
@@ -161,7 +161,6 @@
   font-size: var(--typography-font-size-h2);
   font-weight: var(--typography-font-weight-semibold);
   line-height: var(--typography-line-height-narrow);
-  letter-spacing: var(--typography-letter-spacing-normal);
   color: var(--color-text-neutral-lightest);
   text-align: center;
 }

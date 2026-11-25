@@ -1,5 +1,5 @@
 {
-  "version": "1.0.4",
+  "version": "1.0.5",
   "metadata": {},
   "collections": [
     {
@@ -213,30 +213,6 @@
               "type": "number",
               "isAlias": false,
               "value": 1.75
-            },
-            {
-              "name": "typography/letter-spacing/narrow",
-              "type": "number",
-              "isAlias": false,
-              "value": -0.5
-            },
-            {
-              "name": "typography/letter-spacing/compact",
-              "type": "number",
-              "isAlias": false,
-              "value": -0.20000000298023224
-            },
-            {
-              "name": "typography/letter-spacing/normal",
-              "type": "number",
-              "isAlias": false,
-              "value": 0
-            },
-            {
-              "name": "typography/letter-spacing/wide",
-              "type": "number",
-              "isAlias": false,
-              "value": 0.25
             },
             {
               "name": "typography/font-family/serif",
@@ -458,30 +434,6 @@
               "value": 1.75
             },
             {
-              "name": "typography/letter-spacing/narrow",
-              "type": "number",
-              "isAlias": false,
-              "value": -0.5
-            },
-            {
-              "name": "typography/letter-spacing/compact",
-              "type": "number",
-              "isAlias": false,
-              "value": -0.20000000298023224
-            },
-            {
-              "name": "typography/letter-spacing/normal",
-              "type": "number",
-              "isAlias": false,
-              "value": 0
-            },
-            {
-              "name": "typography/letter-spacing/wide",
-              "type": "number",
-              "isAlias": false,
-              "value": 0.25
-            },
-            {
               "name": "typography/font-family/serif",
               "type": "string",
               "isAlias": true,
@@ -701,30 +653,6 @@
               "value": 1.75
             },
             {
-              "name": "typography/letter-spacing/narrow",
-              "type": "number",
-              "isAlias": false,
-              "value": -0.5
-            },
-            {
-              "name": "typography/letter-spacing/compact",
-              "type": "number",
-              "isAlias": false,
-              "value": -0.20000000298023224
-            },
-            {
-              "name": "typography/letter-spacing/normal",
-              "type": "number",
-              "isAlias": false,
-              "value": 0
-            },
-            {
-              "name": "typography/letter-spacing/wide",
-              "type": "number",
-              "isAlias": false,
-              "value": 0.25
-            },
-            {
               "name": "typography/font-family/serif",
               "type": "string",
               "isAlias": true,
@@ -752,7 +680,7 @@
                 "fontWeight": "Bold",
                 "lineHeight": 112.00000047683716,
                 "lineHeightUnit": "PERCENT",
-                "letterSpacing": -0.5,
+                "letterSpacing": 0,
                 "letterSpacingUnit": "PERCENT",
                 "textCase": "ORIGINAL",
                 "textDecoration": "NONE"
@@ -768,7 +696,7 @@
                 "fontWeight": "Semi Bold",
                 "lineHeight": 112.00000047683716,
                 "lineHeightUnit": "PERCENT",
-                "letterSpacing": -0.5,
+                "letterSpacing": 0,
                 "letterSpacingUnit": "PERCENT",
                 "textCase": "ORIGINAL",
                 "textDecoration": "NONE"
@@ -784,7 +712,7 @@
                 "fontWeight": "Regular",
                 "lineHeight": 112.00000047683716,
                 "lineHeightUnit": "PERCENT",
-                "letterSpacing": -0.5,
+                "letterSpacing": 0,
                 "letterSpacingUnit": "PERCENT",
                 "textCase": "ORIGINAL",
                 "textDecoration": "NONE"
@@ -800,7 +728,7 @@
                 "fontWeight": "Bold",
                 "lineHeight": 112.00000047683716,
                 "lineHeightUnit": "PERCENT",
-                "letterSpacing": -0.5,
+                "letterSpacing": 0,
                 "letterSpacingUnit": "PERCENT",
                 "textCase": "ORIGINAL",
                 "textDecoration": "NONE"
@@ -816,7 +744,7 @@
                 "fontWeight": "Semi Bold",
                 "lineHeight": 112.00000047683716,
                 "lineHeightUnit": "PERCENT",
-                "letterSpacing": -0.5,
+                "letterSpacing": 0,
                 "letterSpacingUnit": "PERCENT",
                 "textCase": "ORIGINAL",
                 "textDecoration": "NONE"
@@ -832,7 +760,7 @@
                 "fontWeight": "Regular",
                 "lineHeight": 112.00000047683716,
                 "lineHeightUnit": "PERCENT",
-                "letterSpacing": -0.5,
+                "letterSpacing": 0,
                 "letterSpacingUnit": "PERCENT",
                 "textCase": "ORIGINAL",
                 "textDecoration": "NONE"
@@ -848,7 +776,7 @@
                 "fontWeight": "Bold",
                 "lineHeight": 112.00000047683716,
                 "lineHeightUnit": "PERCENT",
-                "letterSpacing": -0.5,
+                "letterSpacing": 0,
                 "letterSpacingUnit": "PERCENT",
                 "textCase": "ORIGINAL",
                 "textDecoration": "NONE"
@@ -864,7 +792,7 @@
                 "fontWeight": "Semi Bold",
                 "lineHeight": 112.00000047683716,
                 "lineHeightUnit": "PERCENT",
-                "letterSpacing": -0.5,
+                "letterSpacing": 0,
                 "letterSpacingUnit": "PERCENT",
                 "textCase": "ORIGINAL",
                 "textDecoration": "NONE"
@@ -880,7 +808,7 @@
                 "fontWeight": "Regular",
                 "lineHeight": 112.00000047683716,
                 "lineHeightUnit": "PERCENT",
-                "letterSpacing": -0.5,
+                "letterSpacing": 0,
                 "letterSpacingUnit": "PERCENT",
                 "textCase": "ORIGINAL",
                 "textDecoration": "NONE"
@@ -894,9 +822,9 @@
                 "fontSize": 36,
                 "fontFamily": "Inter",
                 "fontWeight": "Semi Bold",
-                "lineHeight": 120.00000476837158,
+                "lineHeight": 120,
                 "lineHeightUnit": "PERCENT",
-                "letterSpacing": -0.5,
+                "letterSpacing": 0,
                 "letterSpacingUnit": "PERCENT",
                 "textCase": "ORIGINAL",
                 "textDecoration": "NONE"
@@ -910,9 +838,9 @@
                 "fontSize": 36,
                 "fontFamily": "Inter",
                 "fontWeight": "Bold",
-                "lineHeight": 120.00000476837158,
+                "lineHeight": 120,
                 "lineHeightUnit": "PERCENT",
-                "letterSpacing": -0.5,
+                "letterSpacing": 0,
                 "letterSpacingUnit": "PERCENT",
                 "textCase": "ORIGINAL",
                 "textDecoration": "NONE"
@@ -926,9 +854,9 @@
                 "fontSize": 36,
                 "fontFamily": "Inter",
                 "fontWeight": "Regular",
-                "lineHeight": 120.00000476837158,
+                "lineHeight": 120,
                 "lineHeightUnit": "PERCENT",
-                "letterSpacing": -0.5,
+                "letterSpacing": 0,
                 "letterSpacingUnit": "PERCENT",
                 "textCase": "ORIGINAL",
                 "textDecoration": "NONE"
@@ -942,9 +870,9 @@
                 "fontSize": 28,
                 "fontFamily": "Inter",
                 "fontWeight": "Semi Bold",
-                "lineHeight": 120.00000476837158,
+                "lineHeight": 120,
                 "lineHeightUnit": "PERCENT",
-                "letterSpacing": -0.20000000298023224,
+                "letterSpacing": 0,
                 "letterSpacingUnit": "PERCENT",
                 "textCase": "ORIGINAL",
                 "textDecoration": "NONE"
@@ -958,9 +886,9 @@
                 "fontSize": 28,
                 "fontFamily": "Inter",
                 "fontWeight": "Bold",
-                "lineHeight": 120.00000476837158,
+                "lineHeight": 120,
                 "lineHeightUnit": "PERCENT",
-                "letterSpacing": -0.20000000298023224,
+                "letterSpacing": 0,
                 "letterSpacingUnit": "PERCENT",
                 "textCase": "ORIGINAL",
                 "textDecoration": "NONE"
@@ -974,9 +902,9 @@
                 "fontSize": 28,
                 "fontFamily": "Inter",
                 "fontWeight": "Regular",
-                "lineHeight": 120.00000476837158,
+                "lineHeight": 120,
                 "lineHeightUnit": "PERCENT",
-                "letterSpacing": -0.20000000298023224,
+                "letterSpacing": 0,
                 "letterSpacingUnit": "PERCENT",
                 "textCase": "ORIGINAL",
                 "textDecoration": "NONE"
@@ -990,9 +918,9 @@
                 "fontSize": 22,
                 "fontFamily": "Inter",
                 "fontWeight": "Semi Bold",
-                "lineHeight": 120.00000476837158,
+                "lineHeight": 120,
                 "lineHeightUnit": "PERCENT",
-                "letterSpacing": -0.20000000298023224,
+                "letterSpacing": 0,
                 "letterSpacingUnit": "PERCENT",
                 "textCase": "ORIGINAL",
                 "textDecoration": "NONE"
@@ -1006,9 +934,9 @@
                 "fontSize": 22,
                 "fontFamily": "Inter",
                 "fontWeight": "Bold",
-                "lineHeight": 120.00000476837158,
+                "lineHeight": 120,
                 "lineHeightUnit": "PERCENT",
-                "letterSpacing": -0.20000000298023224,
+                "letterSpacing": 0,
                 "letterSpacingUnit": "PERCENT",
                 "textCase": "ORIGINAL",
                 "textDecoration": "NONE"
@@ -1022,9 +950,9 @@
                 "fontSize": 22,
                 "fontFamily": "Inter",
                 "fontWeight": "Regular",
-                "lineHeight": 120.00000476837158,
+                "lineHeight": 120,
                 "lineHeightUnit": "PERCENT",
-                "letterSpacing": -0.20000000298023224,
+                "letterSpacing": 0,
                 "letterSpacingUnit": "PERCENT",
                 "textCase": "ORIGINAL",
                 "textDecoration": "NONE"
@@ -1038,7 +966,7 @@
                 "fontSize": 18,
                 "fontFamily": "Inter",
                 "fontWeight": "Semi Bold",
-                "lineHeight": 120.00000476837158,
+                "lineHeight": 120,
                 "lineHeightUnit": "PERCENT",
                 "letterSpacing": 0,
                 "letterSpacingUnit": "PERCENT",
@@ -1054,7 +982,7 @@
                 "fontSize": 18,
                 "fontFamily": "Inter",
                 "fontWeight": "Bold",
-                "lineHeight": 120.00000476837158,
+                "lineHeight": 120,
                 "lineHeightUnit": "PERCENT",
                 "letterSpacing": 0,
                 "letterSpacingUnit": "PERCENT",
@@ -1070,7 +998,7 @@
                 "fontSize": 18,
                 "fontFamily": "Inter",
                 "fontWeight": "Regular",
-                "lineHeight": 120.00000476837158,
+                "lineHeight": 120,
                 "lineHeightUnit": "PERCENT",
                 "letterSpacing": 0,
                 "letterSpacingUnit": "PERCENT",
@@ -1086,7 +1014,7 @@
                 "fontSize": 16,
                 "fontFamily": "Inter",
                 "fontWeight": "Semi Bold",
-                "lineHeight": 132.00000524520874,
+                "lineHeight": 120,
                 "lineHeightUnit": "PERCENT",
                 "letterSpacing": 0,
                 "letterSpacingUnit": "PERCENT",
@@ -1102,7 +1030,7 @@
                 "fontSize": 16,
                 "fontFamily": "Inter",
                 "fontWeight": "Bold",
-                "lineHeight": 132.00000524520874,
+                "lineHeight": 120,
                 "lineHeightUnit": "PERCENT",
                 "letterSpacing": 0,
                 "letterSpacingUnit": "PERCENT",
@@ -1118,7 +1046,7 @@
                 "fontSize": 16,
                 "fontFamily": "Inter",
                 "fontWeight": "Regular",
-                "lineHeight": 132.00000524520874,
+                "lineHeight": 120,
                 "lineHeightUnit": "PERCENT",
                 "letterSpacing": 0,
                 "letterSpacingUnit": "PERCENT",
@@ -1134,9 +1062,9 @@
                 "fontSize": 14,
                 "fontFamily": "Inter",
                 "fontWeight": "Semi Bold",
-                "lineHeight": 132.00000524520874,
+                "lineHeight": 120,
                 "lineHeightUnit": "PERCENT",
-                "letterSpacing": 0.25,
+                "letterSpacing": 0,
                 "letterSpacingUnit": "PERCENT",
                 "textCase": "ORIGINAL",
                 "textDecoration": "NONE"
@@ -1150,9 +1078,9 @@
                 "fontSize": 14,
                 "fontFamily": "Inter",
                 "fontWeight": "Bold",
-                "lineHeight": 132.00000524520874,
+                "lineHeight": 120,
                 "lineHeightUnit": "PERCENT",
-                "letterSpacing": 0.25,
+                "letterSpacing": 0,
                 "letterSpacingUnit": "PERCENT",
                 "textCase": "ORIGINAL",
                 "textDecoration": "NONE"
@@ -1166,9 +1094,9 @@
                 "fontSize": 14,
                 "fontFamily": "Inter",
                 "fontWeight": "Regular",
-                "lineHeight": 132.00000524520874,
+                "lineHeight": 120,
                 "lineHeightUnit": "PERCENT",
-                "letterSpacing": 0.25,
+                "letterSpacing": 0,
                 "letterSpacingUnit": "PERCENT",
                 "textCase": "ORIGINAL",
                 "textDecoration": "NONE"
@@ -1280,7 +1208,7 @@
                 "fontWeight": "Regular",
                 "lineHeight": 150,
                 "lineHeightUnit": "PERCENT",
-                "letterSpacing": 0.25,
+                "letterSpacing": 0,
                 "letterSpacingUnit": "PERCENT",
                 "textCase": "ORIGINAL",
                 "textDecoration": "NONE"
@@ -1296,7 +1224,7 @@
                 "fontWeight": "Semi Bold",
                 "lineHeight": 150,
                 "lineHeightUnit": "PERCENT",
-                "letterSpacing": 0.25,
+                "letterSpacing": 0,
                 "letterSpacingUnit": "PERCENT",
                 "textCase": "ORIGINAL",
                 "textDecoration": "NONE"
@@ -1312,7 +1240,7 @@
                 "fontWeight": "Bold",
                 "lineHeight": 150,
                 "lineHeightUnit": "PERCENT",
-                "letterSpacing": 0.25,
+                "letterSpacing": 0,
                 "letterSpacingUnit": "PERCENT",
                 "textCase": "ORIGINAL",
                 "textDecoration": "NONE"
@@ -1328,7 +1256,7 @@
                 "fontWeight": "Regular",
                 "lineHeight": 150,
                 "lineHeightUnit": "PERCENT",
-                "letterSpacing": 0.25,
+                "letterSpacing": 0,
                 "letterSpacingUnit": "PERCENT",
                 "textCase": "ORIGINAL",
                 "textDecoration": "NONE"
@@ -1344,7 +1272,7 @@
                 "fontWeight": "Semi Bold",
                 "lineHeight": 150,
                 "lineHeightUnit": "PERCENT",
-                "letterSpacing": 0.25,
+                "letterSpacing": 0,
                 "letterSpacingUnit": "PERCENT",
                 "textCase": "ORIGINAL",
                 "textDecoration": "NONE"
@@ -1360,7 +1288,7 @@
                 "fontWeight": "Bold",
                 "lineHeight": 150,
                 "lineHeightUnit": "PERCENT",
-                "letterSpacing": 0.25,
+                "letterSpacing": 0,
                 "letterSpacingUnit": "PERCENT",
                 "textCase": "ORIGINAL",
                 "textDecoration": "NONE"
@@ -1376,7 +1304,7 @@
                 "fontWeight": "Regular",
                 "lineHeight": 150,
                 "lineHeightUnit": "PERCENT",
-                "letterSpacing": 0.25,
+                "letterSpacing": 0,
                 "letterSpacingUnit": "PERCENT",
                 "textCase": "ORIGINAL",
                 "textDecoration": "NONE"
@@ -1392,7 +1320,7 @@
                 "fontWeight": "Semi Bold",
                 "lineHeight": 150,
                 "lineHeightUnit": "PERCENT",
-                "letterSpacing": 0.25,
+                "letterSpacing": 0,
                 "letterSpacingUnit": "PERCENT",
                 "textCase": "ORIGINAL",
                 "textDecoration": "NONE"
@@ -1408,7 +1336,7 @@
                 "fontWeight": "Bold",
                 "lineHeight": 150,
                 "lineHeightUnit": "PERCENT",
-                "letterSpacing": 0.25,
+                "letterSpacing": 0,
                 "letterSpacingUnit": "PERCENT",
                 "textCase": "ORIGINAL",
                 "textDecoration": "NONE"
@@ -1710,9 +1638,9 @@
                 "fontSize": 36,
                 "fontFamily": "Lora",
                 "fontWeight": "SemiBold",
-                "lineHeight": 120.00000476837158,
+                "lineHeight": 120,
                 "lineHeightUnit": "PERCENT",
-                "letterSpacing": -0.5,
+                "letterSpacing": 0,
                 "letterSpacingUnit": "PERCENT",
                 "textCase": "ORIGINAL",
                 "textDecoration": "NONE"
@@ -1726,9 +1654,9 @@
                 "fontSize": 36,
                 "fontFamily": "Lora",
                 "fontWeight": "Bold",
-                "lineHeight": 120.00000476837158,
+                "lineHeight": 120,
                 "lineHeightUnit": "PERCENT",
-                "letterSpacing": -0.5,
+                "letterSpacing": 0,
                 "letterSpacingUnit": "PERCENT",
                 "textCase": "ORIGINAL",
                 "textDecoration": "NONE"
@@ -1742,9 +1670,9 @@
                 "fontSize": 36,
                 "fontFamily": "Lora",
                 "fontWeight": "Regular",
-                "lineHeight": 120.00000476837158,
+                "lineHeight": 120,
                 "lineHeightUnit": "PERCENT",
-                "letterSpacing": -0.5,
+                "letterSpacing": 0,
                 "letterSpacingUnit": "PERCENT",
                 "textCase": "ORIGINAL",
                 "textDecoration": "NONE"
@@ -1758,9 +1686,9 @@
                 "fontSize": 28,
                 "fontFamily": "Lora",
                 "fontWeight": "SemiBold",
-                "lineHeight": 120.00000476837158,
+                "lineHeight": 120,
                 "lineHeightUnit": "PERCENT",
-                "letterSpacing": -0.20000000298023224,
+                "letterSpacing": 0,
                 "letterSpacingUnit": "PERCENT",
                 "textCase": "ORIGINAL",
                 "textDecoration": "NONE"
@@ -1774,9 +1702,9 @@
                 "fontSize": 28,
                 "fontFamily": "Lora",
                 "fontWeight": "Bold",
-                "lineHeight": 120.00000476837158,
+                "lineHeight": 120,
                 "lineHeightUnit": "PERCENT",
-                "letterSpacing": -0.20000000298023224,
+                "letterSpacing": 0,
                 "letterSpacingUnit": "PERCENT",
                 "textCase": "ORIGINAL",
                 "textDecoration": "NONE"
@@ -1790,9 +1718,9 @@
                 "fontSize": 28,
                 "fontFamily": "Lora",
                 "fontWeight": "Regular",
-                "lineHeight": 120.00000476837158,
+                "lineHeight": 120,
                 "lineHeightUnit": "PERCENT",
-                "letterSpacing": -0.20000000298023224,
+                "letterSpacing": 0,
                 "letterSpacingUnit": "PERCENT",
                 "textCase": "ORIGINAL",
                 "textDecoration": "NONE"
@@ -1806,9 +1734,9 @@
                 "fontSize": 22,
                 "fontFamily": "Lora",
                 "fontWeight": "SemiBold",
-                "lineHeight": 120.00000476837158,
+                "lineHeight": 120,
                 "lineHeightUnit": "PERCENT",
-                "letterSpacing": -0.20000000298023224,
+                "letterSpacing": 0,
                 "letterSpacingUnit": "PERCENT",
                 "textCase": "ORIGINAL",
                 "textDecoration": "NONE"
@@ -1822,9 +1750,9 @@
                 "fontSize": 22,
                 "fontFamily": "Lora",
                 "fontWeight": "Bold",
-                "lineHeight": 120.00000476837158,
+                "lineHeight": 120,
                 "lineHeightUnit": "PERCENT",
-                "letterSpacing": -0.20000000298023224,
+                "letterSpacing": 0,
                 "letterSpacingUnit": "PERCENT",
                 "textCase": "ORIGINAL",
                 "textDecoration": "NONE"
@@ -1838,9 +1766,9 @@
                 "fontSize": 22,
                 "fontFamily": "Lora",
                 "fontWeight": "Regular",
-                "lineHeight": 120.00000476837158,
+                "lineHeight": 120,
                 "lineHeightUnit": "PERCENT",
-                "letterSpacing": -0.20000000298023224,
+                "letterSpacing": 0,
                 "letterSpacingUnit": "PERCENT",
                 "textCase": "ORIGINAL",
                 "textDecoration": "NONE"
@@ -1854,7 +1782,7 @@
                 "fontSize": 18,
                 "fontFamily": "Lora",
                 "fontWeight": "SemiBold",
-                "lineHeight": 120.00000476837158,
+                "lineHeight": 120,
                 "lineHeightUnit": "PERCENT",
                 "letterSpacing": 0,
                 "letterSpacingUnit": "PERCENT",
@@ -1870,7 +1798,7 @@
                 "fontSize": 18,
                 "fontFamily": "Lora",
                 "fontWeight": "Bold",
-                "lineHeight": 120.00000476837158,
+                "lineHeight": 120,
                 "lineHeightUnit": "PERCENT",
                 "letterSpacing": 0,
                 "letterSpacingUnit": "PERCENT",
@@ -1886,7 +1814,7 @@
                 "fontSize": 18,
                 "fontFamily": "Lora",
                 "fontWeight": "Regular",
-                "lineHeight": 120.00000476837158,
+                "lineHeight": 120,
                 "lineHeightUnit": "PERCENT",
                 "letterSpacing": 0,
                 "letterSpacingUnit": "PERCENT",
@@ -1902,7 +1830,7 @@
                 "fontSize": 16,
                 "fontFamily": "Lora",
                 "fontWeight": "SemiBold",
-                "lineHeight": 132.00000524520874,
+                "lineHeight": 120,
                 "lineHeightUnit": "PERCENT",
                 "letterSpacing": 0,
                 "letterSpacingUnit": "PERCENT",
@@ -1918,7 +1846,7 @@
                 "fontSize": 16,
                 "fontFamily": "Lora",
                 "fontWeight": "Bold",
-                "lineHeight": 132.00000524520874,
+                "lineHeight": 120,
                 "lineHeightUnit": "PERCENT",
                 "letterSpacing": 0,
                 "letterSpacingUnit": "PERCENT",
@@ -1934,7 +1862,7 @@
                 "fontSize": 16,
                 "fontFamily": "Lora",
                 "fontWeight": "Regular",
-                "lineHeight": 132.00000524520874,
+                "lineHeight": 120,
                 "lineHeightUnit": "PERCENT",
                 "letterSpacing": 0,
                 "letterSpacingUnit": "PERCENT",
@@ -1950,9 +1878,9 @@
                 "fontSize": 14,
                 "fontFamily": "Lora",
                 "fontWeight": "SemiBold",
-                "lineHeight": 132.00000524520874,
+                "lineHeight": 120,
                 "lineHeightUnit": "PERCENT",
-                "letterSpacing": 0.25,
+                "letterSpacing": 0,
                 "letterSpacingUnit": "PERCENT",
                 "textCase": "ORIGINAL",
                 "textDecoration": "NONE"
@@ -1966,9 +1894,9 @@
                 "fontSize": 14,
                 "fontFamily": "Lora",
                 "fontWeight": "Bold",
-                "lineHeight": 132.00000524520874,
+                "lineHeight": 120,
                 "lineHeightUnit": "PERCENT",
-                "letterSpacing": 0.25,
+                "letterSpacing": 0,
                 "letterSpacingUnit": "PERCENT",
                 "textCase": "ORIGINAL",
                 "textDecoration": "NONE"
@@ -1982,9 +1910,9 @@
                 "fontSize": 14,
                 "fontFamily": "Lora",
                 "fontWeight": "Regular",
-                "lineHeight": 132.00000524520874,
+                "lineHeight": 120,
                 "lineHeightUnit": "PERCENT",
-                "letterSpacing": 0.25,
+                "letterSpacing": 0,
                 "letterSpacingUnit": "PERCENT",
                 "textCase": "ORIGINAL",
                 "textDecoration": "NONE"
@@ -2000,7 +1928,7 @@
                 "fontWeight": "Regular",
                 "lineHeight": 100,
                 "lineHeightUnit": "PERCENT",
-                "letterSpacing": 2,
+                "letterSpacing": 0,
                 "letterSpacingUnit": "PERCENT",
                 "textCase": "UPPER",
                 "textDecoration": "NONE"

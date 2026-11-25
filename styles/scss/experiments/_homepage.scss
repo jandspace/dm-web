@@ -787,7 +787,6 @@ $homepage-below-md: "(width < #{map.get(bp.$breakpoints, md)})";
   align-items: center;
   gap: var(--spacing-8);
   font-size: var(--typography-font-size-text-md);
-  letter-spacing: var(--typography-letter-spacing-normal);
   color: var(--color-text-neutral-dark);
 }
 

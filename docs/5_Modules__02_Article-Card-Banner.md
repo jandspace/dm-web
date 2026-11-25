@@ -24,9 +24,9 @@ Figma: Web UI Kit › Article Card - Banner (`8138:232841`)
       <img src="banner-xs.jpg" alt="Tiger maul victim" />
     </picture>
     <div class="article-card-banner__content">
-      <h2 class="article-card-banner__headline">
+      <h3 class="article-card-banner__headline">
         <a class="article-card-banner__link" href="…">Headline</a>
-      </h2>
+      </h3>
       <div class="article-card-banner__metadata article-card-metadata">
         <a class="article-card-metadata__comments" href="…">…2.1k<span class="article-card-metadata__comments-word">comments</span></a>
       </div>
@@ -60,7 +60,7 @@ Unlike the Article Card, **SM and XS are separate layouts**: SM (≥640) targets
 | **LG** ≥1024 | Stacked | 964:544 | 16 | 16 | H2 (28) |
 | **XL** ≥1580 | Stacked | 964:544 | 16 | 16 | H2 (28) |
 
-- Headline: `typography/font-size/h2` (sizes follow the token), semibold, line-height narrow, letter-spacing compact.
+- Headline: `typography/font-size/h2` (sizes follow the token), semibold, line-height narrow.
 - Content: headline and metadata 16px apart.
 
 ---

@@ -38,7 +38,6 @@ h1, h2, h3, h4, h5, h6 {
   font-family: var(--typography-font-family-sans);
   font-weight: var(--typography-font-weight-bold);
   line-height: var(--typography-line-height-narrower);
-  letter-spacing: var(--typography-letter-spacing-narrow);
 }
 
 .display-lg {
@@ -57,7 +56,6 @@ h1, h2, h3, h4, h5, h6 {
   font-family: var(--typography-font-family-sans);
   font-weight: var(--typography-font-weight-semibold);
   line-height: var(--typography-line-height-narrow);
-  letter-spacing: var(--typography-letter-spacing-normal);
 }
 
 .h1 {
@@ -92,34 +90,28 @@ h1, h2, h3, h4, h5, h6 {
 
 .text-lg {
   font-size: var(--typography-font-size-text-lg);
-  letter-spacing: var(--typography-letter-spacing-normal);
 }
 
 .text-md {
   font-size: var(--typography-font-size-text-md);
-  letter-spacing: var(--typography-letter-spacing-normal);
 }
 
 .text-sm {
   font-size: var(--typography-font-size-text-sm);
-  letter-spacing: var(--typography-letter-spacing-wide);
 }
 
 .text-xsm {
   font-size: var(--typography-font-size-text-xsm);
-  letter-spacing: var(--typography-letter-spacing-wide);
 }
 
 .text-xxsm {
   font-size: var(--typography-font-size-text-xxsm);
-  letter-spacing: var(--typography-letter-spacing-wide);
 }
 
 .label-xxsm, .label-xsm, .label-sm, .label-md, .label-lg, .label-xl {
   font-family: var(--typography-font-family-sans);
   font-weight: var(--typography-font-weight-semibold);
   line-height: var(--typography-line-height-narrow);
-  letter-spacing: var(--typography-letter-spacing-normal);
 }
 
 .label-xl {
@@ -2156,7 +2148,6 @@ html:has(body > .loading-page:not([hidden])) {
   font-size: var(--typography-font-size-label-md);
   font-weight: var(--typography-font-weight-semibold);
   line-height: var(--typography-line-height-narrow);
-  letter-spacing: 0;
   white-space: nowrap;
   text-decoration: none;
   -webkit-font-smoothing: antialiased;
@@ -3073,7 +3064,6 @@ html:has(body > .loading-page:not([hidden])) {
   margin: 0;
   font-size: var(--typography-font-size-text-sm);
   line-height: var(--typography-line-height-normal);
-  letter-spacing: var(--typography-letter-spacing-wide);
   color: var(--color-text-neutral-grey-dark);
 }
 
@@ -3109,7 +3099,6 @@ html:has(body > .loading-page:not([hidden])) {
   font-size: var(--typography-font-size-text-md);
   font-weight: var(--typography-font-weight-regular);
   line-height: var(--typography-line-height-normal);
-  letter-spacing: var(--typography-letter-spacing-normal);
   text-align: start;
   color: var(--color-text-neutral-darker);
 }
@@ -3138,7 +3127,6 @@ html:has(body > .loading-page:not([hidden])) {
   outline: none;
   background: none;
   font: inherit;
-  letter-spacing: inherit;
   color: inherit;
   text-overflow: ellipsis;
 }
@@ -3177,7 +3165,6 @@ html:has(body > .loading-page:not([hidden])) {
   --input-spinner: 20px;
   --input-radius: var(--border-radius-6);
   font-size: var(--typography-font-size-text-sm);
-  letter-spacing: var(--typography-letter-spacing-wide);
 }
 
 .input--lg {
@@ -4217,7 +4204,6 @@ html:has(.modal[open]) {
   margin: 0;
   font-size: var(--typography-font-size-text-sm);
   line-height: var(--typography-line-height-normal);
-  letter-spacing: var(--typography-letter-spacing-wide);
 }
 
 .toast__actions {
@@ -4619,7 +4605,6 @@ html:has(.modal[open]) {
   font-family: var(--typography-font-family-sans);
   font-weight: var(--typography-font-weight-bold);
   line-height: 1;
-  letter-spacing: 0;
   white-space: nowrap;
   text-transform: uppercase;
   color: var(--color-text-neutral-white);
@@ -5052,7 +5037,6 @@ button.video-play {
   font-size: var(--typography-font-size-label-xsm);
   font-weight: var(--typography-font-weight-regular);
   line-height: var(--typography-line-height-narrow);
-  letter-spacing: var(--typography-letter-spacing-normal);
   color: var(--color-text-neutral-dark);
 }
 @media (min-width: 768px) {
@@ -5331,7 +5315,6 @@ button.video-play {
   font-size: var(--typography-font-size-h5);
   font-weight: var(--typography-font-weight-bold);
   line-height: var(--typography-line-height-narrow);
-  letter-spacing: var(--typography-letter-spacing-normal);
   color: var(--color-text-neutral-darker);
 }
 
@@ -5387,7 +5370,6 @@ button.video-play {
   font-size: var(--typography-font-size-text-sm);
   font-weight: var(--typography-font-weight-regular);
   line-height: var(--typography-line-height-normal);
-  letter-spacing: var(--typography-letter-spacing-wide);
   color: var(--color-text-neutral-dark);
   text-decoration: none;
   -webkit-box-orient: vertical;
@@ -5701,7 +5683,6 @@ button.video-play {
   font-size: var(--typography-font-size-h2);
   font-weight: var(--typography-font-weight-semibold);
   line-height: var(--typography-line-height-narrow);
-  letter-spacing: var(--typography-letter-spacing-normal);
   color: var(--color-text-neutral-lightest);
   text-align: center;
 }
@@ -5887,7 +5868,6 @@ button.video-play {
   font-family: var(--typography-font-family-sans);
   font-size: var(--typography-font-size-label-xxsm);
   line-height: var(--typography-line-height-narrow);
-  letter-spacing: var(--typography-letter-spacing-normal);
 }
 
 .article-card-metadata__channel-text,
@@ -6337,7 +6317,6 @@ a.columnist-photo:hover, a.columnist-photo:focus-visible {
   background-color: var(--color-background-home-blue-subtlest);
   font-family: var(--typography-font-family-sans);
   line-height: var(--typography-line-height-narrow);
-  letter-spacing: var(--typography-letter-spacing-normal);
   text-decoration: none;
 }
 .columnist-announcement:hover, .columnist-announcement:focus-visible {
@@ -6486,7 +6465,6 @@ a.columnist-photo:hover, a.columnist-photo:focus-visible {
   font-size: var(--typography-font-size-h3);
   font-weight: var(--typography-font-weight-bold);
   line-height: var(--typography-line-height-narrow);
-  letter-spacing: var(--typography-letter-spacing-normal);
   color: var(--color-text-neutral-darker);
 }
 
@@ -6609,7 +6587,6 @@ a.section-header__link:focus-visible {
   font-size: var(--typography-font-size-text-sm);
   font-weight: var(--typography-font-weight-regular);
   line-height: var(--typography-line-height-normal);
-  letter-spacing: var(--typography-letter-spacing-wide);
   color: var(--color-text-neutral-grey-dark);
 }
 
@@ -6839,7 +6816,6 @@ a.section-header__link:focus-visible {
   font-size: 30px;
   font-weight: 800;
   line-height: 1;
-  letter-spacing: 0;
   text-box: trim-both cap alphabetic;
   padding-block: 1px;
   margin-block: -1px;
@@ -9293,7 +9269,6 @@ html:has(.masthead-sheet:not([hidden])) {
   font-size: var(--typography-font-size-text-xsm);
   font-weight: var(--typography-font-weight-semibold);
   line-height: var(--typography-line-height-normal);
-  letter-spacing: var(--typography-letter-spacing-wide);
 }
 
 @media (prefers-reduced-motion: reduce) {
@@ -10181,7 +10156,6 @@ body:has(.ad-skin) {
   font-size: var(--typography-font-size-label-sm);
   font-weight: var(--typography-font-weight-bold);
   line-height: var(--typography-line-height-narrow);
-  letter-spacing: var(--typography-letter-spacing-wide);
   color: var(--color-text-neutral-darker);
 }
 
@@ -14137,7 +14111,6 @@ body:not(.demo-frame) .demo-container-start {
   align-items: center;
   gap: var(--spacing-8);
   font-size: var(--typography-font-size-text-md);
-  letter-spacing: var(--typography-letter-spacing-normal);
   color: var(--color-text-neutral-dark);
 }
 

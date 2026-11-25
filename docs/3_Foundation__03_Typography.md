@@ -118,7 +118,7 @@ This allows flexibility without losing structure.
 
 - Always define typography using role + scale suffix (e.g. `display-md`, `label-xsm`, ...)
 - Do not use raw font sizes (e.g. px/pt) directly
-- Maintain correct heading order for accessibility (e.g. no H3 after H1)
+- Maintain correct heading order for accessibility (e.g. no H3 after H1); article card headlines are always `h3` (3-G)
 - Avoid selecting sizes visually without considering the assigned role.
 
 ### 3-F. Platform Alignment
@@ -133,6 +133,22 @@ This allows flexibility without losing structure.
 | Web (Desktop & Mobile) | 6. Web Semantic Style Inventory |
 | iOS (HIG) | 7. iOS Semantic Style Inventory |
 | Android (M3) | 8. Android Semantic Style Inventory (Proposed) |
+
+### 3-G. Heading Tags (Web)
+
+The tag says where a heading sits in the page outline; the class sets its size. Never choose a tag for its size (`<h3 class="h5">` is normal).
+
+| Tag | Use |
+|---|---|
+| `h1` | One per page: the page title (article page headline, channel name; on the home page, the site name) |
+| `h2` | Section headers (Section Header module) and dialog titles (Modal) |
+| `h3` | Every article headline in a card — Article Card (all types, Image Only), Banner Story and its related links — whatever its size class (`.h2`–`.h6`) |
+
+- One fixed tag for every card, so moving a card or changing its size never touches the tag.
+- Cards above the first section header (e.g. top stories) stay `h3` too: one simple rule is worth more than a perfect outline there.
+- SEO: Google does not rank by heading level or order, so there is no penalty either way. The real gain is accessibility: screen-reader users jump between sections (`h2`) and articles (`h3`).
+
+Decided 2026-11-25.
 
 ---
 
@@ -241,7 +257,7 @@ image required
 
 Line height and Letter spacing work together to define how text breathes on the page. Both are structural decisions — not stylistic ones. On a news platform where readers move through multiple articles in a single session, getting either wrong has a direct cost to comprehension and reading endurance.
 
-Too tight a line height and lines merge visually, forcing the eye to work harder to track across the page. Too loose and the text loses cohesion. Letter spacing follows the same logic — negative tracking tightens large-scale headlines into confident, assertive units, while slightly wider spacing keeps small text legible when individual letterforms need more room to remain distinct.
+Too tight a line height and lines merge visually, forcing the eye to work harder to track across the page. Too loose and the text loses cohesion. On Web, letter spacing is left to the typeface: Inter and Lora are already spaced for screen reading at every size, so no tracking is added (see 6-E).
 
 The Daily Mail Design System defines both values as readability tools, not aesthetic choices.
 
@@ -326,18 +342,13 @@ Consistency comes from applying each platform's native system correctly — not 
 
 ### 6-E. Letter Spacing
 
-Letter spacing fine-tunes the horizontal space between characters. The Daily Mail Design System uses a constrained set of four values, adjustments are intentionally subtle. The goal is to support legibility at different scales, not to create stylistic variation.
+No letter spacing on Web. Every style uses the browser default (`normal`), i.e. the font's own spacing. There is no letter-spacing token and no `letter-spacing` declaration in product CSS.
 
-All values are defined as percentages and applied on web only. iOS and Android follow each platform's native defaults, no overrides are applied.
+Removed 2026-11-25 (tokens 1.0.5). Before that, four tokens: narrow −0.5% (Display), compact −0.2%, normal 0 (H1–H6, Text lg–md, Label), wide +0.25% (Text sm–xxsm). Figma text styles are all 0 and the `typography/letter-spacing/*` variables are deleted.
 
-| Token | Value | Applied To |
-|---|---|---|
-| `narrow` | -0.5% | Display — tight tracking reinforces visual impact at large scale |
-| `compact` | -0.2% | Not used by headings (since 2026-11-24) |
-| `normal` | 0 | H1–H6, Text lg–md, Label — default; no adjustment |
-| `wide` | +0.25% | Text sm–xxsm, small metadata — opens up tracking at smaller sizes for legibility |
+iOS and Android follow each platform's native defaults (App tokens unchanged).
 
-Headings H1–H6 share one line height (narrow 1.2) and one letter spacing (normal 0); only the size changes (feedback, 2026-11-24).
+Headings H1–H6 share one line height (narrow 1.2); only the size changes (feedback, 2026-11-24).
 
 Sufficient line height and paragraph spacing allow the eye to move through content without effort. Each paragraph feels distinct, reducing cognitive load across longer reading sessions.
 
@@ -422,20 +433,19 @@ Responsive font sizes are implemented using CSS custom properties scoped to brea
 @media (min-width: 1024px) { :root { --typography-font-size-display-lg: 64px; } } /* LG */
 ```
 
-Source: `tokens/dm_typography_web_tokens.css`. Utility classes (`.h1`–`.h6`, `.display-*`, `.text-*`, `.label-*`, `.serif`) in `styles/scss/foundation/_typography.scss` bundle size, weight, line height and letter spacing — the code side of the Figma styles. Live reference: `foundation/typography/`.
+Source: `tokens/dm_typography_web_tokens.css`. Utility classes (`.h1`–`.h6`, `.display-*`, `.text-*`, `.label-*`, `.serif`) in `styles/scss/foundation/_typography.scss` bundle size, weight and line height — the code side of the Figma styles. Live reference: `foundation/typography/`.
 
 ---
 
 ## 8. Figma alignment — notes
 
-Checked against the Figma text styles (`dmw_sans/…`, `dmw_serif/…`, Web UI Kit › Typography) and the token styles in `dm_typography_web_tokens.json` on 2026-10-27. Sizes, line heights, letter spacing and font families match. Notes:
+Checked against the Figma text styles (`dmw_sans/…`, `dmw_serif/…`, Web UI Kit › Typography) and the token styles in `dm_typography_web_tokens.json` on 2026-10-27. Sizes, line heights and font families match. Notes:
 
-Letter spacing per style now follows the token styles (resolved 2026-10-27: H1 narrow, H4 normal, H6 and Text sm–xxsm wide).
+2026-11-24 — H1–H6 changed to one value for all levels: line height narrow (1.2), letter spacing normal (0).
 
-2026-11-24 — H1–H6 changed to one value for all levels: line height narrow (1.2), letter spacing normal (0). The Figma `dmw_*/h1`–`h6` styles still carry the old values (H1 −0.5%, H2–H3 −0.2%, H6 +0.25%, H5–H6 1.32) and need updating.
+2026-11-25 — Figma updated to match: `dmw_*/h1`–`h6` styles now 120% / 0. Then letter spacing removed: every Figma text style set to 0, the `typography/letter-spacing/*` variables deleted, the tokens removed (1.0.5) and every `letter-spacing` declaration dropped from product CSS. Exception: `dmw_DMSlabBetonSH/Headline` still has 2% in Figma (font not loadable by the plugin; change by hand). Code is unaffected.
 
-- In Figma only font size and font family are bound to variables; line height and letter spacing are raw values in each style, so they can drift from the tokens.
+- In Figma only font size and font family are bound to variables; line height and letter spacing are raw values in each style, so they can drift from the tokens. Keep letter spacing at 0.
 - `dmw_sans/text-xxsm/Bold` is bound to `label-xxsm` (same 12px today) — should be `text-xxsm`.
 - Every Figma style comes in Regular / Semibold / Bold; the code classes carry the role's default weight only (Display Bold, Heading and Label Semibold, Text Regular).
 - `dmw_DMSlabBetonSH/Headline` (DM Slab, 72px) exists in Figma but has no token — banner artwork only.
-- CSS `letter-spacing` in `%` (as the tokens are written) is newer CSS (CSS Text 4); browsers without it ignore the value. `em` (e.g. −0.005em for −0.5%) is the widely supported equivalent.

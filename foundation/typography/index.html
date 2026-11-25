@@ -17,8 +17,8 @@
     <h1 class="demo-page-h1">Typography</h1>
     <p class="demo-page-intro">
       Web type system: two typefaces, four roles (Heading · Display · Text · Label) and a size suffix per role. Every
-      value on this page is read live — sizes from <code>tokens/dm_typography_web_tokens.css</code>, and weight, line
-      height and letter spacing from the utility classes in <code>styles/scss/foundation/_typography.scss</code> — so it
+      value on this page is read live — sizes from <code>tokens/dm_typography_web_tokens.css</code>, and weight and line
+      height from the utility classes in <code>styles/scss/foundation/_typography.scss</code> — so it
       shows what the code does. Figma: Web UI Kit › Typography (page 12:3), text styles <code>dmw_sans/…</code> and
       <code>dmw_serif/…</code>.
     </p>
@@ -59,23 +59,29 @@
               <th>LG ≥1024</th>
               <th>Weight</th>
               <th>Line height</th>
-              <th>Letter spacing</th>
             </tr>
           </thead>
         </table>
       </div>
 
-      <!-- 3. Primitives (built by the script) -->
-      <h2 class="demo-type__set">Line height · letter spacing · weight</h2>
+      <h2 class="demo-type__set">Heading tags</h2>
       <p class="demo-type__note">
-        Line height is a unitless multiplier — never px on Web. Letter spacing is a percentage of the font size.
+        The tag sets the page outline, the class sets the size — never pick a tag for its size.
+        <code>h1</code>: one per page (page title). <code>h2</code>: section headers and modal titles.
+        <code>h3</code>: every article headline in a card, whatever its size class (e.g.
+        <code>&lt;h3 class="h5 article-headline"&gt;</code>), including cards above the first section header.
+        No SEO cost: heading level is not a ranking signal. The gain is accessibility — screen-reader users jump
+        between sections (<code>h2</code>) and articles (<code>h3</code>).
+      </p>
+
+      <!-- 3. Primitives (built by the script) -->
+      <h2 class="demo-type__set">Line height · weight</h2>
+      <p class="demo-type__note">
+        Line height is a unitless multiplier — never px on Web. No letter spacing: every style uses the browser default (the font's own spacing).
       </p>
       <div class="demo-type__primitives">
         <table class="demo-type__table demo-type__table--compact" id="demo-type-line-height">
           <caption>Line height</caption>
-        </table>
-        <table class="demo-type__table demo-type__table--compact" id="demo-type-letter-spacing">
-          <caption>Letter spacing</caption>
         </table>
         <table class="demo-type__table demo-type__table--compact" id="demo-type-weight">
           <caption>Font weight</caption>
@@ -137,10 +143,10 @@
             row.append(cell(sm[key]), cell(md[key], md[key] !== sm[key]), cell(lg[key], lg[key] !== md[key]));
             body.append(row);
             scale.append(body);
-            // Weight / line height / letter spacing as the class renders them
+            // Weight / line height as the class renders them
             const cs = getComputedStyle(sample);
             const ratio = (parseFloat(cs.lineHeight) / parseFloat(cs.fontSize)).toFixed(2).replace(/0$/, '');
-            row.append(el('td', null, cs.fontWeight), el('td', null, ratio), el('td', null, cs.letterSpacing === 'normal' ? '0' : cs.letterSpacing));
+            row.append(el('td', null, cs.fontWeight), el('td', null, ratio));
           });
         });
 
@@ -163,12 +169,6 @@
           compact: 'Not used by headings',
           normal: 'Text',
           wide: 'Special editorial only',
-        });
-        fill('demo-type-letter-spacing', 'typography-letter-spacing-', {
-          narrow: 'Display',
-          compact: 'Not used by headings',
-          normal: 'H1–H6, Text lg–md, Label',
-          wide: 'Text sm–xxsm, small metadata',
         });
         fill('demo-type-weight', 'typography-font-weight-', {
           regular: 'Text, secondary metadata',

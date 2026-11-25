@@ -4,12 +4,14 @@
 // responsive font sizes (h1–h3, display) are handled by those tokens at runtime.
 // Reference: Foundation > Typography, Token > Typography Tokens > 6
 
-// Role–weight–line-height–letter-spacing mapping (token styles, Figma dmw_*):
-//   Display   → Bold (700)     | Narrower (1.12) | narrow  (-0.5%)
-//   H1–H6     → Semibold (600) | Narrow   (1.20) | normal  (0)
-//   Text lg–md→ Regular (400)  | Normal   (1.50) | normal  (0)
-//   Text sm–xxsm → Regular     | Normal   (1.50) | wide    (+0.25%)
-//   Label     → Semibold (600) | Narrow   (1.20) | normal  (0)
+// Role–weight–line-height mapping (token styles, Figma dmw_*):
+//   Display   → Bold (700)     | Narrower (1.12)
+//   H1–H6     → Semibold (600) | Narrow   (1.20)
+//   Text      → Regular (400)  | Normal   (1.50)
+//   Label     → Semibold (600) | Narrow   (1.20)
+//
+// No letter spacing anywhere: the browser default (normal) applies, i.e. the
+// font's own spacing. Letter-spacing tokens removed 2026-11-25 (tokens 1.0.5).
 //
 // Font family: sans (Inter) is the default for all roles.
 // For editorial article headlines, add .serif to override.
@@ -46,7 +48,6 @@ h1, h2, h3, h4, h5, h6 {
   font-family: var(--typography-font-family-sans);
   font-weight: var(--typography-font-weight-bold);
   line-height: var(--typography-line-height-narrower);
-  letter-spacing: var(--typography-letter-spacing-narrow);
 }
 
 .display-lg {
@@ -67,13 +68,11 @@ h1, h2, h3, h4, h5, h6 {
 // ── Heading ───────────────────────────────────────────────
 // Structural content hierarchy. Sans default; add .serif for editorial headlines.
 // Bold (700) is permitted for H1–H2 where editorial impact demands it.
-// One line height and letter spacing for every level (2026-11-24):
-// narrow 1.2, letter spacing normal (0). Only the size changes.
+// One line height for every level (2026-11-24): narrow 1.2. Only the size changes.
 %type-heading-base {
   font-family: var(--typography-font-family-sans);
   font-weight: var(--typography-font-weight-semibold);
   line-height: var(--typography-line-height-narrow);
-  letter-spacing: var(--typography-letter-spacing-normal);
 }
 
 .h1 { @extend %type-heading-base; font-size: var(--typography-font-size-h1); }
@@ -85,18 +84,17 @@ h1, h2, h3, h4, h5, h6 {
 
 // ── Text ──────────────────────────────────────────────────
 // Long-form reading — article body paragraphs, descriptions, editorial passages.
-// Small sizes (sm and down) open up: wide letter spacing.
 %type-text-base {
   font-family: var(--typography-font-family-sans);
   font-weight: var(--typography-font-weight-regular);
   line-height: var(--typography-line-height-normal);
 }
 
-.text-lg   { @extend %type-text-base; font-size: var(--typography-font-size-text-lg); letter-spacing: var(--typography-letter-spacing-normal); }
-.text-md   { @extend %type-text-base; font-size: var(--typography-font-size-text-md); letter-spacing: var(--typography-letter-spacing-normal); }
-.text-sm   { @extend %type-text-base; font-size: var(--typography-font-size-text-sm); letter-spacing: var(--typography-letter-spacing-wide); }
-.text-xsm  { @extend %type-text-base; font-size: var(--typography-font-size-text-xsm); letter-spacing: var(--typography-letter-spacing-wide); }
-.text-xxsm { @extend %type-text-base; font-size: var(--typography-font-size-text-xxsm); letter-spacing: var(--typography-letter-spacing-wide); }
+.text-lg   { @extend %type-text-base; font-size: var(--typography-font-size-text-lg); }
+.text-md   { @extend %type-text-base; font-size: var(--typography-font-size-text-md); }
+.text-sm   { @extend %type-text-base; font-size: var(--typography-font-size-text-sm); }
+.text-xsm  { @extend %type-text-base; font-size: var(--typography-font-size-text-xsm); }
+.text-xxsm { @extend %type-text-base; font-size: var(--typography-font-size-text-xxsm); }
 
 // ── Label ─────────────────────────────────────────────────
 // Functional UI text — buttons, badges, navigation, metadata, timestamps.
@@ -104,7 +102,6 @@ h1, h2, h3, h4, h5, h6 {
   font-family: var(--typography-font-family-sans);
   font-weight: var(--typography-font-weight-semibold);
   line-height: var(--typography-line-height-narrow);
-  letter-spacing: var(--typography-letter-spacing-normal);
 }
 
 .label-xl   { @extend %type-label-base; font-size: var(--typography-font-size-label-xl); }

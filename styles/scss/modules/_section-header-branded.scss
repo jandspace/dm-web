@@ -113,7 +113,6 @@
   font-size: 30px;
   font-weight: 800;
   line-height: 1;
-  letter-spacing: 0;
   // Trim the line box to cap height and baseline, so the banner centres the
   // letters, not the font's empty descender room (DM Slab: ascent 0.75 em,
   // descent 0.21 em; names are capitals — they sat ~3px high). Browsers

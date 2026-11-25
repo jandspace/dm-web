@@ -36,10 +36,10 @@
 // ── Columnist photo (Quote Headline) ──────────────────────────────────────────
 // A columnist's quote headline (always .serif) carries the columnist's photo on
 // its right — Columnist Profile Photo, Rectangle, linked to the author page:
-//   <h4 class="h4 serif article-headline">
+//   <h3 class="h4 serif article-headline">
 //     <a class="article-card__link" href="…">…</a>
 //     <a class="columnist-photo columnist-photo--lg" href="…" tabindex="-1" aria-hidden="true">…</a>
-//   </h4>
+//   </h3>
 // Size is a modifier in the markup. Defaults (Figma Article Card Headline,
 // Quote Headline=Yes): H2 xl 80 · H3–H5 lg 64 · H6 md 48.
 // Top-aligned, 8px from the text. The cut-out head rises 13/80 of the disc

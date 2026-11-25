@@ -52,7 +52,6 @@
   margin: 0;
   font-size: var(--typography-font-size-text-sm);
   line-height: var(--typography-line-height-normal);
-  letter-spacing: var(--typography-letter-spacing-wide);
   color: var(--color-text-neutral-grey-dark);
 }
 
@@ -91,7 +90,6 @@
   font-size: var(--typography-font-size-text-md);
   font-weight: var(--typography-font-weight-regular);
   line-height: var(--typography-line-height-normal);
-  letter-spacing: var(--typography-letter-spacing-normal);
   text-align: start;
   color: var(--color-text-neutral-darker);
 
@@ -124,7 +122,6 @@
   outline: none; // the box shows focus
   background: none;
   font: inherit;
-  letter-spacing: inherit;
   color: inherit;
   text-overflow: ellipsis;
 
@@ -170,7 +167,6 @@
   --input-radius: var(--border-radius-6);
 
   font-size: var(--typography-font-size-text-sm);
-  letter-spacing: var(--typography-letter-spacing-wide);
 }
 
 .input--lg {

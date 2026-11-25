@@ -1,9 +1,9 @@
 /* ============================================
    DM Design System — Web Typography Tokens
-   Version: 1.0.4
+   Version: 1.0.5
    ============================================
    Structure:
-   1. Primitive Typography (Font Family, Weight, Line Height, Letter Spacing)
+   1. Primitive Typography (Font Family, Weight, Line Height)
    2. Semantic Font Size Tokens — Responsive (Desktop / Tablet / Mobile)
 
    Responsive Implementation (Mobile First):
@@ -35,11 +35,7 @@
   --typography-line-height-normal: 1.5;
   --typography-line-height-wide: 1.75;
 
-  /* Letter Spacing (%) */
-  --typography-letter-spacing-narrow: -0.5%;
-  --typography-letter-spacing-compact: -0.2%;
-  --typography-letter-spacing-normal: 0%;
-  --typography-letter-spacing-wide: 0.25%;
+  /* Letter Spacing: none. Browser default (normal) applies. */
 }
 
 /* ============================================
@@ -111,7 +107,6 @@
     font-size: var(--typography-font-size-h1);
     font-weight: var(--typography-font-weight-bold);
     line-height: var(--typography-line-height-narrow);
-    letter-spacing: var(--typography-letter-spacing-compact);
   }
 
   .body-copy {
@@ -119,6 +114,5 @@
     font-size: var(--typography-font-size-text-md);
     font-weight: var(--typography-font-weight-regular);
     line-height: var(--typography-line-height-normal);
-    letter-spacing: var(--typography-letter-spacing-normal);
   }
 */
