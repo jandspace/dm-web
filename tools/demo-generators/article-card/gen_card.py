@@ -7,7 +7,7 @@ Run from the repo root:
     python3 tools/demo-generators/article-card/gen_card.py > modules/article-card/index.html
 """
 
-HEADLINE = "Headline of Daily Mail article preview card - lorem ipsum dolor sit amet, con sectetur adipiscing jand"
+HEADLINE = "Headline of Daily Mail article preview card - lorem ipsum dolor sit amet, con sectetur adipis jandspace"
 PREVIEW = "Preview Text - Lorem ipsum dolor sit amet, con sectetur ad ipiscing elit, quis que quis massa sit a met ex con sectetur dovi fermentum. Duis phare tra suscip zit."  # SM Left (built in); same short text the template uses for MD
 IMG = '<img src="../../assets/images/article-card-placeholder.jpg" alt="" />'
 IMG_PORTRAIT = '<img src="../../assets/images/article-card-placeholder-portrait.jpg" alt="" />'
