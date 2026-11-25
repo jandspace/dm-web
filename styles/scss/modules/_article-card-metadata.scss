@@ -169,7 +169,8 @@
 // The word follows the count in the markup — "9.9k comments", "1 comment":
 //   <a class="article-card-metadata__comments" …>icon 9.9k<span class="article-card-metadata__comments-word">comments</span></a>
 // Shown by default. Hidden — the count stands alone:
-//   · SM Right Thumb (Puff), every breakpoint
+//   · SM Right Thumb (Puff) from LG (below LG the thumbnail is on the left and
+//     the card shows it, as SM Left Thumb)
 //   · Channel + Timestamp below LG (MD, SM-XS)
 //   · Columnist metadata narrower than 300px
 // 2px from the count (Figma), inside the link's 4px gap.
@@ -188,7 +189,9 @@
 }
 
 .article-card--sm-right .article-card-metadata__comments-word {
-  display: none;
+  @include bp.respond-to(lg) {
+    display: none;
+  }
 }
 
 @container (max-width: 299px) {

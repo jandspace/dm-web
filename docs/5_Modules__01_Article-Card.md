@@ -206,7 +206,7 @@ Article Card Metadata (`.article-card__metadata.article-card-metadata`) — one 
 | LG / XL — every card type and metadata type | shown |
 | MD / SM-XS — one info item (Channel or Timestamp), Ad Feature, Sponsored, Affiliate, Comment Only | shown |
 | MD / SM-XS — Channel + Timestamp | hidden |
-| SM: Right Thumb (Puff) — every breakpoint, every metadata type | hidden |
+| SM: Right Thumb (Puff) — LG / XL, every metadata type (MD / SM-XS: as SM Left Thumb, where the thumbnail sits left) | hidden |
 | Columnist metadata narrower than 300px (container query) | hidden |
 
 Ad Feature, Sponsored and Affiliate rarely carry comments, but may.

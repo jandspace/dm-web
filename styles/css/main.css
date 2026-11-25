@@ -6009,8 +6009,10 @@ button.video-play {
   }
 }
 
-.article-card--sm-right .article-card-metadata__comments-word {
-  display: none;
+@media (min-width: 1024px) {
+  .article-card--sm-right .article-card-metadata__comments-word {
+    display: none;
+  }
 }
 
 @container (max-width: 299px) {
