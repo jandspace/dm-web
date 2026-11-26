@@ -298,6 +298,28 @@
   }
 }
 
+// ── Test: no XL (index-b-test.html, body.homepage-no-xl) ──────────────────────
+// LG is the widest layout: from 1580 up the page keeps its LG widths — page,
+// masthead and Navbar L2 containers 996 (not 1224), SM thumbnails LG 120 /
+// Left Thumb 144 (not 152). Only the XL rules this page meets.
+.homepage-no-xl {
+  @include bp.respond-to(xl) {
+    .container,
+    .masthead__inner,
+    .navbar-l2__inner {
+      max-width: 996px;
+    }
+
+    .article-card--sm-right .article-card__media {
+      width: 120px;
+    }
+
+    .article-card--sm-left .article-card__media {
+      width: 144px;
+    }
+  }
+}
+
 // ── Test: SM metadata full width (index-2.html only) ──────────────────────────
 // The metadata row sits under the thumbnail + headline row (out of the body)
 // and spans the card. 8px above it, as inside the body.

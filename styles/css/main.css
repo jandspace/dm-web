@@ -13754,6 +13754,20 @@ body:not(.demo-frame) .demo-container-start {
   padding: var(--spacing-4) 0;
 }
 
+@media (min-width: 1580px) {
+  .homepage-no-xl .container,
+  .homepage-no-xl .masthead__inner,
+  .homepage-no-xl .navbar-l2__inner {
+    max-width: 996px;
+  }
+  .homepage-no-xl .article-card--sm-right .article-card__media {
+    width: 120px;
+  }
+  .homepage-no-xl .article-card--sm-left .article-card__media {
+    width: 144px;
+  }
+}
+
 .homepage-sm-meta-full .article-card--sm-right {
   flex-wrap: wrap;
   row-gap: var(--spacing-8);
