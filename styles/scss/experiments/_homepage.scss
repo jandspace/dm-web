@@ -320,6 +320,144 @@
   }
 }
 
+// ── Test: live site grid (index-current-grid.html, body.homepage-live-grid) ───
+// index-b-test content in the grid the live site runs (LG+): page 964, Alpha
+// 636 + Beta 308, columns 308, all 20 apart. The blocks in the layout lose
+// their 16px side inset and their keylines run end to end; Beta has no
+// vertical keyline. Boxes with their own background (Channel Puff, inset)
+// keep the inset for the cards inside them.
+// Reference: Figma Lab › Dweb Index B - 2026.11.10 (39499:21213)
+.homepage-live-grid {
+  @include bp.respond-to(lg) {
+    .homepage__page {
+      max-width: 964px;
+    }
+
+    // Side Ads always 984 apart: 10px off the container at any window width
+    // (library 8, shrinking as the window narrows). Narrower, the window edge
+    // cuts them (body overflow-x: clip)
+    .ad-rail {
+      --ad-rail-gap: var(--spacing-10);
+    }
+
+    .layout-split,
+    .layout-row {
+      gap: var(--spacing-20);
+    }
+
+    .layout-alpha {
+      flex: 0 0 636px;
+    }
+
+    .layout-beta::before {
+      content: none;
+    }
+
+    // Blocks straight inside the layout: no side inset
+    :is(.layout-full, .layout-alpha, .layout-beta, .layout-col) > :not([class*="layout-"]) {
+      padding-inline: 0;
+
+      // Card hover surface reaches 8px past the content, into the gap
+      &.article-card::before {
+        inset-inline: calc(-1 * var(--spacing-8));
+      }
+    }
+
+    // Channel Puff (Figma Layout-panel-group): the box carries the 16px side
+    // inset, the cards inside none, keylines end to end. MPUs fixed 300 so the
+    // inset never shrinks them: 12px out into it each side, keyline 300 wide
+    .channel-puff__inner {
+      padding-inline: var(--spacing-16);
+
+      > .article-card {
+        padding-inline: 0;
+
+        &::before {
+          inset-inline: calc(-1 * var(--spacing-8));
+        }
+      }
+
+      > .ad-slot--mpu {
+        width: 300px;
+        align-self: center;
+      }
+
+      > :is(.article-card, .ad-slot--mpu)::after {
+        inset-inline: 0;
+      }
+    }
+
+    // Banner Secondary Stories (Figma 39499:21218): 3 columns of 300, 16
+    // apart and 16 in from the panel sides; stories without side padding,
+    // keylines 300 wide, H6 headlines, thumbnails 96 (no XL step), 8px
+    // between thumbnail and headline (library 12)
+    .article-card-banner__related {
+      column-gap: var(--spacing-16);
+      padding-inline: var(--spacing-16);
+    }
+
+    .article-card-banner__related-item {
+      gap: var(--spacing-8);
+      padding-inline: 0;
+
+      &::before {
+        inset-inline: calc(-1 * var(--spacing-8));
+      }
+
+      &::after {
+        inset-inline: 0;
+      }
+    }
+
+    .article-card-banner__related-media {
+      width: 96px;
+    }
+
+    .article-card-banner__related-headline {
+      font-size: var(--typography-font-size-h6);
+    }
+
+    // Keylines end to end
+    :is(.layout-full, .layout-alpha, .layout-beta, .layout-row, .layout-col),
+    :is(.layout-full, .layout-alpha, .layout-beta, .layout-col) > :not([class*="layout-"]) {
+      &::after {
+        inset-inline: 0;
+      }
+    }
+  }
+}
+
+// index-current-grid Banner: video play on a Secondary Story thumbnail (Figma
+// 39499:21218). The library story has none, and an <img> can't hold it, so
+// the thumbnail gets a wrapper that takes the image's float (SM / MD) and the
+// play sits 6px in from the bottom-left, xs 28, as on Article Card SM thumbs.
+.homepage-banner-thumb {
+  position: relative;
+  flex-shrink: 0;
+  display: block;
+
+  > .article-card-banner__related-media {
+    float: none;
+    margin: 0;
+  }
+
+  @include bp.respond-to(sm) {
+    float: left;
+    margin: 0 var(--spacing-12) var(--spacing-4) 0;
+  }
+
+  @include bp.respond-to(lg) {
+    float: none;
+    margin: 0;
+  }
+}
+
+.homepage-banner-thumb__play {
+  position: absolute;
+  bottom: var(--spacing-6);
+  left: var(--spacing-6);
+}
+
 // ── Test: SM metadata full width (index-2.html only) ──────────────────────────
 // The metadata row sits under the thumbnail + headline row (out of the body)
 // and spans the card. 8px above it, as inside the body.
