@@ -282,7 +282,7 @@
             }
             // Others: inside the article link, at the start of the headline text
             const target = h.querySelector('.article-card__link') || h;
-            target.insertAdjacentHTML('afterbegin', badgeHTML(BADGES[kind], BADGE_SIZE[h.tagName.toLowerCase()]) + ' ');
+            target.insertAdjacentHTML('afterbegin', badgeHTML(BADGES[kind], BADGE_SIZE[h.className.match(/\bh\d\b/)[0]]) + ' ');
           });
         };
 
@@ -353,7 +353,7 @@
             const live = mode === 'live' ? ' columnist-photo--live' : '';
             h.insertAdjacentHTML(
               'beforeend',
-              `<a class="columnist-photo columnist-photo--${PHOTO_SIZE[h.tagName.toLowerCase()]}${live}" href="#author" tabindex="-1" aria-hidden="true">` +
+              `<a class="columnist-photo columnist-photo--${PHOTO_SIZE[h.className.match(/\bh\d\b/)[0]]}${live}" href="#author" tabindex="-1" aria-hidden="true">` +
                 '<img class="columnist-photo__img" src="../../assets/images/columnist-placeholder.png" alt="Columnist Name" /></a>',
             );
           });

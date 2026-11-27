@@ -32,8 +32,8 @@ The card carries its own 16px inset; the column grid carries none (Foundation �
 | **XL (Horizontal)** | `--xl-horizontal` | 2 | 358:215, right from MD | H3 | md |
 | **XL (Triple)** | `--xl-triple` | 3 | 358:215, 50/50 from LG | H2 | lg |
 | **MD (Vertical Media)** | `--md-vertical` | 1 | 2:3, under the headline | H2 | lg |
-| **MD** | `--md` | 1 | 358:215 | H4 | md |
-| **SM: Left Thumb** | `--sm-left` | 1 | 4:3 thumb — LG+: under the headline, beside the preview; MD / SM-XS: left | H5 | sm |
+| **MD** | `--md` | 1 | 358:215 | H5 | sm |
+| **SM: Left Thumb** | `--sm-left` | 1 | 4:3 thumb — LG+: under the headline, beside the preview; MD / SM-XS: left | H6 | xs |
 | **SM: Right Thumb** (Puff) | `--sm-right` | 1 | 4:3 thumb, right from LG (left on MD / SM-XS) | H6 | xs |
 | **Image Only (Large)** | `--image-only --image-only-large` | 2 | 358:215 (SM-XS 15:16) | H3 | lg, top-left |
 | **Image Only (Medium)** | `--image-only --image-only-medium` | 1 | 15:16 | H4 | lg, top-left |

@@ -200,32 +200,32 @@
 
     <!-- ════════════════════════════════════════════════════
          MD
-         1 column · media 358:215 · H4
+         1 column · media 358:215 · H5
     ════════════════════════════════════════════════════ -->
     <div class="demo-card-section demo-span-3">
       <div class="demo-card-section__title">MD</div>
-      <p class="demo-card-section__note">1 column · media 358:215 · H4</p>
+      <p class="demo-card-section__note">1 column · media 358:215 · H5</p>
     </div>
     <article class="article-card article-card--md">
       <div class="article-card__media"><img src="../../assets/images/article-card-placeholder.jpg" alt="" /></div>
       <div class="article-card__body">
-        <h3 class="h4 article-headline"><a class="article-card__link" href="#article">Headline of Daily Mail article preview card - lorem ipsum dolor sit amet, con sectetur adipis jandspace</a></h3>
+        <h3 class="h5 article-headline"><a class="article-card__link" href="#article">Headline of Daily Mail article preview card - lorem ipsum dolor sit amet, con sectetur adipis jandspace</a></h3>
         <div class="article-card__metadata article-card-metadata"><a class="article-card-metadata__channel" href="#channel"><span class="article-card-metadata__channel-text">Channel</span></a><a class="article-card-metadata__comments" href="#comments" aria-label="9.9k comments"><span class="icon icon--speechbubble-ellipsis article-card-metadata__comments-icon" aria-hidden="true"></span>9.9k<span class="article-card-metadata__comments-word">comments</span></a></div>
       </div>
     </article>
 
     <!-- ════════════════════════════════════════════════════
          SM: LEFT THUMB
-         1 column · LG+: headline, then thumbnail 4:3 + preview text, then metadata · MD/SM-XS: thumbnail left, no preview (XL 152 · LG 144 · MD/SM-XS 128px) · H5
+         1 column · LG+: headline, then thumbnail 4:3 + preview text, then metadata · MD/SM-XS: thumbnail left, no preview (XL 152 · LG 144 · MD/SM-XS 128px) · H6
     ════════════════════════════════════════════════════ -->
     <div class="demo-card-section demo-span-3">
       <div class="demo-card-section__title">SM: Left Thumb</div>
-      <p class="demo-card-section__note">1 column · LG+: headline, then thumbnail 4:3 + preview text, then metadata · MD/SM-XS: thumbnail left, no preview (XL 152 · LG 144 · MD/SM-XS 128px) · H5</p>
+      <p class="demo-card-section__note">1 column · LG+: headline, then thumbnail 4:3 + preview text, then metadata · MD/SM-XS: thumbnail left, no preview (XL 152 · LG 144 · MD/SM-XS 128px) · H6</p>
     </div>
     <article class="article-card article-card--sm-left">
       <div class="article-card__media"><img src="../../assets/images/article-card-placeholder.jpg" alt="" /></div>
       <div class="article-card__body">
-        <h3 class="h5 article-headline"><a class="article-card__link" href="#article">Headline of Daily Mail article preview card - lorem ipsum dolor sit amet, con sectetur adipis jandspace</a></h3>
+        <h3 class="h6 article-headline"><a class="article-card__link" href="#article">Headline of Daily Mail article preview card - lorem ipsum dolor sit amet, con sectetur adipis jandspace</a></h3>
         <p class="article-card__preview">Preview Text - Lorem ipsum dolor sit amet, con sectetur ad ipiscing elit, quis que quis massa sit a met ex con sectetur dovi fermentum. Duis phare tra suscip zit.</p>
         <div class="article-card__metadata article-card-metadata"><a class="article-card-metadata__channel" href="#channel"><span class="article-card-metadata__channel-text">Channel</span></a><a class="article-card-metadata__comments" href="#comments" aria-label="9.9k comments"><span class="icon icon--speechbubble-ellipsis article-card-metadata__comments-icon" aria-hidden="true"></span>9.9k<span class="article-card-metadata__comments-word">comments</span></a></div>
       </div>
@@ -431,7 +431,7 @@
             }
             // Others: inside the article link, at the start of the headline text
             const target = h.querySelector('.article-card__link') || h;
-            target.insertAdjacentHTML('afterbegin', badgeHTML(BADGES[kind], BADGE_SIZE[h.tagName.toLowerCase()]) + ' ');
+            target.insertAdjacentHTML('afterbegin', badgeHTML(BADGES[kind], BADGE_SIZE[h.className.match(/\bh\d\b/)[0]]) + ' ');
           });
         };
 
@@ -502,7 +502,7 @@
             const live = mode === 'live' ? ' columnist-photo--live' : '';
             h.insertAdjacentHTML(
               'beforeend',
-              `<a class="columnist-photo columnist-photo--${PHOTO_SIZE[h.tagName.toLowerCase()]}${live}" href="#author" tabindex="-1" aria-hidden="true">` +
+              `<a class="columnist-photo columnist-photo--${PHOTO_SIZE[h.className.match(/\bh\d\b/)[0]]}${live}" href="#author" tabindex="-1" aria-hidden="true">` +
                 '<img class="columnist-photo__img" src="../../assets/images/columnist-placeholder.png" alt="Columnist Name" /></a>',
             );
           });
