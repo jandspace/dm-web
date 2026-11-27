@@ -17,15 +17,23 @@
 //   .input--textarea                   three lines, resizable in height
 //   .input-select                      Dropdown Select: button.input.input--select[role=combobox] + .dropdown-menu
 //
+//   label.input-choice                 Checkbox / Radio: native <input> + <span> text
+//     input[type=checkbox|radio]       icon drawn with ico-checkbox- / ico-radio- -on / -off
+//     .input-choice__hint              description under the text (optional)
+//   .input-choice--sm · --lg           16 / 20 icon, text-sm / -lg (MD 18, text-md) — on a choice or a group
+//   .input-choice--boxed               the choice in an Input box, 12 · 16 · 20 all round, selected = 2px blue
+//   fieldset.input-choice-group        legend.input-field__label + choices + p.input-field__hint
+//   .input-choice-group--inline        choices in a row
+//
 // States — from the control where HTML has an attribute:
-//   Focus      :focus-within                 2px semantic-info
+//   Focus      :focus-within                 2px semantic-info-subtle ring, 1px out (as Checkbox / Radio)
 //   Valid      .input--success               2px semantic-success + tick-circle
 //   Error      [aria-invalid="true"]         2px semantic-error + error/subtlest + triangle
 //                                           (on the control, or the Dropdown Select combobox)
 //   Loading    .input--loading               neutral/light + Loading ring
 //   Read-only  [readonly] / [aria-readonly]  neutral/lighter + padlock
 //   Disabled   :disabled                     neutral/light + slash-circle, text 40%
-// 2px = the 1px border + a 1px inset ring, so the content never moves.
+// Valid / Error 2px = the 1px border + a 1px inset ring, so the content never moves.
 //
 // Behaviour (Clear, Show / hide, Dropdown Select): scripts/modules/input.js
 // Reference: Figma Web UI Kit › Input (210:6470)
@@ -59,7 +67,7 @@
   color: var(--color-text-semantic-success-base);
 }
 
-.input-field:has([aria-invalid='true']) > .input-field__hint {
+:is(.input-field, .input-choice-group):has([aria-invalid='true']) > .input-field__hint {
   color: var(--color-text-semantic-error-base);
 }
 
@@ -196,6 +204,160 @@
   }
 }
 
+// ── Checkbox and Radio ────────────────────────────────────────────────────────
+// A native <input> with no look of its own; ::before draws the icon. The text
+// sits in a <span> so links and a description stay in one column. Sizes set
+// only custom properties, so a modifier works on a choice or on its group.
+
+.input-choice {
+  display: flex;
+  align-items: flex-start;
+  gap: var(--input-choice-gap, var(--spacing-8));
+  font-family: var(--typography-font-family-sans);
+  font-size: var(--input-choice-text, var(--typography-font-size-text-md));
+  line-height: var(--typography-line-height-normal);
+  color: var(--color-text-neutral-darker);
+  cursor: pointer;
+
+  > input {
+    --input-choice-color: var(--color-icon-neutral-grey-dark);
+    --input-choice-mark: url('../../assets/icons/ico-checkbox-off.svg');
+
+    flex-shrink: 0;
+    width: var(--input-choice-icon, 18px);
+    height: var(--input-choice-icon, 18px);
+    margin: calc((1em * var(--typography-line-height-normal) - var(--input-choice-icon, 18px)) / 2) 0 0; // centred on the first line
+    padding: 0;
+    border-radius: var(--border-radius-2);
+    appearance: none;
+    font: inherit;
+    cursor: inherit;
+
+    &::before {
+      content: '';
+      display: block;
+      height: 100%;
+      background-color: var(--input-choice-color);
+      -webkit-mask: var(--input-choice-mark) center / contain no-repeat; // Chrome < 120
+      mask: var(--input-choice-mark) center / contain no-repeat;
+    }
+
+    &:checked {
+      --input-choice-color: var(--color-icon-semantic-info-base);
+      --input-choice-mark: url('../../assets/icons/ico-checkbox-on.svg');
+    }
+
+    &[type='radio'] {
+      --input-choice-mark: url('../../assets/icons/ico-radio-off.svg');
+
+      border-radius: var(--border-radius-full);
+    }
+
+    &[type='radio']:checked {
+      --input-choice-mark: url('../../assets/icons/ico-radio-on.svg');
+    }
+
+    &:focus-visible,
+    &.is-focus { // .is-focus: static demo sample
+      outline: 2px solid var(--color-border-semantic-info-subtle);
+      outline-offset: 1px;
+    }
+
+    &[aria-invalid='true'] {
+      --input-choice-color: var(--color-icon-semantic-error-base);
+    }
+  }
+
+  &:hover > input:not(:checked, [aria-invalid='true']) {
+    --input-choice-color: var(--color-icon-neutral-darker);
+  }
+
+  &:hover > input:checked {
+    --input-choice-color: var(--color-icon-semantic-info-deep);
+  }
+
+  &:has(> :disabled) {
+    opacity: 0.4;
+    cursor: not-allowed;
+  }
+}
+
+.input-choice__hint {
+  display: block;
+  font-size: var(--typography-font-size-text-sm);
+  color: var(--color-text-neutral-grey-dark);
+}
+
+.input-choice--sm {
+  --input-choice-icon: 16px;
+  --input-choice-gap: var(--spacing-6);
+  --input-choice-text: var(--typography-font-size-text-sm);
+  --input-choice-inset: var(--spacing-12);
+  --input-choice-radius: var(--border-radius-6);
+}
+
+.input-choice--lg {
+  --input-choice-icon: 20px;
+  --input-choice-gap: var(--spacing-10);
+  --input-choice-text: var(--typography-font-size-text-lg);
+  --input-choice-inset: var(--spacing-20);
+  --input-choice-radius: var(--border-radius-10);
+}
+
+// Boxed: the Input box around the choice, the Input side inset on all four sides
+.input-choice--boxed {
+  --input-choice-border: var(--color-border-neutral-grey-light);
+
+  padding: calc(var(--input-choice-inset, var(--spacing-16)) - 1px); // border included
+  border: 1px solid var(--input-choice-border);
+  border-radius: var(--input-choice-radius, var(--border-radius-8));
+  box-shadow: inset 0 0 0 var(--input-choice-ring, 0px) var(--input-choice-border);
+  background-color: var(--color-background-neutral-white);
+
+  &:has(> :checked) {
+    --input-choice-border: var(--color-border-semantic-info-base);
+    --input-choice-ring: 1px;
+  }
+
+  &:has(> [aria-invalid='true']) {
+    --input-choice-border: var(--color-border-semantic-error-base);
+    --input-choice-ring: 1px;
+
+    background-color: var(--color-background-semantic-error-subtlest);
+  }
+}
+
+// Group: a fieldset, the legend styled as the field label
+.input-choice-group {
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-12);
+  min-width: 0;
+  margin: 0;
+  padding: 0;
+  border: 0;
+  font-family: var(--typography-font-family-sans);
+
+  > legend {
+    margin-bottom: var(--spacing-8);
+    padding: 0;
+  }
+
+  > .input-field__hint {
+    width: 100%; // own line in an inline group
+  }
+}
+
+.input-choice-group--inline {
+  flex-flow: row wrap;
+  column-gap: var(--spacing-24);
+}
+
+// Boxed choices stack tighter
+.input-choice-group:has(> .input-choice--boxed) {
+  gap: var(--spacing-8);
+}
+
 // ── Select ────────────────────────────────────────────────────────────────────
 
 .input--select {
@@ -291,13 +453,14 @@ span.input__control {
 }
 
 // ── States ────────────────────────────────────────────────────────────────────
-// Source order sets the winner: Error over Focus; Read-only and Disabled last.
+// Source order sets the winner: Read-only and Disabled last. Focus is a ring
+// outside the box, so it adds to any state (Error keeps its red border).
 
 .input:focus-within,
 .input[aria-expanded='true'],
 .input.is-focus { // .is-focus: static demo sample
-  --input-border: var(--color-border-semantic-info-base);
-  --input-ring: 1px;
+  outline: 2px solid var(--color-border-semantic-info-subtle);
+  outline-offset: 1px;
 }
 
 .input--success {

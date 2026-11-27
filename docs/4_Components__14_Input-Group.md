@@ -40,7 +40,7 @@ All from Input — the group adds none of its own.
 
 | State | Box | Button |
 |---|---|---|
-| Default · Focus · Typing · Entered | as Input | Default |
+| Default · Focus · Typing · Entered | as Input — the Focus ring goes round the whole group, button included | Default |
 | Valid · Error | as Input (Error: pink box) | Default |
 | Read-only | as Input (padlock) | `disabled` |
 | Disabled | as Input (slash-circle) | `disabled` |
@@ -105,4 +105,5 @@ All from Input — the group adds none of its own.
 - **Select + Button:** built with the Native Select. A Dropdown Select (options with icons) can't hold a second button inside its trigger; if one is needed it gets its own pattern.
 - **Button disabled:** Figma Button's `State=disabled` (20%); code had no Disabled state, so Button › Disabled was added to match.
 - **Read-only / Disabled, Button + Input:** the leading Tertiary button was drawn enabled; fixed in Figma (2026-11-11) to `State=disabled`, as the other compositions.
+- **Focus ring (Figma fixed, 2026-11-27):** Focus, Active-Typing and Active-Selected drew a 2px `border/home-blue/base` on the Container. Now, as code and Input: the Container keeps its 1px `border/neutral/grey-light` and carries the **Focus ring** layer (2px `border/semantic-info/subtle`, 1px outside). The nested Input / Selectbox instance stays plain: its own Focus ring is hidden by override, so there is one ring, round the whole group.
 - **Upload** (Upload + "Choose files…") is a file picker, not a text field, and is not built yet.
