@@ -413,10 +413,6 @@
       width: 96px;
     }
 
-    .article-card-banner__related-headline {
-      font-size: var(--typography-font-size-h6);
-    }
-
     // Keylines end to end
     :is(.layout-full, .layout-alpha, .layout-beta, .layout-row, .layout-col),
     :is(.layout-full, .layout-alpha, .layout-beta, .layout-col) > :not([class*="layout-"]) {

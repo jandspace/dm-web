@@ -5934,7 +5934,7 @@ button.video-play {
   min-width: 0;
   margin: 0;
   font-family: var(--typography-font-family-sans);
-  font-size: var(--typography-font-size-h5);
+  font-size: var(--typography-font-size-h6);
   font-weight: var(--typography-font-weight-semibold);
   line-height: var(--typography-line-height-narrow);
   color: var(--color-text-neutral-lightest);
@@ -13950,9 +13950,6 @@ body:not(.demo-frame) .demo-container-start {
   }
   .homepage-live-grid .article-card-banner__related-media {
     width: 96px;
-  }
-  .homepage-live-grid .article-card-banner__related-headline {
-    font-size: var(--typography-font-size-h6);
   }
   .homepage-live-grid :is(.layout-full, .layout-alpha, .layout-beta, .layout-row, .layout-col)::after,
   .homepage-live-grid :is(.layout-full, .layout-alpha, .layout-beta, .layout-col) > :not([class*=layout-])::after {

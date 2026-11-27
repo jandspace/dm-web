@@ -73,7 +73,7 @@ Unlike the Article Card, **SM and XS are separate layouts**: SM (≥640) targets
 | Thumbnail (4:3, 4px corners) | 102×76 | 96×72 | 96×72 | 120×90 |
 | Thumbnail + headline | side by side | **thumbnail floats left, the headline wraps around it** and then runs full width | side by side | side by side |
 
-- **Story:** 16px inset; headline H5 Semibold, line-height compact, `color/text/neutral/lightest`; 12px between thumbnail and headline. The thumbnail is optional — the first row has one in Figma, the second is text only.
+- **Story:** 16px inset; headline H6 (14 at every breakpoint) Semibold, line-height compact, `color/text/neutral/lightest`; 12px between thumbnail and headline. The thumbnail is optional — the first row has one in Figma, the second is text only.
 - **SM / MD wrap:** Figma draws the thumbnail and the text as two columns (it cannot wrap text round an image), which leaves 3-word lines in the narrow columns. In code the thumbnail floats, so the headline uses the full column width below it.
 - **Keylines** (inset 16, `translucent-light/subtle`): XS — between stories; SM+ — under the first row only. None on the last row.
 - **Link:** one per story, on the headline, stretched over the story. **Hover** (MD+, pointer): `translucent-light/pale` surface zooms in behind the story (inset 8, 8px corners) — the Article Card hover on a dark surface; keyboard focus: 2px `home-blue/base` outline.
