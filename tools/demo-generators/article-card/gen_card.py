@@ -113,8 +113,8 @@ sections = [
      [card("sm-right", 6, k) for k in trio]),
     ("Image Only (Large)", "2 columns · headline on the image · media 358:215 (SM-XS 15:16) · H3 · badge top-left",
      [image_only("large", 3, "demo-span-2")]),
-    ("Image Only (Medium)", "1 column · headline on the image · media 15:16 · H4 · badge top-left",
-     [image_only("medium", 4)]),
+    ("Image Only (Medium)", "1 column · headline on the image · media 15:16 · H5 · badge top-left",
+     [image_only("medium", 5)]),
 ]
 
 body = "\n\n".join(section(*s) for s in sections)

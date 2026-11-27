@@ -36,7 +36,7 @@ The card carries its own 16px inset; the column grid carries none (Foundation �
 | **SM: Left Thumb** | `--sm-left` | 1 | 4:3 thumb — LG+: under the headline, beside the preview; MD / SM-XS: left | H6 | xs |
 | **SM: Right Thumb** (Puff) | `--sm-right` | 1 | 4:3 thumb, right from LG (left on MD / SM-XS) | H6 | xs |
 | **Image Only (Large)** | `--image-only --image-only-large` | 2 | 358:215 (SM-XS 15:16) | H3 | lg, top-left |
-| **Image Only (Medium)** | `--image-only --image-only-medium` | 1 | 15:16 | H4 | lg, top-left |
+| **Image Only (Medium)** | `--image-only --image-only-medium` | 1 | 15:16 | H5 | lg, top-left |
 
 - Gaps (Figma 5209:5051): media ↔ text 12 (side by side: XL Horizontal / Triple MD 16, Triple LG+ 32); headline → metadata 12, XL (Triple) LG+ **16**; SM cards 8 (SM: Left Thumb LG+ rows and thumbnail ↔ preview 8, SM thumbs ↔ text 12 up to MD, 8 from LG).
 - SM: Left Thumb is used in the main (left) columns; SM: Right Thumb in the right-hand sidebar, where metadata is usually dropped.
